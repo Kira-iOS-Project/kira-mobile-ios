@@ -1,11 +1,13 @@
-// Segmented (design system): two to four mutually exclusive options in one capsule with a
-// hairline: transaction type, payoff method, a chart's period. The chosen option is pandan on
-// pandan-soft with a pandan-line border, and VoiceOver reads it as selected.
+/**
+ Segmented (design system): two to four mutually exclusive options in one capsule with a
+ hairline: transaction type, payoff method, a chart's period. The chosen option is pandan on
+ pandan-soft with a pandan-line border, and VoiceOver reads it as selected.
+ */
 import SwiftUI
 
-/// A choice of two to four options in one capsule.
+/** A choice of two to four options in one capsule. */
 struct KiraSegmented<ID: Hashable>: View {
-    /// One option: its id and its label.
+    /** One option: its id and its label. */
     struct Option: Identifiable {
         let id: ID
         let title: LocalizedStringResource
@@ -15,7 +17,7 @@ struct KiraSegmented<ID: Hashable>: View {
     private let options: [Option]
     @Binding private var selection: ID
 
-    /// `label` names the group for VoiceOver.
+    /** `label` names the group for VoiceOver. */
     init(_ label: LocalizedStringResource, options: [Option], selection: Binding<ID>) {
         self.label = label
         self.options = options

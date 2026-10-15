@@ -1,8 +1,10 @@
-// A row whose children share the width by weight, like CSS grid's `fr` columns: the Kira Score
-// meter's zones (40, 40, 20) and the NextStepCard's actions (1 and 1.3).
+/**
+ A row whose children share the width by weight, like CSS grid's `fr` columns: the Kira Score
+ meter's zones (40, 40, 20) and the NextStepCard's actions (1 and 1.3).
+ */
 import SwiftUI
 
-/// Lays its children out left to right, each as wide as its share of `weights`.
+/** Lays its children out left to right, each as wide as its share of `weights`. */
 struct WeightedRow: Layout {
     let weights: [CGFloat]
     var spacing: CGFloat = 0

@@ -1,11 +1,13 @@
-// NextStepCard (design system): the one next step on Beranda, with its illustration, its computed
-// effect and an equal "Nanti Saja". The order of steps comes from rules (costly debt, then the
-// emergency fund, protection, investing), never from AI. Under a "Langkah Berikutnya" section
-// title, change the eyebrow ("Prioritas") so it does not repeat. Illustrations: kartu-lunas for a
-// payoff, celengan for the emergency fund, payung for protection, struk for recording.
+/**
+ NextStepCard (design system): the one next step on Beranda, with its illustration, its computed
+ effect and an equal "Nanti Saja". The order of steps comes from rules (costly debt, then the
+ emergency fund, protection, investing), never from AI. Under a "Langkah Berikutnya" section
+ title, change the eyebrow ("Prioritas") so it does not repeat. Illustrations: kartu-lunas for a
+ payoff, celengan for the emergency fund, payung for protection, struk for recording.
+ */
 import SwiftUI
 
-/// The next step: an eyebrow, a title, why, its effect, and two equal buttons.
+/** The next step: an eyebrow, a title, why, its effect, and two equal buttons. */
 struct KiraNextStepCard: View {
     private let title: LocalizedStringResource
     private let message: LocalizedStringResource?
@@ -78,19 +80,19 @@ struct KiraNextStepCard: View {
         .padding(.top, KiraSpacing.space1)
     }
 
-    /// The same card with another eyebrow ("Prioritas").
+    /** The same card with another eyebrow ("Prioritas"). */
     func eyebrow(_ text: LocalizedStringResource) -> Self { copy { $0.eyebrow = text } }
 
-    /// The same card with a small pill beside the eyebrow ("1 dari 3").
+    /** The same card with a small pill beside the eyebrow ("1 dari 3"). */
     func meta(_ text: LocalizedStringResource) -> Self { copy { $0.meta = text } }
 
-    /// The same card with a spot illustration at its top right.
+    /** The same card with a spot illustration at its top right. */
     func illustration(_ name: KiraIllustrationName) -> Self { copy { $0.illustration = name } }
 
-    /// The same card with the engine-computed effect ("Perkiraan Kira Score 66 → 71").
+    /** The same card with the engine-computed effect ("Perkiraan Kira Score 66 → 71"). */
     func impact(_ text: LocalizedStringResource) -> Self { copy { $0.impact = text } }
 
-    /// The same card with another secondary label than "Nanti Saja".
+    /** The same card with another secondary label than "Nanti Saja". */
     func secondaryLabel(_ text: LocalizedStringResource) -> Self { copy { $0.secondaryLabel = text } }
 
     private func copy(_ change: (inout Self) -> Void) -> Self {

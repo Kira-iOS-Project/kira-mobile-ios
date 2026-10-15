@@ -1,11 +1,13 @@
-// Toggle (design system): an iOS-shaped switch, flat: a pandan track when on, `track` when off, a
-// white knob with a hairline and no shadow (the system switch's knob casts one, so Kira draws its
-// own). For settings that apply at once: the PIN lock, hiding balances, consent per data purpose.
-// VoiceOver reads it as a switch (the toggle trait) named by `label`, with its state; inside a
-// ListRow the label is the row's title.
+/**
+ Toggle (design system): an iOS-shaped switch, flat: a pandan track when on, `track` when off, a
+ white knob with a hairline and no shadow (the system switch's knob casts one, so Kira draws its
+ own). For settings that apply at once: the PIN lock, hiding balances, consent per data purpose.
+ VoiceOver reads it as a switch (the toggle trait) named by `label`, with its state; inside a
+ ListRow the label is the row's title.
+ */
 import SwiftUI
 
-/// A flat on/off switch with an accessible name.
+/** A flat on/off switch with an accessible name. */
 struct KiraToggle: View {
     private let label: Text
     @Binding private var isOn: Bool
@@ -15,7 +17,7 @@ struct KiraToggle: View {
         self.init(label: Text(label), isOn: isOn)
     }
 
-    /// A switch named by a row's title.
+    /** A switch named by a row's title. */
     init(label: Text, isOn: Binding<Bool>) {
         self.label = label
         _isOn = isOn

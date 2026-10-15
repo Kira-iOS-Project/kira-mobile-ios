@@ -1,4 +1,4 @@
-// Gallery pages for navigation (nav bars, the dock, a sheet) and chat (bubbles and a draft card).
+/** Gallery pages for navigation (nav bars, the dock, a sheet) and chat (bubbles and a draft card). */
 #if DEBUG
     import SwiftUI
 

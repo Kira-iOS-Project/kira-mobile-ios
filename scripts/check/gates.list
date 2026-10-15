@@ -14,6 +14,7 @@ code	bash scripts/check/lint-suppressions.sh
 code	bash scripts/check/xcode-settings.sh
 code	bash scripts/check/package-graph.sh
 code	node scripts/check/i18n-catalog.mjs
+code	node scripts/check/comment-style.mjs
 code	bash scripts/check/error-codes.sh
 code	node scripts/check/payload-registry.mjs
 code	bash scripts/check/privacy-manifest.sh

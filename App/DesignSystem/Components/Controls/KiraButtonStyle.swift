@@ -1,8 +1,10 @@
-// The look of KiraButton (bundle.css .k-btn): a capsule at least 50 pt (md) or 44 pt (sm) high,
-// growing with Dynamic Type, with no shadow; a pressed button darkens its fill instead.
+/**
+ The look of KiraButton (bundle.css .k-btn): a capsule at least 50 pt (md) or 44 pt (sm) high,
+ growing with Dynamic Type, with no shadow; a pressed button darkens its fill instead.
+ */
 import SwiftUI
 
-/// The capsule look of a KiraButton.
+/** The capsule look of a KiraButton. */
 struct KiraButtonStyle: ButtonStyle {
     let variant: KiraButton.Variant
     let size: KiraButton.Size

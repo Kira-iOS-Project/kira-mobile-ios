@@ -1,43 +1,45 @@
-// The design system's text styles (tokens.json: type). Display styles are Plus Jakarta Sans scaled
-// from the iOS text style named beside them; text styles are the iOS ones, so Dynamic Type works
-// everywhere. CSS weight 750 maps to ExtraBold (.heavy) and 650 to Semibold: SwiftUI names no weight
-// between them. Nothing uses Caption 2 (11 pt): iOS never shrinks it below 11 pt, which Apple's
-// accessibility audit reports as partial Dynamic Type support, so the overline (and the dock's
-// "Catat") use Caption 1, 12 pt.
+/**
+ The design system's text styles (tokens.json: type). Display styles are Plus Jakarta Sans scaled
+ from the iOS text style named beside them; text styles are the iOS ones, so Dynamic Type works
+ everywhere. CSS weight 750 maps to ExtraBold (.heavy) and 650 to Semibold: SwiftUI names no weight
+ between them. Nothing uses Caption 2 (11 pt): iOS never shrinks it below 11 pt, which Apple's
+ accessibility audit reports as partial Dynamic Type support, so the overline (and the dock's
+ "Catat") use Caption 1, 12 pt.
+ */
 import SwiftUI
 
-/// One of Kira's text styles; apply it with `.kiraFont(_:)`.
+/** One of Kira's text styles; apply it with `.kiraFont(_:)`. */
 enum KiraTextStyle: CaseIterable {
-    /// t-score: the Kira Score number, once per screen (64, ExtraBold).
+    /** t-score: the Kira Score number, once per screen (64, ExtraBold). */
     case score
-    /// t-amount-xl: the money left on the home hero card (40, ExtraBold).
+    /** t-amount-xl: the money left on the home hero card (40, ExtraBold). */
     case amountXL
-    /// t-large-title: a large screen title (34).
+    /** t-large-title: a large screen title (34). */
     case largeTitle
-    /// t-title: card and section titles (20, Bold).
+    /** t-title: card and section titles (20, Bold). */
     case title
-    /// t-amount: totals on draft and summary cards (20, Bold).
+    /** t-amount: totals on draft and summary cards (20, Bold). */
     case amount
-    /// t-headline: button labels, indicator names, row titles (17, Semibold).
+    /** t-headline: button labels, indicator names, row titles (17, Semibold). */
     case headline
-    /// t-body: chat text and main sentences (17).
+    /** t-body: chat text and main sentences (17). */
     case body
-    /// t-callout: explanations inside cards (15).
+    /** t-callout: explanations inside cards (15). */
     case callout
-    /// t-footnote: metadata, transaction categories, scale labels (13, Medium).
+    /** t-footnote: metadata, transaction categories, scale labels (13, Medium). */
     case footnote
-    /// t-caption: required labels under numbers (12, Medium).
+    /** t-caption: required labels under numbers (12, Medium). */
     case caption
-    /// t-overline: the eyebrow above a card title, in capitals (Bold; 12, see the file comment).
+    /** t-overline: the eyebrow above a card title, in capitals (Bold; 12, see the file comment). */
     case overline
-    /// t-formula: the formula in a "Gimana Ngitungnya?" panel (13, monospaced).
+    /** t-formula: the formula in a "Gimana Ngitungnya?" panel (13, monospaced). */
     case formula
-    /// t-hand: Kira's handwritten note (Kalam 19).
+    /** t-hand: Kira's handwritten note (Kalam 19). */
     case hand
-    /// t-hand-sm: a small note under an illustration (Kalam 16).
+    /** t-hand-sm: a small note under an illustration (Kalam 16). */
     case handSmall
 
-    /// The font, scaled with Dynamic Type; numbers are tabular in the numeric styles.
+    /** The font, scaled with Dynamic Type; numbers are tabular in the numeric styles. */
     var font: Font {
         switch self {
         case .score: KiraFont.display(64, .heavy, relativeTo: .largeTitle).monospacedDigit()
@@ -57,7 +59,7 @@ enum KiraTextStyle: CaseIterable {
         }
     }
 
-    /// Letter spacing in points, from the style's em value at its nominal size.
+    /** Letter spacing in points, from the style's em value at its nominal size. */
     var tracking: CGFloat {
         switch self {
         case .score: -1.92
@@ -72,7 +74,7 @@ enum KiraTextStyle: CaseIterable {
 }
 
 extension View {
-    /// Sets one of Kira's text styles: its font, its letter spacing, and capitals for the overline.
+    /** Sets one of Kira's text styles: its font, its letter spacing, and capitals for the overline. */
     func kiraFont(_ style: KiraTextStyle) -> some View {
         font(style.font)
             .tracking(style.tracking)

@@ -1,19 +1,21 @@
-// NavBar (design system): every screen opens with it. Inner screens: an icon-only back button
-// (never the previous title), the title centred in Title Case on one line, at most two actions on
-// the right (KiraHelpButton on every main screen). Modals: `.close`. Tab roots (Beranda, Rencana,
-// Komunitas): `isLarge`, a large left-aligned title with a small eyebrow above it (a date or the pay
-// period). Hide the system bar on screens that use it: `.toolbar(.hidden, for: .navigationBar)`.
+/**
+ NavBar (design system): every screen opens with it. Inner screens: an icon-only back button
+ (never the previous title), the title centred in Title Case on one line, at most two actions on
+ the right (KiraHelpButton on every main screen). Modals: `.close`. Tab roots (Beranda, Rencana,
+ Komunitas): `isLarge`, a large left-aligned title with a small eyebrow above it (a date or the pay
+ period). Hide the system bar on screens that use it: `.toolbar(.hidden, for: .navigationBar)`.
+ */
 import SwiftUI
 
-/// The top bar of a screen.
+/** The top bar of a screen. */
 struct KiraNavBar<Trailing: View>: View {
-    /// The button on the left.
+    /** The button on the left. */
     enum Leading {
-        /// Nothing (default).
+        /** Nothing (default). */
         case none
-        /// The back button, named after where it goes ("Kembali ke Beranda").
+        /** The back button, named after where it goes ("Kembali ke Beranda"). */
         case back(LocalizedStringResource, () -> Void)
-        /// The close button of a modal screen ("Tutup").
+        /** The close button of a modal screen ("Tutup"). */
         case close(LocalizedStringResource, () -> Void)
     }
 
@@ -41,7 +43,7 @@ struct KiraNavBar<Trailing: View>: View {
     }
 
     @ViewBuilder private var inline: some View {
-        // At the accessibility text sizes the title moves under the buttons, so they never squeeze it.
+        /** At the accessibility text sizes the title moves under the buttons, so they never squeeze it. */
         if typeSize.isAccessibilitySize {
             VStack(spacing: KiraSpacing.space2) {
                 HStack(spacing: KiraSpacing.space2) {
@@ -85,7 +87,7 @@ struct KiraNavBar<Trailing: View>: View {
                     Text(title)
                         .font(KiraFont.display(28, .heavy, relativeTo: .title))
                         .tracking(-0.56)
-                        // One word, such as "Beranda", cannot wrap: it shrinks before it would clip.
+                        /** One word, such as "Beranda", cannot wrap: it shrinks before it would clip. */
                         .lineLimit(1)
                         .minimumScaleFactor(0.6)
                         .foregroundStyle(.ink)
@@ -111,7 +113,7 @@ struct KiraNavBar<Trailing: View>: View {
         }
     }
 
-    /// The same large bar with a small line above the title ("Kamis, 15 Oktober 2026").
+    /** The same large bar with a small line above the title ("Kamis, 15 Oktober 2026"). */
     func eyebrow(_ text: LocalizedStringResource) -> Self {
         var bar = self
         bar.eyebrow = text

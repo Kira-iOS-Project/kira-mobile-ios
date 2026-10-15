@@ -1,12 +1,14 @@
-// IndicatorRow (design system): one of the six Kira Score indicators, in a fixed order: Dana
-// Darurat, Rasio Menabung (Tabung); Rasio Cicilan, Utang Konsumtif, Utang terhadap Aset (Utang);
-// Proteksi (Lindungi). The name in Title Case, the measured value in words ("1,1× pengeluaran pokok
-// · target 3×"), then points, band and a 0–100 bar under it: nothing sits on the right but a
-// chevron when the row opens the indicator. Group rows per sub-score in a card (KiraRowStack).
+/**
+ IndicatorRow (design system): one of the six Kira Score indicators, in a fixed order: Dana
+ Darurat, Rasio Menabung (Tabung); Rasio Cicilan, Utang Konsumtif, Utang terhadap Aset (Utang);
+ Proteksi (Lindungi). The name in Title Case, the measured value in words ("1,1× pengeluaran pokok
+ · target 3×"), then points, band and a 0–100 bar under it: nothing sits on the right but a
+ chevron when the row opens the indicator. Group rows per sub-score in a card (KiraRowStack).
+ */
 import Domain
 import SwiftUI
 
-/// One Kira Score indicator.
+/** One Kira Score indicator. */
 struct KiraIndicatorRow: View {
     private let name: Text
     private let value: Text
@@ -15,7 +17,7 @@ struct KiraIndicatorRow: View {
     private var target: Text?
     private var bandOverride: ScoreBand?
 
-    /// `points` come from the score engine; with `action` the row opens the indicator's detail.
+    /** `points` come from the score engine; with `action` the row opens the indicator's detail. */
     init(name: Text, value: Text, points: Score, action: (() -> Void)? = nil) {
         self.name = name
         self.value = value
@@ -77,14 +79,14 @@ struct KiraIndicatorRow: View {
         .accessibilityHidden(true)
     }
 
-    /// The same row with its target after the value ("target 3×").
+    /** The same row with its target after the value ("target 3×"). */
     func target(_ text: Text) -> Self {
         var row = self
         row.target = text
         return row
     }
 
-    /// The same row with the band the engine sent, when it differs from the points' band.
+    /** The same row with the band the engine sent, when it differs from the points' band. */
     func band(_ band: ScoreBand) -> Self {
         var row = self
         row.bandOverride = band

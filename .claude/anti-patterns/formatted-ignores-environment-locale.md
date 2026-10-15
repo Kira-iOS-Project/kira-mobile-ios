@@ -21,7 +21,7 @@ locale (`Locale.current`), and `"\(value)"` uses no locale at all. Reproduced wi
 Keep the value a number until the view, and format it there:
 
 ```swift
-Text(order.total, format: .currency(code: "USD"))   // the screen's locale
+Text(order.total, format: .currency(code: "USD")) /** the screen's locale */
 ```
 
 A screen model that must build a sentence takes the locale as a parameter.

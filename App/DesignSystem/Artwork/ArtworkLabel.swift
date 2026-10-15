@@ -1,9 +1,11 @@
-// Artwork reaches VoiceOver as one image with a name, or not at all. The images inside are
-// decorative (`Image(decorative:)`), so only the name given here is read.
+/**
+ Artwork reaches VoiceOver as one image with a name, or not at all. The images inside are
+ decorative (`Image(decorative:)`), so only the name given here is read.
+ */
 import SwiftUI
 
 extension View {
-    /// One image named `label` for VoiceOver, or hidden from it when `label` is nil.
+    /** One image named `label` for VoiceOver, or hidden from it when `label` is nil. */
     @ViewBuilder
     func artworkLabel(_ label: LocalizedStringResource?) -> some View {
         if let label {

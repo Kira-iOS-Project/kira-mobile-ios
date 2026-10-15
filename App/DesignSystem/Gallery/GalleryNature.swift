@@ -1,5 +1,7 @@
-// Gallery page for nature and handwriting: the leaves in their three tones, the sceneries, and the
-// handwritten note's tones, sizes and arrows.
+/**
+ Gallery page for nature and handwriting: the leaves in their three tones, the sceneries, and the
+ handwritten note's tones, sizes and arrows.
+ */
 #if DEBUG
     import SwiftUI
 
