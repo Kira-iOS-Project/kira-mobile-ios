@@ -13,10 +13,10 @@ version 6, last changed 15 October 2026). When a ticket names a component (`Kira
 | `App/DesignSystem/Tokens/` | Spacing, radius and size scales; the hairline and card modifiers |
 | `App/DesignSystem/Typography/` | Font registration and the text styles |
 | `App/DesignSystem/Artwork/` | Icon, Logo, Mascot, CategoryIcon, Illustration, Leaf, Scenery, HandNote |
-| `App/DesignSystem/Components/` | The components, by group: Controls, Content, Score, Lists, Navigation, Chat |
+| `App/DesignSystem/Components/` | The components, by group: Controls, Content, Score, Lists, Navigation, Dialog, Chat |
 | `App/DesignSystem/Layout/` | Row separators, the wrapping row (chips), the weighted row, the scroll edges |
 | `App/DesignSystem/Gallery/` | The debug-only gallery of every component |
-| `Packages/AppCore/Sources/Domain/` | `RupiahFormatStyle`, `Score`, `ScoreBand`: logic, tested at 100% |
+| `Packages/AppCore/Sources/Domain/` | `RupiahFormatStyle`, `Score`, `ScoreBand`, `DigitCode`: logic, tested at 100% |
 
 ## Rules every screen keeps
 
@@ -161,6 +161,9 @@ Options beyond five initializer parameters are chained modifiers, such as
 | `HelpButton` (pill, icon, row) | `KiraHelpButton(_:action:)` | `Components/Controls/KiraHelpButton.swift` |
 | `Toggle` | `KiraToggle(_:isOn:)` | `Components/Controls/KiraToggle.swift` |
 | `Field` (prefix, suffix, hint, error, multiline) | `KiraField(_:text:prompt:)` `.prefix` `.suffix` `.hint` `.error` `.multiline` | `Components/Controls/KiraField.swift` |
+| `Checkbox` (canvas ONB-10c: a full-width row) | `KiraCheckbox(_:isOn:)` | `Components/Controls/KiraCheckbox.swift` |
+| Code boxes (canvas "PIN 6 kotak (pola OTP)": the app-lock PIN, the email code; hint, error) | `KiraCodeField(_:code:kind:)` (`.pin`, `.code`) `.hint` `.error`; digits kept by `DigitCode` | `Components/Controls/KiraCodeField.swift`, `KiraCodeFieldParts.swift`, `Packages/AppCore/Sources/Domain/Code/DigitCode.swift` |
+| `.k-link` (on its own; inside a sentence) | `KiraLink(_:action:)`; `KiraLinkText(_:onOpen:)` with Markdown links in the catalog value | `Components/Controls/KiraLink.swift` |
 | `Segmented` | `KiraSegmented(_:options:selection:)` | `Components/Controls/KiraSegmented.swift` |
 | `Chip` (selected, icon, category) | `KiraChip(_:isSelected:leading:action:)`; wrap many in `KiraFlowRow` | `Components/Controls/KiraChip.swift`, `Layout/KiraFlowRow.swift` |
 | `Tag` (netral, pandan, kunyit, sehat, rentan, darurat, hero) | `KiraTag(_:tone:icon:)` | `Components/Content/KiraTag.swift` |
@@ -181,6 +184,7 @@ Options beyond five initializer parameters are chained modifiers, such as
 | `NavBar` (back, close, large, eyebrow, actions) | `KiraNavBar(_:subtitle:leading:isLarge:trailing:)` `.eyebrow(_:)` | `Components/Navigation/KiraNavBar.swift` |
 | `TabBar` (the dock with Catat) | `KiraTabBar(selection:isCatatActive:onCatat:)`, `KiraTab` | `Components/Navigation/KiraTabBar.swift` |
 | `Sheet` | `.kiraSheet(isPresented:title:subtitle:content:)` | `Components/Navigation/KiraSheet.swift` |
+| `.k-dialog` (success, failure, confirm; illustration or round icon; one or two buttons) | `KiraDialog(_:message:art:primary:secondary:)`, presented with `.kiraDialog(isPresented:dialog:)` | `Components/Dialog/KiraDialog.swift`, `KiraDialogPresentation.swift` |
 | (screen edges) | `.kiraScrollEdges()` | `Layout/KiraScrollEdges.swift` |
 | `ChatBubble` (me, kira; meta, initial, saved) | `KiraChatBubble(_:meta:initial:content:)` `.saved(_:)` `.hidesAvatar()` (`me` is `.user`) | `Components/Chat/KiraChatBubble.swift` |
 | `DraftCard` | `KiraDraftCard(items:total:onSave:onEdit:)` `.secondary` `.eyebrow` `.saveLabel`; items `KiraDraftItem` | `Components/Chat/KiraDraftCard.swift` |
@@ -193,6 +197,18 @@ Options beyond five initializer parameters are chained modifiers, such as
 | `Leaf` (ranting, pandan, daun; alam, lembut, hero; flip) | `KiraLeaf(_:tone:size:isFlipped:)` | `Artwork/KiraNature.swift` |
 | `Scenery` (alam with sun, hero) | `KiraScenery(tone:hasSun:height:)` | `Artwork/KiraNature.swift` |
 | `formatRupiah`, `bandOf` | `RupiahFormatStyle` (`.rupiah`), `ScoreBand(score:)`, `Score` | `Packages/AppCore/Sources/Domain/` |
+
+A dialog confirms a deletion or reports how an action went. Its buttons close it after their own
+action, so a screen only flips its flag:
+
+```swift
+.kiraDialog(isPresented: $confirmsDelete) {
+    KiraDialog(
+        "transaction.delete.title", message: "transaction.delete.body", art: .illustration(.peduli),
+        primary: KiraButton("transaction.delete", variant: .bahaya) { model.delete() },
+        secondary: KiraButton("transaction.keep", variant: .secondary) {})
+}
+```
 
 ### A screen, put together
 
@@ -240,7 +256,13 @@ artwork is one named image or hidden (`artworkLabel(_:)`), selected chips, segme
 checks carry the selected trait, the switch carries the toggle trait and says "Aktif" or
 "Nonaktif", the accordion says whether it is open, an amount reads as one value in words
 ("1.840.000 rupiah", or "Nominal disembunyikan" when masked), avatars grow with the text, and
-motion stops under Reduce Motion. `UITests/DesignSystemGalleryAuditTests.swift` runs Apple's
+motion stops under Reduce Motion. A checkbox carries the toggle trait and says "Dicentang" or
+"Belum dicentang". The six code boxes are one text field to VoiceOver, named by its label, that
+says the digits on screen and how many are in ("3 8, 2 dari 6 angka terisi"); a masked PIN gives
+the count alone. "Tahan untuk Lihat" keeps its words as its name, and VoiceOver and Voice Control,
+which cannot hold, turn the digits on and off with its action. A presented dialog
+covers the whole window, so nothing behind it can be reached; VoiceOver starts on its title, and
+the escape gesture runs the secondary action (or the only one) and closes it. `UITests/DesignSystemGalleryAuditTests.swift` runs Apple's
 accessibility audit over every gallery page.
 
 ## Icons
@@ -317,8 +339,11 @@ builds only; release builds compile none of it.
 
 | Item | State | Why |
 | --- | --- | --- |
-| Dialog (`.k-dialog`: confirm, success, failure) | Not done | A pattern in the README and `bundle.css`, not a component in `index.d.ts`; build it with the first ticket that confirms a deletion |
-| Inline text link (`.k-link`, underlined "Gimana Ngitungnya?") | Not done | `KiraButton(variant: .quiet)` covers the inline action; the design system now puts the formula in an Accordion |
+| Dialog buttons | Stacked | Primary on top and secondary under it, both as wide as the dialog, as `bundle.css` (`.k-dialog__actions`, a column) and every dialog on the canvas boards draw them; the side-by-side rule (secondary left, primary right) is `KiraButtonPair` on screens |
+| Dialog presentation | Full-screen cover | A transparent full-screen cover that appears without its slide, so the scrim covers the nav bar and the dock wherever `.kiraDialog` is attached; the card fades in and grows from 96% (fade only under Reduce Motion) |
+| Text link underline | System | SwiftUI draws the platform underline; the canvas's 1.5 px line 3 px under the text is not available on `Text` |
+| PIN keypad of the lock screen (canvas BukaKunci) | Not done | That screen draws its own keypad on the hero background; `KiraCodeField` uses the system number pad |
+| Pasting a code | Edit menu | The number pad has no paste key: a long press on the boxes opens the edit menu, and any text pasted keeps its first six digits ("Kode: 381 449" fills all six); Mail's code comes from the keyboard's suggestion on `.code` |
 | `ScoreMeter` `onExplain` / `explainLabel` | Not done | Deprecated in the README in favour of an Accordion under the meter |
 | `NextStepCard` buttons | Partial | Equal widths through `KiraButtonPair` (the Berdaya pillar), where `bundle.css` uses 1 : 1.3 |
 | `Accordion` `defaultOpen` | Different | Closed by default; open it from outside with `isExpanded:` |
