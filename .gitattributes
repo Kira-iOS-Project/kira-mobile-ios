@@ -1,0 +1,7 @@
+# GitHub's language bar: the agent-config-kit tooling (bash, Node, Python) outweighs the app, so it
+# is left out of the count. The generated API client is also folded in pull-request diffs; review
+# its source, Packages/AppCore/Sources/APIClient/openapi.json, instead.
+scripts/** linguist-detectable=false
+.githooks/** linguist-detectable=false
+.claude/** linguist-detectable=false
+Packages/AppCore/Sources/APIClient/GeneratedSources/** linguist-generated=true
