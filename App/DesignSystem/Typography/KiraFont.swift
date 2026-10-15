@@ -36,7 +36,7 @@ enum KiraFont {
     }
 
     private static let files = ["PlusJakartaSans-VariableFont_wght", "Kalam-Regular"]
-    private static let log = Logger(subsystem: "com.kira", category: "fonts")
+    private static let log = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.kira", category: "fonts")
 
     private static let registered: Void = {
         for file in files {
