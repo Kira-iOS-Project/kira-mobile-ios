@@ -35,7 +35,6 @@
         "scripts/check/gates.sh": "sha256:d861a983ea509bb185df11b37d9d57dbfc13950c59eccd3bd40638d62adc06eb",
         "scripts/check/hook-probes.sh": "sha256:df34a86ab9e93411952ce6ece12aa997ea1e57eee81d399a5e9f630fd3665881",
         "scripts/check/hook-probes.tsv": "sha256:1b9575672788ad3fd8266fd9909fc944a7ef479004531cb2e757480c1e44e90f",
-        "scripts/check/secrets.sh": "sha256:cbac8c3aa1e46dab73b32d77b5f716fa4bf2b2edaea2f72d3fa337279d8e86d7",
         "scripts/check/skills.sh": "sha256:4eef76ed5ecb9b5a2f1d4d655c781e89096dff64f302134938a17fe3bb5758d3",
         "scripts/env/envfile.py": "sha256:5341f982368b7bc5362b95d4d996203ab9f2cce10456323bad61a91431e059ad",
         "scripts/env/set.sh": "sha256:7f18ffd55c6360909fe6cd527e2ce28f8cbbf63b2eb23d224f7dbebac01dea1e",
@@ -50,7 +49,9 @@
         ".claude/session-logs/"
       ],
       "kept": [],
-      "owned": [],
+      "owned": [
+        "scripts/check/secrets.sh"
+      ],
       "packageScripts": {},
       "seeded": [
         ".claude/rules/common/working-agreements.md",

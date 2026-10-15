@@ -18,6 +18,13 @@ cd "$(dirname "$0")/../.." || exit 2
 PIN=8.30.1
 want="$(sed -n 's/^GITLEAKS_VERSION=//p' .github/scripts/quality-gate.sh 2>/dev/null | head -1)"
 want="${want:-$PIN}"
+# Owned here (agent-sync own): the reusable gate's macOS job (QG_PHASE=build) installs no gitleaks,
+# since its static job already scanned the pull request's commits with the pinned release, yet it
+# runs the whole gates.list. In CI nothing is staged, so this scan would read nothing there anyway.
+if [ "${GITHUB_ACTIONS:-}" = true ] && [ "${QG_PHASE:-}" = build ] && ! command -v gitleaks >/dev/null 2>&1; then
+  echo "secrets.sh: the static job scanned this pull request's commits; nothing is staged in CI" >&2
+  exit 0
+fi
 if ! command -v gitleaks >/dev/null 2>&1; then
   echo "::error::gitleaks is not installed; install release $want (brew install gitleaks, or the binary from https://github.com/gitleaks/gitleaks/releases)" >&2
   exit 1
