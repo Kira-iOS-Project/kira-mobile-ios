@@ -1,8 +1,10 @@
-// A row that wraps: chips for quiz answers and filters flow onto as many lines as they need,
-// each keeping its own width, instead of squeezing or truncating.
+/**
+ A row that wraps: chips for quiz answers and filters flow onto as many lines as they need,
+ each keeping its own width, instead of squeezing or truncating.
+ */
 import SwiftUI
 
-/// Lays its children left to right and wraps them onto new lines: chips.
+/** Lays its children left to right and wraps them onto new lines: chips. */
 struct KiraFlowRow: Layout {
     var spacing: CGFloat = KiraSpacing.space2
 

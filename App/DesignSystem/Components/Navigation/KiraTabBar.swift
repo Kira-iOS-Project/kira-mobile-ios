@@ -1,12 +1,14 @@
-// TabBar (design system): Kira's dock, not a row of equal tabs. A glass capsule holds the three
-// destinations, and only the active one shows its label, as a white pill with a hairline; the
-// others are icons with a VoiceOver name. Catat is not a destination but the app's main action, so
-// it stands apart as a pandan chat bubble with a sharp bottom-right corner, like a sent message.
-// The capsule is the app's only glass: the `glass` token over a blur, with no shadow. Lay it over a
-// TabView whose own bar is hidden, and leave space-10 at the end of scrolling content.
+/**
+ TabBar (design system): Kira's dock, not a row of equal tabs. A glass capsule holds the three
+ destinations, and only the active one shows its label, as a white pill with a hairline; the
+ others are icons with a VoiceOver name. Catat is not a destination but the app's main action, so
+ it stands apart as a pandan chat bubble with a sharp bottom-right corner, like a sent message.
+ The capsule is the app's only glass: the `glass` token over a blur, with no shadow. Lay it over a
+ TabView whose own bar is hidden, and leave space-10 at the end of scrolling content.
+ */
 import SwiftUI
 
-/// The dock's destinations.
+/** The dock's destinations. */
 enum KiraTab: CaseIterable {
     case beranda, rencana, komunitas
 
@@ -27,13 +29,13 @@ enum KiraTab: CaseIterable {
     }
 }
 
-/// The navigation dock: three destinations and the Catat button.
+/** The navigation dock: three destinations and the Catat button. */
 struct KiraTabBar: View {
     @Binding private var selection: KiraTab
     private let isCatatActive: Bool
     private let onCatat: () -> Void
 
-    /// `isCatatActive` rings the Catat bubble while the Catat screen is open.
+    /** `isCatatActive` rings the Catat bubble while the Catat screen is open. */
     init(selection: Binding<KiraTab>, isCatatActive: Bool = false, onCatat: @escaping () -> Void) {
         _selection = selection
         self.isCatatActive = isCatatActive
@@ -75,7 +77,7 @@ struct KiraTabBar: View {
             .frame(maxWidth: isOn ? nil : .infinity, minHeight: 46)
             .kiraCard(isOn ? .surfaceRaised : .clear, border: isOn ? .hairline : .clear, cornerRadius: KiraRadius.full)
             .contentShape(Capsule())
-            // The active pill keeps its whole label; the icon-only tabs share the rest.
+            /** The active pill keeps its whole label; the icon-only tabs share the rest. */
             .fixedSize(horizontal: isOn, vertical: false)
         }
         .buttonStyle(.plain)

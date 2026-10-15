@@ -1,24 +1,26 @@
-// Dialog (design system: `.k-dialog`): confirmations and the result of an action, over the screen.
-// A 112 pt spot illustration (mekar for success, payung for failure, peduli for a confirmation) or a
-// round icon, a Title Case title, one sentence, then the buttons stacked as wide as the dialog with
-// the primary action on top:
-//   - confirm before deleting or cancelling: `bahaya` primary ("Hapus"), `secondary` "Batal";
-//   - success names the result ("Transaksi Tersimpan") with one "Selesai";
-//   - failure names the cause and the way out without blame, keeps what was typed, and offers
-//     "Coba Lagi" with "Tutup".
-// Never for bad news about the person's numbers, and never over the Kira Peduli chat. Present it
-// with `.kiraDialog(isPresented:dialog:)`.
+/**
+ Dialog (design system: `.k-dialog`): confirmations and the result of an action, over the screen.
+ A 112 pt spot illustration (mekar for success, payung for failure, peduli for a confirmation) or a
+ round icon, a Title Case title, one sentence, then the buttons stacked as wide as the dialog with
+ the primary action on top:
+   - confirm before deleting or cancelling: `bahaya` primary ("Hapus"), `secondary` "Batal";
+   - success names the result ("Transaksi Tersimpan") with one "Selesai";
+   - failure names the cause and the way out without blame, keeps what was typed, and offers
+     "Coba Lagi" with "Tutup".
+ Never for bad news about the person's numbers, and never over the Kira Peduli chat. Present it
+ with `.kiraDialog(isPresented:dialog:)`.
+ */
 import SwiftUI
 
-/// A dialog's card: art, title, message and its stacked buttons.
+/** A dialog's card: art, title, message and its stacked buttons. */
 struct KiraDialog: View {
-    /// The art at the top of the dialog.
+    /** The art at the top of the dialog. */
     enum Art {
-        /// A spot illustration, 112 pt.
+        /** A spot illustration, 112 pt. */
         case illustration(KiraIllustrationName)
-        /// A round pandan check: it worked.
+        /** A round pandan check: it worked. */
         case success
-        /// A round terracotta alert: it did not work.
+        /** A round terracotta alert: it did not work. */
         case failure
     }
 
@@ -30,8 +32,10 @@ struct KiraDialog: View {
     private var onDismiss: (() -> Void)?
     @AccessibilityFocusState private var titleFocused: Bool
 
-    /// `primary` goes on top; `secondary` (Batal, Tutup) under it. Presented, either button closes
-    /// the dialog after its action.
+    /**
+     `primary` goes on top; `secondary` (Batal, Tutup) under it. Presented, either button closes
+     the dialog after its action.
+     */
     init(
         _ title: LocalizedStringResource, message: LocalizedStringResource, art: Art, primary: KiraButton,
         secondary: KiraButton? = nil
@@ -76,12 +80,14 @@ struct KiraDialog: View {
             (secondary ?? primary).action()
             onDismiss?()
         }
-        // Presented, VoiceOver starts on the title; shown inline (the gallery), it leaves focus be.
+        /** Presented, VoiceOver starts on the title; shown inline (the gallery), it leaves focus be. */
         .onAppear { titleFocused = onDismiss != nil }
     }
 
-    /// The same dialog, presented: VoiceOver starts on its title, and its buttons and the escape
-    /// gesture (which runs the secondary action, or the only one) call `dismiss` after their action.
+    /**
+     The same dialog, presented: VoiceOver starts on its title, and its buttons and the escape
+     gesture (which runs the secondary action, or the only one) call `dismiss` after their action.
+     */
     func presented(dismiss: @escaping () -> Void) -> Self {
         var dialog = self
         dialog.onDismiss = dismiss
@@ -100,7 +106,7 @@ struct KiraDialog: View {
     }
 }
 
-/// The round icon of a success or failure dialog (`.k-dialog__icon--ok` and `--bad`).
+/** The round icon of a success or failure dialog (`.k-dialog__icon--ok` and `--bad`). */
 private struct ResultBadge: View {
     let icon: KiraIconName
     let color: Color

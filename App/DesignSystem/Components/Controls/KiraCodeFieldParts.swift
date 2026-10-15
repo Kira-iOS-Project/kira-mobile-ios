@@ -1,17 +1,17 @@
-// The parts of KiraCodeField: one box, and the PIN's "Tahan untuk Lihat" control.
+/** The parts of KiraCodeField: one box, and the PIN's "Tahan untuk Lihat" control. */
 import SwiftUI
 
-/// One box of a code: empty, a dot, or a digit.
+/** One box of a code: empty, a dot, or a digit. */
 struct KiraCodeBox: View {
-    /// Where the box is in the code.
+    /** Where the box is in the code. */
     enum Status {
-        /// Not reached yet.
+        /** Not reached yet. */
         case empty
-        /// The box the next digit goes into, while the field has focus.
+        /** The box the next digit goes into, while the field has focus. */
         case next
-        /// Holds a digit.
+        /** Holds a digit. */
         case filled
-        /// The code was not accepted.
+        /** The code was not accepted. */
         case error
     }
 
@@ -42,7 +42,7 @@ struct KiraCodeBox: View {
         .background(.surfaceRaised, in: shape)
         .overlay { shape.strokeBorder(border, lineWidth: kind == .pin || status == .next ? 1.5 : 1) }
         .overlay {
-            // The focus ring of `.k-input`: a solid 3 pt band outside the box, not a shadow.
+            /** The focus ring of `.k-input`: a solid 3 pt band outside the box, not a shadow. */
             if status == .next && kind == .code {
                 RoundedRectangle(cornerRadius: radius + 3, style: .continuous)
                     .strokeBorder(.pandanLine, lineWidth: 3)
@@ -61,9 +61,11 @@ struct KiraCodeBox: View {
     }
 }
 
-/// "Tahan untuk Lihat": the PIN's digits show only while it is held. VoiceOver and Voice Control,
-/// which cannot hold, turn them on and off with the button's action instead; its name stays the
-/// words on screen.
+/**
+ "Tahan untuk Lihat": the PIN's digits show only while it is held. VoiceOver and Voice Control,
+ which cannot hold, turn them on and off with the button's action instead; its name stays the
+ words on screen.
+ */
 struct KiraRevealButton: View {
     @Binding var isRevealed: Bool
 

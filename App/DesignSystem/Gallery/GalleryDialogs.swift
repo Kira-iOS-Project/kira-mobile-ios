@@ -1,5 +1,7 @@
-// Gallery page for dialogs: success, failure, a confirmation that deletes and one that does not, the
-// round-icon art, each shown inline on the scrim, and one presented over the whole window.
+/**
+ Gallery page for dialogs: success, failure, a confirmation that deletes and one that does not, the
+ round-icon art, each shown inline on the scrim, and one presented over the whole window.
+ */
 #if DEBUG
     import SwiftUI
 
@@ -63,7 +65,7 @@
     }
 
     extension View {
-        /// The dialog as it sits over a screen: on the scrim, 24 pt from the edges.
+        /** The dialog as it sits over a screen: on the scrim, 24 pt from the edges. */
         fileprivate func onScrim() -> some View {
             padding(.horizontal, KiraSpacing.space6)
                 .padding(.vertical, KiraSpacing.space8)

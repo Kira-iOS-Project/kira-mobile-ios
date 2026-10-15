@@ -1,17 +1,19 @@
-// ScoreMeter (design system): the Kira Score as a position on a 0–100 ribbon split into its three
-// zones, with the big number and its band. The zone edges (40 and 80) always show. Under it go the
-// caption "Hanya simulasi · dihitung mesin, bukan AI" and an Accordion "Gimana Ngitungnya?" with
-// the formula; on the detail screen, the band's plant (KiraIllustration.plant(for:)) sits above it.
-// No half-circle gauge, no counting up from 0, no comparison with other people.
+/**
+ ScoreMeter (design system): the Kira Score as a position on a 0–100 ribbon split into its three
+ zones, with the big number and its band. The zone edges (40 and 80) always show. Under it go the
+ caption "Hanya simulasi · dihitung mesin, bukan AI" and an Accordion "Gimana Ngitungnya?" with
+ the formula; on the detail screen, the band's plant (KiraIllustration.plant(for:)) sits above it.
+ No half-circle gauge, no counting up from 0, no comparison with other people.
+ */
 import Domain
 import SwiftUI
 
-/// The Kira Score, its band and its place on the scale.
+/** The Kira Score, its band and its place on the scale. */
 struct KiraScoreMeter: View {
     private let score: Score
     private let delta: Int?
 
-    /// `score` comes from the score engine, never from AI; `delta` is the change since last month.
+    /** `score` comes from the score engine, never from AI; `delta` is the change since last month. */
     init(_ score: Score, delta: Int? = nil) {
         self.score = score
         self.delta = delta

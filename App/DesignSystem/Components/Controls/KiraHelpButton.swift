@@ -1,17 +1,19 @@
-// HelpButton (design system): the way into Kira Peduli, "Butuh Bantuan Sekarang", on every main
-// screen. Calm, never red: a pandan heart in a pandan-soft circle on a `button` capsule. A tap opens
-// the help sheet over the current screen without closing the chat or a form.
+/**
+ HelpButton (design system): the way into Kira Peduli, "Butuh Bantuan Sekarang", on every main
+ screen. Calm, never red: a pandan heart in a pandan-soft circle on a `button` capsule. A tap opens
+ the help sheet over the current screen without closing the chat or a form.
+ */
 import SwiftUI
 
-/// The Kira Peduli button.
+/** The Kira Peduli button. */
 struct KiraHelpButton: View {
-    /// Where the button sits.
+    /** Where the button sits. */
     enum Variant: CaseIterable {
-        /// A pill in the top bar, beside the greeting or the title (default).
+        /** A pill in the top bar, beside the greeting or the title (default). */
         case pill
-        /// 44 pt, heart only, when the bar is full.
+        /** 44 pt, heart only, when the bar is full. */
         case icon
-        /// Full width, in Profil and inside sheets.
+        /** Full width, in Profil and inside sheets. */
         case row
     }
 
@@ -39,7 +41,7 @@ struct KiraHelpButton: View {
             .frame(minWidth: variant == .icon ? KiraSize.tap : nil, minHeight: minHeight)
             .frame(maxWidth: variant == .row ? .infinity : nil)
             .kiraCard(.button, border: .buttonLine, cornerRadius: variant == .row ? KiraRadius.medium : KiraRadius.full)
-            // The pill is 34 pt high; the padding brings its touch target to 44 pt.
+            /** The pill is 34 pt high; the padding brings its touch target to 44 pt. */
             .padding(.vertical, variant == .pill ? 5 : 0)
             .contentShape(Rectangle())
         }

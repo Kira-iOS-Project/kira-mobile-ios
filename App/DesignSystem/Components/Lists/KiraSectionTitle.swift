@@ -1,18 +1,20 @@
-// SectionTitle (design system): a small leaf, then the section's title in Title Case, with one
-// handwritten note or one action on the right ("Lihat Semua"); the right side is never for numbers
-// or badges. The note anchored here is the preferred place for a screen's one handwritten note.
-// Turn the leaf off when a screen has more than three section titles.
+/**
+ SectionTitle (design system): a small leaf, then the section's title in Title Case, with one
+ handwritten note or one action on the right ("Lihat Semua"); the right side is never for numbers
+ or badges. The note anchored here is the preferred place for a screen's one handwritten note.
+ Turn the leaf off when a screen has more than three section titles.
+ */
 import SwiftUI
 
-/// A section's title with an optional note or action.
+/** A section's title with an optional note or action. */
 struct KiraSectionTitle: View {
-    /// What sits on the right.
+    /** What sits on the right. */
     enum Trailing {
-        /// Nothing (default).
+        /** Nothing (default). */
         case none
-        /// A handwritten note (at most one per screen).
+        /** A handwritten note (at most one per screen). */
         case note(LocalizedStringResource)
-        /// One action, Title Case.
+        /** One action, Title Case. */
         case action(LocalizedStringResource, () -> Void)
     }
 
@@ -29,8 +31,10 @@ struct KiraSectionTitle: View {
 
     var body: some View {
         Group {
-            // At the accessibility text sizes the note or action goes under the title, so neither
-            // squeezes the other.
+            /**
+             At the accessibility text sizes the note or action goes under the title, so neither
+             squeezes the other.
+             */
             if typeSize.isAccessibilitySize {
                 VStack(alignment: .leading, spacing: KiraSpacing.space2) {
                     heading
@@ -72,7 +76,7 @@ struct KiraSectionTitle: View {
                     .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            // The 44 pt target overlaps the rows above and below instead of growing the title.
+            /** The 44 pt target overlaps the rows above and below instead of growing the title. */
             .padding(.vertical, -9)
         }
     }

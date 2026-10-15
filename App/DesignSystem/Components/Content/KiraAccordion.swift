@@ -1,11 +1,13 @@
-// Accordion (design system): detail that waits until it is wanted, closed by default; the whole
-// title row is the button. For what not everyone needs (the Kira Score formula, method sources,
-// legal notes, FAQ), never for what the screen's decision needs. Title Case, a question is fine
-// ("Gimana Ngitungnya?"); `subtitle` says in one line what is inside. Built on DisclosureGroup, so
-// VoiceOver reads it as expandable; the chevron stops turning under Reduce Motion.
+/**
+ Accordion (design system): detail that waits until it is wanted, closed by default; the whole
+ title row is the button. For what not everyone needs (the Kira Score formula, method sources,
+ legal notes, FAQ), never for what the screen's decision needs. Title Case, a question is fine
+ ("Gimana Ngitungnya?"); `subtitle` says in one line what is inside. Built on DisclosureGroup, so
+ VoiceOver reads it as expandable; the chevron stops turning under Reduce Motion.
+ */
 import SwiftUI
 
-/// A card that opens to show detail.
+/** A card that opens to show detail. */
 struct KiraAccordion<Content: View>: View {
     private let title: LocalizedStringResource
     private let subtitle: LocalizedStringResource?
@@ -16,7 +18,7 @@ struct KiraAccordion<Content: View>: View {
     // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
     @State private var isOpen = false
 
-    /// Closed by default; pass `isExpanded` to open or close it from outside.
+    /** Closed by default; pass `isExpanded` to open or close it from outside. */
     init(
         _ title: LocalizedStringResource, subtitle: LocalizedStringResource? = nil, icon: KiraIconName? = nil,
         isExpanded: Binding<Bool>? = nil, @ViewBuilder content: () -> Content
@@ -56,7 +58,7 @@ struct KiraAccordion<Content: View>: View {
         }
     }
 
-    /// The same accordion on pandan-soft, the green version.
+    /** The same accordion on pandan-soft, the green version. */
     func soft() -> Self {
         var accordion = self
         accordion.isSoft = true

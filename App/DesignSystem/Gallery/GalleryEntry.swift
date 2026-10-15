@@ -1,5 +1,7 @@
-// Gallery page for consent and codes: the checkbox, the PIN and the email code (filling, and not
-// accepted), and text links on their own and inside a sentence.
+/**
+ Gallery page for consent and codes: the checkbox, the PIN and the email code (filling, and not
+ accepted), and text links on their own and inside a sentence.
+ */
 #if DEBUG
     import SwiftUI
 
