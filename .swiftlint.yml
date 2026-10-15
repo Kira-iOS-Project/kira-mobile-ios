@@ -205,8 +205,16 @@ custom_rules:
   # The error-catch check: an empty catch says why the error does not matter.
   empty_catch_reason:
     name: An empty catch says why
-    regex: 'catch\s*\{(?:\s|//(?! error ignored: )[^\n]*)*\}'
-    message: "Handle the error, or open the block with `// error ignored: <why>`."
+    regex: 'catch\s*\{(?:\s|/\*(?:\*(?! error ignored: )|(?!\*))(?:[^*]|\*(?!/))*\*/)*\}'
+    message: "Handle the error, or open the block with `/** error ignored: <why> */`."
+    severity: error
+  # Rule 34: comments are block comments. A line comment remains only where a tool reads one: the
+  # swift-tools-version line, swiftlint and periphery:ignore directives; `://` in a URL is no comment.
+  no_line_comment:
+    name: No line comment
+    regex: '(?<!:)//(?!\s*(?:swiftlint:|periphery:ignore|swift-tools-version:))'
+    match_kinds: [comment, doccomment]
+    message: "Write the comment as /** … */ (Rule 34); // stays only for swiftlint:, periphery:ignore and swift-tools-version."
     severity: error
   # One home per symbol: no re-exports.
   no_reexport:
