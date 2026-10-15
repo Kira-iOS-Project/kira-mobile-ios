@@ -17,7 +17,7 @@ How to follow AGENTS.md Rules 22 to 24. The rules themselves are stated once, in
   transport, the Keychain, the clock), never a type of this app.
 - Tests run in parallel in one process. Each test builds what it needs; nothing touches
   `UserDefaults.standard`, a singleton or a shared variable. A suite that cannot run in parallel
-  says why: `@Suite(.serialized) // writes the one shared <thing>: <why>`.
+  says why: `@Suite(.serialized) /** writes the one shared <thing>: <why> */`.
 - A test of a `@MainActor` model is `@MainActor` too.
 - The expected value comes from the spec or the rule, never from running the code once.
 - A test that fails sometimes is a bug to fix: the gate never retries.
