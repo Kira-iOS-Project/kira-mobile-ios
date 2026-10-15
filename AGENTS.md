@@ -28,8 +28,9 @@ the rules that bind), Not met (name the shape to follow until it is).
 
 Follow-up work, in order, each naming the rules it unblocks:
 
-1. The design system (colours, type, the logo and the app icon) as the first ticket: unblocks the
-   visual work of every screen after it
+1. ~~The design system (colours, type, the logo and the app icon)~~: done 2026-10-16. Tokens, fonts,
+   artwork and the `Kira…` components are in `App/DesignSystem/` and `App/Assets.xcassets/`;
+   `docs/design-system.md` maps each design component to its SwiftUI type
 2. Onboarding and sign-in (email and a one-time code) with its screen models, a Keychain-held refresh
    token and the first `package` API calls: unblocks Rules 4 and 10–13 in practice
 
