@@ -1,0 +1,33 @@
+# Code owners: GitHub asks them to review every pull request that touches a matching path. Without
+# a branch ruleset that requires code-owner review this is a request, not a gate. The last matching
+# line wins, so the paths below override the catch-all.
+# an @org/team; setup created this file once, and it is yours now.
+
+*                                @adhibuchori
+
+# CI, and what decides what ships.
+/.github/                        @adhibuchori
+/.gitleaks.toml                  @adhibuchori
+/*.xcodeproj/                    @adhibuchori
+/Config/                         @adhibuchori
+/App/PrivacyInfo.xcprivacy       @adhibuchori
+
+# The agent's guardrails: what it may run and reach, the lock that turns the hooks on, and the
+# checks and scripts that judge and unlock its work. A one-line edit here can switch a guard off.
+/.claude/settings.json           @adhibuchori
+/.claude/agent-config-kit.lock   @adhibuchori
+/.claude/agent-config.json       @adhibuchori
+/.mcp.json                       @adhibuchori
+/scripts/check/                  @adhibuchori
+/scripts/ios/                    @adhibuchori
+/scripts/ops/                    @adhibuchori
+/scripts/env/                    @adhibuchori
+/.skillspector-baseline.yaml     @adhibuchori
+/.githooks/                      @adhibuchori
+/.swiftlint.yml                  @adhibuchori
+/.swift-format                   @adhibuchori
+
+# The contract with the backend and every error the app can show.
+/Packages/AppCore/Sources/APIClient/openapi*   @adhibuchori
+/Packages/AppCore/Package.swift  @adhibuchori
+/Packages/AppCore/Sources/APIClient/AppProblem.swift   @adhibuchori

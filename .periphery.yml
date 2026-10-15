@@ -1,0 +1,13 @@
+# Periphery's settings for the dead-code check (AGENTS.md Rule 27). The quality gate's macOS job runs
+# `periphery scan --strict` over the index its test build wrote, and fails on any declaration nothing
+# in the scheme uses. Setup created this file once; it is yours now.
+project: Kira.xcodeproj
+schemes:
+  - Kira
+# Generated code holds what the spec declares, used or not.
+report_exclude:
+  - "**/GeneratedSources/**"
+# The seeded problem type is the contract with the backend: the generated client decodes into it
+# from the first spec copy, and screens use its members as they appear.
+retain_files:
+  - "**/APIClient/AppProblem.swift"

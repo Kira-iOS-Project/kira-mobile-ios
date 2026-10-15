@@ -1,0 +1,360 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C0DE5EE5A1B2000000000018 /* APIClient in Frameworks */ = {isa = PBXBuildFile; productRef = C0DE5EE5A1B2000000000017 /* APIClient */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C0DE5EE5A1B2000000000014 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C0DE5EE5A1B2000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C0DE5EE5A1B200000000000C;
+			remoteInfo = Kira;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C0DE5EE5A1B2000000000007 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
+		C0DE5EE5A1B2000000000008 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		C0DE5EE5A1B2000000000009 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		C0DE5EE5A1B200000000000A /* Kira.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kira.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0DE5EE5A1B200000000000B /* KiraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		C0DE5EE5A1B2000000000005 /* App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = App;
+			sourceTree = "<group>";
+		};
+		C0DE5EE5A1B2000000000006 /* UITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = UITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C0DE5EE5A1B200000000000F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0DE5EE5A1B2000000000018 /* APIClient in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0DE5EE5A1B2000000000012 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C0DE5EE5A1B2000000000002 = {
+			isa = PBXGroup;
+			children = (
+				C0DE5EE5A1B2000000000005 /* App */,
+				C0DE5EE5A1B2000000000006 /* UITests */,
+				C0DE5EE5A1B2000000000004 /* Config */,
+				C0DE5EE5A1B2000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C0DE5EE5A1B2000000000004 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				C0DE5EE5A1B2000000000007 /* Base.xcconfig */,
+				C0DE5EE5A1B2000000000008 /* Debug.xcconfig */,
+				C0DE5EE5A1B2000000000009 /* Release.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		C0DE5EE5A1B2000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C0DE5EE5A1B200000000000A /* Kira.app */,
+				C0DE5EE5A1B200000000000B /* KiraUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C0DE5EE5A1B200000000000C /* Kira */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C0DE5EE5A1B200000000001A /* Build configuration list for PBXNativeTarget "Kira" */;
+			buildPhases = (
+				C0DE5EE5A1B200000000000E /* Sources */,
+				C0DE5EE5A1B200000000000F /* Frameworks */,
+				C0DE5EE5A1B2000000000010 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				C0DE5EE5A1B2000000000005 /* App */,
+			);
+			name = Kira;
+			packageProductDependencies = (
+				C0DE5EE5A1B2000000000017 /* APIClient */,
+			);
+			productName = Kira;
+			productReference = C0DE5EE5A1B200000000000A /* Kira.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C0DE5EE5A1B200000000000D /* KiraUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C0DE5EE5A1B200000000001B /* Build configuration list for PBXNativeTarget "KiraUITests" */;
+			buildPhases = (
+				C0DE5EE5A1B2000000000011 /* Sources */,
+				C0DE5EE5A1B2000000000012 /* Frameworks */,
+				C0DE5EE5A1B2000000000013 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C0DE5EE5A1B2000000000015 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C0DE5EE5A1B2000000000006 /* UITests */,
+			);
+			name = KiraUITests;
+			packageProductDependencies = (
+			);
+			productName = KiraUITests;
+			productReference = C0DE5EE5A1B200000000000B /* KiraUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C0DE5EE5A1B2000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2700;
+				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					C0DE5EE5A1B200000000000C = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					C0DE5EE5A1B200000000000D = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = C0DE5EE5A1B200000000000C;
+					};
+				};
+			};
+			buildConfigurationList = C0DE5EE5A1B2000000000019 /* Build configuration list for PBXProject "Kira" */;
+			developmentRegion = id;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				id,
+				Base,
+			);
+			mainGroup = C0DE5EE5A1B2000000000002;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				C0DE5EE5A1B2000000000016 /* XCLocalSwiftPackageReference "Packages/AppCore" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = C0DE5EE5A1B2000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C0DE5EE5A1B200000000000C /* Kira */,
+				C0DE5EE5A1B200000000000D /* KiraUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C0DE5EE5A1B2000000000010 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0DE5EE5A1B2000000000013 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C0DE5EE5A1B200000000000E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0DE5EE5A1B2000000000011 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C0DE5EE5A1B2000000000015 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C0DE5EE5A1B200000000000C /* Kira */;
+			targetProxy = C0DE5EE5A1B2000000000014 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		C0DE5EE5A1B200000000001C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0DE5EE5A1B2000000000008 /* Debug.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		C0DE5EE5A1B200000000001D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0DE5EE5A1B2000000000009 /* Release.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		C0DE5EE5A1B200000000001E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Kira;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codesheesh.kira;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C0DE5EE5A1B200000000001F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Kira;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codesheesh.kira;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "$(KIRA_PROVISIONING_PROFILE)";
+			};
+			name = Release;
+		};
+		C0DE5EE5A1B2000000000020 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codesheesh.kira.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Kira;
+			};
+			name = Debug;
+		};
+		C0DE5EE5A1B2000000000021 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codesheesh.kira.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Kira;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C0DE5EE5A1B2000000000019 /* Build configuration list for PBXProject "Kira" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0DE5EE5A1B200000000001C /* Debug */,
+				C0DE5EE5A1B200000000001D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C0DE5EE5A1B200000000001A /* Build configuration list for PBXNativeTarget "Kira" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0DE5EE5A1B200000000001E /* Debug */,
+				C0DE5EE5A1B200000000001F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C0DE5EE5A1B200000000001B /* Build configuration list for PBXNativeTarget "KiraUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0DE5EE5A1B2000000000020 /* Debug */,
+				C0DE5EE5A1B2000000000021 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		C0DE5EE5A1B2000000000016 /* XCLocalSwiftPackageReference "Packages/AppCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/AppCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C0DE5EE5A1B2000000000017 /* APIClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0DE5EE5A1B2000000000016 /* XCLocalSwiftPackageReference "Packages/AppCore" */;
+			productName = APIClient;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = C0DE5EE5A1B2000000000001 /* Project object */;
+}

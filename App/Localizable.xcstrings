@@ -1,0 +1,114 @@
+{
+  "sourceLanguage" : "id",
+  "strings" : {
+    "problem.HTTP_ERROR" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permintaanmu belum bisa diproses. Coba lagi sebentar lagi."
+          }
+        }
+      }
+    },
+    "problem.INTERNAL_ERROR" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada yang salah di sisi kami. Coba lagi sebentar lagi."
+          }
+        }
+      }
+    },
+    "problem.META_HEALTH_UNHEALTHY" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira sedang tidak bisa dihubungi. Coba lagi sebentar lagi."
+          }
+        }
+      }
+    },
+    "problem.REQUEST_TIMEOUT" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira butuh waktu terlalu lama untuk menjawab. Coba lagi sebentar lagi."
+          }
+        }
+      }
+    },
+    "problem.REQUEST_TOO_LARGE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data yang dikirim terlalu besar. Coba kirim yang lebih kecil."
+          }
+        }
+      }
+    },
+    "problem.ROUTE_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fitur ini belum tersedia di versi aplikasimu. Coba perbarui Kira."
+          }
+        }
+      }
+    },
+    "problem.unknown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada yang tidak beres. Sebutkan kode di bawah ini saat menghubungi kami."
+          }
+        }
+      }
+    },
+    "problem.VALIDATION_FAILED" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada isian yang belum sesuai. Periksa lagi, ya."
+          }
+        }
+      }
+    },
+    "root.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catat, pahami, dan rencanakan keuanganmu bersama Kira."
+          }
+        }
+      }
+    },
+    "root.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
