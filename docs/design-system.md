@@ -134,9 +134,9 @@ product rule, not a regional preference, so it does not change with the device's
 any `FormatStyle`, in the view:
 
 ```swift
-Text(amount, format: .rupiah)                  // Rp10.000,00
-Text(amount, format: .rupiah.sign(.always))    // +Rp10.000,00
-Text(amount, format: .rupiah.masked(isHidden)) // Rp ••••••
+Text(amount, format: .rupiah) /** Rp10.000,00 */
+Text(amount, format: .rupiah.sign(.always)) /** +Rp10.000,00 */
+Text(amount, format: .rupiah.masked(isHidden)) /** Rp •••••• */
 ```
 
 `.part(_:)` returns one piece (sign, symbol, integer, fraction), which `KiraAmount` uses to size

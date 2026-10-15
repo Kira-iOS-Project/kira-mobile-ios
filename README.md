@@ -132,7 +132,7 @@ Dashed layers arrive with the first feature screen; the app target and `APIClien
 The names below are examples; the first real screen follows the same shape.
 
 ```swift
-// Packages/AppCore/Sources/Features/TransactionListModel.swift: the ViewModel
+/** Packages/AppCore/Sources/Features/TransactionListModel.swift: the ViewModel */
 @MainActor @Observable
 package final class TransactionListModel {
     package enum Phase { case loading, empty, loaded([Transaction]), failed(AppProblem) }
@@ -156,7 +156,7 @@ package final class TransactionListModel {
 ```
 
 ```swift
-// App/Screens/TransactionList/TransactionListView.swift: the View
+/** App/Screens/TransactionList/TransactionListView.swift: the View */
 struct TransactionListView: View {
     let model: TransactionListModel
 
@@ -175,7 +175,7 @@ struct TransactionListView: View {
 ```
 
 ```swift
-// App/KiraApp.swift: the composition root injects each model's dependencies
+/** App/KiraApp.swift: the composition root injects each model's dependencies */
 @main
 struct KiraApp: App {
     @State private var transactions = TransactionListModel(load: KiraAPI(serverURL: server).transactions)
