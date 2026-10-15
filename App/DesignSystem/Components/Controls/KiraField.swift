@@ -1,7 +1,8 @@
 // Field (design system): an input with its label always visible above a hairline box. Money takes
 // the "Rp" prefix: the person types digits only, ",00" is added on save and said in the hint. An
-// error uses `rentan` and a sentence that offers a way out, never blame. Kira never asks for a PIN,
-// a password or a bank OTP. Set the keyboard on the field as on any view: `.keyboardType(.numberPad)`.
+// error uses `rentan` and a sentence that offers a way out, never blame. Kira never asks for a bank
+// PIN, a password or a bank OTP; its own app-lock PIN and email code use KiraCodeField. Set the
+// keyboard on the field as on any view: `.keyboardType(.numberPad)`.
 import SwiftUI
 
 /// A labelled text input.
