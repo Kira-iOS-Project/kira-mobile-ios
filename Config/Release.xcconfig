@@ -1,5 +1,3 @@
-// The Release configuration: Base.xcconfig plus what a shipped build needs. Link it as the
-// project's Release base configuration (setup's by-hand step); xcode-settings.sh checks the link.
 #include "Base.xcconfig"
 
 DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
