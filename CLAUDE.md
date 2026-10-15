@@ -8,8 +8,10 @@ app through `bash scripts/ios/app.sh`, which picks the simulator and never signs
 
 ## Decisions to keep
 
-- Bundle ID `com.codesheesh.kira`; the backend is `kira-backend` (`https://api-kira.serenitycode.tech`),
-  whose `openapi.json` is copied into `Packages/AppCore/Sources/APIClient/`.
+- Bundle ID `com.kira` (UI tests `com.kira.uitests`); if Apple refuses `com.kira` as taken, use
+  `com.serenitycode.kira` (UI tests `com.serenitycode.kira.uitests`). The backend is `kira-backend`
+  (`https://api-kira.serenitycode.tech`), whose `openapi.json` is copied into
+  `Packages/AppCore/Sources/APIClient/`.
 - String Catalogs: source language `id`, Indonesian only (`App/Localizable.xcstrings`).
 - Releases: a merge into `prod` goes to Firebase App Distribution
   (`.github/workflows/firebase-distribution.yml`); the app embeds no Firebase SDK.
