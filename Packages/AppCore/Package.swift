@@ -23,7 +23,8 @@ let package = Package(
     defaultLocalization: "en",
     platforms: [.iOS(.v17), .macOS(.v14)],
     products: [
-        .library(name: "APIClient", targets: ["APIClient"])
+        .library(name: "Domain", targets: ["Domain"]),
+        .library(name: "APIClient", targets: ["APIClient"]),
     ],
     dependencies: [
         // Its CLI regenerates Sources/APIClient/GeneratedSources (scripts/ios/api-client.sh).
@@ -32,6 +33,8 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-openapi-urlsession", exact: "1.3.2"),
     ],
     targets: [
+        .target(name: "Domain", swiftSettings: logic),
+        .testTarget(name: "DomainTests", dependencies: ["Domain"], swiftSettings: logic),
         .target(
             name: "APIClient",
             dependencies: [

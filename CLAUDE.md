@@ -28,6 +28,7 @@ app through `bash scripts/ios/app.sh`, which picks the simulator and never signs
 | Xcode's own tools (previews, build log) for one session | `.claude/mcp/xcode.example.json` |
 | Hooks, CI, reviews, MCP pins, releases | `.claude/OPERATIONS.md` |
 | Signing, Firebase and the distribution workflow's inputs | `docs/firebase-app-distribution.md` |
+| Building a screen from the design: tokens, type, `Kira…` components, assets | `docs/design-system.md` |
 
 <!-- >>> agent-config-kit: managed by /agent-core:setup and sync; edit outside this block -->
 ## Agent config kit
