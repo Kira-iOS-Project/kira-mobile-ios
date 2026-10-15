@@ -1,11 +1,13 @@
-// Field (design system): an input with its label always visible above a hairline box. Money takes
-// the "Rp" prefix: the person types digits only, ",00" is added on save and said in the hint. An
-// error uses `rentan` and a sentence that offers a way out, never blame. Kira never asks for a bank
-// PIN, a password or a bank OTP; its own app-lock PIN and email code use KiraCodeField. Set the
-// keyboard on the field as on any view: `.keyboardType(.numberPad)`.
+/**
+ Field (design system): an input with its label always visible above a hairline box. Money takes
+ the "Rp" prefix: the person types digits only, ",00" is added on save and said in the hint. An
+ error uses `rentan` and a sentence that offers a way out, never blame. Kira never asks for a bank
+ PIN, a password or a bank OTP; its own app-lock PIN and email code use KiraCodeField. Set the
+ keyboard on the field as on any view: `.keyboardType(.numberPad)`.
+ */
 import SwiftUI
 
-/// A labelled text input.
+/** A labelled text input. */
 struct KiraField: View {
     private let label: LocalizedStringResource
     @Binding private var text: String
@@ -16,8 +18,10 @@ struct KiraField: View {
     private var suffixText: LocalizedStringResource?
     private var minimumLines = 1
     @FocusState private var isFocused: Bool
-    /// An empty prompt: without one, a text field shows its label in the box, and Kira's label
-    /// already sits above it.
+    /**
+     An empty prompt: without one, a text field shows its label in the box, and Kira's label
+     already sits above it.
+     */
     private static let noPrompt = ""
 
     init(_ label: LocalizedStringResource, text: Binding<String>, prompt: LocalizedStringResource? = nil) {
@@ -79,19 +83,19 @@ struct KiraField: View {
         Text(text).font(.body.weight(.semibold)).foregroundStyle(.inkMuted)
     }
 
-    /// The same field with a hint under it.
+    /** The same field with a hint under it. */
     func hint(_ text: LocalizedStringResource) -> Self { copy { $0.hintText = text } }
 
-    /// The same field in error, with the sentence that says how to fix it.
+    /** The same field in error, with the sentence that says how to fix it. */
     func error(_ text: LocalizedStringResource?) -> Self { copy { $0.errorText = text } }
 
-    /// The same field with a prefix in the box, such as "Rp".
+    /** The same field with a prefix in the box, such as "Rp". */
     func prefix(_ text: LocalizedStringResource) -> Self { copy { $0.prefixText = text } }
 
-    /// The same field with a suffix in the box, such as "%".
+    /** The same field with a suffix in the box, such as "%". */
     func suffix(_ text: LocalizedStringResource) -> Self { copy { $0.suffixText = text } }
 
-    /// The same field, growing to show at least `lines` lines.
+    /** The same field, growing to show at least `lines` lines. */
     func multiline(_ lines: Int) -> Self { copy { $0.minimumLines = lines } }
 
     private func copy(_ change: (inout Self) -> Void) -> Self {

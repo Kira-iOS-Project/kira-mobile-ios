@@ -1,10 +1,12 @@
-// The design system gallery: every component on one page per group, for review against the design
-// system artifact. Debug builds only: launch with `-KiraGallery` (the Kira scheme lists it, off; tick
-// it under Run › Arguments), or open any component's preview, which shows its gallery page.
+/**
+ The design system gallery: every component on one page per group, for review against the design
+ system artifact. Debug builds only: launch with `-KiraGallery` (the Kira scheme lists it, off; tick
+ it under Run › Arguments), or open any component's preview, which shows its gallery page.
+ */
 #if DEBUG
     import SwiftUI
 
-    /// The gallery's pages.
+    /** The gallery's pages. */
     enum GalleryPage: String, CaseIterable, Hashable {
         case colors, type, icons, brand, categories, illustrations, nature, buttons, forms, entry, labels
         case amounts, progress, score, lists, navigation, dialogs, chat
@@ -56,7 +58,7 @@
         }
     }
 
-    /// The gallery's first screen: the list of pages, or one page when the launch names it.
+    /** The gallery's first screen: the list of pages, or one page when the launch names it. */
     struct DesignSystemGallery: View {
         private let page: GalleryPage?
         @State private var path: [GalleryPage] = []
@@ -65,8 +67,10 @@
             self.page = page
         }
 
-        /// The gallery when the launch arguments hold `-KiraGallery`, opened on the page named after
-        /// it (`-KiraGallery colors`), else nil.
+        /**
+         The gallery when the launch arguments hold `-KiraGallery`, opened on the page named after
+         it (`-KiraGallery colors`), else nil.
+         */
         init?(arguments: [String]) {
             guard let index = arguments.firstIndex(of: "-KiraGallery") else { return nil }
             self.init(page: arguments.dropFirst(index + 1).first.flatMap(GalleryPage.init(rawValue:)))
@@ -98,7 +102,7 @@
         }
     }
 
-    /// One gallery page under its nav bar.
+    /** One gallery page under its nav bar. */
     private struct GalleryPageView: View {
         let page: GalleryPage
         @Environment(\.dismiss) private var dismiss
@@ -108,16 +112,18 @@
                 KiraNavBar(page.title, leading: .back("gallery.back") { dismiss() })
                 page.content
             }
-            // Room after the content, so the audit test's scrolls never pull past the end: a page
-            // that bounces back leaves stale accessibility frames, and the audit then measures the
-            // wrong pixels. The page list has the same room.
+            /**
+             Room after the content, so the audit test's scrolls never pull past the end: a page
+             that bounces back leaves stale accessibility frames, and the audit then measures the
+             wrong pixels. The page list has the same room.
+             */
             .padding(.bottom, 1200)
             .galleryPage()
             .toolbar(.hidden, for: .navigationBar)
         }
     }
 
-    /// A titled block of a gallery page.
+    /** A titled block of a gallery page. */
     struct GallerySection<Content: View>: View {
         let title: LocalizedStringResource
         @ViewBuilder let content: Content
@@ -132,7 +138,7 @@
     }
 
     extension View {
-        /// A gallery page, in the gallery and in previews: scrolling on the screen background.
+        /** A gallery page, in the gallery and in previews: scrolling on the screen background. */
         func galleryPage() -> some View {
             ScrollView { self.padding(KiraSpacing.screen) }
                 .background(.surface)

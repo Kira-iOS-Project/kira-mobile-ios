@@ -1,10 +1,12 @@
-// Icon (design system): a line icon for actions and navigation. It takes the colour around it
-// (ink, ink-muted or pandan) and is hidden from VoiceOver: the control that holds it carries the
-// name. `isFilled` is the design system's duotone, the SF Symbol's .fill variant for the active
-// destination.
+/**
+ Icon (design system): a line icon for actions and navigation. It takes the colour around it
+ (ink, ink-muted or pandan) and is hidden from VoiceOver: the control that holds it carries the
+ name. `isFilled` is the design system's duotone, the SF Symbol's .fill variant for the active
+ destination.
+ */
 import SwiftUI
 
-/// A design-system icon at `size` points, drawn with its SF Symbol.
+/** A design-system icon at `size` points, drawn with its SF Symbol. */
 struct KiraIcon: View {
     private let name: KiraIconName
     private let size: CGFloat

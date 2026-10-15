@@ -1,24 +1,26 @@
-// DraftCard (design system): transactions AI read from a chat, a receipt or a screenshot, waiting
-// to be confirmed. The dashed border means "not saved yet" and is used for nothing else; once saved,
-// it becomes an ordinary hairline card. The biggest thing is the most important: the total on top,
-// then per row name → amount → category, never amount and category side by side. No wallet names.
-// The pencil on each row is the only way to edit, so under the list there is one primary
-// "Simpan N Transaksi"; `.secondary` adds an optional action on its left ("Lanjut Chat"), and both
-// then shrink to 44 pt to share the row. The total comes from the screen model.
+/**
+ DraftCard (design system): transactions AI read from a chat, a receipt or a screenshot, waiting
+ to be confirmed. The dashed border means "not saved yet" and is used for nothing else; once saved,
+ it becomes an ordinary hairline card. The biggest thing is the most important: the total on top,
+ then per row name → amount → category, never amount and category side by side. No wallet names.
+ The pencil on each row is the only way to edit, so under the list there is one primary
+ "Simpan N Transaksi"; `.secondary` adds an optional action on its left ("Lanjut Chat"), and both
+ then shrink to 44 pt to share the row. The total comes from the screen model.
+ */
 import SwiftUI
 
-/// A draft transaction read by AI.
+/** A draft transaction read by AI. */
 struct KiraDraftItem: Identifiable {
     let label: Text
     let amount: Decimal
     let category: KiraCategory
     var categoryName: Text?
-    /// How Kira read slang, such as "goceng" read as Rp5.000,00.
+    /** How Kira read slang, such as "goceng" read as Rp5.000,00. */
     var note: Text?
     let id = UUID()
 }
 
-/// Unsaved transactions with their total and one Save button.
+/** Unsaved transactions with their total and one Save button. */
 struct KiraDraftCard: View {
     private let items: [KiraDraftItem]
     private let total: Decimal
@@ -103,13 +105,13 @@ struct KiraDraftCard: View {
         }
     }
 
-    /// The same card with another eyebrow than "Draf · belum disimpan".
+    /** The same card with another eyebrow than "Draf · belum disimpan". */
     func eyebrow(_ text: LocalizedStringResource) -> Self { copy { $0.eyebrowText = text } }
 
-    /// The same card with another save label than "Simpan N Transaksi".
+    /** The same card with another save label than "Simpan N Transaksi". */
     func saveLabel(_ text: LocalizedStringResource) -> Self { copy { $0.saveText = text } }
 
-    /// The same card with a secondary action on the left of Save ("Lanjut Chat"); never an edit.
+    /** The same card with a secondary action on the left of Save ("Lanjut Chat"); never an edit. */
     func secondary(_ label: LocalizedStringResource, action: @escaping () -> Void) -> Self {
         copy {
             $0.secondaryText = label

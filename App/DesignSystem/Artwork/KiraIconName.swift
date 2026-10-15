@@ -1,8 +1,10 @@
-// The design system's icon names (index.d.ts IconName) and the SF Symbol each is drawn with on iOS,
-// as the Icon README maps them. `minus` and `star` are not in the README: they map to the symbols of
-// the same name. `upload` and `share` share one symbol, as the README says.
+/**
+ The design system's icon names (index.d.ts IconName) and the SF Symbol each is drawn with on iOS,
+ as the Icon README maps them. `minus` and `star` are not in the README: they map to the symbols of
+ the same name. `upload` and `share` share one symbol, as the README says.
+ */
 
-/// A design-system icon, drawn with its SF Symbol.
+/** A design-system icon, drawn with its SF Symbol. */
 enum KiraIconName: String, CaseIterable {
     case home, chat, target, users
     case chevronRight = "chevron-right"
@@ -23,7 +25,7 @@ enum KiraIconName: String, CaseIterable {
     case arrowRight = "arrow-right"
     case more, percent, send
 
-    /// The SF Symbol for this icon.
+    /** The SF Symbol for this icon. */
     var systemName: String {
         switch self {
         case .home: "house"

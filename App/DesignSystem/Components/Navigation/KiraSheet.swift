@@ -1,13 +1,17 @@
-// Sheet (design system): a sheet that rises over the current screen, which stays visible above it
-// under the scrim, so the person keeps their place: editing a draft, changing a category, picking
-// a date, confirming an outside link, community rules, and the Kira Peduli help (the chat stays
-// open behind it). The close X sits on the right of the header, styled like a secondary button;
-// swiping down closes it too. The main action goes at the bottom.
+/**
+ Sheet (design system): a sheet that rises over the current screen, which stays visible above it
+ under the scrim, so the person keeps their place: editing a draft, changing a category, picking
+ a date, confirming an outside link, community rules, and the Kira Peduli help (the chat stays
+ open behind it). The close X sits on the right of the header, styled like a secondary button;
+ swiping down closes it too. The main action goes at the bottom.
+ */
 import SwiftUI
 
 extension View {
-    /// Presents `content` as a Kira sheet: medium and large detents, a grabber, the `surface`
-    /// background with 30 pt corners, and a header with the title and the close button.
+    /**
+     Presents `content` as a Kira sheet: medium and large detents, a grabber, the `surface`
+     background with 30 pt corners, and a header with the title and the close button.
+     */
     func kiraSheet<Content: View>(
         isPresented: Binding<Bool>, title: LocalizedStringResource, subtitle: LocalizedStringResource? = nil,
         @ViewBuilder content: @escaping () -> Content
@@ -22,7 +26,7 @@ extension View {
     }
 }
 
-/// A sheet's header and body.
+/** A sheet's header and body. */
 private struct KiraSheetBody<Content: View>: View {
     let title: LocalizedStringResource
     let subtitle: LocalizedStringResource?

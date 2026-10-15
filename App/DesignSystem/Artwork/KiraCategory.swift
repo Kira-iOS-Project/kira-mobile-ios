@@ -1,16 +1,18 @@
-// The category tiles' names (index.d.ts CategoryName) with the soft tint of each tile and its name
-// on screen. Wallets and debts (bank, ewallet, tunai, kartu, paylater, pinjol), goals (darurat,
-// rumah, pendidikan, menikah, pensiun, barang) and asset classes (bank for deposits, reksadana, sbn,
-// emas, saham, kripto) share the set; a tile never stands for a product or a brand.
+/**
+ The category tiles' names (index.d.ts CategoryName) with the soft tint of each tile and its name
+ on screen. Wallets and debts (bank, ewallet, tunai, kartu, paylater, pinjol), goals (darurat,
+ rumah, pendidikan, menikah, pensiun, barang) and asset classes (bank for deposits, reksadana, sbn,
+ emas, saham, kripto) share the set; a tile never stands for a product or a brand.
+ */
 import SwiftUI
 
-/// A category, wallet, goal or asset class with its illustrated tile.
+/** A category, wallet, goal or asset class with its illustrated tile. */
 enum KiraCategory: String, CaseIterable {
     case makan, transportasi, kopi, belanja, tagihan, gaji, paylater, tabungan, proteksi, rumah
     case pendidikan, kesehatan, hiburan, menikah, pensiun, bank, ewallet, tunai, kartu, pinjol
     case emas, saham, reksadana, kripto, sbn, darurat, barang, lainnya
 
-    /// The tile's soft background (an ilu-*-muda token).
+    /** The tile's soft background (an ilu-*-muda token). */
     var tint: Color {
         switch self {
         case .makan, .tabungan, .menikah, .emas, .darurat: .iluKunyitMuda
@@ -20,7 +22,7 @@ enum KiraCategory: String, CaseIterable {
         }
     }
 
-    /// The category's name on screen, Title Case.
+    /** The category's name on screen, Title Case. */
     var title: LocalizedStringResource {
         switch self {
         case .makan: "ds.category.makan"

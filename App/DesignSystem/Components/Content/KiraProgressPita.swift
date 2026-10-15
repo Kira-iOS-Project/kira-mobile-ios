@@ -1,23 +1,25 @@
-// ProgressPita (design system): a capsule progress bar with micro milestones, for the emergency
-// fund, goals, payoff plans and how much of the pay is spent. A big target is broken into reachable
-// milestones (one week, one month, then multiples of essential spending). The label and its value
-// sit together on the left ("Sudah terpakai · 75%"); slow progress is never brick or red.
+/**
+ ProgressPita (design system): a capsule progress bar with micro milestones, for the emergency
+ fund, goals, payoff plans and how much of the pay is spent. A big target is broken into reachable
+ milestones (one week, one month, then multiples of essential spending). The label and its value
+ sit together on the left ("Sudah terpakai · 75%"); slow progress is never brick or red.
+ */
 import SwiftUI
 
-/// A progress bar with optional milestones.
+/** A progress bar with optional milestones. */
 struct KiraProgressPita: View {
-    /// A point on the way to the target, labelled under the bar.
+    /** A point on the way to the target, labelled under the bar. */
     struct Milestone: Identifiable {
         let position: Double
         let label: LocalizedStringResource
         var id: Double { position }
     }
 
-    /// The fill's colour.
+    /** The fill's colour. */
     enum Tone: CaseIterable {
-        /// Savings and goals (default).
+        /** Savings and goals (default). */
         case pandan
-        /// A healthy outcome.
+        /** A healthy outcome. */
         case sehat
     }
 
@@ -30,7 +32,7 @@ struct KiraProgressPita: View {
     private var tone = Tone.pandan
     private var isInverse = false
 
-    /// `valueLabel` replaces the percentage beside the label ("3 dari 6 bulan").
+    /** `valueLabel` replaces the percentage beside the label ("3 dari 6 bulan"). */
     init(
         value: Double, target: Double, label: LocalizedStringResource? = nil,
         valueLabel: LocalizedStringResource? = nil
@@ -82,16 +84,16 @@ struct KiraProgressPita: View {
         }
     }
 
-    /// The same bar with milestones under it.
+    /** The same bar with milestones under it. */
     func milestones(_ milestones: [Milestone]) -> Self { copy { $0.milestones = milestones } }
 
-    /// The same bar with a caption under it.
+    /** The same bar with a caption under it. */
     func caption(_ text: LocalizedStringResource) -> Self { copy { $0.caption = text } }
 
-    /// The same bar with another fill colour.
+    /** The same bar with another fill colour. */
     func tone(_ tone: Tone) -> Self { copy { $0.tone = tone } }
 
-    /// The same bar on the hero card: a hero-track and a kunyit fill.
+    /** The same bar on the hero card: a hero-track and a kunyit fill. */
     func inverse() -> Self { copy { $0.isInverse = true } }
 
     private func copy(_ change: (inout Self) -> Void) -> Self {
@@ -101,7 +103,7 @@ struct KiraProgressPita: View {
     }
 }
 
-/// The capsule track, its fill, and a dot per milestone.
+/** The capsule track, its fill, and a dot per milestone. */
 private struct PitaTrack: View {
     struct Colors {
         let track: Color
@@ -129,8 +131,10 @@ private struct PitaTrack: View {
     }
 }
 
-/// Places each milestone's label under its point on the bar: left-aligned near the start,
-/// right-aligned near the end, centred elsewhere.
+/**
+ Places each milestone's label under its point on the bar: left-aligned near the start,
+ right-aligned near the end, centred elsewhere.
+ */
 private struct MilestoneLayout: Layout {
     let places: [Double]
 

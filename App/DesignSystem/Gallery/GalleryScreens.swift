@@ -1,4 +1,4 @@
-// Gallery pages for the screen parts: the Kira Score, lists, navigation and chat.
+/** Gallery pages for the screen parts: the Kira Score, lists, navigation and chat. */
 #if DEBUG
     import Domain
     import SwiftUI

@@ -1,9 +1,11 @@
-// ListGroup (design system): one hairline card of KiraListRows split by a `line`, for wallets,
-// bills, settings and lists of choices. A small Title Case title above it, one sentence under it
-// for an explanation or a privacy promise. At most seven rows per card; split longer lists.
+/**
+ ListGroup (design system): one hairline card of KiraListRows split by a `line`, for wallets,
+ bills, settings and lists of choices. A small Title Case title above it, one sentence under it
+ for an explanation or a privacy promise. At most seven rows per card; split longer lists.
+ */
 import SwiftUI
 
-/// A titled card of rows.
+/** A titled card of rows. */
 struct KiraListGroup<Rows: View>: View {
     private let title: LocalizedStringResource?
     private let footer: LocalizedStringResource?

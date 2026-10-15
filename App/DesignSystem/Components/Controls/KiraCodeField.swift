@@ -1,26 +1,28 @@
-// Code field (design canvas: "PIN 6 kotak (pola OTP)", ONB-14 Kunci Kira; ONB-07 Verifikasi Email):
-// six boxes on the number pad.
-//   - `.pin`, the app lock's PIN: under a lock and its label, equal boxes (radius-md, 1.5 pt border:
-//     pandan on the next box, ink-muted once filled). Each digit is a dot, shown as the digit only
-//     while the person holds "Tahan untuk Lihat".
-//   - `.code`, the code sent by email: 48 pt boxes with a hairline, the digits shown; the next box
-//     has a pandan border, a pandan-line ring and a caret. The keyboard offers the code from Mail.
-// A transparent field over the boxes takes the input, so typing, pasting a code ("Kode: 381 449"
-// fills all six) and the keyboard's suggestion all work; the Domain's DigitCode keeps the digits.
-// VoiceOver meets one field, named by `label`, that says the digits shown and how many are in
-// ("3 8, 2 dari 6 angka terisi"); a masked PIN gives the count alone ("4 dari 6 angka terisi"). The
-// PIN's label stays readable above it: the accessibility audit reports visible text VoiceOver
-// cannot reach.
+/**
+ Code field (design canvas: "PIN 6 kotak (pola OTP)", ONB-14 Kunci Kira; ONB-07 Verifikasi Email):
+ six boxes on the number pad.
+   - `.pin`, the app lock's PIN: under a lock and its label, equal boxes (radius-md, 1.5 pt border:
+     pandan on the next box, ink-muted once filled). Each digit is a dot, shown as the digit only
+     while the person holds "Tahan untuk Lihat".
+   - `.code`, the code sent by email: 48 pt boxes with a hairline, the digits shown; the next box
+     has a pandan border, a pandan-line ring and a caret. The keyboard offers the code from Mail.
+ A transparent field over the boxes takes the input, so typing, pasting a code ("Kode: 381 449"
+ fills all six) and the keyboard's suggestion all work; the Domain's DigitCode keeps the digits.
+ VoiceOver meets one field, named by `label`, that says the digits shown and how many are in
+ ("3 8, 2 dari 6 angka terisi"); a masked PIN gives the count alone ("4 dari 6 angka terisi"). The
+ PIN's label stays readable above it: the accessibility audit reports visible text VoiceOver
+ cannot reach.
+ */
 import Domain
 import SwiftUI
 
-/// Six boxes for a PIN or a one-time code.
+/** Six boxes for a PIN or a one-time code. */
 struct KiraCodeField: View {
-    /// What the code is.
+    /** What the code is. */
     enum Kind {
-        /// The app lock's PIN: masked, revealed only while held.
+        /** The app lock's PIN: masked, revealed only while held. */
         case pin
-        /// A one-time code from email: shown, and offered by the keyboard when it arrives.
+        /** A one-time code from email: shown, and offered by the keyboard when it arrives. */
         case code
     }
 
@@ -33,7 +35,7 @@ struct KiraCodeField: View {
     @State private var isRevealed = false
     @FocusState private var isFocused: Bool
     @ScaledMetric(relativeTo: .title2) private var boxHeight: CGFloat = 56
-    /// An empty prompt: without one, the field would draw its label as a placeholder.
+    /** An empty prompt: without one, the field would draw its label as a placeholder. */
     private static let noPrompt = ""
 
     init(_ label: LocalizedStringResource, code: Binding<String>, kind: Kind) {
@@ -45,8 +47,10 @@ struct KiraCodeField: View {
     var body: some View {
         VStack(alignment: .leading, spacing: KiraSpacing.space2) {
             if kind == .pin { pinHeader }
-            // A tap anywhere on the boxes starts typing: the field over them answers only on its
-            // text line. VoiceOver reaches the field itself.
+            /**
+             A tap anywhere on the boxes starts typing: the field over them answers only on its
+             text line. VoiceOver reaches the field itself.
+             */
             boxes
                 .contentShape(Rectangle())
                 .onTapGesture { isFocused = true }
@@ -109,7 +113,7 @@ struct KiraCodeField: View {
         .accessibilityValue(spokenValue)
     }
 
-    /// The digits on screen, one by one, then how many are in; a masked PIN, the count alone.
+    /** The digits on screen, one by one, then how many are in; a masked PIN, the count alone. */
     private var spokenValue: Text {
         guard !code.isEmpty, kind == .code || isRevealed else {
             return Text("ds.code.count \(code.count) \(length)")
@@ -128,10 +132,10 @@ struct KiraCodeField: View {
         return index < code.count ? .filled : .empty
     }
 
-    /// The same field with a hint under it, such as "Jangan pakai PIN bank atau tanggal lahir."
+    /** The same field with a hint under it, such as "Jangan pakai PIN bank atau tanggal lahir." */
     func hint(_ text: LocalizedStringResource) -> Self { copy { $0.hintText = text } }
 
-    /// The same field in error, every box in `rentan`, with the sentence that says what to do.
+    /** The same field in error, every box in `rentan`, with the sentence that says what to do. */
     func error(_ text: LocalizedStringResource?) -> Self { copy { $0.errorText = text } }
 
     private func copy(_ change: (inout Self) -> Void) -> Self {

@@ -1,5 +1,7 @@
-// Gallery pages for the controls: buttons, the secondary and primary pair, icon buttons, the help
-// button, fields, the switch, the segmented control and chips.
+/**
+ Gallery pages for the controls: buttons, the secondary and primary pair, icon buttons, the help
+ button, fields, the switch, the segmented control and chips.
+ */
 #if DEBUG
     import SwiftUI
 

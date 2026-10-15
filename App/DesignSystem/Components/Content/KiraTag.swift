@@ -1,26 +1,28 @@
-// Tag (design system): a small status label with a hairline, in Title Case (prepositions such as
-// "dari", "di", "ke", "dan", "untuk" stay lowercase). It sits under the main text, left-aligned, or
-// in a card's top-right corner when the status belongs to the whole card; never on the right of a
-// row whose text can be long.
+/**
+ Tag (design system): a small status label with a hairline, in Title Case (prepositions such as
+ "dari", "di", "ke", "dan", "untuk" stay lowercase). It sits under the main text, left-aligned, or
+ in a card's top-right corner when the status belongs to the whole card; never on the right of a
+ row whose text can be long.
+ */
 import SwiftUI
 
-/// A small status label.
+/** A small status label. */
 struct KiraTag: View {
-    /// What the status means.
+    /** What the status means. */
     enum Tone: CaseIterable {
-        /// Neutral (default).
+        /** Neutral (default). */
         case netral
-        /// Verified, active.
+        /** Verified, active. */
         case pandan
-        /// Soon, needs attention.
+        /** Soon, needs attention. */
         case kunyit
-        /// Paid off, reached.
+        /** Paid off, reached. */
         case sehat
-        /// Past due.
+        /** Past due. */
         case rentan
-        /// Kira Peduli only.
+        /** Kira Peduli only. */
         case darurat
-        /// On the hero card.
+        /** On the hero card. */
         case hero
     }
 

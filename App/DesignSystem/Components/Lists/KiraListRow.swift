@@ -1,12 +1,14 @@
-// ListRow (design system): a tile on the left, the title and its details stacked, an action on the
-// right. Numbers always sit under the title, left-aligned (`.amount`, `.value`), so long names and
-// big amounts stay whole; the right side is for actions only: chevron, toggle, check, or an outside
-// link. `extra` holds a Tag or a ProgressPita under the text. `.danger()` is for rows that delete
-// (Hapus Akun dan Data): rentan, never the darurat red. The title is a Text, so it holds copy
-// (`Text("settings.pin")`) or data (`Text(transaction.name)`) alike.
+/**
+ ListRow (design system): a tile on the left, the title and its details stacked, an action on the
+ right. Numbers always sit under the title, left-aligned (`.amount`, `.value`), so long names and
+ big amounts stay whole; the right side is for actions only: chevron, toggle, check, or an outside
+ link. `extra` holds a Tag or a ProgressPita under the text. `.danger()` is for rows that delete
+ (Hapus Akun dan Data): rentan, never the darurat red. The title is a Text, so it holds copy
+ (`Text("settings.pin")`) or data (`Text(transaction.name)`) alike.
+ */
 import SwiftUI
 
-/// One row of a KiraListGroup.
+/** One row of a KiraListGroup. */
 struct KiraListRow<Extra: View>: View {
     typealias Leading = KiraListRowLeading
     typealias Trailing = KiraListRowTrailing
@@ -93,16 +95,16 @@ struct KiraListRow<Extra: View>: View {
         KiraIcon(icon, size: 20).foregroundStyle(.inkMuted)
     }
 
-    /// The same row with a short line under the title.
+    /** The same row with a short line under the title. */
     func subtitle(_ text: Text) -> Self { copy { $0.subtitle = text } }
 
-    /// The same row with an amount under the title, such as `KiraAmount(value, size: .small).signed()`.
+    /** The same row with an amount under the title, such as `KiraAmount(value, size: .small).signed()`. */
     func amount(_ amount: KiraAmount) -> Self { copy { $0.amount = amount } }
 
-    /// The same row with a short value under the title ("3 hari sebelumnya").
+    /** The same row with a short value under the title ("3 hari sebelumnya"). */
     func value(_ text: Text) -> Self { copy { $0.value = text } }
 
-    /// The same row as a destructive one, in rentan.
+    /** The same row as a destructive one, in rentan. */
     func danger() -> Self { copy { $0.isDanger = true } }
 
     private func copy(_ change: (inout Self) -> Void) -> Self {

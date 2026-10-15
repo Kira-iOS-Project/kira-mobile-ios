@@ -1,19 +1,21 @@
-// Mascot (design system): Kuku the slow loris, hugging a branch in the wild. Calm, glad or proud,
-// never sad; in onboarding, empty states, the weekly summary and celebrations, and (face crop) as
-// Kira's chat avatar. Never in the Kira Peduli sheet, on heavy arrears, in error messages, or as a
-// pet. 200–250 pt in onboarding and celebrations, 120–160 pt in empty states; below 48 pt use the
-// logo. The colours follow the theme: each expression has a light and a dark image.
+/**
+ Mascot (design system): Kuku the slow loris, hugging a branch in the wild. Calm, glad or proud,
+ never sad; in onboarding, empty states, the weekly summary and celebrations, and (face crop) as
+ Kira's chat avatar. Never in the Kira Peduli sheet, on heavy arrears, in error messages, or as a
+ pet. 200–250 pt in onboarding and celebrations, 120–160 pt in empty states; below 48 pt use the
+ logo. The colours follow the theme: each expression has a light and a dark image.
+ */
 import SwiftUI
 
-/// Kuku the slow loris in one of three expressions.
+/** Kuku the slow loris in one of three expressions. */
 struct KiraMascot: View {
-    /// Kuku's three expressions; there is no sad one.
+    /** Kuku's three expressions; there is no sad one. */
     enum Expression: String, CaseIterable {
-        /// Default: onboarding, empty states, weekly summary.
+        /** Default: onboarding, empty states, weekly summary. */
         case tenang
-        /// First transaction saved, emergency-fund milestone.
+        /** First transaction saved, emergency-fund milestone. */
         case senang
-        /// A debt paid off, a band reached.
+        /** A debt paid off, a band reached. */
         case bangga
 
         var label: LocalizedStringResource {
@@ -25,11 +27,11 @@ struct KiraMascot: View {
         }
     }
 
-    /// How much of Kuku shows.
+    /** How much of Kuku shows. */
     enum Crop: CaseIterable {
-        /// The whole loris on its branch.
+        /** The whole loris on its branch. */
         case full
-        /// The head only, for the chat avatar.
+        /** The head only, for the chat avatar. */
         case face
     }
 
@@ -38,7 +40,7 @@ struct KiraMascot: View {
     private let isFramed: Bool
     private let crop: Crop
 
-    /// `isFramed` puts Kuku in a soft green circle; turn it off when Kuku stands on a Scenery.
+    /** `isFramed` puts Kuku in a soft green circle; turn it off when Kuku stands on a Scenery. */
     init(_ expression: Expression = .tenang, size: CGFloat = 160, isFramed: Bool = true, crop: Crop = .full) {
         self.expression = expression
         self.size = size

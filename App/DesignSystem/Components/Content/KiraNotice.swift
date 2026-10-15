@@ -1,13 +1,15 @@
-// Notice (design system): a label that is a feature, not a footnote (pillars Jernih and Terjaga),
-// its title in Title Case. `simulasi` on every calculator, Kira Score and payoff plan ("Hanya
-// Simulasi"); `edukasi` on asset-class modules and investment answers ("Edukasi, Bukan
-// Rekomendasi"); `ai` on AI-written text; `privasi` and `aman` where data is asked for;
-// `peringatan` for real risk (fraud, an outside link), never for bad news about the person's numbers.
+/**
+ Notice (design system): a label that is a feature, not a footnote (pillars Jernih and Terjaga),
+ its title in Title Case. `simulasi` on every calculator, Kira Score and payoff plan ("Hanya
+ Simulasi"); `edukasi` on asset-class modules and investment answers ("Edukasi, Bukan
+ Rekomendasi"); `ai` on AI-written text; `privasi` and `aman` where data is asked for;
+ `peringatan` for real risk (fraud, an outside link), never for bad news about the person's numbers.
+ */
 import SwiftUI
 
-/// A required label with an icon, a title and a sentence.
+/** A required label with an icon, a title and a sentence. */
 struct KiraNotice: View {
-    /// The notice's purpose.
+    /** The notice's purpose. */
     enum Tone: CaseIterable {
         case info, simulasi, edukasi, privasi, aman, aiText, peringatan
 
@@ -29,7 +31,7 @@ struct KiraNotice: View {
     private let message: LocalizedStringResource?
     private let icon: KiraIconName?
 
-    /// `icon` replaces the tone's own icon.
+    /** `icon` replaces the tone's own icon. */
     init(
         _ tone: Tone = .info, title: LocalizedStringResource? = nil, message: LocalizedStringResource? = nil,
         icon: KiraIconName? = nil

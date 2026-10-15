@@ -1,12 +1,14 @@
-// Checkbox (design canvas, ONB-10c "Gajian di akhir bulan"): one choice that is on or off, as a
-// full-width row with its label. Unchecked, the row is surface-muted with a hairline and an empty
-// 24 pt box with a line-strong border; checked, the row turns pandan-soft with a pandan border and
-// the box fills pandan with a check. No shadow. For consent and single options in a form; settings
-// that apply at once use KiraToggle. VoiceOver reads the label, "Dicentang" or "Belum dicentang",
-// and the toggle trait.
+/**
+ Checkbox (design canvas, ONB-10c "Gajian di akhir bulan"): one choice that is on or off, as a
+ full-width row with its label. Unchecked, the row is surface-muted with a hairline and an empty
+ 24 pt box with a line-strong border; checked, the row turns pandan-soft with a pandan border and
+ the box fills pandan with a check. No shadow. For consent and single options in a form; settings
+ that apply at once use KiraToggle. VoiceOver reads the label, "Dicentang" or "Belum dicentang",
+ and the toggle trait.
+ */
 import SwiftUI
 
-/// A labelled checkbox row.
+/** A labelled checkbox row. */
 struct KiraCheckbox: View {
     private let label: LocalizedStringResource
     @Binding private var isOn: Bool

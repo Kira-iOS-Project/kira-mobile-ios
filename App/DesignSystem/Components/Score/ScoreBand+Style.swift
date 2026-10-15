@@ -1,11 +1,13 @@
-// How a Kira Score band looks and reads: its colour family (sehat, bertahan, rentan with -soft and
-// -line), its word, and its place on the meter's scale. A band always carries colour, word and
-// glyph together, so it reads without colour.
+/**
+ How a Kira Score band looks and reads: its colour family (sehat, bertahan, rentan with -soft and
+ -line), its word, and its place on the meter's scale. A band always carries colour, word and
+ glyph together, so it reads without colour.
+ */
 import Domain
 import SwiftUI
 
 extension ScoreBand {
-    /// The band's colour: text, glyph, bar fill.
+    /** The band's colour: text, glyph, bar fill. */
     var color: Color {
         switch self {
         case .sehat: .sehat
@@ -14,7 +16,7 @@ extension ScoreBand {
         }
     }
 
-    /// The band's soft background.
+    /** The band's soft background. */
     var softColor: Color {
         switch self {
         case .sehat: .sehatSoft
@@ -23,7 +25,7 @@ extension ScoreBand {
         }
     }
 
-    /// The band's 1 pt border.
+    /** The band's 1 pt border. */
     var lineColor: Color {
         switch self {
         case .sehat: .sehatLine
@@ -32,7 +34,7 @@ extension ScoreBand {
         }
     }
 
-    /// The band's name: Sehat, Bertahan, Rentan.
+    /** The band's name: Sehat, Bertahan, Rentan. */
     var title: LocalizedStringResource {
         switch self {
         case .sehat: "ds.band.sehat"
@@ -41,7 +43,7 @@ extension ScoreBand {
         }
     }
 
-    /// The band's label under the meter: "Rentan 0–39", "Bertahan 40–79", "Sehat 80+".
+    /** The band's label under the meter: "Rentan 0–39", "Bertahan 40–79", "Sehat 80+". */
     var scaleLabel: LocalizedStringResource {
         switch self {
         case .sehat: "ds.band.sehat.scale"
@@ -51,8 +53,10 @@ extension ScoreBand {
     }
 }
 
-/// The band's glyph, so the band reads without colour: a full circle (Sehat), a half (Bertahan),
-/// an empty ring (Rentan).
+/**
+ The band's glyph, so the band reads without colour: a full circle (Sehat), a half (Bertahan),
+ an empty ring (Rentan).
+ */
 struct BandGlyph: View {
     let band: ScoreBand
 
