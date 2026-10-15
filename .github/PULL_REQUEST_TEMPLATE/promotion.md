@@ -1,4 +1,4 @@
-## Promotion: dev → prod
+## Promotion: `dev` → `prod`
 
 <!-- Filled in from `git log origin/prod..origin/dev`: do not hand-edit the commit list without
      re-checking it against that range. -->
@@ -14,7 +14,7 @@
 
 `quality-gate.yml` runs on this PR too. What it decides is not repeated here.
 
-## The release
+## The Release
 
 - [ ] The version and build number are raised in the project, once
 - [ ] The backend this build calls is already in production, with every error code
