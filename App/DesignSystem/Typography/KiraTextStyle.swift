@@ -1,7 +1,9 @@
 // The design system's text styles (tokens.json: type). Display styles are Plus Jakarta Sans scaled
 // from the iOS text style named beside them; text styles are the iOS ones, so Dynamic Type works
 // everywhere. CSS weight 750 maps to ExtraBold (.heavy) and 650 to Semibold: SwiftUI names no weight
-// between them.
+// between them. Nothing uses Caption 2 (11 pt): iOS never shrinks it below 11 pt, which Apple's
+// accessibility audit reports as partial Dynamic Type support, so the overline (and the dock's
+// "Catat") use Caption 1, 12 pt.
 import SwiftUI
 
 /// One of Kira's text styles; apply it with `.kiraFont(_:)`.
@@ -26,7 +28,7 @@ enum KiraTextStyle: CaseIterable {
     case footnote
     /// t-caption: required labels under numbers (12, Medium).
     case caption
-    /// t-overline: the eyebrow above a card title, in capitals (11, Bold).
+    /// t-overline: the eyebrow above a card title, in capitals (Bold; 12, see the file comment).
     case overline
     /// t-formula: the formula in a "Gimana Ngitungnya?" panel (13, monospaced).
     case formula
@@ -48,7 +50,7 @@ enum KiraTextStyle: CaseIterable {
         case .callout: .subheadline
         case .footnote: .footnote.weight(.medium)
         case .caption: .caption.weight(.medium)
-        case .overline: .caption2.weight(.bold)
+        case .overline: .caption.weight(.bold)
         case .formula: .system(.footnote, design: .monospaced).weight(.medium)
         case .hand: KiraFont.hand(19, relativeTo: .body)
         case .handSmall: KiraFont.hand(16, relativeTo: .subheadline)
@@ -63,7 +65,7 @@ enum KiraTextStyle: CaseIterable {
         case .largeTitle: -0.68
         case .title, .amount: -0.2
         case .caption: 0.12
-        case .overline: 0.88
+        case .overline: 0.96
         case .headline, .body, .callout, .footnote, .formula, .hand, .handSmall: 0
         }
     }

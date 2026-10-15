@@ -16,8 +16,8 @@ enum KiraFont {
         return .custom("Plus Jakarta Sans", size: size, relativeTo: style).weight(weight)
     }
 
-    /// Plus Jakarta Sans ExtraBold at a fixed `size`: text drawn as part of an image, such as the
-    /// wordmark or an avatar's initials, which keeps the proportions of the image it belongs to.
+    /// Plus Jakarta Sans ExtraBold at a fixed `size`, for text drawn as part of an image (the
+    /// wordmark), which keeps the image's proportions.
     static func brand(_ size: CGFloat) -> Font {
         _ = registered
         return .custom("Plus Jakarta Sans", fixedSize: size).weight(.heavy)
