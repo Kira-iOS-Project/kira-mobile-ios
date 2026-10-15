@@ -48,7 +48,7 @@ Change it in the project before registering anything if you want another one.
 ```bash
 PROJECT_ID=<firebase-project-id>
 PROJECT_NUMBER=$(gcloud projects describe "$PROJECT_ID" --format='value(projectNumber)')
-REPO=Kira-Project/kira-mobile-ios
+REPO=Kira-iOS-Project/kira-mobile-ios
 
 gcloud services enable iamcredentials.googleapis.com --project "$PROJECT_ID"
 gcloud iam service-accounts create kira-distributor --project "$PROJECT_ID" \

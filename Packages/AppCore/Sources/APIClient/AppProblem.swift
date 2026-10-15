@@ -10,7 +10,7 @@ package struct AppProblem: Error, Codable, Hashable, Sendable {
     /// The API's problem-type base. `type` is this base plus the code, and it equals
     /// `x-problem-type-base` in the spec (`scripts/check/error-codes.sh` compares them). Changing it
     /// after a release turns every error in the installed apps into the generic message.
-    package static let typeBase = "https://kira-backend.codesheesh.com/problems/"
+    package static let typeBase = "https://api-kira.serenitycode.tech/problems/"
 
     /// The problem type: `typeBase` plus the code. Absent means `about:blank`.
     package let type: String?
