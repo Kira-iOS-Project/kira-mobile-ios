@@ -30,7 +30,8 @@ struct KiraButton: View {
     private let title: LocalizedStringResource
     private let variant: Variant
     private let size: Size
-    private let action: () -> Void
+    /// What the button does; a dialog also runs it for VoiceOver's escape gesture.
+    private(set) var action: () -> Void
     private var leadingIcon: KiraIconName?
     private var trailingIcon: KiraIconName?
     private var fillsWidth = false
@@ -74,6 +75,19 @@ struct KiraButton: View {
     func block() -> Self {
         var button = self
         button.fillsWidth = true
+        return button
+    }
+
+    /// The same button, running `next` after its own action, as a presented dialog's buttons close
+    /// it; nil leaves the button as it is.
+    func followed(by next: (() -> Void)?) -> Self {
+        guard let next else { return self }
+        var button = self
+        let action = action
+        button.action = {
+            action()
+            next()
+        }
         return button
     }
 }
