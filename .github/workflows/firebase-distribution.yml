@@ -28,7 +28,12 @@ jobs:
   build:
     name: Build and Sign (Ad Hoc)
     # A merge only, and only of a branch of this repository: a fork's run gets no secrets anyway.
-    if: github.event.pull_request.merged == true && github.event.pull_request.head.repo.full_name == github.repository
+    # FIREBASE_APP_ID is the switch: until docs/firebase-app-distribution.md is done, a merge into
+    # prod skips the release instead of failing it. Once set, every other input is checked loudly.
+    if: >-
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      vars.FIREBASE_APP_ID != ''
     runs-on: ${{ vars.CI_RUNNER_MACOS || 'xcode-27' }}
     timeout-minutes: 45
     permissions:
