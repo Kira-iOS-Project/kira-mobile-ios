@@ -6,8 +6,8 @@
 
     /// The gallery's pages.
     enum GalleryPage: String, CaseIterable, Hashable {
-        case colors, type, icons, brand, categories, illustrations, nature, buttons, forms, labels, amounts
-        case progress, score, lists, navigation, chat
+        case colors, type, icons, brand, categories, illustrations, nature, buttons, forms, entry, labels
+        case amounts, progress, score, lists, navigation, dialogs, chat
 
         var title: LocalizedStringResource {
             switch self {
@@ -20,12 +20,14 @@
             case .nature: "gallery.page.nature"
             case .buttons: "gallery.page.buttons"
             case .forms: "gallery.page.forms"
+            case .entry: "gallery.page.entry"
             case .labels: "gallery.page.labels"
             case .amounts: "gallery.page.amounts"
             case .progress: "gallery.page.progress"
             case .score: "gallery.page.score"
             case .lists: "gallery.page.lists"
             case .navigation: "gallery.page.navigation"
+            case .dialogs: "gallery.page.dialogs"
             case .chat: "gallery.page.chat"
             }
         }
@@ -41,12 +43,14 @@
             case .nature: GalleryNature()
             case .buttons: GalleryButtons()
             case .forms: GalleryForms()
+            case .entry: GalleryEntry()
             case .labels: GalleryLabels()
             case .amounts: GalleryAmounts()
             case .progress: GalleryProgress()
             case .score: GalleryScore()
             case .lists: GalleryLists()
             case .navigation: GalleryNavigation()
+            case .dialogs: GalleryDialogs()
             case .chat: GalleryChat()
             }
         }

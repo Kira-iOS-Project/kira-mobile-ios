@@ -9,8 +9,10 @@ nonisolated final class DesignSystemGalleryAuditTests: XCTestCase {
     /// GalleryPage's raw values, in the order the gallery lists them; "" is the list of pages.
     private static let pages = [
         "", "colors", "type", "icons", "brand", "categories", "illustrations", "nature", "buttons", "forms",
-        "labels", "amounts", "progress", "score", "lists", "navigation", "chat",
+        "entry", "labels", "amounts", "progress", "score", "lists", "navigation", "dialogs", "chat",
     ]
+    /// Pages taller than three screens, which take more scrolls to audit all the way down.
+    private static let tallPages: Set = ["dialogs"]
 
     @MainActor
     func testEveryGalleryPagePassesTheAudit() throws {
@@ -27,7 +29,7 @@ nonisolated final class DesignSystemGalleryAuditTests: XCTestCase {
         let scroll = app.scrollViews.firstMatch
         XCTAssertTrue(scroll.waitForExistence(timeout: 10))
         let screen = app.windows.firstMatch.frame
-        for pass in 0...2 {
+        for pass in 0..<(Self.tallPages.contains(page) ? 5 : 3) {
             if pass > 0 { scrollDown(scroll) }
             try app.performAccessibilityAudit { issue in
                 // Accepted: a contrast finding on an element a scroll has left under the status bar
@@ -37,6 +39,25 @@ nonisolated final class DesignSystemGalleryAuditTests: XCTestCase {
                 return frame.minY < screen.minY + 100 || frame.maxY > screen.maxY - 50
             }
         }
+        app.terminate()
+    }
+
+    /// A dialog presented from the gallery: audited over the whole window, then closed by its
+    /// secondary button, which leaves the page as it was.
+    @MainActor
+    func testPresentedDialogPassesTheAuditAndCloses() throws {
+        let app = XCUIApplication()
+        app.launchArguments = ["-KiraGallery", "dialogs"]
+        app.launch()
+        let open = app.buttons["Buka Dialog"]
+        XCTAssertTrue(open.waitForExistence(timeout: 10))
+        open.tap()
+        let title = app.staticTexts["Batalkan Langganan?"]
+        XCTAssertTrue(title.waitForExistence(timeout: 5))
+        try app.performAccessibilityAudit()
+        app.buttons["Tetap Berlangganan"].tap()
+        XCTAssertTrue(title.waitForNonExistence(timeout: 5))
+        XCTAssertTrue(open.isHittable)
         app.terminate()
     }
 

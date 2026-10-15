@@ -381,12 +381,72 @@
         }
       }
     },
+    "ds.checkbox.checked" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dicentang"
+          }
+        }
+      }
+    },
+    "ds.checkbox.unchecked" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum dicentang"
+          }
+        }
+      }
+    },
     "ds.close" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tutup"
+          }
+        }
+      }
+    },
+    "ds.code.count %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld dari %2$lld angka terisi"
+          }
+        }
+      }
+    },
+    "ds.code.hold" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tahan untuk Lihat"
+          }
+        }
+      }
+    },
+    "ds.code.release" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lepas untuk Sembunyikan"
+          }
+        }
+      }
+    },
+    "ds.code.spoken %@ %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$lld dari %3$lld angka terisi"
           }
         }
       }
@@ -941,6 +1001,296 @@
         }
       }
     },
+    "gallery.checkbox.payday" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gajian di akhir bulan"
+          }
+        }
+      }
+    },
+    "gallery.checkbox.terms" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saya setuju data keuangan saya diolah untuk menghitung Kira Score."
+          }
+        }
+      }
+    },
+    "gallery.code.email" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kode verifikasi dari email"
+          }
+        }
+      }
+    },
+    "gallery.code.email.error" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kodenya belum cocok. Cek email terbaru, atau kirim ulang kode."
+          }
+        }
+      }
+    },
+    "gallery.code.pin" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buat PIN 6 Angka"
+          }
+        }
+      }
+    },
+    "gallery.code.pin.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jangan pakai PIN bank atau tanggal lahir."
+          }
+        }
+      }
+    },
+    "gallery.dialog.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "gallery.dialog.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup"
+          }
+        }
+      }
+    },
+    "gallery.dialog.delete" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus"
+          }
+        }
+      }
+    },
+    "gallery.dialog.delete.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaksi ini hilang dari riwayat, dan Kira Score dihitung ulang."
+          }
+        }
+      }
+    },
+    "gallery.dialog.delete.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Transaksi Ini?"
+          }
+        }
+      }
+    },
+    "gallery.dialog.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
+    "gallery.dialog.download" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unduh"
+          }
+        }
+      }
+    },
+    "gallery.dialog.download.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira menyiapkan berkas berisi transaksi dan rencanamu. Simpan di tempat yang aman."
+          }
+        }
+      }
+    },
+    "gallery.dialog.download.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unduh Datamu?"
+          }
+        }
+      }
+    },
+    "gallery.dialog.failed.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koneksi terputus saat menyimpan. Isianmu masih ada, coba lagi sebentar."
+          }
+        }
+      }
+    },
+    "gallery.dialog.failed.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Tersimpan"
+          }
+        }
+      }
+    },
+    "gallery.dialog.keep" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tetap Berlangganan"
+          }
+        }
+      }
+    },
+    "gallery.dialog.linked.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kode masuk berikutnya dikirim ke email ini."
+          }
+        }
+      }
+    },
+    "gallery.dialog.linked.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email Terverifikasi"
+          }
+        }
+      }
+    },
+    "gallery.dialog.offline.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sambungkan internet, lalu coba lagi. Yang sudah kamu isi tidak hilang."
+          }
+        }
+      }
+    },
+    "gallery.dialog.offline.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak Ada Koneksi"
+          }
+        }
+      }
+    },
+    "gallery.dialog.open" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka Dialog"
+          }
+        }
+      }
+    },
+    "gallery.dialog.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
+          }
+        }
+      }
+    },
+    "gallery.dialog.saved.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengeluaran Rp45.000,00 masuk ke kategori Makan."
+          }
+        }
+      }
+    },
+    "gallery.dialog.saved.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaksi Tersimpan"
+          }
+        }
+      }
+    },
+    "gallery.dialog.unsubscribe" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batalkan Langganan"
+          }
+        }
+      }
+    },
+    "gallery.dialog.unsubscribe.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langganan ini tidak dihitung lagi di rencana bulan depan. Riwayat pembayarannya tetap tersimpan."
+          }
+        }
+      }
+    },
+    "gallery.dialog.unsubscribe.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batalkan Langganan?"
+          }
+        }
+      }
+    },
     "gallery.draft.coffee" : {
       "localizations" : {
         "id" : {
@@ -1227,6 +1577,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "22% dari gaji"
+          }
+        }
+      }
+    },
+    "gallery.link.resend" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirim Ulang Kode"
+          }
+        }
+      }
+    },
+    "gallery.link.terms" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dengan lanjut, kamu setuju dengan [Syarat Layanan](kira://syarat) dan [Kebijakan Privasi](kira://privasi)."
           }
         }
       }
@@ -1631,6 +2001,26 @@
         }
       }
     },
+    "gallery.page.dialogs" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dialog"
+          }
+        }
+      }
+    },
+    "gallery.page.entry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Centang, Kode, dan Tautan"
+          }
+        }
+      }
+    },
     "gallery.page.forms" : {
       "localizations" : {
         "id" : {
@@ -1871,6 +2261,16 @@
         }
       }
     },
+    "gallery.section.checkbox" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checkbox"
+          }
+        }
+      }
+    },
     "gallery.section.chip" : {
       "localizations" : {
         "id" : {
@@ -1881,12 +2281,72 @@
         }
       }
     },
+    "gallery.section.code" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CodeField Email"
+          }
+        }
+      }
+    },
     "gallery.section.colors" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Token Warna"
+          }
+        }
+      }
+    },
+    "gallery.section.dialogConfirm" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dialog Konfirmasi"
+          }
+        }
+      }
+    },
+    "gallery.section.dialogFailure" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dialog Gagal"
+          }
+        }
+      }
+    },
+    "gallery.section.dialogIcon" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dialog Ikon"
+          }
+        }
+      }
+    },
+    "gallery.section.dialogPresented" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dialog Tampil"
+          }
+        }
+      }
+    },
+    "gallery.section.dialogSuccess" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dialog Berhasil"
           }
         }
       }
@@ -1981,6 +2441,16 @@
         }
       }
     },
+    "gallery.section.link" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Link"
+          }
+        }
+      }
+    },
     "gallery.section.logo" : {
       "localizations" : {
         "id" : {
@@ -2047,6 +2517,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pasangan Tombol"
+          }
+        }
+      }
+    },
+    "gallery.section.pin" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CodeField PIN"
           }
         }
       }
