@@ -14,7 +14,7 @@
 The app embeds no Firebase SDK and needs no `GoogleService-Info.plist`: App Distribution works on
 the IPA alone. Add the SDK later only for a feature that needs it (Crashlytics, for example).
 
-## One-time setup
+## One-Time Setup
 
 ### 1. Apple Developer
 
@@ -40,7 +40,7 @@ Change it in the project before registering anything if you want another one.
 4. Google Cloud console for the same project → enable the **Firebase App Distribution API**
    (`firebaseappdistribution.googleapis.com`).
 
-### 3. Google credential (choose one)
+### 3. Google Credential (Choose One)
 
 **A. Workload Identity Federation (recommended: no long-lived key exists anywhere).** With
 `gcloud` (or Cloud Shell), in the Firebase project:
@@ -78,7 +78,7 @@ Then set the two variables in step 4 (`GCP_WORKLOAD_IDENTITY_PROVIDER` is
 `FIREBASE_SERVICE_ACCOUNT_JSON` secret, and delete the downloaded file. A key never expires on its
 own: rotate it, and prefer A when you can.
 
-### 4. GitHub repository settings
+### 4. GitHub Repository Settings
 
 From the repo folder, with the GitHub CLI (the values are read from files or prompts, never typed
 into the shell history):
@@ -111,18 +111,20 @@ gh secret set FIREBASE_SERVICE_ACCOUNT_JSON < service-account.json
 
 The workflow checks every input before it uses one and names what is missing.
 
-## Running it
+## Running It
 
 Merge a pull request into `prod`. The run appears under Actions → Firebase App Distribution, and
-the testers get an email from Firebase. A run that failed (an expired certificate, say) is
+the testers get an email from Firebase. Until the `FIREBASE_APP_ID` variable is set, both jobs are
+skipped: the variable is the switch that turns distribution on. A run that failed (an expired certificate, say) is
 re-run from its page once the secret is fixed.
 
-## Keeping it working
+## Keeping It Working
 
 - **A new tester device**: register it at Apple, add it to the Ad Hoc profile, download the
   profile again and update `BUILD_PROVISION_PROFILE_BASE64`.
 - **Expiry**: the distribution certificate and the profile expire (a year at most). Renew both and
   update the two secrets; the build job fails with a clear message until then.
-- **GitHub Team or Enterprise**: move the five secrets into an environment (for example
-  `firebase-distribution`) that only `prod` may use, and add `environment: firebase-distribution`
-  to both jobs. A free organization has no environments on private repositories.
+- **Environments**: the repository is public, so it can have environments on the free plan. Moving
+  the five secrets into one (for example `firebase-distribution`, with `environment:` on both jobs)
+  is a follow-up to test first: the workflow runs on a `pull_request` event, whose ref is the pull
+  request's merge ref, so a branch rule of `prod` alone may not admit it.
