@@ -114,7 +114,8 @@ The workflow checks every input before it uses one and names what is missing.
 ## Running it
 
 Merge a pull request into `prod`. The run appears under Actions → Firebase App Distribution, and
-the testers get an email from Firebase. A run that failed (an expired certificate, say) is
+the testers get an email from Firebase. Until the `FIREBASE_APP_ID` variable is set, both jobs are
+skipped: the variable is the switch that turns distribution on. A run that failed (an expired certificate, say) is
 re-run from its page once the secret is fixed.
 
 ## Keeping it working
@@ -123,6 +124,7 @@ re-run from its page once the secret is fixed.
   profile again and update `BUILD_PROVISION_PROFILE_BASE64`.
 - **Expiry**: the distribution certificate and the profile expire (a year at most). Renew both and
   update the two secrets; the build job fails with a clear message until then.
-- **GitHub Team or Enterprise**: move the five secrets into an environment (for example
-  `firebase-distribution`) that only `prod` may use, and add `environment: firebase-distribution`
-  to both jobs. A free organization has no environments on private repositories.
+- **Environments**: the repository is public, so it can have environments on the free plan. Moving
+  the five secrets into one (for example `firebase-distribution`, with `environment:` on both jobs)
+  is a follow-up to test first: the workflow runs on a `pull_request` event, whose ref is the pull
+  request's merge ref, so a branch rule of `prod` alone may not admit it.
