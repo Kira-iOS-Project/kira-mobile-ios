@@ -50,8 +50,8 @@ private struct KiraButtonBody<Label: View>: View {
         case .primary: .onPandan
         case .secondary: .ink
         case .quiet: .pandan
-        case .darurat: .onDarurat
-        case .bahaya: .rentan
+        case .emergency: .onEmergency
+        case .destructive: .vulnerable
         }
     }
 
@@ -60,16 +60,16 @@ private struct KiraButtonBody<Label: View>: View {
         case .primary: isPressed ? .pandanStrong : .pandan
         case .secondary: isPressed ? .surfaceMuted : .button
         case .quiet: isPressed ? .pandanSoft : .clear
-        case .darurat: .darurat
-        case .bahaya: isPressed ? .surfaceMuted : .rentanSoft
+        case .emergency: .emergency
+        case .destructive: isPressed ? .surfaceMuted : .vulnerableSoft
         }
     }
 
     private var border: Color {
         switch variant {
         case .secondary: .buttonLine
-        case .bahaya: .rentanLine
-        case .primary, .quiet, .darurat: .clear
+        case .destructive: .vulnerableLine
+        case .primary, .quiet, .emergency: .clear
         }
     }
 }

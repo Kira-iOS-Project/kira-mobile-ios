@@ -7,7 +7,7 @@
 import SwiftUI
 
 /** A progress bar with optional milestones. */
-struct KiraProgressPita: View {
+struct KiraProgressRibbon: View {
     /** A point on the way to the target, labelled under the bar. */
     struct Milestone: Identifiable {
         let position: Double
@@ -20,7 +20,7 @@ struct KiraProgressPita: View {
         /** Savings and goals (default). */
         case pandan
         /** A healthy outcome. */
-        case sehat
+        case healthy
     }
 
     private let value: Double
@@ -49,18 +49,18 @@ struct KiraProgressPita: View {
     var body: some View {
         VStack(alignment: .leading, spacing: KiraSpacing.space2) {
             if let label {
-                Text("ds.pita.head \(Text(label).fontWeight(.semibold)) \(valueText)")
+                Text("ds.ribbon.head \(Text(label).fontWeight(.semibold)) \(valueText)")
                     .font(.subheadline)
                     .foregroundStyle(isInverse ? Color.onHero : Color.ink)
             }
-            PitaTrack(fraction: fraction, ticks: milestones.map { $0.position / target }, colors: colors)
+            RibbonTrack(fraction: fraction, ticks: milestones.map { $0.position / target }, colors: colors)
             if !milestones.isEmpty { milestoneLabels }
             if let caption {
                 Text(caption).font(.footnote).foregroundStyle(isInverse ? Color.onHeroMuted : Color.inkMuted)
             }
         }
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text(label ?? "ds.pita.progress"))
+        .accessibilityLabel(Text(label ?? "ds.ribbon.progress"))
         .accessibilityValue(valueLabel.map { Text($0) } ?? percent)
     }
 
@@ -68,9 +68,9 @@ struct KiraProgressPita: View {
         (valueLabel.map { Text($0) } ?? percent).foregroundStyle(isInverse ? Color.onHeroMuted : Color.inkMuted)
     }
 
-    private var colors: PitaTrack.Colors {
-        if isInverse { return PitaTrack.Colors(track: .heroTrack, fill: .heroAccent) }
-        return PitaTrack.Colors(track: .track, fill: tone == .sehat ? .sehat : .pandan)
+    private var colors: RibbonTrack.Colors {
+        if isInverse { return RibbonTrack.Colors(track: .heroTrack, fill: .heroAccent) }
+        return RibbonTrack.Colors(track: .track, fill: tone == .healthy ? .healthy : .pandan)
     }
 
     private var milestoneLabels: some View {
@@ -93,18 +93,18 @@ struct KiraProgressPita: View {
     /** The same bar with another fill colour. */
     func tone(_ tone: Tone) -> Self { copy { $0.tone = tone } }
 
-    /** The same bar on the hero card: a hero-track and a kunyit fill. */
+    /** The same bar on the hero card: a hero-track and a turmeric fill. */
     func inverse() -> Self { copy { $0.isInverse = true } }
 
     private func copy(_ change: (inout Self) -> Void) -> Self {
-        var pita = self
-        change(&pita)
-        return pita
+        var ribbon = self
+        change(&ribbon)
+        return ribbon
     }
 }
 
 /** The capsule track, its fill, and a dot per milestone. */
-private struct PitaTrack: View {
+private struct RibbonTrack: View {
     struct Colors {
         let track: Color
         let fill: Color

@@ -2,8 +2,8 @@
  NextStepCard (design system): the one next step on Beranda, with its illustration, its computed
  effect and an equal "Nanti Saja". The order of steps comes from rules (costly debt, then the
  emergency fund, protection, investing), never from AI. Under a "Langkah Berikutnya" section
- title, change the eyebrow ("Prioritas") so it does not repeat. Illustrations: kartu-lunas for a
- payoff, celengan for the emergency fund, payung for protection, struk for recording.
+ title, change the eyebrow ("Prioritas") so it does not repeat. Illustrations: `cardPaidOff` for a
+ payoff, `piggyBank` for the emergency fund, `umbrella` for protection, `receipt` for recording.
  */
 import SwiftUI
 
