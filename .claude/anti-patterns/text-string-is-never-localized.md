@@ -21,8 +21,8 @@ it into untranslated text. SwiftLint sees text, not types, so no rule can tell t
 The model exposes `LocalizedStringResource`, and the view passes it on:
 
 ```swift
-package var title: LocalizedStringResource { "orders.title" }   // in the screen model
-Text(model.title)                                                // in the view
+package var title: LocalizedStringResource { "orders.title" } /** in the screen model */
+Text(model.title) /** in the view */
 ```
 
 Data is not copy: a name or a reference code is shown with `Text(value)` on purpose.
