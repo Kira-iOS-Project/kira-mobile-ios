@@ -1,4 +1,4 @@
-// ScoreBand: the three bands of the Kira Score and their share of the meter.
+/** ScoreBand: the three bands of the Kira Score and their share of the meter. */
 import Testing
 
 @testable import Domain

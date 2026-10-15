@@ -1,4 +1,4 @@
-// RupiahFormatStyle against the design system's formatRupiah: Rp10.000,00, every part, signed and hidden.
+/** RupiahFormatStyle against the design system's formatRupiah: Rp10.000,00, every part, signed and hidden. */
 import Foundation
 import Testing
 

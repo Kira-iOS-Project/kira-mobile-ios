@@ -1,4 +1,4 @@
-// Score clamps to the 0–100 scale and names its band.
+/** Score clamps to the 0–100 scale and names its band. */
 import Testing
 
 @testable import Domain
