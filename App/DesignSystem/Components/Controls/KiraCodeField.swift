@@ -59,7 +59,7 @@ struct KiraCodeField: View {
             if let message = errorText ?? hintText {
                 Text(message)
                     .font(.footnote)
-                    .foregroundStyle(errorText == nil ? Color.inkMuted : Color.rentan)
+                    .foregroundStyle(errorText == nil ? Color.inkMuted : Color.vulnerable)
                     .padding(.horizontal, KiraSpacing.space1)
             }
         }
@@ -135,7 +135,7 @@ struct KiraCodeField: View {
     /** The same field with a hint under it, such as "Jangan pakai PIN bank atau tanggal lahir." */
     func hint(_ text: LocalizedStringResource) -> Self { copy { $0.hintText = text } }
 
-    /** The same field in error, every box in `rentan`, with the sentence that says what to do. */
+    /** The same field in error, every box in `vulnerable`, with the sentence that says what to do. */
     func error(_ text: LocalizedStringResource?) -> Self { copy { $0.errorText = text } }
 
     private func copy(_ change: (inout Self) -> Void) -> Self {

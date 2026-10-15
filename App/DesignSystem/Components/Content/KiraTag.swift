@@ -11,17 +11,17 @@ struct KiraTag: View {
     /** What the status means. */
     enum Tone: CaseIterable {
         /** Neutral (default). */
-        case netral
+        case neutral
         /** Verified, active. */
         case pandan
         /** Soon, needs attention. */
-        case kunyit
+        case turmeric
         /** Paid off, reached. */
-        case sehat
+        case healthy
         /** Past due. */
-        case rentan
+        case vulnerable
         /** Kira Peduli only. */
-        case darurat
+        case emergency
         /** On the hero card. */
         case hero
     }
@@ -30,7 +30,7 @@ struct KiraTag: View {
     private let tone: Tone
     private let icon: KiraIconName?
 
-    init(_ title: LocalizedStringResource, tone: Tone = .netral, icon: KiraIconName? = nil) {
+    init(_ title: LocalizedStringResource, tone: Tone = .neutral, icon: KiraIconName? = nil) {
         self.title = title
         self.tone = tone
         self.icon = icon
@@ -51,12 +51,12 @@ struct KiraTag: View {
 
     private var colors: TagColors {
         switch tone {
-        case .netral: TagColors(text: .inkMuted, fill: .surfaceMuted, border: .hairline)
+        case .neutral: TagColors(text: .inkMuted, fill: .surfaceMuted, border: .hairline)
         case .pandan: TagColors(text: .pandan, fill: .pandanSoft, border: .pandanLine)
-        case .kunyit: TagColors(text: .bertahan, fill: .bertahanSoft, border: .bertahanLine)
-        case .sehat: TagColors(text: .sehat, fill: .sehatSoft, border: .sehatLine)
-        case .rentan: TagColors(text: .rentan, fill: .rentanSoft, border: .rentanLine)
-        case .darurat: TagColors(text: .darurat, fill: .daruratSoft, border: .rentanLine)
+        case .turmeric: TagColors(text: .coping, fill: .copingSoft, border: .copingLine)
+        case .healthy: TagColors(text: .healthy, fill: .healthySoft, border: .healthyLine)
+        case .vulnerable: TagColors(text: .vulnerable, fill: .vulnerableSoft, border: .vulnerableLine)
+        case .emergency: TagColors(text: .emergency, fill: .emergencySoft, border: .vulnerableLine)
         case .hero: TagColors(text: .onHero, fill: .heroTrack, border: Color.onHero.opacity(0.2))
         }
     }

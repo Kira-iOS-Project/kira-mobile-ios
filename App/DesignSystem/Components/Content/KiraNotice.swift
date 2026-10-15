@@ -1,9 +1,9 @@
 /**
  Notice (design system): a label that is a feature, not a footnote (pillars Jernih and Terjaga),
- its title in Title Case. `simulasi` on every calculator, Kira Score and payoff plan ("Hanya
- Simulasi"); `edukasi` on asset-class modules and investment answers ("Edukasi, Bukan
- Rekomendasi"); `ai` on AI-written text; `privasi` and `aman` where data is asked for;
- `peringatan` for real risk (fraud, an outside link), never for bad news about the person's numbers.
+ its title in Title Case. `simulation` on every calculator, Kira Score and payoff plan ("Hanya
+ Simulasi"); `education` on asset-class modules and investment answers ("Edukasi, Bukan
+ Rekomendasi"); `aiText` on AI-written text; `privacy` and `safe` where data is asked for;
+ `warning` for real risk (fraud, an outside link), never for bad news about the person's numbers.
  */
 import SwiftUI
 
@@ -11,17 +11,17 @@ import SwiftUI
 struct KiraNotice: View {
     /** The notice's purpose. */
     enum Tone: CaseIterable {
-        case info, simulasi, edukasi, privasi, aman, aiText, peringatan
+        case info, simulation, education, privacy, safe, aiText, warning
 
         var icon: KiraIconName {
             switch self {
             case .info: .info
-            case .simulasi: .calculator
-            case .edukasi: .book
-            case .privasi: .lock
-            case .aman: .shield
+            case .simulation: .calculator
+            case .education: .book
+            case .privacy: .lock
+            case .safe: .shield
             case .aiText: .sparkle
-            case .peringatan: .alert
+            case .warning: .alert
             }
         }
     }
@@ -68,16 +68,16 @@ struct KiraNotice: View {
 
     private var colors: NoticeColors {
         switch tone {
-        case .info, .edukasi:
-            NoticeColors(fill: .surfaceRaised, border: .hairline, iconFill: .iluLangitMuda, icon: .iluLangitTua)
+        case .info, .education:
+            NoticeColors(fill: .surfaceRaised, border: .hairline, iconFill: .artSkyLight, icon: .artSkyDark)
         case .aiText:
             NoticeColors(fill: .surfaceRaised, border: .hairline, iconFill: .pandanSoft, icon: .pandan)
-        case .simulasi:
-            NoticeColors(fill: .bertahanSoft, border: .bertahanLine, iconFill: .surfaceRaised, icon: .bertahan)
-        case .privasi, .aman:
+        case .simulation:
+            NoticeColors(fill: .copingSoft, border: .copingLine, iconFill: .surfaceRaised, icon: .coping)
+        case .privacy, .safe:
             NoticeColors(fill: .pandanSoft, border: .pandanLine, iconFill: .surfaceRaised, icon: .pandan)
-        case .peringatan:
-            NoticeColors(fill: .rentanSoft, border: .rentanLine, iconFill: .surfaceRaised, icon: .rentan)
+        case .warning:
+            NoticeColors(fill: .vulnerableSoft, border: .vulnerableLine, iconFill: .surfaceRaised, icon: .vulnerable)
         }
     }
 }

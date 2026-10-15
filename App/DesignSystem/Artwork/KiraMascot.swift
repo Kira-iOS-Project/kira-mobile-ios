@@ -12,17 +12,17 @@ struct KiraMascot: View {
     /** Kuku's three expressions; there is no sad one. */
     enum Expression: String, CaseIterable {
         /** Default: onboarding, empty states, weekly summary. */
-        case tenang
+        case calm
         /** First transaction saved, emergency-fund milestone. */
-        case senang
+        case happy
         /** A debt paid off, a band reached. */
-        case bangga
+        case proud
 
         var label: LocalizedStringResource {
             switch self {
-            case .tenang: "ds.mascot.tenang"
-            case .senang: "ds.mascot.senang"
-            case .bangga: "ds.mascot.bangga"
+            case .calm: "ds.mascot.calm"
+            case .happy: "ds.mascot.happy"
+            case .proud: "ds.mascot.proud"
             }
         }
     }
@@ -41,7 +41,7 @@ struct KiraMascot: View {
     private let crop: Crop
 
     /** `isFramed` puts Kuku in a soft green circle; turn it off when Kuku stands on a Scenery. */
-    init(_ expression: Expression = .tenang, size: CGFloat = 160, isFramed: Bool = true, crop: Crop = .full) {
+    init(_ expression: Expression = .calm, size: CGFloat = 160, isFramed: Bool = true, crop: Crop = .full) {
         self.expression = expression
         self.size = size
         self.isFramed = isFramed
@@ -54,15 +54,15 @@ struct KiraMascot: View {
 
     @ViewBuilder private var art: some View {
         if crop == .face {
-            Image(decorative: "kuku-\(expression.rawValue)-wajah").resizable().frame(width: size, height: size)
+            Image(decorative: "mascot-\(expression.rawValue)-face").resizable().frame(width: size, height: size)
         } else if isFramed {
             let inset = size * 8 / 240
-            Image(decorative: "kuku-\(expression.rawValue)").resizable()
+            Image(decorative: "mascot-\(expression.rawValue)").resizable()
                 .frame(width: size, height: size)
-                .background(Circle().fill(.iluHijauMuda).padding(inset))
+                .background(Circle().fill(.artGreenLight).padding(inset))
                 .clipShape(Circle().inset(by: inset))
         } else {
-            Image(decorative: "kuku-\(expression.rawValue)").resizable().frame(width: size, height: size)
+            Image(decorative: "mascot-\(expression.rawValue)").resizable().frame(width: size, height: size)
         }
     }
 }

@@ -41,7 +41,7 @@
         }
       }
     },
-    "ds.band.bertahan" : {
+    "ds.band.coping" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -51,7 +51,7 @@
         }
       }
     },
-    "ds.band.bertahan.scale" : {
+    "ds.band.coping.scale" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -61,27 +61,7 @@
         }
       }
     },
-    "ds.band.rentan" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rentan"
-          }
-        }
-      }
-    },
-    "ds.band.rentan.scale" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rentan 0–39"
-          }
-        }
-      }
-    },
-    "ds.band.sehat" : {
+    "ds.band.healthy" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -91,12 +71,32 @@
         }
       }
     },
-    "ds.band.sehat.scale" : {
+    "ds.band.healthy.scale" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sehat 80+"
+          }
+        }
+      }
+    },
+    "ds.band.vulnerable" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rentan"
+          }
+        }
+      }
+    },
+    "ds.band.vulnerable.scale" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rentan 0–39"
           }
         }
       }
@@ -111,27 +111,67 @@
         }
       }
     },
-    "ds.category.barang" : {
+    "ds.category.bills" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Barang"
+            "value" : "Tagihan"
           }
         }
       }
     },
-    "ds.category.belanja" : {
+    "ds.category.card" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Belanja"
+            "value" : "Kartu Kredit"
           }
         }
       }
     },
-    "ds.category.darurat" : {
+    "ds.category.cash" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tunai"
+          }
+        }
+      }
+    },
+    "ds.category.coffee" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopi"
+          }
+        }
+      }
+    },
+    "ds.category.crypto" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kripto"
+          }
+        }
+      }
+    },
+    "ds.category.education" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pendidikan"
+          }
+        }
+      }
+    },
+    "ds.category.emergency" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -141,12 +181,12 @@
         }
       }
     },
-    "ds.category.emas" : {
+    "ds.category.entertainment" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Emas"
+            "value" : "Hiburan"
           }
         }
       }
@@ -161,77 +201,7 @@
         }
       }
     },
-    "ds.category.gaji" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gaji"
-          }
-        }
-      }
-    },
-    "ds.category.hiburan" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hiburan"
-          }
-        }
-      }
-    },
-    "ds.category.kartu" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kartu Kredit"
-          }
-        }
-      }
-    },
-    "ds.category.kesehatan" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kesehatan"
-          }
-        }
-      }
-    },
-    "ds.category.kopi" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kopi"
-          }
-        }
-      }
-    },
-    "ds.category.kripto" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kripto"
-          }
-        }
-      }
-    },
-    "ds.category.lainnya" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lainnya"
-          }
-        }
-      }
-    },
-    "ds.category.makan" : {
+    "ds.category.food" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -241,12 +211,82 @@
         }
       }
     },
-    "ds.category.menikah" : {
+    "ds.category.gold" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Menikah"
+            "value" : "Emas"
+          }
+        }
+      }
+    },
+    "ds.category.goods" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Barang"
+          }
+        }
+      }
+    },
+    "ds.category.governmentBonds" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SBN"
+          }
+        }
+      }
+    },
+    "ds.category.health" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kesehatan"
+          }
+        }
+      }
+    },
+    "ds.category.home" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rumah"
+          }
+        }
+      }
+    },
+    "ds.category.mutualFunds" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reksa Dana"
+          }
+        }
+      }
+    },
+    "ds.category.onlineLoan" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pinjol"
+          }
+        }
+      }
+    },
+    "ds.category.other" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lainnya"
           }
         }
       }
@@ -261,37 +301,7 @@
         }
       }
     },
-    "ds.category.pendidikan" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pendidikan"
-          }
-        }
-      }
-    },
-    "ds.category.pensiun" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pensiun"
-          }
-        }
-      }
-    },
-    "ds.category.pinjol" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pinjol"
-          }
-        }
-      }
-    },
-    "ds.category.proteksi" : {
+    "ds.category.protection" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -301,47 +311,27 @@
         }
       }
     },
-    "ds.category.reksadana" : {
+    "ds.category.retirement" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reksa Dana"
+            "value" : "Pensiun"
           }
         }
       }
     },
-    "ds.category.rumah" : {
+    "ds.category.salary" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rumah"
+            "value" : "Gaji"
           }
         }
       }
     },
-    "ds.category.saham" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Saham"
-          }
-        }
-      }
-    },
-    "ds.category.sbn" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "SBN"
-          }
-        }
-      }
-    },
-    "ds.category.tabungan" : {
+    "ds.category.savings" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -351,17 +341,27 @@
         }
       }
     },
-    "ds.category.tagihan" : {
+    "ds.category.shopping" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tagihan"
+            "value" : "Belanja"
           }
         }
       }
     },
-    "ds.category.transportasi" : {
+    "ds.category.stocks" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saham"
+          }
+        }
+      }
+    },
+    "ds.category.transport" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -371,12 +371,12 @@
         }
       }
     },
-    "ds.category.tunai" : {
+    "ds.category.wedding" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tunai"
+            "value" : "Menikah"
           }
         }
       }
@@ -541,17 +541,17 @@
         }
       }
     },
-    "ds.mascot.bangga" : {
+    "ds.mascot.calm" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kuku si kukang, bangga"
+            "value" : "Kuku si kukang, tenang"
           }
         }
       }
     },
-    "ds.mascot.senang" : {
+    "ds.mascot.happy" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -561,12 +561,12 @@
         }
       }
     },
-    "ds.mascot.tenang" : {
+    "ds.mascot.proud" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kuku si kukang, tenang"
+            "value" : "Kuku si kukang, bangga"
           }
         }
       }
@@ -601,7 +601,7 @@
         }
       }
     },
-    "ds.pita.head %@ %@" : {
+    "ds.ribbon.head %@ %@" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -611,7 +611,7 @@
         }
       }
     },
-    "ds.pita.progress" : {
+    "ds.ribbon.progress" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -641,32 +641,22 @@
         }
       }
     },
-    "ds.tab.beranda" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Beranda"
-          }
-        }
-      }
-    },
-    "ds.tab.catat" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Catat"
-          }
-        }
-      }
-    },
-    "ds.tab.komunitas" : {
+    "ds.tab.community" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Komunitas"
+          }
+        }
+      }
+    },
+    "ds.tab.home" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beranda"
           }
         }
       }
@@ -681,12 +671,22 @@
         }
       }
     },
-    "ds.tab.rencana" : {
+    "ds.tab.plan" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rencana"
+          }
+        }
+      }
+    },
+    "ds.tab.record" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catat"
           }
         }
       }
@@ -1501,7 +1501,7 @@
         }
       }
     },
-    "gallery.illustration.mekar" : {
+    "gallery.illustration.bloom" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -1841,17 +1841,7 @@
         }
       }
     },
-    "gallery.notice.aman.title" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Datamu Terkunci di Perangkat Ini"
-          }
-        }
-      }
-    },
-    "gallery.notice.edukasi.body" : {
+    "gallery.notice.education.body" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -1861,7 +1851,7 @@
         }
       }
     },
-    "gallery.notice.edukasi.title" : {
+    "gallery.notice.education.title" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -1881,27 +1871,7 @@
         }
       }
     },
-    "gallery.notice.peringatan.body" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kira tidak pernah meminta PIN, password, atau OTP rekeningmu."
-          }
-        }
-      }
-    },
-    "gallery.notice.peringatan.title" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hati-Hati dengan Tautan Luar"
-          }
-        }
-      }
-    },
-    "gallery.notice.privasi.body" : {
+    "gallery.notice.privacy.body" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -1911,7 +1881,7 @@
         }
       }
     },
-    "gallery.notice.privasi.title" : {
+    "gallery.notice.privacy.title" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -1921,7 +1891,17 @@
         }
       }
     },
-    "gallery.notice.simulasi.body" : {
+    "gallery.notice.safe.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datamu Terkunci di Perangkat Ini"
+          }
+        }
+      }
+    },
+    "gallery.notice.simulation.body" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -1931,12 +1911,32 @@
         }
       }
     },
-    "gallery.notice.simulasi.title" : {
+    "gallery.notice.simulation.title" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hanya Simulasi"
+          }
+        }
+      }
+    },
+    "gallery.notice.warning.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira tidak pernah meminta PIN, password, atau OTP rekeningmu."
+          }
+        }
+      }
+    },
+    "gallery.notice.warning.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hati-Hati dengan Tautan Luar"
           }
         }
       }
@@ -2131,7 +2131,7 @@
         }
       }
     },
-    "gallery.pita.caption" : {
+    "gallery.ribbon.caption" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -2141,7 +2141,7 @@
         }
       }
     },
-    "gallery.pita.goal" : {
+    "gallery.ribbon.goal" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -2151,7 +2151,7 @@
         }
       }
     },
-    "gallery.pita.month" : {
+    "gallery.ribbon.month" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -2161,7 +2161,7 @@
         }
       }
     },
-    "gallery.pita.plan" : {
+    "gallery.ribbon.plan" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -2171,7 +2171,7 @@
         }
       }
     },
-    "gallery.pita.planValue" : {
+    "gallery.ribbon.planValue" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -2181,7 +2181,7 @@
         }
       }
     },
-    "gallery.pita.week" : {
+    "gallery.ribbon.week" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -2531,22 +2531,22 @@
         }
       }
     },
-    "gallery.section.pita" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ProgressPita"
-          }
-        }
-      }
-    },
     "gallery.section.radius" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Radius"
+          }
+        }
+      }
+    },
+    "gallery.section.ribbon" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ProgressPita"
           }
         }
       }

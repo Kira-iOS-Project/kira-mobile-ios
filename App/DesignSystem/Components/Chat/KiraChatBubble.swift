@@ -80,7 +80,7 @@ struct KiraChatBubble<Content: View>: View {
     }
 
     private func initialAvatar(_ initial: String) -> some View {
-        KiraAvatar(initial, size: 32, tone: .kunyit)
+        KiraAvatar(initial, size: 32, tone: .turmeric)
     }
 
     /** The same message with the transactions saved from it. */
@@ -101,8 +101,8 @@ struct KiraChatBubble<Content: View>: View {
 /** Kuku's calm face in a 32 pt circle with the pandan AI sparkle: Kira's avatar. */
 private struct KiraAvatarFace: View {
     var body: some View {
-        KiraMascot(.tenang, size: 32, crop: .face)
-            .background(.iluHijauMuda)
+        KiraMascot(.calm, size: 32, crop: .face)
+            .background(.artGreenLight)
             .clipShape(Circle())
             .overlay { Circle().strokeBorder(.hairline, lineWidth: 1) }
             .overlay(alignment: .bottomTrailing) {
