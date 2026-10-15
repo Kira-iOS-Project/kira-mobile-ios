@@ -37,7 +37,8 @@ a screen built from them keeps them by default.
   A big amount sits alone on its line with its words in a small label above it.
 - **The right side of a row is for actions only** (chevron, toggle, check, an outside link):
   amounts, values and tags go under the title.
-- **Red (`darurat`) only for the 119 call and reporting**; `bahaya` (terracotta) confirms deletions.
+- **Red (`emergency`, the artifact's `darurat`) only for the 119 call and reporting**; `destructive`
+  (`bahaya`, terracotta) confirms deletions.
 - **At most one handwritten note per screen**, anchored to a section title, an illustration or the
   splash.
 - **Glass only on the dock.** A scrolling screen calls `.kiraScrollEdges()`: from iOS 26 a scroll
@@ -49,8 +50,9 @@ a screen built from them keeps them by default.
 
 ### Colour
 
-Every colour token of `tokens.json` is a colour set in `App/Assets.xcassets/Tokens/`, named as the
-design system names it, with its light and dark value (the design system defines both themes, so
+Every colour token of `tokens.json` is a colour set in `App/Assets.xcassets/Tokens/`, under its
+English name (the artifact's Indonesian names map in [Names](#names-the-artifacts-words-and-the-swift-ones)),
+with its light and dark value (the design system defines both themes, so
 dark mode follows the device). Xcode generates a symbol per set, so a token is used by name:
 
 ```swift
@@ -60,14 +62,14 @@ Capsule().fill(.pandanSoft)
 ```
 
 The generated name is the token in lowerCamelCase: `surface-raised` → `.surfaceRaised`,
-`hero-alam-2` → `.heroAlam2`, `ilu-kunyit-muda` → `.iluKunyitMuda`. `AccentColor` is pandan, so
+`hero-nature-2` → `.heroNature2`, `art-turmeric-light` → `.artTurmericLight`. `AccentColor` is pandan, so
 the cursor and system selections carry the accent. The groups: surfaces (`surface`,
 `surface-raised`, `surface-muted`, `button`, `button-line`, `track`, `line`, `hairline`,
 `line-strong`), text (`ink`, `ink-muted`), accent (`pandan`, `pandan-strong`, `pandan-soft`,
 `pandan-line`, `on-pandan`), the hero card (`hero`, `on-hero`, `on-hero-muted`, `hero-track`,
-`hero-accent`, `hero-alam`, `hero-alam-2`), the Kira Score bands (`sehat`, `bertahan`, `rentan`,
-each with `-soft` and `-line`), `darurat`, `darurat-soft`, `on-darurat`, `glass`, `scrim`, and the
-illustration paints (`ilu-*`), which are for artwork only, never text or buttons.
+`hero-accent`, `hero-nature`, `hero-nature-2`), the Kira Score bands (`healthy`, `coping`,
+`vulnerable`, each with `-soft` and `-line`), `emergency`, `emergency-soft`, `on-emergency`, `glass`,
+`scrim`, and the illustration paints (`art-*`), which are for artwork only, never text or buttons.
 
 ### Spacing, radius, size
 
@@ -156,7 +158,7 @@ Options beyond five initializer parameters are chained modifiers, such as
 
 | Design system | SwiftUI | File (under `App/DesignSystem/`) |
 | --- | --- | --- |
-| `Button` (primary, secondary, quiet, darurat, bahaya; md 50, sm 44; block; icon, iconEnd) | `KiraButton(_:variant:size:action:)` `.icon(_:)` `.iconEnd(_:)` `.block()`; a pair: `KiraButtonPair(secondary:primary:)` | `Components/Controls/KiraButton.swift`, `KiraButtonStyle.swift` |
+| `Button` (primary, secondary, quiet, emergency, destructive; md 50, sm 44; block; icon, iconEnd) | `KiraButton(_:variant:size:action:)` `.icon(_:)` `.iconEnd(_:)` `.block()`; a pair: `KiraButtonPair(secondary:primary:)` | `Components/Controls/KiraButton.swift`, `KiraButtonStyle.swift` |
 | `IconButton` (plain, outline) | `KiraIconButton(_:label:variant:action:)`, `.back(_:action:)`, `.close(_:action:)` | `Components/Controls/KiraIconButton.swift` |
 | `HelpButton` (pill, icon, row) | `KiraHelpButton(_:action:)` | `Components/Controls/KiraHelpButton.swift` |
 | `Toggle` | `KiraToggle(_:isOn:)` | `Components/Controls/KiraToggle.swift` |
@@ -166,12 +168,12 @@ Options beyond five initializer parameters are chained modifiers, such as
 | `.k-link` (on its own; inside a sentence) | `KiraLink(_:action:)`; `KiraLinkText(_:onOpen:)` with Markdown links in the catalog value | `Components/Controls/KiraLink.swift` |
 | `Segmented` | `KiraSegmented(_:options:selection:)` | `Components/Controls/KiraSegmented.swift` |
 | `Chip` (selected, icon, category) | `KiraChip(_:isSelected:leading:action:)`; wrap many in `KiraFlowRow` | `Components/Controls/KiraChip.swift`, `Layout/KiraFlowRow.swift` |
-| `Tag` (netral, pandan, kunyit, sehat, rentan, darurat, hero) | `KiraTag(_:tone:icon:)` | `Components/Content/KiraTag.swift` |
-| `Notice` (info, simulasi, edukasi, privasi, aman, ai, peringatan) | `KiraNotice(_:title:message:icon:)` (`ai` is `.aiText`) | `Components/Content/KiraNotice.swift` |
+| `Tag` (neutral, pandan, turmeric, healthy, vulnerable, emergency, hero) | `KiraTag(_:tone:icon:)` | `Components/Content/KiraTag.swift` |
+| `Notice` (info, simulation, education, privacy, safe, ai, warning) | `KiraNotice(_:title:message:icon:)` (`ai` is `.aiText`) | `Components/Content/KiraNotice.swift` |
 | `Amount` (sm, md, lg, xl; masked, signed, muted, inverse) | `KiraAmount(_:size:)` `.masked(_:)` `.signed()` `.muted()` `.inverse()` | `Components/Content/KiraAmount.swift` |
 | `Avatar` | `KiraAvatar(_:size:tone:label:)` | `Components/Content/KiraAvatar.swift` |
 | `Accordion` (raised, soft; controlled or not) | `KiraAccordion(_:subtitle:icon:isExpanded:content:)` `.soft()` | `Components/Content/KiraAccordion.swift` |
-| `ProgressPita` (milestones, caption, tone, inverse) | `KiraProgressPita(value:target:label:valueLabel:)` `.milestones` `.caption` `.tone` `.inverse()` | `Components/Content/KiraProgressPita.swift` |
+| `ProgressPita` (milestones, caption, tone, inverse) | `KiraProgressRibbon(value:target:label:valueLabel:)` `.milestones` `.caption` `.tone` `.inverse()` | `Components/Content/KiraProgressRibbon.swift` |
 | `StepProgress` | `KiraStepProgress(current:total:)` | `Components/Content/KiraStepProgress.swift` |
 | `Bars` | `KiraBars(_:columns:height:)` | `Components/Content/KiraBars.swift` |
 | `BandPill` (md, sm) | `KiraBandPill(_:size:)` | `Components/Score/KiraBandPill.swift`, `ScoreBand+Style.swift` |
@@ -182,7 +184,7 @@ Options beyond five initializer parameters are chained modifiers, such as
 | `ListGroup` | `KiraListGroup(_:footer:rows:)`; rows in any card: `KiraRowStack` | `Components/Lists/KiraListGroup.swift`, `Layout/RowSeparators.swift` |
 | `ListRow` (category, icon, illustration, initial; chevron, external, toggle, check; danger) | `KiraListRow(_:leading:trailing:action:extra:)` `.subtitle` `.amount` `.value` `.danger()` | `Components/Lists/KiraListRow.swift`, `KiraListRowParts.swift` |
 | `NavBar` (back, close, large, eyebrow, actions) | `KiraNavBar(_:subtitle:leading:isLarge:trailing:)` `.eyebrow(_:)` | `Components/Navigation/KiraNavBar.swift` |
-| `TabBar` (the dock with Catat) | `KiraTabBar(selection:isCatatActive:onCatat:)`, `KiraTab` | `Components/Navigation/KiraTabBar.swift` |
+| `TabBar` (the dock with Catat) | `KiraTabBar(selection:isRecordActive:onRecord:)`, `KiraTab` | `Components/Navigation/KiraTabBar.swift` |
 | `Sheet` | `.kiraSheet(isPresented:title:subtitle:content:)` | `Components/Navigation/KiraSheet.swift` |
 | `.k-dialog` (success, failure, confirm; illustration or round icon; one or two buttons) | `KiraDialog(_:message:art:primary:secondary:)`, presented with `.kiraDialog(isPresented:dialog:)` | `Components/Dialog/KiraDialog.swift`, `KiraDialogPresentation.swift` |
 | (screen edges) | `.kiraScrollEdges()` | `Layout/KiraScrollEdges.swift` |
@@ -190,12 +192,12 @@ Options beyond five initializer parameters are chained modifiers, such as
 | `DraftCard` | `KiraDraftCard(items:total:onSave:onEdit:)` `.secondary` `.eyebrow` `.saveLabel`; items `KiraDraftItem` | `Components/Chat/KiraDraftCard.swift` |
 | `Icon` (duotone) | `KiraIcon(_:size:weight:isFilled:)`, names `KiraIconName` | `Artwork/KiraIcon.swift`, `KiraIconName.swift` |
 | `Logo` (icon, mark, wordmark; pandan, hero, mono) | `KiraLogo(_:tone:size:)` | `Artwork/KiraLogo.swift` |
-| `Mascot` (tenang, senang, bangga; frame; face crop) | `KiraMascot(_:size:isFramed:crop:)` | `Artwork/KiraMascot.swift` |
+| `Mascot` (calm, happy, proud; frame; face crop) | `KiraMascot(_:size:isFramed:crop:)` | `Artwork/KiraMascot.swift` |
 | `CategoryIcon` (28 names) | `KiraCategoryIcon(_:size:isRound:label:)`, names and titles `KiraCategory` | `Artwork/KiraCategoryIcon.swift`, `KiraCategory.swift` |
 | `Illustration` (15 names), `plantFor` | `KiraIllustration(_:size:label:)`, `KiraIllustrationName.plant(for:)` | `Artwork/KiraIllustration.swift` |
 | `HandNote` (tones, sizes, arrows, tilt) | `KiraHandNote(_:tone:size:tilt:arrow:)` | `Artwork/KiraHandNote.swift` |
-| `Leaf` (ranting, pandan, daun; alam, lembut, hero; flip) | `KiraLeaf(_:tone:size:isFlipped:)` | `Artwork/KiraNature.swift` |
-| `Scenery` (alam with sun, hero) | `KiraScenery(tone:hasSun:height:)` | `Artwork/KiraNature.swift` |
+| `Leaf` (twig, pandan, single; nature, soft, hero; flip) | `KiraLeaf(_:tone:size:isFlipped:)` | `Artwork/KiraNature.swift` |
+| `Scenery` (nature with sun, hero) | `KiraScenery(tone:hasSun:height:)` | `Artwork/KiraNature.swift` |
 | `formatRupiah`, `bandOf` | `RupiahFormatStyle` (`.rupiah`), `ScoreBand(score:)`, `Score` | `Packages/AppCore/Sources/Domain/` |
 
 A dialog confirms a deletion or reports how an action went. Its buttons close it after their own
@@ -204,8 +206,8 @@ action, so a screen only flips its flag:
 ```swift
 .kiraDialog(isPresented: $confirmsDelete) {
     KiraDialog(
-        "transaction.delete.title", message: "transaction.delete.body", art: .illustration(.peduli),
-        primary: KiraButton("transaction.delete", variant: .bahaya) { model.delete() },
+        "transaction.delete.title", message: "transaction.delete.body", art: .illustration(.care),
+        primary: KiraButton("transaction.delete", variant: .destructive) { model.delete() },
         secondary: KiraButton("transaction.keep", variant: .secondary) {})
 }
 ```
@@ -227,7 +229,7 @@ struct DebtDetailView: View {
                     Text("debt.remaining").font(.footnote.weight(.medium)).foregroundStyle(.inkMuted)
                     KiraAmount(model.remaining, size: .large)
                 }
-                KiraNotice(.simulasi, title: "debt.simulation.title", message: "debt.simulation.body")
+                KiraNotice(.simulation, title: "debt.simulation.title", message: "debt.simulation.body")
                 KiraButtonPair(
                     secondary: KiraButton("debt.later", variant: .secondary) { model.later() },
                     primary: KiraButton("debt.plan") { model.openPlan() })
@@ -307,16 +309,52 @@ under Run › Arguments, or add a page name after it, such as `-KiraGallery chat
 `#Preview` shows its gallery page. The gallery and its `gallery.*` catalog keys exist in debug
 builds only; release builds compile none of it.
 
+## Names: the artifact's words and the Swift ones
+
+The design system names tokens, components and artwork in Indonesian, as designers and tickets use
+them. Code, asset names, file names and String Catalog keys are English (AGENTS.md Rule 35);
+Indonesian stays in the catalog's translations. A ticket's word finds its Swift name here, and
+`scripts/generate/design-assets.py` holds the same pairs for the asset catalog.
+
+| Artifact | Swift and asset catalog |
+| --- | --- |
+| Colour `sehat`, `bertahan`, `rentan` (each with `-soft`, `-line`) | `healthy`, `coping`, `vulnerable` (`.healthy`, `.copingSoft`, `.vulnerableLine`, …) |
+| Colour `darurat`, `darurat-soft`, `on-darurat` | `emergency`, `emergency-soft`, `on-emergency` |
+| Colour `hero-alam`, `hero-alam-2` | `hero-nature`, `hero-nature-2` |
+| Colour `ilu-*` | `art-*`: `hijau` green, `hijau-tua` green-dark, `hijau-muda` green-light, `hijau-lembut` green-soft, `kunyit` turmeric, `kunyit-tua` turmeric-dark, `kunyit-muda` turmeric-light, `persik` peach, `persik-muda` peach-light, `bata` brick, `tanah` soil, `tanah-tua` soil-dark, `langit` sky, `langit-tua` sky-dark, `langit-muda` sky-light, `putih` white, `tinta` ink, `kilau` gleam, `bulu` feather, `bulu-tua` feather-dark, `topeng` mask, `krem` cream, `mata` eye |
+| Colours already English (`surface…`, `ink…`, `pandan…`, `hero`, `hero-accent`, `hero-track`, `on-hero…`, `button…`, `track`, `line…`, `hairline`, `glass`, `scrim`) | unchanged |
+| Score band `rentan`, `bertahan`, `sehat` (`bandOf`) | `ScoreBand.vulnerable`, `.coping`, `.healthy` |
+| Button variant `darurat`, `bahaya` | `KiraButton.Variant.emergency`, `.destructive` |
+| Tag tone `netral`, `kunyit`, `sehat`, `rentan`, `darurat` | `KiraTag.Tone.neutral`, `.turmeric`, `.healthy`, `.vulnerable`, `.emergency` |
+| Notice tone `simulasi`, `edukasi`, `privasi`, `aman`, `peringatan`, `ai` | `KiraNotice.Tone.simulation`, `.education`, `.privacy`, `.safe`, `.warning`, `.aiText` |
+| Avatar tone `kunyit`, `hijau`, `langit`, `persik` | `KiraAvatar.Tone.turmeric`, `.green`, `.sky`, `.peach` |
+| HandNote tone `bertahan` | `KiraHandNote.Tone.coping` |
+| ProgressPita, tone `sehat` | `KiraProgressRibbon`, `.healthy` |
+| TabBar tabs `beranda`, `rencana`, `komunitas`; the Catat button | `KiraTab.home`, `.plan`, `.community`; `isRecordActive`, `onRecord` |
+| Mascot `tenang`, `senang`, `bangga`; face crop | `KiraMascot.Expression.calm`, `.happy`, `.proud`; `mascot-calm` and `mascot-calm-face` image sets |
+| Leaf `ranting`, `pandan`, `daun`; tones `alam`, `lembut`, `hero` | `KiraLeaf.Name.twig`, `.pandan`, `.single`; `Tone.nature`, `.soft`, `.hero`; image sets `leaf-<name>-<tone>` |
+| Scenery `alam` (with `sore`, the late sun), `hero` | `KiraScenery.Tone.nature`, `.hero`; `scenery-nature`, `scenery-nature-evening`, `scenery-hero` |
+| Illustration `tunas`, `tumbuh`, `mekar`, `celengan`, `kartu-lunas`, `peduli`, `struk`, `payung`, `perisai`, `kalender`, `tangga`, `buku`, `surat`, `gembok`, `komunitas` | `KiraIllustrationName.sprout`, `.growing`, `.bloom`, `.piggyBank`, `.cardPaidOff`, `.care`, `.receipt`, `.umbrella`, `.shield`, `.calendar`, `.stairs`, `.book`, `.letter`, `.padlock`, `.community`; image sets `illustration-<kebab name>` |
+| Category `makan`, `transportasi`, `kopi`, `belanja`, `tagihan`, `gaji`, `paylater`, `tabungan`, `proteksi`, `rumah`, `pendidikan`, `kesehatan`, `hiburan`, `menikah`, `pensiun`, `bank`, `ewallet`, `tunai`, `kartu`, `pinjol`, `emas`, `saham`, `reksadana`, `kripto`, `sbn`, `darurat`, `barang`, `lainnya` | `KiraCategory.food`, `.transport`, `.coffee`, `.shopping`, `.bills`, `.salary`, `.paylater`, `.savings`, `.protection`, `.home`, `.education`, `.health`, `.entertainment`, `.wedding`, `.retirement`, `.bank`, `.ewallet`, `.cash`, `.card`, `.onlineLoan`, `.gold`, `.stocks`, `.mutualFunds`, `.crypto`, `.governmentBonds`, `.emergency`, `.goods`, `.other`; image sets `category-<kebab name>` |
+| Logo `logo-tanda` (and `-hero`, `-mono`), `logo-ikon` | `logo-mark` (and `-hero`, `-mono`), `logo-icon` |
+| Hand-drawn arrows `panah-*` | `arrow-*` |
+| Asset folders `Ilustrasi/`, `Kategori/`, `Maskot/`, `Alam/`, `Tulisan/` | `Illustrations/`, `Categories/`, `Mascot/`, `Nature/`, `Handwriting/` |
+| Catalog keys `ds.band.sehat`, `ds.category.makan`, `ds.mascot.tenang`, `ds.tab.komunitas`, `ds.pita.*`, … | `ds.band.healthy`, `ds.category.food`, `ds.mascot.calm`, `ds.tab.community`, `ds.ribbon.*`, …: the same English word as the Swift case; the Indonesian text is the value |
+
+`scripts/check/english-names.mjs` (a gate) fails on an identifier, asset name, Swift file name or
+catalog key that holds a word of this Indonesian vocabulary.
+
 ## Assets and where they come from
 
-- **App icon**: the artifact's `kira-ikon-1024.png` (asset `71b17ca1ba371f63f5e8b48a782beea7`), a
+- **App icon**: the artifact's `kira-ikon-1024.png` (asset `71b17ca1ba371f63f5e8b48a782beea7`), as
+  `kira-icon-1024.png`, a
   full 1024 px square without alpha; iOS applies the mask (`ASSETCATALOG_COMPILER_APPICON_NAME`
   in `Config/Base.xcconfig`).
-- **Artwork** (`Ilustrasi/`, `Kategori/`, `Maskot/`, `Alam/`, `Tulisan/`, `Logo/`): SVG image sets
+- **Artwork** (`Illustrations/`, `Categories/`, `Mascot/`, `Nature/`, `Handwriting/`, `Logo/`): SVG image sets
   with vector data preserved, one SVG per theme. They were generated from the artifact's own
   drawing data, the tables of `components/bundle.js` (`ILLUSTRATIONS`, `CATEGORIES`, `KUKU_*`,
   `LEAF_ART`, `SCENES`, `ARROWS`, `LOGO_LEAF`, `LOGO_VEIN`), read as data, with each paint resolved
-  to its `ilu-*` or `hero-*` token in the light and the dark theme. The artifact's uploaded SVGs
+  to its `art-*` (the artifact's `ilu-*`) or `hero-*` token in the light and the dark theme. The artifact's uploaded SVGs
   are light-theme exports of the same tables (compared shape by shape with `tunas.svg`,
   `makan.svg` and `kuku-tenang.svg`: identical, apart from the mascot's frame circle and the
   category tile, which the components draw); the generated sets add the dark theme and the names the
@@ -327,12 +365,13 @@ builds only; release builds compile none of it.
   icon, artwork) from the artifact's `tokens.json`, `bundle.js` and icon PNG; its header says how.
   Rebuild when the artifact changes, then check the gallery.
 - **Logo marks** cut the leaf's vein out of the mark (even-odd fill), so the vein always shows
-  whatever is behind it, as the design system asks (`--k-logo-bg`); `logo-tanda-mono` and the
+  whatever is behind it, as the design system asks (`--k-logo-bg`); `logo-mark-mono` and the
   hand-drawn arrows are template images that take the surrounding colour.
-- Uploaded assets map as `design-system.json` lists them: Maskot `2e557f5b…` is `kuku-tenang`,
-  `d9c5f557…` `kuku-senang`, `f033f686…` `kuku-bangga`; the nine Kategori uploads (07:10:59–07:11:06)
-  are makan, transportasi, kopi, belanja, tagihan, gaji, paylater, tabungan and proteksi; the eight
-  07:22 uploads are the Ilustrasi group; the eight earlier 07:10:52–58 uploads are older
+- Uploaded assets map as `design-system.json` lists them: Maskot `2e557f5b…` is `kuku-tenang`
+  (`mascot-calm`), `d9c5f557…` `kuku-senang` (`mascot-happy`), `f033f686…` `kuku-bangga`
+  (`mascot-proud`); the nine Kategori uploads (07:10:59–07:11:06) are makan, transportasi, kopi,
+  belanja, tagihan, gaji, paylater, tabungan and proteksi; the eight 07:22 uploads are the Ilustrasi
+  group; the eight earlier 07:10:52–58 uploads are older
   illustration exports no group lists.
 
 ## Not done yet, or done differently
