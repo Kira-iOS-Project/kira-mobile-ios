@@ -35,3 +35,8 @@ ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES
 ENABLE_USER_SCRIPT_SANDBOXING = YES
 GENERATE_INFOPLIST_FILE = YES
 ALWAYS_SEARCH_USER_PATHS = NO
+
+// The asset catalog (App/Assets.xcassets): the app icon is the design system's 1024 px square
+// (iOS applies the mask), and pandan is the accent of system controls.
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
+ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor
