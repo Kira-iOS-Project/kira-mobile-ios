@@ -1,5 +1,7 @@
-// Gallery pages for content: tags, notices, avatars, accordions, amounts with the hero card, and the
-// progress bars.
+/**
+ Gallery pages for content: tags, notices, avatars, accordions, amounts with the hero card, and the
+ progress bars.
+ */
 #if DEBUG
     import SwiftUI
 

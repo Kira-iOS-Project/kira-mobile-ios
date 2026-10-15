@@ -1,10 +1,12 @@
-// Gallery pages for the artwork: icons, the logo and Kuku, category tiles, illustrations, leaves,
-// sceneries and handwritten notes. Asset names are identifiers, shown as data.
+/**
+ Gallery pages for the artwork: icons, the logo and Kuku, category tiles, illustrations, leaves,
+ sceneries and handwritten notes. Asset names are identifiers, shown as data.
+ */
 #if DEBUG
     import SwiftUI
 
     extension KiraTextStyle {
-        /// The design system's name for the style.
+        /** The design system's name for the style. */
         var galleryName: String {
             switch self {
             case .score: "t-score"
@@ -24,7 +26,7 @@
             }
         }
 
-        /// The design system's sample for the style.
+        /** The design system's sample for the style. */
         var gallerySample: LocalizedStringResource {
             switch self {
             case .score: "gallery.type.score"
@@ -45,7 +47,7 @@
         }
     }
 
-    /// Every icon, outline and filled.
+    /** Every icon, outline and filled. */
     struct GalleryIcons: View {
         var body: some View {
             GallerySection(title: "gallery.section.icons") {
@@ -62,7 +64,7 @@
         }
     }
 
-    /// The logo's forms and tones, and Kuku's expressions.
+    /** The logo's forms and tones, and Kuku's expressions. */
     struct GalleryBrand: View {
         var body: some View {
             GallerySection(title: "gallery.section.logo") {
@@ -91,7 +93,7 @@
         }
     }
 
-    /// Every category tile, and the three standard sizes.
+    /** Every category tile, and the three standard sizes. */
     struct GalleryCategories: View {
         var body: some View {
             GallerySection(title: "gallery.section.categories") {
@@ -113,7 +115,7 @@
         }
     }
 
-    /// Every spot illustration.
+    /** Every spot illustration. */
     struct GalleryIllustrations: View {
         var body: some View {
             GallerySection(title: "gallery.section.illustrations") {

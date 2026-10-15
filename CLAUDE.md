@@ -18,12 +18,18 @@ app through `bash scripts/ios/app.sh`, which picks the simulator and never signs
 - Kit workarounds for the gate's macOS job: `scripts/check/secrets.sh` is owned and passes there
   without gitleaks (the Linux job scans the PR); SwiftLint's gates.list line is `swiftlint --quiet`,
   so it runs on macOS only (swiftlint-static aborts on custom rules).
+- Comments are written `/** … */`, never `//` or `///` (AGENTS.md Rule 34, SwiftLint
+  `no_line_comment`), in code and in the code examples of the docs. Line comments remain only where a
+  tool reads one: the `// swift-tools-version:` line, `// swiftlint:` and `// periphery:ignore`
+  directives, and generated code. The xcconfig files, which accept only `//`, carry no comments;
+  `docs/build-settings.md` explains each setting.
 
 ## On-demand references
 
 | Read when | File |
 | --- | --- |
 | Citing or checking a numbered rule | `AGENTS.md` |
+| Changing or reviewing a build setting in `Config/*.xcconfig` | `docs/build-settings.md` |
 | A failure that looks familiar | `.claude/anti-patterns/INDEX.md` |
 | Xcode's own tools (previews, build log) for one session | `.claude/mcp/xcode.example.json` |
 | Hooks, CI, reviews, MCP pins, releases | `.claude/OPERATIONS.md` |

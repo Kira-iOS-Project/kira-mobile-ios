@@ -1,11 +1,13 @@
-// ChatBubble (design system): a message on Catat. The person's own (`.user`) is pandan with their
-// initial on the right; Kira's (`.kira`) is a white card with a hairline and Kuku's calm face with a
-// pandan AI sparkle on the left. Every AI reply carries `meta` "Dijawab Kira AI · dari pesan 12.41"
-// (the time itself sits in a centred separator, not on bubbles). Transactions already saved from a
-// message show inside Kira's bubble (`.saved`): tile, name, amount, category.
+/**
+ ChatBubble (design system): a message on Catat. The person's own (`.user`) is pandan with their
+ initial on the right; Kira's (`.kira`) is a white card with a hairline and Kuku's calm face with a
+ pandan AI sparkle on the left. Every AI reply carries `meta` "Dijawab Kira AI · dari pesan 12.41"
+ (the time itself sits in a centred separator, not on bubbles). Transactions already saved from a
+ message show inside Kira's bubble (`.saved`): tile, name, amount, category.
+ */
 import SwiftUI
 
-/// A transaction saved from a message, shown inside Kira's bubble.
+/** A transaction saved from a message, shown inside Kira's bubble. */
 struct KiraSavedTransaction: Identifiable {
     let label: Text
     let amount: Decimal
@@ -14,9 +16,9 @@ struct KiraSavedTransaction: Identifiable {
     let id = UUID()
 }
 
-/// One chat message.
+/** One chat message. */
 struct KiraChatBubble<Content: View>: View {
-    /// Who wrote the message.
+    /** Who wrote the message. */
     enum Sender {
         case user, kira
     }
@@ -30,7 +32,7 @@ struct KiraChatBubble<Content: View>: View {
     private var saved: [Saved] = []
     private var showsAvatar = true
 
-    /// `initial` is the person's initial beside their own messages.
+    /** `initial` is the person's initial beside their own messages. */
     init(
         _ sender: Sender, meta: LocalizedStringResource? = nil, initial: String? = nil,
         @ViewBuilder content: () -> Content
@@ -81,14 +83,14 @@ struct KiraChatBubble<Content: View>: View {
         KiraAvatar(initial, size: 32, tone: .kunyit)
     }
 
-    /// The same message with the transactions saved from it.
+    /** The same message with the transactions saved from it. */
     func saved(_ items: [Saved]) -> Self {
         var bubble = self
         bubble.saved = items
         return bubble
     }
 
-    /// The same message without its avatar.
+    /** The same message without its avatar. */
     func hidesAvatar() -> Self {
         var bubble = self
         bubble.showsAvatar = false
@@ -96,7 +98,7 @@ struct KiraChatBubble<Content: View>: View {
     }
 }
 
-/// Kuku's calm face in a 32 pt circle with the pandan AI sparkle: Kira's avatar.
+/** Kuku's calm face in a 32 pt circle with the pandan AI sparkle: Kira's avatar. */
 private struct KiraAvatarFace: View {
     var body: some View {
         KiraMascot(.tenang, size: 32, crop: .face)
@@ -116,7 +118,7 @@ private struct KiraAvatarFace: View {
     }
 }
 
-/// The transactions saved from a message, under a line inside Kira's bubble.
+/** The transactions saved from a message, under a line inside Kira's bubble. */
 private struct SavedList: View {
     let items: [KiraSavedTransaction]
 

@@ -1,15 +1,17 @@
-// IconButton (design system): a 44 pt round button holding only an icon, always with a name for
-// VoiceOver. A back button is always `.back`: the outline variant with chevron-left, never the
-// previous screen's title, named after where it goes ("Kembali ke Beranda").
+/**
+ IconButton (design system): a 44 pt round button holding only an icon, always with a name for
+ VoiceOver. A back button is always `.back`: the outline variant with chevron-left, never the
+ previous screen's title, named after where it goes ("Kembali ke Beranda").
+ */
 import SwiftUI
 
-/// A round, icon-only button with a required accessible name.
+/** A round, icon-only button with a required accessible name. */
 struct KiraIconButton: View {
-    /// The button's surface.
+    /** The button's surface. */
     enum Variant: CaseIterable {
-        /// No fill: actions inside cards, such as the eye that hides a balance (default).
+        /** No fill: actions inside cards, such as the eye that hides a balance (default). */
         case plain
-        /// The `button` fill with a `button-line` border: navigation in the top bar.
+        /** The `button` fill with a `button-line` border: navigation in the top bar. */
         case outline
     }
 
@@ -28,12 +30,12 @@ struct KiraIconButton: View {
         self.action = action
     }
 
-    /// The back button: outline, chevron-left, named after its destination.
+    /** The back button: outline, chevron-left, named after its destination. */
     static func back(_ label: LocalizedStringResource, action: @escaping () -> Void) -> Self {
         Self(.chevronLeft, label: label, variant: .outline, action: action)
     }
 
-    /// The close button of a modal screen or a sheet: outline, an X, on the right of a sheet.
+    /** The close button of a modal screen or a sheet: outline, an X, on the right of a sheet. */
     static func close(_ label: LocalizedStringResource = "ds.close", action: @escaping () -> Void) -> Self {
         Self(.close, label: label, variant: .outline, action: action)
     }

@@ -1,16 +1,18 @@
-// BandPill (design system): the Kira Score band as a pill carrying colour, word, glyph and a thin
-// border of its own colour at once. The score engine decides the band (a consumptive debt at 0 caps
-// the band at Rentan), so pass the band it sends, or `Score(...).band`.
+/**
+ BandPill (design system): the Kira Score band as a pill carrying colour, word, glyph and a thin
+ border of its own colour at once. The score engine decides the band (a consumptive debt at 0 caps
+ the band at Rentan), so pass the band it sends, or `Score(...).band`.
+ */
 import Domain
 import SwiftUI
 
-/// A Kira Score band: Sehat, Bertahan or Rentan.
+/** A Kira Score band: Sehat, Bertahan or Rentan. */
 struct KiraBandPill: View {
-    /// The pill's size.
+    /** The pill's size. */
     enum Size: CaseIterable {
-        /// 28 pt (default).
+        /** 28 pt (default). */
         case medium
-        /// 22 pt, inside rows.
+        /** 22 pt, inside rows. */
         case small
     }
 

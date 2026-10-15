@@ -1,17 +1,19 @@
-// Chip (design system): a capsule choice for quiz answers, filters and quick categories. Selected
-// is never colour alone: a pandan outline on pandan-soft, with a check mark (or the chosen leading
-// icon or category tile). Quiz questions may allow several selected chips.
+/**
+ Chip (design system): a capsule choice for quiz answers, filters and quick categories. Selected
+ is never colour alone: a pandan outline on pandan-soft, with a check mark (or the chosen leading
+ icon or category tile). Quiz questions may allow several selected chips.
+ */
 import SwiftUI
 
-/// A selectable capsule.
+/** A selectable capsule. */
 struct KiraChip: View {
-    /// What sits before the label.
+    /** What sits before the label. */
     enum Leading {
-        /// Nothing; a check mark when selected (default).
+        /** Nothing; a check mark when selected (default). */
         case none
-        /// A line icon.
+        /** A line icon. */
         case icon(KiraIconName)
-        /// A round category tile.
+        /** A round category tile. */
         case category(KiraCategory)
     }
 
@@ -32,8 +34,10 @@ struct KiraChip: View {
     var body: some View {
         HStack(spacing: 0) {
             if case .category(let category) = leading {
-                // The tile is its own button, hidden from VoiceOver, so the labelled button holds
-                // only text: Apple's audit measures a pastel tile inside a button as its text.
+                /**
+                 The tile is its own button, hidden from VoiceOver, so the labelled button holds
+                 only text: Apple's audit measures a pastel tile inside a button as its text.
+                 */
                 Button(action: action) {
                     KiraCategoryIcon(category, size: 26, isRound: true)
                         .padding(.leading, 6)
@@ -62,7 +66,7 @@ struct KiraChip: View {
             isSelected ? .pandanSoft : .button, border: isSelected ? .pandan : .buttonLine,
             cornerRadius: KiraRadius.full
         )
-        // 40 pt chip, 44 pt touch target.
+        /** 40 pt chip, 44 pt touch target. */
         .padding(.vertical, 2)
     }
 

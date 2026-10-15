@@ -1,11 +1,13 @@
-// Bars (design system): simple columns for the weekly summary and the Kira Score history. The
-// highlighted column (pandan) is the period in focus; the others are ilu-hijau-lembut. No red for a
-// big spending day and no judging target line; the full amounts are written in the text around it.
+/**
+ Bars (design system): simple columns for the weekly summary and the Kira Score history. The
+ highlighted column (pandan) is the period in focus; the others are ilu-hijau-lembut. No red for a
+ big spending day and no judging target line; the full amounts are written in the text around it.
+ */
 import SwiftUI
 
-/// Columns comparing a few values, one of them highlighted.
+/** Columns comparing a few values, one of them highlighted. */
 struct KiraBars: View {
-    /// One column.
+    /** One column. */
     struct Column: Identifiable {
         let label: LocalizedStringResource
         let value: Double
@@ -18,7 +20,7 @@ struct KiraBars: View {
     private let columns: [Column]
     private let height: CGFloat
 
-    /// `label` describes the chart for VoiceOver.
+    /** `label` describes the chart for VoiceOver. */
     init(_ label: LocalizedStringResource, columns: [Column], height: CGFloat = 112) {
         self.label = label
         self.columns = columns

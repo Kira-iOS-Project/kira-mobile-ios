@@ -1,30 +1,32 @@
-// HandNote (design system): Kira's handwritten note in Kalam, like a sticky note. At most one per
-// screen, three to six lowercase words without a full stop, anchored to the layout: at the end of a
-// section title, under an illustration, or in the middle of the splash; never floating between two
-// cards. Never for numbers, legal labels, buttons, errors or the Kira Peduli screen. Arrows are for
-// onboarding and presentation boards only.
+/**
+ HandNote (design system): Kira's handwritten note in Kalam, like a sticky note. At most one per
+ screen, three to six lowercase words without a full stop, anchored to the layout: at the end of a
+ section title, under an illustration, or in the middle of the splash; never floating between two
+ cards. Never for numbers, legal labels, buttons, errors or the Kira Peduli screen. Arrows are for
+ onboarding and presentation boards only.
+ */
 import SwiftUI
 
-/// A short handwritten note, tilted a little.
+/** A short handwritten note, tilted a little. */
 struct KiraHandNote: View {
-    /// The note's colour; each passes 4.5:1 on its background.
+    /** The note's colour; each passes 4.5:1 on its background. */
     enum Tone: CaseIterable {
-        /// Pandan (default).
+        /** Pandan (default). */
         case pandan
-        /// The muted kunyit of Bertahan.
+        /** The muted kunyit of Bertahan. */
         case bertahan
-        /// ink-muted.
+        /** ink-muted. */
         case muted
-        /// Kunyit on the hero card.
+        /** Kunyit on the hero card. */
         case hero
     }
 
-    /// The note's size: t-hand (19) or t-hand-sm (16).
+    /** The note's size: t-hand (19) or t-hand-sm (16). */
     enum Size: CaseIterable {
         case medium, small
     }
 
-    /// A hand-drawn arrow beside the note (onboarding only).
+    /** A hand-drawn arrow beside the note (onboarding only). */
     enum Arrow: String, CaseIterable {
         case none
         case downLeft = "down-left"
@@ -40,7 +42,7 @@ struct KiraHandNote: View {
     private let tilt: Double
     private let arrow: Arrow
 
-    /// `tilt` is the rotation in degrees (-2 by default).
+    /** `tilt` is the rotation in degrees (-2 by default). */
     init(
         _ text: LocalizedStringResource, tone: Tone = .pandan, size: Size = .medium, tilt: Double = -2,
         arrow: Arrow = .none
@@ -78,7 +80,7 @@ struct KiraHandNote: View {
         .rotationEffect(.degrees(tilt), anchor: .leading)
     }
 
-    /// The design system draws the left-pointing arrows; the right ones are their mirror image.
+    /** The design system draws the left-pointing arrows; the right ones are their mirror image. */
     private var arrowImage: some View {
         let left = arrow.rawValue.replacingOccurrences(of: "right", with: "left")
         return Image(decorative: "panah-\(left)")

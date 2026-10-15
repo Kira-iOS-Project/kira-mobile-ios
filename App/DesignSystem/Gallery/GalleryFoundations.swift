@@ -1,5 +1,7 @@
-// Gallery pages for the foundations: every colour token, every text style, the spacing and radius
-// scales. Token and style names are identifiers, shown as data.
+/**
+ Gallery pages for the foundations: every colour token, every text style, the spacing and radius
+ scales. Token and style names are identifiers, shown as data.
+ */
 #if DEBUG
     import SwiftUI
 
@@ -42,7 +44,7 @@
         Swatch(name: "ilu-krem", color: .iluKrem), Swatch(name: "ilu-mata", color: .iluMata),
     ]
 
-    /// Every colour token, light or dark with the device.
+    /** Every colour token, light or dark with the device. */
     struct GalleryColors: View {
         var body: some View {
             GallerySection(title: "gallery.section.colors") {
@@ -61,7 +63,7 @@
         }
     }
 
-    /// Every text style with its sample.
+    /** Every text style with its sample. */
     struct GalleryType: View {
         var body: some View {
             GallerySection(title: "gallery.section.type") {
@@ -98,7 +100,7 @@
         }
     }
 
-    /// One step of a scale, named as the design system names it.
+    /** One step of a scale, named as the design system names it. */
     private struct GalleryMetric: Identifiable {
         let name: String
         let value: CGFloat

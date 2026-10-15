@@ -1,43 +1,45 @@
-// Illustration (design system): a flat spot illustration painted from the ilu-* tokens, so it
-// follows the theme. 84–96 pt on cards, 120–140 pt in empty states and heroes. One meaning per
-// illustration: never celengan for a debt or kartu-lunas for savings. No faces: those are Kuku's.
+/**
+ Illustration (design system): a flat spot illustration painted from the ilu-* tokens, so it
+ follows the theme. 84–96 pt on cards, 120–140 pt in empty states and heroes. One meaning per
+ illustration: never celengan for a debt or kartu-lunas for savings. No faces: those are Kuku's.
+ */
 import Domain
 import SwiftUI
 
-/// The spot illustrations (index.d.ts IllustrationName).
+/** The spot illustrations (index.d.ts IllustrationName). */
 enum KiraIllustrationName: String, CaseIterable {
-    /// The Kira Score plant for Rentan.
+    /** The Kira Score plant for Rentan. */
     case tunas
-    /// The Kira Score plant for Bertahan.
+    /** The Kira Score plant for Bertahan. */
     case tumbuh
-    /// The Kira Score plant for Sehat; also "it worked".
+    /** The Kira Score plant for Sehat; also "it worked". */
     case mekar
-    /// The rooster piggy bank: emergency fund and savings.
+    /** The rooster piggy bank: emergency fund and savings. */
     case celengan
-    /// A card paid off: debt payoff and celebrations.
+    /** A card paid off: debt payoff and celebrations. */
     case kartuLunas = "kartu-lunas"
-    /// Kira Peduli, the help sheet's head.
+    /** Kira Peduli, the help sheet's head. */
     case peduli
-    /// Recording, by chat or receipt.
+    /** Recording, by chat or receipt. */
     case struk
-    /// Protection (BPJS, insurance); also "it failed" in dialogs.
+    /** Protection (BPJS, insurance); also "it failed" in dialogs. */
     case payung
-    /// Legality checks and account security.
+    /** Legality checks and account security. */
     case perisai
-    /// Bills and instalments.
+    /** Bills and instalments. */
     case kalender
-    /// The financial ladder.
+    /** The financial ladder. */
     case tangga
-    /// Learning modules.
+    /** Learning modules. */
     case buku
-    /// The weekly summary.
+    /** The weekly summary. */
     case surat
-    /// Privacy and the app lock.
+    /** Privacy and the app lock. */
     case gembok
-    /// The community directory.
+    /** The community directory. */
     case komunitas
 
-    /// The Kira Score plant of a band (design system: plantFor).
+    /** The Kira Score plant of a band (design system: plantFor). */
     static func plant(for band: ScoreBand) -> Self {
         switch band {
         case .rentan: .tunas
@@ -47,7 +49,7 @@ enum KiraIllustrationName: String, CaseIterable {
     }
 }
 
-/// A spot illustration, hidden from VoiceOver unless it carries meaning the text around it does not.
+/** A spot illustration, hidden from VoiceOver unless it carries meaning the text around it does not. */
 struct KiraIllustration: View {
     private let name: KiraIllustrationName
     private let size: CGFloat
