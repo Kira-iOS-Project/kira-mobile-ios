@@ -6,7 +6,10 @@
 # own line. List only gates whose tool or script this repo ships: a missing one is a failing gate.
 all	xcrun swift-format lint --strict --recursive App Packages UITests
 all	bash scripts/check/secrets.sh
-code	swiftlint lint --quiet
+# Not `swiftlint lint`: the static job runs that prefix on Linux, where swiftlint-static 0.65.1 aborts
+# ("SourceKit is disabled by configuration") on every custom rule, even in swiftsyntax mode. Without
+# the subcommand (lint is the default) the line runs on the macOS job only, which has SourceKit.
+code	swiftlint --quiet
 code	bash scripts/check/lint-suppressions.sh
 code	bash scripts/check/xcode-settings.sh
 code	bash scripts/check/package-graph.sh
