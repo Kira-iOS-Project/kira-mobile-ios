@@ -1,4 +1,4 @@
-// DigitCode keeps a code's digits, up to its length, whatever is typed or pasted around them.
+/** DigitCode keeps a code's digits, up to its length, whatever is typed or pasted around them. */
 import Testing
 
 @testable import Domain
