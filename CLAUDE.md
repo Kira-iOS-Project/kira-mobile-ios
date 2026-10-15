@@ -15,6 +15,9 @@ app through `bash scripts/ios/app.sh`, which picks the simulator and never signs
   (`.github/workflows/firebase-distribution.yml`); the app embeds no Firebase SDK.
 - No CI env file: `scripts/check/ci-env.sh` is owned here (`agent-sync own`) and runs the tests with
   no variable.
+- Kit workarounds for the gate's macOS job: `scripts/check/secrets.sh` is owned and passes there
+  without gitleaks (the Linux job scans the PR); SwiftLint's gates.list line is `swiftlint --quiet`,
+  so it runs on macOS only (swiftlint-static aborts on custom rules).
 
 ## On-demand references
 

@@ -20,7 +20,7 @@ drift. Nothing it decides is repeated below; what follows is what it cannot deci
 - [ ] New copy reads naturally in every locale; no translation is a placeholder (Rule 6)
 - [ ] A new error code shows a message that tells the person what to do next (Rule 12)
 
-### If this PR copies a new spec from the backend
+### If This PR Copies a New Spec from the Backend
 
 Delete this block if `Packages/AppCore/Sources/APIClient/openapi.json` did not change.
 
