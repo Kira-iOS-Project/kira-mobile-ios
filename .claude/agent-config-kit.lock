@@ -167,7 +167,7 @@
       "answers": {
         "analytics": "no",
         "ci-gate": "yes",
-        "deepseek-review": "no",
+        "deepseek-review": "yes",
         "locales": "en",
         "min-ios": "17.0",
         "payload-encryption": "no",
@@ -195,6 +195,7 @@
         ".claude/rules/ios/swiftui.md": "sha256:b69ea61446c90caf0bd1d5a700b5a86c5955a7596601d33c0d1a181786cf5e5e",
         ".claude/rules/ios/testing.md": "sha256:8cec9200c3343c6552baebf7eb8d9fc3da6b70a4d9b2e8c6db15389f770671a5",
         ".claude/rules/swift/coverage.md": "sha256:cdaa9421b7cb948dd53825dc903e2a1be343f082b5e45e604dda20af7adfe326",
+        ".github/workflows/deepseek-review.yml": "sha256:3161c30d3744eca05b3d8a4af67b53467c348e1bb379a2c2eab70554abf79fcf",
         ".github/workflows/quality-gate.yml": "sha256:4e52d565ea93e5c1e625f90032a5ecdb15e133d21eaead9a7ae0d75455f98a8e",
         "scripts/check/coverage-per-file.mjs": "sha256:3632cc88be8574d0a14c1cad6d5aaf49cbf44b78f45724685a003fe4982d7e1a",
         "scripts/check/coverage-policy.mjs": "sha256:9e527c3e89316870332a2275c2aed82dc6a7f2086fc195adf1f4f97cd0f343f4",
