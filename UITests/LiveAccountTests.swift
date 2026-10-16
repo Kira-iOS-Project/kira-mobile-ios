@@ -73,7 +73,7 @@ nonisolated final class LiveAccountTests: XCTestCase {
         tap(row("Aku Sudah Punya Akun", app), app, timeout: 20)
         let sent = try LiveFlow.codes(for: LiveFlow.email).count
         LiveFlow.type(LiveFlow.email, into: app.textFields["Email"], in: self, app: app)
-        tap(row("Kirim Kode", app), app)
+        tap(row("Kirim Kode Masuk", app), app)
         LiveFlow.type(
             try LiveFlow.waitForCode(after: sent), into: app.textFields["Kode Verifikasi 6 Digit"], in: self, app: app)
         LiveFlow.shot("akn-12-signed-in-again", in: self)
