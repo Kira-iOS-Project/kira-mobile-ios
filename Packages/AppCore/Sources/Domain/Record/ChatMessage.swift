@@ -66,6 +66,17 @@ package struct ChatMessage: Identifiable, Hashable, Sendable {
     }
 }
 
+extension ChatMessage {
+    /** The drafts' total, the big amount on top of the card ("Total 3 pengeluaran"). */
+    package var draftTotal: Int { (drafts ?? []).map(\.amount).reduce(0, +) }
+
+    /** Whether the drafts are all expenses, all income, or both (nil), for "3 pengeluaran". */
+    package var draftType: TransactionType? {
+        let types = Set((drafts ?? []).map(\.type))
+        return types.count == 1 ? types.first : nil
+    }
+}
+
 /** Who wrote a message: the backend's `MESSAGE_SENDER`. */
 package enum ChatSender: String, Codable, Sendable {
     /** The person or Kira. */

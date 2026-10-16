@@ -47,7 +47,8 @@ package final class RecordModel {
     package internal(set) var voice: VoiceInputModel?
     /** Where Catat sends the person outside itself: Riwayat, Paket, Kira Peduli. */
     package var onOpen: (AppRoute) -> Void = { _ in }
-    let dependencies: RecordDependencies
+    /** What Catat reaches outside itself for; the scanner's view draws the camera's preview from it. */
+    package let dependencies: RecordDependencies
     var nextCursor: String?
     /** The remaining-money message each commit added, removed again by Urungkan. */
     var remainingIds: [String: String] = [:]
@@ -109,7 +110,7 @@ package final class RecordModel {
     }
 
     /** The time of the person's message `message` answers, else its own. */
-    func sourceTime(of message: ChatMessage) -> Date {
+    package func sourceTime(of message: ChatMessage) -> Date {
         message.replyToId.flatMap { id in messages.first { $0.id == id }?.createdAt } ?? message.createdAt
     }
 }
