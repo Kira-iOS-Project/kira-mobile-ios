@@ -1,9 +1,10 @@
 /**
  The screen of each pushed route, by area: Score (score, indicator), Account (profile … deleteAccount,
- about … complaints), Plans (plans … scholarshipStatus), Kira Peduli (care, trustedMessage, negotiationScript; the PED
- screens of other branches keep a back button until they land). "Cek Ulang" (`healthCheck`) covers
- the shell instead (MainShell); Catat's and Riwayat's routes stay empty for their own integration,
- and an unavailable area never gets here.
+ about … complaints), Plans (plans … scholarshipStatus), Kira Peduli (care, trustedMessage,
+ negotiationScript; the PED screens of other branches keep a back button until they land), Komunitas
+ (empty until its branches land). "Cek Ulang" (`healthCheck`) covers the shell instead (MainShell);
+ Catat's and Riwayat's routes stay empty for their own integration, and an unavailable area never
+ gets here.
  */
 import Features
 import SwiftUI
@@ -34,6 +35,7 @@ struct RouteSlot: View {
         case .trustedMessage: TrustedMessageScreen(service: services.care)
         case .breathingExercise, .debtEmergency, .safetyPlan: PendingCareSlot()
         case .negotiationScript: NegotiationScriptScreen(service: services.careTools, onOpen: onOpen)
+        case .community, .communityGroup, .marketplace, .product, .submitProduct: EmptySlot()
         case .home, .record, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history, .transaction,
             .conversation, .importStatement, .unavailable:
             EmptySlot()
