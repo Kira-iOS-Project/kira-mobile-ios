@@ -13,7 +13,7 @@
                         ForEach(KiraLeaf.Name.allCases, id: \.self) { name in
                             KiraLeaf(name, tone: tone, size: 64)
                         }
-                        KiraLeaf(.ranting, tone: tone, size: 64, isFlipped: true)
+                        KiraLeaf(.twig, tone: tone, size: 64, isFlipped: true)
                     }
                     .padding(KiraSpacing.space2)
                     .kiraCard(tone == .hero ? .hero : .surfaceRaised, cornerRadius: KiraRadius.medium)
@@ -27,7 +27,7 @@
             }
             GallerySection(title: "gallery.section.hand") {
                 KiraHandNote("gallery.hand.slow")
-                KiraHandNote("gallery.hand.growing", tone: .bertahan, size: .small)
+                KiraHandNote("gallery.hand.growing", tone: .coping, size: .small)
                 KiraHandNote("gallery.hand.start", tone: .muted, tilt: 0)
                 KiraHandNote("gallery.hand.slow", tone: .hero)
                     .padding(KiraSpacing.space4)

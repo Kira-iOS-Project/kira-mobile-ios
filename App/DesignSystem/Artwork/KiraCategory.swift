@@ -1,58 +1,64 @@
 /**
  The category tiles' names (index.d.ts CategoryName) with the soft tint of each tile and its name
- on screen. Wallets and debts (bank, ewallet, tunai, kartu, paylater, pinjol), goals (darurat,
- rumah, pendidikan, menikah, pensiun, barang) and asset classes (bank for deposits, reksadana, sbn,
- emas, saham, kripto) share the set; a tile never stands for a product or a brand.
+ on screen. Wallets and debts (bank, ewallet, cash, card, paylater, onlineLoan), goals (emergency,
+ home, education, wedding, retirement, goods) and asset classes (bank for deposits, mutualFunds,
+ governmentBonds, gold, stocks, crypto) share the set; a tile never stands for a product or a brand.
  */
 import SwiftUI
 
 /** A category, wallet, goal or asset class with its illustrated tile. */
 enum KiraCategory: String, CaseIterable {
-    case makan, transportasi, kopi, belanja, tagihan, gaji, paylater, tabungan, proteksi, rumah
-    case pendidikan, kesehatan, hiburan, menikah, pensiun, bank, ewallet, tunai, kartu, pinjol
-    case emas, saham, reksadana, kripto, sbn, darurat, barang, lainnya
+    case food, transport, coffee, shopping, bills, salary, paylater, savings, protection, home
+    case education, health, entertainment, wedding, retirement, bank, ewallet, cash, card
+    case onlineLoan = "online-loan"
+    case gold, stocks
+    case mutualFunds = "mutual-funds"
+    case crypto
+    case governmentBonds = "government-bonds"
+    case emergency, goods, other
 
-    /** The tile's soft background (an ilu-*-muda token). */
+    /** The tile's soft background (an art-*-light token). */
     var tint: Color {
         switch self {
-        case .makan, .tabungan, .menikah, .emas, .darurat: .iluKunyitMuda
-        case .transportasi, .belanja, .gaji, .pensiun, .ewallet, .tunai, .saham, .sbn, .lainnya: .iluHijauMuda
-        case .kopi, .rumah, .kesehatan, .kartu, .pinjol, .kripto, .barang: .iluPersikMuda
-        case .tagihan, .paylater, .proteksi, .pendidikan, .hiburan, .bank, .reksadana: .iluLangitMuda
+        case .food, .savings, .wedding, .gold, .emergency: .artTurmericLight
+        case .transport, .shopping, .salary, .retirement, .ewallet, .cash, .stocks, .governmentBonds, .other:
+            .artGreenLight
+        case .coffee, .home, .health, .card, .onlineLoan, .crypto, .goods: .artPeachLight
+        case .bills, .paylater, .protection, .education, .entertainment, .bank, .mutualFunds: .artSkyLight
         }
     }
 
     /** The category's name on screen, Title Case. */
     var title: LocalizedStringResource {
         switch self {
-        case .makan: "ds.category.makan"
-        case .transportasi: "ds.category.transportasi"
-        case .kopi: "ds.category.kopi"
-        case .belanja: "ds.category.belanja"
-        case .tagihan: "ds.category.tagihan"
-        case .gaji: "ds.category.gaji"
+        case .food: "ds.category.food"
+        case .transport: "ds.category.transport"
+        case .coffee: "ds.category.coffee"
+        case .shopping: "ds.category.shopping"
+        case .bills: "ds.category.bills"
+        case .salary: "ds.category.salary"
         case .paylater: "ds.category.paylater"
-        case .tabungan: "ds.category.tabungan"
-        case .proteksi: "ds.category.proteksi"
-        case .rumah: "ds.category.rumah"
-        case .pendidikan: "ds.category.pendidikan"
-        case .kesehatan: "ds.category.kesehatan"
-        case .hiburan: "ds.category.hiburan"
-        case .menikah: "ds.category.menikah"
-        case .pensiun: "ds.category.pensiun"
+        case .savings: "ds.category.savings"
+        case .protection: "ds.category.protection"
+        case .home: "ds.category.home"
+        case .education: "ds.category.education"
+        case .health: "ds.category.health"
+        case .entertainment: "ds.category.entertainment"
+        case .wedding: "ds.category.wedding"
+        case .retirement: "ds.category.retirement"
         case .bank: "ds.category.bank"
         case .ewallet: "ds.category.ewallet"
-        case .tunai: "ds.category.tunai"
-        case .kartu: "ds.category.kartu"
-        case .pinjol: "ds.category.pinjol"
-        case .emas: "ds.category.emas"
-        case .saham: "ds.category.saham"
-        case .reksadana: "ds.category.reksadana"
-        case .kripto: "ds.category.kripto"
-        case .sbn: "ds.category.sbn"
-        case .darurat: "ds.category.darurat"
-        case .barang: "ds.category.barang"
-        case .lainnya: "ds.category.lainnya"
+        case .cash: "ds.category.cash"
+        case .card: "ds.category.card"
+        case .onlineLoan: "ds.category.onlineLoan"
+        case .gold: "ds.category.gold"
+        case .stocks: "ds.category.stocks"
+        case .mutualFunds: "ds.category.mutualFunds"
+        case .crypto: "ds.category.crypto"
+        case .governmentBonds: "ds.category.governmentBonds"
+        case .emergency: "ds.category.emergency"
+        case .goods: "ds.category.goods"
+        case .other: "ds.category.other"
         }
     }
 }

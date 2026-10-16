@@ -1,50 +1,50 @@
 /**
- Illustration (design system): a flat spot illustration painted from the ilu-* tokens, so it
+ Illustration (design system): a flat spot illustration painted from the art-* tokens, so it
  follows the theme. 84–96 pt on cards, 120–140 pt in empty states and heroes. One meaning per
- illustration: never celengan for a debt or kartu-lunas for savings. No faces: those are Kuku's.
+ illustration: never `piggyBank` for a debt or `cardPaidOff` for savings. No faces: those are Kuku's.
  */
 import Domain
 import SwiftUI
 
 /** The spot illustrations (index.d.ts IllustrationName). */
 enum KiraIllustrationName: String, CaseIterable {
-    /** The Kira Score plant for Rentan. */
-    case tunas
-    /** The Kira Score plant for Bertahan. */
-    case tumbuh
-    /** The Kira Score plant for Sehat; also "it worked". */
-    case mekar
+    /** The Kira Score plant for the vulnerable band (Rentan). */
+    case sprout
+    /** The Kira Score plant for the coping band (Bertahan). */
+    case growing
+    /** The Kira Score plant for the healthy band (Sehat); also "it worked". */
+    case bloom
     /** The rooster piggy bank: emergency fund and savings. */
-    case celengan
+    case piggyBank = "piggy-bank"
     /** A card paid off: debt payoff and celebrations. */
-    case kartuLunas = "kartu-lunas"
+    case cardPaidOff = "card-paid-off"
     /** Kira Peduli, the help sheet's head. */
-    case peduli
+    case care
     /** Recording, by chat or receipt. */
-    case struk
+    case receipt
     /** Protection (BPJS, insurance); also "it failed" in dialogs. */
-    case payung
+    case umbrella
     /** Legality checks and account security. */
-    case perisai
+    case shield
     /** Bills and instalments. */
-    case kalender
+    case calendar
     /** The financial ladder. */
-    case tangga
+    case stairs
     /** Learning modules. */
-    case buku
+    case book
     /** The weekly summary. */
-    case surat
+    case letter
     /** Privacy and the app lock. */
-    case gembok
+    case padlock
     /** The community directory. */
-    case komunitas
+    case community
 
     /** The Kira Score plant of a band (design system: plantFor). */
     static func plant(for band: ScoreBand) -> Self {
         switch band {
-        case .rentan: .tunas
-        case .bertahan: .tumbuh
-        case .sehat: .mekar
+        case .vulnerable: .sprout
+        case .coping: .growing
+        case .healthy: .bloom
         }
     }
 }
@@ -62,7 +62,7 @@ struct KiraIllustration: View {
     }
 
     var body: some View {
-        Image(decorative: "ilustrasi-\(name.rawValue)")
+        Image(decorative: "illustration-\(name.rawValue)")
             .resizable()
             .frame(width: size, height: size)
             .artworkLabel(label)

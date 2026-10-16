@@ -1,7 +1,7 @@
 /**
  Field (design system): an input with its label always visible above a hairline box. Money takes
  the "Rp" prefix: the person types digits only, ",00" is added on save and said in the hint. An
- error uses `rentan` and a sentence that offers a way out, never blame. Kira never asks for a bank
+ error uses `vulnerable` and a sentence that offers a way out, never blame. Kira never asks for a bank
  PIN, a password or a bank OTP; its own app-lock PIN and email code use KiraCodeField. Set the
  keyboard on the field as on any view: `.keyboardType(.numberPad)`.
  */
@@ -41,7 +41,7 @@ struct KiraField: View {
             if let message = errorText ?? hintText {
                 Text(message)
                     .font(.footnote)
-                    .foregroundStyle(errorText == nil ? Color.inkMuted : Color.rentan)
+                    .foregroundStyle(errorText == nil ? Color.inkMuted : Color.vulnerable)
                     .padding(.horizontal, 4)
             }
         }
@@ -75,7 +75,7 @@ struct KiraField: View {
     }
 
     private var borderColor: Color {
-        if errorText != nil { return .rentan }
+        if errorText != nil { return .vulnerable }
         return isFocused ? .pandan : .hairline
     }
 

@@ -13,11 +13,11 @@ struct KiraHandNote: View {
     enum Tone: CaseIterable {
         /** Pandan (default). */
         case pandan
-        /** The muted kunyit of Bertahan. */
-        case bertahan
+        /** The muted turmeric of the coping band. */
+        case coping
         /** ink-muted. */
         case muted
-        /** Kunyit on the hero card. */
+        /** Turmeric on the hero card. */
         case hero
     }
 
@@ -57,7 +57,7 @@ struct KiraHandNote: View {
     private var color: Color {
         switch tone {
         case .pandan: .pandan
-        case .bertahan: .bertahan
+        case .coping: .coping
         case .muted: .inkMuted
         case .hero: .heroAccent
         }
@@ -83,7 +83,7 @@ struct KiraHandNote: View {
     /** The design system draws the left-pointing arrows; the right ones are their mirror image. */
     private var arrowImage: some View {
         let left = arrow.rawValue.replacingOccurrences(of: "right", with: "left")
-        return Image(decorative: "panah-\(left)")
+        return Image(decorative: "arrow-\(left)")
             .resizable()
             .frame(width: 40, height: 28)
             .scaleEffect(x: arrowFirst ? 1 : -1)
