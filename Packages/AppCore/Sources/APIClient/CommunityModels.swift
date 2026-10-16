@@ -113,7 +113,7 @@ package struct CommunityGroupDTO: Hashable, Sendable {
         adminVerifiedSince = body.value2.admin.verifiedSince
         rules = body.value2.rules
         linkCheckedOn = body.value2.linkCheckedOn
-        adminUnchanged = body.value2.adminUnchanged
+        adminUnchanged = body.value2.adminUnchanged ?? false
         rulesAccepted = body.value2.rulesAccepted
     }
 }

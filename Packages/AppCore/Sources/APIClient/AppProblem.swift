@@ -161,4 +161,8 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case communityReportDuplicate = "COMMUNITY_REPORT_DUPLICATE"
     /** The current community rules have not been accepted yet. */
     case communityRulesNotAccepted = "COMMUNITY_RULES_NOT_ACCEPTED"
+    /** The check-in is gone (cancelled, seen or never made). */
+    case careCheckInNotFound = "CARE_CHECK_IN_NOT_FOUND"
+    /** No Rencana Keselamatanku has been saved yet. */
+    case careSafetyPlanNotFound = "CARE_SAFETY_PLAN_NOT_FOUND"
 }

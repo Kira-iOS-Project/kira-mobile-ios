@@ -13485,6 +13485,28 @@
         }
       }
     },
+    "problem.CARE_CHECK_IN_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check-in ini sudah tidak ada."
+          }
+        }
+      }
+    },
+    "problem.CARE_SAFETY_PLAN_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rencana Keselamatanku belum dibuat."
+          }
+        }
+      }
+    },
     "problem.CHAT_AI_DISABLED" : {
       "extractionState" : "manual",
       "localizations" : {
