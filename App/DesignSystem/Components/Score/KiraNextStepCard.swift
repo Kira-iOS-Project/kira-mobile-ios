@@ -7,7 +7,7 @@
  */
 import SwiftUI
 
-/** The next step: an eyebrow, a title, why, its effect, and two equal buttons. */
+/** The next step: an eyebrow, a title, why, its effect, and its two buttons (1 : 1.3). */
 struct KiraNextStepCard: View {
     private let title: LocalizedStringResource
     private let message: LocalizedStringResource?
@@ -19,6 +19,7 @@ struct KiraNextStepCard: View {
     private var illustration: KiraIllustrationName?
     private var impact: LocalizedStringResource?
     private var secondaryLabel: LocalizedStringResource = "ds.later"
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     init(
         _ title: LocalizedStringResource, message: LocalizedStringResource? = nil,
@@ -40,27 +41,51 @@ struct KiraNextStepCard: View {
                         if let meta { metaPill(meta) }
                     }
                     Text(title)
-                        .font(KiraFont.display(21, .heavy, relativeTo: .title3))
+                        .font(KiraFont.display(21, .heavy, relativeTo: .title3)).kiraLineHeight(
+                            26, size: 21, natural: 1.26, relativeTo: .title3
+                        )
                         .tracking(-0.3)
                         .foregroundStyle(.ink)
                         .accessibilityAddTraits(.isHeader)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                if let illustration { KiraIllustration(illustration, size: 76).padding(-4) }
+                if let illustration {
+                    KiraIllustration(illustration, size: 76).padding(.vertical, -4).padding(.trailing, -4)
+                }
             }
-            if let message { Text(message).font(.subheadline).foregroundStyle(.inkMuted) }
+            if let message {
+                Text(message).font(.subheadline).kiraLineHeight(21, size: 15).foregroundStyle(.inkMuted)
+            }
             if let impact { impactChip(impact) }
-            KiraButtonPair(
-                secondary: KiraButton(secondaryLabel, variant: .secondary, action: onSecondary),
-                primary: KiraButton(primaryLabel, action: onPrimary))
+            actions
         }
         .padding(KiraSpacing.space5)
         .kiraCard()
     }
 
+    /**
+     The secondary and the primary side by side, 1 : 1.3 (`.k-step__actions`); at the accessibility
+     text sizes they stack, the primary on top.
+     */
+    @ViewBuilder private var actions: some View {
+        let secondary = KiraButton(secondaryLabel, variant: .secondary, action: onSecondary).block()
+        let primary = KiraButton(primaryLabel, action: onPrimary).block()
+        if typeSize.isAccessibilitySize {
+            VStack(spacing: KiraSpacing.space2) {
+                primary
+                secondary
+            }
+        } else {
+            WeightedRow(weights: [1, 1.3], spacing: KiraSpacing.space2) {
+                secondary
+                primary
+            }
+        }
+    }
+
     private func metaPill(_ text: LocalizedStringResource) -> some View {
         Text(text)
-            .font(.caption.weight(.semibold))
+            .font(.caption.weight(.semibold)).kiraLineHeight(16, size: 12)
             .foregroundStyle(.inkMuted)
             .padding(.horizontal, 7)
             .padding(.vertical, 1)
@@ -72,7 +97,7 @@ struct KiraNextStepCard: View {
             KiraIcon(.trendUp, size: 16, weight: .semibold)
             Text(text)
         }
-        .font(.footnote.weight(.semibold).monospacedDigit())
+        .font(.footnote.weight(.semibold).monospacedDigit()).kiraLineHeight(18, size: 13)
         .foregroundStyle(.pandan)
         .padding(.vertical, KiraSpacing.space2)
         .padding(.horizontal, KiraSpacing.space3)

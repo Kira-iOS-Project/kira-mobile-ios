@@ -15,10 +15,12 @@ struct KiraAccordion<Content: View>: View {
     private let binding: Binding<Bool>?
     private let content: Content
     private var isSoft = false
-    // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
+    private var opensAtFirst = false
+    /** Whether the person has opened or closed it; until then `opensAtFirst` decides. */
+    @State private var wasToggled = false
     @State private var isOpen = false
 
-    /** Closed by default; pass `isExpanded` to open or close it from outside. */
+    /** Closed by default (`.openByDefault()` opens it); pass `isExpanded` to open or close it from outside. */
     init(
         _ title: LocalizedStringResource, subtitle: LocalizedStringResource? = nil, icon: KiraIconName? = nil,
         isExpanded: Binding<Bool>? = nil, @ViewBuilder content: () -> Content
@@ -31,7 +33,15 @@ struct KiraAccordion<Content: View>: View {
     }
 
     var body: some View {
-        DisclosureGroup(isExpanded: binding ?? $isOpen) {
+        DisclosureGroup(
+            isExpanded: binding
+                ?? Binding(
+                    get: { wasToggled ? isOpen : opensAtFirst },
+                    set: {
+                        wasToggled = true
+                        isOpen = $0
+                    })
+        ) {
             content
         } label: {
             header
@@ -49,9 +59,9 @@ struct KiraAccordion<Content: View>: View {
                         isSoft ? .surfaceRaised : .pandanSoft, border: .pandanLine, cornerRadius: KiraRadius.small)
             }
             VStack(alignment: .leading, spacing: 2) {
-                Text(title).font(.headline).foregroundStyle(.ink)
+                Text(title).font(.headline).kiraLineHeight(22, size: 17).foregroundStyle(.ink)
                 if let subtitle {
-                    Text(subtitle).font(.footnote).foregroundStyle(.inkMuted)
+                    Text(subtitle).font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -62,6 +72,13 @@ struct KiraAccordion<Content: View>: View {
     func soft() -> Self {
         var accordion = self
         accordion.isSoft = true
+        return accordion
+    }
+
+    /** The same accordion, open until the person closes it (the design system's `defaultOpen`). */
+    func openByDefault() -> Self {
+        var accordion = self
+        accordion.opensAtFirst = true
         return accordion
     }
 }

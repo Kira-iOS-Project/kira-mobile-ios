@@ -58,7 +58,7 @@ struct KiraCodeField: View {
                 .overlay { input }
             if let message = errorText ?? hintText {
                 Text(message)
-                    .font(.footnote)
+                    .font(.footnote).kiraLineHeight(18, size: 13)
                     .foregroundStyle(errorText == nil ? Color.inkMuted : Color.vulnerable)
                     .padding(.horizontal, KiraSpacing.space1)
             }
@@ -75,7 +75,7 @@ struct KiraCodeField: View {
                 KiraIcon(.lock, size: 16)
                 Text(label)
             }
-            .font(.footnote.weight(.semibold))
+            .font(.footnote.weight(.semibold)).kiraLineHeight(18, size: 13)
             .foregroundStyle(.inkMuted)
             Spacer(minLength: 0)
             KiraRevealButton(isRevealed: $isRevealed)

@@ -25,7 +25,7 @@ struct KiraLink: View {
     var body: some View {
         Button(action: action) {
             Text(title)
-                .font(.subheadline.weight(.semibold))
+                .font(.subheadline.weight(.semibold)).kiraLineHeight(20, size: 15)
                 .underline()
                 .foregroundStyle(.pandan)
                 .padding(.vertical, KiraSpacing.space1)
@@ -50,7 +50,7 @@ struct KiraLinkText: View {
 
     var body: some View {
         Text(Self.styled(text))
-            .font(.subheadline)
+            .font(.subheadline).kiraLineHeight(20, size: 15)
             .foregroundStyle(.inkMuted)
             .tint(.ink)
             .environment(

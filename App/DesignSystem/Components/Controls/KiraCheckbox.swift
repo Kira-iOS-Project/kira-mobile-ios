@@ -25,7 +25,7 @@ struct KiraCheckbox: View {
             HStack(spacing: KiraSpacing.space3) {
                 box
                 Text(label)
-                    .font(.subheadline)
+                    .font(.subheadline).kiraLineHeight(20, size: 15)
                     .foregroundStyle(.ink)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }

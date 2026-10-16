@@ -45,7 +45,7 @@ struct KiraDraftCard: View {
         VStack(alignment: .leading, spacing: KiraSpacing.space2) {
             VStack(alignment: .leading, spacing: 2) {
                 Text(eyebrowText).kiraFont(.overline).padding(.bottom, 6)
-                Text("ds.draft.count \(items.count)").font(.footnote.weight(.medium))
+                Text("ds.draft.count \(items.count)").font(.footnote.weight(.medium)).kiraLineHeight(18, size: 13)
                 KiraAmount(total, size: .large)
             }
             .foregroundStyle(.inkMuted)
@@ -69,10 +69,16 @@ struct KiraDraftCard: View {
         HStack(alignment: .top, spacing: KiraSpacing.space3) {
             KiraCategoryIcon(item.category, size: KiraSize.tile)
             VStack(alignment: .leading, spacing: 1) {
-                item.label.font(.subheadline.weight(.semibold)).foregroundStyle(.ink)
+                item.label.font(.subheadline.weight(.semibold)).kiraLineHeight(20, size: 15)
+                    .foregroundStyle(.ink)
                 KiraAmount(item.amount, size: .medium)
-                if let name = item.categoryName { name.font(.footnote).foregroundStyle(.inkMuted) }
-                if let note = item.note { note.font(.footnote.weight(.medium)).foregroundStyle(.pandan) }
+                if let name = item.categoryName {
+                    name.font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
+                }
+                if let note = item.note {
+                    note.font(.footnote.weight(.medium)).kiraLineHeight(18, size: 13).foregroundStyle(
+                        .pandan)
+                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .accessibilityElement(children: .combine)
@@ -85,6 +91,8 @@ struct KiraDraftCard: View {
                     .contentShape(Circle())
             }
             .buttonStyle(.plain)
+            /** The 44 pt target overhangs the row as `.k-draft__item .k-iconbtn` does. */
+            .padding(EdgeInsets(top: -6, leading: -6, bottom: -6, trailing: -10))
             .accessibilityLabel(Text("ds.draft.edit \(item.label)"))
         }
         .padding(.vertical, 10)

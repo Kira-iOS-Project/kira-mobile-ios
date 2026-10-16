@@ -74,7 +74,7 @@ struct KiraRevealButton: View {
             KiraIcon(isRevealed ? .eyeOff : .eye, size: 20)
             Text(isRevealed ? "ds.code.release" : "ds.code.hold")
         }
-        .font(.subheadline.weight(.semibold))
+        .font(.subheadline.weight(.semibold)).kiraLineHeight(20, size: 15)
         .foregroundStyle(.pandan)
         .padding(.horizontal, 10)
         .frame(minHeight: KiraSize.tap)

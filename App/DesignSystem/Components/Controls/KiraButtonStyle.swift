@@ -31,6 +31,7 @@ private struct KiraButtonBody<Label: View>: View {
     var body: some View {
         label
             .font(size == .medium ? .headline : .subheadline.weight(.semibold))
+            .kiraLineHeight(size == .medium ? 22 : 20, size: size == .medium ? 17 : 15)
             .foregroundStyle(foreground)
             .padding(.horizontal, horizontalPadding)
             .frame(maxWidth: fillsWidth ? .infinity : nil, minHeight: size == .medium ? mediumHeight : smallHeight)
