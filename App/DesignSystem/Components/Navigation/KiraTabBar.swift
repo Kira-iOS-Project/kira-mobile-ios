@@ -98,6 +98,7 @@ struct KiraTabBar: View {
                 KiraIcon(isRecordActive ? .chat : .plus, size: 22, weight: .semibold)
                 Text("ds.tab.record").font(.system(size: recordLabelSize, weight: .bold)).tracking(0.2)
                     .kiraLineHeight(12, size: 10)
+                    .kiraSmallType()
             }
             .foregroundStyle(.onPandan)
             .frame(minWidth: 60, minHeight: 60)

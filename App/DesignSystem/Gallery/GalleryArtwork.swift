@@ -97,16 +97,19 @@
         }
     }
 
-    /** The CategoryIcon preview: every tile over its name; then the standard sizes and the round tile. */
+    /**
+     The CategoryIcon preview: every tile beside its name, then the standard sizes and the round
+     tile. A list rather than the preview's grid, so a long name never meets a narrow column at
+     large text sizes.
+     */
     struct GalleryCategories: View {
         var body: some View {
             GallerySection(title: "gallery.section.categories") {
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 72), spacing: 10)], spacing: 10) {
+                VStack(alignment: .leading, spacing: 10) {
                     ForEach(KiraCategory.allCases, id: \.self) { category in
-                        VStack(spacing: 6) {
+                        HStack(spacing: KiraSpacing.space3) {
                             KiraCategoryIcon(category)
-                            Text(category.title).font(.caption).foregroundStyle(.inkMuted).lineLimit(1)
-                                .minimumScaleFactor(0.5)
+                            Text(category.title).font(.footnote).foregroundStyle(.inkMuted)
                         }
                     }
                 }
@@ -120,19 +123,18 @@
         }
     }
 
-    /** The Illustration preview: every illustration at 96 pt over its name. */
+    /**
+     The Illustration preview: every illustration at 96 pt beside its name, as a list rather than
+     the preview's grid for the same reason as the categories.
+     */
     struct GalleryIllustrations: View {
         var body: some View {
             GallerySection(title: "gallery.section.illustrations") {
-                LazyVGrid(
-                    columns: [GridItem(.adaptive(minimum: 112), spacing: KiraSpacing.space3)],
-                    spacing: KiraSpacing.space3
-                ) {
+                VStack(alignment: .leading, spacing: KiraSpacing.space3) {
                     ForEach(KiraIllustrationName.allCases, id: \.self) { name in
-                        VStack(spacing: 6) {
+                        HStack(spacing: KiraSpacing.space3) {
                             KiraIllustration(name, size: 96)
-                            Text(name.rawValue).font(.caption).foregroundStyle(.inkMuted).lineLimit(1)
-                                .minimumScaleFactor(0.5)
+                            Text(name.rawValue).font(.footnote).foregroundStyle(.inkMuted)
                         }
                     }
                 }
