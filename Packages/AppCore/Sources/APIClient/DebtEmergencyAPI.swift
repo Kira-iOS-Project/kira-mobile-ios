@@ -11,7 +11,7 @@ extension Operations.ActivateDebtEmergency.Output {
         switch self {
         case .ok: return
         case .unauthorized(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }

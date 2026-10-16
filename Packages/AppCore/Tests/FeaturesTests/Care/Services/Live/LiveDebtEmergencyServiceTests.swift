@@ -14,7 +14,7 @@ struct LiveDebtEmergencyServiceTests {
         #expect(await transport.routes == ["PUT /api/care/debt-emergency"])
     }
 
-    @Test("a refused session is its problem; an undocumented answer is a problem without a code")
+    @Test("a refused session and a server failure each throw their own problem")
     func failures() async throws {
         let (refused, _) = KiraAPI.routed([
             "PUT /api/care/debt-emergency": problem("AUTH_UNAUTHENTICATED", status: 401)
@@ -24,9 +24,9 @@ struct LiveDebtEmergencyServiceTests {
         }
         #expect(error?.knownCode == .authUnauthenticated)
         let (broken, _) = KiraAPI.routed(["PUT /api/care/debt-emergency": problem("INTERNAL_ERROR", status: 500)])
-        let undocumented = await #expect(throws: AppProblem.self) {
+        let failure = await #expect(throws: AppProblem.self) {
             try await LiveDebtEmergencyService(api: broken).activate()
         }
-        #expect(undocumented?.knownCode == nil)
+        #expect(failure?.knownCode == .internalError)
     }
 }
