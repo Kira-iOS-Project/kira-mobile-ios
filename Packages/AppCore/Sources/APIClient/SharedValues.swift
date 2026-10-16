@@ -47,9 +47,6 @@ package struct PaydayDTO: Hashable, Sendable {
         self.day = day
         self.endOfMonth = endOfMonth
     }
-
-    /** Whether a payday was chosen at all. */
-    package var isSet: Bool { day != nil || endOfMonth }
 }
 
 /** The budget period today falls in, from one payday to the day before the next. */
@@ -58,21 +55,17 @@ package struct PaydayPeriodDTO: Hashable, Sendable {
     package let start: String
     /** The day before the next payday. */
     package let end: String
-    /** The next payday. */
-    package let nextPayday: String
     /** Days from today until the next payday ("gajian 10 hari lagi"). */
     package let daysUntilPayday: Int
 
-    init(start: String, end: String, nextPayday: String, daysUntilPayday: Int) {
+    init(start: String, end: String, daysUntilPayday: Int) {
         self.start = start
         self.end = end
-        self.nextPayday = nextPayday
         self.daysUntilPayday = daysUntilPayday
     }
 
     init(_ period: Components.Schemas.PaydayPeriod) {
         self.init(
-            start: period.start, end: period.end, nextPayday: period.nextPayday,
-            daysUntilPayday: period.daysUntilPayday)
+            start: period.start, end: period.end, daysUntilPayday: period.daysUntilPayday)
     }
 }

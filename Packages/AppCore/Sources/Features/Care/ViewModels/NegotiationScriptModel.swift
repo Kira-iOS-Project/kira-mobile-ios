@@ -36,14 +36,15 @@ package final class NegotiationScriptModel {
     package private(set) var showsCopied = false
 
     private let service: any CareToolsService
-    private let copier: @MainActor (String) -> Void
+    private let copier: @MainActor (NegotiationScript.Fill) -> Void
 
     /**
-     A script that starts with `defaultReason` ("penghasilan berkurang") and puts the copied text on
-     the clipboard through `copier`.
+     A script that starts with `defaultReason` ("penghasilan berkurang"); `copier` writes the template
+     with the clipboard's values (the whole contract number) and puts it on the clipboard.
      */
     package init(
-        service: any CareToolsService, defaultReason: String, copier: @escaping @MainActor (String) -> Void
+        service: any CareToolsService, defaultReason: String,
+        copier: @escaping @MainActor (NegotiationScript.Fill) -> Void
     ) {
         self.service = service
         self.copier = copier
@@ -62,17 +63,22 @@ package final class NegotiationScriptModel {
         set { script.affordable = AmountInput.value(of: newValue) }
     }
 
-    /** Loads the name and the debts; the first debt is picked. */
+    /** Loads the name and the debts; the first debt is picked. A name that fails to load stays a gap. */
     package func load() async {
+        async let name = try? service.displayName()
         do {
-            async let name = service.displayName()
             let debts = try await service.debts()
-            script.name = try await name
+            script.name = await name ?? script.name
             phase = debts.isEmpty ? .empty : .loaded(debts)
             if lender == nil, let first = debts.first { select(first) }
         } catch {
             phase = .failed(careProblem(error))
         }
+    }
+
+    /** The script's values as the screen shows them, the contract number masked. */
+    package var shown: NegotiationScript.Fill {
+        script.fill(for: .screen)
     }
 
     /** Picks `debt` and fills its instalment (09b). */
@@ -101,10 +107,10 @@ package final class NegotiationScriptModel {
         editing = nil
     }
 
-    /** Copies `text`, the script as the screen wrote it with the full contract number, and says so. */
-    package func copy(_ text: String) {
+    /** Copies the script with the whole contract number, and says so. */
+    package func copy() {
         guard script.isComplete else { return }
-        copier(text)
+        copier(script.fill(for: .clipboard))
         showsCopied = true
     }
 

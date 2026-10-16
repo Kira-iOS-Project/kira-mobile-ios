@@ -9,7 +9,7 @@ import Testing
 struct NegotiationScriptModelTests {
     private let service = FakeCareToolsService()
 
-    @MainActor final class Clipboard { var copied: [String] = [] }
+    @MainActor final class Clipboard { var copied: [NegotiationScript.Fill] = [] }
 
     private func model(_ clipboard: Clipboard = Clipboard()) -> NegotiationScriptModel {
         NegotiationScriptModel(service: service, defaultReason: "penghasilan berkurang") { clipboard.copied.append($0) }
@@ -57,6 +57,14 @@ struct NegotiationScriptModelTests {
         #expect(problem == (offline ? AppProblem() : FakeCareToolsService.problem))
     }
 
+    @Test("a name that fails to load stays a gap; the lenders still load")
+    func nameFailure() async {
+        await service.configure { $0.failing[.name] = FakeCareToolsService.Offline() }
+        let model = model()
+        await model.load()
+        #expect(model.phase.value?.count == 2 && model.script.name.isEmpty && model.shown.name == nil)
+    }
+
     @Test("edits the reason and the contract number in their sheet; a blank reason keeps the old one")
     func editing() {
         let model = model()
@@ -82,11 +90,16 @@ struct NegotiationScriptModelTests {
         let clipboard = Clipboard()
         let model = model(clipboard)
         await model.load()
-        model.copy("incomplete")
+        model.copy()
         #expect(clipboard.copied.isEmpty && !model.showsCopied)
         model.affordableText = "150000"
-        model.copy("Halo, saya Dinda…")
-        #expect(clipboard.copied == ["Halo, saya Dinda…"] && model.showsCopied)
+        model.edit(.contract)
+        model.draft = "PB-0098 4821"
+        model.finishEditing()
+        #expect(model.shown.contract == "••••4821")
+        model.copy()
+        #expect(clipboard.copied == [model.script.fill(for: .clipboard)] && model.showsCopied)
+        #expect(clipboard.copied.first?.contract == "PB-0098 4821" && clipboard.copied.first?.name == "dinda")
         model.copiedClosed()
         #expect(!model.showsCopied)
     }

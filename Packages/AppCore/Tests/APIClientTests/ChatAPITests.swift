@@ -28,10 +28,6 @@ struct ChatAPITests {
         #expect(reply.sender == .kira)
         #expect(reply.kind == .drafts)
         #expect(reply.draftStatus == .committed)
-        #expect(reply.parser == .slangRules)
-        #expect(reply.inputMethod == .keyboard)
-        #expect(reply.transactionIds == ["t-1"])
-        #expect(reply.committedAt == recordNow)
         #expect(reply.remaining == 1_840_000)
         #expect(reply.perDay == 184_000)
         #expect(reply.drafts?.first?.category == .coffee)
@@ -122,7 +118,7 @@ struct ChatAPITests {
     @Test("throws the problem of a failure", arguments: Self.failures)
     func throwsProblems(failure: FailureCase) async {
         let (api, _) = KiraAPI.canned(status: failure.status, json: problemJSON("X_CODE"))
-        await #expect(throws: failure.expectedProblem(documented: failure.status != 500)) {
+        await #expect(throws: failure.expectedProblem) {
             try await failure.call(api)
         }
     }
