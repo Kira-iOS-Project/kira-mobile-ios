@@ -11,29 +11,39 @@ import SwiftUI
 struct ManualEntrySheet: View {
     @Bindable var model: ManualEntryModel
     let onClose: () -> Void
+    @FocusState private var isAmountFocused: Bool
 
     var body: some View {
         VStack(spacing: 18) {
-            KiraSegmented(
-                "record.manual.type",
-                options: [
-                    .init(id: TransactionType.expense, title: "record.manual.expense"),
-                    .init(id: TransactionType.income, title: "record.manual.income"),
-                ],
-                selection: Binding(get: { model.type }, set: { model.select($0) }))
+            /** All but Simpan scrolls, so nothing is squeezed out of the sheet at the larger text sizes. */
             ScrollView {
                 VStack(spacing: 18) {
-                    ManualAmountInput(model: model)
+                    KiraSegmented(
+                        "record.manual.type",
+                        options: [
+                            .init(id: TransactionType.expense, title: "record.manual.expense"),
+                            .init(id: TransactionType.income, title: "record.manual.income"),
+                        ],
+                        selection: Binding(get: { model.type }, set: { model.select($0) }))
+                    ManualAmountInput(model: model, isFocused: $isAmountFocused)
                     ManualCategoryGrid(model: model)
                     ManualDetails(model: model)
                 }
             }
             .scrollBounceBehavior(.basedOnSize)
+            /**
+             Simpan stays as the board draws it, never dimmed: without an amount it opens the number pad
+             on Jumlah instead of saving.
+             */
             KiraButton(model.type == .income ? "record.manual.saveIncome" : "record.manual.save") {
-                Task { await model.save() }
+                if model.canSave {
+                    Task { await model.save() }
+                } else {
+                    isAmountFocused = true
+                }
             }
             .block()
-            .disabled(!model.canSave)
+            .disabled(model.isSaving)
         }
         .onChange(of: model.isClosed) { _, closed in if closed { onClose() } }
         .kiraDialog(isPresented: $model.showsSaved) {
@@ -57,7 +67,7 @@ struct ManualEntrySheet: View {
 /** "Jumlah": the amount in the extra-large style with a pandan caret, typed on the number pad. */
 private struct ManualAmountInput: View {
     @Bindable var model: ManualEntryModel
-    @FocusState private var isFocused: Bool
+    var isFocused: FocusState<Bool>.Binding
 
     var body: some View {
         VStack(spacing: KiraSpacing.space1) {
@@ -65,7 +75,7 @@ private struct ManualAmountInput: View {
             HStack(spacing: KiraSpacing.space1) {
                 KiraAmount(Decimal(model.amount), size: .extraLarge)
                 RoundedRectangle(cornerRadius: 1).fill(.pandan).frame(width: 2, height: 36)
-                    .opacity(isFocused ? 1 : 0.4)
+                    .opacity(isFocused.wrappedValue ? 1 : 0.4)
                     .accessibilityHidden(true)
             }
             .overlay {
@@ -74,7 +84,7 @@ private struct ManualAmountInput: View {
                     Text("record.manual.amount")
                 }
                 .keyboardType(.numberPad)
-                .focused($isFocused)
+                .focused(isFocused)
                 .foregroundStyle(.clear)
                 .tint(.clear)
             }
@@ -84,6 +94,5 @@ private struct ManualAmountInput: View {
                 .multilineTextAlignment(.center)
         }
         .frame(maxWidth: .infinity)
-        .onAppear { isFocused = true }
     }
 }
