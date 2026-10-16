@@ -63,6 +63,7 @@ extension Operations.EmailDataExport.Output {
         switch self {
         case .accepted: return
         case .unauthorized(let response): throw try response.body.applicationProblemJson
+        case .tooManyRequests(let response): throw try response.body.applicationProblemJson
         case .serviceUnavailable(let response): throw try response.body.applicationProblemJson
         case .default(_, let response): throw try response.body.applicationProblemJson
         }

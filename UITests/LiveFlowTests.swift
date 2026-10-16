@@ -12,7 +12,7 @@ nonisolated final class LiveFlowTests: XCTestCase {
     }
 
     @MainActor
-    func test01SignUpThroughTheHealthCheckToBeranda() throws {
+    func test01SignUpThroughTheHealthCheckToHome() throws {
         let app = LiveFlow.launch(try LiveFlow.requireServer())
         tap(app.buttons["Lewati"], app)
         tap(app.buttons["Daftar dengan Email"], app)
