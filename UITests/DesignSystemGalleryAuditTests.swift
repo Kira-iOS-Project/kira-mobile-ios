@@ -33,7 +33,7 @@ nonisolated final class DesignSystemGalleryAuditTests: XCTestCase {
         let screen = app.windows.firstMatch.frame
         for pass in 0..<(Self.tallPages.contains(page) ? 5 : 3) {
             if pass > 0 { scrollDown(scroll) }
-            try app.performAccessibilityAudit { issue in
+            try audit(app) { issue in
                 /**
                  Listed apart, an accepted deviation the owner chose: the partial Dynamic Type support
                  the audit reports for the design system's own small sizes (the 11 pt overline, the
@@ -67,7 +67,7 @@ nonisolated final class DesignSystemGalleryAuditTests: XCTestCase {
         open.tap()
         let title = app.staticTexts["Batalkan Langganan?"]
         XCTAssertTrue(title.waitForExistence(timeout: 5))
-        try app.performAccessibilityAudit { issue in
+        try audit(app) { issue in
             /**
              Accepted: the screen behind shows through the scrim, and its text, which VoiceOver
              rightly cannot reach while the dialog is modal, reads as text without an element. The
@@ -79,6 +79,30 @@ nonisolated final class DesignSystemGalleryAuditTests: XCTestCase {
         XCTAssertTrue(title.waitForNonExistence(timeout: 5))
         XCTAssertTrue(open.isHittable)
         app.terminate()
+    }
+
+    /**
+     One accessibility audit, made once more only when Apple's audit could not finish in time
+     (XCTest's code -56). On a slow CI runner a long page can outlast the audit's own time limit:
+     that is the tool timing out, not a finding. Any finding fails at once, and so does a second
+     timeout (.claude/rules/ios/testing.md, Rule 24).
+     */
+    @MainActor
+    private func audit(
+        _ app: XCUIApplication,
+        accepting accepted: @escaping (XCUIAccessibilityAuditIssue) throws -> Bool
+    ) throws {
+        do {
+            try app.performAccessibilityAudit(accepted)
+        } catch let error as NSError where Self.auditTimedOut(error) {
+            XCTContext.runActivity(named: "The audit did not finish in time; running it once more") { _ in }
+            try app.performAccessibilityAudit(accepted)
+        }
+    }
+
+    /** XCTest's "Audit failed to complete in time": the audit stopped before it read the whole screen. */
+    private static func auditTimedOut(_ error: NSError) -> Bool {
+        error.domain == "com.apple.xcode.xctest.accessibilityAudit" && error.code == -56
     }
 
     /**
