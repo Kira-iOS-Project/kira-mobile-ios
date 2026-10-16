@@ -44,7 +44,8 @@ struct TrustedMessageScreen: View {
                     .clipShape(Circle())
                     .overlay(Circle().strokeBorder(.pandanLine, lineWidth: 1))
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("care.trusted.recipient").font(.callout.weight(.semibold)).foregroundStyle(.ink)
+                    Text("care.trusted.recipient").font(.callout.weight(.semibold)).kiraLineHeight(21, size: 16)
+                        .foregroundStyle(.ink)
                     Text("care.trusted.recipient.detail")
                         .font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
                 }
@@ -62,7 +63,7 @@ struct TrustedMessageScreen: View {
                 .disabled(model.whatsAppURL == nil)
             KiraButton("care.trusted.sms", variant: .secondary) { open(model.smsURL) }.icon(.send).block()
                 .disabled(model.smsURL == nil)
-            KiraButton("care.trusted.call", variant: .quiet) { open(model.callURL) }.icon(.phone).block()
+            KiraButton("care.trusted.call", variant: .secondary) { open(model.callURL) }.icon(.phone).block()
                 .disabled(model.callURL == nil)
                 .accessibilityLabel(Text("care.trusted.call.label"))
         }

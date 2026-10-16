@@ -54,7 +54,7 @@
          PED: Kira Peduli (and offline, on the shipped contacts), its sheet over the chat, the message to
          Layanan Kira.
          */
-        case care, careOffline, careHelp, trustedMessage
+        case care, careOffline, careHelp, trustedMessage, trustedMessageNoRecipient
 
         /** The area whose launcher builds the screen. */
         enum Area {
@@ -75,7 +75,7 @@
                 .plans
             case .history, .transaction, .conversation, .statementImport, .importReview: .record
             case .record, .recordDrafts, .recordManual, .recordScan, .recordQuota, .recordVoice: .chat
-            case .care, .careOffline, .careHelp, .trustedMessage: .care
+            case .care, .careOffline, .careHelp, .trustedMessage, .trustedMessageNoRecipient: .care
             }
         }
     }
