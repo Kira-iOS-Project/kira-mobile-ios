@@ -90,8 +90,8 @@ private struct SafetyContactFields: View {
                 KiraField("care.plan.contact.name", text: contact.name)
                     .error(SafetyPlan.isTooLong(contact.name.wrappedValue) ? "care.plan.tooLong" : nil)
                 KiraField("care.plan.contact.phone", text: contact.phone)
-                    .keyboardType(.phonePad)
                     .error(SafetyPlan.isTooLong(contact.phone.wrappedValue) ? "care.plan.tooLong" : nil)
+                    .keyboardType(.phonePad)
             }
             if contacts.wrappedValue.count > 1 {
                 KiraIconButton(.trash, label: "care.plan.contact.remove") {
