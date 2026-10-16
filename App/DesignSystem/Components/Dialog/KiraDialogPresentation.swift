@@ -10,10 +10,13 @@ import SwiftUI
 extension View {
     /**
      Presents `dialog` over the window while `isPresented` is true. Its buttons and the escape
-     gesture set `isPresented` back to false after their action.
+     gesture set `isPresented` back to false after their action; `onDismiss` runs once the
+     dialog's layer is down.
      */
-    func kiraDialog(isPresented: Binding<Bool>, dialog: @escaping () -> KiraDialog) -> some View {
-        kiraCover(isPresented: isPresented) { onGone in
+    func kiraDialog(
+        isPresented: Binding<Bool>, onDismiss: (() -> Void)? = nil, dialog: @escaping () -> KiraDialog
+    ) -> some View {
+        kiraCover(isPresented: isPresented, onDismiss: onDismiss) { onGone in
             DialogCover(isPresented: isPresented, dialog: dialog, onGone: onGone)
         }
     }

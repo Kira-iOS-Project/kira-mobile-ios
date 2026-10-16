@@ -2508,13 +2508,15 @@ extension Components {
             internal typealias SituationsPayload = [Components.Schemas.ScholarshipApplicationRequest.SituationsPayloadPayload]
             /// - Remark: Generated from `#/components/schemas/ScholarshipApplicationRequest/situations`.
             internal var situations: Components.Schemas.ScholarshipApplicationRequest.SituationsPayload
+            /// At most 1000 characters (grapheme clusters).
+            ///
             /// - Remark: Generated from `#/components/schemas/ScholarshipApplicationRequest/story`.
             internal var story: Swift.String?
             /// Creates a new `ScholarshipApplicationRequest`.
             ///
             /// - Parameters:
             ///   - situations:
-            ///   - story:
+            ///   - story: At most 1000 characters (grapheme clusters).
             internal init(
                 situations: Components.Schemas.ScholarshipApplicationRequest.SituationsPayload,
                 story: Swift.String? = nil
@@ -2525,6 +2527,504 @@ extension Components {
             internal enum CodingKeys: String, CodingKey {
                 case situations
                 case story
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CommunityGroups`.
+        internal struct CommunityGroups: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CommunityGroups/CategoriesPayload`.
+            internal struct CategoriesPayloadPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/CommunityGroups/CategoriesPayload/key`.
+                internal enum KeyPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                    case debtFree = "debt_free"
+                    case stocks = "stocks"
+                    case crypto = "crypto"
+                    case financeTalk = "finance_talk"
+                }
+                /// - Remark: Generated from `#/components/schemas/CommunityGroups/CategoriesPayload/key`.
+                internal var key: Components.Schemas.CommunityGroups.CategoriesPayloadPayload.KeyPayload
+                /// - Remark: Generated from `#/components/schemas/CommunityGroups/CategoriesPayload/label`.
+                internal var label: Swift.String
+                /// Creates a new `CategoriesPayloadPayload`.
+                ///
+                /// - Parameters:
+                ///   - key:
+                ///   - label:
+                internal init(
+                    key: Components.Schemas.CommunityGroups.CategoriesPayloadPayload.KeyPayload,
+                    label: Swift.String
+                ) {
+                    self.key = key
+                    self.label = label
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case key
+                    case label
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/CommunityGroups/categories`.
+            internal typealias CategoriesPayload = [Components.Schemas.CommunityGroups.CategoriesPayloadPayload]
+            /// - Remark: Generated from `#/components/schemas/CommunityGroups/categories`.
+            internal var categories: Components.Schemas.CommunityGroups.CategoriesPayload
+            /// - Remark: Generated from `#/components/schemas/CommunityGroups/groups`.
+            internal var groups: [Components.Schemas.CommunityGroupSummary]
+            /// Creates a new `CommunityGroups`.
+            ///
+            /// - Parameters:
+            ///   - categories:
+            ///   - groups:
+            internal init(
+                categories: Components.Schemas.CommunityGroups.CategoriesPayload,
+                groups: [Components.Schemas.CommunityGroupSummary]
+            ) {
+                self.categories = categories
+                self.groups = groups
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case categories
+                case groups
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary`.
+        internal struct CommunityGroupSummary: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary/id`.
+            internal var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary/name`.
+            internal var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary/category`.
+            internal enum CategoryPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case debtFree = "debt_free"
+                case stocks = "stocks"
+                case crypto = "crypto"
+                case financeTalk = "finance_talk"
+            }
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary/category`.
+            internal var category: Components.Schemas.CommunityGroupSummary.CategoryPayload
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary/platform`.
+            internal enum PlatformPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case whatsapp = "whatsapp"
+                case telegram = "telegram"
+                case discord = "discord"
+            }
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary/platform`.
+            internal var platform: Components.Schemas.CommunityGroupSummary.PlatformPayload
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary/memberCount`.
+            internal var memberCount: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary/summary`.
+            internal var summary: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary/icon`.
+            internal var icon: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary/educationOnly`.
+            internal var educationOnly: Swift.Bool
+            /// Creates a new `CommunityGroupSummary`.
+            ///
+            /// - Parameters:
+            ///   - id:
+            ///   - name:
+            ///   - category:
+            ///   - platform:
+            ///   - memberCount:
+            ///   - summary:
+            ///   - icon:
+            ///   - educationOnly:
+            internal init(
+                id: Swift.String,
+                name: Swift.String,
+                category: Components.Schemas.CommunityGroupSummary.CategoryPayload,
+                platform: Components.Schemas.CommunityGroupSummary.PlatformPayload,
+                memberCount: Swift.Int,
+                summary: Swift.String,
+                icon: Swift.String,
+                educationOnly: Swift.Bool
+            ) {
+                self.id = id
+                self.name = name
+                self.category = category
+                self.platform = platform
+                self.memberCount = memberCount
+                self.summary = summary
+                self.icon = icon
+                self.educationOnly = educationOnly
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case id
+                case name
+                case category
+                case platform
+                case memberCount
+                case summary
+                case icon
+                case educationOnly
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CommunityGroup`.
+        internal struct CommunityGroup: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CommunityGroup/value1`.
+            internal var value1: Components.Schemas.CommunityGroupSummary
+            /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2`.
+            internal struct Value2Payload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/about`.
+                internal var about: Swift.String
+                /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/admin`.
+                internal struct AdminPayload: Codable, Hashable, Sendable {
+                    /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/admin/name`.
+                    internal var name: Swift.String
+                    /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/admin/initials`.
+                    internal var initials: Swift.String
+                    /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/admin/verifiedSince`.
+                    internal var verifiedSince: Swift.String
+                    /// Creates a new `AdminPayload`.
+                    ///
+                    /// - Parameters:
+                    ///   - name:
+                    ///   - initials:
+                    ///   - verifiedSince:
+                    internal init(
+                        name: Swift.String,
+                        initials: Swift.String,
+                        verifiedSince: Swift.String
+                    ) {
+                        self.name = name
+                        self.initials = initials
+                        self.verifiedSince = verifiedSince
+                    }
+                    internal enum CodingKeys: String, CodingKey {
+                        case name
+                        case initials
+                        case verifiedSince
+                    }
+                }
+                /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/admin`.
+                internal var admin: Components.Schemas.CommunityGroup.Value2Payload.AdminPayload
+                /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/rules`.
+                internal var rules: [Swift.String]
+                /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/linkCheckedOn`.
+                internal var linkCheckedOn: Swift.String
+                /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/adminUnchanged`.
+                internal var adminUnchanged: Swift.Bool
+                /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/rulesAccepted`.
+                internal var rulesAccepted: Swift.Bool
+                /// Creates a new `Value2Payload`.
+                ///
+                /// - Parameters:
+                ///   - about:
+                ///   - admin:
+                ///   - rules:
+                ///   - linkCheckedOn:
+                ///   - adminUnchanged:
+                ///   - rulesAccepted:
+                internal init(
+                    about: Swift.String,
+                    admin: Components.Schemas.CommunityGroup.Value2Payload.AdminPayload,
+                    rules: [Swift.String],
+                    linkCheckedOn: Swift.String,
+                    adminUnchanged: Swift.Bool,
+                    rulesAccepted: Swift.Bool
+                ) {
+                    self.about = about
+                    self.admin = admin
+                    self.rules = rules
+                    self.linkCheckedOn = linkCheckedOn
+                    self.adminUnchanged = adminUnchanged
+                    self.rulesAccepted = rulesAccepted
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case about
+                    case admin
+                    case rules
+                    case linkCheckedOn
+                    case adminUnchanged
+                    case rulesAccepted
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2`.
+            internal var value2: Components.Schemas.CommunityGroup.Value2Payload
+            /// Creates a new `CommunityGroup`.
+            ///
+            /// - Parameters:
+            ///   - value1:
+            ///   - value2:
+            internal init(
+                value1: Components.Schemas.CommunityGroupSummary,
+                value2: Components.Schemas.CommunityGroup.Value2Payload
+            ) {
+                self.value1 = value1
+                self.value2 = value2
+            }
+            internal init(from decoder: any Swift.Decoder) throws {
+                self.value1 = try .init(from: decoder)
+                self.value2 = try .init(from: decoder)
+            }
+            internal func encode(to encoder: any Swift.Encoder) throws {
+                try self.value1.encode(to: encoder)
+                try self.value2.encode(to: encoder)
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CommunityRulesConsentRequest`.
+        internal struct CommunityRulesConsentRequest: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CommunityRulesConsentRequest/version`.
+            internal enum VersionPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case community20261001 = "community-2026-10-01"
+            }
+            /// - Remark: Generated from `#/components/schemas/CommunityRulesConsentRequest/version`.
+            internal var version: Components.Schemas.CommunityRulesConsentRequest.VersionPayload
+            /// Creates a new `CommunityRulesConsentRequest`.
+            ///
+            /// - Parameters:
+            ///   - version:
+            internal init(version: Components.Schemas.CommunityRulesConsentRequest.VersionPayload) {
+                self.version = version
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case version
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CommunityGroupJoin`.
+        internal struct CommunityGroupJoin: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupJoin/inviteUrl`.
+            internal var inviteUrl: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupJoin/platform`.
+            internal enum PlatformPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case whatsapp = "whatsapp"
+                case telegram = "telegram"
+                case discord = "discord"
+            }
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupJoin/platform`.
+            internal var platform: Components.Schemas.CommunityGroupJoin.PlatformPayload
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupJoin/linkCheckedOn`.
+            internal var linkCheckedOn: Swift.String
+            /// Creates a new `CommunityGroupJoin`.
+            ///
+            /// - Parameters:
+            ///   - inviteUrl:
+            ///   - platform:
+            ///   - linkCheckedOn:
+            internal init(
+                inviteUrl: Swift.String,
+                platform: Components.Schemas.CommunityGroupJoin.PlatformPayload,
+                linkCheckedOn: Swift.String
+            ) {
+                self.inviteUrl = inviteUrl
+                self.platform = platform
+                self.linkCheckedOn = linkCheckedOn
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case inviteUrl
+                case platform
+                case linkCheckedOn
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CommunityReport`.
+        internal struct CommunityReport: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CommunityReport/id`.
+            internal var id: Swift.String
+            /// Creates a new `CommunityReport`.
+            ///
+            /// - Parameters:
+            ///   - id:
+            internal init(id: Swift.String) {
+                self.id = id
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case id
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CommunityReportRequest`.
+        internal struct CommunityReportRequest: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CommunityReportRequest/reason`.
+            internal enum ReasonPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case defaultInvite = "default_invite"
+                case guaranteedProfit = "guaranteed_profit"
+                case scam = "scam"
+                case dataOrJockey = "data_or_jockey"
+                case inappropriate = "inappropriate"
+                case other = "other"
+            }
+            /// - Remark: Generated from `#/components/schemas/CommunityReportRequest/reason`.
+            internal var reason: Components.Schemas.CommunityReportRequest.ReasonPayload
+            /// - Remark: Generated from `#/components/schemas/CommunityReportRequest/story`.
+            internal var story: Swift.String?
+            /// Creates a new `CommunityReportRequest`.
+            ///
+            /// - Parameters:
+            ///   - reason:
+            ///   - story:
+            internal init(
+                reason: Components.Schemas.CommunityReportRequest.ReasonPayload,
+                story: Swift.String? = nil
+            ) {
+                self.reason = reason
+                self.story = story
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case reason
+                case story
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CommunityProducts`.
+        internal struct CommunityProducts: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CommunityProducts/products`.
+            internal var products: [Components.Schemas.CommunityProductSummary]
+            /// Creates a new `CommunityProducts`.
+            ///
+            /// - Parameters:
+            ///   - products:
+            internal init(products: [Components.Schemas.CommunityProductSummary]) {
+                self.products = products
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case products
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CommunityProductSummary`.
+        internal struct CommunityProductSummary: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CommunityProductSummary/id`.
+            internal var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CommunityProductSummary/kind`.
+            internal enum KindPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case course = "course"
+                case consultation = "consultation"
+                case ebook = "ebook"
+                case event = "event"
+            }
+            /// - Remark: Generated from `#/components/schemas/CommunityProductSummary/kind`.
+            internal var kind: Components.Schemas.CommunityProductSummary.KindPayload
+            /// - Remark: Generated from `#/components/schemas/CommunityProductSummary/title`.
+            internal var title: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CommunityProductSummary/sellerName`.
+            internal var sellerName: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CommunityProductSummary/sellerInitials`.
+            internal var sellerInitials: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CommunityProductSummary/sellerBadge`.
+            internal var sellerBadge: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CommunityProductSummary/price`.
+            internal var price: Swift.Int?
+            /// - Remark: Generated from `#/components/schemas/CommunityProductSummary/icon`.
+            internal var icon: Swift.String
+            /// Creates a new `CommunityProductSummary`.
+            ///
+            /// - Parameters:
+            ///   - id:
+            ///   - kind:
+            ///   - title:
+            ///   - sellerName:
+            ///   - sellerInitials:
+            ///   - sellerBadge:
+            ///   - price:
+            ///   - icon:
+            internal init(
+                id: Swift.String,
+                kind: Components.Schemas.CommunityProductSummary.KindPayload,
+                title: Swift.String,
+                sellerName: Swift.String,
+                sellerInitials: Swift.String,
+                sellerBadge: Swift.String,
+                price: Swift.Int? = nil,
+                icon: Swift.String
+            ) {
+                self.id = id
+                self.kind = kind
+                self.title = title
+                self.sellerName = sellerName
+                self.sellerInitials = sellerInitials
+                self.sellerBadge = sellerBadge
+                self.price = price
+                self.icon = icon
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case id
+                case kind
+                case title
+                case sellerName
+                case sellerInitials
+                case sellerBadge
+                case price
+                case icon
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CommunityProduct`.
+        internal struct CommunityProduct: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CommunityProduct/value1`.
+            internal var value1: Components.Schemas.CommunityProductSummary
+            /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2`.
+            internal struct Value2Payload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2/description`.
+                internal var description: Swift.String
+                /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2/meta`.
+                internal var meta: Swift.String
+                /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2/sellerRole`.
+                internal var sellerRole: Swift.String
+                /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2/contentsTitle`.
+                internal var contentsTitle: Swift.String
+                /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2/contents`.
+                internal var contents: [Swift.String]
+                /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2/affiliate`.
+                internal var affiliate: Swift.Bool
+                /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2/investmentRisk`.
+                internal var investmentRisk: Swift.Bool
+                /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2/sellerUrl`.
+                internal var sellerUrl: Swift.String?
+                /// Creates a new `Value2Payload`.
+                ///
+                /// - Parameters:
+                ///   - description:
+                ///   - meta:
+                ///   - sellerRole:
+                ///   - contentsTitle:
+                ///   - contents:
+                ///   - affiliate:
+                ///   - investmentRisk:
+                ///   - sellerUrl:
+                internal init(
+                    description: Swift.String,
+                    meta: Swift.String,
+                    sellerRole: Swift.String,
+                    contentsTitle: Swift.String,
+                    contents: [Swift.String],
+                    affiliate: Swift.Bool,
+                    investmentRisk: Swift.Bool,
+                    sellerUrl: Swift.String? = nil
+                ) {
+                    self.description = description
+                    self.meta = meta
+                    self.sellerRole = sellerRole
+                    self.contentsTitle = contentsTitle
+                    self.contents = contents
+                    self.affiliate = affiliate
+                    self.investmentRisk = investmentRisk
+                    self.sellerUrl = sellerUrl
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case description
+                    case meta
+                    case sellerRole
+                    case contentsTitle
+                    case contents
+                    case affiliate
+                    case investmentRisk
+                    case sellerUrl
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2`.
+            internal var value2: Components.Schemas.CommunityProduct.Value2Payload
+            /// Creates a new `CommunityProduct`.
+            ///
+            /// - Parameters:
+            ///   - value1:
+            ///   - value2:
+            internal init(
+                value1: Components.Schemas.CommunityProductSummary,
+                value2: Components.Schemas.CommunityProduct.Value2Payload
+            ) {
+                self.value1 = value1
+                self.value2 = value2
+            }
+            internal init(from decoder: any Swift.Decoder) throws {
+                self.value1 = try .init(from: decoder)
+                self.value2 = try .init(from: decoder)
+            }
+            internal func encode(to encoder: any Swift.Encoder) throws {
+                try self.value1.encode(to: encoder)
+                try self.value2.encode(to: encoder)
             }
         }
         /// - Remark: Generated from `#/components/schemas/CareContacts`.

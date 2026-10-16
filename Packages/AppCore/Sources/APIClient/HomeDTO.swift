@@ -46,8 +46,7 @@ package struct HomeDTO: Hashable, Sendable {
         weeklySummary = home.weeklySummary.map { DateRangeDTO(first: $0.from, last: $0.to) }
         checklist = home.checklist.map {
             HomeChecklistDTO(
-                healthCheck: $0.healthCheck, firstTransaction: $0.firstTransaction, walletAdded: $0.walletAdded,
-                paydaySet: $0.paydaySet)
+                healthCheck: $0.healthCheck, firstTransaction: $0.firstTransaction, paydaySet: $0.paydaySet)
         }
         debtPlan = home.debtPlan.map {
             DebtPlanDTO(paidOff: $0.paidOff, total: $0.total, remaining: $0.remaining, percent: $0.percent)

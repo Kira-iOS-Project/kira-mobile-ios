@@ -22,7 +22,7 @@ actor PreviewPlansService: PlansService {
     }
 
     func plans() throws -> PlanCatalog {
-        PlanCatalog(plans: PreviewPlansData.terms, current: .init(plan: plan, period: current?.period))
+        PlanCatalog(plans: PreviewPlansData.terms, current: .init(plan: plan))
     }
 
     func checkout(plan: PlanID, period: BillingPeriod, paymentMethod: PaymentMethod) throws -> Subscription {
@@ -52,25 +52,20 @@ actor PreviewPlansService: PlansService {
     func invoices() throws -> [Invoice] {
         [10, 9, 8].map { month in
             Invoice(
-                id: "inv-\(month)", plan: .plus, period: .monthly, amount: 29_000, paymentMethod: .qris,
+                id: "inv-\(month)", plan: .plus, amount: 29_000, paymentMethod: .qris,
                 periodStart: CalendarDay(year: 2026, month: month, day: 15))
         }
     }
 
-    func treat(months: Int, paymentMethod _: PaymentMethod) throws -> TreatGift {
-        TreatGift(id: "gift-preview", months: months, amount: 29_000 * months)
-    }
+    func treat(months _: Int, paymentMethod _: PaymentMethod) {}
 
     func scholarship() throws -> ScholarshipOverview {
-        let open = application.map { $0.status != .withdrawn } ?? false
-        return ScholarshipOverview(
-            eligible: !open, ineligibleReason: open ? .hasOpenApplication : nil, quotaRemaining: 42, quotaTotal: 60,
-            application: application)
+        ScholarshipOverview(quotaRemaining: 42, quotaTotal: 60, application: application)
     }
 
-    func apply(situations: [ScholarshipSituation], story: String?) throws -> ScholarshipApplication {
+    func apply(situations: [ScholarshipSituation], story _: String?) throws -> ScholarshipApplication {
         let sent = ScholarshipApplication(
-            id: "app-preview", status: .inReview, situations: situations, story: story,
+            status: .inReview, situations: situations,
             submittedAt: PreviewPlansData.sentAt,
             decideBy: PreviewPlansData.today.adding(days: 5))
         application = sent

@@ -17,7 +17,7 @@ struct FakePlansService: PlansService {
     var subscriptionResult: Result<Subscription?, AppProblem> = .success(PlansFixtures.subscription())
     var changeResult: Result<Subscription, AppProblem> = .success(PlansFixtures.subscription())
     var invoicesResult: Result<[Invoice], AppProblem> = .success([PlansFixtures.invoice])
-    var treatResult: Result<TreatGift, AppProblem> = .success(TreatGift(id: "gift-1", months: 3, amount: 87_000))
+    var treatResult: Result<Void, AppProblem> = .success(())
     var scholarshipResult: Result<ScholarshipOverview, AppProblem> = .success(PlansFixtures.overview())
     var applyResult: Result<ScholarshipApplication, AppProblem> = .success(PlansFixtures.application())
     var withdrawResult: Result<Void, AppProblem> = .success(())
@@ -54,7 +54,7 @@ struct FakePlansService: PlansService {
         return try invoicesResult.get()
     }
 
-    func treat(months: Int, paymentMethod: PaymentMethod) async throws -> TreatGift {
+    func treat(months: Int, paymentMethod: PaymentMethod) async throws {
         await log.record("treat \(months) \(paymentMethod.rawValue)")
         return try treatResult.get()
     }
