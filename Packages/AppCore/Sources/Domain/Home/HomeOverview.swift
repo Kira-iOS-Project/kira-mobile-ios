@@ -71,17 +71,6 @@ package struct HomeOverview: Equatable, Sendable {
     }
 }
 
-/** The pay period the money is counted in: how far away the next payday is. */
-package struct PayPeriod: Equatable, Sendable {
-    /** Days until the next payday; 0 is today. */
-    package let daysUntilPayday: Int
-
-    /** A period whose payday is `daysUntilPayday` days away. */
-    package init(daysUntilPayday: Int) {
-        self.daysUntilPayday = daysUntilPayday
-    }
-}
-
 /** The money of the pay period: what came in, what went out, and what is left. */
 package struct PeriodMoney: Equatable, Sendable {
     /** Income recorded this period, else the health check's net monthly income. */

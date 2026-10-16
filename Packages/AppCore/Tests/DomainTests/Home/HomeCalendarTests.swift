@@ -39,13 +39,4 @@ struct HomeCalendarTests {
     func dayPart(_ row: PartCase) {
         #expect(DayPart(at: wib(row.hour, row.minute)) == row.part)
     }
-
-    @Test("writes the first end of a range by what the two ends share")
-    func range() {
-        let week = DayRange(first: wibDay(2026, 10, 8), last: wibDay(2026, 10, 14))
-        #expect(week.shape == .sameMonth)
-        #expect(week.firstDay == 8)
-        #expect(DayRange(first: wibDay(2026, 9, 28), last: wibDay(2026, 10, 4)).shape == .sameYear)
-        #expect(DayRange(first: wibDay(2025, 12, 29), last: wibDay(2026, 1, 4)).shape == .acrossYears)
-    }
 }

@@ -6,7 +6,8 @@ import Testing
 @Suite("HistoryTimeline")
 struct HistoryTimelineTests {
     private let period = PayPeriod(
-        start: CalendarDay(year: 2026, month: 9, day: 25), end: CalendarDay(year: 2026, month: 10, day: 24))
+        start: CalendarDay(year: 2026, month: 9, day: 25), end: CalendarDay(year: 2026, month: 10, day: 24),
+        daysUntilPayday: 10)
     private let today = CalendarDay(year: 2026, month: 10, day: 15)
 
     private func spend(_ id: String, on day: CalendarDay, hour: Int) -> Transaction {

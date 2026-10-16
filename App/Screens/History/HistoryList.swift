@@ -26,7 +26,7 @@ struct HistoryList: View {
             case .day(let day):
                 HistoryDayGroup(day: day, period: content.period, open: open)
             case .olderDays(let first, let last):
-                foldButton(DayRangeFormatStyle.Range(first: first, last: last))
+                foldButton(DayRange(first: first, last: last))
             }
         }
         if content.canLoadMore {
@@ -59,10 +59,10 @@ struct HistoryList: View {
         Task { await model.select(category: category) }
     }
 
-    private func foldButton(_ range: DayRangeFormatStyle.Range) -> some View {
+    private func foldButton(_ range: DayRange) -> some View {
         HStack(spacing: KiraSpacing.space2) {
             Rectangle().fill(.line).frame(height: 1).accessibilityHidden(true)
-            KiraButton("history.showOlder \(DayRangeFormatStyle().format(range))", variant: .quiet, size: .small) {
+            KiraButton("history.showOlder \(range.formatted(.kiraDayRange))", variant: .quiet, size: .small) {
                 model.showOlderDays()
             }
             .icon(.chevronDown)

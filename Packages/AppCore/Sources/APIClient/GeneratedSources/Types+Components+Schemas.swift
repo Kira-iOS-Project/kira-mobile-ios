@@ -2303,7 +2303,13 @@ extension Components {
         /// - Remark: Generated from `#/components/schemas/GiftRequest`.
         internal struct GiftRequest: Codable, Hashable, Sendable {
             /// - Remark: Generated from `#/components/schemas/GiftRequest/months`.
-            internal var months: Swift.Double
+            internal enum MonthsPayload: Int, Codable, Hashable, Sendable, CaseIterable {
+                case _1 = 1
+                case _3 = 3
+                case _6 = 6
+            }
+            /// - Remark: Generated from `#/components/schemas/GiftRequest/months`.
+            internal var months: Components.Schemas.GiftRequest.MonthsPayload
             /// - Remark: Generated from `#/components/schemas/GiftRequest/paymentMethod`.
             internal enum PaymentMethodPayload: String, Codable, Hashable, Sendable, CaseIterable {
                 case qris = "qris"
@@ -2317,7 +2323,7 @@ extension Components {
             ///   - months:
             ///   - paymentMethod:
             internal init(
-                months: Swift.Double,
+                months: Components.Schemas.GiftRequest.MonthsPayload,
                 paymentMethod: Components.Schemas.GiftRequest.PaymentMethodPayload
             ) {
                 self.months = months

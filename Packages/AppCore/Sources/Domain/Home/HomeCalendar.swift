@@ -7,7 +7,7 @@ import Foundation
  */
 package enum HomeCalendar {
     /** WIB's offset from UTC, in seconds. */
-    package static let offset: TimeInterval = 7 * 3600
+    package static let offset = TimeInterval(CalendarDay.wibOffset)
 
     /** A Gregorian calendar in UTC, read with instants moved by `offset`. */
     private static let calendar: Calendar = {
@@ -41,41 +41,5 @@ package enum DayPart: String, CaseIterable, Sendable {
         case 15..<18: self = .afternoon
         default: self = .night
         }
-    }
-}
-
-/** Some consecutive days, such as the week a summary covers ("8–14 Oktober 2026"). */
-package struct DayRange: Equatable, Sendable {
-    /** What the two ends share, which decides how much of the first end is written. */
-    package enum Shape: Equatable, Sendable {
-        /** "8–14 Oktober 2026": the first end is its day only. */
-        case sameMonth
-        /** "28 September–4 Oktober 2026": the first end is its day and month. */
-        case sameYear
-        /** "29 Desember 2025–4 Januari 2026": both ends in full. */
-        case acrossYears
-    }
-
-    /** The first day. */
-    package let first: Date
-    /** The last day. */
-    package let last: Date
-
-    /** The days from `first` to `last`, both included. */
-    package init(first: Date, last: Date) {
-        self.first = first
-        self.last = last
-    }
-
-    /** The day of the month of the first day, in WIB. */
-    package var firstDay: Int { HomeCalendar.component(.day, of: first) }
-
-    /** How much of the first day the range writes. */
-    package var shape: Shape {
-        guard HomeCalendar.component(.year, of: first) == HomeCalendar.component(.year, of: last) else {
-            return .acrossYears
-        }
-        let sameMonth = HomeCalendar.component(.month, of: first) == HomeCalendar.component(.month, of: last)
-        return sameMonth ? .sameMonth : .sameYear
     }
 }

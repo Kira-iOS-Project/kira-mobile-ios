@@ -11,17 +11,17 @@ struct HistoryModelPagingTests {
     private let service = FakeHistoryService()
 
     private func model() -> HistoryModel {
-        HistoryModel(service: service, now: { Sample.now }, pause: { _ in })
+        HistoryModel(service: service, now: { HistorySample.now }, pause: { _ in })
     }
 
     @Test("opens the folded days, then loads older pages as the end appears")
     func paging() async throws {
         let older = Transaction(
             id: "old", type: .expense, amount: 9_000, category: .coffee, name: "Kopi",
-            occurredAt: Sample.at(Sample.period.start.adding(days: 2), 9, 0), source: .receipt)
+            occurredAt: HistorySample.at(HistorySample.period.start.adding(days: 2), 9, 0), source: .receipt)
         await service.configure {
             $0.pages = [
-                nil: TransactionPage(items: Sample.transactions, nextCursor: "p2"),
+                nil: TransactionPage(items: HistorySample.transactions, nextCursor: "p2"),
                 "p2": TransactionPage(items: [older], nextCursor: nil),
             ]
         }
@@ -41,7 +41,7 @@ struct HistoryModelPagingTests {
 
     @Test("a failed older page leaves the list, and one page loads at a time")
     func pagingFailure() async throws {
-        await service.configure { $0.pages[nil] = TransactionPage(items: Sample.transactions, nextCursor: "p2") }
+        await service.configure { $0.pages[nil] = TransactionPage(items: HistorySample.transactions, nextCursor: "p2") }
         let model = model()
         model.showOlderDays()
         await model.load()

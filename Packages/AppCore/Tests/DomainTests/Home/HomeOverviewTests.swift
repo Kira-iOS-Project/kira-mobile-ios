@@ -8,7 +8,9 @@ struct HomeOverviewTests {
     private func overview(name: String) -> HomeOverview {
         HomeOverview(
             variant: .overview, today: wibDay(2026, 10, 15), displayName: name, hideBalances: false,
-            period: PayPeriod(daysUntilPayday: 10))
+            period: PayPeriod(
+                start: CalendarDay(year: 2026, month: 9, day: 25), end: CalendarDay(year: 2026, month: 10, day: 24),
+                daysUntilPayday: 10))
     }
 
     @Test("names the avatar by the first letter of the name, capitalised")
@@ -23,10 +25,13 @@ struct HomeOverviewTests {
             income: 7_500_000, spent: 5_660_000, remaining: 1_840_000, perDay: 184_000, spentPercent: 75)
         let home = HomeOverview(
             variant: .debtPlan, today: wibDay(2026, 10, 15), displayName: "Bima", hideBalances: true,
-            period: PayPeriod(daysUntilPayday: 3), money: money, step: ScoreStep(kind: .seekRelief, estimatedGain: 0),
+            period: PayPeriod(
+                start: CalendarDay(year: 2026, month: 9, day: 25), end: CalendarDay(year: 2026, month: 10, day: 24),
+                daysUntilPayday: 3), money: money, step: ScoreStep(kind: .seekRelief, estimatedGain: 0),
             stepPosition: StepPosition(index: 1, total: 3),
             score: ScoreSummary(score: 28, band: .vulnerable, delta: nil, isInitial: true),
-            weeklySummary: DayRange(first: wibDay(2026, 10, 8), last: wibDay(2026, 10, 14)),
+            weeklySummary: DayRange(
+                first: CalendarDay(year: 2026, month: 10, day: 8), last: CalendarDay(year: 2026, month: 10, day: 14)),
             checklist: FirstStepsChecklist(healthCheck: true, firstTransaction: false, paydaySet: false),
             debtPlan: DebtPlanProgress(paidOff: 0, total: 1, remaining: 1, percent: 0),
             microTarget: MicroTarget(kind: .oneWeek, current: 120_000, target: 350_000))

@@ -85,6 +85,6 @@ struct PreviewOnboardingService: OnboardingService {
 }
 
 /** The PIN store before agent I0's Keychain one: it keeps nothing. */
-struct PreviewPinStore: PinStore {
+struct PreviewPinSetup: PinSetup {
     func save(pin _: String) throws {}
 }

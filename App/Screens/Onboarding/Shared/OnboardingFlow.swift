@@ -12,10 +12,10 @@ struct OnboardingFlow: View {
     private let onOpen: (AppRoute) -> Void
 
     init(
-        service: any OnboardingService, pinStore: any PinStore, onFinished: @escaping (OnboardingOutcome) -> Void,
+        service: any OnboardingService, pinSetup: any PinSetup, onFinished: @escaping (OnboardingOutcome) -> Void,
         onOpen: @escaping (AppRoute) -> Void = { _ in }
     ) {
-        _flow = State(initialValue: OnboardingFlowModel(service: service, pinStore: pinStore, onFinished: onFinished))
+        _flow = State(initialValue: OnboardingFlowModel(service: service, pinSetup: pinSetup, onFinished: onFinished))
         self.onOpen = onOpen
     }
 
@@ -52,6 +52,6 @@ struct OnboardingFlow: View {
 
 #if DEBUG
     #Preview {
-        OnboardingFlow(service: PreviewOnboardingService(), pinStore: PreviewPinStore()) { _ in }
+        OnboardingFlow(service: PreviewOnboardingService(), pinSetup: PreviewPinSetup()) { _ in }
     }
 #endif

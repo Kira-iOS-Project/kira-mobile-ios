@@ -69,7 +69,7 @@ struct StatementFileSection: View {
             if let problem = model.uploadProblem {
                 KiraNotice(
                     .warning, title: "import.upload.failed",
-                    message: LocalizedStringResource(String.LocalizationValue(problem.messageKey)))
+                    message: problem.message)
             }
         }
         .padding(KiraSpacing.space4)
@@ -98,7 +98,7 @@ struct StatementFileSection: View {
     /** "12 KB · 42 baris · 1–30 September 2026". */
     private func fileFacts(_ file: StatementImportModel.StatementFile) -> LocalizedStringResource {
         let size = Int64(file.byteCount).formatted(.byteCount(style: .file).locale(Locale(identifier: "id_ID")))
-        let days = DayRangeFormatStyle().format(.init(first: file.statement.dateFrom, last: file.statement.dateTo))
+        let days = DayRange(first: file.statement.dateFrom, last: file.statement.dateTo).formatted(.kiraDayRange)
         return "import.read.facts \(size) \(file.statement.rows.count) \(days)"
     }
 }

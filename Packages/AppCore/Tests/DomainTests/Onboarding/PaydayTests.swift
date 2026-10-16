@@ -19,4 +19,12 @@ struct PaydayTests {
         #expect(Payday.days == Array(1...31))
         #expect(Payday.defaultDay == 25)
     }
+
+    @Test("reads the API's day and end-of-month flag; neither set is no payday")
+    func fromAPI() {
+        #expect(Payday(day: 25, endOfMonth: false) == Payday(day: 25))
+        #expect(Payday(day: nil, endOfMonth: true) == .endOfMonth)
+        #expect(Payday(day: 25, endOfMonth: true) == .endOfMonth)
+        #expect(Payday(day: nil, endOfMonth: false) == nil)
+    }
 }

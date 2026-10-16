@@ -12,7 +12,7 @@ struct HistoryModelOrderTests {
     private let service = FakeHistoryService()
 
     private func model() -> HistoryModel {
-        HistoryModel(service: service, now: { Sample.now }, pause: { _ in })
+        HistoryModel(service: service, now: { HistorySample.now }, pause: { _ in })
     }
 
     /** Holds the next list request, runs `newer`, then lets the held one answer, failing when asked. */
@@ -45,7 +45,7 @@ struct HistoryModelOrderTests {
 
     @Test("drops a stale older page")
     func staleOlderPage() async throws {
-        await service.configure { $0.pages[nil] = TransactionPage(items: Sample.transactions, nextCursor: "p2") }
+        await service.configure { $0.pages[nil] = TransactionPage(items: HistorySample.transactions, nextCursor: "p2") }
         let model = model()
         await model.load()
         model.showOlderDays()

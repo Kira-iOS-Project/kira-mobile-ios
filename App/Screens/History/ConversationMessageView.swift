@@ -20,7 +20,7 @@ struct ConversationMessageView: View {
         }
     }
 
-    private var time: String { KiraDateFormat.time.format(sentAt) }
+    private var time: String { sentAt.formatted(.kiraTime) }
 
     private var words: LocalizedStringResource {
         switch message.kind {

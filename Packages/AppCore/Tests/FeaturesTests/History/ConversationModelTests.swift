@@ -20,7 +20,7 @@ struct ConversationModelTests {
         #expect(blocks[1].framed.map(\.id) == ["m-1241", "r-1241"])
         #expect(blocks[1].trailing.map(\.id) == ["left-1241"])
         #expect(blocks[0].framed.count == 2 && blocks[0].trailing.isEmpty)
-        #expect(blocks[1].startedAt == Sample.at(Sample.today, 12, 41))
+        #expect(blocks[1].startedAt == HistorySample.at(HistorySample.today, 12, 41))
         #expect(model.sourceBlockId == "m-1241")
         #expect(model.personInitial == "D")
     }
@@ -31,12 +31,12 @@ struct ConversationModelTests {
         let model = ConversationModel(sourceMessageId: "m-1241", service: service)
         await model.load()
         #expect(model.phase.value != nil && model.personInitial == nil)
-        #expect(HistoryAccount(period: Sample.period, displayName: "").initial == nil)
+        #expect(HistoryAccount(period: HistorySample.period, displayName: "").initial == nil)
     }
 
     @Test("a reply before any message of the person starts its own block")
     func leadingReply() {
-        let blocks = ConversationModel.blocks(Array(Sample.messages.dropFirst()), source: "none")
+        let blocks = ConversationModel.blocks(Array(HistorySample.messages.dropFirst()), source: "none")
         #expect(blocks.map(\.id) == ["r-0812", "m-1241"])
     }
 

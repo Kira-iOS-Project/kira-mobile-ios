@@ -4,7 +4,7 @@ import Testing
 @testable import Domain
 
 @Suite("AmountInput reads and groups typed rupiah")
-struct AmountInputTests {
+struct AmountInputQuizTests {
     @Test(
         "only digits count, up to twelve",
         arguments: [

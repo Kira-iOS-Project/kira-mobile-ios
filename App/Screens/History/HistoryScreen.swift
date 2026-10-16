@@ -64,7 +64,7 @@ struct HistoryScreen: View {
 
     private var subtitle: LocalizedStringResource? {
         guard let period = model.phase.value?.period else { return nil }
-        return "history.period \(DayRangeFormatStyle().format(.init(period)))"
+        return "history.period \(DayRange(period).formatted(.kiraDayRange))"
     }
 
     @ViewBuilder private var content: some View {
@@ -76,7 +76,7 @@ struct HistoryScreen: View {
         case .loaded(let content):
             HistoryList(content: content, model: model) { openedTransactionId = $0.id }
         case .failed(let problem):
-            HistoryProblemView(problem: problem) { Task { await model.load() } }
+            LoadFailedView(problem: problem) { Task { await model.load() } }
         }
     }
 }

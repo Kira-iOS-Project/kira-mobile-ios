@@ -80,8 +80,8 @@ private struct ProfileContent: View {
 
     /** "Periode 25 September – 24 Oktober 2026". */
     private var periodText: Text {
-        let start = profile.period.start
-        let end = profile.period.end
+        let start = profile.period.start.date
+        let end = profile.period.end.date
         return Text("account.profile.budget.subtitle \(start, format: .accountDayMonth) \(end, format: .accountDay)")
     }
 }
@@ -100,17 +100,6 @@ private struct ProfileIdentity: View {
             }
         }
         .padding(EdgeInsets(top: 8, leading: 4, bottom: 4, trailing: 4))
-    }
-}
-
-extension PlanID {
-    /** The plan's name: Kira Gratis, Kira Muda, Kira Plus. */
-    var title: LocalizedStringResource {
-        switch self {
-        case .free: "account.plan.free"
-        case .young: "account.plan.young"
-        case .plus: "account.plan.plus"
-        }
     }
 }
 

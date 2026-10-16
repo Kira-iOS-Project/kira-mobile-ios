@@ -128,6 +128,6 @@ struct TransactionDetailCard: View {
     }
 
     private func time(_ date: Date) -> String {
-        KiraDateFormat.time.format(date)
+        date.formatted(.kiraTime)
     }
 }

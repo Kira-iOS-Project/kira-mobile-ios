@@ -26,10 +26,11 @@ package protocol OnboardingService: Sendable {
 }
 
 /**
- Where the app-lock PIN is kept: as a hash in the Keychain on this device, never sent and never
- logged (ONB-14). Agent I0 implements it.
+ How onboarding sets the app-lock PIN (ONB-14): kept as a hash in the Keychain on this device,
+ never sent and never logged. The app lock's own `PinStore` (Features/Lock) keeps it; the
+ integrator makes `PinStore` or `AppLockModel` conform to this.
  */
-package protocol PinStore: Sendable {
+package protocol PinSetup: Sendable {
     /** Saves `pin`, replacing any PIN kept before. */
     func save(pin: String) async throws
 }

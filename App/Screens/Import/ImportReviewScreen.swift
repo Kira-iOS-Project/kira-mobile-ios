@@ -77,7 +77,7 @@ struct ImportReviewScreen: View {
     }
 
     private var days: String {
-        DayRangeFormatStyle().format(.init(first: model.preview.dateFrom, last: model.preview.dateTo))
+        DayRange(first: model.preview.dateFrom, last: model.preview.dateTo).formatted(.kiraDayRange)
     }
 
     private var buttons: some View {
@@ -107,7 +107,7 @@ struct ImportReviewScreen: View {
 
     private var editingSubtitle: LocalizedStringResource? {
         guard let row = model.editingRow else { return nil }
-        return "review.row.subtitle \(KiraDateFormat.day.format(row.day.start))"
+        return "review.row.subtitle \(row.day.date.formatted(.kiraDate))"
     }
 
     private var isEditing: Binding<Bool> {

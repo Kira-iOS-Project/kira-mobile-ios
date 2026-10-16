@@ -17,15 +17,15 @@ package final class OnboardingFlowModel {
     package private(set) var focus = Focus.trackSpending
     @ObservationIgnored private var quiz: HealthCheckModel?
     private let service: any OnboardingService
-    private let pinStore: any PinStore
+    private let pinSetup: any PinSetup
     private let onFinished: (OnboardingOutcome) -> Void
 
-    /** A flow calling `service` and `pinStore`, ending with `onFinished`. */
+    /** A flow calling `service` and `pinSetup`, ending with `onFinished`. */
     package init(
-        service: any OnboardingService, pinStore: any PinStore, onFinished: @escaping (OnboardingOutcome) -> Void
+        service: any OnboardingService, pinSetup: any PinSetup, onFinished: @escaping (OnboardingOutcome) -> Void
     ) {
         self.service = service
-        self.pinStore = pinStore
+        self.pinSetup = pinSetup
         self.onFinished = onFinished
     }
 
@@ -84,7 +84,7 @@ package final class OnboardingFlowModel {
 
     /** The model of Kunci Kira. */
     package func makePinModel() -> PinSetupModel {
-        PinSetupModel(service: service, pinStore: pinStore) { [weak self] in self?.finish() }
+        PinSetupModel(service: service, pinSetup: pinSetup) { [weak self] in self?.finish() }
     }
 
     private func codeSent(to email: String, delivery: CodeDelivery) {
