@@ -36,7 +36,7 @@ struct RecordModelOpeningsTests {
         #expect(model.quotaSheet == nil)
         let form = try #require(model.manualEntry)
         service.manualResult = .success(
-            ManualSaveResult(transactionId: "t1", message: Fixtures.kira("k9", kind: .manualSaved)))
+            ManualSaveResult(message: Fixtures.kira("k9", kind: .manualSaved)))
         form.amountText = "45000"
         await form.save()
         #expect(model.messages.map(\.id) == ["k9"])

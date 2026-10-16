@@ -11,8 +11,6 @@ package struct ScoreReport: Hashable, Sendable {
     package let band: ScoreBand
     /** The change since the previous payday period, nil when there is none. */
     package var delta: Int?
-    /** Whether this is the first score, from the health check alone. */
-    package var isInitial: Bool
     /** When the engine computed it. */
     package var computedAt: Date
     /** The day the score is checked again (the next payday). */
@@ -32,7 +30,6 @@ package struct ScoreReport: Hashable, Sendable {
         self.band = band
         self.computedAt = computedAt
         self.nextCheckOn = nextCheckOn
-        isInitial = true
         groups = []
         indicators = []
         steps = []

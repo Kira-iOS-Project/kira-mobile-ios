@@ -61,8 +61,6 @@ package struct BankImportRowDTO: Hashable, Sendable {
 package struct BankImportDTO: Hashable, Sendable {
     /** The import's id, for the commit. */
     package let id: String
-    /** How many rows the file held. */
-    package let rowCount: Int
     /** The first date in the file. */
     package let dateFrom: String
     /** The last date in the file. */
@@ -72,7 +70,6 @@ package struct BankImportDTO: Hashable, Sendable {
 
     init(_ bankImport: Components.Schemas.BankImport) throws {
         id = bankImport.id
-        rowCount = bankImport.rowCount
         dateFrom = bankImport.dateFrom
         dateTo = bankImport.dateTo
         rows = try bankImport.rows.map(BankImportRowDTO.init)

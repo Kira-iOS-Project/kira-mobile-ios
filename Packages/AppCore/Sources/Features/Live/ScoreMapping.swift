@@ -9,7 +9,6 @@ extension ScoreReport {
             score: dto.score, band: dto.band, computedAt: dto.computedAt,
             nextCheckOn: try Bridge.day(dto.nextCheckOn).date)
         delta = dto.delta
-        isInitial = dto.isInitial
         groups = try dto.groups.map { GroupScore(group: try Bridge.value($0.group), points: $0.points, band: $0.band) }
         indicators = try dto.indicators.map(ScoreIndicator.init)
         steps = try dto.steps.map(ScoreStep.init)

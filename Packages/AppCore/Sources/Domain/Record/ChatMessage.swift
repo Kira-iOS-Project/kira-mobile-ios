@@ -22,18 +22,8 @@ package struct ChatMessage: Identifiable, Hashable, Sendable {
     package var drafts: [DraftItem]?
     /** Whether the drafts wait, were saved or were discarded. */
     package var draftStatus: DraftStatus?
-    /** What read the drafts on the device. */
-    package let parser: DraftParserKind?
-    /** Typed or spoken, for the person's messages. */
-    package let inputMethod: InputMethod?
     /** The saved transactions' batch, which Urungkan deletes. */
     package var batchId: String?
-    /** The saved transactions' ids. */
-    package var transactionIds: [String]?
-    /** When the drafts were saved. */
-    package var committedAt: Date?
-    /** How many drafts the reply holds. */
-    package let itemCount: Int?
     /** The period's remaining money and its amount per day, for a `remaining` message. */
     package let remaining: Int?
     /** The remaining money per day left in the period. */
@@ -43,9 +33,7 @@ package struct ChatMessage: Identifiable, Hashable, Sendable {
     package init(
         id: String, sender: ChatSender, kind: ChatMessageKind, body: String? = nil, createdAt: Date,
         replyToId: String? = nil, drafts: [DraftItem]? = nil, draftStatus: DraftStatus? = nil,
-        parser: DraftParserKind? = nil, inputMethod: InputMethod? = nil, batchId: String? = nil,
-        transactionIds: [String]? = nil, committedAt: Date? = nil, itemCount: Int? = nil, remaining: Int? = nil,
-        perDay: Int? = nil
+        batchId: String? = nil, remaining: Int? = nil, perDay: Int? = nil
     ) {
         self.id = id
         self.sender = sender
@@ -55,12 +43,7 @@ package struct ChatMessage: Identifiable, Hashable, Sendable {
         self.replyToId = replyToId
         self.drafts = drafts
         self.draftStatus = draftStatus
-        self.parser = parser
-        self.inputMethod = inputMethod
         self.batchId = batchId
-        self.transactionIds = transactionIds
-        self.committedAt = committedAt
-        self.itemCount = itemCount
         self.remaining = remaining
         self.perDay = perDay
     }

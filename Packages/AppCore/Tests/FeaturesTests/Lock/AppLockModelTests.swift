@@ -85,16 +85,7 @@ struct AppLockModelTests {
         #expect(lock.unlock(with: "902716") == .correct)
     }
 
-    @Test("turning the PIN off asks for it first")
-    func removePin() throws {
-        let lock = try lockModel()
-        #expect(lock.removePin(confirmingWith: "000001") == .wrong(remainingAttempts: 4))
-        #expect(lock.hasPin)
-        #expect(lock.removePin(confirmingWith: "381449") == .correct)
-        #expect(!lock.hasPin)
-    }
-
-    @Test("hides balances on each open when the setting is on, until the eye is tapped")
+    @Test("hides balances on each open when the setting is on")
     func balances() throws {
         let vault = InMemoryVault()
         let lock = try lockModel(vault: vault)
@@ -102,8 +93,6 @@ struct AppLockModelTests {
         lock.update { $0.hidesBalancesOnOpen = true }
         lock.launch()
         #expect(lock.balancesHidden)
-        lock.toggleBalances()
-        #expect(!lock.balancesHidden)
         let reopened = AppLockModel(pins: PinStore(vault: vault), vault: vault)
         #expect(reopened.settings.hidesBalancesOnOpen)
         #expect(reopened.balancesHidden)

@@ -11,7 +11,7 @@ struct LiveScoreServiceTests {
     func score() async throws {
         let (api, _) = KiraAPI.routed(["GET /api/score": ok(reportJSON)])
         let report = try #require(try await LiveScoreService(api: api).score())
-        #expect(report.score == 66 && report.band == .coping && report.delta == 4 && !report.isInitial)
+        #expect(report.score == 66 && report.band == .coping && report.delta == 4)
         #expect(report.nextCheckOn == CalendarDay(year: 2026, month: 10, day: 25).date)
         #expect(report.groups.map(\.group) == [.save, .debt, .protect])
         #expect(

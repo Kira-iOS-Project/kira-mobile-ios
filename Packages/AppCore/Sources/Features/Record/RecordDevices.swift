@@ -49,23 +49,14 @@ package protocol ReceiptAssisting: Sendable {
     func glance(at image: Data) async -> ReceiptGlance?
 }
 
-/** What the model saw on a receipt photo. */
+/** What the model saw on a receipt photo or a transfer proof. */
 package struct ReceiptGlance: Equatable, Sendable {
-    /** A printed receipt (struk) or a transfer proof (bukti transfer). */
-    package enum Kind: Equatable, Sendable {
-        /** A shop's receipt, or a transfer proof. */
-        case receipt, transferProof
-    }
-
     /** The store or recipient name the model read, as it wrote it. */
     package let storeName: String?
-    /** The kind of document. */
-    package let kind: Kind
 
     /** A glance at a photo. */
-    package init(storeName: String?, kind: Kind) {
+    package init(storeName: String?) {
         self.storeName = storeName
-        self.kind = kind
     }
 }
 

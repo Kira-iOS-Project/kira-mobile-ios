@@ -21,6 +21,5 @@ struct DayRangeTests {
     func period() {
         let period = PayPeriod(start: day(2026, 9, 25), end: day(2026, 10, 24), daysUntilPayday: 10)
         #expect(DayRange(period) == DayRange(first: day(2026, 9, 25), last: day(2026, 10, 24)))
-        #expect(period.nextPayday == day(2026, 10, 25))
     }
 }

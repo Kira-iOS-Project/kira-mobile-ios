@@ -17,7 +17,4 @@ package struct PayPeriod: Hashable, Sendable {
         self.end = end
         self.daysUntilPayday = daysUntilPayday
     }
-
-    /** The next payday: the day after the period ends. */
-    package var nextPayday: CalendarDay { end.adding(days: 1) }
 }
