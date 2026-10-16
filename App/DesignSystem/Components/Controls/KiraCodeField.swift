@@ -3,7 +3,7 @@
  six boxes on the number pad.
    - `.pin`, the app lock's PIN: under a lock and its label, equal boxes (radius-md, 1.5 pt border:
      pandan on the next box, ink-muted once filled). Each digit is a dot, shown as the digit only
-     while the person holds "Tahan untuk Lihat".
+     while the person holds the eye beside the label.
    - `.code`, the code sent by email: 48 pt boxes with a hairline, the digits shown; the next box
      has a pandan border, a pandan-line ring and a caret. The keyboard offers the code from Mail.
  A transparent field over the boxes takes the input, so typing, pasting a code ("Kode: 381 449"

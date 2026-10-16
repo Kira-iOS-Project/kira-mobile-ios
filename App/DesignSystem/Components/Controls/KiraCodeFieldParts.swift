@@ -1,4 +1,4 @@
-/** The parts of KiraCodeField: one box, and the PIN's "Tahan untuk Lihat" control. */
+/** The parts of KiraCodeField: one box, and the eye that shows the PIN while held. */
 import SwiftUI
 
 /** One box of a code: empty, a dot, or a digit. */
@@ -62,29 +62,25 @@ struct KiraCodeBox: View {
 }
 
 /**
- "Tahan untuk Lihat": the PIN's digits show only while it is held. VoiceOver and Voice Control,
- which cannot hold, turn them on and off with the button's action instead; its name stays the
- words on screen.
+ The eye beside the PIN: its digits show only while it is held. The eye stands alone, without the
+ words "Tahan untuk Lihat" (the owner's choice, 2026-10-16), which stay its name for VoiceOver and
+ Voice Control; those cannot hold, so they turn the digits on and off with the button's action.
  */
 struct KiraRevealButton: View {
     @Binding var isRevealed: Bool
 
     var body: some View {
-        HStack(spacing: 6) {
-            KiraIcon(isRevealed ? .eyeOff : .eye, size: 20)
-            Text(isRevealed ? "ds.code.release" : "ds.code.hold")
-        }
-        .font(.subheadline.weight(.semibold)).kiraLineHeight(20, size: 15)
-        .foregroundStyle(.pandan)
-        .padding(.horizontal, 10)
-        .frame(minHeight: KiraSize.tap)
-        .contentShape(Capsule())
-        .onLongPressGesture(
-            minimumDuration: .infinity, maximumDistance: KiraSize.tap, perform: {},
-            onPressingChanged: { pressing in isRevealed = pressing }
-        )
-        .accessibilityElement(children: .combine)
-        .accessibilityAddTraits(.isButton)
-        .accessibilityAction { isRevealed.toggle() }
+        KiraIcon(isRevealed ? .eyeOff : .eye, size: 20)
+            .foregroundStyle(.pandan)
+            .frame(minWidth: KiraSize.tap, minHeight: KiraSize.tap)
+            .contentShape(Circle())
+            .onLongPressGesture(
+                minimumDuration: .infinity, maximumDistance: KiraSize.tap, perform: {},
+                onPressingChanged: { pressing in isRevealed = pressing }
+            )
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(Text(isRevealed ? "ds.code.release" : "ds.code.hold"))
+            .accessibilityAddTraits(.isButton)
+            .accessibilityAction { isRevealed.toggle() }
     }
 }

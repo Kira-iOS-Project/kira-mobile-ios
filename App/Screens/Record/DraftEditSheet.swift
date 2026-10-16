@@ -50,6 +50,7 @@ struct DraftEditSheet: View {
             HStack(alignment: .top, spacing: 10) {
                 KiraField("record.edit.name", text: $model.name)
                 KiraField("record.edit.amount", text: $model.amountText)
+                    .amount()
                     .prefix("record.currency")
                     .suffix("record.cents")
                     .hint("record.edit.amountHint")

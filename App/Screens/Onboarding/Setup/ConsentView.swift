@@ -39,12 +39,12 @@ struct ConsentView: View {
                 }
             }
             Spacer(minLength: 0)
-            VStack(spacing: KiraSpacing.space1) {
+            VStack(spacing: KiraSpacing.space2) {
                 if let problem = model.phase.problem { ProblemMessage(problem: problem) }
                 KiraButton("onboarding.consent.agree") { Task { await model.submit() } }
                     .block()
                     .disabled(model.phase.isSubmitting)
-                KiraButton("onboarding.consent.policy", variant: .quiet, size: .small) { onOpen(.privacyPolicy) }
+                KiraButton("onboarding.consent.policy", variant: .secondary) { onOpen(.privacyPolicy) }.block()
             }
             .onboardingFoot()
         }

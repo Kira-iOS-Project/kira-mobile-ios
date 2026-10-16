@@ -1,7 +1,8 @@
 /**
  Kode Verifikasi (ONB-07, ONB-07b): "Cek Emailmu", six boxes the keyboard can fill from Mail, a
  calm countdown before another code, and the warning never to share the code. The sixth digit
- verifies at once; back and "Ganti Email" return to where the email was typed.
+ verifies at once; back and "Ganti Email" return to where the email was typed. "Ganti Email" is
+ the outlined block button of Intro, not the board's quiet link (the owner's choice, 2026-10-16).
  */
 import APIClient
 import Features
@@ -37,11 +38,11 @@ struct CodeVerificationView: View {
             .padding(.bottom, KiraSpacing.space6)
             Spacer(minLength: 0)
             KiraNotice(.safe, message: "onboarding.code.notice")
-            VStack(spacing: KiraSpacing.space1) {
+            VStack(spacing: KiraSpacing.space2) {
                 KiraButton("onboarding.code.verify") { Task { await model.verify() } }
                     .block()
                     .disabled(!model.isComplete || model.phase.isSubmitting)
-                KiraButton("onboarding.code.changeEmail", variant: .quiet, size: .small) { flow.back() }
+                KiraButton("onboarding.code.changeEmail", variant: .secondary) { flow.back() }.block()
             }
         }
         .onboardingBackdrop(leaf: .twig)

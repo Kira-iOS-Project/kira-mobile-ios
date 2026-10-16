@@ -28,12 +28,12 @@ struct FocusView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, KiraSpacing.space1)
             Spacer(minLength: 0)
-            VStack(spacing: KiraSpacing.space1) {
+            VStack(spacing: KiraSpacing.space2) {
                 if let problem = model.phase.problem { ProblemMessage(problem: problem) }
                 KiraButton("onboarding.next") { Task { await model.submit() } }
                     .block()
                     .disabled(model.phase.isSubmitting)
-                KiraButton("onboarding.focus.unsure", variant: .quiet, size: .small) { Task { await model.skip() } }
+                KiraButton("onboarding.focus.unsure", variant: .secondary) { Task { await model.skip() } }.block()
             }
             .onboardingFoot()
         }

@@ -8,23 +8,23 @@ import Observation
  */
 @MainActor @Observable
 package final class HealthCheckModel {
-    /** Step 1: "Penghasilan bersih". */
+    /** Step 1: "Penghasilan Bersih". */
     package var income = "" { didSet { if let grouped = regrouped(income) { income = grouped } } }
     /** Step 1: "Tanggal Gajian". */
     package var payday = Payday(day: Payday.defaultDay)
-    /** Step 2: "Pengeluaran pokok". */
+    /** Step 2: "Pengeluaran Pokok". */
     package var expenses = "" { didSet { if let grouped = regrouped(expenses) { expenses = grouped } } }
     /** Step 3. */
     package let debts = DebtAnswersModel()
-    /** Step 4: "Dana darurat". */
+    /** Step 4: "Dana Darurat". */
     package var emergencyFund = "" { didSet { if let grouped = regrouped(emergencyFund) { emergencyFund = grouped } } }
-    /** Step 4: "Menabung per bulan". */
+    /** Step 4: "Menabung per Bulan". */
     package var monthlySavings = "" {
         didSet { if let grouped = regrouped(monthlySavings) { monthlySavings = grouped } }
     }
     /** Step 5: "Aset lain". */
     package var otherAssets = "" { didSet { if let grouped = regrouped(otherAssets) { otherAssets = grouped } } }
-    /** Step 5: "Kendaraan dan properti". */
+    /** Step 5: "Kendaraan dan Properti". */
     package var propertyAssets = "" {
         didSet { if let grouped = regrouped(propertyAssets) { propertyAssets = grouped } }
     }

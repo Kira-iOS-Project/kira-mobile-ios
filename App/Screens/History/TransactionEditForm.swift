@@ -15,6 +15,7 @@ struct TransactionEditForm: View {
             VStack(alignment: .leading, spacing: KiraSpacing.space4) {
                 KiraField("transaction.field.name", text: editor.name)
                 KiraField("transaction.field.amount", text: editor.amountText)
+                    .amount()
                     .prefix("transaction.field.currency")
                     .suffix("transaction.field.cents")
                     .hint("transaction.field.amountHint")

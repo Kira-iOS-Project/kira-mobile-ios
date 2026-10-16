@@ -16,7 +16,7 @@ package final class DebtFormModel {
     package var remaining: String { didSet { regroup(\.remaining, oldValue) } }
     /** "Cicilan per Bulan", grouped as typed. */
     package var instalment: String { didSet { regroup(\.instalment, oldValue) } }
-    /** "Sisa Tenor (opsional)", in months. */
+    /** "Sisa Tenor (Opsional)", in months. */
     package var tenor: String { didSet { regroup(\.tenor, oldValue) } }
     /** Whether the last save was refused for a missing name or amount. */
     package private(set) var showsMissing = false

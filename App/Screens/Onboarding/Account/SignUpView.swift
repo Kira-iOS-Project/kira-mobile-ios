@@ -2,6 +2,8 @@
  Buat Akun (ONB-05): Kuku, the promise "Simpan Catatanmu dengan Aman", one way to sign up (email,
  no password) and the links to the Terms and the Privacy Policy. "Daftar dengan Email" opens a
  sheet for the address, which the board leaves out; the code then goes there. No help button.
+ "Aku Sudah Punya Akun" is the outlined block button of Intro, not the board's quiet link (the
+ owner's choice, 2026-10-16).
  */
 import Features
 import SwiftUI
@@ -25,14 +27,13 @@ struct SignUpView: View {
             }
             Spacer(minLength: KiraSpacing.space4)
             KiraNotice(.privacy, message: "onboarding.signUp.notice")
-            KiraButton("onboarding.signUp.email") { flow.showsSignUpEmail = true }.block()
-            VStack(spacing: 2) {
-                KiraButton("onboarding.intro.haveAccount", variant: .quiet, size: .small) { flow.open(.signIn) }
-                KiraLinkText("onboarding.signUp.terms") { onOpen(Self.route(for: $0)) }
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: 300)
+            VStack(spacing: KiraSpacing.space2) {
+                KiraButton("onboarding.signUp.email") { flow.showsSignUpEmail = true }.block()
+                KiraButton("onboarding.intro.haveAccount", variant: .secondary) { flow.open(.signIn) }.block()
             }
-            .padding(.top, -4)
+            KiraLinkText("onboarding.signUp.terms") { onOpen(Self.route(for: $0)) }
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: 300)
         }
         .onboardingBackdrop(leaf: .twig)
         .kiraSheet(

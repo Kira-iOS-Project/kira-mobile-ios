@@ -31,7 +31,15 @@ a screen built from them keeps them by default.
 - **Buttons are capsules with Title Case labels.** Non-primary buttons use `button` with a
   `button-line` border. A pair is `KiraButtonPair`: secondary on the left, primary on the right
   (stacked, primary on top). Back buttons are icon-only (`KiraIconButton.back`).
-- **Title Case** for titles, headings, notice titles, tags and buttons; Indonesian prepositions and
+- **Rupiah fields group their digits as they are typed** ("10.000.000", never "10000000"):
+  `KiraField(…).amount()`.
+- **Under a primary block button, the next action is a secondary block button**, never a quiet
+  text button: `KiraButton(_, variant: .secondary).block()`, `KiraSpacing.space2` below the primary
+  ("Aku Sudah Punya Akun", "Ganti Email", "Baca Kebijakan Privasi", "Belum Tahu, Lihat-Lihat
+  Dulu"). The owner's rule (2026-10-16), over the boards' quiet links. `.quiet` stays for actions
+  that do not follow a primary button: a header's "Lewati", "Tambah" under a list, a fold.
+- **Title Case** for titles, headings, notice titles, tags, buttons, and a field's label and placeholder
+  ("Penghasilan Bersih", "Cari Transaksi"; the owner's rule, 2026-10-16); Indonesian prepositions and
   conjunctions (dari, di, ke, dan, untuk, yang, terhadap) stay lowercase. Small labels, overlines
   and sentences stay sentence case. The catalog holds the cased copy: no code changes case.
 - **Money in full with two decimals**: `Rp10.000,00`, through `RupiahFormatStyle` or `KiraAmount`.
@@ -272,7 +280,7 @@ checks carry the selected trait, the switch carries the toggle trait and says "A
 motion stops under Reduce Motion. A checkbox carries the toggle trait and says "Dicentang" or
 "Belum dicentang". The six code boxes are one text field to VoiceOver, named by its label, that
 says the digits on screen and how many are in ("3 8, 2 dari 6 angka terisi"); a masked PIN gives
-the count alone. "Tahan untuk Lihat" keeps its words as its name, and VoiceOver and Voice Control,
+the count alone. The PIN's eye shows no words; "Tahan untuk Lihat" is its name, and VoiceOver and Voice Control,
 which cannot hold, turn the digits on and off with its action. A presented dialog
 covers the whole window, so nothing behind it can be reached; VoiceOver starts on its title, and
 the escape gesture runs the secondary action (or the only one) and closes it. `UITests/DesignSystemGalleryAuditTests.swift` runs Apple's
