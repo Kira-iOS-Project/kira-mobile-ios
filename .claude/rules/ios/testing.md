@@ -43,6 +43,11 @@ An issue the team accepts goes through the audit's issue handler with a comment 
 and the reason; the handler never returns `true` for a whole category. `/agent-ios-swiftui:a11y-audit`
 runs these tests and reports each issue by screen.
 
+On a slow CI runner the audit itself can run out of time on a long page ("Audit failed to complete
+in time", XCTest's code -56). That is the tool timing out, not a finding, so the test makes that one
+audit once more, for that error only. Any finding fails at once, and so does a second timeout
+(`UITests/DesignSystemGalleryAuditTests.swift`).
+
 ## Coverage
 
 `bash scripts/check/coverage.sh` runs `swift test` with coverage and fails on any file below 100%
