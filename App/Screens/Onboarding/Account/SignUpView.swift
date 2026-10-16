@@ -39,11 +39,11 @@ struct SignUpView: View {
         .onboardingBackdrop(leaf: .twig)
         .kiraSheet(
             $flow.signUpEmail, title: "onboarding.signUp.sheet.title", subtitle: "onboarding.signUp.sheet.subtitle",
-            failureTitle: "onboarding.signUp.sheet.failed", onRetry: { Task { await flow.retrySignUpEmail() } }
-        ) {
-            EmailForm(model: flow.signUpEmailModel(), submitLabel: "onboarding.signUp.sheet.send")
-                .padding(.bottom, KiraSpacing.space2)
-        }
+            failureTitle: "onboarding.signUp.sheet.failed", onRetry: { Task { await flow.retrySignUpEmail() } },
+            content: {
+                EmailForm(model: flow.signUpEmailModel(), submitLabel: "onboarding.signUp.sheet.send")
+                    .padding(.bottom, KiraSpacing.space2)
+            })
     }
 
     private var header: some View {
