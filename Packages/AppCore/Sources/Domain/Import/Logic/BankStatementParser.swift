@@ -14,7 +14,10 @@ package enum BankStatementParser {
     package static let maximumBytes = 1_048_576
     /** The most rows one import takes. */
     package static let maximumRows = 2_000
-    /** The longest span from the first day to the last, in days. */
+    /**
+     The most calendar days one file may cover, its first and last day both counted: "3 bulan"
+     on the board, and the backend's limit for `POST /imports` (IMPORT_RANGE_TOO_LONG above it).
+     */
     package static let maximumRangeDays = 92
 
     /** The statement in `data`, or the first reason it cannot be read. */
@@ -33,7 +36,7 @@ package enum BankStatementParser {
         }
         guard let first = rows.map(\.day).min(), let last = rows.map(\.day).max() else { throw .empty }
         guard rows.count <= maximumRows else { throw .tooManyRows }
-        guard first.days(to: last) <= maximumRangeDays else { throw .rangeTooLong }
+        guard first.days(to: last) + 1 <= maximumRangeDays else { throw .rangeTooLong }
         return BankStatement(rows: rows, dateFrom: first, dateTo: last)
     }
 

@@ -58,15 +58,16 @@ struct BankStatementParserTests {
             ("tanggal,keterangan,nominal\n2026-09-01,Kopi,-\n", .invalidAmount(line: 2)),
             ("tanggal,keterangan,nominal\n2026-09-01,Kopi,12345678901234\n", .invalidAmount(line: 2)),
             ("tanggal,keterangan,nominal\n2026-06-01,Kopi,-1\n2026-09-02,Kopi,-1\n", .rangeTooLong),
+            ("tanggal,keterangan,nominal\n2026-07-01,Kopi,-1\n2026-10-01,Kopi,-1\n", .rangeTooLong),
         ])
     func refuses(text: String, error: BankStatementError) {
         #expect(throws: error) { try parse(text) }
     }
 
-    @Test("allows 92 days from the first row to the last")
+    @Test("allows 92 calendar days, the first and last counted, as the backend does; 93 is refused above")
     func longestRange() throws {
-        let statement = try parse("tanggal,keterangan,nominal\n2026-07-01,A,-1\n2026-10-01,B,-1\n")
-        #expect(statement.dateFrom.days(to: statement.dateTo) == 92)
+        let statement = try parse("tanggal,keterangan,nominal\n2026-07-01,A,-1\n2026-09-30,B,-1\n")
+        #expect(statement.dateFrom.days(to: statement.dateTo) + 1 == 92)
     }
 
     @Test("refuses files that are not text, too large or too long")

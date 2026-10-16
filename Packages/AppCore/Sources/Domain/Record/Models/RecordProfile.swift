@@ -17,7 +17,7 @@ package struct RecordProfile: Hashable, Sendable {
     /** The last day of the payday period. */
     package let periodEnd: Date
     /** The "Kira AI" consent: off, chat, receipts and voice are not read; Catat Manual still works. */
-    package let aiEnabled: Bool
+    package var aiEnabled: Bool
     /** The last expense category used, for Catat Manual. */
     package let lastExpenseCategory: TransactionCategory?
     /** The last income category used. */

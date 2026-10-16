@@ -31,6 +31,10 @@ extension RecordModel {
             onManual: { [weak self] in
                 self?.scanner = nil
                 self?.openManual()
+            },
+            onAIOff: { [weak self] in
+                self?.scanner = nil
+                self?.aiTurnedOff()
             })
     }
 
@@ -76,6 +80,18 @@ extension RecordModel {
     /** The help button: Kira Peduli. */
     package func openHelp() {
         onOpen(.care)
+    }
+
+    /**
+     The server answered CHAT_AI_DISABLED: "Kira AI" was turned off, on another device too. Catat
+     takes it as its own setting, so chat, receipts and voice wait, and shows the AI-off notice.
+     */
+    func aiTurnedOff() {
+        if var profile {
+            profile.aiEnabled = false
+            phase = .loaded(profile)
+        }
+        showsAIOff = true
     }
 
     /** "Atur di Data & Privasi" on the AI-off notice. */

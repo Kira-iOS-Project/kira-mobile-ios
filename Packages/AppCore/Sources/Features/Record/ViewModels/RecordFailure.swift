@@ -15,4 +15,10 @@ package enum RecordFailure: Equatable, Sendable {
         let problem = AppProblem(error)
         self = problem.isConnectionLoss ? .connection : .problem(problem)
     }
+
+    /** Whether the server said "Kira AI" is off (CHAT_AI_DISABLED): the AI-off notice, not a failure dialog. */
+    package var turnsAIOff: Bool {
+        if case .problem(let problem) = self { return problem.knownCode == .chatAIDisabled }
+        return false
+    }
 }

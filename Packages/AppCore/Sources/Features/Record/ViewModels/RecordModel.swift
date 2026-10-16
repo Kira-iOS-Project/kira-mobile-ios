@@ -54,6 +54,8 @@ package final class RecordModel {
     var nextCursor: String?
     /** The remaining-money message each commit added, removed again by Urungkan. */
     var remainingIds: [String: String] = [:]
+    /** The messages whose Simpan or Urungkan is on its way: a second tap waits for the first. */
+    var committing: Set<String> = []
     /** The id of a message that failed to send, reused while its text is unchanged. */
     var retry: (text: String, clientId: String)?
 

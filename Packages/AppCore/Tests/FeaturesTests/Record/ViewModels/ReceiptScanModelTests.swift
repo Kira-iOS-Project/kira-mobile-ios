@@ -1,3 +1,4 @@
+import APIClient
 import Domain
 import Foundation
 import Testing
@@ -15,12 +16,13 @@ struct ReceiptScanModelTests {
     private func model(
         _ service: FakeRecordService, reader: FakeReceiptReader = FakeReceiptReader(),
         camera: FakeCamera = FakeCamera(),
-        onRead: @escaping (SendResult) -> Void = { _ in }, onManual: @escaping () -> Void = {}
+        onRead: @escaping (SendResult) -> Void = { _ in }, onManual: @escaping () -> Void = {},
+        onAIOff: @escaping () -> Void = {}
     ) -> ReceiptScanModel {
         ReceiptScanModel(
             quota: UsageMeter(used: 4, limit: 10),
             dependencies: Fixtures.dependencies(service: service, receiptReader: reader, camera: camera),
-            onRead: onRead, onManual: onManual)
+            onRead: onRead, onManual: onManual, onAIOff: onAIOff)
     }
 
     @Test("the camera starts and stops, the torch toggles, the shutter freezes a photo, Foto Ulang returns")
@@ -105,7 +107,7 @@ struct ReceiptScanModelTests {
         let scan = ReceiptScanModel(
             quota: UsageMeter(used: 0, limit: 10),
             dependencies: Fixtures.dependencies(service: FakeRecordService(), clock: clock),
-            onRead: { _ in }, onManual: {})
+            onRead: { _ in }, onManual: {}, onAIOff: {})
         let reading = ReceiptReading(
             storeName: nil, printedAt: ReceiptDate(day: 14, month: 10, year: 2026),
             items: [ReceiptLine(name: "Kopi Susu", amount: 18_000), ReceiptLine(name: "Gaji", amount: 1_000)],
@@ -134,11 +136,26 @@ extension ReceiptScanModelTests {
             quota: UsageMeter(used: 0, limit: 10),
             dependencies: Fixtures.dependencies(
                 service: service, receiptReader: FakeReceiptReader(result: .success(lines)), assistant: assistant),
-            onRead: { _ in }, onManual: {})
+            onRead: { _ in }, onManual: {}, onAIOff: {})
         scan.picked(Data([1]), fileName: nil)
         await scan.read()
         let receipt = try #require(service.receipts.first)
         #expect(receipt.storeName == "Toko Sejahtera")
         #expect(service.receipts.first?.total == 15_500)
+    }
+}
+
+extension ReceiptScanModelTests {
+    @Test("the server saying Kira AI is off hands over to Catat's AI-off notice instead of a failure dialog")
+    func aiTurnedOff() async {
+        let service = FakeRecordService()
+        service.receiptResult = .failure(AppProblem(code: "CHAT_AI_DISABLED"))
+        var turnedOff = false
+        let scan = model(service, reader: FakeReceiptReader(result: .success(board)), onAIOff: { turnedOff = true })
+        scan.picked(Data([1]), fileName: nil)
+        await scan.read()
+        #expect(turnedOff)
+        #expect(scan.problem == nil)
+        #expect(service.receipts.count == 1)
     }
 }

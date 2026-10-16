@@ -43,16 +43,21 @@ package final class ReceiptScanModel {
     private let dependencies: RecordDependencies
     private let onRead: (SendResult) -> Void
     private let onManual: () -> Void
+    private let onAIOff: () -> Void
 
-    /** The scanner with the month's receipt quota; `onRead` gets the sent receipt, `onManual` swaps to Catat Manual. */
+    /**
+     The scanner with the month's receipt quota; `onRead` gets the sent receipt, `onManual` swaps to
+     Catat Manual, and `onAIOff` runs when the server says Kira AI is off.
+     */
     package init(
         quota: UsageMeter, dependencies: RecordDependencies, onRead: @escaping (SendResult) -> Void,
-        onManual: @escaping () -> Void
+        onManual: @escaping () -> Void, onAIOff: @escaping () -> Void
     ) {
         self.quota = quota
         self.dependencies = dependencies
         self.onRead = onRead
         self.onManual = onManual
+        self.onAIOff = onAIOff
     }
 
     /** The image waiting for Baca Struk. */
@@ -121,7 +126,9 @@ package final class ReceiptScanModel {
             onRead(try await dependencies.service.sendReceipt(input(for: reading)))
         } catch {
             stage = .camera
-            problem = .failed(RecordFailure(error))
+            let failure = RecordFailure(error)
+            if failure.turnsAIOff { return onAIOff() }
+            problem = .failed(failure)
         }
     }
 
