@@ -6,8 +6,9 @@ import Observation
 /**
  Mode Darurat Utang (PED-07): the situations, OJK's official contacts and Beasiswa Kira. Opening
  the screen turns the mode on (`PUT /care/debt-emergency`), which makes the account eligible for
- Beasiswa Kira. The screen never waits for that call or shows its failure: it tries again quietly a
- few times while the screen stays open, and again the next time it opens. The contacts come from
+ Beasiswa Kira. The screen never shows that call's failure: it tries again quietly a few times
+ while the screen stays open, and again the next time it opens; only the Beasiswa Kira card waits
+ for one try before opening it. The contacts come from
  `GET /care/contacts` through CareContactsModel: the shipped list at once, the server's when it
  arrives.
  */
@@ -52,6 +53,16 @@ package final class DebtEmergencyModel {
             do { try await sleep(delay) } catch { return }
             if await attempt() { return }
         }
+    }
+
+    /**
+     Makes sure the mode is on before Beasiswa Kira opens, whose application the server refuses
+     until it is: one more try, awaited, unless an earlier one landed. Its failure stays quiet too;
+     the quiet retries of `activate()` carry on.
+     */
+    package func ensureActive() async {
+        guard !isActive else { return }
+        _ = await attempt()
     }
 
     /** The `tel:` link of a contact. */

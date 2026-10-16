@@ -116,4 +116,36 @@ struct DebtEmergencyModelTests {
         #expect(await service.calls == 2)
         #expect(model.siteName(.lapsSjk) == "lapssjk.id")
     }
+
+    @Test("Beasiswa Kira waits for one try while the mode is off, and for none once it is on")
+    func ensuresActiveBeforeScholarship() async {
+        let failing = FakeDebtEmergencyService(failures: 1)
+        let sleeps = SleepLog(cancelAt: 1)
+        let model = model(failing, sleeps: sleeps)
+        await model.activate()
+        #expect(await failing.calls == 1)
+        await model.ensureActive()
+        #expect(await failing.calls == 2)
+        await model.ensureActive()
+        #expect(await failing.calls == 2)
+    }
+
+    @Test("Beasiswa Kira's try is a PUT /care/debt-emergency; a refused one stays quiet")
+    func ensuresActiveThroughTheRoute() async {
+        let (api, transport) = KiraAPI.routed([
+            "PUT /api/care/debt-emergency": ok(#"{"activatedAt":"2026-10-17T03:00:00.000Z"}"#)
+        ])
+        let model = DebtEmergencyModel(care: FakeCareService(), service: LiveDebtEmergencyService(api: api))
+        await model.ensureActive()
+        await model.ensureActive()
+        #expect(await transport.routes == ["PUT /api/care/debt-emergency"])
+
+        let (down, downTransport) = KiraAPI.routed([
+            "PUT /api/care/debt-emergency": problem("INTERNAL_ERROR", status: 500)
+        ])
+        let offline = DebtEmergencyModel(care: FakeCareService(), service: LiveDebtEmergencyService(api: down))
+        await offline.ensureActive()
+        await offline.ensureActive()
+        #expect(await downTransport.routes.count == 2)
+    }
 }

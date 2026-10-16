@@ -2,7 +2,7 @@
  Mode Darurat Utang (PED-07, board ModeDaruratUtang): free on every plan. The situations open their
  guides (PED-08, PED-13, PED-14, PED-15) and the negotiation script (PED-09); OJK's contacts call or
  open their sites in the browser; Beasiswa Kira opens the scholarship. Opening the screen turns the
- mode on quietly (DebtEmergencyModel), and nothing on it waits for that.
+ mode on quietly (DebtEmergencyModel); only Beasiswa Kira waits for that, one try at most.
  */
 import Domain
 import Features
@@ -11,6 +11,8 @@ import SwiftUI
 struct DebtEmergencyScreen: View {
     @State private var model: DebtEmergencyModel
     private let onOpen: (AppRoute) -> Void
+    /** Set while the Beasiswa Kira card waits for the mode to be on, so a second tap does nothing. */
+    @State private var opensScholarship = false
     @Environment(\.dismiss) private var dismiss
     @Environment(\.openURL) private var openURL
 
@@ -25,7 +27,7 @@ struct DebtEmergencyScreen: View {
             DebtEmergencyHeader()
             situations
             contacts
-            DebtScholarshipCard { onOpen(.scholarship) }
+            DebtScholarshipCard { openScholarship() }
             KiraHelpButton(.row, label: "debtEmergency.help") { onOpen(.care) }
         }
         .task { await model.load() }
@@ -83,6 +85,17 @@ struct DebtEmergencyScreen: View {
         KiraListRow(Text(title), leading: .icon(icon), trailing: .external) { open(model.website(key)) }
             .subtitle(Text(model.siteName(key) ?? ""))
             .accessibilityHint(Text("debtEmergency.opensBrowser"))
+    }
+
+    /** Beasiswa Kira, once the mode is on (or its one awaited try failed quietly). */
+    private func openScholarship() {
+        guard !opensScholarship else { return }
+        opensScholarship = true
+        Task {
+            await model.ensureActive()
+            opensScholarship = false
+            onOpen(.scholarship)
+        }
     }
 
     private func open(_ url: URL?) {
