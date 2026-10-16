@@ -25,13 +25,11 @@ struct ProductScreen: View {
         Group {
             switch model.phase {
             case .loading:
-                content(.sample(.course), onSeller: { _ in })
-                    .redacted(reason: .placeholder)
-                    .disabled(true)
+                content(nil, onSeller: { _ in })
             case .loaded(let product):
                 content(product) { openURL($0) }
             case .empty:
-                failed(AppProblem())
+                gone
             case .failed(let problem):
                 failed(problem)
             }
@@ -41,27 +39,51 @@ struct ProductScreen: View {
         .task { await model.load() }
     }
 
-    private func content(_ product: Product, onSeller: @escaping (URL) -> Void) -> some View {
+    private func content(_ product: Product?, onSeller: @escaping (URL) -> Void) -> some View {
         ProductContent(
-            product: product, onBack: { dismiss() }, onHelp: { onOpen(.unavailable(.care)) }, onSeller: onSeller)
+            product: product ?? .sample(.course), isPlaceholder: product == nil, onBack: { dismiss() },
+            onHelp: { onOpen(.unavailable(.care)) }, onSeller: onSeller)
     }
 
-    /** The nav bar stays, so the person can go back from a product that is gone. */
+    /** The nav bar stays, so the person can go back from a product that did not load. */
     private func failed(_ problem: AppProblem) -> some View {
         VStack(spacing: 0) {
-            KiraNavBar("product.title", leading: .back("product.back") { dismiss() }) {
-                KiraHelpButton(.icon) { onOpen(.unavailable(.care)) }
-            }
-            .padding(.horizontal, KiraSpacing.screen)
-            .padding(.top, 62 - 59)
+            navBar
             LoadFailedView(title: "product.failed", problem: problem) { Task { await model.load() } }
         }
+    }
+
+    /** COMMUNITY_PRODUCT_NOT_FOUND: no Coba Lagi, which could never bring it back; the way back instead. */
+    private var gone: some View {
+        VStack(spacing: 0) {
+            navBar
+            VStack(spacing: KiraSpacing.space4) {
+                KiraIllustration(.care, size: 112)
+                Text("product.failed").kiraFont(.title).foregroundStyle(.ink).multilineTextAlignment(.center)
+                    .accessibilityAddTraits(.isHeader)
+                Text("problem.COMMUNITY_PRODUCT_NOT_FOUND").kiraFont(.callout).foregroundStyle(.inkMuted)
+                    .multilineTextAlignment(.center)
+                KiraButton("product.back") { dismiss() }.block()
+            }
+            .padding(KiraSpacing.screen)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+    }
+
+    private var navBar: some View {
+        KiraNavBar("product.title", leading: .back("product.back") { dismiss() }) {
+            KiraHelpButton(.icon) { onOpen(.unavailable(.care)) }
+        }
+        .padding(.horizontal, KiraSpacing.screen)
+        .padding(.top, 62 - 59)
     }
 }
 
 /** The loaded product, top to bottom as the board lays it. */
 private struct ProductContent: View {
     let product: Product
+    /** While loading: the shape of a product, redacted, hidden from VoiceOver, without its notices. */
+    let isPlaceholder: Bool
     let onBack: () -> Void
     let onHelp: () -> Void
     let onSeller: (URL) -> Void
@@ -70,20 +92,16 @@ private struct ProductContent: View {
         ScrollView {
             VStack(alignment: .leading, spacing: KiraSpacing.space4) {
                 KiraNavBar(
-                    "product.title", subtitle: product.summary.kind.title, leading: .back("product.back", onBack)
+                    "product.title", subtitle: isPlaceholder ? nil : product.summary.kind.title,
+                    leading: .back("product.back", onBack)
                 ) {
                     KiraHelpButton(.icon, action: onHelp)
                 }
-                ProductSummaryCard(product: product)
-                ProductContentsList(product: product)
-                if product.affiliate {
-                    KiraNotice(.info, title: "product.affiliate.title", message: "product.affiliate.body")
+                if isPlaceholder {
+                    details.redacted(reason: .placeholder).disabled(true).accessibilityHidden(true)
+                } else {
+                    details
                 }
-                if product.investmentRisk {
-                    KiraNotice(.warning, title: "product.risk.title", message: "product.risk.body")
-                }
-                KiraNotice(.education, title: "marketplace.education.title", message: product.summary.kind.educationMessage)
-                sellerButton.padding(.top, KiraSpacing.space1)
             }
             .padding(.horizontal, KiraSpacing.screen)
             .padding(.top, 62 - 59)
@@ -94,6 +112,21 @@ private struct ProductContent: View {
             }
         }
         .kiraScrollEdges()
+    }
+
+    @ViewBuilder private var details: some View {
+        ProductSummaryCard(product: product)
+        ProductContentsList(product: product)
+        if !isPlaceholder {
+            if product.affiliate {
+                KiraNotice(.info, title: "product.affiliate.title", message: "product.affiliate.body")
+            }
+            if product.investmentRisk {
+                KiraNotice(.warning, title: "product.risk.title", message: "product.risk.body")
+            }
+            KiraNotice(.education, title: "marketplace.education.title", message: product.summary.kind.educationMessage)
+            sellerButton.padding(.top, KiraSpacing.space1)
+        }
     }
 
     /** Opens the seller's page; while the team checks it again, disabled with the reason under it. */

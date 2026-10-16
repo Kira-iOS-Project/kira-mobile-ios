@@ -27,20 +27,27 @@ nonisolated extension ProductSummary {
 }
 
 nonisolated extension Product {
-    /** The board's detail of each kind; no seller page while the team checks it. */
+    /**
+     The board's detail of each kind. The course has a seller page, as DetailProduk draws it enabled
+     (on the reserved example.com, never a real seller); the others wait for the team's check.
+     */
     static func sample(_ kind: ProductKind) -> Product {
         let summary = ProductSummary.samples.first { $0.kind == kind } ?? ProductSummary.samples[0]
         let text = PreviewProductText.of(kind)
         return Product(
             summary: summary, description: text.description, meta: text.meta, sellerRole: text.role,
             contentsTitle: text.contentsTitle, contents: text.contents, affiliate: true,
-            investmentRisk: kind == .course, sellerURL: nil)
+            investmentRisk: false,
+            sellerURL: kind == .course ? URL(string: "https://example.com/kelas-budgeting") : nil)
     }
 }
 
 nonisolated struct PreviewMarketplaceService: MarketplaceService {
+    /** The samples of each kind, as the API answers a chip. */
+    private static let byKind = Dictionary(grouping: ProductSummary.samples, by: \.kind)
+
     func products(kind: ProductKind?) -> [ProductSummary] {
-        ProductSummary.samples.filter { kind == nil || $0.kind == kind }
+        kind.map { Self.byKind[$0] ?? [] } ?? ProductSummary.samples
     }
 
     func product(id: String) throws -> Product {

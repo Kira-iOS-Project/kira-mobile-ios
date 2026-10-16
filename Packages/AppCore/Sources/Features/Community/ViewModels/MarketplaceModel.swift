@@ -23,6 +23,15 @@ package final class MarketplaceModel {
         self.service = service
     }
 
+    /**
+     The screen appears: loads once, so coming back from Detail Produk keeps the list as it was. A
+     load cut off by leaving the screen left it loading, so it loads again.
+     */
+    package func appear() async {
+        guard case .loading = phase else { return }
+        await load()
+    }
+
     /** Loads the products of the chosen kind, or loads them again after a failure. */
     package func load() async {
         generation += 1
@@ -33,7 +42,9 @@ package final class MarketplaceModel {
             let products = try await service.products(kind: kind)
             next = products.isEmpty ? .empty : .loaded(products)
         } catch {
-            next = .failed(error as? AppProblem ?? AppProblem())
+            /** Leaving the screen cancels the load: it stays loading for the next appearance. */
+            guard !Task.isCancelled else { return }
+            next = .failed(AppProblem(error))
         }
         if current == generation { phase = next }
     }

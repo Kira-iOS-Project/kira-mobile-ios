@@ -45,7 +45,7 @@ struct MarketplaceScreen: View {
         .kiraScrollEdges()
         .background(.surface)
         .toolbar(.hidden, for: .navigationBar)
-        .task { await model.load() }
+        .task { await model.appear() }
     }
 
     /** Semua, Kursus, Konsultasi, E-Book, Event. */
@@ -65,20 +65,21 @@ struct MarketplaceScreen: View {
             KiraSectionTitle("marketplace.products", trailing: .note("marketplace.products.note"))
             switch model.phase {
             case .loading:
+                /** The shape of three cards: hidden from VoiceOver, which would read the sample text. */
                 ProductCardList(products: ProductSummary.samples.prefix(3)) { _ in }
                     .redacted(reason: .placeholder)
                     .disabled(true)
+                    .accessibilityHidden(true)
             case .loaded(let products):
                 ProductCardList(products: products[...]) { onOpen(.product(id: $0.id)) }
             case .empty:
-                Text("marketplace.empty")
+                Text(model.kind == nil ? "marketplace.empty.all" : "marketplace.empty")
                     .font(.subheadline).kiraLineHeight(21, size: 15).foregroundStyle(.inkMuted)
                     .frame(maxWidth: .infinity)
                     .padding(KiraSpacing.space5)
                     .kiraCard()
             case .failed(let problem):
                 LoadFailedView(problem: problem) { Task { await model.load() } }
-                    .kiraCard()
             }
         }
         .padding(.top, KiraSpacing.space1)

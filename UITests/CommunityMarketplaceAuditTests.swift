@@ -5,7 +5,7 @@
  */
 import XCTest
 
-nonisolated final class MarketplaceAuditTests: XCTestCase {
+nonisolated final class CommunityMarketplaceAuditTests: XCTestCase {
     @MainActor
     func testMarketplacePassesTheAudit() throws {
         try auditScreen("marketplace")
@@ -16,17 +16,45 @@ nonisolated final class MarketplaceAuditTests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments = ["-KiraScreen", "marketplace"]
         app.launch()
-        XCTAssertTrue(app.buttons["Kelas Budgeting Gaji Pertama oleh Raka Aditya, Rp149.000,00"].waitForExistence(timeout: 10))
-        XCTAssertTrue(app.buttons["Pendampingan Negosiasi Utang oleh Dewi Anggraini, gratis"].exists)
+        let course = app.buttons["Kelas Budgeting Gaji Pertama oleh Raka Aditya, Rp149.000,00"]
+        let consultation = app.buttons["Pendampingan Negosiasi Utang oleh Dewi Anggraini, gratis"]
+        XCTAssertTrue(course.waitForExistence(timeout: 10))
+        XCTAssertTrue(consultation.exists)
         app.buttons["Konsultasi"].tap()
-        XCTAssertTrue(app.buttons["Pendampingan Negosiasi Utang oleh Dewi Anggraini, gratis"].waitForExistence(timeout: 5))
-        XCTAssertFalse(app.buttons["Kelas Budgeting Gaji Pertama oleh Raka Aditya, Rp149.000,00"].exists)
+        XCTAssertTrue(consultation.waitForExistence(timeout: 5))
+        XCTAssertFalse(course.exists)
         XCTAssertFalse(app.staticTexts["Rp0,00"].exists)
     }
 
     @MainActor
+    func testMarketplaceEmptyPassesTheAudit() throws {
+        try auditScreen(
+            "marketplaceEmpty",
+            prepare: { app in
+                XCTAssertTrue(app.staticTexts["Belum ada produk di Etalase."].waitForExistence(timeout: 5))
+            })
+    }
+
+    @MainActor
+    func testMarketplaceFailedOffersRetryAndPassesTheAudit() throws {
+        try auditScreen(
+            "marketplaceFailed",
+            prepare: { app in
+                let message = app.staticTexts["Koneksi terputus. Cek internetmu, lalu coba lagi."]
+                XCTAssertTrue(message.waitForExistence(timeout: 5))
+                XCTAssertTrue(app.buttons["Coba Lagi"].exists)
+            })
+    }
+
+    @MainActor
     func testProductCoursePassesTheAudit() throws {
-        try auditScreen("product")
+        try auditScreen(
+            "product",
+            prepare: { app in
+                let seller = app.buttons["Buka Halaman Penjual"]
+                XCTAssertTrue(seller.waitForExistence(timeout: 5))
+                XCTAssertTrue(seller.isEnabled)
+            })
     }
 
     @MainActor
@@ -50,7 +78,7 @@ nonisolated final class MarketplaceAuditTests: XCTestCase {
             "productGone",
             prepare: { app in
                 XCTAssertTrue(app.staticTexts["Produk ini sudah tidak ada di Etalase."].waitForExistence(timeout: 5))
-                XCTAssertTrue(app.buttons["Coba Lagi"].exists)
+                XCTAssertFalse(app.buttons["Coba Lagi"].exists)
                 XCTAssertTrue(app.buttons["Kembali ke Etalase"].exists)
             })
     }
@@ -69,6 +97,8 @@ nonisolated final class MarketplaceAuditTests: XCTestCase {
                 if !send.isHittable { app.swipeUp() }
                 send.tap()
                 XCTAssertTrue(app.staticTexts["Aplikasi Email Belum Terbuka"].waitForExistence(timeout: 5))
+                XCTAssertTrue(app.buttons["Salin Alamat"].exists)
+                XCTAssertTrue(app.buttons["Tutup"].exists)
             },
             accepting: { issue in
                 /**

@@ -46,7 +46,8 @@ struct ProductSummaryCard: View {
 
     private var price: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text("product.price").font(.footnote.weight(.semibold)).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
+            Text("product.price").font(.footnote.weight(.semibold)).kiraLineHeight(18, size: 13)
+                .foregroundStyle(.inkMuted)
             if let price = summary.price, !summary.isFree {
                 KiraAmount(price.rupiah, size: .medium)
             } else {

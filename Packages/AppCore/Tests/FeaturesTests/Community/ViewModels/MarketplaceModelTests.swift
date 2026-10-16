@@ -34,21 +34,51 @@ struct MarketplaceModelTests {
         #expect(model.kind == nil && model.phase.value == all)
     }
 
-    @Test("shows the API's problem, and the generic one when the connection is lost; retry loads again")
+    @Test("shows the API's problem, and the connection message when no answer came")
     func failures() async {
-        var service = FakeMarketplaceService(lists: [nil: .failure(AppProblem(code: "INTERNAL_ERROR"))])
+        let service = FakeMarketplaceService(lists: [nil: .failure(AppProblem(code: "INTERNAL_ERROR"))])
         let model = MarketplaceModel(service: service)
         await model.load()
         guard case .failed(let problem) = model.phase else { return #expect(Bool(false)) }
         #expect(problem.code == "INTERNAL_ERROR")
         let offline = MarketplaceModel(service: OfflineMarketplaceService())
         await offline.load()
-        guard case .failed(let generic) = offline.phase else { return #expect(Bool(false)) }
-        #expect(generic == AppProblem())
-        service.lists[nil] = .success(all)
-        let retried = MarketplaceModel(service: service)
-        await retried.load()
-        #expect(retried.phase.value == all)
+        guard case .failed(let lost) = offline.phase else { return #expect(Bool(false)) }
+        #expect(lost.isConnectionLoss)
+    }
+
+    @Test("Coba Lagi loads the same screen again after a failure")
+    func retry() async {
+        let service = ScriptedMarketplaceService(lists: [.failure(AppProblem(code: "INTERNAL_ERROR")), .success(all)])
+        let model = MarketplaceModel(service: service)
+        await model.load()
+        guard case .failed = model.phase else { return #expect(Bool(false)) }
+        await model.load()
+        #expect(model.phase.value == all)
+    }
+
+    @Test("appearing again, back from a product, keeps the list without loading it again")
+    func appearsOnce() async {
+        let service = ScriptedMarketplaceService(lists: [.success(all)])
+        let model = MarketplaceModel(service: service)
+        await model.appear()
+        await model.appear()
+        #expect(model.phase.value == all)
+        #expect(await service.listCalls == 1)
+    }
+
+    @Test("a load cut off by leaving the screen stays loading, and loads on the next appearance")
+    func cancelled() async {
+        let gate = Gate()
+        let model = MarketplaceModel(service: FakeMarketplaceService(lists: [nil: .success(all)], held: (nil, gate)))
+        let leaving = Task { await model.appear() }
+        while !(await gate.hasWaiter) { await Task.yield() }
+        leaving.cancel()
+        await gate.open()
+        await leaving.value
+        guard case .loading = model.phase else { return #expect(Bool(false)) }
+        await model.appear()
+        #expect(model.phase.value == all)
     }
 
     @Test("an answer for a kind no longer chosen never replaces the newer list")

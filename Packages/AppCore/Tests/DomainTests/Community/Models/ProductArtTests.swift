@@ -17,7 +17,8 @@ struct ProductArtTests {
     }
 
     @Test("each kind has the boards' illustration", arguments: [
-        (ProductKind.course, ProductArt.book), (.consultation, .cardPaidOff), (.ebook, .piggyBank), (.event, .community),
+        (ProductKind.course, ProductArt.book), (.consultation, .cardPaidOff), (.ebook, .piggyBank),
+        (.event, .community),
     ])
     func defaults(kind: ProductKind, art: ProductArt) {
         let product = ProductSummary(

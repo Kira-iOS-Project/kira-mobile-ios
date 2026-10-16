@@ -50,8 +50,9 @@
         case history, transaction, conversation, statementImport, importReview
         /** CAT: Catat; the tests open its sheets from the composer (ChatLaunch says which account each needs). */
         case record, recordDrafts, recordManual, recordScan, recordQuota, recordVoice
-        /** KOM: Etalase, Detail Produk of each kind, a product that is gone, and Kirim Produk. */
-        case marketplace, product, productConsultation, productEbook, productEvent, productGone, submitProduct
+        /** KOM: Etalase (also empty and failed), Detail Produk of each kind, a product that is gone, Kirim Produk. */
+        case marketplace, marketplaceEmpty, marketplaceFailed, product, productConsultation, productEbook, productEvent
+        case productGone, submitProduct
 
         /** The area whose launcher builds the screen. */
         enum Area {
@@ -72,8 +73,8 @@
                 .plans
             case .history, .transaction, .conversation, .statementImport, .importReview: .record
             case .record, .recordDrafts, .recordManual, .recordScan, .recordQuota, .recordVoice: .chat
-            case .marketplace, .product, .productConsultation, .productEbook, .productEvent, .productGone,
-                .submitProduct:
+            case .marketplace, .marketplaceEmpty, .marketplaceFailed, .product, .productConsultation, .productEbook,
+                .productEvent, .productGone, .submitProduct:
                 .marketplace
             }
         }

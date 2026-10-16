@@ -11,7 +11,7 @@ import Observation
 package final class ProductModel {
     /** The product the screen was opened for. */
     package let id: String
-    /** The product, loading until the API answers. */
+    /** The product, loading until the API answers; empty when it is no longer in Etalase. */
     package private(set) var phase: ScreenPhase<Product> = .loading
 
     @ObservationIgnored private let service: any MarketplaceService
@@ -27,8 +27,11 @@ package final class ProductModel {
         phase = .loading
         do {
             phase = .loaded(try await service.product(id: id))
+        } catch let problem as AppProblem where Self.isGone(problem.knownCode) {
+            /** Gone for good: a retry cannot bring it back, so the screen offers the way back. */
+            phase = .empty
         } catch {
-            phase = .failed(error as? AppProblem ?? AppProblem())
+            phase = .failed(AppProblem(error))
         }
     }
 }

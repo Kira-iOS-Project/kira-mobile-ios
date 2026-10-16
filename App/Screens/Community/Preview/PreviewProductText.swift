@@ -11,7 +11,8 @@ nonisolated struct PreviewProductText {
         switch kind {
         case .course:
             Self(
-                description: "Belajar membagi gaji pertama ke pos yang jelas, tanpa rumus rumit.", meta: "6 modul video",
+                description: "Belajar membagi gaji pertama ke pos yang jelas, tanpa rumus rumit.",
+                meta: "6 modul video",
                 role: "Perencana keuangan bersertifikat · 4 kelas", contentsTitle: "Yang Kamu Pelajari",
                 contents: [
                     "Membagi gaji ke pos kebutuhan, tabungan, dan cicilan", "Menyusun budget per periode gajian",
@@ -19,7 +20,8 @@ nonisolated struct PreviewProductText {
                 ])
         case .consultation:
             Self(
-                description: "Didampingi menyusun permintaan keringanan ke pemberi pinjaman.", meta: "1 sesi · 45 menit",
+                description: "Didampingi menyusun permintaan keringanan ke pemberi pinjaman.",
+                meta: "1 sesi · 45 menit",
                 role: "Pendamping utang terverifikasi", contentsTitle: "Yang Kamu Dapatkan",
                 contents: [
                     "Membaca kondisi utangmu bersama-sama", "Menyusun naskah keringanan yang realistis",

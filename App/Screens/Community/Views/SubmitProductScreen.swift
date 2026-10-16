@@ -6,6 +6,7 @@
 import Domain
 import Features
 import SwiftUI
+import UIKit
 
 struct SubmitProductScreen: View {
     let onOpen: (AppRoute) -> Void
@@ -16,7 +17,10 @@ struct SubmitProductScreen: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: KiraSpacing.space4) {
-                KiraNavBar("submitProduct.title", subtitle: "submitProduct.subtitle", leading: .back("submitProduct.back") { dismiss() }) {
+                KiraNavBar(
+                    "submitProduct.title", subtitle: "submitProduct.subtitle",
+                    leading: .back("submitProduct.back") { dismiss() }
+                ) {
                     KiraHelpButton(.icon) { onOpen(.unavailable(.care)) }
                 }
                 header
@@ -42,7 +46,10 @@ struct SubmitProductScreen: View {
         .kiraDialog(isPresented: missingBinding) {
             KiraDialog(
                 "submitProduct.noMail.title", message: "submitProduct.noMail.body", art: .illustration(.letter),
-                primary: KiraButton("submitProduct.noMail.close") {})
+                primary: KiraButton("submitProduct.noMail.copy") {
+                    UIPasteboard.general.string = ProductSubmission.address
+                },
+                secondary: KiraButton("submitProduct.noMail.close", variant: .secondary) {})
         }
     }
 

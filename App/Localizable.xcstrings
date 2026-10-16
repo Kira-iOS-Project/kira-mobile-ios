@@ -8957,6 +8957,16 @@
         }
       }
     },
+    "marketplace.empty.all" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum ada produk di Etalase."
+          }
+        }
+      }
+    },
     "marketplace.free" : {
       "localizations" : {
         "id" : {
@@ -16064,6 +16074,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tutup"
+          }
+        }
+      }
+    },
+    "submitProduct.noMail.copy" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salin Alamat"
           }
         }
       }

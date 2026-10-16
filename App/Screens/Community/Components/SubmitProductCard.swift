@@ -14,7 +14,8 @@ struct SubmitProductCard: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("marketplace.submit.title").font(.callout.weight(.semibold)).kiraLineHeight(21, size: 16)
                         .foregroundStyle(.ink)
-                    Text("marketplace.submit.body").font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
+                    Text("marketplace.submit.body").font(.footnote).kiraLineHeight(18, size: 13)
+                        .foregroundStyle(.inkMuted)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 KiraIcon(.chevronRight, size: 20).foregroundStyle(.inkMuted)

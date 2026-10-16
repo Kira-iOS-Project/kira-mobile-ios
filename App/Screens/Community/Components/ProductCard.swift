@@ -11,13 +11,15 @@ struct ProductCard: View {
 
     var body: some View {
         Button(action: action) {
-            HStack(alignment: .top, spacing: 14) {
-                KiraIllustration(product.art.illustration, size: 64)
-                    .clipShape(RoundedRectangle(cornerRadius: KiraRadius.medium, style: .continuous))
-                    .hairline(cornerRadius: KiraRadius.medium)
-                details
+            /** The chevron centred on the card's height, as the board's align-self: center. */
+            HStack(spacing: 14) {
+                HStack(alignment: .top, spacing: 14) {
+                    KiraIllustration(product.art.illustration, size: 64)
+                        .clipShape(RoundedRectangle(cornerRadius: KiraRadius.medium, style: .continuous))
+                        .hairline(cornerRadius: KiraRadius.medium)
+                    details
+                }
                 KiraIcon(.chevronRight, size: 20).foregroundStyle(.inkMuted)
-                    .frame(maxHeight: .infinity)
             }
             .padding(KiraSpacing.space4)
             .kiraCard()
