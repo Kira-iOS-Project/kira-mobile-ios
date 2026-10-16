@@ -114,7 +114,7 @@ struct ImportReviewModelTests {
         await service.configure { $0.failing = [.commit] }
         let model = model()
         await model.save()
-        #expect(model.dialog == .failed && model.shownDialog == .failed)
+        #expect(model.dialog == .failed(FakeHistoryService.problem) && model.shownDialog == model.dialog)
         model.dialogClosed()
         #expect(!model.isFinished)
         for row in model.ready { model.toggle(row) }

@@ -1,3 +1,4 @@
+import APIClient
 import Domain
 import Foundation
 import Testing
@@ -61,19 +62,21 @@ struct ManualEntryModelTests {
         #expect(form.isClosed)
     }
 
-    @Test("a lost connection keeps the form; Coba Lagi resends the same clientId; a past day is noon WIB")
+    @Test("a lost connection closes the sheet and keeps the form; Coba Lagi reopens and resends the same clientId")
     func retry() async throws {
         let service = FakeRecordService()
         let form = model(service)
         form.amountText = "7500000"
         form.note = "Oktober"
         form.day = Fixtures.noon.addingTimeInterval(-2 * 86_400)
+        #expect(form.sheet.isOpen)
         await form.save()
-        #expect(form.failure == .connection)
+        #expect(!form.sheet.isOpen && form.sheet.failure?.isConnectionLoss == true)
         #expect(form.amountText == "7500000")
         service.manualResult = .success(
             ManualSaveResult(message: Fixtures.kira("k", kind: .manualSaved)))
-        await form.save()
+        await form.retry()
+        #expect(form.sheet.isOpen && form.showsSaved)
         #expect(service.manuals.map(\.clientId) == ["id-1", "id-1"])
         #expect(service.manuals.last?.name == "shopping")
         #expect(service.manuals.last?.note == "Oktober")
@@ -81,6 +84,6 @@ struct ManualEntryModelTests {
             [.day, .hour], from: try #require(service.manuals.last).occurredAt)
         #expect(parts.day == 13)
         #expect(parts.hour == 12)
-        #expect(form.failure == nil)
+        #expect(form.sheet.failure == nil)
     }
 }

@@ -1,7 +1,8 @@
 /**
  Buat Akun (ONB-05): Kuku, the promise "Simpan Catatanmu dengan Aman", one way to sign up (email,
  no password) and the links to the Terms and the Privacy Policy. "Daftar dengan Email" opens a
- sheet for the address, which the board leaves out; the code then goes there. No help button.
+ sheet for the address, which the board leaves out; the code then goes there. A request that fails
+ closes the sheet for the failure dialog, whose Coba Lagi opens it again on the same address. No help button.
  "Aku Sudah Punya Akun" is the outlined block button of Intro, not the board's quiet link (the
  owner's choice, 2026-10-16).
  */
@@ -28,7 +29,7 @@ struct SignUpView: View {
             Spacer(minLength: KiraSpacing.space4)
             KiraNotice(.privacy, message: "onboarding.signUp.notice")
             VStack(spacing: KiraSpacing.space2) {
-                KiraButton("onboarding.signUp.email") { flow.showsSignUpEmail = true }.block()
+                KiraButton("onboarding.signUp.email", action: flow.openSignUpEmail).block()
                 KiraButton("onboarding.intro.haveAccount", variant: .secondary) { flow.open(.signIn) }.block()
             }
             KiraLinkText("onboarding.signUp.terms") { onOpen(Self.route(for: $0)) }
@@ -37,10 +38,11 @@ struct SignUpView: View {
         }
         .onboardingBackdrop(leaf: .twig)
         .kiraSheet(
-            isPresented: $flow.showsSignUpEmail, title: "onboarding.signUp.sheet.title",
-            subtitle: "onboarding.signUp.sheet.subtitle"
+            $flow.signUpEmail, title: "onboarding.signUp.sheet.title", subtitle: "onboarding.signUp.sheet.subtitle",
+            failureTitle: "onboarding.signUp.sheet.failed", onRetry: { Task { await flow.retrySignUpEmail() } }
         ) {
-            SignUpEmailSheet(flow: flow)
+            EmailForm(model: flow.signUpEmailModel(), submitLabel: "onboarding.signUp.sheet.send")
+                .padding(.bottom, KiraSpacing.space2)
         }
     }
 
@@ -56,19 +58,5 @@ struct SignUpView: View {
     /** The Terms link is `kira://terms`; any other link in the sentence is the Privacy Policy. */
     private static func route(for url: URL) -> AppRoute {
         url.host() == "terms" ? .terms : .privacyPolicy
-    }
-}
-
-/** The email sheet of Buat Akun: the same field and hint as Masuk, then "Kirim Kode". */
-private struct SignUpEmailSheet: View {
-    @State private var model: EmailEntryModel
-
-    init(flow: OnboardingFlowModel) {
-        _model = State(initialValue: flow.makeEmailModel())
-    }
-
-    var body: some View {
-        EmailForm(model: model, submitLabel: "onboarding.signUp.sheet.send")
-            .padding(.bottom, KiraSpacing.space2)
     }
 }

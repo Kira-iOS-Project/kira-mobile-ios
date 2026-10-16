@@ -43,10 +43,10 @@ struct TransactionDetailModelTests {
         await model.save()
         #expect(await service.changes == [TransactionChange(name: "Grab ke Kantor Pagi")])
         #expect(model.phase.value?.transaction.name == "Grab ke Kantor Pagi")
-        #expect(model.editResult == .saved && model.shownEditResult == .saved)
+        #expect(model.showsSaved && model.editSheet.isOpen)
         #expect(changes.count == 1)
-        model.editResultClosed()
-        #expect(model.editor == nil && model.editResult == nil)
+        model.savedClosed()
+        #expect(model.editor == nil && !model.showsSaved && !model.editSheet.isOpen)
     }
 
     @Test("saves without anyone to notify")
@@ -56,7 +56,7 @@ struct TransactionDetailModelTests {
         model.startEditing()
         model.editor?.category = .food
         await model.save()
-        #expect(model.editResult == .saved)
+        #expect(model.showsSaved)
     }
 
     @Test("closes the sheet without a call when nothing changed, and refuses an invalid form")
@@ -73,20 +73,30 @@ struct TransactionDetailModelTests {
         #expect(await service.changes.isEmpty)
     }
 
-    @Test("keeps the fields after a failed save, and Coba Lagi sends them again")
+    @Test("a failed save closes the sheet for its dialog, keeps the fields, and Coba Lagi reopens and sends")
     func saveFailure() async {
         await service.configure { $0.failing = [.update] }
         let model = await loaded()
         model.startEditing()
         model.editor?.amountText = "20000"
         await model.save()
-        #expect(model.editResult == .failed)
-        model.editResultClosed()
-        #expect(model.editor?.amountText == "20.000")
+        #expect(!model.editSheet.isOpen && model.editSheet.failure == FakeHistoryService.problem)
+        #expect(model.editor?.amountText == "20.000" && !model.showsSaved)
         await service.configure { $0.failing = [] }
-        await model.save()
-        #expect(model.editResult == .saved)
+        await model.retryEdit()
+        #expect(model.editSheet.isOpen && model.editSheet.failure == nil && model.showsSaved)
         #expect(await service.changes.count == 2)
+    }
+
+    @Test("Tutup on the failed save's dialog drops the fields")
+    func saveFailureClosed() async {
+        await service.configure { $0.failing = [.update] }
+        let model = await loaded()
+        model.startEditing()
+        model.editor?.name = "Grab"
+        await model.save()
+        model.editSheet.dismissFailure()
+        #expect(model.editor == nil)
     }
 
     @Test("asks before deleting, deletes, and leaves for Riwayat once the dialog closes")
@@ -111,7 +121,7 @@ struct TransactionDetailModelTests {
         await service.configure { $0.failing = [.delete, .update] }
         let model = await loaded()
         await model.confirmDelete()
-        #expect(model.dialog == .failed)
+        #expect(model.dialog == .failed(FakeHistoryService.problem))
         model.startEditing()
         model.editor?.name = "Grab"
         await service.configure { $0.failing = [] }

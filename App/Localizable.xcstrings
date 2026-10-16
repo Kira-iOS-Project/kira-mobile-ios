@@ -351,12 +351,12 @@
         }
       }
     },
-    "account.delete.export.failed" : {
+    "account.delete.export.failedTitle" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Belum terkirim. Ketuk untuk coba lagi."
+            "value" : "Email Belum Terkirim"
           }
         }
       }
@@ -11147,6 +11147,16 @@
         }
       }
     },
+    "onboarding.signUp.sheet.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kode Belum Terkirim"
+          }
+        }
+      }
+    },
     "onboarding.signUp.sheet.send" : {
       "localizations" : {
         "id" : {
@@ -15279,6 +15289,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kira Score"
+          }
+        }
+      }
+    },
+    "sheet.failure.reference %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada yang tidak beres. Sebutkan kode ini saat menghubungi kami: %@"
+          }
+        }
+      }
+    },
+    "sheet.failure.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
           }
         }
       }

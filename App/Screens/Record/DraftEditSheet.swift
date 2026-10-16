@@ -42,7 +42,6 @@ struct DraftEditSheet: View {
                 "record.edit.savedTitle", message: "record.edit.savedBody", art: .illustration(.bloom),
                 primary: KiraButton("record.done") { model.finish() })
         }
-        .recordFailureDialog($model.failure)
     }
 
     /** Nama and Jumlah side by side, the category chips and the draft's date. */

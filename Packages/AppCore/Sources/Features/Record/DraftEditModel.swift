@@ -5,7 +5,8 @@ import Observation
 /**
  Ubah Transaksi (CAT-02): one draft of a card, edited in a sheet over the chat. Simpan sends the
  whole list with this draft changed and shows "Perubahan Tersimpan" (CAT-02c); Hapus dari Draf
- asks first (CAT-02b) and removes only this draft, nothing is saved to the records yet.
+ asks first (CAT-02b) and removes only this draft, nothing is saved to the records yet. A failure
+ of either closes the sheet for its dialog; Coba Lagi opens it again on the edits and repeats it.
  */
 @MainActor
 @Observable
@@ -34,8 +35,10 @@ package final class DraftEditModel: Identifiable {
     package var confirmsDelete = false
     /** The sheet has done its work and closes. */
     package internal(set) var isClosed = false
-    /** Why the last save or delete did not go through. */
-    package var failure: RecordFailure?
+    /** The sheet, open from the start, and the failure of its last change. */
+    package var sheet = SheetSubmission(isOpen: true)
+    /** Whether the change that ran last was Hapus dari Draf, which Coba Lagi repeats. */
+    package private(set) var lastWasDelete = false
     private var amountDigits: String
     private let message: ChatMessage
     private let item: DraftItem
@@ -86,6 +89,7 @@ package final class DraftEditModel: Identifiable {
         changed.amount = amount
         changed.category = category
         let drafts = (message.drafts ?? []).map { $0.id == item.id ? changed : $0 }
+        lastWasDelete = false
         if await update(drafts) { showsSaved = true }
     }
 
@@ -103,7 +107,14 @@ package final class DraftEditModel: Identifiable {
     /** "Hapus" on the confirmation: the list without this draft; an empty list discards the card. */
     package func delete() async {
         confirmsDelete = false
+        lastWasDelete = true
         if await update((message.drafts ?? []).filter { $0.id != item.id }) { isClosed = true }
+    }
+
+    /** Coba Lagi on the failure dialog: the sheet opens again and the failed change runs again. */
+    package func retry() async {
+        sheet.open()
+        if lastWasDelete { await delete() } else { await save() }
     }
 
     private func update(_ drafts: [DraftItem]) async -> Bool {
@@ -113,7 +124,7 @@ package final class DraftEditModel: Identifiable {
             onUpdated(try await service.updateDrafts(messageId: message.id, drafts: drafts))
             return true
         } catch {
-            failure = RecordFailure(error)
+            sheet.fail(error)
             return false
         }
     }

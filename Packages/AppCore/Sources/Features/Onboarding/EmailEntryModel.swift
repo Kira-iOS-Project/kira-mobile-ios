@@ -17,13 +17,19 @@ package final class EmailEntryModel {
     package private(set) var phase = SubmitPhase.editing
     private let service: any OnboardingService
     private let onSent: (String, CodeDelivery) -> Void
+    private let onFailed: ((any Error) -> Void)?
 
-    /** A model starting from `email`; `onSent` gets the normalized email and the delivery. */
+    /**
+     A model starting from `email`; `onSent` gets the normalized email and the delivery. With
+     `onFailed` (the Buat Akun sheet), a failed request goes there instead of the inline phase.
+     */
     package init(
-        email: String = "", service: any OnboardingService, onSent: @escaping (String, CodeDelivery) -> Void
+        email: String = "", service: any OnboardingService, onFailed: ((any Error) -> Void)? = nil,
+        onSent: @escaping (String, CodeDelivery) -> Void
     ) {
         self.email = email
         self.service = service
+        self.onFailed = onFailed
         self.onSent = onSent
     }
 
@@ -41,7 +47,12 @@ package final class EmailEntryModel {
             phase = .editing
             onSent(address, delivery)
         } catch {
-            phase = .failure(error)
+            if let onFailed {
+                phase = .editing
+                onFailed(error)
+            } else {
+                phase = .failure(error)
+            }
         }
     }
 }

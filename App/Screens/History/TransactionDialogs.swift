@@ -1,8 +1,10 @@
 /**
  The dialogs of Detail Transaksi, word for word from the boards: Hapus Transaksi Ini? (CAT-08b),
- Transaksi Dihapus (08c), Perubahan Tersimpan (08d) and Belum Berhasil Menyimpan (08e). Each
- button closes its dialog after its action; the model decides what closing means.
+ Transaksi Dihapus (08c), Perubahan Tersimpan (08d) and Belum Berhasil Menyimpan (08e) after a
+ failed delete; the failed edit's dialog is the sheet's (`kiraSheet(_:…)`). Each button closes its
+ dialog after its action; the model decides what closing means.
  */
+import APIClient
 import Domain
 import Features
 import SwiftUI
@@ -23,29 +25,26 @@ enum TransactionDialogs {
             KiraDialog(
                 "transaction.deleted.title", message: deletedMessage(model.phase.value?.transaction),
                 art: .illustration(.bloom), primary: KiraButton("transaction.deleted.back") {})
-        case .failed:
-            failure { Task { await model.confirmDelete() } }
-        }
-    }
-
-    /** The dialog over the edit sheet: the save's outcome. */
-    static func edit(_ model: TransactionDetailModel) -> KiraDialog {
-        switch model.shownEditResult {
-        case .saved:
+        case .failed(let problem):
             KiraDialog(
-                "transaction.saved.title", message: "transaction.saved.body", art: .illustration(.bloom),
-                primary: KiraButton("transaction.saved.done") {})
-        case .failed:
-            failure { Task { await model.save() } }
+                "transaction.failed.title", message: failedMessage(problem), art: .illustration(.umbrella),
+                primary: KiraButton("transaction.failed.retry") { Task { await model.confirmDelete() } },
+                secondary: KiraButton("transaction.failed.close", variant: .secondary) {})
         }
     }
 
-    /** "Belum Berhasil Menyimpan": Coba Lagi repeats the same action, Tutup keeps what was entered. */
-    private static func failure(retry: @escaping () -> Void) -> KiraDialog {
+    /** "Perubahan Tersimpan", over the edit sheet. */
+    static var saved: KiraDialog {
         KiraDialog(
-            "transaction.failed.title", message: "transaction.failed.body", art: .illustration(.umbrella),
-            primary: KiraButton("transaction.failed.retry", action: retry),
-            secondary: KiraButton("transaction.failed.close", variant: .secondary) {})
+            "transaction.saved.title", message: "transaction.saved.body", art: .illustration(.bloom),
+            primary: KiraButton("transaction.saved.done") {})
+    }
+
+    /** The failed delete's sentence: the board's for a lost connection, else the API's problem. */
+    private static func failedMessage(_ problem: AppProblem) -> LocalizedStringResource {
+        if problem.isConnectionLoss { return "transaction.failed.body" }
+        if problem.showsReference { return "sheet.failure.reference \(problem.reference)" }
+        return problem.message
     }
 
     private static func deleteMessage(_ transaction: Domain.Transaction?) -> LocalizedStringResource {
