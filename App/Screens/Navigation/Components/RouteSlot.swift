@@ -49,16 +49,3 @@ struct RouteSlot: View {
         }
     }
 }
-
-/**
- A Kira Peduli screen linked to before its own branch lands (PED-09, PED-10, PED-11): an
- A Kira Peduli screen Kira Peduli links to before its own branch lands (PED-07): an
- empty surface that keeps the navigation bar, so its back button returns to Kira Peduli.
- */
-private struct PendingCareSlot: View {
-    var body: some View {
-        Color.surface
-            .ignoresSafeArea()
-            .accessibilityHidden(true)
-    }
-}
