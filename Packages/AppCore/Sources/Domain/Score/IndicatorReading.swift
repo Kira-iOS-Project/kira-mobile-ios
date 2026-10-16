@@ -1,5 +1,3 @@
-import Foundation
-
 /**
  What the screens say about an indicator's measure, decided from the engine's numbers: the line
  under its value ("Cukup untuk bertahan sekitar satu bulan."), the target beside it in the list,
@@ -9,32 +7,31 @@ extension IndicatorMeasure {
     /** The line under the measured value in "Posisimu". */
     package var position: IndicatorPosition {
         switch self {
-        case .emergencyFund(let fund):
-            if fund.essential == 0 { return .missingBase }
-            if fund.hasReachedTarget { return .reachedGoal }
-            let months = NSDecimalNumber(decimal: fund.ratio.rounded(0, dividedBy: 1)).intValue
-            return fund.ratio < 1 ? .belowGoal : .monthsCovered(max(months, 1))
-        case .savingsRatio(let ratio):
-            if ratio.whole == 0 { return .missingBase }
-            if ratio.percent >= 20 { return .reachedGoal }
-            return ratio.percent >= 10 ? .betweenGoals : .belowGoal
-        case .instalmentRatio(let ratio), .debtToAsset(let ratio):
-            if ratio.part == 0 { return .nothingOwed }
-            if ratio.whole == 0 { return .missingBase }
-            return ratio.percent <= limitPercent ? .withinLimit : .overLimit
-        case .consumerDebt(let debt):
-            if debt.platforms == 0 { return .nothingOwed }
-            switch debt.payment {
+        case .emergencyFund(let ratio, _, let essential, let target, _):
+            if essential == 0 { return .missingBase }
+            if ratio >= Double(target) { return .reachedGoal }
+            return ratio < 1 ? .belowGoal : .monthsCovered(Int(ratio.rounded()))
+        case .savingsRatio(let percent, _, let income):
+            if income == 0 { return .missingBase }
+            if percent >= 20 { return .reachedGoal }
+            return percent >= 10 ? .betweenGoals : .belowGoal
+        case .instalmentRatio(let percent, let part, let whole), .debtToAsset(let percent, let part, let whole):
+            if part == 0 { return .nothingOwed }
+            if whole == 0 { return .missingBase }
+            return percent <= limitPercent ? .withinLimit : .overLimit
+        case .consumerDebt(let platforms, _, _):
+            if platforms == 0 { return .nothingOwed }
+            switch payment {
             case .onTime: return .withinLimit
             case .late: return .belowGoal
             case .overdue: return .overLimit
             }
-        case .protection(let cover):
-            return cover.activeCount == 2 ? .reachedGoal : .belowGoal
+        case .protectionCover:
+            return coverage == .both ? .reachedGoal : .belowGoal
         }
     }
 
-    /** The limit the bar of a less-is-better ratio runs to: 30% of income, 50% of assets. */
+    /** The limit of a less-is-better ratio: 30% of income, 50% of assets. */
     private var limitPercent: Int {
         if case .instalmentRatio = self { return 30 }
         return 50
@@ -43,31 +40,30 @@ extension IndicatorMeasure {
     /** What follows the value in the indicator list ("target 6×", "batas 30%"), if anything. */
     package var rowTarget: IndicatorTarget? {
         switch self {
-        case .emergencyFund(let fund):
-            return fund.hasReachedTarget ? nil : .multiple(fund.targetMultiple)
-        case .savingsRatio(let ratio):
-            if ratio.percent >= 20 { return nil }
-            return ratio.percent < 10 ? .minimumPercent(10) : .targetPercent(20)
-        case .instalmentRatio(let ratio), .debtToAsset(let ratio):
-            return ratio.part == 0 ? nil : .limitPercent(limitPercent)
-        case .consumerDebt, .protection:
+        case .emergencyFund(let ratio, _, _, let target, _):
+            return ratio >= Double(target) ? nil : .multiple(target)
+        case .savingsRatio(let percent, _, _):
+            if percent >= 20 { return nil }
+            return percent < 10 ? .minimumPercent(10) : .targetPercent(20)
+        case .instalmentRatio(_, let part, _), .debtToAsset(_, let part, _):
+            return part == 0 ? nil : .limitPercent(limitPercent)
+        case .consumerDebt, .protectionCover:
             return nil
         }
     }
 
     /** The bar of "Posisimu"; consumer debt and protection have none. */
     package var ribbon: IndicatorRibbon? {
+        guard let division else { return nil }
         switch self {
-        case .emergencyFund(let fund):
-            return IndicatorRibbon(value: fund.liquid, target: fund.targetAmount, isLimit: false, isMonthly: false)
-        case .savingsRatio(let ratio):
-            return IndicatorRibbon(value: ratio.part, target: ratio.share(20), isLimit: false, isMonthly: true)
-        case .instalmentRatio(let ratio):
-            return IndicatorRibbon(value: ratio.part, target: ratio.share(30), isLimit: true, isMonthly: true)
-        case .debtToAsset(let ratio):
-            return IndicatorRibbon(value: ratio.part, target: ratio.share(50), isLimit: true, isMonthly: false)
-        case .consumerDebt, .protection:
-            return nil
+        case .emergencyFund(_, _, _, _, let targetAmount):
+            return IndicatorRibbon(value: division.part, target: targetAmount, isLimit: false, isMonthly: false)
+        case .savingsRatio:
+            return IndicatorRibbon(value: division.part, target: division.share(20), isLimit: false, isMonthly: true)
+        case .instalmentRatio:
+            return IndicatorRibbon(value: division.part, target: division.share(30), isLimit: true, isMonthly: true)
+        default:
+            return IndicatorRibbon(value: division.part, target: division.share(50), isLimit: true, isMonthly: false)
         }
     }
 }
@@ -100,10 +96,10 @@ package enum IndicatorTarget: Equatable, Sendable {
     case limitPercent(Int)
 }
 
-/** The bar of "Posisimu": the measure against its target or its limit. */
+/** The bar of "Posisimu": the measure against its target or its limit, in whole rupiah. */
 package struct IndicatorRibbon: Equatable, Sendable {
-    package let value: Decimal
-    package let target: Decimal
+    package let value: Int
+    package let target: Int
     /** A limit to stay under, rather than a target to reach. */
     package let isLimit: Bool
     /** Counted per month. */

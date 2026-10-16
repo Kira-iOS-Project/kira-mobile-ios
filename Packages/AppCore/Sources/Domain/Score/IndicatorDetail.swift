@@ -1,14 +1,12 @@
-import Foundation
-
 /** One indicator in full: its ladder of points, the next rung and the bar's milestones. */
 package struct IndicatorDetail: Equatable, Sendable {
-    package let indicator: Indicator
+    package let indicator: ScoreIndicator
     /** The rungs from the most points to the fewest. */
     package let ladder: [LadderRung]
     package let nextRung: NextRung?
     package let milestones: [Milestone]
 
-    package init(indicator: Indicator, ladder: [LadderRung], nextRung: NextRung?, milestones: [Milestone]) {
+    package init(indicator: ScoreIndicator, ladder: [LadderRung], nextRung: NextRung?, milestones: [Milestone]) {
         self.indicator = indicator
         self.ladder = ladder
         self.nextRung = nextRung
@@ -39,17 +37,15 @@ package struct IndicatorDetail: Equatable, Sendable {
 
 /** One rung of an indicator's ladder: its points and the range of the measure it covers. */
 package struct LadderRung: Equatable, Sendable {
-    package let points: Score
+    package let points: Int
     /** The low end, a multiple for the emergency fund and a percentage elsewhere. */
-    package let lower: Decimal?
-    package let upper: Decimal?
-    package let amountLower: Decimal?
-    package let amountUpper: Decimal?
+    package let lower: Double?
+    package let upper: Double?
+    package let amountLower: Int?
+    package let amountUpper: Int?
     package let isCurrent: Bool
 
-    package init(
-        points: Score, lower: Decimal?, upper: Decimal?, amountLower: Decimal?, amountUpper: Decimal?, isCurrent: Bool
-    ) {
+    package init(points: Int, lower: Double?, upper: Double?, amountLower: Int?, amountUpper: Int?, isCurrent: Bool) {
         self.points = points
         self.lower = lower
         self.upper = upper
@@ -63,8 +59,8 @@ package struct LadderRung: Equatable, Sendable {
 package enum RungRange: Equatable, Sendable {
     /** Where a rung starts: a multiple or a percentage, and its amount. */
     package struct Bound: Equatable, Sendable {
-        package let multiple: Decimal
-        package let amount: Decimal
+        package let multiple: Double
+        package let amount: Int
     }
 
     /** The top rung where more is better. */
@@ -72,23 +68,23 @@ package enum RungRange: Equatable, Sendable {
     /** A middle rung where more is better. */
     case from(Bound)
     /** The rung below every other. */
-    case under(Decimal)
+    case under(Int)
     /** A middle rung where less is better. */
-    case between(Decimal, Decimal)
+    case between(Int, Int)
     /** The bottom rung where less is better. */
-    case over(Decimal)
+    case over(Int)
     /** A rung named by its rule, with no amounts. */
     case fixed
 }
 
 /** The next rung up and what it takes. */
 package struct NextRung: Equatable, Sendable {
-    package let points: Score
-    package let amountNeeded: Decimal?
+    package let points: Int
+    package let amountNeeded: Int?
     package let scoreFrom: Int
     package let scoreTo: Int
 
-    package init(points: Score, amountNeeded: Decimal?, scoreFrom: Int, scoreTo: Int) {
+    package init(points: Int, amountNeeded: Int?, scoreFrom: Int, scoreTo: Int) {
         self.points = points
         self.amountNeeded = amountNeeded
         self.scoreFrom = scoreFrom
@@ -101,10 +97,10 @@ package struct NextRung: Equatable, Sendable {
 
 /** A labelled point on the indicator's bar ("3×", "10%"). */
 package struct Milestone: Equatable, Sendable {
-    package let at: Decimal
+    package let at: Int
     package let label: String
 
-    package init(at: Decimal, label: String) {
+    package init(at: Int, label: String) {
         self.at = at
         self.label = label
     }

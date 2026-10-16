@@ -30,14 +30,12 @@ private struct BrokenScoreService: ScoreService {
 @Suite("ScoreModel and IndicatorModel")
 struct ScoreModelTests {
     private let report = ScoreReport(
-        score: Score(66), band: .coping, delta: 4, isInitial: false, computedAt: Date(timeIntervalSince1970: 0),
-        nextCheckOn: Date(timeIntervalSince1970: 0), groups: [], indicators: [], steps: [],
-        cappedByConsumerDebt: false)
+        score: 66, band: .coping, computedAt: Date(timeIntervalSince1970: 0), nextCheckOn: Date(timeIntervalSince1970: 0))
 
     private let detail = IndicatorDetail(
-        indicator: Indicator(
-            key: .protection, group: .protect, points: Score(100), band: .healthy,
-            measure: .protection(ProtectionMeasure(health: true, income: true))),
+        indicator: ScoreIndicator(
+            key: .protection, group: .protect, points: 100, band: .healthy,
+            measure: .protectionCover(health: true, income: true)),
         ladder: [], nextRung: nil, milestones: [])
 
     @Test("loads the score, or is empty before the health check")

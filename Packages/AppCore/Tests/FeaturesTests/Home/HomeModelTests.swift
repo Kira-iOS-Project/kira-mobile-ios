@@ -81,7 +81,8 @@ struct HomeModelTests {
 
     @Test("Nanti Saja puts the step away until the next load")
     func dismissStep() async {
-        let step = ScoreStep(kind: .payOffDebt, estimatedGain: 5, debtName: "Paylater A", remaining: 420_000)
+        var step = ScoreStep(kind: .payOffDebt, estimatedGain: 5)
+        step.debtName = "Paylater A"
         let model = HomeModel(service: FakeHomeService(.success(overview(step: step))))
         await model.load()
         #expect(model.visibleStep == step)

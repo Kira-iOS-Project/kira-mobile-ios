@@ -71,13 +71,13 @@ package struct PayPeriod: Equatable, Sendable {
 
 /** The money of the pay period: what came in, what went out, and what is left. */
 package struct PeriodMoney: Equatable, Sendable {
-    package let income: Decimal
-    package let spent: Decimal
-    package let remaining: Decimal
-    package let perDay: Decimal
+    package let income: Int
+    package let spent: Int
+    package let remaining: Int
+    package let perDay: Int
     package let spentPercent: Int
 
-    package init(income: Decimal, spent: Decimal, remaining: Decimal, perDay: Decimal, spentPercent: Int) {
+    package init(income: Int, spent: Int, remaining: Int, perDay: Int, spentPercent: Int) {
         self.income = income
         self.spent = spent
         self.remaining = remaining
@@ -99,12 +99,12 @@ package struct StepPosition: Equatable, Sendable {
 
 /** The Kira Score as Beranda shows it. */
 package struct ScoreSummary: Equatable, Sendable {
-    package let score: Score
+    package let score: Int
     package let band: ScoreBand
     package let delta: Int?
     package let isInitial: Bool
 
-    package init(score: Score, band: ScoreBand, delta: Int?, isInitial: Bool) {
+    package init(score: Int, band: ScoreBand, delta: Int?, isInitial: Bool) {
         self.score = score
         self.band = band
         self.delta = delta

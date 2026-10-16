@@ -1,5 +1,3 @@
-import Foundation
-
 /** BRD-02's "Langkah Awal": which first steps are done. Wallets do not exist yet, so they never count. */
 package struct FirstStepsChecklist: Equatable, Sendable {
     package let healthCheck: Bool
@@ -23,12 +21,12 @@ package struct FirstStepsChecklist: Equatable, Sendable {
 
 /** BRD-03's hero: how much of the debt is paid off. */
 package struct DebtPlanProgress: Equatable, Sendable {
-    package let paidOff: Decimal
-    package let total: Decimal
-    package let remaining: Decimal
+    package let paidOff: Int
+    package let total: Int
+    package let remaining: Int
     package let percent: Int
 
-    package init(paidOff: Decimal, total: Decimal, remaining: Decimal, percent: Int) {
+    package init(paidOff: Int, total: Int, remaining: Int, percent: Int) {
         self.paidOff = paidOff
         self.total = total
         self.remaining = remaining
@@ -48,10 +46,10 @@ package struct MicroTarget: Equatable, Sendable {
     }
 
     package let kind: Kind
-    package let current: Decimal
-    package let target: Decimal
+    package let current: Int
+    package let target: Int
 
-    package init(kind: Kind, current: Decimal, target: Decimal) {
+    package init(kind: Kind, current: Int, target: Int) {
         self.kind = kind
         self.current = current
         self.target = target

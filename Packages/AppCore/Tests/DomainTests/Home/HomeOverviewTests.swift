@@ -24,7 +24,7 @@ struct HomeOverviewTests {
             variant: .debtPlan, today: wibDay(2026, 10, 15), displayName: "Bima", hideBalances: true,
             period: PayPeriod(daysUntilPayday: 3), money: money, step: ScoreStep(kind: .seekRelief, estimatedGain: 0),
             stepPosition: StepPosition(index: 1, total: 3),
-            score: ScoreSummary(score: Score(28), band: .vulnerable, delta: nil, isInitial: true),
+            score: ScoreSummary(score: 28, band: .vulnerable, delta: nil, isInitial: true),
             weeklySummary: DayRange(from: wibDay(2026, 10, 8), to: wibDay(2026, 10, 14)),
             checklist: FirstStepsChecklist(healthCheck: true, firstTransaction: false, paydaySet: false),
             debtPlan: DebtPlanProgress(paidOff: 0, total: 1, remaining: 1, percent: 0),
@@ -70,7 +70,7 @@ struct HomeOverviewTests {
             TrendCase(band: .healthy, delta: nil, isInitial: false, trend: .none),
         ])
     func trend(_ row: TrendCase) {
-        let summary = ScoreSummary(score: Score(50), band: row.band, delta: row.delta, isInitial: row.isInitial)
+        let summary = ScoreSummary(score: 50, band: row.band, delta: row.delta, isInitial: row.isInitial)
         #expect(summary.trend == row.trend)
     }
 }

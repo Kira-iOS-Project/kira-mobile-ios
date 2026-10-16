@@ -1,50 +1,46 @@
-import Foundation
+/** The kinds of priority step the engine recommends: the backend's `STEP_KIND` values. */
+package enum ScoreStepKind: String, CaseIterable, Hashable, Sendable {
+    /** Lunasi the smallest consumer debt ("Utang terkecil dulu"). */
+    case payOffDebt = "pay_off_debt"
+    /** Ajukan Keringanan for an online loan (debt-free focus). */
+    case seekRelief = "seek_relief"
+    /** Dana Darurat to the next multiple. */
+    case buildEmergencyFund = "build_emergency_fund"
+    /** Add basic protection. */
+    case addProtection = "add_protection"
+    /** Save 10%, then 20%, of income. */
+    case raiseSavings = "raise_savings"
+    /** Bring instalments down. */
+    case lowerInstalments = "lower_instalments"
+    /** Bring debt down against assets. */
+    case lowerDebtToAsset = "lower_debt_to_asset"
+}
 
 /**
- One step the score engine proposes, in its order (smallest consumer debt, then the emergency fund,
- protection, savings, instalments, debt to assets). The numbers come from the engine; the app only
- writes the sentence around them.
+ A priority step with the points it is expected to add. The fields beyond `kind` and
+ `estimatedGain` are present when the kind uses them.
  */
-package struct ScoreStep: Equatable, Sendable {
-    /** What the step asks for: the backend's `STEP_KIND` values. */
-    package enum Kind: String, CaseIterable, Sendable {
-        case payOffDebt = "pay_off_debt"
-        case buildEmergencyFund = "build_emergency_fund"
-        case addProtection = "add_protection"
-        case raiseSavings = "raise_savings"
-        case lowerInstalments = "lower_instalments"
-        case lowerDebtToAsset = "lower_debt_to_asset"
-        /** For a debt-free focus with an online loan: ask that lender for relief. */
-        case seekRelief = "seek_relief"
-    }
-
-    package let kind: Kind
-    /** Kira Score points the step adds once done. */
+package struct ScoreStep: Hashable, Sendable {
+    /** What to do. */
+    package let kind: ScoreStepKind
+    /** Score points the step is expected to add. */
     package let estimatedGain: Int
-    package let debtName: String?
-    package let remaining: Decimal?
-    package let currentAmount: Decimal?
-    package let targetAmount: Decimal?
-    package let targetMultiple: Int?
-    package let targetPercent: Int?
+    /** The debt the step is about. */
+    package var debtName: String?
+    /** What is left of that debt. */
+    package var remaining: Int?
+    /** The amount today (fund, savings or instalments). */
+    package var currentAmount: Int?
+    /** The amount the step aims for. */
+    package var targetAmount: Int?
+    /** The emergency-fund multiple aimed for. */
+    package var targetMultiple: Int?
+    /** The percent aimed for. */
+    package var targetPercent: Int?
 
-    package init(
-        kind: Kind, estimatedGain: Int, debtName: String? = nil, remaining: Decimal? = nil,
-        currentAmount: Decimal? = nil, targetAmount: Decimal? = nil, targetMultiple: Int? = nil,
-        targetPercent: Int? = nil
-    ) {
+    /** A step of `kind` adding `estimatedGain` points; set the other fields as the kind needs. */
+    package init(kind: ScoreStepKind, estimatedGain: Int) {
         self.kind = kind
         self.estimatedGain = estimatedGain
-        self.debtName = debtName
-        self.remaining = remaining
-        self.currentAmount = currentAmount
-        self.targetAmount = targetAmount
-        self.targetMultiple = targetMultiple
-        self.targetPercent = targetPercent
-    }
-
-    /** How much more the step needs: the target less the current amount, never below zero. */
-    package var shortfall: Decimal {
-        max((targetAmount ?? 0) - (currentAmount ?? 0), 0)
     }
 }

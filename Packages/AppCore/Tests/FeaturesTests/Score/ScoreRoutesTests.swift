@@ -8,7 +8,7 @@ struct ScoreRoutesTests {
     @Test(
         "a step opens the indicator it improves, or the debt plan and the emergency mode not built yet",
         arguments: [
-            (ScoreStep.Kind.payOffDebt, AppRoute.unavailable(.debtPlan)),
+            (ScoreStepKind.payOffDebt, AppRoute.unavailable(.debtPlan)),
             (.seekRelief, .unavailable(.debtEmergency)),
             (.buildEmergencyFund, .indicator(.emergencyFund)),
             (.addProtection, .indicator(.protection)),
@@ -16,7 +16,7 @@ struct ScoreRoutesTests {
             (.lowerInstalments, .indicator(.instalmentRatio)),
             (.lowerDebtToAsset, .indicator(.debtToAsset)),
         ])
-    func step(kind: ScoreStep.Kind, route: AppRoute) {
+    func step(kind: ScoreStepKind, route: AppRoute) {
         #expect(ScoreStep(kind: kind, estimatedGain: 1).route == route)
     }
 
