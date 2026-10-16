@@ -24,7 +24,7 @@ struct ScholarshipScreen: View {
     var body: some View {
         PlansScreenFrame(leaf: .high) {
             KiraNavBar(title, subtitle: subtitle, leading: .back("scholarship.back") { dismiss() }) {
-                KiraHelpButton(.icon) { onOpen(.unavailable(.care)) }
+                KiraHelpButton(.icon) { onOpen(.care) }
             }
             content
         }

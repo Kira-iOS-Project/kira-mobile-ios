@@ -25,7 +25,7 @@ struct GroupDetailScreen: View {
                     "community.detail.title", subtitle: model.phase.value.map { $0.summary.category.title },
                     leading: .back("community.detail.back") { dismiss() }
                 ) {
-                    KiraHelpButton(.icon) { onOpen(.unavailable(.care)) }
+                    KiraHelpButton(.icon) { onOpen(.care) }
                 }
                 content
             }

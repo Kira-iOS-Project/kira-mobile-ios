@@ -28,6 +28,7 @@
             case .record: RecordLaunch(screen: screen)
             case .chat: ChatLaunch(screen: screen)
             case .community: CommunityLaunch(screen: screen)
+            case .care: CareLaunch(screen: screen)
             }
         }
     }
@@ -53,10 +54,15 @@
         /** KOM: Komunitas and Detail Grup; the tests open its sheets and dialogs from Detail Grup. */
         case community, communityGroup, communityRules, communityOutbound, communityLinkUnavailable
         case groupReport, groupReportOther, groupReportSent, groupReportFailed
+        /**
+         PED: Kira Peduli (and offline, on the shipped contacts), its sheet over the chat, the message to
+         Layanan Kira.
+         */
+        case care, careOffline, careHelp, trustedMessage
 
         /** The area whose launcher builds the screen. */
         enum Area {
-            case onboarding, home, account, plans, record, chat, community
+            case onboarding, home, account, plans, record, chat, community, care
         }
 
         var area: Area {
@@ -76,6 +82,7 @@
             case .community, .communityGroup, .communityRules, .communityOutbound, .communityLinkUnavailable,
                 .groupReport, .groupReportOther, .groupReportSent, .groupReportFailed:
                 .community
+            case .care, .careOffline, .careHelp, .trustedMessage: .care
             }
         }
     }

@@ -36,7 +36,7 @@ struct ScholarshipApplyView: View {
                     dismiss()
                 }
             ) {
-                KiraHelpButton(.icon) { onOpen(.unavailable(.care)) }
+                KiraHelpButton(.icon) { onOpen(.care) }
             }
             PlansHeader("scholarship.apply.headline", subtitle: "scholarship.apply.lede", lineHeight: 32)
             situations

@@ -128,7 +128,7 @@ struct RecordModelOpeningsTests {
         model.openHistory()
         model.openHelp()
         #expect(model.quotaSheet == nil)
-        #expect(routes == [.plans(yearly: false), .history, .unavailable(.care)])
+        #expect(routes == [.plans(yearly: false), .history, .care])
         let unset = RecordModel(dependencies: Fixtures.dependencies(service: FakeRecordService()))
         unset.openHistory()
     }

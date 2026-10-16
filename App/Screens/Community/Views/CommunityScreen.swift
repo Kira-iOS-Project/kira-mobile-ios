@@ -21,7 +21,7 @@ struct CommunityScreen: View {
         ScrollView {
             VStack(alignment: .leading, spacing: KiraSpacing.space4) {
                 KiraNavBar("community.title", isLarge: true) {
-                    KiraHelpButton(.pill) { onOpen(.unavailable(.care)) }
+                    KiraHelpButton(.pill) { onOpen(.care) }
                 }
                 .eyebrow("community.eyebrow")
                 CommunityIntro()
