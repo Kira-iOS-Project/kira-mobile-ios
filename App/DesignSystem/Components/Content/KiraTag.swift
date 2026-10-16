@@ -29,6 +29,7 @@ struct KiraTag: View {
     private let title: LocalizedStringResource
     private let tone: Tone
     private let icon: KiraIconName?
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     init(_ title: LocalizedStringResource, tone: Tone = .neutral, icon: KiraIconName? = nil) {
         self.title = title
@@ -44,9 +45,11 @@ struct KiraTag: View {
         .font(.caption.weight(.semibold))
         .foregroundStyle(colors.text)
         .padding(.horizontal, 9)
+        .padding(.vertical, typeSize.isAccessibilitySize ? 3 : 0)
         .frame(minHeight: 24)
         .kiraCard(colors.fill, border: colors.border, cornerRadius: KiraRadius.full)
-        .fixedSize()
+        /** One line (`white-space: nowrap`); at the accessibility sizes it wraps within its card. */
+        .fixedSize(horizontal: !typeSize.isAccessibilitySize, vertical: true)
     }
 
     private var colors: TagColors {

@@ -20,7 +20,7 @@ struct RecordOverlays: ViewModifier {
             }
             .kiraSheet(
                 isPresented: Self.presence($model.manualEntry), title: "record.manual.title",
-                subtitle: "record.manual.subtitle"
+                subtitle: "record.manual.subtitle", leaf: KiraLeaf(.twig, tone: .soft, size: 120, isFlipped: true)
             ) {
                 if let form = model.manualEntry { ManualEntrySheet(model: form) { model.manualEntry = nil } }
             }

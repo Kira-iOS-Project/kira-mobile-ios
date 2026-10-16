@@ -55,7 +55,7 @@ struct ScholarshipIntro: View {
         headerLayout {
             if typeSize.isAccessibilitySize { KiraIllustration(.care, size: 96) }
             VStack(alignment: .leading, spacing: KiraSpacing.space2) {
-                KiraTag("scholarship.tag", tone: .pandan, icon: .gift).keepsOfferedWidth()
+                KiraTag("scholarship.tag", tone: .pandan, icon: .gift)
                 PlansDisplayTitle("scholarship.headline", size: 28).balancedLines()
                 Text("scholarship.lede").font(.subheadline).kiraLineHeight(21, size: 15).foregroundStyle(.inkMuted)
             }

@@ -3,11 +3,12 @@
  above it under the `scrim`, so the person keeps their place: editing a draft, changing a category,
  picking a date, confirming an outside link, community rules, and the Kira Peduli help (the chat
  stays open behind it). It is the design system's sheet, not the system one: the `surface` panel
- from just under the status bar to the bottom edge, 30 pt top corners with a hairline along the
- top, a line-strong grabber at half opacity, and a header with the title centred and the close X
- on the right, styled like a secondary button. `top` starts the panel that far from the top of
- the screen instead (the artifact's `top`, 56 by default); at the accessibility sizes it rises
- to the default again so the content keeps its room. Swiping the grabber or the header down,
+ from 56 pt below the top of the screen (the artifact's default `top`, just inside the status
+ bar) to the bottom edge, 30 pt top corners with a hairline along the top, a line-strong grabber
+ at half opacity, and a header with the title centred and the close X on the right, styled like a
+ secondary button. `top` starts the panel lower (the artifact's `top`); at the accessibility
+ sizes it rises to 56 again so the content keeps its room. `leaf` lays a soft twig in the panel's
+ top right corner, behind the header (Catat Manual). Swiping the grabber or the header down,
  tapping the scrim, the X and VoiceOver's escape gesture close it. The main action goes at the
  bottom.
  */
@@ -16,15 +17,15 @@ import SwiftUI
 extension View {
     /**
      Presents `content` as a Kira sheet over the window while `isPresented` is true, its panel from
-     `top` points below the top of the screen when given, else from just under the status bar.
+     `top` points below the top of the screen (56 by default), with `leaf` in its top corner if any.
      */
     func kiraSheet<Content: View>(
         isPresented: Binding<Bool>, title: LocalizedStringResource, subtitle: LocalizedStringResource? = nil,
-        top: CGFloat? = nil, @ViewBuilder content: @escaping () -> Content
+        top: CGFloat? = nil, leaf: KiraLeaf? = nil, @ViewBuilder content: @escaping () -> Content
     ) -> some View {
         kiraCover(isPresented: isPresented) { onGone in
             SheetCover(
-                isPresented: isPresented, title: title, subtitle: subtitle, top: top, onGone: onGone,
+                isPresented: isPresented, title: title, subtitle: subtitle, top: top, leaf: leaf, onGone: onGone,
                 content: content)
         }
     }
@@ -36,6 +37,7 @@ private struct SheetCover<Content: View>: View {
     let title: LocalizedStringResource
     let subtitle: LocalizedStringResource?
     let top: CGFloat?
+    let leaf: KiraLeaf?
     let onGone: () -> Void
     @ViewBuilder let content: () -> Content
     @State private var isShown = false
@@ -46,20 +48,26 @@ private struct SheetCover<Content: View>: View {
 
     var body: some View {
         GeometryReader { proxy in
-            cover(height: panelHeight(in: proxy))
+            let height = panelHeight(in: proxy)
+            /** Taller than the container (56 pt is inside the status bar): it reaches up, not down. */
+            cover(height: height, reach: max(0, height - proxy.size.height))
         }
     }
 
     /**
-     The panel's height for `top`, measured like the artifact from the top of the screen, in a
-     container that starts under the status bar; nil fills the container.
+     The panel's height for its top, measured like the artifact from the top of the screen, in a
+     container that starts under the status bar: 56 pt by default reaches 3 pt into the 59 pt inset.
      */
-    private func panelHeight(in proxy: GeometryProxy) -> CGFloat? {
-        guard let top, !typeSize.isAccessibilitySize else { return nil }
-        return min(proxy.size.height, max(0, proxy.size.height + proxy.safeAreaInsets.top - top))
+    private func panelHeight(in proxy: GeometryProxy) -> CGFloat {
+        let screen = proxy.size.height + proxy.safeAreaInsets.top
+        let start = typeSize.isAccessibilitySize ? Self.defaultTop : (top ?? Self.defaultTop)
+        return min(screen, max(0, screen - start))
     }
 
-    private func cover(height: CGFloat?) -> some View {
+    /** `.k-sheet`'s default `top`. */
+    private static var defaultTop: CGFloat { 56 }
+
+    private func cover(height: CGFloat, reach: CGFloat) -> some View {
         ZStack(alignment: .bottom) {
             if isShown {
                 Color.scrim
@@ -69,6 +77,7 @@ private struct SheetCover<Content: View>: View {
                     .transition(.opacity)
                 panel
                     .frame(height: height)
+                    .padding(.top, -reach)
                     .offset(y: max(drag, 0))
                     .transition(reduceMotion ? .opacity : .move(edge: .bottom))
             }
@@ -95,8 +104,12 @@ private struct SheetCover<Content: View>: View {
         }
         .padding(.top, KiraSpacing.space2)
         .padding(.horizontal, KiraSpacing.space4)
-        .background {
-            shape.fill(.surface).ignoresSafeArea(edges: .bottom)
+        .background(alignment: .topTrailing) {
+            ZStack(alignment: .topTrailing) {
+                shape.fill(.surface).ignoresSafeArea(edges: .bottom)
+                /** The board's `top: 0; right: -30px`. */
+                leaf?.offset(x: 30).accessibilityHidden(true)
+            }
         }
         .overlay {
             /** `border-top: 1px solid hairline`: the stroke fades out down the rounded corners. */
@@ -118,7 +131,9 @@ private struct SheetCover<Content: View>: View {
                     .accessibilityAddTraits(.isHeader)
                     .accessibilityFocused($titleFocused)
                 if let subtitle {
+                    /** `.k-sheet__sub`'s `text-wrap: balance`. */
                     Text(subtitle).font(.caption).kiraLineHeight(16, size: 12).foregroundStyle(.inkMuted)
+                        .balancedLines()
                 }
             }
             .multilineTextAlignment(.center)

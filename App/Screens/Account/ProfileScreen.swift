@@ -105,7 +105,7 @@ private struct ProfileIdentity: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(profile.displayName).kiraFont(.title).accessibilityAddTraits(.isHeader)
                 Text(profile.email).font(.subheadline).kiraLineHeight(20, size: 15).foregroundStyle(.inkMuted)
-                KiraTag(profile.plan.id.title, tone: .pandan, icon: .sparkle).keepsOfferedWidth().padding(.top, 6)
+                KiraTag(profile.plan.id.title, tone: .pandan, icon: .sparkle).padding(.top, 6)
             }
         }
         .padding(EdgeInsets(top: 8, leading: 4, bottom: 4, trailing: 4))

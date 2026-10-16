@@ -28,12 +28,25 @@ private struct KiraButtonBody<Label: View>: View {
     @ScaledMetric(relativeTo: .headline) private var mediumHeight: CGFloat = 50
     @ScaledMetric(relativeTo: .subheadline) private var smallHeight: CGFloat = 44
 
+    /**
+     `.k-btn`'s `white-space: nowrap`: a label that does not fit its padding stays on one line and
+     runs into it, down to 8 pt a side ("Pilih Gambar Lain" in half a pair); only a label that does
+     not fit even then wraps (the accessibility sizes).
+     */
     var body: some View {
+        ViewThatFits(in: .horizontal) {
+            styled(padding: horizontalPadding).lineLimit(1)
+            styled(padding: KiraSpacing.space2).lineLimit(1)
+            styled(padding: horizontalPadding)
+        }
+    }
+
+    private func styled(padding: CGFloat) -> some View {
         label
             .font(size == .medium ? .headline : .subheadline.weight(.semibold))
             .kiraLineHeight(size == .medium ? 22 : 20, size: size == .medium ? 17 : 15)
             .foregroundStyle(foreground)
-            .padding(.horizontal, horizontalPadding)
+            .padding(.horizontal, padding)
             .frame(maxWidth: fillsWidth ? .infinity : nil, minHeight: size == .medium ? mediumHeight : smallHeight)
             .background(fill, in: Capsule())
             .capsuleHairline(border)

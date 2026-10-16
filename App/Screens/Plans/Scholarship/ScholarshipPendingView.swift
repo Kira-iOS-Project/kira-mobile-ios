@@ -49,9 +49,9 @@ struct ScholarshipPendingView: View {
     private var status: some View {
         VStack(alignment: .leading, spacing: 10) {
             if application.status == .waitlisted {
-                KiraTag("scholarship.status.waitlisted", tone: .turmeric, icon: .clock).keepsOfferedWidth()
+                KiraTag("scholarship.status.waitlisted", tone: .turmeric, icon: .clock)
             } else {
-                KiraTag("scholarship.status.inReview", tone: .turmeric, icon: .clock).keepsOfferedWidth()
+                KiraTag("scholarship.status.inReview", tone: .turmeric, icon: .clock)
             }
             PlansDisplayTitle("scholarship.status.headline", size: 22)
             Text("scholarship.status.decideBy \(application.decideBy.date, format: .plansFullDay)")
