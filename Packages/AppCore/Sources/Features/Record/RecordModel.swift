@@ -81,7 +81,7 @@ package final class RecordModel {
             usage = loadedProfile.usage
             phase = .loaded(loadedProfile)
         } catch {
-            phase = .failed(error as? AppProblem ?? AppProblem())
+            phase = .failed(AppProblem(error))
         }
     }
 

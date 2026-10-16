@@ -25,7 +25,7 @@ extension Operations.CreateBankImport.Output {
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .forbidden(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -40,7 +40,7 @@ extension Operations.CommitBankImport.Output {
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .notFound(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }

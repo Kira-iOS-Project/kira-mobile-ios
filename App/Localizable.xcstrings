@@ -12106,6 +12106,17 @@
         }
       }
     },
+    "problem.connection" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koneksi terputus. Cek internetmu, lalu coba lagi."
+          }
+        }
+      }
+    },
     "problem.EMAIL_DELIVERY_FAILED" : {
       "extractionState" : "manual",
       "localizations" : {

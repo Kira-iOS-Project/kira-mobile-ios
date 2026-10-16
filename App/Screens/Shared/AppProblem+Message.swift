@@ -13,6 +13,6 @@ extension AppProblem {
 
     /** The reference to quote to support, shown under the generic message only. */
     var unknownReference: String? {
-        knownCode == nil ? reference : nil
+        showsReference ? reference : nil
     }
 }

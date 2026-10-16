@@ -20,7 +20,7 @@ struct LoadFailedView: View {
             }
             Text(problem.message).kiraFont(.callout).foregroundStyle(.inkMuted)
                 .multilineTextAlignment(.center)
-            if problem.knownCode == nil {
+            if problem.showsReference {
                 /** The reference is data a person quotes to support, shown as is. */
                 Text(problem.reference).kiraFont(.caption).foregroundStyle(.inkMuted)
             }

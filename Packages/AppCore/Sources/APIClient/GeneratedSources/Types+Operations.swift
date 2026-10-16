@@ -143,10 +143,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/health/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/health/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetHealth.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetHealth.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//health/get(getHealth)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.GetHealth.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.GetHealth.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -425,10 +472,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/auth/code/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/auth/code/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.RequestSignInCode.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.RequestSignInCode.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/auth/code/post(requestSignInCode)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.RequestSignInCode.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.RequestSignInCode.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -707,10 +801,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/auth/verify/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/auth/verify/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.VerifySignInCode.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.VerifySignInCode.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/auth/verify/post(verifySignInCode)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.VerifySignInCode.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.VerifySignInCode.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -936,10 +1077,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/auth/refresh/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/auth/refresh/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.RefreshSession.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.RefreshSession.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/auth/refresh/post(refreshSession)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.RefreshSession.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.RefreshSession.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -1087,10 +1275,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/auth/sign-out/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/auth/sign-out/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SignOut.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SignOut.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/auth/sign-out/post(signOut)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.SignOut.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.SignOut.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case applicationProblemJson
@@ -1250,10 +1485,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/me/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/me/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetMe.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetMe.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/me/get(getMe)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.GetMe.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.GetMe.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -1479,10 +1761,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/me/PATCH/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/me/PATCH/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.UpdateMe.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.UpdateMe.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/me/patch(updateMe)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.UpdateMe.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.UpdateMe.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -1646,10 +1975,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/me/consents/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/me/consents/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetConsents.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetConsents.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/me/consents/get(getConsents)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.GetConsents.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.GetConsents.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -1877,10 +2253,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/me/consents/PUT/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/me/consents/PUT/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.UpdateConsents.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.UpdateConsents.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/me/consents/put(updateConsents)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.UpdateConsents.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.UpdateConsents.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -2044,10 +2467,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/me/export/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/me/export/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.ExportData.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.ExportData.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/me/export/get(exportData)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.ExportData.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.ExportData.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case csv
@@ -2246,10 +2716,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/me/export/email/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/me/export/email/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.EmailDataExport.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.EmailDataExport.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/me/export/email/post(emailDataExport)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.EmailDataExport.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.EmailDataExport.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case applicationProblemJson
@@ -2455,10 +2972,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/me/deletion/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/me/deletion/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.DeleteAccount.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.DeleteAccount.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/me/deletion/post(deleteAccount)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.DeleteAccount.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.DeleteAccount.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case applicationProblemJson
@@ -2731,10 +3295,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/health-check/PUT/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/health-check/PUT/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SaveHealthCheck.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SaveHealthCheck.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/health-check/put(saveHealthCheck)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.SaveHealthCheck.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.SaveHealthCheck.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -2951,10 +3562,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/score/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/score/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetScore.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetScore.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/score/get(getScore)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.GetScore.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.GetScore.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -3249,10 +3907,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/score/indicators/{key}/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/score/indicators/{key}/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetScoreIndicator.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetScoreIndicator.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/score/indicators/{key}/get(getScoreIndicator)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.GetScoreIndicator.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.GetScoreIndicator.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -3418,10 +4123,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/home/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/home/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetHome.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetHome.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/home/get(getHome)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.GetHome.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.GetHome.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -3585,10 +4337,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/plans/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/plans/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.ListPlans.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.ListPlans.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/plans/get(listPlans)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.ListPlans.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.ListPlans.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -3816,10 +4615,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/billing/checkout/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/billing/checkout/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.Checkout.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.Checkout.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/billing/checkout/post(checkout)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.Checkout.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.Checkout.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -4034,10 +4880,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/subscription/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/subscription/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetSubscription.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetSubscription.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/subscription/get(getSubscription)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.GetSubscription.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.GetSubscription.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -4303,10 +5196,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/subscription/cancel/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/subscription/cancel/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.CancelSubscription.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.CancelSubscription.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/subscription/cancel/post(cancelSubscription)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.CancelSubscription.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.CancelSubscription.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -4583,10 +5523,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/subscription/payment-method/PUT/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/subscription/payment-method/PUT/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.ChangePaymentMethod.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.ChangePaymentMethod.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/subscription/payment-method/put(changePaymentMethod)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.ChangePaymentMethod.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.ChangePaymentMethod.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -4750,10 +5737,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/billing/invoices/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/billing/invoices/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.ListInvoices.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.ListInvoices.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/billing/invoices/get(listInvoices)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.ListInvoices.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.ListInvoices.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -4979,10 +6013,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/billing/gifts/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/billing/gifts/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GiftMonths.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GiftMonths.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/billing/gifts/post(giftMonths)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.GiftMonths.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.GiftMonths.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -5146,10 +6227,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/scholarship/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/scholarship/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetScholarship.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetScholarship.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/scholarship/get(getScholarship)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.GetScholarship.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.GetScholarship.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -5428,10 +6556,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/scholarship/applications/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/scholarship/applications/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.ApplyForScholarship.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.ApplyForScholarship.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/scholarship/applications/post(applyForScholarship)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.ApplyForScholarship.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.ApplyForScholarship.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -5630,10 +6805,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/scholarship/applications/current/DELETE/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/scholarship/applications/current/DELETE/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.WithdrawScholarshipApplication.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.WithdrawScholarshipApplication.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/scholarship/applications/current/delete(withdrawScholarshipApplication)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.WithdrawScholarshipApplication.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.WithdrawScholarshipApplication.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case applicationProblemJson
@@ -5793,10 +7015,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/usage/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/usage/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetUsage.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetUsage.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/usage/get(getUsage)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.GetUsage.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.GetUsage.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -6094,10 +7363,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/chat/messages/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/chat/messages/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.ListChatMessages.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.ListChatMessages.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/chat/messages/get(listChatMessages)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.ListChatMessages.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.ListChatMessages.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -6376,10 +7692,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/chat/messages/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/chat/messages/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SendChatMessage.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SendChatMessage.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/chat/messages/post(sendChatMessage)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.SendChatMessage.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.SendChatMessage.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -6709,10 +8072,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/chat/receipts/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/chat/receipts/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SendReceipt.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SendReceipt.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/chat/receipts/post(sendReceipt)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.SendReceipt.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.SendReceipt.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -7058,10 +8468,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/chat/messages/{id}/drafts/PUT/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/chat/messages/{id}/drafts/PUT/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.UpdateChatDrafts.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.UpdateChatDrafts.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/chat/messages/{id}/drafts/put(updateChatDrafts)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.UpdateChatDrafts.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.UpdateChatDrafts.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -7398,10 +8855,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/chat/messages/{id}/commit/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/chat/messages/{id}/commit/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.CommitChatDrafts.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.CommitChatDrafts.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/chat/messages/{id}/commit/post(commitChatDrafts)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.CommitChatDrafts.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.CommitChatDrafts.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -7666,10 +9170,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/transactions/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/transactions/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.ListTransactions.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.ListTransactions.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/transactions/get(listTransactions)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.ListTransactions.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.ListTransactions.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -7897,10 +9448,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/transactions/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/transactions/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.CreateTransaction.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.CreateTransaction.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/transactions/post(createTransaction)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.CreateTransaction.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.CreateTransaction.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -8140,10 +9738,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/transactions/summary/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/transactions/summary/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SummarizeTransactions.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SummarizeTransactions.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/transactions/summary/get(summarizeTransactions)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.SummarizeTransactions.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.SummarizeTransactions.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -8480,10 +10125,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/transactions/batches/{batchId}/DELETE/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/transactions/batches/{batchId}/DELETE/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.UndoTransactionBatch.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.UndoTransactionBatch.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/transactions/batches/{batchId}/delete(undoTransactionBatch)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.UndoTransactionBatch.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.UndoTransactionBatch.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -8767,10 +10459,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/transactions/{id}/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/transactions/{id}/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetTransaction.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetTransaction.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/transactions/{id}/get(getTransaction)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.GetTransaction.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.GetTransaction.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -9063,10 +10802,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/transactions/{id}/PATCH/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/transactions/{id}/PATCH/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.UpdateTransaction.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.UpdateTransaction.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/transactions/{id}/patch(updateTransaction)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.UpdateTransaction.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.UpdateTransaction.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -9334,10 +11120,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/transactions/{id}/DELETE/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/transactions/{id}/DELETE/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.DeleteTransaction.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.DeleteTransaction.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/transactions/{id}/delete(deleteTransaction)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.DeleteTransaction.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.DeleteTransaction.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case applicationProblemJson
@@ -9661,10 +11494,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/imports/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/imports/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.CreateBankImport.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.CreateBankImport.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/imports/post(createBankImport)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.CreateBankImport.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.CreateBankImport.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -10010,10 +11890,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/imports/{id}/commit/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/imports/{id}/commit/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.CommitBankImport.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.CommitBankImport.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/imports/{id}/commit/post(commitBankImport)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.CommitBankImport.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.CommitBankImport.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json

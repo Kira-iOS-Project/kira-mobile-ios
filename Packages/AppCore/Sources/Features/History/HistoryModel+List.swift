@@ -63,7 +63,7 @@ extension HistoryModel {
     }
 }
 
-/** The API's problem behind `error`, or a problem without a code for anything else. */
+/** The API's problem behind `error`, connection loss, or a problem without a code. */
 func historyProblem(_ error: any Error) -> AppProblem {
-    (error as? AppProblem) ?? AppProblem()
+    AppProblem(error)
 }

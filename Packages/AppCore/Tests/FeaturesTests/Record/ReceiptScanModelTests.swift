@@ -46,8 +46,8 @@ struct ReceiptScanModelTests {
     @Test("a camera that cannot start or shoot shows its problem")
     func cameraProblems() async {
         let camera = FakeCamera()
-        camera.startError = OfflineError()
-        camera.photo = .failure(OfflineError())
+        camera.startError = offlineError()
+        camera.photo = .failure(offlineError())
         let scan = model(FakeRecordService(), camera: camera)
         await scan.appeared()
         #expect(scan.problem == .camera)
@@ -89,7 +89,7 @@ struct ReceiptScanModelTests {
         #expect(scan.stage == .camera)
         var manual = false
         let failing = model(
-            FakeRecordService(), reader: FakeReceiptReader(result: .failure(OfflineError())),
+            FakeRecordService(), reader: FakeReceiptReader(result: .failure(offlineError())),
             onManual: { manual = true })
         failing.picked(Data([1]), fileName: nil)
         await failing.read()

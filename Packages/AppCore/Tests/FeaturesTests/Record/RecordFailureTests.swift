@@ -9,6 +9,6 @@ struct RecordFailureTests {
     func kinds() {
         let problem = AppProblem(code: "VALIDATION_FAILED")
         #expect(RecordFailure(problem) == .problem(problem))
-        #expect(RecordFailure(OfflineError()) == .connection)
+        #expect(RecordFailure(offlineError()) == .connection)
     }
 }
