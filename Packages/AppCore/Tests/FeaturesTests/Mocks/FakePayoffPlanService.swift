@@ -39,4 +39,4 @@ actor FakePayoffPlanService: PayoffPlanService {
 }
 
 /** An error that is not an `AppProblem`, as a transport that fails outside the API would throw. */
-struct PayoffPlanOtherError: Error {}
+struct PayoffOtherError: Error {}

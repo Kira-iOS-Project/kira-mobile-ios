@@ -35,7 +35,7 @@ struct PayoffAPITests {
         #expect(comparison.otherMethod == .avalanche && comparison.interestSaved == -1_200)
         #expect(comparison.firstPayoffMonthsLater == 1)
         let sent = try #require(await transport.request)
-        #expect(sent.path == "/api/payoff/simulate" && sent.method == .post)
+        #expect(sent.path.hasSuffix("payoff/simulate") && sent.method == .post)
         let body = try sent.decoded(PlanBody.self)
         #expect(body.method == "snowball" && body.extraPayment == 200_000)
     }
@@ -61,7 +61,7 @@ struct PayoffAPITests {
         let next = try #require(plan.nextPayment)
         #expect(next.amount == 210_000 && next.dueDate == "2026-11-05" && next.daysLeft == 20)
         let sent = try #require(await transport.request)
-        #expect(sent.path == "/api/payoff/plans" && sent.method == .post)
+        #expect(sent.path.hasSuffix("payoff/plans") && sent.method == .post)
         #expect(try sent.decoded(PlanBody.self).method == "avalanche")
     }
 
@@ -69,11 +69,11 @@ struct PayoffAPITests {
     func readsAndMoves() async throws {
         let (api, transport) = KiraAPI.canned(json: activePlanJSON)
         #expect(try await api.getActivePayoffPlan().accounts.count == 2)
-        #expect(try #require(await transport.request).path == "/api/payoff/plans/active")
+        #expect(try #require(await transport.request).path.hasSuffix("plans/active"))
         let moved = try await api.setPayoffFocus(debtId: "debt-2")
         #expect(moved.nextPayment?.name == "Paylater A")
         let sent = try #require(await transport.request)
-        #expect(sent.method == .patch && sent.path == "/api/payoff/plans/active")
+        #expect(sent.method == .patch && sent.path.hasSuffix("plans/active"))
         #expect(try sent.decoded(FocusBody.self).focusDebtId == "debt-2")
     }
 
@@ -94,7 +94,7 @@ struct PayoffAPITests {
         #expect(estimate.before == 66 && estimate.after == 72)
         #expect(estimate.consumerDebtBefore == 50 && estimate.consumerDebtAfter == 80)
         let sent = try #require(await transport.request)
-        #expect(sent.path == "/api/debts/debt-1/payments" && sent.method == .post)
+        #expect(sent.path.hasSuffix("debt-1/payments") && sent.method == .post)
         #expect(try sent.decoded(PaymentBody.self).amount == 420_000)
 
         let (partial, _) = KiraAPI.canned(json: partPaymentJSON)

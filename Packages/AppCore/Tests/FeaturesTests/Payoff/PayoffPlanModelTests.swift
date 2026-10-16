@@ -34,7 +34,7 @@ struct PayoffPlanModelTests {
         await model.load()
         guard case .failed(let problem) = model.phase else { return #expect(Bool(false)) }
         #expect(problem.code == "INTERNAL_ERROR")
-        await service.answersActive(.failure(PayoffPlanOtherError()))
+        await service.answersActive(.failure(PayoffOtherError()))
         await model.load()
         guard case .failed(let generic) = model.phase else { return #expect(Bool(false)) }
         #expect(generic.code == nil)
@@ -58,7 +58,7 @@ struct PayoffPlanModelTests {
         await service.answersFocus(.failure(AppProblem(code: "PAYOFF_DEBT_NOT_FOUND")))
         await model.focus(on: "gone")
         #expect(model.phase.value == PayoffPlanFixtures.plan() && model.actionProblem?.knownCode == .payoffDebtNotFound)
-        await service.answersFocus(.failure(PayoffPlanOtherError()))
+        await service.answersFocus(.failure(PayoffOtherError()))
         await model.focus(on: "gone")
         #expect(model.actionProblem != nil && model.actionProblem?.code == nil)
         await service.answersFocus(.success(PayoffPlanFixtures.plan(focusIsFirst: false)))
@@ -102,7 +102,7 @@ struct PayoffPlanModelTests {
         await model.markPaid()
         #expect(model.actionProblem?.knownCode == .payoffPaymentTooHigh && model.celebration == nil)
         #expect(await service.calls == ["active", "pay a-1 210000"])
-        await service.answersPayment(.failure(PayoffPlanOtherError()))
+        await service.answersPayment(.failure(PayoffOtherError()))
         await model.markPaid()
         #expect(model.actionProblem != nil && model.actionProblem?.code == nil)
     }
