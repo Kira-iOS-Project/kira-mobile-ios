@@ -1,6 +1,6 @@
 /**
  The PIN sheet of Keamanan (AKN-03), in the pattern of canvas KunciAplikasi: six masked boxes
- revealed only while "Tahan untuk Lihat" is held, the reminder not to use a bank PIN when a new
+ revealed only while the eye is held, the reminder not to use a bank PIN when a new
  PIN is made, and Batal beside the step's action. It checks the PIN before the lock goes off or
  the PIN changes; the digits stay on the device.
  */

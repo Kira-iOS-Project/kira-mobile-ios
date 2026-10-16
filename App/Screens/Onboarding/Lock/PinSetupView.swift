@@ -1,6 +1,6 @@
 /**
  Kunci Kira (ONB-14, ONB-14b): a six-digit PIN in boxes like the email code, on the number pad,
- dots unless "Tahan untuk Lihat" is held; a repeated digit is refused. "Sembunyikan Saldo" masks
+ dots unless the eye is held; a repeated digit is refused. "Sembunyikan Saldo" masks
  every amount when Kira opens. "Buat PIN" keeps the PIN on this device and says so in a dialog;
  "Nanti Saja" goes on without a lock (Keamanan offers it again).
  */

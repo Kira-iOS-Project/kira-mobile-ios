@@ -277,7 +277,7 @@ checks carry the selected trait, the switch carries the toggle trait and says "A
 motion stops under Reduce Motion. A checkbox carries the toggle trait and says "Dicentang" or
 "Belum dicentang". The six code boxes are one text field to VoiceOver, named by its label, that
 says the digits on screen and how many are in ("3 8, 2 dari 6 angka terisi"); a masked PIN gives
-the count alone. "Tahan untuk Lihat" keeps its words as its name, and VoiceOver and Voice Control,
+the count alone. The PIN's eye shows no words; "Tahan untuk Lihat" is its name, and VoiceOver and Voice Control,
 which cannot hold, turn the digits on and off with its action. A presented dialog
 covers the whole window, so nothing behind it can be reached; VoiceOver starts on its title, and
 the escape gesture runs the secondary action (or the only one) and closes it. `UITests/DesignSystemGalleryAuditTests.swift` runs Apple's
