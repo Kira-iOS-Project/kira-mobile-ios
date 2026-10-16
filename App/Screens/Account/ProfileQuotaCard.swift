@@ -54,7 +54,8 @@ struct ProfileQuotaCard: View {
             }
             .font(.footnote.weight(.medium)).kiraLineHeight(18, size: 13)
             .foregroundStyle(.inkMuted)
-            Spacer(minLength: 0)
+            /** Fills the row instead of a Spacer, so only the board's one 12 pt gap stays. */
+            .frame(maxWidth: .infinity, alignment: .leading)
             /** At its own width, so the reset day keeps the rest on one line as on the board. */
             KiraButton("account.profile.quota.plans", variant: .secondary, size: .small, action: onPlans)
                 .fixedSize()

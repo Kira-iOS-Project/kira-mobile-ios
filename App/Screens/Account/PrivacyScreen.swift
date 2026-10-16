@@ -77,7 +77,9 @@ struct PrivacyScreen: View {
         ) { _ in
             model.finishExport()
         }
-        .kiraSheet(isPresented: $deletes, title: "account.delete.title", subtitle: "account.delete.subtitle") {
+        .kiraSheet(
+            isPresented: $deletes, title: "account.delete.title", subtitle: "account.delete.subtitle", top: 124
+        ) {
             DeleteAccountSheet(
                 service: service, settings: settings, email: model.phase.value?.email ?? "",
                 onDeleted: onSignedOut, onClose: { deletes = false })
