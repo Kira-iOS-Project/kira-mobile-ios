@@ -90,6 +90,8 @@ package enum AppRoute: Hashable, Sendable {
     case care
     /** PED-07: Mode Darurat Utang. */
     case debtEmergency
+    /** PED-09: Naskah Pengajuan Keringanan. */
+    case negotiationScript
     /** PED-10: Rencana Keselamatanku. */
     case safetyPlan
     /** PED-04: Kirim Pesan ke Layanan Kira. */
