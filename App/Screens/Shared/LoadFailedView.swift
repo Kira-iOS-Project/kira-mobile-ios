@@ -1,6 +1,7 @@
 /**
- A screen that could not load (Beranda, Kira Score, Riwayat and the screens under it): what went wrong in the API's words from the catalog (with the
- reference for a code this app does not know, AGENTS.md Rule 12) and "Coba Lagi".
+ A screen that could not load (Beranda, Kira Score, Riwayat and the screens under it): what went
+ wrong in the API's words from the catalog, with the reference for a code this app does not know
+ (AGENTS.md Rule 12), and "Coba Lagi". The title is optional; History's screens have none.
  */
 import APIClient
 import SwiftUI

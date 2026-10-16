@@ -103,17 +103,6 @@ private struct ProfileIdentity: View {
     }
 }
 
-extension PlanID {
-    /** The plan's name: Kira Gratis, Kira Muda, Kira Plus. */
-    var title: LocalizedStringResource {
-        switch self {
-        case .free: "account.plan.free"
-        case .young: "account.plan.young"
-        case .plus: "account.plan.plus"
-        }
-    }
-}
-
 extension Bundle {
     /** The app's version from the build ("1.0.0"), shown on Profil and Tentang Kira. */
     var shortVersion: String {

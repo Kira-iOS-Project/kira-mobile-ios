@@ -761,36 +761,6 @@
         }
       }
     },
-    "account.plan.free" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kira Gratis"
-          }
-        }
-      }
-    },
-    "account.plan.plus" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kira Plus"
-          }
-        }
-      }
-    },
-    "account.plan.young" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kira Muda"
-          }
-        }
-      }
-    },
     "account.privacy.ai" : {
       "localizations" : {
         "id" : {
@@ -5637,16 +5607,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Periode %@"
-          }
-        }
-      }
-    },
-    "history.retry" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Coba Lagi"
           }
         }
       }

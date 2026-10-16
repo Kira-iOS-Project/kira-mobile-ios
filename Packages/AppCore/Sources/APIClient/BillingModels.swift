@@ -126,6 +126,15 @@ package enum GiftLengthDTO: Int, CaseIterable, Sendable {
     case threeMonths = 3
     /** Six months. */
     case sixMonths = 6
+
+    /** The spec's `GiftRequest.months`: an integer enum of the same three lengths. */
+    var payload: Components.Schemas.GiftRequest.MonthsPayload {
+        switch self {
+        case .oneMonth: ._1
+        case .threeMonths: ._3
+        case .sixMonths: ._6
+        }
+    }
 }
 
 /** A gift bought (simulated). */

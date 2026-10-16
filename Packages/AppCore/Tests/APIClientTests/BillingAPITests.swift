@@ -81,13 +81,15 @@ struct BillingAPITests {
         #expect(invoice.createdAt == Date(timeIntervalSince1970: 1_792_126_800))
     }
 
-    @Test("gifts three months of Plus")
-    func gifts() async throws {
-        let (api, transport) = KiraAPI.canned(status: 201, json: #"{"id":"g-1","months":3,"amount":87000}"#)
-        let gift = try await api.giftMonths(.threeMonths, paymentMethod: .qris)
-        #expect(gift == GiftDTO(id: "g-1", months: 3, amount: 87_000))
+    @Test("gifts one, three or six months of Plus, sent as the spec's integer", arguments: GiftLengthDTO.allCases)
+    func gifts(length: GiftLengthDTO) async throws {
+        let months = length.rawValue
+        let (api, transport) = KiraAPI.canned(
+            status: 201, json: #"{"id":"g-1","months":\#(months),"amount":\#(29_000 * months)}"#)
+        let gift = try await api.giftMonths(length, paymentMethod: .qris)
+        #expect(gift == GiftDTO(id: "g-1", months: months, amount: 29_000 * months))
         let body = try #require(await transport.request).decoded(GiftBody.self)
-        #expect(body.months == 3 && body.paymentMethod == "qris")
+        #expect(body.months == months && body.paymentMethod == "qris")
     }
 
     @Test("throws every problem the billing routes answer")

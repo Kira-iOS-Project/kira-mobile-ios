@@ -46,7 +46,7 @@ extension KiraAPI {
     /** Gifts months of Kira Plus to Beasiswa Kira, simulated (`POST /api/billing/gifts`). */
     package func giftMonths(_ length: GiftLengthDTO, paymentMethod: PaymentMethodDTO) async throws -> GiftDTO {
         let body = Components.Schemas.GiftRequest(
-            months: Double(length.rawValue), paymentMethod: try bridged(paymentMethod))
+            months: length.payload, paymentMethod: try bridged(paymentMethod))
         return try await client.giftMonths(body: .json(body)).gift()
     }
 }

@@ -62,6 +62,11 @@ extension DayRange {
 
     /** The last day in full: "14 Oktober 2026". */
     var lastEnd: String { last.date.formatted(.kiraDate) }
+
+    /** The range written with `style`, as Foundation's own values are: `range.formatted(.kiraDayRange)`. */
+    func formatted(_ style: DayRangeFormatStyle) -> String {
+        style.format(self)
+    }
 }
 
 /** A range written whole, as Riwayat and Impor Mutasi do: "1–30 September 2026", "25 September – 24 Oktober 2026". */
