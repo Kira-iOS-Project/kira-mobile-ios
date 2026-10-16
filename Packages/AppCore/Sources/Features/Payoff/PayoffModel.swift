@@ -23,6 +23,11 @@ package final class PayoffModel {
     /** The problem of the last recomputation, which leaves the plan on screen as it was; nil when it worked. */
     package private(set) var recalculationProblem: AppProblem?
 
+    /** True while Jadikan Rencanaku is in flight. */
+    package private(set) var isMakingPlan = false
+    /** The problem of the last Jadikan Rencanaku; nil when it worked or has not run. */
+    package private(set) var makePlanProblem: AppProblem?
+
     private let service: any PayoffService
     private var generation = 0
 
@@ -65,6 +70,21 @@ package final class PayoffModel {
             return
         }
         await recalculate()
+    }
+
+    /** Makes the plan on screen the person's through `plans`; true when it is saved and Rencanaku can open. */
+    package func makePlan(using plans: any PlanService) async -> Bool {
+        guard !isMakingPlan, phase.value != nil, !exceedsMaximum else { return false }
+        isMakingPlan = true
+        makePlanProblem = nil
+        defer { isMakingPlan = false }
+        do {
+            _ = try await plans.create(method: method, extraPayment: extraPayment)
+            return true
+        } catch {
+            makePlanProblem = error as? AppProblem ?? AppProblem()
+            return false
+        }
     }
 
     private func recalculate() async {
