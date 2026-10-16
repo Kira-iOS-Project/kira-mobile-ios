@@ -27,7 +27,8 @@ struct ReceiptScanDialogs: ViewModifier {
                         if case .failed(let failure) = model.problem { return failure }
                         return nil
                     },
-                    set: { if $0 == nil { model.problem = nil } }))
+                    set: { if $0 == nil { model.problem = nil } }),
+                onRetry: { Task { await model.read() } })
     }
 
     private func binding(_ problem: ReceiptScanModel.Problem) -> Binding<Bool> {

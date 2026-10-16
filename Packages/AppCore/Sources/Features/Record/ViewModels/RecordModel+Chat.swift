@@ -39,7 +39,7 @@ extension RecordModel {
         } catch {
             retry = (text, clientId)
             if method == .keyboard, composerText.isEmpty { composerText = text }
-            failure = RecordFailure(error)
+            fail(.send(text, method, voiceSeconds), error)
         }
     }
 
@@ -65,7 +65,7 @@ extension RecordModel {
                 self?.undoable.remove(message.id)
             }
         } catch {
-            failure = RecordFailure(error)
+            fail(.save(message), error)
         }
     }
 
@@ -79,8 +79,24 @@ extension RecordModel {
                 messages.removeAll { $0.id == remainingId }
             }
         } catch {
-            failure = RecordFailure(error)
+            fail(.undo(message), error)
         }
+    }
+
+    /** Coba Lagi on the failure dialog: the chat action that failed runs again. */
+    package func retryFailed() async {
+        guard let action = failedAction else { return }
+        failedAction = nil
+        switch action {
+        case .send(let text, let method, let voiceSeconds): await send(text, method: method, voiceSeconds: voiceSeconds)
+        case .save(let message): await save(message)
+        case .undo(let message): await undo(message)
+        }
+    }
+
+    private func fail(_ action: ChatAction, _ error: any Error) {
+        failedAction = action
+        failure = RecordFailure(error)
     }
 
     /** The pencil of one draft: Ubah Transaksi (CAT-02). */
@@ -108,4 +124,14 @@ extension RecordModel {
             kind: kind, counter: counter, resetsOn: usage.resetsOn.date, plan: profile.plan,
             today: dependencies.clock.now)
     }
+}
+
+/** A chat action that can fail and be tried again. */
+enum ChatAction {
+    /** Sending a message: its text, how it was entered, and the recording's length. */
+    case send(String, InputMethod, Int?)
+    /** Simpan N Transaksi. */
+    case save(ChatMessage)
+    /** Urungkan. */
+    case undo(ChatMessage)
 }

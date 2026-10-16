@@ -69,12 +69,11 @@ struct AppProblemTests {
     }
 
     @Test(
-        "builds the reference from the code and the start of the request id",
+        "the reference is the start of the request id, and empty without one",
         arguments: [
-            (AppProblem(code: "RATE_LIMITED", requestId: "0123456789abcdef"), "RATE_LIMITED · 01234567"),
-            (AppProblem(code: "RATE_LIMITED", requestId: ""), "RATE_LIMITED"),
-            (AppProblem(code: "RATE_LIMITED"), "RATE_LIMITED"),
-            (AppProblem(requestId: "r-3"), "UNKNOWN · r-3"),
+            (AppProblem(code: "RATE_LIMITED", requestId: "0123456789abcdef"), "01234567"),
+            (AppProblem(requestId: "r-3"), "r-3"),
+            (AppProblem(code: "RATE_LIMITED"), ""),
         ]
     )
     func reference(problem: AppProblem, expected: String) {

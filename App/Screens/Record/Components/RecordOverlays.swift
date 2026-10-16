@@ -43,7 +43,7 @@ struct RecordOverlays: ViewModifier {
                     ReceiptScanScreen(model: scanner, camera: model.dependencies.camera) { model.scanner = nil }
                 }
             }
-            .recordFailureDialog($model.failure)
+            .recordFailureDialog($model.failure) { Task { await model.retryFailed() } }
     }
 
     /** "Draf · dari pesan 12.41 WIB". */

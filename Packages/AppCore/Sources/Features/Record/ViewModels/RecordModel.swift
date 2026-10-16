@@ -33,6 +33,8 @@ package final class RecordModel {
     package var quotaSheet: QuotaSheet?
     /** Why the last chat action did not go through. */
     package var failure: RecordFailure?
+    /** The chat action that failed, which Coba Lagi runs again. */
+    var failedAction: ChatAction?
     /** "Kira AI" is off in Data & Privasi: chat, receipts and voice wait; Catat Manual works. */
     package var showsAIOff = false
     /** Grows each time Lanjut Chat asks the view to focus the composer (CAT-03b). */
