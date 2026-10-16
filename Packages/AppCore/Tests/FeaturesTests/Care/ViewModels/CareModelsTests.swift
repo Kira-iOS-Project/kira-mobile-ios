@@ -9,7 +9,7 @@ import Testing
 struct FakeCareService: CareService {
     var result: Result<CareContactList, AppProblem> = .success(CareFixtures.server)
 
-    func contacts() async throws -> CareContactList {
+    func contacts() throws -> CareContactList {
         try result.get()
     }
 }
