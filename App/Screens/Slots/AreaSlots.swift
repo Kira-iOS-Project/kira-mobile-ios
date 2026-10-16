@@ -11,21 +11,21 @@ import SwiftUI
 struct OnboardingSlot: View {
     let onFinished: () -> Void
 
-    var body: some View { EmptySlot(name: "onboarding") }
+    var body: some View { EmptySlot() }
 }
 
 /** BRD-01 to BRD-03: Beranda, the home tab's root. */
 struct HomeSlot: View {
     let onOpen: (AppRoute) -> Void
 
-    var body: some View { EmptySlot(name: "home") }
+    var body: some View { EmptySlot() }
 }
 
 /** CAT-01: Catat, the record section's root. */
 struct RecordSlot: View {
     let onOpen: (AppRoute) -> Void
 
-    var body: some View { EmptySlot(name: "record") }
+    var body: some View { EmptySlot() }
 }
 
 /** A pushed destination of any area, by its route (RouteDestination picks the area). */
@@ -33,17 +33,16 @@ struct RouteSlot: View {
     let route: AppRoute
     let onOpen: (AppRoute) -> Void
 
-    var body: some View { EmptySlot(name: "route") }
+    var body: some View { EmptySlot() }
 }
 
 /** The empty surface a slot shows until its area plugs in. */
 private struct EmptySlot: View {
-    let name: String
 
     var body: some View {
         Color.surface
             .ignoresSafeArea()
             .toolbar(.hidden, for: .navigationBar)
-            .accessibilityIdentifier("slot.\(name)")
+            .accessibilityHidden(true)
     }
 }

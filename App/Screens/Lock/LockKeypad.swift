@@ -17,6 +17,8 @@ struct LockDots: View {
                     .frame(width: 12, height: 12)
             }
         }
+        .frame(minHeight: KiraSize.tap)
+        .contentShape(Rectangle())
         .accessibilityElement()
         .accessibilityLabel(Text("lock.dots \(filled)"))
     }

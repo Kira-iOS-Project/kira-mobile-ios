@@ -11,4 +11,20 @@ nonisolated final class AccessibilityAuditTests: XCTestCase {
         app.launch()
         try app.performAccessibilityAudit()
     }
+
+    /** AKN-02 Kira Terkunci, reached through the debug-only `-KiraLocked` launch argument. */
+    @MainActor
+    func testLockScreenPassesTheAudit() throws {
+        let app = XCUIApplication()
+        app.launchArguments = ["-KiraLocked"]
+        app.launch()
+        XCTAssertTrue(app.buttons["Lupa PIN?"].waitForExistence(timeout: 5))
+        try app.performAccessibilityAudit { issue in
+            /**
+             Accepted: "Lupa PIN?" is on-hero-muted over the hero hills, the board's colours
+             (BukaKunci.dc.html); the owner keeps the design. Every other finding fails.
+             */
+            issue.auditType == .contrast && issue.element?.label == "Lupa PIN?"
+        }
+    }
 }

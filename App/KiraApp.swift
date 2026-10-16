@@ -9,6 +9,7 @@
  */
 import APIClient
 import Features
+import Foundation
 import SwiftUI
 
 @main
@@ -42,9 +43,26 @@ struct KiraApp: App {
     }
 
     private static func makeRoot() -> RootModel {
-        let vault = KeychainVault()
+        let vault = lockedDemoVault() ?? KeychainVault()
         /** The integrator replaces this with the generated client's `refreshSession`. */
         let session = SessionStore(vault: vault) { _ in throw AppProblem() }
         return RootModel(session: session, lock: AppLockModel(pins: PinStore(vault: vault), vault: vault))
+    }
+
+    /**
+     A debug build launched with `-KiraLocked` starts signed in as dinda@email.com with the PIN
+     381449, in memory only, so the lock screen and its accessibility audit can be reached.
+     */
+    private static func lockedDemoVault() -> (any SecretVault)? {
+        #if DEBUG
+            guard ProcessInfo.processInfo.arguments.contains("-KiraLocked") else { return nil }
+            let vault = InMemoryVault([
+                .refreshToken: Data("demo-refresh".utf8), .accountEmail: Data("dinda@email.com".utf8),
+            ])
+            try? PinStore(vault: vault).setPin("381449")
+            return vault
+        #else
+            return nil
+        #endif
     }
 }

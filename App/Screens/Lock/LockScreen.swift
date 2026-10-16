@@ -17,9 +17,11 @@ struct LockScreen: View {
         VStack(spacing: 0) {
             header
             Spacer(minLength: 20)
-            LockDots(filled: model.filledCount).padding(.top, 12)
+            /** The dots' row is 44 pt tall for the audit; the board's 12 and 20 pt gaps stay. */
+            LockDots(filled: model.filledCount)
+                .padding(.top, 12 - 16)
             LockKeypad(onDigit: model.enter, onErase: model.deleteLast)
-                .padding(.top, 20)
+                .padding(.top, 20 - 16)
                 .disabled(isPaused)
             footer
         }
@@ -59,13 +61,19 @@ struct LockScreen: View {
                 .frame(maxWidth: 280)
                 .padding(.top, 14)
         } else {
-            Button("lock.forgot") { recovery = makeRecovery() }
-                .font(.subheadline.weight(.semibold))
-                .kiraLineHeight(20, size: 15)
-                .foregroundStyle(.onHeroMuted)
-                .padding(.horizontal, KiraSpacing.space4)
-                .frame(minHeight: KiraSize.tap)
-                .padding(.top, 6)
+            Button {
+                recovery = makeRecovery()
+            } label: {
+                Text("lock.forgot")
+                    .font(.subheadline.weight(.semibold))
+                    .kiraLineHeight(20, size: 15)
+                    .foregroundStyle(.onHeroMuted)
+                    .padding(.horizontal, KiraSpacing.space4)
+                    .frame(minHeight: KiraSize.tap)
+                    .contentShape(Capsule())
+            }
+            .buttonStyle(.plain)
+            .padding(.top, 6)
         }
     }
 
@@ -107,6 +115,7 @@ private struct LockStatusText: View {
         }
         .font(.subheadline)
         .kiraLineHeight(20, size: 15)
+        .fixedSize(horizontal: false, vertical: true)
     }
 }
 
