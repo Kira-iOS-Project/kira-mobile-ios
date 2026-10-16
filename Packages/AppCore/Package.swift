@@ -41,12 +41,13 @@ let package = Package(
         .target(
             name: "APIClient",
             dependencies: [
+                "Domain",
                 .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
                 .product(name: "OpenAPIURLSession", package: "swift-openapi-urlsession"),
             ],
             swiftSettings: logic
         ),
-        .testTarget(name: "APIClientTests", dependencies: ["APIClient"], swiftSettings: logic),
+        .testTarget(name: "APIClientTests", dependencies: ["APIClient", "Domain"], swiftSettings: logic),
         .target(name: "Features", dependencies: ["Domain", "APIClient"], swiftSettings: logic),
         .testTarget(
             name: "FeaturesTests", dependencies: ["Features", "Domain", "APIClient"], swiftSettings: logic),
