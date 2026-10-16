@@ -18,7 +18,7 @@ struct LoadFailedView: View {
                 Text(title).kiraFont(.title).foregroundStyle(.ink).multilineTextAlignment(.center)
                     .accessibilityAddTraits(.isHeader)
             }
-            Text(LocalizedStringKey(problem.messageKey)).kiraFont(.callout).foregroundStyle(.inkMuted)
+            Text(problem.message).kiraFont(.callout).foregroundStyle(.inkMuted)
                 .multilineTextAlignment(.center)
             if problem.knownCode == nil {
                 /** The reference is data a person quotes to support, shown as is. */

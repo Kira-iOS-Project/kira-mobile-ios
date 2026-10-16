@@ -95,15 +95,3 @@ struct RecoveryBackground: View {
         .ignoresSafeArea()
     }
 }
-
-extension AppProblem {
-    /** The catalog's message for this problem: its code's, or the generic one. */
-    var message: LocalizedStringResource {
-        LocalizedStringResource(String.LocalizationValue(messageKey))
-    }
-
-    /** The reference to quote to support, shown under the generic message only. */
-    var unknownReference: String? {
-        knownCode == nil ? reference : nil
-    }
-}

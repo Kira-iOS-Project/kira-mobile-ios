@@ -8,8 +8,8 @@ import Testing
 struct PinSetupModelTests {
     @Test("a repeated digit is refused until the PIN changes, and nothing is kept")
     func weak() async {
-        let store = FakePinStore()
-        let model = PinSetupModel(service: FakeOnboardingService(), pinStore: store) {}
+        let store = FakePinSetup()
+        let model = PinSetupModel(service: FakeOnboardingService(), pinSetup: store) {}
         model.pin = "11111"
         await model.createPin()
         #expect(!model.showsWeakPin)
@@ -26,9 +26,9 @@ struct PinSetupModelTests {
     @Test("Buat PIN saves the balance choice and the PIN, shows the dialog, and Mulai finishes")
     func create() async {
         let service = FakeOnboardingService()
-        let store = FakePinStore()
+        let store = FakePinSetup()
         var finished = false
-        let model = PinSetupModel(service: service, pinStore: store) { finished = true }
+        let model = PinSetupModel(service: service, pinSetup: store) { finished = true }
         model.pin = "481923"
         model.hidesBalances = true
         await model.createPin()
@@ -42,9 +42,9 @@ struct PinSetupModelTests {
     @Test("Nanti Saja goes on without a PIN, saving nothing when balances stay shown")
     func skip() async {
         let service = FakeOnboardingService()
-        let store = FakePinStore()
+        let store = FakePinSetup()
         var finished = false
-        let model = PinSetupModel(service: service, pinStore: store) { finished = true }
+        let model = PinSetupModel(service: service, pinSetup: store) { finished = true }
         await model.skip()
         #expect(finished)
         #expect(await service.calls.isEmpty)
@@ -53,14 +53,14 @@ struct PinSetupModelTests {
 
     @Test("a failure to keep the PIN or save the choice stays on the screen")
     func fails() async {
-        let model = PinSetupModel(service: FakeOnboardingService(), pinStore: FakePinStore(fails: true)) {
+        let model = PinSetupModel(service: FakeOnboardingService(), pinSetup: FakePinSetup(fails: true)) {
             Issue.record("finished")
         }
         model.pin = "481923"
         await model.createPin()
         #expect(model.phase == .failed(AppProblem()))
         #expect(!model.showsSuccess)
-        let refused = PinSetupModel(service: FakeOnboardingService(failures: 1), pinStore: FakePinStore()) {
+        let refused = PinSetupModel(service: FakeOnboardingService(failures: 1), pinSetup: FakePinSetup()) {
             Issue.record("finished")
         }
         refused.hidesBalances = true

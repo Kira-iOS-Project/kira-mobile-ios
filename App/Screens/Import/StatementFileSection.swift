@@ -69,7 +69,7 @@ struct StatementFileSection: View {
             if let problem = model.uploadProblem {
                 KiraNotice(
                     .warning, title: "import.upload.failed",
-                    message: LocalizedStringResource(String.LocalizationValue(problem.messageKey)))
+                    message: problem.message)
             }
         }
         .padding(KiraSpacing.space4)

@@ -109,13 +109,6 @@ struct AccountFailure: View {
     }
 }
 
-extension AppProblem {
-    /** The catalog text of the problem's message (`problem.<CODE>` or `problem.unknown`). */
-    var message: LocalizedStringResource {
-        LocalizedStringResource(String.LocalizationValue(messageKey))
-    }
-}
-
 extension FormatStyle where Self == Date.FormatStyle {
     /** A day in full, as Kira writes it: "1 November 2026", on the WIB calendar. */
     static var accountDay: Date.FormatStyle {

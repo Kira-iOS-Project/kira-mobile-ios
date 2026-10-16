@@ -72,7 +72,7 @@ actor FakeOnboardingService: OnboardingService {
 }
 
 /** The Keychain boundary of the PIN, replaced: it keeps what it is given, or fails once. */
-actor FakePinStore: PinStore {
+actor FakePinSetup: PinSetup {
     /** What the Keychain was never meant to see: a plain error, not an AppProblem. */
     struct Failure: Error {}
 

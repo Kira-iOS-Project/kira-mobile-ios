@@ -40,7 +40,7 @@ private actor Server {
 }
 
 /** A canned `ClientTransport` over `Server`, so the generated client runs for real. */
-private struct CannedTransport: ClientTransport {
+private struct ServerTransport: ClientTransport {
     let server: Server
 
     func send(_ request: HTTPRequest, body _: HTTPBody?, baseURL _: URL, operationID _: String) async throws -> (
@@ -134,7 +134,7 @@ struct AuthMiddlewareTests {
         let server = Server([.unauthorized, .ok])
         let middleware = AuthMiddleware(tokens: Tokens(current: "a", renewed: "b"), publicOperations: [])
         let client = Client(
-            serverURL: try #require(url), transport: CannedTransport(server: server), middlewares: [middleware])
+            serverURL: try #require(url), transport: ServerTransport(server: server), middlewares: [middleware])
         let output = try await client.getHealth()
         #expect(try output.ok.body.json.status == .ok)
         #expect(await server.authorizations == ["Bearer a", "Bearer b"])

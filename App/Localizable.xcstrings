@@ -13968,26 +13968,6 @@
         }
       }
     },
-    "splash.note" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "pelan-pelan, uangmu tumbuh"
-          }
-        }
-      }
-    },
-    "splash.title" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kira"
-          }
-        }
-      }
-    },
     "step.addProtection.message" : {
       "localizations" : {
         "id" : {

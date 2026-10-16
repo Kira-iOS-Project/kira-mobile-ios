@@ -21,13 +21,13 @@ package final class PinSetupModel {
     /** Editing, saving or failed. */
     package private(set) var phase = SubmitPhase.editing
     private let service: any OnboardingService
-    private let pinStore: any PinStore
+    private let pinSetup: any PinSetup
     private let onFinished: () -> Void
 
-    /** A model saving through `service` and `pinStore`; `onFinished` opens Beranda. */
-    package init(service: any OnboardingService, pinStore: any PinStore, onFinished: @escaping () -> Void) {
+    /** A model saving through `service` and `pinSetup`; `onFinished` opens Beranda. */
+    package init(service: any OnboardingService, pinSetup: any PinSetup, onFinished: @escaping () -> Void) {
         self.service = service
-        self.pinStore = pinStore
+        self.pinSetup = pinSetup
         self.onFinished = onFinished
     }
 
@@ -41,7 +41,7 @@ package final class PinSetupModel {
             showsWeakPin = true
             return
         }
-        guard await save({ [pin, pinStore] in try await pinStore.save(pin: pin) }) else { return }
+        guard await save({ [pin, pinSetup] in try await pinSetup.save(pin: pin) }) else { return }
         showsSuccess = true
     }
 

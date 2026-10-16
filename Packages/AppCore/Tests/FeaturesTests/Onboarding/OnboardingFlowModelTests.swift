@@ -10,7 +10,7 @@ struct OnboardingFlowModelTests {
         _ service: FakeOnboardingService = FakeOnboardingService(),
         onFinished: @escaping (OnboardingOutcome) -> Void = { _ in }
     ) -> OnboardingFlowModel {
-        OnboardingFlowModel(service: service, pinStore: FakePinStore(), onFinished: onFinished)
+        OnboardingFlowModel(service: service, pinSetup: FakePinSetup(), onFinished: onFinished)
     }
 
     @Test("a new account goes from its code through consent, focus and six steps to the result and the lock")
