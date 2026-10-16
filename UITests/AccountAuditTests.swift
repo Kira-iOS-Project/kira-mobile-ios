@@ -62,7 +62,17 @@ nonisolated final class AccountAuditTests: XCTestCase {
 
     @MainActor
     func testSubscriptionPassesTheAudit() throws {
-        try auditScreen("subscription")
+        try auditScreen(
+            "subscription",
+            accepting: { issue in
+                /**
+                 Accepted: the hero's renewal and reminder dates, on-hero-muted over the hero hills in
+                 the board's colours (KelolaLangganan.dc.html); the owner keeps the design, as for
+                 "Lupa PIN?" on the lock screen. Every other finding fails.
+                 */
+                guard issue.auditType == .contrast, let label = issue.element?.label else { return false }
+                return label.hasPrefix("Diperpanjang ") || label.hasPrefix("Email pengingat ")
+            })
     }
 
     @MainActor

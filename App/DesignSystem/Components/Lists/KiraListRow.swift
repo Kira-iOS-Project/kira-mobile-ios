@@ -79,12 +79,19 @@ struct KiraListRow<Extra: View>: View {
         .contentShape(Rectangle())
     }
 
+    /**
+     The title and the subtitle take the column's whole width and grow downwards: sized to their
+     own one-line width, a line that just fits (QRIS's "Bayar lewat aplikasi bank atau e-wallet"
+     beside the check at 393 pt) is reported by the accessibility audit as clipped.
+     */
     private var main: some View {
         VStack(alignment: .leading, spacing: 2) {
             title.font(.callout.weight(.semibold)).kiraLineHeight(21, size: 16).foregroundStyle(
-                isDanger ? Color.vulnerable : Color.ink)
+                isDanger ? Color.vulnerable : Color.ink
+            )
+            .wrapsInColumn()
             if let subtitle {
-                subtitle.font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
+                subtitle.font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted).wrapsInColumn()
             }
             if let amount { amount.padding(.top, 2) }
             if let value {
@@ -137,6 +144,13 @@ struct KiraListRow<Extra: View>: View {
         var row = self
         change(&row)
         return row
+    }
+}
+
+extension View {
+    /** As wide as the row's text column, and as tall as its lines need. */
+    fileprivate func wrapsInColumn() -> some View {
+        fixedSize(horizontal: false, vertical: true).frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
