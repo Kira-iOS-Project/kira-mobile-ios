@@ -566,7 +566,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kode referensi: %@"
+            "value" : "Kode bantuan: %@"
           }
         }
       }
@@ -13694,6 +13694,17 @@
         }
       }
     },
+    "problem.rateLimited" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permintaanmu terlalu sering. Tunggu sebentar, lalu coba lagi."
+          }
+        }
+      }
+    },
     "problem.RECEIPT_TOTAL_MISMATCH" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -13701,6 +13712,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jumlah item belum sama dengan totalnya. Periksa lagi, ya."
+          }
+        }
+      }
+    },
+    "problem.reference %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kode bantuan: %@"
           }
         }
       }
@@ -13782,6 +13804,17 @@
         }
       }
     },
+    "problem.serviceUnavailable" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Layanan Kira sedang tidak bisa dihubungi. Coba lagi sebentar lagi."
+          }
+        }
+      }
+    },
     "problem.SUBSCRIPTION_NOT_CANCELLABLE" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -13854,7 +13887,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ada yang tidak beres. Sebutkan kode di bawah ini saat menghubungi kami."
+            "value" : "Ada yang tidak beres. Coba lagi sebentar lagi."
           }
         }
       }
@@ -14345,7 +14378,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ada yang tidak beres. Sebutkan kode ini saat menghubungi kami: %@"
+            "value" : "Ada yang tidak beres. Kode bantuan: %@"
           }
         }
       }
@@ -16755,7 +16788,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ada yang tidak beres. Sebutkan kode ini saat menghubungi kami: %@"
+            "value" : "Ada yang tidak beres. Kode bantuan: %@"
           }
         }
       }

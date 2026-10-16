@@ -58,7 +58,7 @@
          PED: Kira Peduli (and offline, on the shipped contacts), its sheet over the chat, the message to
          Layanan Kira.
          */
-        case care, careOffline, careHelp, trustedMessage
+        case care, careOffline, careHelp, trustedMessage, trustedMessageNoRecipient
 
         /** The area whose launcher builds the screen. */
         enum Area {
@@ -82,7 +82,7 @@
             case .community, .communityGroup, .communityRules, .communityOutbound, .communityLinkUnavailable,
                 .groupReport, .groupReportOther, .groupReportSent, .groupReportFailed:
                 .community
-            case .care, .careOffline, .careHelp, .trustedMessage: .care
+            case .care, .careOffline, .careHelp, .trustedMessage, .trustedMessageNoRecipient: .care
             }
         }
     }

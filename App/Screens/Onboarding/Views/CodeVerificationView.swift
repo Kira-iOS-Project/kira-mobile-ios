@@ -64,7 +64,8 @@ private struct CodeEntry: View {
             KiraCodeField("onboarding.code.field", code: $model.code, kind: .code)
                 .error(model.phase.problem.map(\.message))
             if let problem = model.phase.problem, problem.showsReference {
-                Text(problem.reference).font(.caption.monospaced()).foregroundStyle(.inkMuted)
+                Text("problem.reference \(problem.reference)")
+                    .font(.caption.monospaced()).foregroundStyle(.inkMuted)
             }
             if model.secondsUntilResend > 0 {
                 Text("onboarding.code.resendIn \(countdown)")

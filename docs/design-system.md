@@ -207,7 +207,7 @@ Options beyond five initializer parameters are chained modifiers, such as
 | `ListRow` (category, icon, illustration, initial; chevron, external, toggle, check; danger) | `KiraListRow(_:leading:trailing:action:extra:)` `.subtitle` `.amount` `.value` `.danger()` | `Components/Lists/KiraListRow.swift`, `KiraListRowParts.swift` |
 | `NavBar` (back, close, large, eyebrow, actions) | `KiraNavBar(_:subtitle:leading:isLarge:trailing:)` `.eyebrow(_:)` | `Components/Navigation/KiraNavBar.swift` |
 | `TabBar` (the dock with Catat) | `KiraTabBar(selection:isRecordActive:onRecord:)`, `KiraTab` | `Components/Navigation/KiraTabBar.swift` |
-| `Sheet` | `.kiraSheet(isPresented:title:subtitle:top:leaf:content:)`: the artifact's sheet, not the system one (the scrim, a line-strong grabber, the hairline top, 30 pt corners, the close X on the right), in a KiraCover; a sheet that submits to the server: `.kiraSheet(_:title:…:failureTitle:connectionMessage:onRetry:content:)` on a `SheetSubmission` (Sheets, below) | `Components/Navigation/KiraSheet.swift`, `Layout/KiraCover.swift`, `Screens/Shared/SubmissionSheet.swift` |
+| `Sheet` | `.kiraSheet(isPresented:title:subtitle:top:leaf:content:)`: the artifact's sheet, not the system one (the scrim, a line-strong grabber, the hairline top, 30 pt corners, the close X on the right), in a KiraCover; a sheet that submits to the server: `.kiraSheet(_:title:…:failureTitle:connectionMessage:onRetry:content:)` on a `SheetSubmission` (Sheets, below) | `Components/Navigation/KiraSheet.swift`, `Layout/KiraCover.swift`, `Screens/Shared/Components/SubmissionSheet.swift` |
 | `.k-dialog` (success, failure, confirm; illustration or round icon; one or two buttons) | `KiraDialog(_:message:art:primary:secondary:)`, presented with `.kiraDialog(isPresented:dialog:)` | `Components/Dialog/KiraDialog.swift`, `KiraDialogPresentation.swift` |
 | (screen edges) | `.kiraScrollEdges()` | `Layout/KiraScrollEdges.swift` |
 | `ChatBubble` (me, kira; meta, initial, saved) | `KiraChatBubble(_:meta:initial:content:)` `.saved(_:)` `.hidesAvatar()` (`me` is `.user`) | `Components/Chat/KiraChatBubble.swift` |
@@ -248,7 +248,7 @@ no red problem text is shown inside a sheet. Success dialogs ("Perubahan Tersimp
 the sheet.
 
 The screen model keeps the input outside the sheet's view (the sheet's own `@State` would lose it
-when the sheet closes) and a `SheetSubmission` (`Features/Shared/`): `fail(_:)` in the submit's
+when the sheet closes) and a `SheetSubmission` (`Features/Shared/ViewModels/`): `fail(_:)` in the submit's
 `catch`, and a `retry()` that calls `open()` and submits again. The view presents it with
 `.kiraSheet(_:…)`, which brings the dialog up only after the sheet's cover is down, and the sheet
 again only after the dialog's, since both are full-screen covers:

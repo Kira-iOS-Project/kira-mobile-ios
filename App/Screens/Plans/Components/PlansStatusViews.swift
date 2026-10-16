@@ -37,7 +37,7 @@ struct PlansProblemNotice: View {
                 .warning, title: "plans.problem.title",
                 message: problem.message)
             if problem.showsReference {
-                Text(problem.reference)
+                Text("problem.reference \(problem.reference)")
                     .font(.footnote).foregroundStyle(.inkMuted)
                     .padding(.horizontal, KiraSpacing.space1)
                     .textSelection(.enabled)

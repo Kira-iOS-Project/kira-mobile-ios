@@ -14,21 +14,22 @@ import SwiftUI
 extension View {
     /**
      Presents `content` as a Kira sheet while `submission` is open, and its failure as a dialog
-     titled `failureTitle` (`connectionMessage` when the request got no answer). Coba Lagi runs
-     `onRetry`, which opens the submission again and submits.
+     titled `failureTitle` (`connectionMessage` when the request got no answer). Coba Lagi opens the
+     sheet again and, once it has risen, runs `onRetry`, which submits again. `onGone` runs each time
+     the last cover is down and none follows, the moment to navigate after a submit went through.
      */
     func kiraSheet<Content: View>(
         _ submission: Binding<SheetSubmission>, title: LocalizedStringResource,
         subtitle: LocalizedStringResource? = nil, top: CGFloat? = nil, leaf: KiraLeaf? = nil,
         failureTitle: LocalizedStringResource, connectionMessage: LocalizedStringResource = "problem.connection",
-        onRetry: @escaping () -> Void, @ViewBuilder content: @escaping () -> Content
+        onRetry: @escaping () -> Void, onGone: (() -> Void)? = nil, @ViewBuilder content: @escaping () -> Content
     ) -> some View {
         modifier(
             SubmissionSheet(
                 submission: submission,
                 header: SheetHeader(title: title, subtitle: subtitle, top: top, leaf: leaf),
                 failure: SheetFailureText(title: failureTitle, connection: connectionMessage), onRetry: onRetry,
-                sheet: content))
+                onGone: onGone, sheet: content))
     }
 }
 
@@ -68,16 +69,20 @@ private struct SubmissionSheet<Sheet: View>: ViewModifier {
     let header: SheetHeader
     let failure: SheetFailureText
     let onRetry: () -> Void
+    let onGone: (() -> Void)?
     @ViewBuilder let sheet: () -> Sheet
     @State private var layer: SheetLayer?
-    /** Coba Lagi was tapped: the retry starts once the dialog's layer is down, so no cover is mid-way. */
-    @State private var retriesWhenGone = false
+    /**
+     Coba Lagi was tapped: the sheet opens once the dialog's layer is down, and the retry starts once
+     the sheet has risen, so the retry's own success or failure never meets a cover on its way up.
+     */
+    @State private var retryPending = false
 
     func body(content: Content) -> some View {
         content
             .kiraSheet(
                 isPresented: sheetShown, title: header.title, subtitle: header.subtitle, top: header.top,
-                leaf: header.leaf, onDismiss: coverGone, content: sheet
+                leaf: header.leaf, onShown: sheetUp, onDismiss: coverGone, content: sheet
             )
             .kiraDialog(isPresented: dialogShown, onDismiss: coverGone) { dialog }
             .onChange(of: wanted, initial: true) { _, wanted in
@@ -107,15 +112,22 @@ private struct SubmissionSheet<Sheet: View>: ViewModifier {
         if case .dialog(let shown) = layer { problem = shown }
         return KiraDialog(
             failure.title, message: failure.message(for: problem), art: .illustration(.umbrella),
-            primary: KiraButton("sheet.failure.retry") { retriesWhenGone = true },
+            primary: KiraButton("sheet.failure.retry") { retryPending = true },
             secondary: KiraButton("ds.close", variant: .secondary) {})
     }
 
     private func coverGone() {
         layer = wanted
-        if retriesWhenGone {
-            retriesWhenGone = false
-            onRetry()
+        if retryPending {
+            submission.open()
+        } else if layer == nil {
+            onGone?()
         }
+    }
+
+    private func sheetUp() {
+        guard retryPending else { return }
+        retryPending = false
+        onRetry()
     }
 }

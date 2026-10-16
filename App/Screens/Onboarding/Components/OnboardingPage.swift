@@ -44,7 +44,7 @@ struct ProblemMessage: View {
         VStack(spacing: 2) {
             Text(problem.message)
             if problem.showsReference {
-                Text(problem.reference).font(.caption.monospaced())
+                Text("problem.reference \(problem.reference)").font(.caption.monospaced())
             }
         }
         .font(.footnote).kiraLineHeight(18, size: 13)

@@ -1,6 +1,7 @@
 /**
  Rule 24 for PED: Kira Peduli (with the server's contacts and offline, on the shipped ones), its
- help sheet over the chat and Kirim Pesan ke Layanan Kira. Each screen opens through
+ help sheet over the chat and Kirim Pesan ke Layanan Kira (with the sample Layanan Kira Peduli, and
+ without it). Each screen opens through
  `-KiraScreen <name>` and is audited top to bottom (ScreenAudit.swift); the other tests check what
  the boards promise: one red button, no X on the sheet, nothing sent without a tap.
  */
@@ -18,6 +19,23 @@ nonisolated final class CareAuditTests: XCTestCase {
     }
 
     @MainActor
+    func testTrustedMessageWithoutARecipientPassesTheAudit() throws {
+        try auditScreen("trustedMessageNoRecipient")
+    }
+
+    /** With Layanan Kira's number, PED-04's three buttons are on. */
+    @MainActor
+    func testTrustedMessageSendsWithARecipient() throws {
+        let app = launch("trustedMessage")
+        let whatsApp = app.buttons["Kirim lewat WhatsApp"]
+        XCTAssertTrue(whatsApp.waitForExistence(timeout: 5))
+        XCTAssertTrue(whatsApp.isEnabled)
+        XCTAssertTrue(app.buttons["Kirim lewat SMS"].isEnabled)
+        XCTAssertTrue(app.buttons["Telepon Layanan Kira sekarang"].isEnabled)
+        app.terminate()
+    }
+
+    @MainActor
     func testCareHelpPassesTheAudit() throws {
         try auditScreen("careHelp")
     }
@@ -25,6 +43,16 @@ nonisolated final class CareAuditTests: XCTestCase {
     @MainActor
     func testTrustedMessagePassesTheAudit() throws {
         try auditScreen("trustedMessage")
+    }
+
+    /** With Layanan Kira Peduli in the list, its card shows and can be tapped. */
+    @MainActor
+    func testCareShowsLayananKiraWhenListed() throws {
+        let app = launch("care")
+        let card = app.buttons["Hubungi Layanan Kira. Pesan pembuka sudah disiapkan"]
+        XCTAssertTrue(card.waitForExistence(timeout: 5))
+        XCTAssertTrue(card.isEnabled)
+        app.terminate()
     }
 
     /** Offline, the shipped contacts still show; Layanan Kira, which has no number yet, does not. */
@@ -70,7 +98,7 @@ nonisolated final class CareAuditTests: XCTestCase {
      */
     @MainActor
     func testTrustedMessageSendsNothingWithoutARecipient() throws {
-        let app = launch("trustedMessage")
+        let app = launch("trustedMessageNoRecipient")
         let whatsApp = app.buttons["Kirim lewat WhatsApp"]
         XCTAssertTrue(whatsApp.waitForExistence(timeout: 5))
         XCTAssertFalse(whatsApp.isEnabled)
