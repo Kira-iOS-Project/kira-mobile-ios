@@ -1,6 +1,36 @@
 {
   "sourceLanguage" : "id",
   "strings" : {
+    "budget.save.success.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
+    "budget.save.success.message" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Budget periode ini sudah diperbarui."
+          }
+        }
+      }
+    },
+    "budget.save.success.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Budget Tersimpan"
+          }
+        }
+      }
+    },
     "ds.accordion.closed" : {
       "localizations" : {
         "id" : {
