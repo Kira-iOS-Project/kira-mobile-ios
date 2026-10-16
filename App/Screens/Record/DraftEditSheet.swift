@@ -14,19 +14,11 @@ struct DraftEditSheet: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: KiraSpacing.space3) {
-            HStack(alignment: .top, spacing: 10) {
-                KiraField("record.edit.name", text: $model.name)
-                KiraField("record.edit.amount", text: $model.amountText)
-                    .prefix("record.currency")
-                    .suffix("record.cents")
-                    .hint("record.edit.amountHint")
-                    .keyboardType(.numberPad)
+            /** The fields scroll at large text sizes, so none is cut off; the two buttons stay at the bottom. */
+            ScrollView {
+                fields
             }
-            categories
-            KiraField("record.edit.date", text: .constant(dateText))
-                .icon(.calendar)
-                .allowsHitTesting(false)
-            Spacer(minLength: 0)
+            .scrollBounceBehavior(.basedOnSize)
             KiraButtonPair(
                 secondary: KiraButton("record.edit.delete", variant: .destructive, size: .small) {
                     model.requestDelete()
@@ -50,6 +42,24 @@ struct DraftEditSheet: View {
                 primary: KiraButton("record.done") { model.finish() })
         }
         .recordFailureDialog($model.failure)
+    }
+
+    /** Nama and Jumlah side by side, the category chips and the draft's date. */
+    private var fields: some View {
+        VStack(alignment: .leading, spacing: KiraSpacing.space3) {
+            HStack(alignment: .top, spacing: 10) {
+                KiraField("record.edit.name", text: $model.name)
+                KiraField("record.edit.amount", text: $model.amountText)
+                    .prefix("record.currency")
+                    .suffix("record.cents")
+                    .hint("record.edit.amountHint")
+                    .keyboardType(.numberPad)
+            }
+            categories
+            KiraField("record.edit.date", text: .constant(dateText))
+                .icon(.calendar)
+                .allowsHitTesting(false)
+        }
     }
 
     private var dateText: String {

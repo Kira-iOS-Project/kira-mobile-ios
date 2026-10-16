@@ -57,6 +57,7 @@ extension XCTestCase {
     /**
      The findings every screen accepts, each an owner's decision recorded in docs/design-system.md.
      */
+    @MainActor
     private static func isAcceptedEverywhere(_ issue: XCUIAccessibilityAuditIssue, window: CGRect) -> Bool {
         /**
          Accepted deviation: the design system's own small sizes (the 11 pt overline, the medium
@@ -64,6 +65,13 @@ extension XCTestCase {
          support; those texts carry `kira.small-type`.
          */
         if issue.auditType == .dynamicType, issue.element?.identifier == "kira.small-type" { return true }
+        /**
+         Accepted: the contrast of a disabled control, such as "Verifikasi" before the six digits are
+         in. A disabled KiraButton is drawn at 45% opacity (bundle.css, docs/design-system.md), and
+         WCAG 1.4.3 exempts an inactive control from the contrast minimum; enabled, the same button
+         is checked in full.
+         */
+        if issue.auditType == .contrast, issue.element?.isEnabled == false { return true }
         /**
          Accepted: a contrast finding on an element a scroll has left under the status bar or at the
          home indicator, where the audit samples the bar instead of the text's own background.

@@ -13,11 +13,13 @@ struct ChatTimelineView: View {
     var body: some View {
         ScrollViewReader { reader in
             ScrollView {
-                LazyVStack(spacing: KiraSpacing.space3) {
+                /**
+                 A plain stack, not a lazy one: Apple's audit cannot scale the text of rows a lazy
+                 stack has not built, and reports partial Dynamic Type support on every message.
+                 */
+                VStack(spacing: KiraSpacing.space3) {
                     if model.hasOlder {
-                        ProgressView()
-                            .frame(maxWidth: .infinity)
-                            .task { await model.loadOlder() }
+                        OlderMessagesLoader { Task { await model.loadOlder() } }
                     }
                     ForEach(model.rows) { row in
                         ChatRowView(row: row, model: model, initial: initial).id(row.id)
@@ -27,6 +29,7 @@ struct ChatTimelineView: View {
                 .padding(.top, KiraSpacing.space2)
                 .padding(.bottom, KiraSpacing.space4)
             }
+            .coordinateSpace(name: OlderMessagesLoader.space)
             .scrollDismissesKeyboard(.interactively)
             .kiraScrollEdges()
             .defaultScrollAnchor(.bottom)
@@ -74,5 +77,38 @@ struct ChatRowView: View {
         case .noDrafts:
             KiraChatBubble(.kira) { Text("record.noDrafts") }
         }
+    }
+}
+
+/**
+ The spinner above the oldest message, which asks for the page before it once it scrolls into view.
+ A plain stack builds every row at once, so its own appearance cannot be the signal.
+ */
+private struct OlderMessagesLoader: View {
+    /** The scroll view's coordinate space. */
+    static let space = "chat-timeline"
+    let onVisible: () -> Void
+
+    var body: some View {
+        ProgressView()
+            .frame(maxWidth: .infinity)
+            .background {
+                GeometryReader { proxy in
+                    Color.clear.preference(
+                        key: OlderMessagesVisible.self, value: proxy.frame(in: .named(Self.space)).maxY > 0)
+                }
+            }
+            .onPreferenceChange(OlderMessagesVisible.self) { isVisible in
+                if isVisible { onVisible() }
+            }
+    }
+}
+
+/** Whether the loader is inside the scroll view's visible area. */
+private struct OlderMessagesVisible: PreferenceKey {
+    static let defaultValue = false
+
+    static func reduce(value: inout Bool, nextValue: () -> Bool) {
+        value = value || nextValue()
     }
 }
