@@ -30,3 +30,7 @@ jobs:
       contents: read
     # No secrets: the gate reads the checkout and nothing else, and never signs a build.
     uses: adhibuchori/agent-config-kit/.github/workflows/ios-swiftui-quality-gate.yml@27d281201f852a74984a9c7763130df417655420 # v1.3.4
+    with:
+      # The accessibility audit of every primary screen (UITests, AGENTS.md Rule 24) outlasts the
+      # kit's default 40 minutes on GitHub's macOS runner.
+      timeout-minutes: 90
