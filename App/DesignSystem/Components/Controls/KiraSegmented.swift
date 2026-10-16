@@ -16,6 +16,7 @@ struct KiraSegmented<ID: Hashable>: View {
     private let label: LocalizedStringResource
     private let options: [Option]
     @Binding private var selection: ID
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     /** `label` names the group for VoiceOver. */
     init(_ label: LocalizedStringResource, options: [Option], selection: Binding<ID>) {
@@ -24,14 +25,20 @@ struct KiraSegmented<ID: Hashable>: View {
         _selection = selection
     }
 
+    /**
+     Side by side as the board draws it; one above the other at the accessibility sizes, where a
+     one-word option ("Pengeluaran") no longer fits half the width and cannot wrap.
+     */
     var body: some View {
-        HStack(spacing: 4) {
+        let layout =
+            typeSize.isAccessibilitySize ? AnyLayout(VStackLayout(spacing: 4)) : AnyLayout(HStackLayout(spacing: 4))
+        return layout {
             ForEach(options) { option in
                 segment(option)
             }
         }
         .padding(6)
-        .kiraCard(.surfaceMuted, cornerRadius: KiraRadius.full)
+        .kiraCard(.surfaceMuted, cornerRadius: typeSize.isAccessibilitySize ? KiraRadius.extraLarge : KiraRadius.full)
         .accessibilityElement(children: .contain)
         .accessibilityLabel(Text(label))
     }

@@ -92,11 +92,16 @@ nonisolated final class DesignSystemGalleryAuditTests: XCTestCase {
         _ app: XCUIApplication,
         accepting accepted: @escaping (XCUIAccessibilityAuditIssue) throws -> Bool
     ) throws {
+        let recorded: (XCUIAccessibilityAuditIssue) throws -> Bool = { issue in
+            let isAccepted = try accepted(issue)
+            Self.record(issue, isAccepted: isAccepted)
+            return isAccepted
+        }
         do {
-            try app.performAccessibilityAudit(accepted)
+            try app.performAccessibilityAudit(recorded)
         } catch let error as NSError where Self.auditTimedOut(error) {
             XCTContext.runActivity(named: "The audit did not finish in time; running it once more") { _ in }
-            try app.performAccessibilityAudit(accepted)
+            try app.performAccessibilityAudit(recorded)
         }
     }
 

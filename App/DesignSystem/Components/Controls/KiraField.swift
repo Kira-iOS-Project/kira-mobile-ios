@@ -3,8 +3,10 @@
  the "Rp" prefix: the person types digits only, ",00" is added on save and said in the hint. An
  error uses `vulnerable` and a sentence that offers a way out, never blame. Kira never asks for a bank
  PIN, a password or a bank OTP; its own app-lock PIN and email code use KiraCodeField. Set the
- keyboard on the field as on any view: `.keyboardType(.numberPad)`.
+ keyboard on the field as on any view: `.keyboardType(.numberPad)`. `.amount()` groups a rupiah
+ field's digits with dots as they are typed ("10.000.000").
  */
+import Domain
 import SwiftUI
 
 /** A labelled text input. */
@@ -18,6 +20,9 @@ struct KiraField: View {
     private var suffixText: LocalizedStringResource?
     private var iconName: KiraIconName?
     private var minimumLines = 1
+    private var groupsDigits = false
+    /** What an `.amount()` field shows while it is typed in; the binding gets the grouped digits. */
+    @State private var shown = ""
     @FocusState private var isFocused: Bool
     /**
      An empty prompt: without one, a text field shows its label in the box, and Kira's label
@@ -44,6 +49,8 @@ struct KiraField: View {
                     .font(.footnote).kiraLineHeight(18, size: 13)
                     .foregroundStyle(errorText == nil ? Color.inkMuted : Color.vulnerable)
                     .padding(.horizontal, 4)
+                    /** As tall as its lines at every text size, never squeezed by the field's container. */
+                    .fixedSize(horizontal: false, vertical: true)
             }
         }
     }
@@ -59,10 +66,17 @@ struct KiraField: View {
                 if isSingleLine, text.isEmpty, let prompt {
                     Text(prompt).font(.body).foregroundStyle(.inkMuted).accessibilityHidden(true)
                 }
-                TextField(text: $text, prompt: systemPrompt, axis: isSingleLine ? .horizontal : .vertical) {
+                TextField(
+                    text: groupsDigits ? $shown : $text, prompt: systemPrompt,
+                    axis: isSingleLine ? .horizontal : .vertical
+                ) {
                     Text(label)
                 }
                 .lineLimit(minimumLines...max(minimumLines, 6))
+                .onChange(of: shown) { _, value in regroup(value) }
+                .onChange(of: text, initial: true) { _, value in
+                    if groupsDigits, value != AmountInput.grouped(shown) { shown = value }
+                }
                 .font(.body)
                 .foregroundStyle(.ink)
                 .focused($isFocused)
@@ -84,6 +98,17 @@ struct KiraField: View {
     }
 
     private var isSingleLine: Bool { minimumLines == 1 }
+
+    /**
+     Hands the typed digits to the binding grouped, then shows them grouped on the next turn of the
+     run loop: a text field being typed in does not show a value changed within the same edit.
+     */
+    private func regroup(_ value: String) {
+        let grouped = AmountInput.grouped(value)
+        text = grouped
+        guard grouped != value else { return }
+        Task { @MainActor in shown = grouped }
+    }
 
     /** The prompt the system draws: a multi-line field's, which wraps already; none for a single line. */
     private var systemPrompt: Text {
@@ -114,6 +139,9 @@ struct KiraField: View {
 
     /** The same field with an icon at the end of the box, such as `.search`. */
     func icon(_ name: KiraIconName) -> Self { copy { $0.iconName = name } }
+
+    /** The same field holding whole rupiah: its digits grouped with dots as they are typed. */
+    func amount() -> Self { copy { $0.groupsDigits = true } }
 
     /** The same field, growing to show at least `lines` lines. */
     func multiline(_ lines: Int) -> Self { copy { $0.minimumLines = lines } }

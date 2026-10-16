@@ -27,6 +27,7 @@ let package = Package(
     products: [
         .library(name: "Domain", targets: ["Domain"]),
         .library(name: "APIClient", targets: ["APIClient"]),
+        .library(name: "Features", targets: ["Features"]),
     ],
     dependencies: [
         /** Its CLI regenerates Sources/APIClient/GeneratedSources (scripts/ios/api-client.sh). */
@@ -40,12 +41,16 @@ let package = Package(
         .target(
             name: "APIClient",
             dependencies: [
+                "Domain",
                 .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
                 .product(name: "OpenAPIURLSession", package: "swift-openapi-urlsession"),
             ],
             swiftSettings: logic
         ),
-        .testTarget(name: "APIClientTests", dependencies: ["APIClient"], swiftSettings: logic),
+        .testTarget(name: "APIClientTests", dependencies: ["APIClient", "Domain"], swiftSettings: logic),
+        .target(name: "Features", dependencies: ["Domain", "APIClient"], swiftSettings: logic),
+        .testTarget(
+            name: "FeaturesTests", dependencies: ["Features", "Domain", "APIClient"], swiftSettings: logic),
     ],
     swiftLanguageModes: [.v6]
 )

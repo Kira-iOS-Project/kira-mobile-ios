@@ -96,4 +96,50 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case internalError = "INTERNAL_ERROR"
     /** The API is up but its database is not answering. */
     case metaHealthUnhealthy = "META_HEALTH_UNHEALTHY"
+    /** Too many codes were asked for; wait before asking again. */
+    case authCodeRateLimited = "AUTH_CODE_RATE_LIMITED"
+    /** The sign-in code does not match. */
+    case authCodeInvalid = "AUTH_CODE_INVALID"
+    /** The sign-in code is past its ten minutes. */
+    case authCodeExpired = "AUTH_CODE_EXPIRED"
+    /** Five wrong tries ended the code. */
+    case authCodeAttemptsExceeded = "AUTH_CODE_ATTEMPTS_EXCEEDED"
+    /** No valid session: sign in again. */
+    case authUnauthenticated = "AUTH_UNAUTHENTICATED"
+    /** The session can no longer be renewed: sign in again. */
+    case authRefreshInvalid = "AUTH_REFRESH_INVALID"
+    /** The email could not be sent right now. */
+    case emailDeliveryFailed = "EMAIL_DELIVERY_FAILED"
+    /** There is no Kira Score before the health check. */
+    case scoreNotAvailable = "SCORE_NOT_AVAILABLE"
+    /** Kira AI is off in the consents, so chat reading is off. */
+    case chatAIDisabled = "CHAT_AI_DISABLED"
+    /** The chat message is gone. */
+    case chatMessageNotFound = "CHAT_MESSAGE_NOT_FOUND"
+    /** The drafts were already saved or discarded. */
+    case chatDraftsNotPending = "CHAT_DRAFTS_NOT_PENDING"
+    /** The current plan does not include this feature. */
+    case planFeatureUnavailable = "PLAN_FEATURE_UNAVAILABLE"
+    /** The receipt's items do not add up to its total. */
+    case receiptTotalMismatch = "RECEIPT_TOTAL_MISMATCH"
+    /** The transaction is gone. */
+    case transactionNotFound = "TRANSACTION_NOT_FOUND"
+    /** The saved batch is gone. */
+    case transactionBatchNotFound = "TRANSACTION_BATCH_NOT_FOUND"
+    /** The 30 seconds to undo have passed. */
+    case transactionUndoExpired = "TRANSACTION_UNDO_EXPIRED"
+    /** The bank-statement import is gone. */
+    case importNotFound = "IMPORT_NOT_FOUND"
+    /** The statement covers more than three months. */
+    case importRangeTooLong = "IMPORT_RANGE_TOO_LONG"
+    /** A row does not belong to this import. */
+    case importRowUnknown = "IMPORT_ROW_UNKNOWN"
+    /** There is no paid plan. */
+    case subscriptionNotFound = "SUBSCRIPTION_NOT_FOUND"
+    /** A Beasiswa Kira plan cannot be cancelled. */
+    case subscriptionNotCancellable = "SUBSCRIPTION_NOT_CANCELLABLE"
+    /** Applying is not possible right now. */
+    case scholarshipNotEligible = "SCHOLARSHIP_NOT_ELIGIBLE"
+    /** There is no open application. */
+    case scholarshipApplicationNotFound = "SCHOLARSHIP_APPLICATION_NOT_FOUND"
 }

@@ -14,8 +14,9 @@ version 6, last changed 15 October 2026). When a ticket names a component (`Kira
 | `App/DesignSystem/Typography/` | Font registration and the text styles |
 | `App/DesignSystem/Artwork/` | Icon, Logo, Mascot, CategoryIcon, Illustration, Leaf, Scenery, HandNote |
 | `App/DesignSystem/Components/` | The components, by group: Controls, Content, Score, Lists, Navigation, Dialog, Chat |
-| `App/DesignSystem/Layout/` | Row separators, the wrapping row (chips), the weighted row, the scroll edges |
+| `App/DesignSystem/Layout/` | Row separators, the wrapping row (chips), the weighted row, the scroll edges, balanced lines (`text-wrap: balance`, `balancedLines()`) |
 | `App/DesignSystem/Gallery/` | The debug-only gallery of every component |
+| `App/Screens/Shared/` | Screen helpers several areas share: dates, the load-failed view, the tap card, plan and category names, problem messages ([Shared screen helpers](#shared-screen-helpers)) |
 | `Packages/AppCore/Sources/Domain/` | `RupiahFormatStyle`, `Score`, `ScoreBand`, `DigitCode`: logic, tested at 100% |
 
 ## Rules every screen keeps
@@ -30,7 +31,15 @@ a screen built from them keeps them by default.
 - **Buttons are capsules with Title Case labels.** Non-primary buttons use `button` with a
   `button-line` border. A pair is `KiraButtonPair`: secondary on the left, primary on the right
   (stacked, primary on top). Back buttons are icon-only (`KiraIconButton.back`).
-- **Title Case** for titles, headings, notice titles, tags and buttons; Indonesian prepositions and
+- **Rupiah fields group their digits as they are typed** ("10.000.000", never "10000000"):
+  `KiraField(…).amount()`.
+- **Under a primary block button, the next action is a secondary block button**, never a quiet
+  text button: `KiraButton(_, variant: .secondary).block()`, `KiraSpacing.space2` below the primary
+  ("Aku Sudah Punya Akun", "Ganti Email", "Baca Kebijakan Privasi", "Belum Tahu, Lihat-Lihat
+  Dulu"). The owner's rule (2026-10-16), over the boards' quiet links. `.quiet` stays for actions
+  that do not follow a primary button: a header's "Lewati", "Tambah" under a list, a fold.
+- **Title Case** for titles, headings, notice titles, tags, buttons, and a field's label and placeholder
+  ("Penghasilan Bersih", "Cari Transaksi"; the owner's rule, 2026-10-16); Indonesian prepositions and
   conjunctions (dari, di, ke, dan, untuk, yang, terhadap) stay lowercase. Small labels, overlines
   and sentences stay sentence case. The catalog holds the cased copy: no code changes case.
 - **Money in full with two decimals**: `Rp10.000,00`, through `RupiahFormatStyle` or `KiraAmount`.
@@ -195,7 +204,7 @@ Options beyond five initializer parameters are chained modifiers, such as
 | `ListRow` (category, icon, illustration, initial; chevron, external, toggle, check; danger) | `KiraListRow(_:leading:trailing:action:extra:)` `.subtitle` `.amount` `.value` `.danger()` | `Components/Lists/KiraListRow.swift`, `KiraListRowParts.swift` |
 | `NavBar` (back, close, large, eyebrow, actions) | `KiraNavBar(_:subtitle:leading:isLarge:trailing:)` `.eyebrow(_:)` | `Components/Navigation/KiraNavBar.swift` |
 | `TabBar` (the dock with Catat) | `KiraTabBar(selection:isRecordActive:onRecord:)`, `KiraTab` | `Components/Navigation/KiraTabBar.swift` |
-| `Sheet` | `.kiraSheet(isPresented:title:subtitle:content:)`: the artifact's sheet, not the system one (the scrim, a line-strong grabber, the hairline top, 30 pt corners, the close X on the right), in a KiraCover | `Components/Navigation/KiraSheet.swift`, `Layout/KiraCover.swift` |
+| `Sheet` | `.kiraSheet(isPresented:title:subtitle:top:leaf:content:)`: the artifact's sheet, not the system one (the scrim, a line-strong grabber, the hairline top, 30 pt corners, the close X on the right), in a KiraCover | `Components/Navigation/KiraSheet.swift`, `Layout/KiraCover.swift` |
 | `.k-dialog` (success, failure, confirm; illustration or round icon; one or two buttons) | `KiraDialog(_:message:art:primary:secondary:)`, presented with `.kiraDialog(isPresented:dialog:)` | `Components/Dialog/KiraDialog.swift`, `KiraDialogPresentation.swift` |
 | (screen edges) | `.kiraScrollEdges()` | `Layout/KiraScrollEdges.swift` |
 | `ChatBubble` (me, kira; meta, initial, saved) | `KiraChatBubble(_:meta:initial:content:)` `.saved(_:)` `.hidesAvatar()` (`me` is `.user`) | `Components/Chat/KiraChatBubble.swift` |
@@ -271,11 +280,31 @@ checks carry the selected trait, the switch carries the toggle trait and says "A
 motion stops under Reduce Motion. A checkbox carries the toggle trait and says "Dicentang" or
 "Belum dicentang". The six code boxes are one text field to VoiceOver, named by its label, that
 says the digits on screen and how many are in ("3 8, 2 dari 6 angka terisi"); a masked PIN gives
-the count alone. "Tahan untuk Lihat" keeps its words as its name, and VoiceOver and Voice Control,
+the count alone. The PIN's eye shows no words; "Tahan untuk Lihat" is its name, and VoiceOver and Voice Control,
 which cannot hold, turn the digits on and off with its action. A presented dialog
 covers the whole window, so nothing behind it can be reached; VoiceOver starts on its title, and
 the escape gesture runs the secondary action (or the only one) and closes it. `UITests/DesignSystemGalleryAuditTests.swift` runs Apple's
 accessibility audit over every gallery page.
+
+## Shared screen helpers
+
+What several areas show the same way lives once in `App/Screens/Shared/`. An area never declares
+its own copy (a second `extension PlanID { var title }` is a redeclaration the build refuses), and
+a helper moves here as soon as a second area needs it.
+
+| Helper | What it gives | Used by |
+| --- | --- | --- |
+| `KiraFormats.swift` | Dates as Kira writes them, in Indonesian and WIB whatever the device's region: `.kiraDate` ("15 Oktober 2026"), `.kiraWeekdayDate` ("Kamis, 15 Oktober 2026"), `.kiraDayMonth`, `.kiraMonth`, `.kiraTime` ("12.41", written before "WIB"), `.kiraGroupDate` (Riwayat's "Kamis 15 Oktober 2026"); `KiraDateFormat.dateTime(_:)` and `.dayTime(_:)` for the catalog's "… · 12.41 WIB" phrases; `DayRange`'s `firstEnd`, `lastEnd` and `.kiraDayRange` ("1–30 September 2026", "25 September – 24 Oktober 2026"); `.kiraDecimal(_:)` and `.kiraMultiple` ("1,1", "0,5"); `Int.rupiah` | Beranda, Kira Score, Catat, Riwayat, Impor Mutasi |
+| `LoadFailedView` | A screen that could not load: an optional title, the problem's catalog message, the reference for a code this app does not know, and Coba Lagi | Beranda, Kira Score, Riwayat and the screens under it |
+| `KiraTapCard` | Beranda's tappable card: a 56 pt illustration tile, two lines and a chevron, one button named by its whole sentence | Beranda (Kira Score, Ringkasan Mingguan) |
+| `PlanID+Display.swift` | `title` ("Kira Gratis", "Kira Muda", "Kira Plus") and `shortTitle` ("Muda", "Plus") on the `plans.name.*` and `plans.short.*` keys | Profil, Paket, Langganan, Beasiswa Kira |
+| `AppProblem+Message.swift` | `message`, the catalog's text for a problem (`problem.<CODE>` or `problem.unknown`), and `unknownReference`, the reference to quote only when the code is unknown | Every screen that shows a problem |
+| `TransactionCategory+Display.swift` | `tile` (the `KiraCategory` the boards draw, such as Bonus on the savings tile) and `title` (the board's name on the `ledger.category.*` keys: "Makan & Minum", "Kopi") | Catat, Riwayat, Detail Transaksi, Impor Mutasi |
+
+These styles are product rules like `RupiahFormatStyle`, so they name their locale and time zone
+instead of following the device's. Plans and Account still keep a few styles of their own
+(`plansFullDay`, `accountDay`) that follow the device's locale; they print the same in Indonesian,
+and move here when one of them is needed elsewhere.
 
 ## Icons
 
@@ -427,6 +456,23 @@ components (sizes, paddings, radii, borders, colours, icon sizes) already matche
 | Chip | Height in layout | 40 pt, the 44 pt target outside it | 44 pt | 40 pt, the 44 pt target outside it |
 | NavBar | Large: eyebrow | Its own row 2 pt above the title; the buttons centred on the title | Buttons centred on eyebrow and title | Buttons centred on the title |
 | Logo | Wordmark gap and size | `round(size × 0.24)`, `round(size × 0.92)` | Not rounded | Rounded |
+| Scenery | Width | `width: 100%`, `preserveAspectRatio="xMidYMax slice"` | The image's width at `height` (400 pt at 150, 655 at 250), widening its container | The container's width, cropped centred on the bottom edge |
+| Sheet | Panel top | `top` prop, 56 by default | Always under the status bar | `top:` from the top of the screen; under the status bar by default and at the accessibility sizes |
+| Accordion | Title at the accessibility sizes | Wraps between words | Broke inside a word beside the icon | The icon above the title, which wraps between words |
+| Dialog | Position | Centred on the whole screen (`.k-dialog-scrim`, `margin: auto`) | Centred on the safe area, 12.5 pt lower | Centred on the screen |
+| Dialog | Title weight and wrap | 750, `max-width` 280, `text-wrap: balance` | 800 (`.heavy`), so "Belum Berhasil Menyimpan" (280.5 pt) wrapped | 750 on the variable font's axis (279.2 pt), balanced (`balancedLines()`) |
+| Dialog | Message | Plain text | Markdown, so an email address was tinted as a link | Plain (resolved, then `Text(String)`) |
+| ChatBubble | Card beside an avatar | `width: 82%` capped by `max-width: 76%` | 82 % | 76 % (82 % without an avatar) |
+| ChatBubble | Wrapping text | The box takes its `max-width` | The widest line | The limit once the text wraps |
+| Button | Too long for its padding | `white-space: nowrap`, runs into the padding | Wrapped onto two lines | One line down to 8 pt a side; wraps only past that |
+| DraftCard | Space between rows | None (`.k-draft__list` has no gap) | 8 pt | None |
+| Sheet | Default top | 56 | Under the status bar (59) | 56, the panel reaching 3 pt into the status bar |
+| Sheet | Subtitle | `text-wrap: balance` | Greedy | Balanced |
+| Sheet | Corner leaf | Catat Manual's twig, `top: 0; right: -30px`, behind the header | None | `leaf:` |
+| TabBar (MainShell) | Distance from the bottom | `bottom: 24px` from the screen's edge | 8 pt above the 34 pt inset (42) | 24 pt from the edge on any inset |
+| Notice | Inside the border | 12 and 14 pt inside a 1 pt border that takes layout | 12 and 14 pt, the border drawn over | 13 and 15 pt |
+| Tag | At the accessibility sizes | `white-space: nowrap` | One line, sticking out of its card | Wraps within its card |
+| ListRow | Switch at the accessibility sizes | Beside the text | Beside a title that broke inside a word | Under the title, which wraps between words |
 | Accordion | `defaultOpen` | Supported | Closed only | `.openByDefault()` |
 | Field | `icon` | Supported | None | `.icon(_:)` |
 | StepProgress | `label` | Supported | "Langkah N dari M" only | `label:` |

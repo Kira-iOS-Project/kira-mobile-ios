@@ -17,12 +17,12 @@ the rules that bind), Not met (name the shape to follow until it is).
 
 | Rules | Group | Status | What that means here |
 | --- | --- | --- | --- |
-| 1–4 | Architecture | Enforced | One placeholder screen (`App/Screens/Root/RootView.swift`) with no state, so no screen model yet; Rule 4 binds from the first screen that has state. |
+| 1–4 | Architecture | Enforced | Every built screen has its `@Observable` model in `Features/<Area>/` (Navigation, Session, Lock, Onboarding, Home, Score, Record, History, Import, Account, Plans) and its view in `App/Screens/<Area>/`; helpers two areas share live once in `App/Screens/Shared/`. Each area's entry view still waits in its slot in `App/Screens/Slots/` until the root wires it (follow-up 2). |
 | 5–9 | Text and locale | Enforced | Indonesian only: the catalogs' source language is `id`, so every key carries its `id` text (setup answered `locales=en`, the single-language option). |
-| 10–14 | Network, errors and auth | Partial | Rules 10–12 bind: the client is generated from the backend's spec, and `ProblemCode` equals its codes. No screen calls the API yet, and there is no sign-in, so Rule 13 has nothing to hold. |
+| 10–14 | Network, errors and auth | Partial | Rules 10–13 bind: the client is generated from the backend's spec, `ProblemCode` equals its codes, `KiraAPI` has a `package` call for every tag the screens use, and `SessionStore` keeps the refresh token in the Keychain (`KeychainVault`) and the bearer token in memory, served to the client by `AuthMiddleware`. Screens reach the API through their area's service protocol (`HomeService`, `RecordService`, `HistoryService`, …), which runs on a preview service until the live implementations land (follow-ups 2 and 3); the codes those calls add to `ProblemCode` arrive with them. |
 | 15–18 | Code shape | Enforced | Applies as written. |
 | 19–21 | Build and dependencies | Enforced | Applies as written. |
-| 22–24 | Tests and coverage | Enforced | `AppProblem` at 100%; one accessibility-audit UI test for the one screen. |
+| 22–24 | Tests and coverage | Partial | Rules 22 and 23 bind: every logic file at 100%, Swift Testing only. Rule 24 binds for the root and the lock screen (`-KiraLocked`, debug only); the other primary screens get their audit test with follow-up 4. |
 | 25–28 | Platform and release | Enforced | Releases go to Firebase App Distribution from `prod` (`docs/firebase-app-distribution.md`). |
 | 29–33 | Payload contract (only with `payload-encryption=yes`; otherwise N/A) | N/A | Setup answered `payload-encryption=no`: bodies rely on TLS. |
 
@@ -31,8 +31,16 @@ Follow-up work, in order, each naming the rules it unblocks:
 1. ~~The design system (colours, type, the logo and the app icon)~~: done 2026-10-16. Tokens, fonts,
    artwork and the `Kira…` components are in `App/DesignSystem/` and `App/Assets.xcassets/`;
    `docs/design-system.md` maps each design component to its SwiftUI type
-2. Onboarding and sign-in (email and a one-time code) with its screen models, a Keychain-held refresh
-   token and the first `package` API calls: unblocks Rules 4 and 10–13 in practice
+2. In progress (E1): the live services and `RootView`. The generated client implements each area's
+   service protocol, the session refreshes through it, and the root puts each area's entry view in
+   its slot: unblocks Rules 10–13 in practice
+3. In progress (E2): Catat on the live API (chat, drafts, receipts, voice, quota), on the same
+   client: Rules 10–13 for Catat
+4. In progress (A1): an accessibility-audit UI test per primary screen, each reached with a debug
+   `-KiraScreen <name>` launch argument: Rule 24 everywhere
+5. In progress (R2): Apple's Foundation Models used only where `supportsLocale` says Indonesian is
+   supported; on iOS 27 its vision may suggest a receipt's store name, never an amount (README,
+   On-device AI). No rule; recorded so a review does not read the gating as missing
 
 ## Rules
 
