@@ -68,4 +68,41 @@ struct OnboardingFlowModelTests {
         #expect(!flow.signsIn)
         #expect(flow.path.isEmpty)
     }
+
+    @Test(
+        "a flow starts at the intro, or at the screen onboarding resumes at, or at the quiz redone",
+        arguments: [
+            (OnboardingStart.intro, OnboardingScreen?.none), (.consent, .consent), (.focus, .focus),
+            (.healthCheck, .healthCheck(.income)),
+        ])
+    func start(start: OnboardingStart, root: OnboardingScreen?) {
+        let flow = OnboardingFlowModel(service: FakeOnboardingService(), pinSetup: FakePinSetup(), start: start) { _ in
+        }
+        #expect(flow.start == start && flow.start.rootScreen == root)
+        #expect(flow.isRecheck == (start == .healthCheck))
+    }
+
+    @Test("a recheck ends at its result with new answers, and back from its first step closes it")
+    func recheck() async {
+        var outcomes: [OnboardingOutcome] = []
+        let flow = OnboardingFlowModel(
+            service: FakeOnboardingService(), pinSetup: FakePinSetup(), start: .healthCheck,
+            onFinished: { outcomes.append($0) })
+        await flow.healthCheckModel().submit()
+        flow.makeResultModel(report: FakeOnboardingService.report).continueToLock()
+        #expect(!flow.path.contains(.pin))
+        flow.path.removeAll()
+        flow.back()
+        #expect(outcomes == [.rechecked, .closed])
+    }
+
+    @Test("back at the first screen of a resumed onboarding stays there")
+    func resumedBack() {
+        var outcomes: [OnboardingOutcome] = []
+        let flow = OnboardingFlowModel(
+            service: FakeOnboardingService(), pinSetup: FakePinSetup(), start: .consent,
+            onFinished: { outcomes.append($0) })
+        flow.back()
+        #expect(outcomes.isEmpty && flow.path.isEmpty)
+    }
 }

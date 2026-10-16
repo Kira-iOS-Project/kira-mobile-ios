@@ -10372,7 +10372,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "PIN ini terlalu mudah ditebak. Pakai 6 angka yang tidak sama semua."
+            "value" : "PIN ini terlalu mudah ditebak. Hindari pola seperti 111111, 121212, atau 123456."
           }
         }
       }
@@ -10637,6 +10637,16 @@
         }
       }
     },
+    "onboarding.result.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
     "onboarding.result.formula.bands" : {
       "localizations" : {
         "id" : {
@@ -10827,12 +10837,12 @@
         }
       }
     },
-    "onboarding.result.step.fund %lld" : {
+    "onboarding.result.step.fund %@" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dana Darurat ke %lld×"
+            "value" : "Dana Darurat ke %@×"
           }
         }
       }
@@ -15218,12 +15228,12 @@
         }
       }
     },
-    "step.buildEmergencyFund.title %lld" : {
+    "step.buildEmergencyFund.title %@" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dana Darurat ke %lld×"
+            "value" : "Dana Darurat ke %@×"
           }
         }
       }

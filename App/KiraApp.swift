@@ -1,12 +1,10 @@
 /**
- The composition root (AGENTS.md Rule 1): the one place that builds what each screen needs and
- hands it over. The session and the lock keep their secrets in the Keychain. A debug build
- launched with `-KiraGallery [page]` opens the design system gallery instead (the Kira scheme
- lists it, off), and one launched with `-KiraScreen <name>` opens that screen on the preview services
- (App/Launch/ScreenLaunch.swift), for the accessibility audit UI tests.
-
- Until the integrator builds the generated client (with `AuthMiddleware(tokens: session)`), the
- session cannot reach `POST /auth/refresh` and Lupa PIN runs on its preview service.
+ The composition root (AGENTS.md Rule 1): the one place that knows the server, builds the
+ generated client, the session, the lock and every service, and hands them to the views. The
+ session and the lock keep their secrets in the Keychain. A debug build launched with
+ `-KiraGallery [page]` opens the design system gallery instead, `-KiraPreviewServices` runs every
+ screen on its sample data, `-KiraLocked` starts signed in behind the lock, and `-KiraScreen <name>`
+ opens one screen on the preview services (App/Launch/ScreenLaunch.swift) for the audit UI tests.
  */
 import APIClient
 import Features
@@ -15,7 +13,7 @@ import SwiftUI
 
 @main
 struct KiraApp: App {
-    @State private var root = KiraApp.makeRoot()
+    @State private var app = KiraApp.makeApp()
 
     var body: some Scene {
         WindowGroup {
@@ -35,21 +33,51 @@ struct KiraApp: App {
 
     private var rootView: some View {
         RootView(
-            model: root,
-            makeUnlock: { [root] in UnlockModel(lock: root.lock, email: root.session.accountEmail) },
-            makeRecovery: { [root] in
+            model: app.root,
+            makeUnlock: { [root = app.root] in UnlockModel(lock: root.lock, email: root.session.accountEmail) },
+            makeRecovery: { [root = app.root, recovery = app.services.recovery] in
                 root.session.accountEmail.map {
-                    PinRecoveryModel(
-                        email: $0, service: PreviewPinRecoveryService(), session: root.session, lock: root.lock)
+                    PinRecoveryModel(email: $0, service: recovery, session: root.session, lock: root.lock)
                 }
-            })
+            }
+        )
+        .environment(\.appServices, app.services)
+    }
+}
+
+/** What the root holds: the root model and the services its screens call. */
+private struct ComposedApp {
+    let root: RootModel
+    let services: AppServices
+}
+
+extension KiraApp {
+    /** The API's host; every route already starts with `/api`. The one place the server is named. */
+    private static let serverURL = URL(string: "https://api-kira.serenitycode.tech") ?? URL(filePath: "/")
+
+    private static func makeApp() -> ComposedApp {
+        let vault = lockedDemoVault() ?? KeychainVault()
+        /** `POST /auth/refresh` needs no bearer token, so it goes through a client without the middleware. */
+        let publicAPI = KiraAPI(serverURL: serverURL)
+        let session = SessionStore(vault: vault) { try await SessionRefresh.refresh($0, with: publicAPI) }
+        let api = KiraAPI(serverURL: serverURL, middlewares: [AuthMiddleware(tokens: session)])
+        let pins = PinStore(vault: vault)
+        let lock = AppLockModel(pins: pins, vault: vault)
+        let previews = usesPreviewServices
+        let services = previews ? AppServices.preview : .live(api: api, session: session, lock: lock, pins: pins)
+        let root = RootModel(session: session, lock: lock) {
+            previews ? .ready(hidesBalances: false) : await AccountStage.check(with: api)
+        }
+        return ComposedApp(root: root, services: services)
     }
 
-    private static func makeRoot() -> RootModel {
-        let vault = lockedDemoVault() ?? KeychainVault()
-        /** The integrator replaces this with the generated client's `refreshSession`. */
-        let session = SessionStore(vault: vault) { _ in throw AppProblem() }
-        return RootModel(session: session, lock: AppLockModel(pins: PinStore(vault: vault), vault: vault))
+    /** A debug build launched with `-KiraPreviewServices`: every screen on its sample data. */
+    private static var usesPreviewServices: Bool {
+        #if DEBUG
+            ProcessInfo.processInfo.arguments.contains("-KiraPreviewServices")
+        #else
+            false
+        #endif
     }
 
     /**

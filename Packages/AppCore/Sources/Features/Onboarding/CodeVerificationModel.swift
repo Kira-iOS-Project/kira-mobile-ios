@@ -11,6 +11,9 @@ package final class CodeVerificationModel {
     /** Waits one tick of the countdown; tests pass one that returns at once. */
     package typealias Sleep = @Sendable (Duration) async throws -> Void
 
+    /** Digits in the code the server emails. */
+    package static let codeLength = 6
+
     /** The address the code went to. */
     package let email: String
     /** The digits typed or pasted so far. */
@@ -42,7 +45,7 @@ package final class CodeVerificationModel {
 
     /** Whether the boxes hold six digits and nothing else (a paste is trimmed to its digits first). */
     package var isComplete: Bool {
-        code.count == PinRule.length && DigitCode.digits(in: code, length: PinRule.length) == code
+        code.count == Self.codeLength && DigitCode.digits(in: code, length: Self.codeLength) == code
     }
 
     /** Counts down to 0 a second at a time; stops early when its task is cancelled. */

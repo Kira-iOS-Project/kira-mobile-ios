@@ -34,7 +34,7 @@ package struct ScoreStep: Hashable, Sendable {
     /** The amount the step aims for. */
     package var targetAmount: Int?
     /** The emergency-fund multiple aimed for. */
-    package var targetMultiple: Int?
+    package var targetMultiple: Double?
     /** The percent aimed for. */
     package var targetPercent: Int?
 

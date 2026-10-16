@@ -17,11 +17,11 @@
             } else {
                 OnboardingFlow(
                     service: PreviewOnboardingService(), pinSetup: PreviewPinSetup(), onFinished: { _ in },
-                    start: start)
+                    path: path)
             }
         }
 
-        private var start: [OnboardingScreen] {
+        private var path: [OnboardingScreen] {
             switch screen {
             case .signUp: [.signUp]
             case .signIn: [.signIn]
