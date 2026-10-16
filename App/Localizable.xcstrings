@@ -7411,22 +7411,22 @@
         }
       }
     },
-    "indicator.next.consumerDebtOnTime" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bayar tepat waktu, lalu kurangi sampai tiga platform atau kurang."
-          }
-        }
-      }
-    },
     "indicator.next.consumerDebtOne" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lunasi satu per satu, utang terkecil dulu, sampai tinggal satu platform."
+          }
+        }
+      }
+    },
+    "indicator.next.consumerDebtOnTime" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bayar tepat waktu, lalu kurangi sampai tiga platform atau kurang."
           }
         }
       }
@@ -10512,7 +10512,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "PIN ini terlalu mudah ditebak. Pakai 6 angka yang tidak sama semua."
+            "value" : "PIN ini terlalu mudah ditebak. Hindari pola seperti 111111, 121212, atau 123456."
           }
         }
       }
@@ -10777,6 +10777,16 @@
         }
       }
     },
+    "onboarding.result.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
     "onboarding.result.formula.bands" : {
       "localizations" : {
         "id" : {
@@ -10967,12 +10977,12 @@
         }
       }
     },
-    "onboarding.result.step.fund %lld" : {
+    "onboarding.result.step.fund %@" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dana Darurat ke %lld×"
+            "value" : "Dana Darurat ke %@×"
           }
         }
       }
@@ -12446,17 +12456,6 @@
         }
       }
     },
-    "problem.VALIDATION_FAILED" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ada isian yang belum sesuai. Periksa lagi, ya."
-          }
-        }
-      }
-    },
     "problem.unknown" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -12464,6 +12463,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ada yang tidak beres. Sebutkan kode di bawah ini saat menghubungi kami."
+          }
+        }
+      }
+    },
+    "problem.VALIDATION_FAILED" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada isian yang belum sesuai. Periksa lagi, ya."
           }
         }
       }
@@ -13998,12 +14008,12 @@
         }
       }
     },
-    "step.buildEmergencyFund.title %lld" : {
+    "step.buildEmergencyFund.title %@" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dana Darurat ke %lld×"
+            "value" : "Dana Darurat ke %@×"
           }
         }
       }

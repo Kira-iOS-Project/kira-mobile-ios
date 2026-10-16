@@ -14,7 +14,7 @@ extension ScoreStep {
             debtName.map { "step.payOffDebt.title \($0)" } ?? "step.payOffDebt.titleUnnamed"
         case .seekRelief:
             debtName.map { "step.seekRelief.title \($0)" } ?? "step.seekRelief.titleUnnamed"
-        case .buildEmergencyFund: "step.buildEmergencyFund.title \(targetMultiple ?? 0)"
+        case .buildEmergencyFund: "step.buildEmergencyFund.title \(targetMultiple ?? 0, format: .kiraMultiple)"
         case .raiseSavings: "step.raiseSavings.title \(targetPercent ?? 0)"
         case .addProtection: "step.addProtection.title"
         case .lowerInstalments: "step.lowerInstalments.title \(targetPercent ?? 0)"

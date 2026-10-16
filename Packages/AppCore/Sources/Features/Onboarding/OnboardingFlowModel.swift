@@ -13,6 +13,8 @@ package final class OnboardingFlowModel {
     package var path: [OnboardingScreen] = []
     /** Whether the email sheet of Buat Akun is open. */
     package var showsSignUpEmail = false
+    /** Where the flow started. */
+    package let start: OnboardingStart
     /** The focus saved on Pilih Fokus. */
     package private(set) var focus = Focus.trackSpending
     @ObservationIgnored private var quiz: HealthCheckModel?
@@ -20,10 +22,12 @@ package final class OnboardingFlowModel {
     private let pinSetup: any PinSetup
     private let onFinished: (OnboardingOutcome) -> Void
 
-    /** A flow calling `service` and `pinSetup`, ending with `onFinished`. */
+    /** A flow from `start` calling `service` and `pinSetup`, ending with `onFinished`. */
     package init(
-        service: any OnboardingService, pinSetup: any PinSetup, onFinished: @escaping (OnboardingOutcome) -> Void
+        service: any OnboardingService, pinSetup: any PinSetup, start: OnboardingStart = .intro,
+        onFinished: @escaping (OnboardingOutcome) -> Void
     ) {
+        self.start = start
         self.service = service
         self.pinSetup = pinSetup
         self.onFinished = onFinished
@@ -37,9 +41,16 @@ package final class OnboardingFlowModel {
     /** Whether the person came through Masuk: the code screen's back button names it. */
     package var signsIn: Bool { path.contains(.signIn) }
 
-    /** Back, and "Ganti Email" on the code screen. */
+    /** Whether the quiz was opened again from the score: the result ends with "Selesai". */
+    package var isRecheck: Bool { start == .healthCheck }
+
+    /** Back, and "Ganti Email" on the code screen; back from the first step of a recheck closes it. */
     package func back() {
-        if !path.isEmpty { path.removeLast() }
+        if !path.isEmpty {
+            path.removeLast()
+        } else if isRecheck {
+            onFinished(.closed)
+        }
     }
 
     /** The model of Masuk, and of the email sheet of Buat Akun. */
@@ -79,7 +90,7 @@ package final class OnboardingFlowModel {
 
     /** The model of Hasil Cek Kesehatan. */
     package func makeResultModel(report: ScoreReport) -> HealthCheckResultModel {
-        HealthCheckResultModel(report: report) { [weak self] in self?.open(.pin) }
+        HealthCheckResultModel(report: report) { [weak self] in self?.resultDone() }
     }
 
     /** The model of Kunci Kira. */
@@ -103,6 +114,14 @@ package final class OnboardingFlowModel {
     private func focusSaved(_ focus: Focus) {
         self.focus = focus
         open(.healthCheck(.income))
+    }
+
+    private func resultDone() {
+        if isRecheck {
+            onFinished(.rechecked)
+        } else {
+            open(.pin)
+        }
     }
 
     private func finish() {

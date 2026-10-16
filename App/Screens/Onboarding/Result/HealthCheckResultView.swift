@@ -29,7 +29,8 @@ struct HealthCheckResultView: View {
             FormulaAccordion(model: model)
             Spacer(minLength: 0)
             VStack(spacing: 10) {
-                KiraButton("onboarding.result.secure") { model.continueToLock() }.block()
+                KiraButton(flow.isRecheck ? "onboarding.result.done" : "onboarding.result.secure") { model.continueToLock() }
+                    .block()
                 Text("onboarding.result.recheck").onboardingNote().multilineTextAlignment(.center)
             }
         }

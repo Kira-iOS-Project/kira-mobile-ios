@@ -12,17 +12,27 @@ struct OnboardingFlow: View {
     private let onOpen: (AppRoute) -> Void
 
     init(
-        service: any OnboardingService, pinSetup: any PinSetup, onFinished: @escaping (OnboardingOutcome) -> Void,
-        onOpen: @escaping (AppRoute) -> Void = { _ in }
+        service: any OnboardingService, pinSetup: any PinSetup, start: OnboardingStart = .intro,
+        onFinished: @escaping (OnboardingOutcome) -> Void, onOpen: @escaping (AppRoute) -> Void = { _ in }
     ) {
-        _flow = State(initialValue: OnboardingFlowModel(service: service, pinSetup: pinSetup, onFinished: onFinished))
+        _flow = State(
+            initialValue: OnboardingFlowModel(
+                service: service, pinSetup: pinSetup, start: start, onFinished: onFinished))
         self.onOpen = onOpen
     }
 
     var body: some View {
         NavigationStack(path: $flow.path) {
+            root.navigationDestination(for: OnboardingScreen.self) { screen in destination(screen) }
+        }
+    }
+
+    /** The intro pages, or the screen onboarding resumes at (or the quiz's first step, redone). */
+    @ViewBuilder private var root: some View {
+        if let screen = flow.start.rootScreen {
+            destination(screen)
+        } else {
             IntroView(flow: flow)
-                .navigationDestination(for: OnboardingScreen.self) { screen in destination(screen) }
         }
     }
 

@@ -25,6 +25,8 @@ package final class NavigationModel {
     package var homePath: [AppRoute] = []
     /** Catat's stack. */
     package var recordPath: [AppRoute] = []
+    /** Whether the health check, opened again from the score ("Cek Ulang"), covers the shell. */
+    package var showsHealthCheck = false
 
     /** A shell on Beranda with empty stacks. */
     package init() {}
@@ -40,6 +42,7 @@ package final class NavigationModel {
         case .home: select(.home)
         case .record: select(.record)
         case .unavailable: break
+        case .healthCheck: showsHealthCheck = true
         default:
             if section == .record { recordPath.append(route) } else { homePath.append(route) }
         }
@@ -67,6 +70,7 @@ package final class NavigationModel {
         section = .home
         homePath.removeAll()
         recordPath.removeAll()
+        showsHealthCheck = false
     }
 
     private var currentPath: [AppRoute] {
