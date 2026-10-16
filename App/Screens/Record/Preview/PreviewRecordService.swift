@@ -52,10 +52,12 @@ nonisolated final class PreviewRecordService: RecordService, @unchecked Sendable
     }
 
     func commit(messageId: String) -> CommitResult {
+        /** Stamped before `update` takes the lock: `stamp()` takes it too, and NSLock is not recursive. */
+        let committedAt = stamp()
         let message = update(messageId) { message in
             message.draftStatus = .committed
             message.batchId = "batch-\(messageId)"
-            message.committedAt = stamp()
+            message.committedAt = committedAt
         }
         let remaining = ChatMessage(
             id: nextId(), sender: .kira, kind: .remaining, createdAt: stamp(), replyToId: messageId,
@@ -116,7 +118,9 @@ nonisolated final class PreviewRecordService: RecordService, @unchecked Sendable
     private func update(_ id: String, _ change: (inout ChatMessage) -> Void) -> ChatMessage {
         lock.withLock {
             guard let index = items.firstIndex(where: { $0.id == id }) else {
-                return ChatMessage(id: id, sender: .kira, kind: .noDrafts, createdAt: stamp())
+                /** `counter` read here, not through `stamp()`, which would take the held lock again. */
+                let createdAt = Self.noon.addingTimeInterval(Double(counter) * 60)
+                return ChatMessage(id: id, sender: .kira, kind: .noDrafts, createdAt: createdAt)
             }
             change(&items[index])
             return items[index]

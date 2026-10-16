@@ -9,6 +9,12 @@ import Features
 import SwiftUI
 
 struct RecordScreen: View {
+    /**
+     Room under the composer for the root's dock (canvas: the composer sits at bottom 96, the dock
+     at bottom 24): the dock's own 8 pt gap, its 60 pt height, and 12 pt between it and the composer.
+     */
+    static let dockClearance = KiraSpacing.space2 + 60 + KiraSpacing.space3
+
     @State private var model: RecordModel
     private let onOpen: (AppRoute) -> Void
 
@@ -61,7 +67,7 @@ struct RecordScreen: View {
         }
         .padding(.horizontal, KiraSpacing.screen)
         .padding(.top, KiraSpacing.space2)
-        .padding(.bottom, KiraSpacing.space3)
+        .padding(.bottom, Self.dockClearance)
     }
 }
 

@@ -13,6 +13,7 @@ struct TransactionDetailScreen: View {
     private let onOpen: (HistoryDestination) -> Void
     @State private var model: TransactionDetailModel
     @State private var openedMessageId: String?
+    @Environment(\.dynamicTypeSize) private var typeSize
     @Environment(\.dismiss) private var dismiss
 
     init(id: String, service: any HistoryService, onOpen: @escaping (HistoryDestination) -> Void) {
@@ -31,12 +32,24 @@ struct TransactionDetailScreen: View {
             }
             .padding(.horizontal, KiraSpacing.screen)
             .padding(.top, KiraSpacing.space2)
-            .padding(.bottom, KiraSpacing.space8)
+            .padding(.bottom, KiraSpacing.space4)
             .background(alignment: .topTrailing) {
                 KiraLeaf(.twig, tone: .soft, size: 150, isFlipped: true).offset(x: 52, y: -22)
             }
             .background(alignment: .topLeading) {
                 KiraLeaf(.pandan, tone: .soft, size: 104).offset(x: -56, y: 88)
+            }
+        }
+        /**
+         The board pins Ubah and Hapus to the bottom, on the home indicator's padding alone; at the
+         accessibility sizes they follow the card instead, so the detail keeps the screen.
+         */
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            if model.phase.value != nil, !typeSize.isAccessibilitySize {
+                actions
+                    .padding(.horizontal, KiraSpacing.screen)
+                    .padding(.top, KiraSpacing.space2)
+                    .background(.surface)
             }
         }
         .background(.surface)
@@ -88,10 +101,14 @@ struct TransactionDetailScreen: View {
             } editNote: {
                 model.startEditing()
             }
-            KiraButtonPair(
-                secondary: KiraButton("transaction.edit", variant: .secondary) { model.startEditing() }.icon(.pencil),
-                primary: KiraButton("transaction.delete", variant: .destructive) { model.requestDelete() }.icon(.trash))
+            if typeSize.isAccessibilitySize { actions }
         }
+    }
+
+    private var actions: some View {
+        KiraButtonPair(
+            secondary: KiraButton("transaction.edit", variant: .secondary) { model.startEditing() }.icon(.pencil),
+            primary: KiraButton("transaction.delete", variant: .destructive) { model.requestDelete() }.icon(.trash))
     }
 
     private var editSubtitle: LocalizedStringResource? {

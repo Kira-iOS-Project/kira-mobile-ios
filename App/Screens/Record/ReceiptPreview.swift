@@ -37,10 +37,13 @@ struct ReceiptPreview: View {
         .accessibilityElement(children: .contain)
     }
 
+    /** The photo fills the frame without sizing it: a picked image of any shape stays inside. */
     @ViewBuilder private func still(_ data: Data) -> some View {
         if let image = UIImage(data: data) {
-            Image(uiImage: image).resizable().scaledToFill()
-                .accessibilityLabel(Text("record.scan.photoLabel"))
+            Color.clear.overlay {
+                Image(uiImage: image).resizable().scaledToFill()
+                    .accessibilityLabel(Text("record.scan.photoLabel"))
+            }
         }
     }
 
