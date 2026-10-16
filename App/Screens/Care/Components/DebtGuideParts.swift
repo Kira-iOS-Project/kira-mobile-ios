@@ -59,6 +59,8 @@ struct DebtGuideCard: View {
 /** Langkahmu: the section title and the steps in a hairline card, the first number filled. */
 struct DebtGuideSteps: View {
     let steps: [(title: LocalizedStringResource, detail: LocalizedStringResource)]
+    /** The 30 pt number disc grows with its number. */
+    @ScaledMetric(relativeTo: .subheadline) private var disc: CGFloat = 30
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -68,20 +70,32 @@ struct DebtGuideSteps: View {
                     step(index)
                 }
             }
-            .padding(.vertical, 6)
+            .padding(.vertical, 18)
             .padding(.horizontal, KiraSpacing.space4)
             .kiraCard()
         }
     }
 
+    /**
+     One step: the number over the line down to the next number (4 pt clear of both discs; the last
+     step has none), and the words, 24 pt above the next step.
+     */
     private func step(_ index: Int) -> some View {
-        HStack(alignment: .top, spacing: 14) {
-            Text(index + 1, format: .number)
-                .font(KiraFont.display(14, .heavy, relativeTo: .subheadline))
-                .foregroundStyle(index == 0 ? Color.onPandan : .pandan)
-                .frame(width: 30, height: 30)
-                .background(index == 0 ? Color.pandan : .pandanSoft, in: Circle())
-                .overlay { Circle().strokeBorder(index == 0 ? Color.clear : .pandanLine, lineWidth: 1) }
+        let isLast = index == steps.count - 1
+        return HStack(alignment: .top, spacing: 14) {
+            VStack(spacing: KiraSpacing.space1) {
+                Text(index + 1, format: .number)
+                    .font(KiraFont.display(14, .heavy, relativeTo: .subheadline))
+                    .foregroundStyle(index == 0 ? Color.onPandan : .pandan)
+                    .frame(width: disc, height: disc)
+                    .background(index == 0 ? Color.pandan : .pandanSoft, in: Circle())
+                    .overlay { Circle().strokeBorder(index == 0 ? Color.clear : .pandanLine, lineWidth: 1) }
+                if !isLast {
+                    Capsule().fill(.line).frame(width: 1.5).frame(maxHeight: .infinity)
+                        .padding(.bottom, KiraSpacing.space1)
+                        .accessibilityHidden(true)
+                }
+            }
             VStack(alignment: .leading, spacing: 2) {
                 Text(steps[index].title).font(.callout.weight(.semibold)).kiraLineHeight(21, size: 16)
                     .foregroundStyle(.ink)
@@ -89,15 +103,9 @@ struct DebtGuideSteps: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.top, KiraSpacing.space1)
+            .padding(.bottom, isLast ? 0 : KiraSpacing.space6)
         }
-        .padding(.vertical, KiraSpacing.space3)
-        /** The line from under this number to the next one; the last step has none. */
-        .background(alignment: .topLeading) {
-            if index < steps.count - 1 {
-                Capsule().fill(.line).frame(width: 1.5).padding(.top, 46).padding(.bottom, -8)
-                    .offset(x: 14).accessibilityHidden(true)
-            }
-        }
+        .fixedSize(horizontal: false, vertical: true)
         .accessibilityElement(children: .combine)
     }
 }

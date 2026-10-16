@@ -1,10 +1,9 @@
 /**
  The screen of each pushed route, by area: Score (score, indicator), Account (profile … deleteAccount,
- about … complaints), Plans (plans … scholarshipStatus), Kira Peduli (care, trustedMessage), Mode
- Darurat Utang and its guides (debtEmergency, debtGuide; the PED screens of other branches keep a
- back button until they land). "Cek Ulang" (`healthCheck`) covers the shell instead (MainShell);
- Catat's and Riwayat's routes stay empty for their own integration, and an unavailable area never
- gets here.
+ about … complaints), Plans (plans … scholarshipStatus), Kira Peduli (care, trustedMessage; the PED
+ screens of other branches keep a back button until they land), Mode Darurat Utang and its guides
+ (debtEmergency, debtGuide). "Cek Ulang" (`healthCheck`) covers the shell instead (MainShell); Catat's
+ and Riwayat's routes stay empty for their own integration, and an unavailable area never gets here.
  */
 import Features
 import SwiftUI
@@ -37,6 +36,8 @@ struct RouteSlot: View {
             DebtEmergencyScreen(care: services.care, service: services.debtEmergency, onOpen: onOpen)
         case .debtGuide(let guide): DebtGuideScreen(guide: guide, care: services.care, onOpen: onOpen)
         case .breathingExercise, .negotiationScript, .safetyPlan: PendingCareSlot()
+        /** KOM's screens land with their own branches (work/i1-community, work/i2-marketplace). */
+        case .community, .communityGroup, .marketplace, .product, .submitProduct: EmptySlot()
         case .home, .record, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history, .transaction,
             .conversation, .importStatement, .unavailable:
             EmptySlot()
@@ -45,7 +46,7 @@ struct RouteSlot: View {
 }
 
 /**
- A Kira Peduli screen Kira Peduli links to before its own branch lands (PED-07, PED-10, PED-11): an
+ A Kira Peduli screen linked to before its own branch lands (PED-09, PED-10, PED-11): an
  empty surface that keeps the navigation bar, so its back button returns to Kira Peduli.
  */
 private struct PendingCareSlot: View {
