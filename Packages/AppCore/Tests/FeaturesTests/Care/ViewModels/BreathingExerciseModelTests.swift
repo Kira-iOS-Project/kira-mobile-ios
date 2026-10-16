@@ -10,7 +10,12 @@ struct BreathingExerciseModelTests {
     @MainActor final class Taps { var steps: [BreathingPattern.Step] = [] }
 
     private let short = BreathingPattern(inhale: 2, hold: 1, exhale: 2, rounds: 2)
-    private let settings = BreathingSettings(defaults: UserDefaults(suiteName: "breathing-\(UUID())")!)
+    private let settings = BreathingSettings(defaults: Self.scratchDefaults())
+
+    /** Defaults of their own, so a test never reads or writes the phone's. */
+    private static func scratchDefaults() -> UserDefaults {
+        UserDefaults(suiteName: "breathing-\(UUID())") ?? .standard
+    }
 
     private func model(taps: Taps = Taps(), pattern: BreathingPattern? = nil) -> BreathingExerciseModel {
         BreathingExerciseModel(
@@ -64,7 +69,7 @@ struct BreathingExerciseModelTests {
 
     @Test("the setting is on until the person turns it off")
     func settingDefault() {
-        #expect(BreathingSettings(defaults: UserDefaults(suiteName: "breathing-\(UUID())")!).hapticsOn)
+        #expect(BreathingSettings(defaults: Self.scratchDefaults()).hapticsOn)
         let standard = UserDefaults.standard.object(forKey: "care.breathing.haptics") as? Bool ?? true
         #expect(BreathingSettings().hapticsOn == standard)
     }
