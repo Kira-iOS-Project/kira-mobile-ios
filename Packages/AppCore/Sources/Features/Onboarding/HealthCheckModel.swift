@@ -9,21 +9,21 @@ import Observation
 @MainActor @Observable
 package final class HealthCheckModel {
     /** Step 1: "Penghasilan bersih". */
-    package var income = "" { didSet { income.regroupAmount() } }
+    package var income = "" { didSet { if let grouped = regrouped(income) { income = grouped } } }
     /** Step 1: "Tanggal Gajian". */
     package var payday = Payday(day: Payday.defaultDay)
     /** Step 2: "Pengeluaran pokok". */
-    package var expenses = "" { didSet { expenses.regroupAmount() } }
+    package var expenses = "" { didSet { if let grouped = regrouped(expenses) { expenses = grouped } } }
     /** Step 3. */
     package let debts = DebtAnswersModel()
     /** Step 4: "Dana darurat". */
-    package var emergencyFund = "" { didSet { emergencyFund.regroupAmount() } }
+    package var emergencyFund = "" { didSet { if let grouped = regrouped(emergencyFund) { emergencyFund = grouped } } }
     /** Step 4: "Menabung per bulan". */
-    package var monthlySavings = "" { didSet { monthlySavings.regroupAmount() } }
+    package var monthlySavings = "" { didSet { if let grouped = regrouped(monthlySavings) { monthlySavings = grouped } } }
     /** Step 5: "Aset lain". */
-    package var otherAssets = "" { didSet { otherAssets.regroupAmount() } }
+    package var otherAssets = "" { didSet { if let grouped = regrouped(otherAssets) { otherAssets = grouped } } }
     /** Step 5: "Kendaraan dan properti". */
-    package var propertyAssets = "" { didSet { propertyAssets.regroupAmount() } }
+    package var propertyAssets = "" { didSet { if let grouped = regrouped(propertyAssets) { propertyAssets = grouped } } }
     /** Step 6. */
     package let protection = ProtectionAnswersModel()
     /** Editing, sending or failed. */
@@ -78,12 +78,10 @@ package final class HealthCheckModel {
             phase = .failure(error)
         }
     }
-}
 
-extension String {
-    /** Groups the digits of a typed amount in place; changes nothing once grouped, so it ends. */
-    fileprivate mutating func regroupAmount() {
-        let grouped = AmountInput.grouped(self)
-        if grouped != self { self = grouped }
+    /** `text` grouped, or nil when it already is, so assigning it back ends the observers. */
+    private func regrouped(_ text: String) -> String? {
+        let grouped = AmountInput.grouped(text)
+        return grouped == text ? nil : grouped
     }
 }
