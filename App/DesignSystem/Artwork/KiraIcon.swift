@@ -1,8 +1,8 @@
 /**
  Icon (design system): a line icon for actions and navigation. It takes the colour around it
  (ink, ink-muted or pandan) and is hidden from VoiceOver: the control that holds it carries the
- name. `isFilled` is the design system's duotone, the SF Symbol's .fill variant for the active
- destination.
+ name. `isFilled` is the design system's duotone, for the active destination: the outline over
+ its .fill variant at 20 % opacity, as the design system paints a duotone icon's fill.
  */
 import SwiftUI
 
@@ -21,11 +21,13 @@ struct KiraIcon: View {
     }
 
     var body: some View {
-        Image(systemName: name.systemName)
-            .font(.system(size: size * 0.75, weight: weight))
-            .symbolVariant(isFilled ? .fill : .none)
-            .frame(width: size, height: size)
-            .accessibilityHidden(true)
+        ZStack {
+            if isFilled { Image(systemName: name.systemName).symbolVariant(.fill).opacity(0.2) }
+            Image(systemName: name.systemName)
+        }
+        .font(.system(size: size * 0.75, weight: weight))
+        .frame(width: size, height: size)
+        .accessibilityHidden(true)
     }
 }
 

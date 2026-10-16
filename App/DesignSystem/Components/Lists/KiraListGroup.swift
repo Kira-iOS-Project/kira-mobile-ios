@@ -24,7 +24,7 @@ struct KiraListGroup<Rows: View>: View {
         VStack(alignment: .leading, spacing: KiraSpacing.space2) {
             if let title {
                 Text(title)
-                    .font(.subheadline.weight(.semibold))
+                    .font(.subheadline.weight(.semibold)).kiraLineHeight(20, size: 15)
                     .foregroundStyle(.inkMuted)
                     .padding(.horizontal, KiraSpacing.space1)
                     .accessibilityAddTraits(.isHeader)
@@ -34,7 +34,7 @@ struct KiraListGroup<Rows: View>: View {
                 .kiraCard()
             if let footer {
                 Text(footer)
-                    .font(.footnote)
+                    .font(.footnote).kiraLineHeight(18, size: 13)
                     .foregroundStyle(.inkMuted)
                     .padding(.horizontal, KiraSpacing.space1)
             }

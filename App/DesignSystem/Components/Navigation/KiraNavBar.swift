@@ -60,8 +60,11 @@ struct KiraNavBar<Trailing: View>: View {
 
     private var titles: some View {
         VStack(spacing: 0) {
-            Text(title).font(.headline).foregroundStyle(.ink).accessibilityAddTraits(.isHeader)
-            if let subtitle { Text(subtitle).font(.caption).foregroundStyle(.inkMuted) }
+            Text(title).font(.headline).kiraLineHeight(22, size: 17).foregroundStyle(.ink)
+                .accessibilityAddTraits(.isHeader)
+            if let subtitle {
+                Text(subtitle).font(.caption).kiraLineHeight(16, size: 12).foregroundStyle(.inkMuted)
+            }
         }
         .multilineTextAlignment(.center)
     }
@@ -78,29 +81,46 @@ struct KiraNavBar<Trailing: View>: View {
         .frame(minHeight: KiraSize.tap)
     }
 
+    /**
+     `.k-nav--large`: the button row, then the eyebrow 2 pt above the title (a 16 pt row gap less its
+     -14 pt margin), and the trailing buttons centred on the title and its subtitle.
+     */
     private var large: some View {
         VStack(alignment: .leading, spacing: KiraSpacing.space4) {
             leadingButton
-            HStack(alignment: .center, spacing: KiraSpacing.space2) {
-                VStack(alignment: .leading, spacing: 2) {
-                    if let eyebrow { Text(eyebrow).font(.footnote.weight(.medium)).foregroundStyle(.inkMuted) }
-                    Text(title)
-                        .font(KiraFont.display(28, .heavy, relativeTo: .title))
-                        .tracking(-0.56)
-                        /** One word, such as "Beranda", cannot wrap: it shrinks before it would clip. */
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.6)
-                        .foregroundStyle(.ink)
-                        .accessibilityAddTraits(.isHeader)
-                    if let subtitle { Text(subtitle).font(.footnote).foregroundStyle(.inkMuted) }
+            VStack(alignment: .leading, spacing: 2) {
+                if let eyebrow {
+                    Text(eyebrow).font(.footnote.weight(.medium)).kiraLineHeight(18, size: 13)
+                        .foregroundStyle(.inkMuted)
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                if !typeSize.isAccessibilitySize {
-                    HStack(spacing: KiraSpacing.space1) { trailing }.fixedSize()
-                }
+                largeTitleRow
             }
             if typeSize.isAccessibilitySize {
                 HStack(spacing: KiraSpacing.space1) { trailing }
+            }
+        }
+    }
+
+    private var largeTitleRow: some View {
+        HStack(alignment: .center, spacing: KiraSpacing.space2) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(KiraFont.display(28, .heavy, relativeTo: .title)).kiraLineHeight(
+                        34, size: 28, natural: 1.26, relativeTo: .title
+                    )
+                    .tracking(-0.56)
+                    /** One word, such as "Beranda", cannot wrap: it shrinks before it would clip. */
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
+                    .foregroundStyle(.ink)
+                    .accessibilityAddTraits(.isHeader)
+                if let subtitle {
+                    Text(subtitle).font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            if !typeSize.isAccessibilitySize {
+                HStack(spacing: KiraSpacing.space1) { trailing }.fixedSize()
             }
         }
     }

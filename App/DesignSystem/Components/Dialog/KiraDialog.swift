@@ -51,14 +51,16 @@ struct KiraDialog: View {
         VStack(spacing: KiraSpacing.space2) {
             artView
             Text(title)
-                .font(KiraFont.display(22, .heavy, relativeTo: .title2))
+                .font(KiraFont.display(22, .heavy, relativeTo: .title2)).kiraLineHeight(
+                    28, size: 22, natural: 1.26, relativeTo: .title2
+                )
                 .tracking(-0.33)
                 .foregroundStyle(.ink)
                 .accessibilityAddTraits(.isHeader)
                 .accessibilityFocused($titleFocused)
                 .frame(maxWidth: 280)
             Text(message)
-                .font(.subheadline)
+                .font(.subheadline).kiraLineHeight(21, size: 15)
                 .foregroundStyle(.inkMuted)
                 .frame(maxWidth: 270)
             VStack(spacing: KiraSpacing.space2) {
@@ -97,7 +99,7 @@ struct KiraDialog: View {
     @ViewBuilder private var artView: some View {
         switch art {
         case .illustration(let name):
-            KiraIllustration(name, size: 112)
+            KiraIllustration(name, size: 112).padding(.top, -4)
         case .success:
             ResultBadge(icon: .check, color: .pandan, fill: .pandanSoft, border: .pandanLine)
         case .failure:
