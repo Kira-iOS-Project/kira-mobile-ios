@@ -56,13 +56,13 @@ struct FailureCase: Sendable, CustomTestStringConvertible {
 
     var testDescription: String { "\(name) answering \(status)" }
 
-    /** The problem the call must throw: the canned one, or the generic one for an undocumented status. */
-    func expectedProblem(documented: Bool) -> AppProblem {
-        documented ? AppProblem(type: AppProblem.typeBase + "X_CODE", code: "X_CODE", requestId: "r-1") : AppProblem()
+    /** The problem the call must throw: the canned one, a listed status or not (every route declares a default). */
+    var expectedProblem: AppProblem {
+        AppProblem(type: AppProblem.typeBase + "X_CODE", code: "X_CODE", requestId: "r-1")
     }
 }
 
-/** Each declared error status of a call, plus 500, which no Catat route declares. */
+/** Each declared error status of a call, plus 500, which no Catat route lists but every route answers as a problem. */
 func failureCases(
     _ name: String, statuses: [Int], call: @escaping @Sendable (KiraAPI) async throws -> Void
 ) -> [FailureCase] {

@@ -13,7 +13,6 @@ nonisolated extension ScoreReport {
             score: 66, band: .coping, computedAt: Date(timeIntervalSince1970: 1_790_787_600),
             nextCheckOn: Date(timeIntervalSince1970: 1_792_861_200))
         report.delta = 4
-        report.isInitial = false
         report.groups = [
             GroupScore(group: .save, points: 48, band: .coping),
             GroupScore(group: .debt, points: 67, band: .coping),

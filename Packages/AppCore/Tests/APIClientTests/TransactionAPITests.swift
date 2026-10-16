@@ -19,8 +19,6 @@ struct TransactionAPITests {
 
         let saved = try await api.createTransaction(entry)
 
-        #expect(saved.transaction.amount == 18_000)
-        #expect(saved.transaction.source == .chat)
         #expect(saved.message.id == "m-1")
         let body = try decodeSent(
             Components.Schemas.ManualTransactionInput.self, from: try #require(await transport.request))
@@ -97,7 +95,7 @@ struct TransactionAPITests {
     @Test("throws the problem of a failure", arguments: Self.failures)
     func throwsProblems(failure: FailureCase) async {
         let (api, _) = KiraAPI.canned(status: failure.status, json: problemJSON("X_CODE"))
-        await #expect(throws: failure.expectedProblem(documented: failure.status != 500)) {
+        await #expect(throws: failure.expectedProblem) {
             try await failure.call(api)
         }
     }

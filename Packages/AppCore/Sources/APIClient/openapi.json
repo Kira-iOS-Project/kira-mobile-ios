@@ -65,12 +65,14 @@
               "INTERNAL_ERROR",
               "META_HEALTH_UNHEALTHY",
               "AUTH_CODE_RATE_LIMITED",
+              "AUTH_VERIFY_RATE_LIMITED",
               "AUTH_CODE_INVALID",
               "AUTH_CODE_EXPIRED",
               "AUTH_CODE_ATTEMPTS_EXCEEDED",
               "AUTH_UNAUTHENTICATED",
               "AUTH_REFRESH_INVALID",
               "EMAIL_DELIVERY_FAILED",
+              "ACCOUNT_EXPORT_RATE_LIMITED",
               "SCORE_NOT_AVAILABLE",
               "CHAT_AI_DISABLED",
               "CHAT_MESSAGE_NOT_FOUND",
@@ -85,13 +87,17 @@
               "IMPORT_ROW_UNKNOWN",
               "SUBSCRIPTION_NOT_FOUND",
               "SUBSCRIPTION_NOT_CANCELLABLE",
+              "SUBSCRIPTION_NOT_PAID",
               "SCHOLARSHIP_NOT_ELIGIBLE",
               "SCHOLARSHIP_APPLICATION_NOT_FOUND",
+              "SCHOLARSHIP_DEBT_EMERGENCY_REQUIRED",
               "COMMUNITY_GROUP_NOT_FOUND",
               "COMMUNITY_LINK_UNAVAILABLE",
               "COMMUNITY_PRODUCT_NOT_FOUND",
               "COMMUNITY_REPORT_DUPLICATE",
-              "COMMUNITY_RULES_NOT_ACCEPTED"
+              "COMMUNITY_RULES_NOT_ACCEPTED",
+              "CARE_CHECK_IN_NOT_FOUND",
+              "CARE_SAFETY_PLAN_NOT_FOUND"
             ]
           },
           "requestId": {
@@ -381,6 +387,9 @@
           },
           "weeklySummaryEnabled": {
             "type": "boolean"
+          },
+          "debtEmergencyActive": {
+            "type": "boolean"
           }
         },
         "required": [
@@ -398,7 +407,8 @@
           "lastCategories",
           "debtAccountCount",
           "aiEnabled",
-          "weeklySummaryEnabled"
+          "weeklySummaryEnabled",
+          "debtEmergencyActive"
         ]
       },
       "Usage": {
@@ -1770,6 +1780,7 @@
               "has_paid_plan",
               "has_scholarship",
               "has_open_application",
+              "debt_emergency_not_used",
               null
             ]
           },
@@ -1906,7 +1917,8 @@
           },
           "story": {
             "type": "string",
-            "maxLength": 1000
+            "maxLength": 16000,
+            "description": "At most 1000 characters (grapheme clusters)."
           }
         },
         "required": [
@@ -2254,6 +2266,309 @@
               "sellerUrl"
             ]
           }
+        ]
+      },
+      "CareContacts": {
+        "type": "object",
+        "properties": {
+          "verifiedOn": {
+            "type": "string",
+            "format": "date"
+          },
+          "contacts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CareContact"
+            }
+          }
+        },
+        "required": [
+          "verifiedOn",
+          "contacts"
+        ]
+      },
+      "CareContact": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "enum": [
+              "healing119",
+              "kira_care",
+              "psc119",
+              "ojk157",
+              "satgas_pasti",
+              "iasc",
+              "laps_sjk"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "phone": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "extension": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "whatsapp": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri"
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "name",
+          "phone",
+          "extension",
+          "whatsapp",
+          "url",
+          "note"
+        ]
+      },
+      "CareSignal": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "string",
+            "enum": [
+              "concern",
+              "danger"
+            ]
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "chat",
+              "check_in"
+            ]
+          }
+        },
+        "required": [
+          "level",
+          "source"
+        ]
+      },
+      "CheckIn": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "dueAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "dueAt"
+        ]
+      },
+      "ScheduleCheckIn": {
+        "type": "object",
+        "properties": {
+          "afterHours": {
+            "anyOf": [
+              {
+                "type": "number",
+                "enum": [
+                  24
+                ]
+              },
+              {
+                "type": "number",
+                "enum": [
+                  48
+                ]
+              },
+              {
+                "type": "number",
+                "enum": [
+                  72
+                ]
+              }
+            ]
+          }
+        },
+        "required": [
+          "afterHours"
+        ]
+      },
+      "DueCheckIn": {
+        "type": "object",
+        "properties": {
+          "checkIn": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CheckIn"
+              },
+              {
+                "type": [
+                  "object",
+                  "null"
+                ]
+              }
+            ]
+          }
+        },
+        "required": [
+          "checkIn"
+        ]
+      },
+      "DebtEmergency": {
+        "type": "object",
+        "properties": {
+          "activatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "activatedAt"
+        ]
+      },
+      "Debts": {
+        "type": "object",
+        "properties": {
+          "debts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Debt"
+            }
+          }
+        },
+        "required": [
+          "debts"
+        ]
+      },
+      "Debt": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "paylater",
+              "online_loan",
+              "credit_card",
+              "vehicle",
+              "mortgage",
+              "family_loan"
+            ]
+          },
+          "remaining": {
+            "type": "integer"
+          },
+          "monthlyInstalment": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "kind",
+          "remaining",
+          "monthlyInstalment"
+        ]
+      },
+      "SafetyPlan": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/SafetyPlanInput"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "updatedAt": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "updatedAt"
+            ]
+          }
+        ]
+      },
+      "SafetyPlanPerson": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "phone": {
+            "type": "string",
+            "maxLength": 500
+          }
+        },
+        "required": [
+          "name",
+          "phone"
+        ]
+      },
+      "SafetyPlanInput": {
+        "type": "object",
+        "properties": {
+          "warningSigns": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "calmingThings": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "people": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SafetyPlanPerson"
+            },
+            "maxItems": 3
+          },
+          "professionals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SafetyPlanPerson"
+            },
+            "maxItems": 3
+          },
+          "safePlace": {
+            "type": "string",
+            "maxLength": 500
+          }
+        },
+        "required": [
+          "warningSigns",
+          "calmingThings",
+          "people",
+          "professionals",
+          "safePlace"
         ]
       },
       "ChatMessagePage": {
@@ -3253,6 +3568,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -3308,6 +3633,16 @@
           },
           "503": {
             "description": "A dependency is unavailable",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -3377,6 +3712,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -3428,6 +3773,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -3450,6 +3805,16 @@
           },
           "401": {
             "description": "No valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -3487,6 +3852,16 @@
           },
           "401": {
             "description": "No valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -3548,6 +3923,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -3577,6 +3962,16 @@
           },
           "401": {
             "description": "No valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -3639,6 +4034,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -3676,6 +4081,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -3706,8 +4121,28 @@
               }
             }
           },
+          "429": {
+            "description": "Too many requests",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
           "503": {
             "description": "A dependency is unavailable",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -3758,6 +4193,16 @@
           },
           "422": {
             "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -3832,6 +4277,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -3872,6 +4327,16 @@
           },
           "404": {
             "description": "Resource not found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -3954,6 +4419,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -3991,6 +4466,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -4020,6 +4505,16 @@
           },
           "401": {
             "description": "No valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -4084,6 +4579,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -4123,6 +4628,16 @@
           },
           "404": {
             "description": "Resource not found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -4179,6 +4694,16 @@
           },
           "409": {
             "description": "Resource conflict",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -4243,8 +4768,28 @@
               }
             }
           },
+          "409": {
+            "description": "Resource conflict",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
           "422": {
             "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -4281,6 +4826,16 @@
           },
           "401": {
             "description": "No valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -4344,6 +4899,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -4373,6 +4938,16 @@
           },
           "401": {
             "description": "No valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -4447,6 +5022,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -4479,6 +5064,16 @@
           },
           "404": {
             "description": "Resource not found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -4541,6 +5136,16 @@
           },
           "422": {
             "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -4615,6 +5220,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -4657,6 +5272,16 @@
           },
           "422": {
             "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -4735,6 +5360,16 @@
           },
           "422": {
             "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -4830,6 +5465,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -4885,6 +5530,16 @@
           },
           "422": {
             "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -4959,6 +5614,586 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/care/contacts": {
+      "get": {
+        "tags": [
+          "Care"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "operationId": "listCareContacts",
+        "summary": "The verified crisis contacts, re-checked monthly",
+        "responses": {
+          "200": {
+            "description": "Contacts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CareContacts"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/care/signals": {
+      "post": {
+        "tags": [
+          "Care"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "operationId": "recordCareSignal",
+        "summary": "Record that the device detected a crisis signal (never the words)",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CareSignal"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Recorded"
+          },
+          "401": {
+            "description": "No valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/care/check-ins": {
+      "post": {
+        "tags": [
+          "Care"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "operationId": "scheduleCheckIn",
+        "summary": "Schedule a check-in shown in Catat after 24, 48 or 72 hours",
+        "description": "Replaces any check-in still pending. Nothing is pushed: the app shows it when opened.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScheduleCheckIn"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The scheduled check-in",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckIn"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/care/check-ins/due": {
+      "get": {
+        "tags": [
+          "Care"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "operationId": "getDueCheckIn",
+        "summary": "The pending check-in whose time has come, or null",
+        "responses": {
+          "200": {
+            "description": "The due check-in",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DueCheckIn"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/care/check-ins/{id}": {
+      "delete": {
+        "tags": [
+          "Care"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "operationId": "cancelCheckIn",
+        "summary": "Cancel a pending check-in",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Cancelled"
+          },
+          "401": {
+            "description": "No valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/care/check-ins/{id}/seen": {
+      "post": {
+        "tags": [
+          "Care"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "operationId": "markCheckInSeen",
+        "summary": "Mark a check-in shown in Catat",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Seen"
+          },
+          "401": {
+            "description": "No valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/care/debt-emergency": {
+      "put": {
+        "tags": [
+          "Care"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "operationId": "activateDebtEmergency",
+        "summary": "Turn Mode Darurat Utang on (idempotent, keeps the first time)",
+        "responses": {
+          "200": {
+            "description": "Active",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DebtEmergency"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/debts": {
+      "get": {
+        "tags": [
+          "Score"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "operationId": "listDebts",
+        "summary": "The health check’s debts that are not paid off",
+        "responses": {
+          "200": {
+            "description": "Debts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Debts"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/care/safety-plan": {
+      "get": {
+        "tags": [
+          "Care"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "operationId": "getSafetyPlan",
+        "summary": "The person’s safety plan",
+        "responses": {
+          "200": {
+            "description": "The safety plan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SafetyPlan"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Care"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "operationId": "saveSafetyPlan",
+        "summary": "Write the whole safety plan (encrypted at rest)",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SafetyPlanInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The saved plan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SafetyPlan"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -4989,6 +6224,16 @@
           },
           "401": {
             "description": "No valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -5083,6 +6328,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       },
@@ -5141,6 +6396,16 @@
           },
           "422": {
             "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -5218,6 +6483,16 @@
           },
           "422": {
             "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -5313,6 +6588,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -5391,6 +6676,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -5441,6 +6736,16 @@
           },
           "422": {
             "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -5557,6 +6862,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -5616,6 +6931,16 @@
           },
           "422": {
             "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -5701,6 +7026,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -5761,6 +7096,16 @@
           },
           "422": {
             "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -5843,6 +7188,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       },
@@ -5894,6 +7249,16 @@
           },
           "422": {
             "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -5971,6 +7336,16 @@
           },
           "422": {
             "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -6059,6 +7434,16 @@
           },
           "422": {
             "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {

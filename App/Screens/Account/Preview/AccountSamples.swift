@@ -27,12 +27,10 @@ nonisolated enum AccountSamples {
         aiEnabled: true, weeklySummaryEnabled: true)
 
     static func consents(aiProcessing: Bool = true, weekly: Bool = true) -> ConsentSettings {
-        ConsentSettings(
-            policyVersion: "2026-10-15",
-            items: [
-                ConsentItem(purpose: .core, granted: true), ConsentItem(purpose: .aiProcessing, granted: aiProcessing),
-                ConsentItem(purpose: .weeklySummary, granted: weekly),
-            ])
+        ConsentSettings(items: [
+            ConsentItem(purpose: .core, granted: true), ConsentItem(purpose: .aiProcessing, granted: aiProcessing),
+            ConsentItem(purpose: .weeklySummary, granted: weekly),
+        ])
     }
 
     static let export = DataExport(

@@ -351,12 +351,12 @@
         }
       }
     },
-    "account.delete.export.failed" : {
+    "account.delete.export.failedTitle" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Belum terkirim. Ketuk untuk coba lagi."
+            "value" : "Email Belum Terkirim"
           }
         }
       }
@@ -11367,6 +11367,16 @@
         }
       }
     },
+    "onboarding.signUp.sheet.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kode Belum Terkirim"
+          }
+        }
+      }
+    },
     "onboarding.signUp.sheet.send" : {
       "localizations" : {
         "id" : {
@@ -12227,6 +12237,17 @@
         }
       }
     },
+    "problem.ACCOUNT_EXPORT_RATE_LIMITED" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datamu baru saja dikirim ke emailmu. Cek kotak masuk dulu, atau coba lagi nanti."
+          }
+        }
+      }
+    },
     "problem.AUTH_CODE_ATTEMPTS_EXCEEDED" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -12289,6 +12310,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sesimu sudah berakhir. Masuk lagi untuk melanjutkan."
+          }
+        }
+      }
+    },
+    "problem.AUTH_VERIFY_RATE_LIMITED" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kode sudah terlalu sering dicoba. Tunggu beberapa menit, lalu coba lagi."
           }
         }
       }
@@ -12377,6 +12409,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Setujui Aturan Komunitas dulu sebelum bergabung, ya."
+          }
+        }
+      }
+    },
+    "problem.connection" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koneksi terputus. Cek internetmu, lalu coba lagi."
           }
         }
       }
@@ -12524,13 +12567,24 @@
         }
       }
     },
+    "problem.SCHOLARSHIP_DEBT_EMERGENCY_REQUIRED" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beasiswa Kira untuk pengguna Mode Darurat Utang. Buka Mode Darurat Utang di Kira Peduli dulu, lalu daftar lagi."
+          }
+        }
+      }
+    },
     "problem.SCHOLARSHIP_NOT_ELIGIBLE" : {
       "extractionState" : "manual",
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kamu belum bisa mendaftar Beasiswa Kira saat ini."
+            "value" : "Beasiswa Kira untuk pengguna yang belum berlangganan paket berbayar dan belum punya pengajuan aktif."
           }
         }
       }
@@ -12564,6 +12618,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kamu sedang memakai Kira Gratis."
+          }
+        }
+      }
+    },
+    "problem.SUBSCRIPTION_NOT_PAID" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paket dari Beasiswa Kira gratis, jadi tidak ada metode pembayaran yang perlu diganti."
           }
         }
       }
@@ -15649,6 +15714,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kira Score"
+          }
+        }
+      }
+    },
+    "sheet.failure.reference %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada yang tidak beres. Sebutkan kode ini saat menghubungi kami: %@"
+          }
+        }
+      }
+    },
+    "sheet.failure.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
           }
         }
       }

@@ -17,9 +17,10 @@ struct ProductModelTests {
         #expect(model.phase.value == MarketplaceFixtures.detail)
     }
 
-    @Test("a product that is gone shows COMMUNITY_PRODUCT_NOT_FOUND; a lost connection the generic problem")
+    @Test("a gone product shows COMMUNITY_PRODUCT_NOT_FOUND; a lost connection the generic problem")
     func failures() async {
-        let gone = ProductModel(id: "lama", service: FakeMarketplaceService(detail: .success(MarketplaceFixtures.detail)))
+        let gone = ProductModel(
+            id: "lama", service: FakeMarketplaceService(detail: .success(MarketplaceFixtures.detail)))
         await gone.load()
         guard case .failed(let problem) = gone.phase else { return #expect(Bool(false)) }
         #expect(problem.knownCode == .communityProductNotFound)
