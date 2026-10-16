@@ -14,7 +14,7 @@ version 6, last changed 15 October 2026). When a ticket names a component (`Kira
 | `App/DesignSystem/Typography/` | Font registration and the text styles |
 | `App/DesignSystem/Artwork/` | Icon, Logo, Mascot, CategoryIcon, Illustration, Leaf, Scenery, HandNote |
 | `App/DesignSystem/Components/` | The components, by group: Controls, Content, Score, Lists, Navigation, Dialog, Chat |
-| `App/DesignSystem/Layout/` | Row separators, the wrapping row (chips), the weighted row, the scroll edges |
+| `App/DesignSystem/Layout/` | Row separators, the wrapping row (chips), the weighted row, the scroll edges, balanced lines (`text-wrap: balance`, `balancedLines()`) |
 | `App/DesignSystem/Gallery/` | The debug-only gallery of every component |
 | `App/Screens/Shared/` | Screen helpers several areas share: dates, the load-failed view, the tap card, plan and category names, problem messages ([Shared screen helpers](#shared-screen-helpers)) |
 | `Packages/AppCore/Sources/Domain/` | `RupiahFormatStyle`, `Score`, `ScoreBand`, `DigitCode`: logic, tested at 100% |
@@ -196,7 +196,7 @@ Options beyond five initializer parameters are chained modifiers, such as
 | `ListRow` (category, icon, illustration, initial; chevron, external, toggle, check; danger) | `KiraListRow(_:leading:trailing:action:extra:)` `.subtitle` `.amount` `.value` `.danger()` | `Components/Lists/KiraListRow.swift`, `KiraListRowParts.swift` |
 | `NavBar` (back, close, large, eyebrow, actions) | `KiraNavBar(_:subtitle:leading:isLarge:trailing:)` `.eyebrow(_:)` | `Components/Navigation/KiraNavBar.swift` |
 | `TabBar` (the dock with Catat) | `KiraTabBar(selection:isRecordActive:onRecord:)`, `KiraTab` | `Components/Navigation/KiraTabBar.swift` |
-| `Sheet` | `.kiraSheet(isPresented:title:subtitle:top:content:)`: the artifact's sheet, not the system one (the scrim, a line-strong grabber, the hairline top, 30 pt corners, the close X on the right), in a KiraCover | `Components/Navigation/KiraSheet.swift`, `Layout/KiraCover.swift` |
+| `Sheet` | `.kiraSheet(isPresented:title:subtitle:top:leaf:content:)`: the artifact's sheet, not the system one (the scrim, a line-strong grabber, the hairline top, 30 pt corners, the close X on the right), in a KiraCover | `Components/Navigation/KiraSheet.swift`, `Layout/KiraCover.swift` |
 | `.k-dialog` (success, failure, confirm; illustration or round icon; one or two buttons) | `KiraDialog(_:message:art:primary:secondary:)`, presented with `.kiraDialog(isPresented:dialog:)` | `Components/Dialog/KiraDialog.swift`, `KiraDialogPresentation.swift` |
 | (screen edges) | `.kiraScrollEdges()` | `Layout/KiraScrollEdges.swift` |
 | `ChatBubble` (me, kira; meta, initial, saved) | `KiraChatBubble(_:meta:initial:content:)` `.saved(_:)` `.hidesAvatar()` (`me` is `.user`) | `Components/Chat/KiraChatBubble.swift` |
@@ -451,6 +451,20 @@ components (sizes, paddings, radii, borders, colours, icon sizes) already matche
 | Scenery | Width | `width: 100%`, `preserveAspectRatio="xMidYMax slice"` | The image's width at `height` (400 pt at 150, 655 at 250), widening its container | The container's width, cropped centred on the bottom edge |
 | Sheet | Panel top | `top` prop, 56 by default | Always under the status bar | `top:` from the top of the screen; under the status bar by default and at the accessibility sizes |
 | Accordion | Title at the accessibility sizes | Wraps between words | Broke inside a word beside the icon | The icon above the title, which wraps between words |
+| Dialog | Position | Centred on the whole screen (`.k-dialog-scrim`, `margin: auto`) | Centred on the safe area, 12.5 pt lower | Centred on the screen |
+| Dialog | Title weight and wrap | 750, `max-width` 280, `text-wrap: balance` | 800 (`.heavy`), so "Belum Berhasil Menyimpan" (280.5 pt) wrapped | 750 on the variable font's axis (279.2 pt), balanced (`balancedLines()`) |
+| Dialog | Message | Plain text | Markdown, so an email address was tinted as a link | Plain (resolved, then `Text(String)`) |
+| ChatBubble | Card beside an avatar | `width: 82%` capped by `max-width: 76%` | 82 % | 76 % (82 % without an avatar) |
+| ChatBubble | Wrapping text | The box takes its `max-width` | The widest line | The limit once the text wraps |
+| Button | Too long for its padding | `white-space: nowrap`, runs into the padding | Wrapped onto two lines | One line down to 8 pt a side; wraps only past that |
+| DraftCard | Space between rows | None (`.k-draft__list` has no gap) | 8 pt | None |
+| Sheet | Default top | 56 | Under the status bar (59) | 56, the panel reaching 3 pt into the status bar |
+| Sheet | Subtitle | `text-wrap: balance` | Greedy | Balanced |
+| Sheet | Corner leaf | Catat Manual's twig, `top: 0; right: -30px`, behind the header | None | `leaf:` |
+| TabBar (MainShell) | Distance from the bottom | `bottom: 24px` from the screen's edge | 8 pt above the 34 pt inset (42) | 24 pt from the edge on any inset |
+| Notice | Inside the border | 12 and 14 pt inside a 1 pt border that takes layout | 12 and 14 pt, the border drawn over | 13 and 15 pt |
+| Tag | At the accessibility sizes | `white-space: nowrap` | One line, sticking out of its card | Wraps within its card |
+| ListRow | Switch at the accessibility sizes | Beside the text | Beside a title that broke inside a word | Under the title, which wraps between words |
 | Accordion | `defaultOpen` | Supported | Closed only | `.openByDefault()` |
 | Field | `icon` | Supported | None | `.icon(_:)` |
 | StepProgress | `label` | Supported | "Langkah N dari M" only | `label:` |

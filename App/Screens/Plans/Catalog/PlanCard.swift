@@ -36,7 +36,7 @@ struct PlanCard<Features: View>: View {
         VStack(alignment: .leading, spacing: 14) {
             if typeSize.isAccessibilitySize {
                 VStack(alignment: .leading, spacing: KiraSpacing.space2) {
-                    tag.keepsOfferedWidth()
+                    tag
                     heading
                 }
             } else {
@@ -73,7 +73,6 @@ struct PlanCard<Features: View>: View {
                 KiraTag(
                     "plans.yearly.saving \(Decimal(terms.yearlySaving), format: .rupiah)", tone: .pandan, icon: .percent
                 )
-                .keepsOfferedWidth()
                 .padding(.top, KiraSpacing.space1)
             }
             if terms.id == .young {

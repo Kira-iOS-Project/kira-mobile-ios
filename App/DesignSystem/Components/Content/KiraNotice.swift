@@ -61,8 +61,9 @@ struct KiraNotice: View {
             .padding(.top, 1)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding(.vertical, 12)
-        .padding(.horizontal, 14)
+        /** `.k-notice`'s 12 and 14 pt inside its 1 pt border, which CSS lays out and kiraCard draws over. */
+        .padding(.vertical, 13)
+        .padding(.horizontal, 15)
         .kiraCard(colors.fill, border: colors.border, cornerRadius: KiraRadius.medium)
         .accessibilityElement(children: .combine)
     }

@@ -1,5 +1,6 @@
 /**
- The boards' `text-wrap: balance`: a text keeps the number of lines it needs at the width it is
+ The design system's `text-wrap: balance` (the dialog title, the sheet subtitle, and the boards'
+ headings): a text keeps the number of lines it needs at the width it is
  offered, but takes the narrowest width that still fits in those lines, so its lines come out
  about even ("Catatan keuanganmu / hanya terbuka untukmu.", not a lone word on the last line).
  */
@@ -45,15 +46,5 @@ extension View {
     /** Wraps a multi-line text into lines of about even length, as `text-wrap: balance` does. */
     func balancedLines() -> some View {
         BalancedLines { self }
-    }
-}
-
-extension View {
-    /**
-     Takes the width it is offered even when the view inside is wider: a KiraTag keeps its one line
-     at the accessibility text sizes and may stick out, but it no longer widens the whole column.
-     */
-    func keepsOfferedWidth() -> some View {
-        frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
     }
 }

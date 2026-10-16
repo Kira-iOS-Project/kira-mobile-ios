@@ -39,12 +39,18 @@ private struct DialogCover: View {
                     .accessibilityHidden(true)
                     .transition(.opacity)
                 GeometryReader { window in
+                    /**
+                     Centred on the whole screen as `.k-dialog-scrim` centres it, not on the safe area,
+                     which sits 12.5 pt lower (the 59 pt top inset against the 34 pt bottom one).
+                     */
+                    let lift = max(0, window.safeAreaInsets.top - window.safeAreaInsets.bottom)
                     ScrollView {
                         dialog()
                             .presented { isPresented = false }
                             .padding(.horizontal, KiraSpacing.space6)
                             .padding(.vertical, KiraSpacing.space4)
-                            .frame(minHeight: window.size.height)
+                            .frame(minHeight: max(0, window.size.height - lift))
+                            .padding(.bottom, lift)
                     }
                     .scrollBounceBehavior(.basedOnSize)
                     .withoutScrollEdgeEffect()

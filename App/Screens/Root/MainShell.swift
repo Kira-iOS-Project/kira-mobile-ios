@@ -9,6 +9,8 @@ import SwiftUI
 struct MainShell: View {
     @Bindable var navigation: NavigationModel
     @Environment(\.appServices) private var services
+    /** The window's bottom inset (the home indicator), which the dock's 24 pt are measured past. */
+    @State private var bottomInset: CGFloat = 0
 
     var body: some View {
         TabView(selection: sectionBinding) {
@@ -31,8 +33,15 @@ struct MainShell: View {
                     navigation.select(.record)
                 }
                 .padding(.horizontal, KiraSpacing.screen)
-                .padding(.bottom, KiraSpacing.space2)
+                /** The boards' `bottom: 24px` from the screen's edge, into the home indicator's 34 pt. */
+                .padding(.bottom, 24 - bottomInset)
             }
+        }
+        /** Read outside the inset above, which would add the dock's own height (and loop). */
+        .onGeometryChange(for: CGFloat.self) {
+            $0.safeAreaInsets.bottom
+        } action: {
+            bottomInset = $0
         }
         .fullScreenCover(isPresented: $navigation.showsHealthCheck) {
             OnboardingFlow(service: services.onboarding, pinSetup: services.pinSetup, start: .healthCheck) { _ in

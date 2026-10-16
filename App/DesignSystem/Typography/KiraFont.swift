@@ -7,6 +7,7 @@
 import CoreText
 import OSLog
 import SwiftUI
+import UIKit
 
 /** The bundled typefaces, scaled with Dynamic Type. */
 enum KiraFont {
@@ -18,6 +19,27 @@ enum KiraFont {
     static func display(_ size: CGFloat, _ weight: Font.Weight, relativeTo style: Font.TextStyle) -> Font {
         _ = registered
         return .custom("Plus Jakarta Sans", size: size, relativeTo: style).weight(weight)
+    }
+
+    /**
+     Plus Jakarta Sans at `weight` on its weight axis (200–800) exactly, scaled with Dynamic Type as
+     `style` is at `typeSize`: for the artifact's in-between weights, such as the dialog title's
+     750, which `Font.Weight` cannot name (`.heavy` is 800, `.bold` 700).
+     */
+    static func display(
+        _ size: CGFloat, axisWeight weight: CGFloat, relativeTo style: UIFont.TextStyle, typeSize: DynamicTypeSize
+    ) -> Font {
+        _ = registered
+        let traits = UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory(typeSize))
+        let scaled = UIFontMetrics(forTextStyle: style).scaledValue(for: size, compatibleWith: traits)
+        /** The OpenType tag "wght". */
+        let weightAxis: UInt32 = 0x7767_6874
+        let descriptor = CTFontDescriptorCreateWithAttributes(
+            [
+                kCTFontFamilyNameAttribute: "Plus Jakarta Sans",
+                kCTFontVariationAttribute: [weightAxis: weight],
+            ] as CFDictionary)
+        return Font(CTFontCreateWithFontDescriptor(descriptor, scaled, nil))
     }
 
     /**
