@@ -30,6 +30,7 @@ struct KiraNotice: View {
     private let title: LocalizedStringResource?
     private let message: LocalizedStringResource?
     private let icon: KiraIconName?
+    private var link: (title: LocalizedStringResource, action: () -> Void)?
 
     /** `icon` replaces the tone's own icon. */
     init(
@@ -57,6 +58,9 @@ struct KiraNotice: View {
                 if let message {
                     Text(message).font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
                 }
+                if let link {
+                    KiraLink(link.title, action: link.action).padding(.top, 2)
+                }
             }
             .padding(.top, 1)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -65,7 +69,15 @@ struct KiraNotice: View {
         .padding(.vertical, 13)
         .padding(.horizontal, 15)
         .kiraCard(colors.fill, border: colors.border, cornerRadius: KiraRadius.medium)
-        .accessibilityElement(children: .combine)
+        /** A notice with a link keeps the link its own element, so VoiceOver can activate it. */
+        .accessibilityElement(children: link == nil ? .combine : .contain)
+    }
+
+    /** The same notice with a text link under its sentence (`.k-link` inside the notice). */
+    func link(_ title: LocalizedStringResource, action: @escaping () -> Void) -> Self {
+        var copy = self
+        copy.link = (title, action)
+        return copy
     }
 
     private var colors: NoticeColors {

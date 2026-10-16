@@ -12,7 +12,14 @@ struct TransactionEditForm: View {
     @State private var picksDate = false
 
     var body: some View {
-        if let editor = Binding($model.editor) {
+        if let current = model.editor {
+            /**
+             Not `Binding($model.editor)`: that one force-unwraps on every read, and Selesai after a
+             save clears the editor while the closing sheet's fields still read it.
+             */
+            let editor = Binding(
+                get: { model.editor ?? current },
+                set: { value in if model.editor != nil { model.editor = value } })
             VStack(alignment: .leading, spacing: KiraSpacing.space4) {
                 KiraField("transaction.field.name", text: editor.name)
                 KiraField("transaction.field.amount", text: editor.amountText)

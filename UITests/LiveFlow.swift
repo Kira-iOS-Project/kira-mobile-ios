@@ -96,6 +96,8 @@ nonisolated enum LiveFlow {
     @MainActor
     static func type(_ text: String, into element: XCUIElement, in test: XCTestCase, app: XCUIApplication) {
         tap(element, in: test, app: app)
+        /** A field in a rising sheet can miss the first tap's focus. */
+        if !(element.value(forKey: "hasKeyboardFocus") as? Bool ?? true) { element.tap() }
         element.typeText(text)
     }
 
@@ -104,6 +106,17 @@ nonisolated enum LiveFlow {
     static func expect(_ element: XCUIElement, in test: XCTestCase, timeout: TimeInterval = 15, app: XCUIApplication) {
         if !element.waitForExistence(timeout: timeout) { failure("\(test.name)", app: app, in: test) }
         XCTAssertTrue(element.exists, "missing \(element)")
+    }
+
+    /**
+     The dialog's button named `label`: the highest one on screen, since the screen behind a
+     confirmation often has a button with the same name lower down (Hapus, Keluar).
+     */
+    @MainActor
+    static func dialogButton(_ label: String, in app: XCUIApplication) -> XCUIElement {
+        let matches = app.buttons.matching(NSPredicate(format: "label == %@", label))
+        _ = matches.firstMatch.waitForExistence(timeout: 10)
+        return matches.allElementsBoundByIndex.min { $0.frame.minY < $1.frame.minY } ?? matches.firstMatch
     }
 
     /** Opens Kira behind its lock with the run's PIN, when the lock shows. */

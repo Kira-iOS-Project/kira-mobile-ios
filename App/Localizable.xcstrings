@@ -3261,6 +3261,1086 @@
         }
       }
     },
+    "debtEmergency.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Kira Peduli"
+          }
+        }
+      }
+    },
+    "debtEmergency.contacts" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontak Resmi"
+          }
+        }
+      }
+    },
+    "debtEmergency.free" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gratis Selamanya"
+          }
+        }
+      }
+    },
+    "debtEmergency.headline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utang Bisa Diurus Bertahap"
+          }
+        }
+      }
+    },
+    "debtEmergency.help" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bicara dengan Healing119"
+          }
+        }
+      }
+    },
+    "debtEmergency.iasc" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laporan Penipuan IASC"
+          }
+        }
+      }
+    },
+    "debtEmergency.instalment" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan Tidak Sanggup Dibayar"
+          }
+        }
+      }
+    },
+    "debtEmergency.instalment.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajukan keringanan, naskah sudah siap"
+          }
+        }
+      }
+    },
+    "debtEmergency.ojk" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontak OJK 157"
+          }
+        }
+      }
+    },
+    "debtEmergency.ojk.phone %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telepon %@"
+          }
+        }
+      }
+    },
+    "debtEmergency.ojk.subtitle %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telepon %1$@ · WhatsApp %2$@"
+          }
+        }
+      }
+    },
+    "debtEmergency.opensBrowser" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Membuka situs resminya di browser"
+          }
+        }
+      }
+    },
+    "debtEmergency.payoffOffer.tag" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tolak"
+          }
+        }
+      }
+    },
+    "debtEmergency.prompt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih yang paling dekat dengan situasimu."
+          }
+        }
+      }
+    },
+    "debtEmergency.satgas" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satgas PASTI"
+          }
+        }
+      }
+    },
+    "debtEmergency.scholarship" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beasiswa Kira"
+          }
+        }
+      }
+    },
+    "debtEmergency.scholarship.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Plus gratis 3–6 bulan untukmu, didanai pengguna lain lewat Traktir Kira."
+          }
+        }
+      }
+    },
+    "debtEmergency.scholarship.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beasiswa Kira: Kira Plus gratis 3 sampai 6 bulan. Lihat detail"
+          }
+        }
+      }
+    },
+    "debtEmergency.situations" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apa yang Sedang Terjadi?"
+          }
+        }
+      }
+    },
+    "debtEmergency.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mode Darurat Utang"
+          }
+        }
+      }
+    },
+    "debtGuide.action.callOJK" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telepon OJK 157"
+          }
+        }
+      }
+    },
+    "debtGuide.action.negotiationScript" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Susun Naskah Keringanan"
+          }
+        }
+      }
+    },
+    "debtGuide.action.openLapsSjk" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka LAPS SJK"
+          }
+        }
+      }
+    },
+    "debtGuide.action.reportToSatgas" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lapor ke Satgas PASTI"
+          }
+        }
+      }
+    },
+    "debtGuide.action.whatsAppOJK" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WhatsApp OJK"
+          }
+        }
+      }
+    },
+    "debtGuide.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Mode Darurat Utang"
+          }
+        }
+      }
+    },
+    "debtGuide.harshCollection.basis" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dasar: POJK 22/2023 Pasal 62"
+          }
+        }
+      }
+    },
+    "debtGuide.harshCollection.heading" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hakmu"
+          }
+        }
+      }
+    },
+    "debtGuide.harshCollection.lead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Penagih pinjol berizin dilarang:"
+          }
+        }
+      }
+    },
+    "debtGuide.harshCollection.notice" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tetap bayar sesuai kemampuan dan jangan ikut ajakan gagal bayar. Kira bisa bantu menyusun naskah keringanan."
+          }
+        }
+      }
+    },
+    "debtGuide.harshCollection.point1" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mengancam atau memakai kekerasan"
+          }
+        }
+      }
+    },
+    "debtGuide.harshCollection.point2" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mempermalukanmu"
+          }
+        }
+      }
+    },
+    "debtGuide.harshCollection.point3" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menghubungi orang lain selain kamu"
+          }
+        }
+      }
+    },
+    "debtGuide.harshCollection.point4" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menagih di luar Senin–Sabtu, 08.00⁠–⁠20.00"
+          }
+        }
+      }
+    },
+    "debtGuide.harshCollection.row" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ditagih Kasar oleh Pinjol Berizin"
+          }
+        }
+      }
+    },
+    "debtGuide.harshCollection.row.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kenali hakmu dan cara mengadu"
+          }
+        }
+      }
+    },
+    "debtGuide.harshCollection.step1" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Bukti"
+          }
+        }
+      }
+    },
+    "debtGuide.harshCollection.step1.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Screenshot chat, rekam panggilan, catat waktunya."
+          }
+        }
+      }
+    },
+    "debtGuide.harshCollection.step2" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adukan ke Penyelenggara"
+          }
+        }
+      }
+    },
+    "debtGuide.harshCollection.step2.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lewat layanan pengaduan resminya."
+          }
+        }
+      }
+    },
+    "debtGuide.harshCollection.step3" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Selesai? Adukan ke OJK"
+          }
+        }
+      }
+    },
+    "debtGuide.harshCollection.step3.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lewat Kontak OJK 157."
+          }
+        }
+      }
+    },
+    "debtGuide.harshCollection.step4" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada Ancaman atau Data Disebar? Lapor Polisi"
+          }
+        }
+      }
+    },
+    "debtGuide.harshCollection.step4.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bawa bukti yang sudah kamu simpan."
+          }
+        }
+      }
+    },
+    "debtGuide.harshCollection.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pinjol berizin"
+          }
+        }
+      }
+    },
+    "debtGuide.harshCollection.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ditagih Kasar"
+          }
+        }
+      }
+    },
+    "debtGuide.illegalLender.basis" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cek izin lewat Kontak OJK 157"
+          }
+        }
+      }
+    },
+    "debtGuide.illegalLender.heading" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kenali Cirinya"
+          }
+        }
+      }
+    },
+    "debtGuide.illegalLender.lead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pinjol ilegal biasanya:"
+          }
+        }
+      }
+    },
+    "debtGuide.illegalLender.notice" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak ada kewajiban membayar pinjol ilegal, tetapi simpan semua buktinya dulu sebelum melapor."
+          }
+        }
+      }
+    },
+    "debtGuide.illegalLender.point1" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak terdaftar di OJK"
+          }
+        }
+      }
+    },
+    "debtGuide.illegalLender.point2" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meminta akses kontak, foto, dan lokasi"
+          }
+        }
+      }
+    },
+    "debtGuide.illegalLender.point3" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menyembunyikan bunga dan denda"
+          }
+        }
+      }
+    },
+    "debtGuide.illegalLender.point4" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menyebar datamu ke orang lain"
+          }
+        }
+      }
+    },
+    "debtGuide.illegalLender.row" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diteror Pinjol Ilegal"
+          }
+        }
+      }
+    },
+    "debtGuide.illegalLender.row.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lapor ke Satgas PASTI dan polisi"
+          }
+        }
+      }
+    },
+    "debtGuide.illegalLender.step1" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Bukti"
+          }
+        }
+      }
+    },
+    "debtGuide.illegalLender.step1.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Screenshot pesan, nomor penagih, dan aplikasinya."
+          }
+        }
+      }
+    },
+    "debtGuide.illegalLender.step2" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jangan Pinjam Lagi"
+          }
+        }
+      }
+    },
+    "debtGuide.illegalLender.step2.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jangan ajukan pinjaman baru untuk menutup tagihan."
+          }
+        }
+      }
+    },
+    "debtGuide.illegalLender.step3" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lapor ke Satgas PASTI"
+          }
+        }
+      }
+    },
+    "debtGuide.illegalLender.step3.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lewat sipasti.ojk.go.id atau Kontak OJK 157."
+          }
+        }
+      }
+    },
+    "debtGuide.illegalLender.step4" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada Ancaman? Lapor Polisi"
+          }
+        }
+      }
+    },
+    "debtGuide.illegalLender.step4.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bawa bukti yang sudah kamu simpan."
+          }
+        }
+      }
+    },
+    "debtGuide.illegalLender.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanpa izin OJK"
+          }
+        }
+      }
+    },
+    "debtGuide.illegalLender.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diteror Pinjol Ilegal"
+          }
+        }
+      }
+    },
+    "debtGuide.payoffOffer.basis" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pelunasan resmi hanya lewat penyelenggara"
+          }
+        }
+      }
+    },
+    "debtGuide.payoffOffer.heading" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Waspadai"
+          }
+        }
+      }
+    },
+    "debtGuide.payoffOffer.lead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tawaran ini biasanya:"
+          }
+        }
+      }
+    },
+    "debtGuide.payoffOffer.notice" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utang bisa diurus bertahap dan gratis lewat jalur resmi."
+          }
+        }
+      }
+    },
+    "debtGuide.payoffOffer.point1" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minta biaya di muka"
+          }
+        }
+      }
+    },
+    "debtGuide.payoffOffer.point2" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minta kamu ajukan pinjaman baru"
+          }
+        }
+      }
+    },
+    "debtGuide.payoffOffer.point3" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minta kode OTP atau data login"
+          }
+        }
+      }
+    },
+    "debtGuide.payoffOffer.point4" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menjanjikan utangmu hilang"
+          }
+        }
+      }
+    },
+    "debtGuide.payoffOffer.row" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ditawari Jasa “Pelunasan”"
+          }
+        }
+      }
+    },
+    "debtGuide.payoffOffer.row.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sering jadi pinjaman baru"
+          }
+        }
+      }
+    },
+    "debtGuide.payoffOffer.step1" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jangan Kirim Uang atau OTP"
+          }
+        }
+      }
+    },
+    "debtGuide.payoffOffer.step1.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abaikan dan blokir nomornya."
+          }
+        }
+      }
+    },
+    "debtGuide.payoffOffer.step2" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bayar Langsung ke Penyelenggara"
+          }
+        }
+      }
+    },
+    "debtGuide.payoffOffer.step2.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lewat aplikasi atau kanal resminya."
+          }
+        }
+      }
+    },
+    "debtGuide.payoffOffer.step3" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Butuh Keringanan?"
+          }
+        }
+      }
+    },
+    "debtGuide.payoffOffer.step3.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Susun naskah pengajuan di Kira."
+          }
+        }
+      }
+    },
+    "debtGuide.payoffOffer.step4" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah Telanjur? Lapor"
+          }
+        }
+      }
+    },
+    "debtGuide.payoffOffer.step4.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ke Satgas PASTI atau Kontak OJK 157."
+          }
+        }
+      }
+    },
+    "debtGuide.payoffOffer.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tolak tawarannya"
+          }
+        }
+      }
+    },
+    "debtGuide.payoffOffer.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jasa “Pelunasan”"
+          }
+        }
+      }
+    },
+    "debtGuide.step.spoken %lld %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld. %2$@, %3$@"
+          }
+        }
+      }
+    },
+    "debtGuide.steps" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langkahmu"
+          }
+        }
+      }
+    },
+    "debtGuide.unresolvedComplaint.basis" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mediasi di LAPS SJK tanpa biaya"
+          }
+        }
+      }
+    },
+    "debtGuide.unresolvedComplaint.heading" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siapkan Dulu"
+          }
+        }
+      }
+    },
+    "debtGuide.unresolvedComplaint.lead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sebelum mengajukan mediasi:"
+          }
+        }
+      }
+    },
+    "debtGuide.unresolvedComplaint.notice" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aduan yang belum selesai dalam waktu wajar bisa dibawa ke mediasi."
+          }
+        }
+      }
+    },
+    "debtGuide.unresolvedComplaint.point1" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bukti aduanmu ke penyelenggara"
+          }
+        }
+      }
+    },
+    "debtGuide.unresolvedComplaint.point2" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salinan kontrak atau perjanjian"
+          }
+        }
+      }
+    },
+    "debtGuide.unresolvedComplaint.point3" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bukti pembayaran dan percakapan"
+          }
+        }
+      }
+    },
+    "debtGuide.unresolvedComplaint.point4" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identitas dan nomor kontrakmu"
+          }
+        }
+      }
+    },
+    "debtGuide.unresolvedComplaint.row" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aduan ke Penyelenggara Tidak Selesai"
+          }
+        }
+      }
+    },
+    "debtGuide.unresolvedComplaint.row.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mediasi gratis di LAPS SJK"
+          }
+        }
+      }
+    },
+    "debtGuide.unresolvedComplaint.step1" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pastikan Sudah Mengadu"
+          }
+        }
+      }
+    },
+    "debtGuide.unresolvedComplaint.step1.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aduan tertulis ke penyelenggara lebih dulu."
+          }
+        }
+      }
+    },
+    "debtGuide.unresolvedComplaint.step2" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kumpulkan Dokumen"
+          }
+        }
+      }
+    },
+    "debtGuide.unresolvedComplaint.step2.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semua yang ada di daftar siapkan di atas."
+          }
+        }
+      }
+    },
+    "debtGuide.unresolvedComplaint.step3" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajukan ke LAPS SJK"
+          }
+        }
+      }
+    },
+    "debtGuide.unresolvedComplaint.step3.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lewat situs resmi lembaga mediasi."
+          }
+        }
+      }
+    },
+    "debtGuide.unresolvedComplaint.step4" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atau Adukan ke OJK"
+          }
+        }
+      }
+    },
+    "debtGuide.unresolvedComplaint.step4.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lewat Kontak OJK 157."
+          }
+        }
+      }
+    },
+    "debtGuide.unresolvedComplaint.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mediasi LAPS SJK"
+          }
+        }
+      }
+    },
+    "debtGuide.unresolvedComplaint.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aduan Belum Selesai"
+          }
+        }
+      }
+    },
     "ds.accordion.closed" : {
       "localizations" : {
         "id" : {

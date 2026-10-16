@@ -56,7 +56,8 @@ a screen built from them keeps them by default.
 - **Glass only on the dock.** A scrolling screen calls `.kiraScrollEdges()`: from iOS 26 a scroll
   view blurs its top and bottom edges, which is glass (and fades text the accessibility audit then
   reads as low contrast); the modifier hides that effect and lays a solid `surface` band behind the
-  status bar.
+  status bar. Every Kira sheet hides it too (`kiraSheetScrollEdges()`, applied by KiraSheet, with no
+  band: the panel is solid), so the text just above a sheet's main action keeps its contrast.
 
 ## Tokens
 
@@ -191,7 +192,7 @@ Options beyond five initializer parameters are chained modifiers, such as
 | `Segmented` | `KiraSegmented(_:options:selection:)` | `Components/Controls/KiraSegmented.swift` |
 | `Chip` (selected, icon, category) | `KiraChip(_:isSelected:leading:action:)`; wrap many in `KiraFlowRow` | `Components/Controls/KiraChip.swift`, `Layout/KiraFlowRow.swift` |
 | `Tag` (neutral, pandan, turmeric, healthy, vulnerable, emergency, hero) | `KiraTag(_:tone:icon:)` | `Components/Content/KiraTag.swift` |
-| `Notice` (info, simulation, education, privacy, safe, ai, warning) | `KiraNotice(_:title:message:icon:)` (`ai` is `.aiText`) | `Components/Content/KiraNotice.swift` |
+| `Notice` (info, simulation, education, privacy, safe, ai, warning; a link under the sentence) | `KiraNotice(_:title:message:icon:)` `.link(_:action:)` (`ai` is `.aiText`) | `Components/Content/KiraNotice.swift` |
 | `Amount` (sm, md, lg, xl; masked, signed, muted, inverse) | `KiraAmount(_:size:)` `.masked(_:)` `.signed()` `.muted()` `.inverse()` | `Components/Content/KiraAmount.swift` |
 | `Avatar` | `KiraAvatar(_:size:tone:label:)` | `Components/Content/KiraAvatar.swift` |
 | `Accordion` (raised, soft; controlled or not) | `KiraAccordion(_:subtitle:icon:isExpanded:content:)` `.soft()` | `Components/Content/KiraAccordion.swift` |
@@ -302,8 +303,8 @@ A screen that uses `KiraNavBar` hides the system bar. A tab root lays `KiraTabBa
 Every control is at least 44 pt, labels scale with Dynamic Type and wrap rather than truncate at the
 largest sizes, and parts that would squeeze each other stack at the accessibility sizes (a button
 pair, primary on top; a nav bar's buttons above its title; a section title's note under it; the
-dock grows taller). An amount stays on one line and shrinks to fit there, and a large title shrinks
-before it would clip. Icon-only buttons require a name,
+dock grows taller). An amount stays on one line and shrinks to fit there, and a large title wraps
+as `.k-nav__large` does. Icon-only buttons require a name,
 artwork is one named image or hidden (`artworkLabel(_:)`), selected chips, segments, tabs and
 checks carry the selected trait, the switch carries the toggle trait and says "Aktif" or
 "Nonaktif", the accordion says whether it is open, an amount reads as one value in words
@@ -530,7 +531,7 @@ components (sizes, paddings, radii, borders, colours, icon sizes) already matche
 | Category chip | Two buttons | The round tile is a separate button with the same action, hidden from VoiceOver, so the labelled button holds only text (the audit reads a pastel tile inside a button as low-contrast text) |
 | Line heights | iOS 26 and later | Set as in the artifact from iOS 26 (`lineHeight`); iOS 17 and 18 keep the system's leading, 1 to 2 pt shorter per line |
 | Font weights 650 and 750 | Nearest named | Semibold (600) and ExtraBold (800): SwiftUI's `Font.Weight` has no public initializer from a number |
-| Small sizes the audit reports | Accepted deviation | The owner keeps the artifact's sizes: the 11 pt overline, the medium amount's 11 pt "Rp" and ",00", the 10 pt "Catat" and the 11 pt bar caption. Apple's audit reports each as "Dynamic Type font sizes are partially unsupported"; they carry `kira.small-type`, and the gallery's audit test lists them apart |
+| Small sizes the audit reports | Accepted deviation | The owner keeps the artifact's sizes: the 11 pt overline, the medium amount's 11 pt "Rp" and ",00", the 10 pt "Catat", the 11 pt bar caption and the initials of an avatar under 30 pt (10 pt at Etalase's 26 pt). Apple's audit reports each as "Dynamic Type font sizes are partially unsupported"; they carry `kira.small-type`, and the gallery's audit test lists them apart |
 | Text behind a dialog's scrim | Accepted in the test | The dimmed screen shows through the scrim, and the audit reads its text, which VoiceOver rightly cannot reach while the dialog is modal, as text without an element ("Potentially inaccessible text", no element named); the presented-dialog test accepts only that finding |
 | Field prompt | Drawn by the field | A single-line field draws its prompt as text that wraps at large sizes, where the system's prompt would be cut off; VoiceOver hears it as the field's hint |
 | Button pair order in the Button preview | Rule | The preview puts the primary left; Kira's rule puts the secondary left and the primary right (`KiraButtonPair`) |

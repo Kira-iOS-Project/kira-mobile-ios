@@ -29,6 +29,7 @@
             case .chat: ChatLaunch(screen: screen)
             case .community: CommunityLaunch(screen: screen)
             case .care: CareLaunch(screen: screen)
+            case .debtEmergency: DebtEmergencyLaunch(screen: screen)
             }
         }
     }
@@ -59,10 +60,12 @@
          Layanan Kira.
          */
         case care, careOffline, careHelp, trustedMessage, trustedMessageNoRecipient
+        /** PED: Mode Darurat Utang and its four guides. */
+        case debtEmergency, harshCollection, illegalLender, unresolvedComplaint, payoffOffer
 
         /** The area whose launcher builds the screen. */
         enum Area {
-            case onboarding, home, account, plans, record, chat, community, care
+            case onboarding, home, account, plans, record, chat, community, care, debtEmergency
         }
 
         var area: Area {
@@ -83,6 +86,7 @@
                 .groupReport, .groupReportOther, .groupReportSent, .groupReportFailed:
                 .community
             case .care, .careOffline, .careHelp, .trustedMessage, .trustedMessageNoRecipient: .care
+            case .debtEmergency, .harshCollection, .illegalLender, .unresolvedComplaint, .payoffOffer: .debtEmergency
             }
         }
     }

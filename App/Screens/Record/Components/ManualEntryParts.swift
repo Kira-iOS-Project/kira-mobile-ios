@@ -94,6 +94,8 @@ struct ManualDetails: View {
                 TextField(text: $model.name, prompt: Text(model.category.title).foregroundStyle(.inkMuted)) {
                     Text("record.manual.name")
                 }
+                /** A one-line field with a prompt drops its label view: VoiceOver would read the prompt alone. */
+                .accessibilityLabel(Text("record.manual.name"))
             }
             Button {
                 withAnimation(.easeOut(duration: 0.2)) { model.isPickingDay.toggle() }
@@ -118,6 +120,7 @@ struct ManualDetails: View {
                 TextField(text: $model.note, prompt: Text("record.manual.optional").foregroundStyle(.inkMuted)) {
                     Text("record.manual.note")
                 }
+                .accessibilityLabel(Text("record.manual.note"))
             }
         }
         .padding(.horizontal, KiraSpacing.space4)

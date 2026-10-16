@@ -37,15 +37,23 @@ struct KiraAvatar: View {
         _side = ScaledMetric(wrappedValue: size, relativeTo: .body)
     }
 
+    /** The initials are 40% of the circle, as the design system draws them. */
+    private var initialsSize: CGFloat { (size * 0.4).rounded() }
+
     var body: some View {
         Text(initials)
-            .font(KiraFont.display((size * 0.4).rounded(), .heavy, relativeTo: .body))
+            .font(KiraFont.display(initialsSize, .heavy, relativeTo: .body))
             .textCase(.uppercase)
             .foregroundStyle(.ink)
             .frame(width: side, height: side)
             .background(tone.fill, in: Circle())
             .overlay { Circle().strokeBorder(.hairline, lineWidth: 1) }
             .artworkLabel(label)
+            /**
+             Below 12 pt (an avatar under 30 pt, such as Etalase's 26 pt seller) the initials are one
+             of the design system's small sizes.
+             */
+            .kiraSmallType(initialsSize < 12)
     }
 }
 

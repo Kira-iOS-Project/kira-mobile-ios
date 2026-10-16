@@ -19,6 +19,7 @@ struct AppServices {
     let recovery: any PinRecoveryService
     let community: any CommunityService
     let care: any CareService
+    let debtEmergency: any DebtEmergencyService
 }
 
 extension AppServices {
@@ -38,7 +39,8 @@ extension AppServices {
             score: LiveScoreService(api: api),
             recovery: LivePinRecoveryService(api: api),
             community: LiveCommunityService(api: api),
-            care: LiveCareService(api: api))
+            care: LiveCareService(api: api),
+            debtEmergency: LiveDebtEmergencyService(api: api))
     }
 
     /** The canvas's sample data: nothing leaves the device. */
@@ -47,7 +49,8 @@ extension AppServices {
             onboarding: PreviewOnboardingService(), pinSetup: PreviewPinSetup(), account: PreviewAccountService(),
             security: PreviewSecuritySettings(), plans: PreviewPlansService(), home: PreviewHomeService(),
             score: PreviewScoreService(), recovery: PreviewPinRecoveryService(),
-            community: PreviewCommunityService(), care: PreviewCareService())
+            community: PreviewCommunityService(), care: PreviewCareService(),
+            debtEmergency: PreviewDebtEmergencyService())
     }
 }
 

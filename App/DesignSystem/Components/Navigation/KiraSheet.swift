@@ -123,6 +123,7 @@ private struct SheetCover<Content: View>: View {
             .gesture(dragToClose)
             VStack(spacing: KiraSpacing.space4) { content() }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                .kiraSheetScrollEdges()
         }
         .padding(.top, KiraSpacing.space2)
         .padding(.horizontal, KiraSpacing.space4)

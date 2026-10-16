@@ -33,7 +33,7 @@ package final class MarketplaceModel {
             let products = try await service.products(kind: kind)
             next = products.isEmpty ? .empty : .loaded(products)
         } catch {
-            next = .failed(error as? AppProblem ?? AppProblem())
+            next = .failed(AppProblem(error))
         }
         if current == generation { phase = next }
     }

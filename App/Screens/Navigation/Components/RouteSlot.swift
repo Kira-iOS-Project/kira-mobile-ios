@@ -1,9 +1,10 @@
 /**
  The screen of each pushed route, by area: Score (score, indicator), Account (profile … deleteAccount,
  about … complaints), Plans (plans … scholarshipStatus), Kira Peduli (care, trustedMessage; the PED
- screens of other branches keep a back button until they land). "Cek Ulang" (`healthCheck`) covers
- the shell instead (MainShell); Komunitas (`community`) is the dock's own section; Catat's and
- Riwayat's routes stay empty for their own integration, and an unavailable area never gets here.
+ screens of other branches keep a back button until they land), Mode Darurat Utang and its guides
+ (debtEmergency, debtGuide). "Cek Ulang" (`healthCheck`) covers the shell instead (MainShell);
+ Komunitas (`community`) is the dock's own section; Catat's and Riwayat's routes stay empty for
+ their own integration, and an unavailable area never gets here.
  */
 import Features
 import SwiftUI
@@ -34,7 +35,10 @@ struct RouteSlot: View {
         case .marketplace, .product, .submitProduct: EmptySlot()
         case .care: CareScreen(service: services.care, onOpen: onOpen)
         case .trustedMessage: TrustedMessageScreen(service: services.care)
-        case .breathingExercise, .debtEmergency, .safetyPlan: PendingCareSlot()
+        case .debtEmergency:
+            DebtEmergencyScreen(care: services.care, service: services.debtEmergency, onOpen: onOpen)
+        case .debtGuide(let guide): DebtGuideScreen(guide: guide, care: services.care, onOpen: onOpen)
+        case .breathingExercise, .negotiationScript, .safetyPlan: PendingCareSlot()
         case .home, .record, .community, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history, .transaction,
             .conversation, .importStatement, .unavailable:
             EmptySlot()
@@ -43,7 +47,7 @@ struct RouteSlot: View {
 }
 
 /**
- A Kira Peduli screen Kira Peduli links to before its own branch lands (PED-07, PED-10, PED-11): an
+ A Kira Peduli screen linked to before its own branch lands (PED-09, PED-10, PED-11): an
  empty surface that keeps the navigation bar, so its back button returns to Kira Peduli.
  */
 private struct PendingCareSlot: View {

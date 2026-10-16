@@ -109,9 +109,7 @@ struct KiraNavBar<Trailing: View>: View {
                         34, size: 28, natural: 1.26, relativeTo: .title
                     )
                     .tracking(-0.56)
-                    /** One word, such as "Beranda", cannot wrap: it shrinks before it would clip. */
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.6)
+                    /** `.k-nav__large` neither truncates nor shrinks: a long title wraps. */
                     .foregroundStyle(.ink)
                     .accessibilityAddTraits(.isHeader)
                 if let subtitle {

@@ -79,6 +79,10 @@ package enum AppRoute: Hashable, Sendable {
     case care
     /** PED-07: Mode Darurat Utang. */
     case debtEmergency
+    /** PED-08, PED-13, PED-14, PED-15: one of Mode Darurat Utang's guides. */
+    case debtGuide(DebtGuide)
+    /** PED-09: Naskah Pengajuan Keringanan. */
+    case negotiationScript
     /** PED-10: Rencana Keselamatanku. */
     case safetyPlan
     /** PED-04: Kirim Pesan ke Layanan Kira. */
@@ -114,8 +118,6 @@ package enum UnavailableArea: String, CaseIterable, Hashable, Sendable {
     case scoreHistory
     /** SKR: SLIK, the credit report. */
     case creditReport
-    /** SKR: Mode Darurat Utang. */
-    case debtEmergency
     /** REN: the Rencana tab. */
     case plan
 }
