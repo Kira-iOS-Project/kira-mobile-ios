@@ -10,17 +10,22 @@ import SwiftUI
 struct ScriptCard: View {
     let model: NegotiationScriptModel
 
+    /** "NASKAH" and, when one is chosen, the lender it is for. */
+    private var header: some View {
+        HStack(spacing: KiraSpacing.space3) {
+            Text("care.script.overline").kiraFont(.overline).foregroundStyle(.inkMuted)
+            Spacer(minLength: 0)
+            if let lender = model.lender {
+                Text("care.script.for \(lender.name)")
+                    .font(.caption.weight(.medium)).kiraLineHeight(16, size: 12)
+                    .foregroundStyle(.inkMuted)
+            }
+        }
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: KiraSpacing.space3) {
-            HStack(spacing: KiraSpacing.space3) {
-                Text("care.script.overline").kiraFont(.overline).foregroundStyle(.inkMuted)
-                Spacer(minLength: 0)
-                if let lender = model.lender {
-                    Text("care.script.for \(lender.name)")
-                        .font(.caption.weight(.medium)).kiraLineHeight(16, size: 12)
-                        .foregroundStyle(.inkMuted)
-                }
-            }
+            header
             Text(ScriptText.shown(model.shown))
                 .font(.subheadline).kiraLineHeight(23, size: 15)
                 .foregroundStyle(.ink)

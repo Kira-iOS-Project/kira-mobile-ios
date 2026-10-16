@@ -1,20 +1,9 @@
 import APIClient
 import Domain
 import Foundation
-import HTTPTypes
-import OpenAPIRuntime
 import Testing
 
 @testable import Features
-
-/** A network with no connection: every request fails before it reaches the server. */
-private struct OfflineTransport: ClientTransport {
-    func send(
-        _: HTTPRequest, body _: HTTPBody?, baseURL _: URL, operationID _: String
-    ) throws -> (HTTPResponse, HTTPBody?) {
-        throw URLError(.notConnectedToInternet)
-    }
-}
 
 @MainActor
 @Suite("LiveMarketplaceService")
