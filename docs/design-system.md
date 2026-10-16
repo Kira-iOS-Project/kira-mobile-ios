@@ -191,7 +191,7 @@ Options beyond five initializer parameters are chained modifiers, such as
 | `Segmented` | `KiraSegmented(_:options:selection:)` | `Components/Controls/KiraSegmented.swift` |
 | `Chip` (selected, icon, category) | `KiraChip(_:isSelected:leading:action:)`; wrap many in `KiraFlowRow` | `Components/Controls/KiraChip.swift`, `Layout/KiraFlowRow.swift` |
 | `Tag` (neutral, pandan, turmeric, healthy, vulnerable, emergency, hero) | `KiraTag(_:tone:icon:)` | `Components/Content/KiraTag.swift` |
-| `Notice` (info, simulation, education, privacy, safe, ai, warning) | `KiraNotice(_:title:message:icon:)` (`ai` is `.aiText`) | `Components/Content/KiraNotice.swift` |
+| `Notice` (info, simulation, education, privacy, safe, ai, warning; a link under the sentence) | `KiraNotice(_:title:message:icon:)` `.link(_:action:)` (`ai` is `.aiText`) | `Components/Content/KiraNotice.swift` |
 | `Amount` (sm, md, lg, xl; masked, signed, muted, inverse) | `KiraAmount(_:size:)` `.masked(_:)` `.signed()` `.muted()` `.inverse()` | `Components/Content/KiraAmount.swift` |
 | `Avatar` | `KiraAvatar(_:size:tone:label:)` | `Components/Content/KiraAvatar.swift` |
 | `Accordion` (raised, soft; controlled or not) | `KiraAccordion(_:subtitle:icon:isExpanded:content:)` `.soft()` | `Components/Content/KiraAccordion.swift` |

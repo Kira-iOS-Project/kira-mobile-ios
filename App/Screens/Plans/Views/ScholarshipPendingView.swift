@@ -38,7 +38,7 @@ struct ScholarshipPendingView: View {
             KiraNotice(.info, title: "plans.prototype", message: "scholarship.prototype")
             if let problem = model.withdrawProblem { PlansProblemNotice(problem: problem) }
             VStack(spacing: 10) {
-                KiraButton("scholarship.openEmergency") { onOpen(.unavailable(.debtEmergency)) }.block()
+                KiraButton("scholarship.openEmergency") { onOpen(.debtEmergency) }.block()
                 KiraButton("scholarship.withdraw", variant: .secondary) { Task { await model.withdraw() } }.block()
                     .disabled(model.isWithdrawing)
             }

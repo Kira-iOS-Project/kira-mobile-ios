@@ -3,13 +3,13 @@ import Domain
 /** Where the score's steps and indicators lead. */
 extension ScoreStep {
     /**
-     Paying off goes to the payoff plan and seeking relief to the debt emergency mode (both not built
-     yet); every other step opens the indicator it improves.
+     Paying off goes to the payoff plan (not built yet) and seeking relief to Mode Darurat Utang;
+     every other step opens the indicator it improves.
      */
     package var route: AppRoute {
         switch kind {
         case .payOffDebt: .unavailable(.debtPlan)
-        case .seekRelief: .unavailable(.debtEmergency)
+        case .seekRelief: .debtEmergency
         case .buildEmergencyFund: .indicator(.emergencyFund)
         case .addProtection: .indicator(.protection)
         case .raiseSavings: .indicator(.savingsRatio)
