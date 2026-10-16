@@ -50,7 +50,7 @@ package final class SafetyPlanModel {
         do {
             phase = .loaded(try await service.safetyPlan() ?? .empty)
         } catch {
-            phase = .failed(careProblem(error))
+            phase = .failed(AppProblem(error))
         }
     }
 
@@ -78,7 +78,7 @@ package final class SafetyPlanModel {
         } catch {
             unsaved = (plan, focus)
             form = nil
-            dialog = .failed(careProblem(error))
+            dialog = .failed(AppProblem(error))
         }
     }
 
