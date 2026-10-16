@@ -97,7 +97,7 @@ struct BillingAPITests {
         }
         await expectProblems([401, 404]) { _ = try await $0.getSubscription() }
         await expectProblems([401, 404, 409]) { _ = try await $0.cancelSubscription() }
-        await expectProblems([401, 404, 422]) { _ = try await $0.changePaymentMethod(.qris) }
+        await expectProblems([401, 404, 409, 422]) { _ = try await $0.changePaymentMethod(.qris) }
         await expectProblems([401]) { _ = try await $0.listInvoices() }
         await expectProblems([401, 422]) { _ = try await $0.giftMonths(.oneMonth, paymentMethod: .qris) }
     }
