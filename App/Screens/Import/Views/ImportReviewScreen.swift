@@ -4,6 +4,7 @@
  opens the row to change its category or leave it out), then Batal and "Simpan N Transaksi". The
  save reports "N Transaksi Tersimpan" (12b) or "Impor Belum Berhasil" with Coba Lagi (12c).
  */
+import APIClient
 import Domain
 import Features
 import SwiftUI
@@ -97,12 +98,19 @@ struct ImportReviewScreen: View {
                 message: result.skippedCount > 0
                     ? "review.saved.bodySkipped \(result.skippedCount)" : "review.saved.body",
                 art: .illustration(.bloom), primary: KiraButton("review.saved.history") {})
-        case .failed:
+        case .failed(let problem):
             KiraDialog(
-                "review.failed.title", message: "review.failed.body", art: .illustration(.umbrella),
+                "review.failed.title", message: Self.failedMessage(problem), art: .illustration(.umbrella),
                 primary: KiraButton("review.failed.retry") { Task { await model.save() } },
                 secondary: KiraButton("review.failed.close", variant: .secondary) {})
         }
+    }
+
+    /** The board's sentence for a lost connection (nothing saved, so no double), else the API's problem. */
+    private static func failedMessage(_ problem: AppProblem) -> LocalizedStringResource {
+        if problem.isConnectionLoss { return "review.failed.body" }
+        if problem.showsReference { return "sheet.failure.reference \(problem.reference)" }
+        return problem.message
     }
 
     private var editingSubtitle: LocalizedStringResource? {

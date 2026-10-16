@@ -23,6 +23,6 @@ package enum SubmitPhase: Hashable, Sendable {
 
     /** The phase after `error`: its `AppProblem`, or a problem without a code for anything else. */
     package static func failure(_ error: any Error) -> Self {
-        .failed(error as? AppProblem ?? AppProblem())
+        .failed(AppProblem(error))
     }
 }

@@ -48,6 +48,9 @@ a screen built from them keeps them by default.
   amounts, values and tags go under the title.
 - **Red (`emergency`, the artifact's `darurat`) only for the 119 call and reporting**; `destructive`
   (`bahaya`, terracotta) confirms deletions.
+- **A failed submit in a sheet closes the sheet and shows a failure dialog; validation stays
+  inline.** Coba Lagi reopens the sheet with the input kept and submits again; Tutup closes the
+  dialog. The owner's rule (2026-10-17), over red problem text inside the sheet (Sheets, below).
 - **At most one handwritten note per screen**, anchored to a section title, an illustration or the
   splash.
 - **Glass only on the dock.** A scrolling screen calls `.kiraScrollEdges()`: from iOS 26 a scroll
@@ -204,7 +207,7 @@ Options beyond five initializer parameters are chained modifiers, such as
 | `ListRow` (category, icon, illustration, initial; chevron, external, toggle, check; danger) | `KiraListRow(_:leading:trailing:action:extra:)` `.subtitle` `.amount` `.value` `.danger()` | `Components/Lists/KiraListRow.swift`, `KiraListRowParts.swift` |
 | `NavBar` (back, close, large, eyebrow, actions) | `KiraNavBar(_:subtitle:leading:isLarge:trailing:)` `.eyebrow(_:)` | `Components/Navigation/KiraNavBar.swift` |
 | `TabBar` (the dock with Catat) | `KiraTabBar(selection:isRecordActive:onRecord:)`, `KiraTab` | `Components/Navigation/KiraTabBar.swift` |
-| `Sheet` | `.kiraSheet(isPresented:title:subtitle:top:leaf:content:)`: the artifact's sheet, not the system one (the scrim, a line-strong grabber, the hairline top, 30 pt corners, the close X on the right), in a KiraCover | `Components/Navigation/KiraSheet.swift`, `Layout/KiraCover.swift` |
+| `Sheet` | `.kiraSheet(isPresented:title:subtitle:top:leaf:content:)`: the artifact's sheet, not the system one (the scrim, a line-strong grabber, the hairline top, 30 pt corners, the close X on the right), in a KiraCover; a sheet that submits to the server: `.kiraSheet(_:title:…:failureTitle:connectionMessage:onRetry:content:)` on a `SheetSubmission` (Sheets, below) | `Components/Navigation/KiraSheet.swift`, `Layout/KiraCover.swift`, `Screens/Shared/SubmissionSheet.swift` |
 | `.k-dialog` (success, failure, confirm; illustration or round icon; one or two buttons) | `KiraDialog(_:message:art:primary:secondary:)`, presented with `.kiraDialog(isPresented:dialog:)` | `Components/Dialog/KiraDialog.swift`, `KiraDialogPresentation.swift` |
 | (screen edges) | `.kiraScrollEdges()` | `Layout/KiraScrollEdges.swift` |
 | `ChatBubble` (me, kira; meta, initial, saved) | `KiraChatBubble(_:meta:initial:content:)` `.saved(_:)` `.hidesAvatar()` (`me` is `.user`) | `Components/Chat/KiraChatBubble.swift` |
@@ -228,6 +231,34 @@ action, so a screen only flips its flag:
         "transaction.delete.title", message: "transaction.delete.body", art: .illustration(.care),
         primary: KiraButton("transaction.delete", variant: .destructive) { model.delete() },
         secondary: KiraButton("transaction.keep", variant: .secondary) {})
+}
+```
+
+### Sheets
+
+A failed submit in a sheet closes the sheet and shows a failure dialog; validation stays inline.
+When the server refuses the sheet's action or never answers, the sheet closes and, once it has
+gone, a failure dialog shows: the umbrella, a title naming what did not happen ("Kode Belum
+Terkirim", "Belum Berhasil Menyimpan"), the problem's own sentence (`problem.<CODE>`), the
+connection's sentence when the request got no answer, or the generic one with the reference, then
+Coba Lagi on top and Tutup under it. Coba Lagi opens the sheet again on everything that was typed
+and submits again; Tutup closes the dialog and drops the sheet's input. A check the app makes
+itself (an email's shape, a required field, an amount of zero) stays inline in the open sheet, and
+no red problem text is shown inside a sheet. Success dialogs ("Perubahan Tersimpan") still show over
+the sheet.
+
+The screen model keeps the input outside the sheet's view (the sheet's own `@State` would lose it
+when the sheet closes) and a `SheetSubmission` (`Features/Shared/`): `fail(_:)` in the submit's
+`catch`, and a `retry()` that calls `open()` and submits again. The view presents it with
+`.kiraSheet(_:…)`, which brings the dialog up only after the sheet's cover is down, and the sheet
+again only after the dialog's, since both are full-screen covers:
+
+```swift
+.kiraSheet(
+    $model.editSheet, title: "transaction.edit.title", failureTitle: "transaction.failed.title",
+    connectionMessage: "transaction.failed.body", onRetry: { Task { await model.retryEdit() } }
+) {
+    TransactionEditForm(model: model)
 }
 ```
 

@@ -1,3 +1,4 @@
+import APIClient
 import Domain
 import Foundation
 import Testing
@@ -56,22 +57,26 @@ struct DraftEditModelTests {
         #expect(editor.isClosed)
     }
 
-    @Test("an empty name or a zero amount cannot be saved; a failure keeps the sheet open")
+    @Test("an empty name or a zero amount stays in the open sheet; a failed save closes it, Coba Lagi saves")
     func invalidAndFailed() async {
         let service = FakeRecordService()
         let editor = model(service)
         editor.amountText = "0"
         #expect(!editor.canSave)
         await editor.save()
-        #expect(service.updates.isEmpty)
+        #expect(service.updates.isEmpty && editor.sheet.isOpen)
         editor.amountText = "5000"
         editor.name = " "
         #expect(!editor.canSave)
         editor.name = "Parkir"
         await editor.save()
-        #expect(editor.failure == .connection)
+        #expect(!editor.sheet.isOpen && editor.sheet.failure?.isConnectionLoss == true)
         #expect(!editor.showsSaved)
         #expect(!editor.isSaving)
+        service.updateResult = .success(Fixtures.drafts("k1", replyTo: "m1", items: [lunch]))
+        await editor.retry()
+        #expect(editor.sheet.isOpen && editor.showsSaved && editor.name == "Parkir")
+        #expect(service.updates.count == 2 && !editor.lastWasDelete)
     }
 
     @Test("Hapus dari Draf asks first, then sends the list without this draft and closes")
@@ -87,8 +92,10 @@ struct DraftEditModelTests {
         #expect(editor.isClosed)
         let failing = model(FakeRecordService())
         await failing.delete()
-        #expect(!failing.isClosed)
-        #expect(failing.failure == .connection)
+        #expect(!failing.isClosed && failing.lastWasDelete)
+        #expect(failing.sheet.failure?.isConnectionLoss == true)
+        await failing.retry()
+        #expect(!failing.sheet.isOpen && failing.sheet.failure != nil && !failing.isClosed)
     }
 
     @Test("a card without drafts edits an empty list")

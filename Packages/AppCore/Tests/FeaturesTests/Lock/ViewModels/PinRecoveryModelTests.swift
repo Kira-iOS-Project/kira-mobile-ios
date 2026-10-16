@@ -41,6 +41,17 @@ private struct Harness {
 @MainActor
 @Suite("PinRecoveryModel")
 struct PinRecoveryModelTests {
+    @Test("sends the first code once: a task that runs again on the new PIN step sends nothing")
+    func startsOnce() async {
+        let model = Harness().model
+        await model.start()
+        model.code = "123456"
+        await model.verifyCode()
+        #expect(model.phase == .choosingPin)
+        await model.start()
+        #expect(model.phase == .choosingPin)
+    }
+
     @Test("sends the code and counts down to the next send")
     func sendsCode() async {
         let clock = TestClock()
@@ -54,14 +65,14 @@ struct PinRecoveryModelTests {
         #expect(model.secondsUntilResend(at: clock.now().addingTimeInterval(90)) == 0)
     }
 
-    @Test("shows the API's problem, or the generic one for any other failure")
+    @Test("shows the API's problem, or connection loss when the request got no answer")
     func sendFails() async {
         let model = Harness(RecoveryAPI(sendError: invalid)).model
         await model.sendCode()
         #expect(model.problem == invalid)
         let other = Harness(RecoveryAPI(sendError: URLError(.timedOut))).model
         await other.sendCode()
-        #expect(other.problem == AppProblem())
+        #expect(other.problem == .connectionLost)
         #expect(other.phase == .enteringCode)
     }
 

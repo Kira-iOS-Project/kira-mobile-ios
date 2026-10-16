@@ -1,7 +1,8 @@
 /**
  The "Ubah Transaksi" sheet: the draft sheet's fields (CAT-02: Nama, Jumlah with "Rp" and ",00",
  the Kategori chips, Tanggal) plus Catatan, then Batal and Simpan. Wallets do not exist yet, so the
- Dompet chips are left out. The save's result dialogs show over the sheet.
+ Dompet chips are left out. "Perubahan Tersimpan" shows over the sheet; a failed save closes it for
+ its dialog (`kiraSheet(_:…)` on Detail Transaksi).
  */
 import Features
 import SwiftUI
@@ -26,13 +27,13 @@ struct TransactionEditForm: View {
                     .multiline(2)
                 KiraButtonPair(
                     secondary: KiraButton("transaction.edit.cancel", variant: .secondary, size: .small) {
-                        model.editor = nil
+                        model.editSheet.close()
                     },
                     primary: KiraButton("transaction.edit.save", size: .small) { Task { await model.save() } }
                 )
                 .disabled(!editor.wrappedValue.isValid || model.isWorking)
             }
-            .kiraDialog(isPresented: hasResult) { TransactionDialogs.edit(model) }
+            .kiraDialog(isPresented: hasSaved) { TransactionDialogs.saved }
         }
     }
 
@@ -90,7 +91,7 @@ struct TransactionEditForm: View {
             .accessibilityAddTraits(.isHeader)
     }
 
-    private var hasResult: Binding<Bool> {
-        Binding(get: { model.editResult != nil }, set: { if !$0 { model.editResultClosed() } })
+    private var hasSaved: Binding<Bool> {
+        Binding(get: { model.showsSaved }, set: { if !$0 { model.savedClosed() } })
     }
 }

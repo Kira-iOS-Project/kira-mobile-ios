@@ -17,13 +17,15 @@ import SwiftUI
 extension View {
     /**
      Presents `content` as a Kira sheet over the window while `isPresented` is true, its panel from
-     `top` points below the top of the screen (56 by default), with `leaf` in its top corner if any.
+     `top` points below the top of the screen (56 by default), with `leaf` in its top corner if any;
+     `onDismiss` runs once the sheet's layer is down.
      */
     func kiraSheet<Content: View>(
         isPresented: Binding<Bool>, title: LocalizedStringResource, subtitle: LocalizedStringResource? = nil,
-        top: CGFloat? = nil, leaf: KiraLeaf? = nil, @ViewBuilder content: @escaping () -> Content
+        top: CGFloat? = nil, leaf: KiraLeaf? = nil, onDismiss: (() -> Void)? = nil,
+        @ViewBuilder content: @escaping () -> Content
     ) -> some View {
-        kiraCover(isPresented: isPresented) { onGone in
+        kiraCover(isPresented: isPresented, onDismiss: onDismiss) { onGone in
             SheetCover(
                 isPresented: isPresented, title: title, subtitle: subtitle, top: top, leaf: leaf, showsHeader: true,
                 onGone: onGone, content: content)

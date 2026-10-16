@@ -29,8 +29,15 @@ package final class RootModel {
     /** The session. */
     package let session: SessionStore
 
-    /** Where onboarding starts: the intro, or where a signed-in account left it. */
-    package private(set) var onboardingStart = OnboardingStart.intro
+    /** Where onboarding starts: the intro, Masuk after a session ended, or where an account left it. */
+    package private(set) var onboardingStart = OnboardingStart.intro {
+        didSet { onboardingGeneration += 1 }
+    }
+    /**
+     Changes whenever onboarding must start over (a new start, or a session that ended), so the root
+     builds a fresh flow instead of keeping one whose session is gone.
+     */
+    package private(set) var onboardingGeneration = 0
     private var isStarting = true
     private var isSignedIn = false
     @ObservationIgnored private let sleep: @Sendable (Duration) async -> Void
@@ -65,10 +72,12 @@ package final class RootModel {
      */
     package func start() async {
         guard isStarting else { return }
-        await session.setSessionEndedHandler { [weak self] in await self?.endSession() }
+        await session.setSessionEndedHandler { [weak self] in await self?.endSession(to: .signIn) }
         await sleep(Self.splashDuration)
         if session.hasSession {
-            isSignedIn = apply(await checkAccount())
+            let stage = await checkAccount()
+            /** A refresh refused during the check has ended the session: stay signed out. */
+            isSignedIn = session.hasSession && apply(stage)
             if isSignedIn { lock.launch() }
         }
         isStarting = false
@@ -80,6 +89,7 @@ package final class RootModel {
      */
     package func finishOnboarding(_ outcome: OnboardingOutcome) async {
         if outcome == .signedIn, !apply(await checkAccount()) { return }
+        guard session.hasSession else { return }
         isSignedIn = true
         onboardingStart = .intro
         navigation.reset()
@@ -105,12 +115,15 @@ package final class RootModel {
         }
     }
 
-    /** The session ended (sign-out, account deleted, refresh refused): back to onboarding. */
-    package func endSession() async {
+    /**
+     The session ended: back to onboarding, at the intro after Keluar or a deleted account, at Masuk
+     when the API refused the refresh token.
+     */
+    package func endSession(to start: OnboardingStart = .intro) async {
         await session.signOut()
         lock.reset()
         navigation.reset()
-        onboardingStart = .intro
+        onboardingStart = start
         isSignedIn = false
     }
 }

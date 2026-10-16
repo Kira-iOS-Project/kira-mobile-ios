@@ -36,7 +36,7 @@ struct PlansProblemNotice: View {
             KiraNotice(
                 .warning, title: "plans.problem.title",
                 message: problem.message)
-            if problem.knownCode == nil {
+            if problem.showsReference {
                 Text(problem.reference)
                     .font(.footnote).foregroundStyle(.inkMuted)
                     .padding(.horizontal, KiraSpacing.space1)

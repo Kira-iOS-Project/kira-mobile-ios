@@ -1,8 +1,9 @@
 /**
  Catat Manual (canvas CatatManual, CatatManualPemasukan; CAT-04, CAT-04d): Pengeluaran or
  Pemasukan, the big amount with its caret and ",00" added, the category tiles, then Nama, Tanggal and
- Catatan in one card, and Simpan. Saving reports "Transaksi Tersimpan" (CAT-04b); a lost connection
- reports "Belum Berhasil Menyimpan" with Coba Lagi, every field kept (CAT-04c). No AI quota is used.
+ Catatan in one card, and Simpan. Saving reports "Transaksi Tersimpan" (CAT-04b); a failed save
+ closes the sheet for "Belum Berhasil Menyimpan" with Coba Lagi, every field kept (CAT-04c). No AI
+ quota is used.
  */
 import Domain
 import Features
@@ -51,16 +52,6 @@ struct ManualEntrySheet: View {
                 "record.manual.savedTitle", message: "record.manual.savedBody", art: .illustration(.bloom),
                 primary: KiraButton("record.done") { model.finish() })
         }
-        .kiraDialog(
-            isPresented: Binding(get: { model.failure == .connection }, set: { if !$0 { model.failure = nil } })
-        ) {
-            KiraDialog(
-                "record.manual.failedTitle", message: "record.manual.failedBody", art: .illustration(.umbrella),
-                primary: KiraButton("record.retry") { Task { await model.save() } },
-                secondary: KiraButton("ds.close", variant: .secondary) {})
-        }
-        .recordFailureDialog(
-            Binding(get: { model.failure == .connection ? nil : model.failure }, set: { model.failure = $0 }))
     }
 }
 

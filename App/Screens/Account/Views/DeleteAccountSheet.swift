@@ -2,25 +2,15 @@
  Hapus Akun dan Data (AKN-05, 05b, 05c; canvas HapusAkun*): what is deleted for good, the
  subscription cancelled with it, Unduh Datamu Dulu (the CSV emailed to the account), and Hapus
  Permanen, on once "HAPUS" is typed in any case. Success ends at the Splash, signed out; a failure
- keeps the typing and offers Coba Lagi.
+ of either closes the sheet for its dialog (`kiraSheet(_:…)` on Data & Privasi), the typing kept.
  */
 import Features
 import SwiftUI
 
 /** The content of the Hapus Akun sheet. */
 struct DeleteAccountSheet: View {
-    @State private var model: DeleteAccountModel
-    private let email: String
-    private let onClose: () -> Void
-
-    init(
-        service: any AccountService, settings: any SecuritySettings, email: String,
-        onDeleted: @escaping @MainActor () -> Void, onClose: @escaping () -> Void
-    ) {
-        model = DeleteAccountModel(service: service, settings: settings, onDeleted: onDeleted)
-        self.email = email
-        self.onClose = onClose
-    }
+    @Bindable var model: DeleteAccountModel
+    let email: String
 
     var body: some View {
         GeometryReader { frame in
@@ -29,16 +19,10 @@ struct DeleteAccountSheet: View {
             }
             .scrollBounceBehavior(.basedOnSize)
         }
-        .kiraDialog(isPresented: outcomeShown(.deleted)) {
+        .kiraDialog(isPresented: $model.showsDeleted) {
             KiraDialog(
                 "account.delete.done.title", message: "account.delete.done.message", art: .illustration(.bloom),
                 primary: KiraButton("account.done", action: model.finish))
-        }
-        .kiraDialog(isPresented: outcomeShown(nil)) {
-            KiraDialog(
-                "account.delete.failed.title", message: "account.delete.failed.message", art: .illustration(.umbrella),
-                primary: KiraButton("account.retry") { Task { await model.delete() } },
-                secondary: KiraButton("account.close", variant: .secondary) {})
         }
     }
 
@@ -53,6 +37,7 @@ struct DeleteAccountSheet: View {
                     Task { await model.emailData() }
                 }
                 .subtitle(exportSubtitle)
+                .disabled(model.emailExport == .sending)
             }
             KiraField("account.delete.field", text: $model.confirmation, prompt: "account.delete.field.prompt")
                 .hint("account.delete.field.hint")
@@ -63,7 +48,7 @@ struct DeleteAccountSheet: View {
                 KiraButton("account.delete.confirm", variant: .destructive) { Task { await model.delete() } }
                     .block()
                     .disabled(!model.canDelete)
-                KiraButton("account.cancel", variant: .secondary, action: onClose).block()
+                KiraButton("account.cancel", variant: .secondary) { model.sheet.close() }.block()
             }
         }
     }
@@ -72,21 +57,7 @@ struct DeleteAccountSheet: View {
         switch model.emailExport {
         case .idle, .sending: Text("account.delete.export.subtitle \(email)")
         case .sent: Text("account.delete.export.sent \(email)")
-        case .failed: Text("account.delete.export.failed")
         }
-    }
-
-    /** The success dialog for `.deleted`, the failure dialog for nil (any failure). */
-    private func outcomeShown(_ outcome: DeletionOutcome?) -> Binding<Bool> {
-        Binding(
-            get: {
-                switch model.outcome {
-                case .deleted: outcome == .deleted
-                case .failed: outcome == nil
-                case nil: false
-                }
-            },
-            set: { if !$0 && model.outcome != .deleted { model.outcome = nil } })
     }
 }
 

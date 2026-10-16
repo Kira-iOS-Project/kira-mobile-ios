@@ -24,7 +24,7 @@ struct RootView: View {
                     OnboardingSlot(start: model.onboardingStart) { outcome in
                         Task { await model.finishOnboarding(outcome) }
                     }
-                    .id(model.onboardingStart)
+                    .id(model.onboardingGeneration)
                 case .locked: LockHost(make: makeUnlock, makeRecovery: makeRecovery)
                 case .main: MainShell(navigation: model.navigation)
                 }

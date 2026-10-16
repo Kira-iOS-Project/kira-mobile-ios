@@ -34,7 +34,7 @@ package final class RouteLoadModel<Value: Sendable> {
                 phase = .empty
             }
         } catch {
-            phase = .failed(error as? AppProblem ?? AppProblem())
+            phase = .failed(AppProblem(error))
         }
     }
 }

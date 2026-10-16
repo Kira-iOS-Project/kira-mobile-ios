@@ -12,10 +12,7 @@ package enum RecordFailure: Equatable, Sendable {
 
     /** The failure an error from `RecordService` stands for. */
     package init(_ error: any Error) {
-        if let problem = error as? AppProblem {
-            self = .problem(problem)
-        } else {
-            self = .connection
-        }
+        let problem = AppProblem(error)
+        self = problem.isConnectionLoss ? .connection : .problem(problem)
     }
 }

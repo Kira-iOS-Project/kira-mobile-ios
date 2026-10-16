@@ -204,6 +204,58 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `GET /api/community/products/{id}`.
     /// - Remark: Generated from `#/paths//api/community/products/{id}/get(getCommunityProduct)`.
     func getCommunityProduct(_ input: Operations.GetCommunityProduct.Input) async throws -> Operations.GetCommunityProduct.Output
+    /// The verified crisis contacts, re-checked monthly
+    ///
+    /// - Remark: HTTP `GET /api/care/contacts`.
+    /// - Remark: Generated from `#/paths//api/care/contacts/get(listCareContacts)`.
+    func listCareContacts(_ input: Operations.ListCareContacts.Input) async throws -> Operations.ListCareContacts.Output
+    /// Record that the device detected a crisis signal (never the words)
+    ///
+    /// - Remark: HTTP `POST /api/care/signals`.
+    /// - Remark: Generated from `#/paths//api/care/signals/post(recordCareSignal)`.
+    func recordCareSignal(_ input: Operations.RecordCareSignal.Input) async throws -> Operations.RecordCareSignal.Output
+    /// Schedule a check-in shown in Catat after 24, 48 or 72 hours
+    ///
+    /// Replaces any check-in still pending. Nothing is pushed: the app shows it when opened.
+    ///
+    /// - Remark: HTTP `POST /api/care/check-ins`.
+    /// - Remark: Generated from `#/paths//api/care/check-ins/post(scheduleCheckIn)`.
+    func scheduleCheckIn(_ input: Operations.ScheduleCheckIn.Input) async throws -> Operations.ScheduleCheckIn.Output
+    /// The pending check-in whose time has come, or null
+    ///
+    /// - Remark: HTTP `GET /api/care/check-ins/due`.
+    /// - Remark: Generated from `#/paths//api/care/check-ins/due/get(getDueCheckIn)`.
+    func getDueCheckIn(_ input: Operations.GetDueCheckIn.Input) async throws -> Operations.GetDueCheckIn.Output
+    /// Cancel a pending check-in
+    ///
+    /// - Remark: HTTP `DELETE /api/care/check-ins/{id}`.
+    /// - Remark: Generated from `#/paths//api/care/check-ins/{id}/delete(cancelCheckIn)`.
+    func cancelCheckIn(_ input: Operations.CancelCheckIn.Input) async throws -> Operations.CancelCheckIn.Output
+    /// Mark a check-in shown in Catat
+    ///
+    /// - Remark: HTTP `POST /api/care/check-ins/{id}/seen`.
+    /// - Remark: Generated from `#/paths//api/care/check-ins/{id}/seen/post(markCheckInSeen)`.
+    func markCheckInSeen(_ input: Operations.MarkCheckInSeen.Input) async throws -> Operations.MarkCheckInSeen.Output
+    /// Turn Mode Darurat Utang on (idempotent, keeps the first time)
+    ///
+    /// - Remark: HTTP `PUT /api/care/debt-emergency`.
+    /// - Remark: Generated from `#/paths//api/care/debt-emergency/put(activateDebtEmergency)`.
+    func activateDebtEmergency(_ input: Operations.ActivateDebtEmergency.Input) async throws -> Operations.ActivateDebtEmergency.Output
+    /// The health check’s debts that are not paid off
+    ///
+    /// - Remark: HTTP `GET /api/debts`.
+    /// - Remark: Generated from `#/paths//api/debts/get(listDebts)`.
+    func listDebts(_ input: Operations.ListDebts.Input) async throws -> Operations.ListDebts.Output
+    /// The person’s safety plan
+    ///
+    /// - Remark: HTTP `GET /api/care/safety-plan`.
+    /// - Remark: Generated from `#/paths//api/care/safety-plan/get(getSafetyPlan)`.
+    func getSafetyPlan(_ input: Operations.GetSafetyPlan.Input) async throws -> Operations.GetSafetyPlan.Output
+    /// Write the whole safety plan (encrypted at rest)
+    ///
+    /// - Remark: HTTP `PUT /api/care/safety-plan`.
+    /// - Remark: Generated from `#/paths//api/care/safety-plan/put(saveSafetyPlan)`.
+    func saveSafetyPlan(_ input: Operations.SaveSafetyPlan.Input) async throws -> Operations.SaveSafetyPlan.Output
     /// This period’s quota usage
     ///
     /// AI messages, receipts and voice seconds used against the plan, and the date they reset.
@@ -676,6 +728,108 @@ extension APIProtocol {
         try await getCommunityProduct(Operations.GetCommunityProduct.Input(
             path: path,
             headers: headers
+        ))
+    }
+    /// The verified crisis contacts, re-checked monthly
+    ///
+    /// - Remark: HTTP `GET /api/care/contacts`.
+    /// - Remark: Generated from `#/paths//api/care/contacts/get(listCareContacts)`.
+    internal func listCareContacts(headers: Operations.ListCareContacts.Input.Headers = .init()) async throws -> Operations.ListCareContacts.Output {
+        try await listCareContacts(Operations.ListCareContacts.Input(headers: headers))
+    }
+    /// Record that the device detected a crisis signal (never the words)
+    ///
+    /// - Remark: HTTP `POST /api/care/signals`.
+    /// - Remark: Generated from `#/paths//api/care/signals/post(recordCareSignal)`.
+    internal func recordCareSignal(
+        headers: Operations.RecordCareSignal.Input.Headers = .init(),
+        body: Operations.RecordCareSignal.Input.Body
+    ) async throws -> Operations.RecordCareSignal.Output {
+        try await recordCareSignal(Operations.RecordCareSignal.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Schedule a check-in shown in Catat after 24, 48 or 72 hours
+    ///
+    /// Replaces any check-in still pending. Nothing is pushed: the app shows it when opened.
+    ///
+    /// - Remark: HTTP `POST /api/care/check-ins`.
+    /// - Remark: Generated from `#/paths//api/care/check-ins/post(scheduleCheckIn)`.
+    internal func scheduleCheckIn(
+        headers: Operations.ScheduleCheckIn.Input.Headers = .init(),
+        body: Operations.ScheduleCheckIn.Input.Body
+    ) async throws -> Operations.ScheduleCheckIn.Output {
+        try await scheduleCheckIn(Operations.ScheduleCheckIn.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// The pending check-in whose time has come, or null
+    ///
+    /// - Remark: HTTP `GET /api/care/check-ins/due`.
+    /// - Remark: Generated from `#/paths//api/care/check-ins/due/get(getDueCheckIn)`.
+    internal func getDueCheckIn(headers: Operations.GetDueCheckIn.Input.Headers = .init()) async throws -> Operations.GetDueCheckIn.Output {
+        try await getDueCheckIn(Operations.GetDueCheckIn.Input(headers: headers))
+    }
+    /// Cancel a pending check-in
+    ///
+    /// - Remark: HTTP `DELETE /api/care/check-ins/{id}`.
+    /// - Remark: Generated from `#/paths//api/care/check-ins/{id}/delete(cancelCheckIn)`.
+    internal func cancelCheckIn(
+        path: Operations.CancelCheckIn.Input.Path,
+        headers: Operations.CancelCheckIn.Input.Headers = .init()
+    ) async throws -> Operations.CancelCheckIn.Output {
+        try await cancelCheckIn(Operations.CancelCheckIn.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Mark a check-in shown in Catat
+    ///
+    /// - Remark: HTTP `POST /api/care/check-ins/{id}/seen`.
+    /// - Remark: Generated from `#/paths//api/care/check-ins/{id}/seen/post(markCheckInSeen)`.
+    internal func markCheckInSeen(
+        path: Operations.MarkCheckInSeen.Input.Path,
+        headers: Operations.MarkCheckInSeen.Input.Headers = .init()
+    ) async throws -> Operations.MarkCheckInSeen.Output {
+        try await markCheckInSeen(Operations.MarkCheckInSeen.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Turn Mode Darurat Utang on (idempotent, keeps the first time)
+    ///
+    /// - Remark: HTTP `PUT /api/care/debt-emergency`.
+    /// - Remark: Generated from `#/paths//api/care/debt-emergency/put(activateDebtEmergency)`.
+    internal func activateDebtEmergency(headers: Operations.ActivateDebtEmergency.Input.Headers = .init()) async throws -> Operations.ActivateDebtEmergency.Output {
+        try await activateDebtEmergency(Operations.ActivateDebtEmergency.Input(headers: headers))
+    }
+    /// The health check’s debts that are not paid off
+    ///
+    /// - Remark: HTTP `GET /api/debts`.
+    /// - Remark: Generated from `#/paths//api/debts/get(listDebts)`.
+    internal func listDebts(headers: Operations.ListDebts.Input.Headers = .init()) async throws -> Operations.ListDebts.Output {
+        try await listDebts(Operations.ListDebts.Input(headers: headers))
+    }
+    /// The person’s safety plan
+    ///
+    /// - Remark: HTTP `GET /api/care/safety-plan`.
+    /// - Remark: Generated from `#/paths//api/care/safety-plan/get(getSafetyPlan)`.
+    internal func getSafetyPlan(headers: Operations.GetSafetyPlan.Input.Headers = .init()) async throws -> Operations.GetSafetyPlan.Output {
+        try await getSafetyPlan(Operations.GetSafetyPlan.Input(headers: headers))
+    }
+    /// Write the whole safety plan (encrypted at rest)
+    ///
+    /// - Remark: HTTP `PUT /api/care/safety-plan`.
+    /// - Remark: Generated from `#/paths//api/care/safety-plan/put(saveSafetyPlan)`.
+    internal func saveSafetyPlan(
+        headers: Operations.SaveSafetyPlan.Input.Headers = .init(),
+        body: Operations.SaveSafetyPlan.Input.Body
+    ) async throws -> Operations.SaveSafetyPlan.Output {
+        try await saveSafetyPlan(Operations.SaveSafetyPlan.Input(
+            headers: headers,
+            body: body
         ))
     }
     /// This period’s quota usage
