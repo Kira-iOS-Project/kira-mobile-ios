@@ -62,9 +62,7 @@ private struct IndicatorContent: View {
                     KiraHelpButton(.icon) { onOpen(.unavailable(.care)) }
                 }
                 header
-                /** The screen's width: the scenery asks for 400 pt and would widen the page. */
                 KiraScenery(height: 150)
-                    .frame(minWidth: 0, maxWidth: .infinity)
                     .padding(.horizontal, -KiraSpacing.screen)
                     .padding(.top, -64)
                     .padding(.bottom, -84)

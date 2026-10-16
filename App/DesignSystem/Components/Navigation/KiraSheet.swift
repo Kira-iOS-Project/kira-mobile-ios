@@ -5,19 +5,27 @@
  stays open behind it). It is the design system's sheet, not the system one: the `surface` panel
  from just under the status bar to the bottom edge, 30 pt top corners with a hairline along the
  top, a line-strong grabber at half opacity, and a header with the title centred and the close X
- on the right, styled like a secondary button. Swiping the grabber or the header down, tapping the
- scrim, the X and VoiceOver's escape gesture close it. The main action goes at the bottom.
+ on the right, styled like a secondary button. `top` starts the panel that far from the top of
+ the screen instead (the artifact's `top`, 56 by default); at the accessibility sizes it rises
+ to the default again so the content keeps its room. Swiping the grabber or the header down,
+ tapping the scrim, the X and VoiceOver's escape gesture close it. The main action goes at the
+ bottom.
  */
 import SwiftUI
 
 extension View {
-    /** Presents `content` as a Kira sheet over the window while `isPresented` is true. */
+    /**
+     Presents `content` as a Kira sheet over the window while `isPresented` is true, its panel from
+     `top` points below the top of the screen when given, else from just under the status bar.
+     */
     func kiraSheet<Content: View>(
         isPresented: Binding<Bool>, title: LocalizedStringResource, subtitle: LocalizedStringResource? = nil,
-        @ViewBuilder content: @escaping () -> Content
+        top: CGFloat? = nil, @ViewBuilder content: @escaping () -> Content
     ) -> some View {
         kiraCover(isPresented: isPresented) { onGone in
-            SheetCover(isPresented: isPresented, title: title, subtitle: subtitle, onGone: onGone, content: content)
+            SheetCover(
+                isPresented: isPresented, title: title, subtitle: subtitle, top: top, onGone: onGone,
+                content: content)
         }
     }
 }
@@ -27,14 +35,31 @@ private struct SheetCover<Content: View>: View {
     @Binding var isPresented: Bool
     let title: LocalizedStringResource
     let subtitle: LocalizedStringResource?
+    let top: CGFloat?
     let onGone: () -> Void
     @ViewBuilder let content: () -> Content
     @State private var isShown = false
     @State private var drag: CGFloat = 0
     @AccessibilityFocusState private var titleFocused: Bool
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
+        GeometryReader { proxy in
+            cover(height: panelHeight(in: proxy))
+        }
+    }
+
+    /**
+     The panel's height for `top`, measured like the artifact from the top of the screen, in a
+     container that starts under the status bar; nil fills the container.
+     */
+    private func panelHeight(in proxy: GeometryProxy) -> CGFloat? {
+        guard let top, !typeSize.isAccessibilitySize else { return nil }
+        return min(proxy.size.height, max(0, proxy.size.height + proxy.safeAreaInsets.top - top))
+    }
+
+    private func cover(height: CGFloat?) -> some View {
         ZStack(alignment: .bottom) {
             if isShown {
                 Color.scrim
@@ -43,6 +68,7 @@ private struct SheetCover<Content: View>: View {
                     .accessibilityHidden(true)
                     .transition(.opacity)
                 panel
+                    .frame(height: height)
                     .offset(y: max(drag, 0))
                     .transition(reduceMotion ? .opacity : .move(edge: .bottom))
             }

@@ -43,8 +43,7 @@ extension View {
                 Color.surface
                 VStack {
                     Spacer(minLength: 0)
-                    /** The screen's width, as the scenery asks for 400 pt at 150 pt tall. */
-                    KiraScenery(height: sceneryHeight).frame(minWidth: 0, maxWidth: .infinity)
+                    KiraScenery(height: sceneryHeight)
                 }
                 if showsMascot {
                     KiraMascot(.calm, size: 132, isFramed: false)
