@@ -41,7 +41,8 @@ struct SignUpView: View {
         .kiraSheet(
             $flow.signUpEmail, title: "onboarding.signUp.sheet.title", subtitle: "onboarding.signUp.sheet.subtitle",
             failureTitle: "onboarding.signUp.sheet.failed", onRetry: { Task { await flow.retrySignUpEmail() } },
-            onGone: flow.signUpSheetGone, content: {
+            onGone: flow.signUpSheetGone,
+            content: {
                 EmailForm(model: flow.signUpEmailModel(), submitLabel: "onboarding.signUp.sheet.send")
                     .padding(.bottom, KiraSpacing.space2)
             })
