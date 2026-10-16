@@ -9,6 +9,7 @@ import SwiftUI
 struct FocusView: View {
     let flow: OnboardingFlowModel
     @State private var model: FocusModel
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     init(flow: OnboardingFlowModel) {
         self.flow = flow
@@ -18,16 +19,7 @@ struct FocusView: View {
     var body: some View {
         OnboardingPage {
             KiraNavBar("onboarding.focus.title", leading: .back("onboarding.back") { flow.back() })
-            VStack(alignment: .leading, spacing: 6) {
-                HStack(spacing: KiraSpacing.space3) {
-                    Text("onboarding.focus.overline").onboardingOverline()
-                    Spacer(minLength: 0)
-                    KiraHandNote("onboarding.focus.note", size: .small)
-                }
-                .frame(minHeight: 24)
-                OnboardingHeading(text: "onboarding.focus.heading", size: 28)
-            }
-            .padding([.horizontal, .top], KiraSpacing.space1)
+            heading
             VStack(spacing: 10) {
                 FocusCard(focus: .trackSpending, art: .receipt, model: model)
                 FocusCard(focus: .debtFree, art: .cardPaidOff, model: model)
@@ -43,8 +35,28 @@ struct FocusView: View {
                     .disabled(model.phase.isSubmitting)
                 KiraButton("onboarding.focus.unsure", variant: .quiet, size: .small) { Task { await model.skip() } }
             }
+            .onboardingFoot()
         }
         .onboardingBackdrop(leaf: .twig(size: 130, top: 8))
+    }
+
+    /** "Satu pertanyaan dulu" with its note, and the question. */
+    private var heading: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            /** The note beside the overline; under it at accessibility sizes, so no word breaks. */
+            let row =
+                typeSize.isAccessibilitySize
+                ? AnyLayout(VStackLayout(alignment: .leading, spacing: KiraSpacing.space1))
+                : AnyLayout(HStackLayout(spacing: KiraSpacing.space3))
+            row {
+                Text("onboarding.focus.overline").onboardingOverline()
+                if !typeSize.isAccessibilitySize { Spacer(minLength: 0) }
+                KiraHandNote("onboarding.focus.note", size: .small)
+            }
+            .frame(minHeight: 24)
+            OnboardingHeading(text: "onboarding.focus.heading", size: 28)
+        }
+        .padding([.horizontal, .top], KiraSpacing.space1)
     }
 }
 
@@ -73,7 +85,8 @@ private struct FocusCard: View {
                 mark
             }
             .foregroundStyle(.ink)
-            .padding(EdgeInsets(top: 16, leading: 14, bottom: 16, trailing: 16))
+            /** The board's padding inside its 1 pt (or chosen, 2 pt) border, so 17 pt to the edge. */
+            .padding(EdgeInsets(top: 17, leading: 15, bottom: 17, trailing: 17))
             .kiraCard(
                 isSelected ? .pandanSoft : .surfaceRaised, border: isSelected ? .pandan : .hairline,
                 cornerRadius: KiraRadius.large

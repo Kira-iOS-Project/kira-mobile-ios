@@ -1,7 +1,7 @@
 /**
- A board's page: its content at the full height of the screen, with the screen margin, so a
- `Spacer` pushes the main button to the bottom; on a short screen or at large text sizes it
- scrolls instead of squeezing.
+ A board's page: its content at the full height of the screen, with the screen margin and the last
+ button right on the home indicator's inset as on the boards, so a `Spacer` pushes the main button
+ to the bottom; on a short screen or at large text sizes it scrolls instead of squeezing.
  */
 import APIClient
 import SwiftUI
@@ -15,14 +15,24 @@ struct OnboardingPage<Content: View>: View {
             ScrollView {
                 VStack(spacing: spacing) { content() }
                     .padding(.horizontal, KiraSpacing.screen)
-                    .padding(.top, KiraSpacing.space1)
-                    .padding(.bottom, KiraSpacing.space2)
+                    /** The boards' 62 pt from the top of the screen. */
+                    .padding(.top, 62 - 59)
                     .frame(minHeight: proxy.size.height, alignment: .top)
             }
             .scrollBounceBehavior(.basedOnSize)
         }
         .kiraScrollEdges()
         .toolbar(.hidden, for: .navigationBar)
+    }
+}
+
+extension View {
+    /**
+     The block a board pushes to the bottom (`margin-top: auto`), after a `Spacer`: when the page
+     scrolls, its gap above stays the board's one `spacing`, not the two around the spacer.
+     */
+    func onboardingFoot(spacing: CGFloat = KiraSpacing.space4) -> some View {
+        padding(.top, -spacing)
     }
 }
 

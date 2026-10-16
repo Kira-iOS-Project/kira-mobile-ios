@@ -26,8 +26,8 @@ struct LockScreen: View {
             footer
         }
         .padding(.horizontal, KiraSpacing.screen)
-        .padding(.top, 8)
-        .padding(.bottom, KiraSpacing.space2)
+        /** The board's 62 pt from the top of the screen; Lupa PIN? sits on the home indicator's inset. */
+        .padding(.top, 62 - 59)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background { background }
         .fullScreenCover(item: $recovery) { PinRecoveryFlow(model: $0) }
@@ -80,7 +80,9 @@ struct LockScreen: View {
     private var background: some View {
         ZStack(alignment: .topLeading) {
             Color.hero
-            KiraScenery(tone: .hero, height: 220).frame(maxHeight: .infinity, alignment: .bottom)
+            /** The screen's width: the scenery at 220 pt asks for 587 pt and would push the twig off. */
+            KiraScenery(tone: .hero, height: 220)
+                .frame(minWidth: 0, maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             KiraLeaf(.twig, tone: .hero, size: 170).offset(x: -44, y: -24)
         }
         .ignoresSafeArea()

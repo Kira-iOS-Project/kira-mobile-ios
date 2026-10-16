@@ -46,6 +46,7 @@ struct ConsentView: View {
                     .disabled(model.phase.isSubmitting)
                 KiraButton("onboarding.consent.policy", variant: .quiet, size: .small) { onOpen(.privacyPolicy) }
             }
+            .onboardingFoot()
         }
         .onboardingBackdrop(leaf: .pandan)
     }

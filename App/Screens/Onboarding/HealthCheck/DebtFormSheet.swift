@@ -9,17 +9,28 @@ import SwiftUI
 
 struct DebtFormSheet: View {
     let debts: DebtAnswersModel
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         ScrollView {
             DebtFormFields(form: debts.form)
         }
         .scrollBounceBehavior(.basedOnSize)
-        KiraButtonPair(
-            secondary: KiraButton("onboarding.cancel", variant: .secondary) { debts.isFormPresented = false },
-            primary: KiraButton("onboarding.debt.save") { debts.saveForm() }
-        )
-        .padding(.bottom, KiraSpacing.space2)
+        actions.padding(.bottom, KiraSpacing.space2)
+    }
+
+    /** "Batal" and "Simpan Utang" in the board's 1 : 1.3 columns, stacked at accessibility sizes. */
+    @ViewBuilder private var actions: some View {
+        let cancel = KiraButton("onboarding.cancel", variant: .secondary) { debts.isFormPresented = false }
+        let save = KiraButton("onboarding.debt.save") { debts.saveForm() }
+        if typeSize.isAccessibilitySize {
+            KiraButtonPair(secondary: cancel, primary: save)
+        } else {
+            WeightedRow(weights: [1, 1.3], spacing: KiraSpacing.space2) {
+                cancel.block()
+                save.block()
+            }
+        }
     }
 }
 
