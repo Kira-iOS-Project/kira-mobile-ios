@@ -14046,7 +14046,18 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Grup ini sudah tidak tersedia."
+            "value" : "Grup ini sedang tidak tersedia. Mungkin sedang ditinjau tim Kira."
+          }
+        }
+      }
+    },
+    "problem.COMMUNITY_LINK_UNAVAILABLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tautan grup ini sedang dicek ulang tim Kira. Coba lagi nanti."
           }
         }
       }
@@ -14057,7 +14068,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Produk ini sudah tidak tersedia."
+            "value" : "Produk ini sudah tidak ada di Etalase."
           }
         }
       }
@@ -14068,7 +14079,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kamu sudah melaporkan grup ini. Tim Kira sedang meninjaunya."
+            "value" : "Kamu sudah melaporkan grup ini. Tim moderasi sedang meninjaunya."
           }
         }
       }
@@ -14079,7 +14090,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Setujui Aturan Komunitas dulu sebelum bergabung."
+            "value" : "Setujui Aturan Komunitas dulu sebelum bergabung, ya."
           }
         }
       }

@@ -20,7 +20,8 @@ struct LiveCareServiceTests {
     func failures() async {
         let (expired, _) = KiraAPI.routed(["GET /api/care/contacts": problem("AUTH_SESSION_INVALID", status: 401)])
         await #expect(throws: AppProblem.self) { try await LiveCareService(api: expired).contacts() }
-        let unknown = #"{"verifiedOn":"2026-10-01","contacts":[{"key":"sejiwa","name":"S","phone":"119","#
+        let unknown =
+            #"{"verifiedOn":"2026-10-01","contacts":[{"key":"sejiwa","name":"S","phone":"119","#
             + #""extension":null,"whatsapp":null,"url":null,"note":"n"}]}"#
         let (odd, _) = KiraAPI.routed(["GET /api/care/contacts": ok(unknown)])
         await #expect(throws: (any Error).self) { try await LiveCareService(api: odd).contacts() }
