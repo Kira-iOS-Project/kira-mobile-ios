@@ -6,11 +6,14 @@ import Observation
 @MainActor
 @Observable
 package final class IndicatorModel {
+    /** The indicator the screen shows. */
     package let key: IndicatorKey
+    /** The detail, loading until the API answers. */
     package private(set) var phase: ScreenPhase<IndicatorDetail> = .loading
 
     private let service: any ScoreService
 
+    /** A model of indicator `key`, loaded through `service`. */
     package init(key: IndicatorKey, service: any ScoreService) {
         self.key = key
         self.service = service

@@ -90,15 +90,21 @@ package enum IndicatorPosition: Equatable, Sendable {
 
 /** The target after an indicator's value in the list. */
 package enum IndicatorTarget: Equatable, Sendable {
+    /** "target 6×". */
     case multiple(Int)
+    /** "minimal 10%". */
     case minimumPercent(Int)
+    /** "target 20%". */
     case targetPercent(Int)
+    /** "batas 30%". */
     case limitPercent(Int)
 }
 
 /** The bar of "Posisimu": the measure against its target or its limit, in whole rupiah. */
 package struct IndicatorRibbon: Equatable, Sendable {
+    /** The measure. */
     package let value: Int
+    /** The target or the limit. */
     package let target: Int
     /** A limit to stay under, rather than a target to reach. */
     package let isLimit: Bool

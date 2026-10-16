@@ -19,7 +19,7 @@ nonisolated extension HomeOverview {
         return step
     }()
 
-    private static let seekReliefPinjolB: ScoreStep = {
+    private static let seekReliefOnlineLoan: ScoreStep = {
         var step = ScoreStep(kind: .seekRelief, estimatedGain: 0)
         step.debtName = "Pinjol B"
         return step
@@ -29,11 +29,12 @@ nonisolated extension HomeOverview {
     static let sampleOverview = HomeOverview(
         variant: .overview, today: october15(), displayName: "Dinda", hideBalances: false,
         period: PayPeriod(daysUntilPayday: 10),
-        money: PeriodMoney(income: 7_500_000, spent: 5_660_000, remaining: 1_840_000, perDay: 184_000, spentPercent: 75),
+        money: PeriodMoney(
+            income: 7_500_000, spent: 5_660_000, remaining: 1_840_000, perDay: 184_000, spentPercent: 75),
         step: payOffPaylaterA,
         stepPosition: StepPosition(index: 1, total: 3),
         score: ScoreSummary(score: 66, band: .coping, delta: 4, isInitial: false),
-        weeklySummary: DayRange(from: october15(plus: -7), to: october15(plus: -1)))
+        weeklySummary: DayRange(first: october15(plus: -7), last: october15(plus: -1)))
 
     /** BRD-02 (board BerandaBaru). */
     static let sampleFirstSteps = HomeOverview(
@@ -46,7 +47,7 @@ nonisolated extension HomeOverview {
     static let sampleDebtPlan = HomeOverview(
         variant: .debtPlan, today: october15(), displayName: "Bima", hideBalances: false,
         period: PayPeriod(daysUntilPayday: 10),
-        step: seekReliefPinjolB,
+        step: seekReliefOnlineLoan,
         score: ScoreSummary(score: 28, band: .vulnerable, delta: nil, isInitial: true),
         debtPlan: DebtPlanProgress(paidOff: 1_600_000, total: 20_000_000, remaining: 18_400_000, percent: 8),
         microTarget: MicroTarget(kind: .oneWeek, current: 120_000, target: 350_000))

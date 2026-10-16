@@ -31,44 +31,54 @@ private struct HomeDebtPlanCard: View {
 
     var body: some View {
         Button(action: onOpen) {
-            VStack(alignment: .leading, spacing: 6) {
-                HStack {
-                    Text("home.debt.overline").kiraFont(.overline).kiraSmallType()
-                    Spacer(minLength: 0)
-                    KiraIcon(.chevronRight, size: 20)
-                }
-                .foregroundStyle(.onHeroMuted)
-                .frame(minHeight: 24)
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("home.debt.paidOff").font(.subheadline.weight(.semibold)).kiraLineHeight(20, size: 15)
-                        .foregroundStyle(.onHeroMuted)
-                    KiraAmount(plan.paidOff.rupiah, size: .extraLarge).inverse()
-                }
-                .padding(.top, 2)
-                Text(plan.hasPaidSome ? "home.debt.encourage" : "home.debt.start")
-                    .font(.subheadline).kiraLineHeight(20, size: 15).foregroundStyle(.onHeroMuted)
-                VStack(alignment: .leading, spacing: 10) {
-                    KiraProgressRibbon(
-                        value: Double(plan.paidOff),
-                        target: Double(plan.total),
-                        label: "home.debt.percent \(plan.percent)",
-                        valueLabel: "home.debt.ofTotal \(plan.total.rupiah, format: .rupiah)"
-                    )
-                    .inverse()
-                    Text("home.debt.remaining \(Text(plan.remaining.rupiah, format: .rupiah).fontWeight(.semibold).foregroundStyle(.onHero))")
-                        .font(.subheadline.monospacedDigit()).kiraLineHeight(20, size: 15).foregroundStyle(.onHeroMuted)
-                }
-                .padding(.top, KiraSpacing.space3)
-            }
-            .padding(KiraSpacing.space5)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(alignment: .bottom) { KiraScenery(tone: .hero, height: 92).accessibilityHidden(true) }
-            .background(.hero)
-            .clipShape(RoundedRectangle(cornerRadius: KiraRadius.extraLarge, style: .continuous))
-            .contentShape(Rectangle())
+            content
+                .padding(KiraSpacing.space5)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(alignment: .bottom) { KiraScenery(tone: .hero, height: 92).accessibilityHidden(true) }
+                .background(.hero)
+                .clipShape(RoundedRectangle(cornerRadius: KiraRadius.extraLarge, style: .continuous))
+                .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
         .accessibilityHint(Text("home.debt.open"))
+    }
+
+    private var content: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            HStack {
+                Text("home.debt.overline").kiraFont(.overline).kiraSmallType()
+                Spacer(minLength: 0)
+                KiraIcon(.chevronRight, size: 20)
+            }
+            .foregroundStyle(.onHeroMuted)
+            .frame(minHeight: 24)
+            VStack(alignment: .leading, spacing: 2) {
+                Text("home.debt.paidOff").font(.subheadline.weight(.semibold)).kiraLineHeight(20, size: 15)
+                    .foregroundStyle(.onHeroMuted)
+                KiraAmount(plan.paidOff.rupiah, size: .extraLarge).inverse()
+            }
+            .padding(.top, 2)
+            Text(plan.hasPaidSome ? "home.debt.encourage" : "home.debt.start")
+                .font(.subheadline).kiraLineHeight(20, size: 15).foregroundStyle(.onHeroMuted)
+            VStack(alignment: .leading, spacing: 10) {
+                KiraProgressRibbon(
+                    value: Double(plan.paidOff),
+                    target: Double(plan.total),
+                    label: "home.debt.percent \(plan.percent)",
+                    valueLabel: "home.debt.ofTotal \(plan.total.rupiah, format: .rupiah)"
+                )
+                .inverse()
+                Text("home.debt.remaining \(remaining)")
+                    .font(.subheadline.monospacedDigit()).kiraLineHeight(20, size: 15)
+                    .foregroundStyle(.onHeroMuted)
+            }
+            .padding(.top, KiraSpacing.space3)
+        }
+    }
+
+    /** The total left, set in semibold on-hero inside its sentence. */
+    private var remaining: Text {
+        Text(plan.remaining.rupiah, format: .rupiah).fontWeight(.semibold).foregroundStyle(.onHero)
     }
 }
 

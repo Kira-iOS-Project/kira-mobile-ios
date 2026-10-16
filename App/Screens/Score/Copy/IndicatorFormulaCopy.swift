@@ -9,7 +9,9 @@ extension ScoreIndicator {
     /** The division, or the rule applied ("2 platform · tepat waktu"). */
     var formulaInput: Text {
         if let division = measure.division {
-            return Text("indicator.formula.divide \(division.part.rupiah, format: .rupiah) \(division.whole.rupiah, format: .rupiah)")
+            let part = division.part.rupiah
+            let whole = division.whole.rupiah
+            return Text("indicator.formula.divide \(part, format: .rupiah) \(whole, format: .rupiah)")
         }
         if case .consumerDebt(let platforms, _, _) = measure {
             return Text("indicator.formula.platforms \(platforms) \(measure.payment.text)")
@@ -61,6 +63,6 @@ extension IndicatorRibbon {
 extension Milestone {
     /** The milestone's label under the bar, as the engine wrote it ("3×", "10%"). */
     var ribbonMilestone: KiraProgressRibbon.Milestone {
-        KiraProgressRibbon.Milestone(position: Double(at), label: "indicator.milestone \(label)")
+        KiraProgressRibbon.Milestone(position: Double(amount), label: "indicator.milestone \(label)")
     }
 }

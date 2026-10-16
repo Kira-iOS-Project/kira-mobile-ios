@@ -19,13 +19,14 @@ struct HomeOverviewTests {
 
     @Test("keeps what it was given")
     func members() {
-        let money = PeriodMoney(income: 7_500_000, spent: 5_660_000, remaining: 1_840_000, perDay: 184_000, spentPercent: 75)
+        let money = PeriodMoney(
+            income: 7_500_000, spent: 5_660_000, remaining: 1_840_000, perDay: 184_000, spentPercent: 75)
         let home = HomeOverview(
             variant: .debtPlan, today: wibDay(2026, 10, 15), displayName: "Bima", hideBalances: true,
             period: PayPeriod(daysUntilPayday: 3), money: money, step: ScoreStep(kind: .seekRelief, estimatedGain: 0),
             stepPosition: StepPosition(index: 1, total: 3),
             score: ScoreSummary(score: 28, band: .vulnerable, delta: nil, isInitial: true),
-            weeklySummary: DayRange(from: wibDay(2026, 10, 8), to: wibDay(2026, 10, 14)),
+            weeklySummary: DayRange(first: wibDay(2026, 10, 8), last: wibDay(2026, 10, 14)),
             checklist: FirstStepsChecklist(healthCheck: true, firstTransaction: false, paydaySet: false),
             debtPlan: DebtPlanProgress(paidOff: 0, total: 1, remaining: 1, percent: 0),
             microTarget: MicroTarget(kind: .oneWeek, current: 120_000, target: 350_000))
@@ -62,8 +63,8 @@ struct HomeOverviewTests {
     @Test(
         "describes the score's change, a starting point for Rentan, or the first check",
         arguments: [
-            TrendCase(band: .coping, delta: 4, isInitial: false, trend: .up(4)),
-            TrendCase(band: .coping, delta: -3, isInitial: false, trend: .down(3)),
+            TrendCase(band: .coping, delta: 4, isInitial: false, trend: .rise(4)),
+            TrendCase(band: .coping, delta: -3, isInitial: false, trend: .fall(3)),
             TrendCase(band: .vulnerable, delta: 0, isInitial: false, trend: .unchanged),
             TrendCase(band: .vulnerable, delta: nil, isInitial: true, trend: .startingPoint),
             TrendCase(band: .coping, delta: nil, isInitial: true, trend: .firstCheck),

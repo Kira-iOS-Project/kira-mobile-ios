@@ -56,22 +56,26 @@ package struct DayRange: Equatable, Sendable {
         case acrossYears
     }
 
-    package let from: Date
-    package let to: Date
+    /** The first day. */
+    package let first: Date
+    /** The last day. */
+    package let last: Date
 
-    package init(from: Date, to: Date) {
-        self.from = from
-        self.to = to
+    /** The days from `first` to `last`, both included. */
+    package init(first: Date, last: Date) {
+        self.first = first
+        self.last = last
     }
 
-    /** The day of the month of the first end, in WIB. */
-    package var fromDay: Int { HomeCalendar.component(.day, of: from) }
+    /** The day of the month of the first day, in WIB. */
+    package var firstDay: Int { HomeCalendar.component(.day, of: first) }
 
+    /** How much of the first day the range writes. */
     package var shape: Shape {
-        guard HomeCalendar.component(.year, of: from) == HomeCalendar.component(.year, of: to) else {
+        guard HomeCalendar.component(.year, of: first) == HomeCalendar.component(.year, of: last) else {
             return .acrossYears
         }
-        let sameMonth = HomeCalendar.component(.month, of: from) == HomeCalendar.component(.month, of: to)
+        let sameMonth = HomeCalendar.component(.month, of: first) == HomeCalendar.component(.month, of: last)
         return sameMonth ? .sameMonth : .sameYear
     }
 }

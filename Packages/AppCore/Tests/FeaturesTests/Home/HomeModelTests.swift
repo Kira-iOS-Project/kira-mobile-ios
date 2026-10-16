@@ -16,9 +16,9 @@ private final class FakeHomeService: HomeService, @unchecked Sendable {
         self.result = result
     }
 
-    func home() async throws -> HomeOverview { try result.get() }
+    func home() throws -> HomeOverview { try result.get() }
 
-    func setHideBalances(_ isHidden: Bool) async throws {
+    func setHideBalances(_ isHidden: Bool) throws {
         savedHideBalances.append(isHidden)
         if failsToSave { throw AppProblem(code: "INTERNAL_ERROR") }
     }
@@ -28,8 +28,8 @@ private struct OtherError: Error {}
 
 /** A service whose load throws something other than an `AppProblem`. */
 private struct BrokenHomeService: HomeService {
-    func home() async throws -> HomeOverview { throw OtherError() }
-    func setHideBalances(_: Bool) async throws {}
+    func home() throws -> HomeOverview { throw OtherError() }
+    func setHideBalances(_: Bool) throws {}
 }
 
 @MainActor

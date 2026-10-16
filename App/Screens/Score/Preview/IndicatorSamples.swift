@@ -41,44 +41,55 @@ nonisolated extension IndicatorDetail {
     /** The board's detail for `key`. */
     static func sample(_ key: IndicatorKey) -> IndicatorDetail {
         let indicator = ScoreIndicator.sample(key)
-        let ladder = rungs(key).map { row in
+        let ladder = rungs(key).map { rung in
             LadderRung(
-                points: row.0, lower: row.1, upper: row.2, amountLower: row.3, amountUpper: row.4,
-                isCurrent: row.0 == indicator.points)
+                points: rung.points, lower: rung.lower, upper: rung.upper, amountLower: rung.amountLower,
+                amountUpper: rung.amountUpper, isCurrent: rung.points == indicator.points)
         }
         return IndicatorDetail(
             indicator: indicator, ladder: ladder, nextRung: next(key),
-            milestones: milestones(key).map { Milestone(at: $0.0, label: $0.1) })
+            milestones: milestones(key).map { Milestone(amount: $0.0, label: $0.1) })
     }
 
-    private typealias Row = (Int, Double?, Double?, Int?, Int?)
+    /** A rung of the board, not yet marked current. */
+    private static func row(
+        _ points: Int, _ lower: Double?, _ upper: Double?, _ amountLower: Int?, _ amountUpper: Int?
+    ) -> LadderRung {
+        LadderRung(
+            points: points, lower: lower, upper: upper, amountLower: amountLower, amountUpper: amountUpper,
+            isCurrent: false)
+    }
 
-    private static func rungs(_ key: IndicatorKey) -> [Row] {
+    private static func rungs(_ key: IndicatorKey) -> [LadderRung] {
         switch key {
         case .emergencyFund:
             return [
-                (100, 6, nil, 25_200_000, nil), (75, 3, 6, 12_600_000, 25_200_000), (50, 1, 3, 4_200_000, 12_600_000),
-                (25, 0.5, 1, 2_100_000, 4_200_000), (0, nil, 0.5, nil, 2_100_000),
+                row(100, 6, nil, 25_200_000, nil), row(75, 3, 6, 12_600_000, 25_200_000),
+                row(50, 1, 3, 4_200_000, 12_600_000),
+                row(25, 0.5, 1, 2_100_000, 4_200_000), row(0, nil, 0.5, nil, 2_100_000),
             ]
         case .savingsRatio:
             return [
-                (100, 20, nil, 1_500_000, nil), (75, 10, 20, 750_000, 1_500_000), (45, 5, 10, 375_000, 750_000),
-                (25, 1, 5, 75_000, 375_000), (0, nil, 1, nil, 75_000),
+                row(100, 20, nil, 1_500_000, nil), row(75, 10, 20, 750_000, 1_500_000),
+                row(45, 5, 10, 375_000, 750_000),
+                row(25, 1, 5, 75_000, 375_000), row(0, nil, 1, nil, 75_000),
             ]
         case .instalmentRatio:
             return [
-                (100, nil, 10, nil, 750_000), (85, 10, 15, 750_000, 1_125_000), (70, 15, 30, 1_125_000, 2_250_000),
-                (40, 30, 40, 2_250_000, 3_000_000), (0, 40, nil, 3_000_000, nil),
+                row(100, nil, 10, nil, 750_000), row(85, 10, 15, 750_000, 1_125_000),
+                row(70, 15, 30, 1_125_000, 2_250_000),
+                row(40, 30, 40, 2_250_000, 3_000_000), row(0, 40, nil, 3_000_000, nil),
             ]
         case .debtToAsset:
             return [
-                (100, nil, 20, nil, 8_940_000), (80, 20, 40, 8_940_000, 17_880_000),
-                (50, 40, 50, 17_880_000, 22_350_000), (25, 50, 70, 22_350_000, 31_290_000), (0, 70, nil, 31_290_000, nil),
+                row(100, nil, 20, nil, 8_940_000), row(80, 20, 40, 8_940_000, 17_880_000),
+                row(50, 40, 50, 17_880_000, 22_350_000), row(25, 50, 70, 22_350_000, 31_290_000),
+                row(0, 70, nil, 31_290_000, nil),
             ]
         case .consumerDebt:
-            return [100, 75, 50, 25, 0].map { ($0, nil, nil, nil, nil) }
+            return [100, 75, 50, 25, 0].map { row($0, nil, nil, nil, nil) }
         case .protection:
-            return [100, 50, 0].map { ($0, nil, nil, nil, nil) }
+            return [100, 50, 0].map { row($0, nil, nil, nil, nil) }
         }
     }
 

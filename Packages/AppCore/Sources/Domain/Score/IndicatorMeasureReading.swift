@@ -35,7 +35,9 @@ extension IndicatorMeasure {
 
 /** Part ÷ whole, in whole rupiah. */
 package struct Division: Equatable, Sendable {
+    /** What is divided: the fund, savings, instalments or debt. */
     package let part: Int
+    /** What it is divided by: essentials, income or assets. */
     package let whole: Int
 
     /** The quotient unrounded ("1,14" once written to two decimals), 0 when the whole is 0. */
@@ -47,16 +49,23 @@ package struct Division: Equatable, Sendable {
 
 /** How consumer debt is paid. */
 package enum ConsumerPayment: Equatable, Sendable {
+    /** Every platform paid on time. */
     case onTime
+    /** A payment was late. */
     case late
+    /** A payment is past due. */
     case overdue
 }
 
 /** Which of the two basic covers are active. */
 package enum Coverage: Equatable, Sendable {
+    /** Health and income cover. */
     case both
+    /** Health cover only. */
     case healthOnly
+    /** Income cover only. */
     case incomeOnly
+    /** No cover. */
     case neither
 
     /** How many of the two covers are active. */

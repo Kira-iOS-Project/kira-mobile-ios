@@ -34,7 +34,8 @@ extension ScoreStep {
             return "step.buildEmergencyFund.message \(shortfall.rupiah, format: money) \(target, format: money)"
         case .raiseSavings, .lowerInstalments:
             return "step.monthly.message \(current, format: money) \(target, format: money)"
-        case .lowerDebtToAsset: return "step.lowerDebtToAsset.message \(current, format: money) \(target, format: money)"
+        case .lowerDebtToAsset:
+            return "step.lowerDebtToAsset.message \(current, format: money) \(target, format: money)"
         case .addProtection: return "step.addProtection.message"
         }
     }

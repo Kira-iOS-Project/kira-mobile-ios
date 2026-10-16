@@ -69,16 +69,7 @@ private struct IndicatorContent: View {
                 IndicatorPositionCard(detail: detail)
                 IndicatorFormulaCard(indicator: indicator)
                 IndicatorLadder(detail: detail)
-                if let next = detail.nextRung {
-                    KiraNextStepCard(
-                        "indicator.next.title \(next.points)", message: detail.nextRungMessage(next),
-                        primaryLabel: detail.nextRungLabel, onPrimary: { onOpen(indicator.key.nextRungRoute) },
-                        onSecondary: onBack
-                    )
-                    .eyebrow("indicator.next.eyebrow")
-                    .illustration(.piggyBank)
-                    .impact("indicator.next.impact \(next.gain) \(next.scoreFrom) \(next.scoreTo)")
-                }
+                if let next = detail.nextRung { nextRungCard(next) }
                 KiraNotice(.info, title: "indicator.why.title", message: detail.why)
                 KiraNotice(.simulation, title: "indicator.simulation.title", message: "indicator.simulation.body")
             }
@@ -90,6 +81,18 @@ private struct IndicatorContent: View {
             }
         }
         .kiraScrollEdges()
+    }
+
+    /** "Langkah berikutnya": what the next rung takes and what it adds to the score. */
+    private func nextRungCard(_ next: NextRung) -> some View {
+        KiraNextStepCard(
+            "indicator.next.title \(next.points)", message: detail.nextRungMessage(next),
+            primaryLabel: detail.nextRungLabel, onPrimary: { onOpen(indicator.key.nextRungRoute) },
+            onSecondary: onBack
+        )
+        .eyebrow("indicator.next.eyebrow")
+        .illustration(.piggyBank)
+        .impact("indicator.next.impact \(next.gain) \(next.scoreFrom) \(next.scoreTo)")
     }
 
     private var header: some View {
@@ -114,6 +117,7 @@ private struct IndicatorContent: View {
             }
             Text(indicator.key.summary).font(.subheadline).kiraLineHeight(21, size: 15).foregroundStyle(.inkMuted)
         }
-        .padding(EdgeInsets(top: KiraSpacing.space2, leading: KiraSpacing.space1, bottom: 0, trailing: KiraSpacing.space1))
+        .padding(
+            EdgeInsets(top: KiraSpacing.space2, leading: KiraSpacing.space1, bottom: 0, trailing: KiraSpacing.space1))
     }
 }

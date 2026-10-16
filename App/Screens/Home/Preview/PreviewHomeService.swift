@@ -13,9 +13,9 @@ nonisolated struct PreviewHomeService: HomeService {
         self.overview = overview
     }
 
-    func home() async throws -> HomeOverview { overview }
+    func home() throws -> HomeOverview { overview }
 
-    func setHideBalances(_: Bool) async throws {}
+    func setHideBalances(_: Bool) throws {}
 }
 
 #if DEBUG

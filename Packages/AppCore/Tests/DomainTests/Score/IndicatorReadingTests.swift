@@ -72,10 +72,15 @@ struct IndicatorReadingTests {
 
     @Test("draws the bar against the target or the limit")
     func ribbon() {
-        #expect(fund(1.1).ribbon == IndicatorRibbon(value: 4_800_000, target: 25_200_000, isLimit: false, isMonthly: false))
-        #expect(savings(8).ribbon == IndicatorRibbon(value: 600_000, target: 1_500_000, isLimit: false, isMonthly: true))
-        #expect(instalments(18).ribbon == IndicatorRibbon(value: 1_350_000, target: 2_250_000, isLimit: true, isMonthly: true))
-        #expect(debt(32).ribbon == IndicatorRibbon(value: 14_310_000, target: 22_350_000, isLimit: true, isMonthly: false))
+        #expect(
+            fund(1.1).ribbon == IndicatorRibbon(value: 4_800_000, target: 25_200_000, isLimit: false, isMonthly: false))
+        #expect(
+            savings(8).ribbon == IndicatorRibbon(value: 600_000, target: 1_500_000, isLimit: false, isMonthly: true))
+        #expect(
+            instalments(18).ribbon
+                == IndicatorRibbon(value: 1_350_000, target: 2_250_000, isLimit: true, isMonthly: true))
+        #expect(
+            debt(32).ribbon == IndicatorRibbon(value: 14_310_000, target: 22_350_000, isLimit: true, isMonthly: false))
         #expect(IndicatorMeasure.protectionCover(health: true, income: false).ribbon == nil)
     }
 }

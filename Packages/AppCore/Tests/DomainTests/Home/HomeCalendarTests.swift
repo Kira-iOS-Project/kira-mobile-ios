@@ -42,10 +42,10 @@ struct HomeCalendarTests {
 
     @Test("writes the first end of a range by what the two ends share")
     func range() {
-        let week = DayRange(from: wibDay(2026, 10, 8), to: wibDay(2026, 10, 14))
+        let week = DayRange(first: wibDay(2026, 10, 8), last: wibDay(2026, 10, 14))
         #expect(week.shape == .sameMonth)
-        #expect(week.fromDay == 8)
-        #expect(DayRange(from: wibDay(2026, 9, 28), to: wibDay(2026, 10, 4)).shape == .sameYear)
-        #expect(DayRange(from: wibDay(2025, 12, 29), to: wibDay(2026, 1, 4)).shape == .acrossYears)
+        #expect(week.firstDay == 8)
+        #expect(DayRange(first: wibDay(2026, 9, 28), last: wibDay(2026, 10, 4)).shape == .sameYear)
+        #expect(DayRange(first: wibDay(2025, 12, 29), last: wibDay(2026, 1, 4)).shape == .acrossYears)
     }
 }

@@ -49,9 +49,9 @@ nonisolated extension ScoreReport {
 }
 
 nonisolated struct PreviewScoreService: ScoreService {
-    func score() async throws -> ScoreReport? { .sample }
+    func score() throws -> ScoreReport? { .sample }
 
-    func indicator(_ key: IndicatorKey) async throws -> IndicatorDetail { .sample(key) }
+    func indicator(_ key: IndicatorKey) throws -> IndicatorDetail { .sample(key) }
 }
 
 #if DEBUG

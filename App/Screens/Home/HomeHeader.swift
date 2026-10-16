@@ -19,7 +19,9 @@ struct HomeHeader: View {
                     .font(.footnote.weight(.medium)).kiraLineHeight(18, size: 13)
                     .foregroundStyle(.inkMuted)
                 Spacer(minLength: KiraSpacing.space2)
-                Button { onOpen(.profile) } label: {
+                Button {
+                    onOpen(.profile)
+                } label: {
                     KiraAvatar(home.initial, size: 34, tone: home.variant == .debtPlan ? .sky : .turmeric)
                         .frame(minWidth: KiraSize.tap, minHeight: KiraSize.tap)
                         .contentShape(Rectangle())
@@ -47,7 +49,8 @@ struct HomeHeader: View {
     private var greeting: some View {
         /** BRD-03's board sets its greeting 2 pt smaller, so a longer name keeps one line. */
         let size: CGFloat = home.variant == .debtPlan ? 24 : 26
-        return greetingText
+        return
+            greetingText
             .font(KiraFont.display(size, .heavy, relativeTo: .title))
             .kiraLineHeight(32, size: size, natural: 1.26, relativeTo: .title)
             .tracking(-0.02 * size)

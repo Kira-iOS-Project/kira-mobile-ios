@@ -23,9 +23,11 @@ extension IndicatorDetail {
             let key = "indicator.rung.\(indicator.key.rawValue).\(rung.points).detail"
             return Text(LocalizedStringKey(key))
         case .atLeast(let bound) where isMultiple:
-            return Text("indicator.range.multipleAtLeast \(multiple(bound.multiple)) \(bound.amount.rupiah, format: .rupiah)")
+            return Text(
+                "indicator.range.multipleAtLeast \(multiple(bound.multiple)) \(bound.amount.rupiah, format: .rupiah)")
         case .from(let bound) where isMultiple:
-            return Text("indicator.range.multipleFrom \(multiple(bound.multiple)) \(bound.amount.rupiah, format: .rupiah)")
+            return Text(
+                "indicator.range.multipleFrom \(multiple(bound.multiple)) \(bound.amount.rupiah, format: .rupiah)")
         case .atLeast(let bound): return Text("indicator.range.atLeast \(bound.amount.rupiah, format: .rupiah)")
         case .from(let bound): return Text("indicator.range.from \(bound.amount.rupiah, format: .rupiah)")
         case .under(let amount): return Text("indicator.range.under \(amount.rupiah, format: .rupiah)")
@@ -50,8 +52,9 @@ extension IndicatorDetail {
                 ? "indicator.next.emergencyFundHalf \(needed, format: .rupiah) \(lower, format: .kiraMultiple)"
                 : "indicator.next.emergencyFund \(needed, format: .rupiah) \(lower, format: .kiraMultiple)"
         case .savingsRatio(_, let savings, _):
-            return
-                "indicator.next.savings \(savings.rupiah, format: .rupiah) \((savings.rupiah + needed), format: .rupiah) \(Int(rung?.lower ?? 0))"
+            let current = savings.rupiah
+            let percent = Int(rung?.lower ?? 0)
+            return "indicator.next.savings \(current, format: .rupiah) \(current + needed, format: .rupiah) \(percent)"
         case .instalmentRatio:
             return "indicator.next.instalment \(upper) \(amountUpper, format: .rupiah)"
         case .debtToAsset:

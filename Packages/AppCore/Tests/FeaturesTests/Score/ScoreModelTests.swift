@@ -10,8 +10,8 @@ private struct FakeScoreService: ScoreService {
     var report: Result<ScoreReport?, AppProblem> = .success(nil)
     var detail: Result<IndicatorDetail, AppProblem> = .failure(AppProblem(code: "ROUTE_NOT_FOUND"))
 
-    func score() async throws -> ScoreReport? { try report.get() }
-    func indicator(_ key: IndicatorKey) async throws -> IndicatorDetail {
+    func score() throws -> ScoreReport? { try report.get() }
+    func indicator(_ key: IndicatorKey) throws -> IndicatorDetail {
         let detail = try detail.get()
         guard detail.indicator.key == key else { throw AppProblem(code: "VALIDATION_FAILED") }
         return detail
@@ -22,15 +22,16 @@ private struct OtherError: Error {}
 
 /** A service that fails with something other than an `AppProblem`. */
 private struct BrokenScoreService: ScoreService {
-    func score() async throws -> ScoreReport? { throw OtherError() }
-    func indicator(_: IndicatorKey) async throws -> IndicatorDetail { throw OtherError() }
+    func score() throws -> ScoreReport? { throw OtherError() }
+    func indicator(_: IndicatorKey) throws -> IndicatorDetail { throw OtherError() }
 }
 
 @MainActor
 @Suite("ScoreModel and IndicatorModel")
 struct ScoreModelTests {
     private let report = ScoreReport(
-        score: 66, band: .coping, computedAt: Date(timeIntervalSince1970: 0), nextCheckOn: Date(timeIntervalSince1970: 0))
+        score: 66, band: .coping, computedAt: Date(timeIntervalSince1970: 0),
+        nextCheckOn: Date(timeIntervalSince1970: 0))
 
     private let detail = IndicatorDetail(
         indicator: ScoreIndicator(

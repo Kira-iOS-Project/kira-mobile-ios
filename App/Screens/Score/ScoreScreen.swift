@@ -83,13 +83,14 @@ private struct ScoreHeader: View {
             }
             .frame(minHeight: KiraSize.tap)
             Text("score.title").kiraFont(.largeTitle).foregroundStyle(.ink).accessibilityAddTraits(.isHeader)
-            Text(
-                "score.computed \(Text(report.computedAt, format: .kiraDate)) \(Text(report.nextCheckOn, format: .kiraDate))"
-            )
-            .font(.footnote.weight(.medium)).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
+            Text("score.computed \(computed) \(nextCheck)")
+                .font(.footnote.weight(.medium)).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
         }
         .padding(.bottom, KiraSpacing.space3)
     }
+
+    private var computed: Text { Text(report.computedAt, format: .kiraDate) }
+    private var nextCheck: Text { Text(report.nextCheckOn, format: .kiraDate) }
 }
 
 /** Before the health check: no score yet, and the way to get one. */

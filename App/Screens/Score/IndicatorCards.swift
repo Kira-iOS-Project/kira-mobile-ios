@@ -109,7 +109,8 @@ private struct IndicatorRungRow: View {
         .padding(10)
         .kiraCard(
             rung.isCurrent ? .pandanSoft : .clear, border: rung.isCurrent ? .pandanLine : .clear,
-            cornerRadius: KiraRadius.medium)
+            cornerRadius: KiraRadius.medium
+        )
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(rung.isCurrent ? .isSelected : [])
     }

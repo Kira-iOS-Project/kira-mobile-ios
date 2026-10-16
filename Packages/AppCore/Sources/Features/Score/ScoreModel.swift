@@ -11,6 +11,7 @@ package final class ScoreModel {
 
     private let service: any ScoreService
 
+    /** A model that loads through `service`. */
     package init(service: any ScoreService) {
         self.service = service
     }

@@ -28,8 +28,11 @@ extension ScoreReport {
 
 /** The sentence under the meter: how far the next band is, or why the band is capped. */
 package enum BandMessage: Equatable, Sendable {
+    /** Below `next`, which is `pointsNeeded` away. */
     case below(next: ScoreBand, pointsNeeded: Int)
+    /** In Sehat. */
     case healthy
+    /** Capped at Rentan by consumer debt at 0. */
     case capped
 }
 

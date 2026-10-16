@@ -9,7 +9,7 @@ struct IndicatorDetailTests {
             indicator: ScoreIndicator(
                 key: key, group: .save, points: 50, band: .coping,
                 measure: .protectionCover(health: true, income: true)),
-            ladder: ladder, nextRung: next, milestones: [Milestone(at: 4_200_000, label: "1×")])
+            ladder: ladder, nextRung: next, milestones: [Milestone(amount: 4_200_000, label: "1×")])
     }
 
     private func rung(

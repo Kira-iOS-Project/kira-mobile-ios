@@ -11,10 +11,11 @@ extension IndicatorMeasure {
         switch self {
         case .emergencyFund(let ratio, _, _, _, _):
             Text("indicator.emergencyFund.value \(Text(ratio, format: .kiraDecimal(1)))")
-        case .savingsRatio(let percent, _, _), .instalmentRatio(let percent, _, _): Text("indicator.ofIncome \(percent)")
+        case .savingsRatio(let percent, _, _), .instalmentRatio(let percent, _, _):
+            Text("indicator.ofIncome \(percent)")
         case .debtToAsset(let percent, _, _): Text("indicator.ofAssets \(percent)")
-        case .consumerDebt(let platforms, _, _):
-            platforms == 0 ? Text("indicator.consumerDebt.none") : Text("indicator.consumerDebt.value \(platforms)")
+        case .consumerDebt(0, _, _): Text("indicator.consumerDebt.none")
+        case .consumerDebt(let platforms, _, _): Text("indicator.consumerDebt.value \(platforms)")
         case .protectionCover:
             switch coverage {
             case .both: Text("indicator.protection.both")

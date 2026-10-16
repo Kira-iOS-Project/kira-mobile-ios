@@ -11,6 +11,7 @@ import Observation
 @MainActor
 @Observable
 package final class HomeModel {
+    /** Beranda, loading until the API answers. */
     package private(set) var phase: ScreenPhase<HomeOverview> = .loading
     /** Whether amounts show as Rp••••••. */
     package private(set) var isMasked = false
@@ -20,8 +21,9 @@ package final class HomeModel {
     private let service: any HomeService
     private let now: @Sendable () -> Date
     /** Set once the person taps the eye, so a reload keeps their choice for this session. */
-    private var maskedThisSession: Bool?
+    private var hasChosenMask = false
 
+    /** A model that loads through `service` and reads the time from `now`. */
     package init(service: any HomeService, now: @escaping @Sendable () -> Date = { Date() }) {
         self.service = service
         self.now = now
@@ -34,7 +36,7 @@ package final class HomeModel {
     package func load() async {
         do {
             let overview = try await service.home()
-            isMasked = maskedThisSession ?? overview.hideBalances
+            if !hasChosenMask { isMasked = overview.hideBalances }
             isStepDismissed = false
             phase = .loaded(overview)
         } catch {
@@ -45,7 +47,7 @@ package final class HomeModel {
     /** Shows or hides amounts, and asks the API to remember it; the session keeps it either way. */
     package func toggleMasked() async {
         isMasked.toggle()
-        maskedThisSession = isMasked
+        hasChosenMask = true
         try? await service.setHideBalances(isMasked)
     }
 

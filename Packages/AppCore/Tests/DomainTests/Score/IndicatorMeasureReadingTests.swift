@@ -10,11 +10,15 @@ struct IndicatorMeasureReadingTests {
             ratio: 1.1, liquid: 4_800_000, essential: 4_200_000, targetMultiple: 6, targetAmount: 25_200_000)
         #expect(fund.division == Division(part: 4_800_000, whole: 4_200_000))
         #expect(abs((fund.division?.quotient ?? 0) - 1.142_857) < 0.000_001)
-        #expect(IndicatorMeasure.savingsRatio(percent: 8, monthlySavings: 1, income: 2).division == Division(part: 1, whole: 2))
+        #expect(
+            IndicatorMeasure.savingsRatio(percent: 8, monthlySavings: 1, income: 2).division
+                == Division(part: 1, whole: 2))
         #expect(
             IndicatorMeasure.instalmentRatio(percent: 18, monthlyInstalments: 3, income: 4).division
                 == Division(part: 3, whole: 4))
-        #expect(IndicatorMeasure.debtToAsset(percent: 32, totalDebt: 5, totalAssets: 6).division == Division(part: 5, whole: 6))
+        #expect(
+            IndicatorMeasure.debtToAsset(percent: 32, totalDebt: 5, totalAssets: 6).division
+                == Division(part: 5, whole: 6))
         #expect(IndicatorMeasure.consumerDebt(platforms: 1, anyLate: false, anyOverdue: false).division == nil)
         #expect(IndicatorMeasure.protectionCover(health: true, income: true).division == nil)
         #expect(Division(part: 1, whole: 0).quotient == 0)
