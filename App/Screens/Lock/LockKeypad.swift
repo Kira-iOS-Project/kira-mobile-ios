@@ -18,14 +18,15 @@ struct LockDots: View {
             }
         }
         .frame(minHeight: KiraSize.tap)
-        .contentShape(Rectangle())
-        .accessibilityElement()
-        .accessibilityLabel(Text("lock.dots \(filled)"))
+        /** The dots are drawn only: the keypad says how many digits are in, as its value. */
+        .accessibilityHidden(true)
     }
 }
 
 /** The digits 1–9, then an empty cell, 0 and the erase key. */
 struct LockKeypad: View {
+    /** How many digits are in, which VoiceOver hears as the keypad's value. */
+    let filled: Int
     let onDigit: (Int) -> Void
     let onErase: () -> Void
     private let rows = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
@@ -51,6 +52,7 @@ struct LockKeypad: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(Text("lock.keypad"))
+        .accessibilityValue(Text("lock.dots \(filled)"))
     }
 
     private func digitKey(_ digit: Int) -> some View {
@@ -80,7 +82,7 @@ private struct LockKeyStyle: ButtonStyle {
 #Preview {
     VStack(spacing: 20) {
         LockDots(filled: 2)
-        LockKeypad(onDigit: { _ in }, onErase: {})
+        LockKeypad(filled: 2, onDigit: { _ in }, onErase: {})
     }
     .padding()
     .background(.hero)

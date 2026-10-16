@@ -13,9 +13,12 @@ struct OnboardingFlow: View {
 
     init(
         service: any OnboardingService, pinSetup: any PinSetup, onFinished: @escaping (OnboardingOutcome) -> Void,
-        onOpen: @escaping (AppRoute) -> Void = { _ in }
+        onOpen: @escaping (AppRoute) -> Void = { _ in }, start: [OnboardingScreen] = []
     ) {
-        _flow = State(initialValue: OnboardingFlowModel(service: service, pinSetup: pinSetup, onFinished: onFinished))
+        let flow = OnboardingFlowModel(service: service, pinSetup: pinSetup, onFinished: onFinished)
+        /** `start` opens the flow on a screen already pushed, as the debug screen launcher does. */
+        flow.path = start
+        _flow = State(initialValue: flow)
         self.onOpen = onOpen
     }
 

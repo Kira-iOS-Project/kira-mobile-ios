@@ -47,6 +47,7 @@ private struct HomeDebtPlanCard: View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
                 Text("home.debt.overline").kiraFont(.overline).kiraSmallType()
+                    .fixedSize(horizontal: false, vertical: true)
                 Spacer(minLength: 0)
                 KiraIcon(.chevronRight, size: 20)
             }
@@ -103,6 +104,8 @@ private struct HomeMicroTargetCard: View {
                 valueLabel: "home.micro.ofTarget \(target.target.rupiah, format: .rupiah)"
             )
             .caption(target.kind == .oneWeek ? "home.micro.weekCaption" : "home.micro.monthCaption")
+            /** The bar's visible label is the amount alone; VoiceOver hears what it counts. */
+            .accessibilityLabel(Text("home.micro.spoken \(target.current.rupiah, format: .rupiah)"))
         }
         .padding(KiraSpacing.space4)
         .frame(maxWidth: .infinity, alignment: .leading)
