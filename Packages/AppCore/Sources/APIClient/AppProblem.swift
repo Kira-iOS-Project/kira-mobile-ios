@@ -144,6 +144,8 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case scholarshipApplicationNotFound = "SCHOLARSHIP_APPLICATION_NOT_FOUND"
     /** The community group does not exist, or the team suspended it for review. */
     case communityGroupNotFound = "COMMUNITY_GROUP_NOT_FOUND"
+    /** The group has no checked invite link yet; the curation team is checking it. */
+    case communityLinkUnavailable = "COMMUNITY_LINK_UNAVAILABLE"
     /** The Etalase product does not exist. */
     case communityProductNotFound = "COMMUNITY_PRODUCT_NOT_FOUND"
     /** The person already has an open report on this group. */

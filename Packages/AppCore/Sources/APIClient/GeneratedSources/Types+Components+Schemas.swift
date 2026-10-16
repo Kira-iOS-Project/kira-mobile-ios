@@ -2953,7 +2953,7 @@ extension Components {
                 /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2/investmentRisk`.
                 internal var investmentRisk: Swift.Bool
                 /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2/sellerUrl`.
-                internal var sellerUrl: Swift.String
+                internal var sellerUrl: Swift.String?
                 /// Creates a new `Value2Payload`.
                 ///
                 /// - Parameters:
@@ -2973,7 +2973,7 @@ extension Components {
                     contents: [Swift.String],
                     affiliate: Swift.Bool,
                     investmentRisk: Swift.Bool,
-                    sellerUrl: Swift.String
+                    sellerUrl: Swift.String? = nil
                 ) {
                     self.description = description
                     self.meta = meta

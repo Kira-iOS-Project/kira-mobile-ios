@@ -16,11 +16,13 @@ package struct ProductSummary: Hashable, Identifiable, Sendable {
     package let sellerBadge: String
     /** The price in whole rupiah, or nil when the product is free ("Gratis", never Rp0,00). */
     package let price: Int?
+    /** The illustration beside it. */
+    package let art: ProductArt
 
-    /** A product with every field. */
+    /** A product with every field; the illustration is the kind's unless the team picked one. */
     package init(
         id: String, kind: ProductKind, title: String, sellerName: String, sellerInitials: String,
-        sellerBadge: String, price: Int?
+        sellerBadge: String, price: Int?, art: ProductArt? = nil
     ) {
         self.id = id
         self.kind = kind
@@ -29,6 +31,7 @@ package struct ProductSummary: Hashable, Identifiable, Sendable {
         self.sellerInitials = sellerInitials
         self.sellerBadge = sellerBadge
         self.price = price
+        self.art = art ?? kind.defaultArt
     }
 
     /** Whether the product costs nothing: the list and the detail show "Gratis". */
@@ -55,13 +58,16 @@ package struct Product: Hashable, Sendable {
     package let affiliate: Bool
     /** Whether the product touches investing: the extra risk warning shows. */
     package let investmentRisk: Bool
-    /** The seller's page, opened in the system browser; Kira never takes the payment. */
-    package let sellerURL: URL
+    /**
+     The seller's page, opened in the system browser (Kira never takes the payment), or nil while
+     the curation team checks it again: "Buka Halaman Penjual" is then disabled.
+     */
+    package let sellerURL: URL?
 
     /** A product with every field. */
     package init(
         summary: ProductSummary, description: String, meta: String, sellerRole: String, contentsTitle: String,
-        contents: [String], affiliate: Bool, investmentRisk: Bool, sellerURL: URL
+        contents: [String], affiliate: Bool, investmentRisk: Bool, sellerURL: URL?
     ) {
         self.summary = summary
         self.description = description
