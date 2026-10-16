@@ -25,4 +25,14 @@ struct ScholarshipOverviewTests {
         #expect(overview(.waitlisted).stage == .pending(try #require(overview(.waitlisted).application)))
         #expect(overview(.accepted).stage == .accepted(try #require(overview(.accepted).application)))
     }
+
+    @Test("asks for Mode Darurat Utang only when that is the reason")
+    func needsDebtEmergency() {
+        #expect(!overview(nil).needsDebtEmergency)
+        #expect(!overview(.inReview).needsDebtEmergency)
+        let unopened = ScholarshipOverview(
+            eligible: false, ineligibleReason: .debtEmergencyNotUsed, quotaRemaining: 42, quotaTotal: 60,
+            application: nil)
+        #expect(unopened.needsDebtEmergency)
+    }
 }

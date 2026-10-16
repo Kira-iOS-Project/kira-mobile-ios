@@ -95,6 +95,16 @@ struct LivePlansServiceTests {
         #expect(try await LivePlansService(api: none).scholarship().application == nil)
     }
 
+    @Test("Beasiswa Kira before Mode Darurat Utang was ever opened asks to open it first")
+    func scholarshipBeforeDebtEmergency() async throws {
+        let (api, _) = KiraAPI.routed([
+            "GET /api/scholarship": ok(scholarshipJSON(application: "null", reason: "debt_emergency_not_used"))
+        ])
+        let overview = try await LivePlansService(api: api).scholarship()
+        #expect(overview.ineligibleReason == .debtEmergencyNotUsed && overview.needsDebtEmergency)
+        #expect(overview.stage == .intro)
+    }
+
     @Test("applying, withdrawing and the account's email")
     func apply() async throws {
         let (api, transport) = KiraAPI.routed([

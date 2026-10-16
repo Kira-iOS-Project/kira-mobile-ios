@@ -6,6 +6,7 @@ struct ScholarshipIntro: View {
     let overview: ScholarshipOverview
     let onLater: () -> Void
     let onApply: () -> Void
+    let onOpenDebtEmergency: () -> Void
     @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
@@ -36,12 +37,19 @@ struct ScholarshipIntro: View {
         ])
         quota
         KiraNotice(.education, title: "scholarship.privacy.title", message: "scholarship.privacy.body")
+        if overview.needsDebtEmergency {
+            KiraNotice(.info, title: "scholarship.needsEmergency.title", message: "scholarship.needsEmergency.body")
+        }
         Spacer(minLength: 0)
-        PlansButtonRow(
-            secondary: KiraButton("plans.later", variant: .secondary, action: onLater),
-            primary: KiraButton("scholarship.apply", action: onApply)
-        )
-        .padding(.top, KiraSpacing.space2)
+        PlansButtonRow(secondary: KiraButton("plans.later", variant: .secondary, action: onLater), primary: primary)
+            .padding(.top, KiraSpacing.space2)
+    }
+
+    /** Ajukan Beasiswa, or Buka Mode Darurat Utang while the mode has never been opened. */
+    private var primary: KiraButton {
+        overview.needsDebtEmergency
+            ? KiraButton("scholarship.openEmergency", action: onOpenDebtEmergency)
+            : KiraButton("scholarship.apply", action: onApply)
     }
 
     /** The words beside the art, under it at the accessibility text sizes. */

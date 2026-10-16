@@ -6,8 +6,8 @@ import Observation
 /**
  One debt guide (PED-08, PED-13, PED-14, PED-15): static words from the String Catalog, and buttons
  whose numbers and sites come from `GET /care/contacts` through CareContactsModel (the shipped list
- at once and whenever the server cannot be reached). A site opens in the browser, a number in the phone app or WhatsApp; Susun Naskah
- Keringanan opens the negotiation script.
+ at once and whenever the server cannot be reached). A site opens in the browser, a number in the
+ phone app or WhatsApp; Susun Naskah Keringanan opens the negotiation script.
  */
 @MainActor
 @Observable

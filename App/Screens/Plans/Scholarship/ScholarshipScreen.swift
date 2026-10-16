@@ -13,6 +13,8 @@ struct ScholarshipScreen: View {
     private let onOpen: (AppRoute) -> Void
     @State private var model: ScholarshipModel
     @State private var applies = false
+    /** Set while Mode Darurat Utang is open from here, so the overview reloads on the way back. */
+    @State private var reloadsOnReturn = false
     @Environment(\.dismiss) private var dismiss
 
     init(service: any PlansService, onOpen: @escaping (AppRoute) -> Void) {
@@ -29,6 +31,11 @@ struct ScholarshipScreen: View {
             content
         }
         .task { await model.load() }
+        .onAppear {
+            guard reloadsOnReturn else { return }
+            reloadsOnReturn = false
+            Task { await model.load() }
+        }
         .navigationDestination(isPresented: $applies) {
             ScholarshipApplyView(service: service, onOpen: onOpen) {
                 applies = false
@@ -62,7 +69,12 @@ struct ScholarshipScreen: View {
         case .loaded(let overview):
             switch overview.stage {
             case .intro:
-                ScholarshipIntro(overview: overview, onLater: { dismiss() }, onApply: { applies = true })
+                ScholarshipIntro(
+                    overview: overview, onLater: { dismiss() }, onApply: { applies = true },
+                    onOpenDebtEmergency: {
+                        reloadsOnReturn = true
+                        onOpen(.debtEmergency)
+                    })
             case .pending(let application):
                 ScholarshipPendingView(application: application, model: model, onOpen: onOpen)
             case .accepted(let application):

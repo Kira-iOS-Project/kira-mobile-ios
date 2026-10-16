@@ -8,6 +8,8 @@ package struct ScholarshipOverview: Hashable, Sendable {
         case hasScholarship = "has_scholarship"
         /** An application is still open. */
         case hasOpenApplication = "has_open_application"
+        /** Mode Darurat Utang has never been opened, which Beasiswa Kira asks for. */
+        case debtEmergencyNotUsed = "debt_emergency_not_used"
     }
 
     /** What the screen shows: the explanation, or the application's status. */
@@ -42,6 +44,9 @@ package struct ScholarshipOverview: Hashable, Sendable {
         self.quotaTotal = quotaTotal
         self.application = application
     }
+
+    /** Whether Mode Darurat Utang has to be opened once before the person can apply. */
+    package var needsDebtEmergency: Bool { ineligibleReason == .debtEmergencyNotUsed }
 
     /** The stage the application puts the screen in; a withdrawn one shows the explanation again. */
     package var stage: Stage {

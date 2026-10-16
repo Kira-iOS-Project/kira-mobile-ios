@@ -142,4 +142,16 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case scholarshipNotEligible = "SCHOLARSHIP_NOT_ELIGIBLE"
     /** There is no open application. */
     case scholarshipApplicationNotFound = "SCHOLARSHIP_APPLICATION_NOT_FOUND"
+    /** The community group is gone or suspended. */
+    case communityGroupNotFound = "COMMUNITY_GROUP_NOT_FOUND"
+    /** The marketplace product is gone. */
+    case communityProductNotFound = "COMMUNITY_PRODUCT_NOT_FOUND"
+    /** This person already has an open report on the group. */
+    case communityReportDuplicate = "COMMUNITY_REPORT_DUPLICATE"
+    /** The current community rules are not accepted yet. */
+    case communityRulesNotAccepted = "COMMUNITY_RULES_NOT_ACCEPTED"
+    /** The check-in is gone (cancelled, seen or never made). */
+    case careCheckInNotFound = "CARE_CHECK_IN_NOT_FOUND"
+    /** No Rencana Keselamatanku has been saved yet. */
+    case careSafetyPlanNotFound = "CARE_SAFETY_PLAN_NOT_FOUND"
 }
