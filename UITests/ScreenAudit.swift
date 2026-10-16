@@ -32,19 +32,32 @@ extension XCTestCase {
                 scrollDown(scroll)
             }
             try XCTContext.runActivity(named: "\(screen), pass \(pass + 1)") { _ in
-                try auditRetryingTimeout(app) { issue in
-                    let isAccepted = Self.isAcceptedEverywhere(issue, window: window) || accepted(issue)
-                    Self.record(issue, isAccepted: isAccepted)
-                    return isAccepted
-                }
+                try auditInPlace(app, accepting: accepted)
             }
         }
         app.terminate()
     }
 
     /**
+     One audit of what `app` shows now, with the findings every screen accepts and those `accepted`
+     adds, each finding named in the result bundle.
+     */
+    @MainActor
+    func auditInPlace(
+        _ app: XCUIApplication, accepting accepted: @escaping (XCUIAccessibilityAuditIssue) -> Bool = { _ in false }
+    ) throws {
+        let window = app.windows.firstMatch.frame
+        try auditRetryingTimeout(app) { issue in
+            let isAccepted = Self.isAcceptedEverywhere(issue, window: window) || accepted(issue)
+            Self.record(issue, isAccepted: isAccepted)
+            return isAccepted
+        }
+    }
+
+    /**
      The findings every screen accepts, each an owner's decision recorded in docs/design-system.md.
      */
+    @MainActor
     private static func isAcceptedEverywhere(_ issue: XCUIAccessibilityAuditIssue, window: CGRect) -> Bool {
         /**
          Accepted deviation: the design system's own small sizes (the 11 pt overline, the medium
@@ -52,6 +65,13 @@ extension XCTestCase {
          support; those texts carry `kira.small-type`.
          */
         if issue.auditType == .dynamicType, issue.element?.identifier == "kira.small-type" { return true }
+        /**
+         Accepted: the contrast of a disabled control, such as "Verifikasi" before the six digits are
+         in. A disabled KiraButton is drawn at 45% opacity (bundle.css, docs/design-system.md), and
+         WCAG 1.4.3 exempts an inactive control from the contrast minimum; enabled, the same button
+         is checked in full.
+         */
+        if issue.auditType == .contrast, issue.element?.isEnabled == false { return true }
         /**
          Accepted: a contrast finding on an element a scroll has left under the status bar or at the
          home indicator, where the audit samples the bar instead of the text's own background.
@@ -64,7 +84,7 @@ extension XCTestCase {
      Names each finding in the result bundle (its type, element and frame), so a failure says which
      element it is about and an accepted one stays visible.
      */
-    private static func record(_ issue: XCUIAccessibilityAuditIssue, isAccepted: Bool) {
+    static func record(_ issue: XCUIAccessibilityAuditIssue, isAccepted: Bool) {
         let element = issue.element
         let name =
             "\(isAccepted ? "accepted" : "finding"): \(issue.compactDescription) on "

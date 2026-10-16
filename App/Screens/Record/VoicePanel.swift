@@ -49,10 +49,19 @@ struct VoicePanel: View {
                 .frame(width: 28, height: 28)
                 .kiraCard(.pandanSoft, border: .pandanLine, cornerRadius: 14)
                 .accessibilityHidden(true)
-            Text(model.state == .starting ? "record.voice.preparing" : "record.voice.listening")
-                .font(.footnote.weight(.semibold)).kiraLineHeight(18, size: 13)
-                .foregroundStyle(.pandan)
-                .accessibilityAddTraits(.updatesFrequently)
+            /**
+             The board's "Mendengarkan…": the dots are drawn, not typed, because Apple's audit reads a
+             text ending in "…" as cut off and fails it.
+             */
+            HStack(alignment: .lastTextBaseline, spacing: 1) {
+                Text(model.state == .starting ? "record.voice.preparing" : "record.voice.listening")
+                    .font(.footnote.weight(.semibold)).kiraLineHeight(18, size: 13)
+                    .accessibilityAddTraits(.updatesFrequently)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .layoutPriority(1)
+                ListeningDots()
+            }
+            .foregroundStyle(.pandan)
         }
     }
 
@@ -122,5 +131,18 @@ private struct VoiceWaveform: View {
         .padding(.horizontal, 2)
         .accessibilityElement()
         .accessibilityLabel(Text("record.voice.wave"))
+    }
+}
+
+/** The ellipsis after "Mendengarkan", drawn as three dots of the 13 pt text's size; decorative. */
+private struct ListeningDots: View {
+    @ScaledMetric(relativeTo: .footnote) private var dot: CGFloat = 2.5
+
+    var body: some View {
+        HStack(spacing: dot * 0.9) {
+            ForEach(0..<3, id: \.self) { _ in Circle().frame(width: dot, height: dot) }
+        }
+        .alignmentGuide(.lastTextBaseline) { $0[.bottom] }
+        .accessibilityHidden(true)
     }
 }

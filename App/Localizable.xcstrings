@@ -12413,7 +12413,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ketik atau ucapkan…"
+            "value" : "Ketik atau ucapkan"
           }
         }
       }
@@ -13653,7 +13653,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mendengarkan…"
+            "value" : "Mendengarkan"
           }
         }
       }
@@ -13663,7 +13663,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Menyiapkan bahasa…"
+            "value" : "Menyiapkan bahasa"
           }
         }
       }

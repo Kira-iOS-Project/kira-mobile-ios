@@ -41,18 +41,43 @@ struct RecordComposer: View {
 
     private var field: some View {
         ZStack(alignment: .leading) {
-            if model.composerText.isEmpty {
-                Text("record.composer.prompt").foregroundStyle(.inkMuted).lineLimit(1).accessibilityHidden(true)
+            if model.composerText.isEmpty { prompt }
+            /**
+             Vertical, so a long entry wraps at large text sizes instead of being cut off (Apple's
+             audit reports a cut line as clipped text); Return still sends, as on the board.
+             */
+            TextField(text: $model.composerText, prompt: Text(verbatimPrompt), axis: .vertical) {
+                Text("record.composer.label")
             }
-            TextField(text: $model.composerText, prompt: Text(verbatimPrompt)) { Text("record.composer.label") }
-                .focused($isFocused)
-                .submitLabel(.send)
-                .onSubmit { Task { await model.send() } }
-                .foregroundStyle(.ink)
+            .lineLimit(1...4)
+            .focused($isFocused)
+            .submitLabel(.send)
+            .onChange(of: model.composerText) { _, text in
+                guard text.contains("\n") else { return }
+                model.composerText = text.replacingOccurrences(of: "\n", with: "")
+                Task { await model.send() }
+            }
+            .foregroundStyle(.ink)
+            .accessibilityLabel(Text("record.composer.label"))
         }
         .font(.body)
         .padding(.horizontal, 6)
         .frame(maxWidth: .infinity, minHeight: KiraSize.tap)
+    }
+
+    /**
+     "Ketik atau ucapkan…": the words, then the board's three dots drawn, not typed. Apple's audit
+     reads a text that ends in "…" as cut off.
+     */
+    private var prompt: some View {
+        HStack(alignment: .lastTextBaseline, spacing: 1) {
+            Text("record.composer.prompt")
+            HStack(spacing: 2) {
+                ForEach(0..<3, id: \.self) { _ in Circle().frame(width: 3, height: 3) }
+            }
+        }
+        .foregroundStyle(.inkMuted)
+        .accessibilityHidden(true)
     }
 
     /** No system prompt: the field draws its own, which keeps the design's colour. */

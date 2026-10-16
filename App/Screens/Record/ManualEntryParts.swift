@@ -8,6 +8,7 @@ import SwiftUI
 
 struct ManualCategoryGrid: View {
     let model: ManualEntryModel
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -17,38 +18,70 @@ struct ManualCategoryGrid: View {
             }
             .accessibilityElement(children: .combine)
             .accessibilityAddTraits(.isHeader)
-            LazyVGrid(
-                columns: Array(repeating: GridItem(.flexible(), spacing: KiraSpacing.space2), count: 4), spacing: 8
-            ) {
-                ForEach(model.categories, id: \.self) { category in tile(category) }
+            /** A plain grid, not a lazy one: every tile is laid out, so each grows with Dynamic Type. */
+            Grid(horizontalSpacing: KiraSpacing.space2, verticalSpacing: 8) {
+                ForEach(rows, id: \.self) { row in
+                    GridRow {
+                        ForEach(row, id: \.self) { category in tile(category) }
+                        ForEach(row.count..<columns, id: \.self) { _ in Color.clear.gridCellUnsizedAxes(.vertical) }
+                    }
+                }
             }
         }
     }
 
+    /** The categories, `columns` to a row. */
+    private var rows: [[TransactionCategory]] {
+        stride(from: 0, to: model.categories.count, by: columns).map {
+            Array(model.categories[$0..<min($0 + columns, model.categories.count)])
+        }
+    }
+
+    /**
+     The board's four to a row, fewer as the text grows, so the longest name ("Transportasi") keeps
+     one line: three from xxLarge, two at the first accessibility sizes, one from AX3.
+     */
+    private var columns: Int {
+        if typeSize >= .accessibility3 { return 1 }
+        if typeSize.isAccessibilitySize { return 2 }
+        return typeSize >= .xxLarge ? 3 : 4
+    }
+
+    /**
+     A tile: the illustration over the name, the chosen one pandan on pandan-soft. The name is the
+     button VoiceOver reads; the illustration above it chooses too but stays out of the way, so the
+     button's frame holds the name's text on its own background, as Apple's contrast audit reads it.
+     */
     private func tile(_ category: TransactionCategory) -> some View {
         let isOn = category == model.category
-        return Button {
-            model.select(category)
-        } label: {
-            VStack(spacing: 6) {
+        return VStack(spacing: 0) {
+            Button {
+                model.select(category)
+            } label: {
                 KiraCategoryIcon(category.tile)
+            }
+            .buttonStyle(.plain)
+            .accessibilityHidden(true)
+            Button {
+                model.select(category)
+            } label: {
                 Text(category == .food ? "record.manual.food" : category.title)
                     .font(.caption.weight(isOn ? .bold : .medium)).kiraLineHeight(16, size: 12)
                     .foregroundStyle(isOn ? Color.pandan : .inkMuted)
                     .multilineTextAlignment(.center)
+                    .padding(.vertical, 6)
+                    .frame(maxWidth: .infinity)
+                    .contentShape(Rectangle())
             }
-            .padding(.top, KiraSpacing.space2)
-            .padding(.bottom, 6)
-            .frame(maxWidth: .infinity)
-            .background(isOn ? Color.pandanSoft : .clear, in: RoundedRectangle(cornerRadius: KiraRadius.medium))
-            .overlay {
-                RoundedRectangle(cornerRadius: KiraRadius.medium).strokeBorder(
-                    isOn ? Color.pandan : .clear, lineWidth: 1.5)
-            }
-            .contentShape(RoundedRectangle(cornerRadius: KiraRadius.medium))
+            .buttonStyle(.plain)
+            .accessibilityAddTraits(isOn ? .isSelected : [])
         }
-        .buttonStyle(.plain)
-        .accessibilityAddTraits(isOn ? .isSelected : [])
+        .padding(.top, KiraSpacing.space2)
+        .frame(maxWidth: .infinity)
+        .background(isOn ? Color.pandanSoft : .clear, in: RoundedRectangle(cornerRadius: KiraRadius.medium))
+        .overlay {
+            RoundedRectangle(cornerRadius: KiraRadius.medium).strokeBorder(isOn ? Color.pandan : .clear, lineWidth: 1.5)
+        }
     }
 }
 
