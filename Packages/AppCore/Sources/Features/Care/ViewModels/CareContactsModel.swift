@@ -39,7 +39,7 @@ package final class CareContactsModel {
             source = .server
             problem = nil
         } catch {
-            problem = error as? AppProblem ?? AppProblem()
+            problem = AppProblem(error)
         }
     }
 

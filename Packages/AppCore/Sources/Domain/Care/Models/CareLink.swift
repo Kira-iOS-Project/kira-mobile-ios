@@ -43,10 +43,12 @@ extension CareContact {
 
     /** `name` and the encoded message, or nothing for a blank one. */
     private static func query(_ name: String, _ message: String?) -> String {
-        let text = message?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        guard !text.isEmpty else { return "" }
         var allowed = CharacterSet.urlQueryAllowed
         allowed.remove(charactersIn: "&+=?#")
-        return name + (text.addingPercentEncoding(withAllowedCharacters: allowed) ?? "")
+        let text = message?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        guard !text.isEmpty, let encoded = text.addingPercentEncoding(withAllowedCharacters: allowed) else {
+            return ""
+        }
+        return name + encoded
     }
 }
