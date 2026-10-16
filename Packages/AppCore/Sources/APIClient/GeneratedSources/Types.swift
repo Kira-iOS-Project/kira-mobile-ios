@@ -18,6 +18,248 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `GET /health`.
     /// - Remark: Generated from `#/paths//health/get(getHealth)`.
     func getHealth(_ input: Operations.GetHealth.Input) async throws -> Operations.GetHealth.Output
+    /// Email a sign-in code
+    ///
+    /// Sends a six-digit code to the address through Resend, retiring any earlier one. Answers the same whether or not the address has an account.
+    ///
+    /// - Remark: HTTP `POST /api/auth/code`.
+    /// - Remark: Generated from `#/paths//api/auth/code/post(requestSignInCode)`.
+    func requestSignInCode(_ input: Operations.RequestSignInCode.Input) async throws -> Operations.RequestSignInCode.Output
+    /// Sign in with the code
+    ///
+    /// Checks the code and opens a session, creating the account on a first sign-in.
+    ///
+    /// - Remark: HTTP `POST /api/auth/verify`.
+    /// - Remark: Generated from `#/paths//api/auth/verify/post(verifySignInCode)`.
+    func verifySignInCode(_ input: Operations.VerifySignInCode.Input) async throws -> Operations.VerifySignInCode.Output
+    /// Trade a refresh token for a new pair
+    ///
+    /// - Remark: HTTP `POST /api/auth/refresh`.
+    /// - Remark: Generated from `#/paths//api/auth/refresh/post(refreshSession)`.
+    func refreshSession(_ input: Operations.RefreshSession.Input) async throws -> Operations.RefreshSession.Output
+    /// End this session
+    ///
+    /// - Remark: HTTP `POST /api/auth/sign-out`.
+    /// - Remark: Generated from `#/paths//api/auth/sign-out/post(signOut)`.
+    func signOut(_ input: Operations.SignOut.Input) async throws -> Operations.SignOut.Output
+    /// The signed-in account
+    ///
+    /// Identity, settings, plan and quota usage, payday period and consent flags (Profil).
+    ///
+    /// - Remark: HTTP `GET /api/me`.
+    /// - Remark: Generated from `#/paths//api/me/get(getMe)`.
+    func getMe(_ input: Operations.GetMe.Input) async throws -> Operations.GetMe.Output
+    /// Change the focus, hidden balances or payday
+    ///
+    /// - Remark: HTTP `PATCH /api/me`.
+    /// - Remark: Generated from `#/paths//api/me/patch(updateMe)`.
+    func updateMe(_ input: Operations.UpdateMe.Input) async throws -> Operations.UpdateMe.Output
+    /// The consents in force
+    ///
+    /// - Remark: HTTP `GET /api/me/consents`.
+    /// - Remark: Generated from `#/paths//api/me/consents/get(getConsents)`.
+    func getConsents(_ input: Operations.GetConsents.Input) async throws -> Operations.GetConsents.Output
+    /// Record consent decisions
+    ///
+    /// Appends one row per purpose under the current privacy policy. The first call also records the core purpose and finishes onboarding.
+    ///
+    /// - Remark: HTTP `PUT /api/me/consents`.
+    /// - Remark: Generated from `#/paths//api/me/consents/put(updateConsents)`.
+    func updateConsents(_ input: Operations.UpdateConsents.Input) async throws -> Operations.UpdateConsents.Output
+    /// Download every transaction as CSV
+    ///
+    /// - Remark: HTTP `GET /api/me/export`.
+    /// - Remark: Generated from `#/paths//api/me/export/get(exportData)`.
+    func exportData(_ input: Operations.ExportData.Input) async throws -> Operations.ExportData.Output
+    /// Email the CSV export to the account address
+    ///
+    /// - Remark: HTTP `POST /api/me/export/email`.
+    /// - Remark: Generated from `#/paths//api/me/export/email/post(emailDataExport)`.
+    func emailDataExport(_ input: Operations.EmailDataExport.Input) async throws -> Operations.EmailDataExport.Output
+    /// Delete the account and all its data
+    ///
+    /// The confirmation must read HAPUS (any case). Sends the deletion notice, then removes the account, its sessions, its subscription and every record.
+    ///
+    /// - Remark: HTTP `POST /api/me/deletion`.
+    /// - Remark: Generated from `#/paths//api/me/deletion/post(deleteAccount)`.
+    func deleteAccount(_ input: Operations.DeleteAccount.Input) async throws -> Operations.DeleteAccount.Output
+    /// Save the health check
+    ///
+    /// Stores the six quiz steps, replaces the debt accounts, sets the payday and returns the first Kira Score.
+    ///
+    /// - Remark: HTTP `PUT /api/health-check`.
+    /// - Remark: Generated from `#/paths//api/health-check/put(saveHealthCheck)`.
+    func saveHealthCheck(_ input: Operations.SaveHealthCheck.Input) async throws -> Operations.SaveHealthCheck.Output
+    /// The Kira Score
+    ///
+    /// Six indicators, three groups, the band and up to three priority steps.
+    ///
+    /// - Remark: HTTP `GET /api/score`.
+    /// - Remark: Generated from `#/paths//api/score/get(getScore)`.
+    func getScore(_ input: Operations.GetScore.Input) async throws -> Operations.GetScore.Output
+    /// One indicator in detail
+    ///
+    /// Its scoring ladder in rupiah, the next rung and the milestones of its ribbon.
+    ///
+    /// - Remark: HTTP `GET /api/score/indicators/{key}`.
+    /// - Remark: Generated from `#/paths//api/score/indicators/{key}/get(getScoreIndicator)`.
+    func getScoreIndicator(_ input: Operations.GetScoreIndicator.Input) async throws -> Operations.GetScoreIndicator.Output
+    /// Beranda
+    ///
+    /// The layout to show (first steps, overview or debt plan) and its numbers: money left this payday period, the next step, the Kira Score, the checklist, the debt plan and the micro target.
+    ///
+    /// - Remark: HTTP `GET /api/home`.
+    /// - Remark: Generated from `#/paths//api/home/get(getHome)`.
+    func getHome(_ input: Operations.GetHome.Input) async throws -> Operations.GetHome.Output
+    /// The plans, their prices and quotas, and the current one
+    ///
+    /// - Remark: HTTP `GET /api/plans`.
+    /// - Remark: Generated from `#/paths//api/plans/get(listPlans)`.
+    func listPlans(_ input: Operations.ListPlans.Input) async throws -> Operations.ListPlans.Output
+    /// Buy a plan (simulated: nothing is charged)
+    ///
+    /// Activates the plan now, replacing any active one, and writes an invoice.
+    ///
+    /// - Remark: HTTP `POST /api/billing/checkout`.
+    /// - Remark: Generated from `#/paths//api/billing/checkout/post(checkout)`.
+    func checkout(_ input: Operations.Checkout.Input) async throws -> Operations.Checkout.Output
+    /// The active subscription and this quota period’s usage
+    ///
+    /// - Remark: HTTP `GET /api/subscription`.
+    /// - Remark: Generated from `#/paths//api/subscription/get(getSubscription)`.
+    func getSubscription(_ input: Operations.GetSubscription.Input) async throws -> Operations.GetSubscription.Output
+    /// Cancel at the end of the current period
+    ///
+    /// - Remark: HTTP `POST /api/subscription/cancel`.
+    /// - Remark: Generated from `#/paths//api/subscription/cancel/post(cancelSubscription)`.
+    func cancelSubscription(_ input: Operations.CancelSubscription.Input) async throws -> Operations.CancelSubscription.Output
+    /// Choose how the subscription is paid
+    ///
+    /// - Remark: HTTP `PUT /api/subscription/payment-method`.
+    /// - Remark: Generated from `#/paths//api/subscription/payment-method/put(changePaymentMethod)`.
+    func changePaymentMethod(_ input: Operations.ChangePaymentMethod.Input) async throws -> Operations.ChangePaymentMethod.Output
+    /// The latest 50 invoices, newest first
+    ///
+    /// - Remark: HTTP `GET /api/billing/invoices`.
+    /// - Remark: Generated from `#/paths//api/billing/invoices/get(listInvoices)`.
+    func listInvoices(_ input: Operations.ListInvoices.Input) async throws -> Operations.ListInvoices.Output
+    /// Traktir Kira: buy months of Kira Plus for Beasiswa Kira (simulated)
+    ///
+    /// - Remark: HTTP `POST /api/billing/gifts`.
+    /// - Remark: Generated from `#/paths//api/billing/gifts/post(giftMonths)`.
+    func giftMonths(_ input: Operations.GiftMonths.Input) async throws -> Operations.GiftMonths.Output
+    /// Eligibility, this month’s quota and the current application
+    ///
+    /// - Remark: HTTP `GET /api/scholarship`.
+    /// - Remark: Generated from `#/paths//api/scholarship/get(getScholarship)`.
+    func getScholarship(_ input: Operations.GetScholarship.Input) async throws -> Operations.GetScholarship.Output
+    /// Apply for Beasiswa Kira (review is simulated)
+    ///
+    /// In review, or waitlisted when this month’s quota is used up.
+    ///
+    /// - Remark: HTTP `POST /api/scholarship/applications`.
+    /// - Remark: Generated from `#/paths//api/scholarship/applications/post(applyForScholarship)`.
+    func applyForScholarship(_ input: Operations.ApplyForScholarship.Input) async throws -> Operations.ApplyForScholarship.Output
+    /// Withdraw the open application
+    ///
+    /// - Remark: HTTP `DELETE /api/scholarship/applications/current`.
+    /// - Remark: Generated from `#/paths//api/scholarship/applications/current/delete(withdrawScholarshipApplication)`.
+    func withdrawScholarshipApplication(_ input: Operations.WithdrawScholarshipApplication.Input) async throws -> Operations.WithdrawScholarshipApplication.Output
+    /// This period’s quota usage
+    ///
+    /// AI messages, receipts and voice seconds used against the plan, and the date they reset.
+    ///
+    /// - Remark: HTTP `GET /api/usage`.
+    /// - Remark: Generated from `#/paths//api/usage/get(getUsage)`.
+    func getUsage(_ input: Operations.GetUsage.Input) async throws -> Operations.GetUsage.Output
+    /// Read the Catat chat
+    ///
+    /// A page of older messages by `before`, or a window centred on `around`.
+    ///
+    /// - Remark: HTTP `GET /api/chat/messages`.
+    /// - Remark: Generated from `#/paths//api/chat/messages/get(listChatMessages)`.
+    func listChatMessages(_ input: Operations.ListChatMessages.Input) async throws -> Operations.ListChatMessages.Output
+    /// Send a message with the drafts read on the device
+    ///
+    /// Spends one AI message (and voice seconds). When the quota is spent the message is kept and `reply` is null.
+    ///
+    /// - Remark: HTTP `POST /api/chat/messages`.
+    /// - Remark: Generated from `#/paths//api/chat/messages/post(sendChatMessage)`.
+    func sendChatMessage(_ input: Operations.SendChatMessage.Input) async throws -> Operations.SendChatMessage.Output
+    /// Send a receipt read on the device
+    ///
+    /// Spends one receipt; the items must add up to the total.
+    ///
+    /// - Remark: HTTP `POST /api/chat/receipts`.
+    /// - Remark: Generated from `#/paths//api/chat/receipts/post(sendReceipt)`.
+    func sendReceipt(_ input: Operations.SendReceipt.Input) async throws -> Operations.SendReceipt.Output
+    /// Replace a reply’s drafts before saving
+    ///
+    /// An empty list discards the drafts.
+    ///
+    /// - Remark: HTTP `PUT /api/chat/messages/{id}/drafts`.
+    /// - Remark: Generated from `#/paths//api/chat/messages/{id}/drafts/put(updateChatDrafts)`.
+    func updateChatDrafts(_ input: Operations.UpdateChatDrafts.Input) async throws -> Operations.UpdateChatDrafts.Output
+    /// Save a reply’s drafts as transactions
+    ///
+    /// Answers with the saved reply and Kira’s engine-computed remaining-money message.
+    ///
+    /// - Remark: HTTP `POST /api/chat/messages/{id}/commit`.
+    /// - Remark: Generated from `#/paths//api/chat/messages/{id}/commit/post(commitChatDrafts)`.
+    func commitChatDrafts(_ input: Operations.CommitChatDrafts.Input) async throws -> Operations.CommitChatDrafts.Output
+    /// Riwayat Transaksi, newest first
+    ///
+    /// - Remark: HTTP `GET /api/transactions`.
+    /// - Remark: Generated from `#/paths//api/transactions/get(listTransactions)`.
+    func listTransactions(_ input: Operations.ListTransactions.Input) async throws -> Operations.ListTransactions.Output
+    /// Save a manual entry (Catat Manual)
+    ///
+    /// Spends no quota and adds Kira’s note to the chat. Idempotent on `clientId`.
+    ///
+    /// - Remark: HTTP `POST /api/transactions`.
+    /// - Remark: Generated from `#/paths//api/transactions/post(createTransaction)`.
+    func createTransaction(_ input: Operations.CreateTransaction.Input) async throws -> Operations.CreateTransaction.Output
+    /// Totals out and in for a range of days
+    ///
+    /// - Remark: HTTP `GET /api/transactions/summary`.
+    /// - Remark: Generated from `#/paths//api/transactions/summary/get(summarizeTransactions)`.
+    func summarizeTransactions(_ input: Operations.SummarizeTransactions.Input) async throws -> Operations.SummarizeTransactions.Output
+    /// Urungkan a chat save
+    ///
+    /// Within 30 seconds of the save: deletes its transactions and puts the drafts back.
+    ///
+    /// - Remark: HTTP `DELETE /api/transactions/batches/{batchId}`.
+    /// - Remark: Generated from `#/paths//api/transactions/batches/{batchId}/delete(undoTransactionBatch)`.
+    func undoTransactionBatch(_ input: Operations.UndoTransactionBatch.Input) async throws -> Operations.UndoTransactionBatch.Output
+    /// Detail Transaksi
+    ///
+    /// - Remark: HTTP `GET /api/transactions/{id}`.
+    /// - Remark: Generated from `#/paths//api/transactions/{id}/get(getTransaction)`.
+    func getTransaction(_ input: Operations.GetTransaction.Input) async throws -> Operations.GetTransaction.Output
+    /// Edit a transaction
+    ///
+    /// - Remark: HTTP `PATCH /api/transactions/{id}`.
+    /// - Remark: Generated from `#/paths//api/transactions/{id}/patch(updateTransaction)`.
+    func updateTransaction(_ input: Operations.UpdateTransaction.Input) async throws -> Operations.UpdateTransaction.Output
+    /// Delete a transaction
+    ///
+    /// - Remark: HTTP `DELETE /api/transactions/{id}`.
+    /// - Remark: Generated from `#/paths//api/transactions/{id}/delete(deleteTransaction)`.
+    func deleteTransaction(_ input: Operations.DeleteTransaction.Input) async throws -> Operations.DeleteTransaction.Output
+    /// Keep a parsed bank statement for review (Kira Plus)
+    ///
+    /// At most three months per file; rows already recorded are flagged `isDuplicate`.
+    ///
+    /// - Remark: HTTP `POST /api/imports`.
+    /// - Remark: Generated from `#/paths//api/imports/post(createBankImport)`.
+    func createBankImport(_ input: Operations.CreateBankImport.Input) async throws -> Operations.CreateBankImport.Output
+    /// Save the reviewed rows
+    ///
+    /// Atomic and idempotent: a second commit answers the first one’s counts.
+    ///
+    /// - Remark: HTTP `POST /api/imports/{id}/commit`.
+    /// - Remark: Generated from `#/paths//api/imports/{id}/commit/post(commitBankImport)`.
+    func commitBankImport(_ input: Operations.CommitBankImport.Input) async throws -> Operations.CommitBankImport.Output
 }
 
 /// Convenience overloads for operation inputs.
@@ -30,6 +272,490 @@ extension APIProtocol {
     /// - Remark: Generated from `#/paths//health/get(getHealth)`.
     internal func getHealth(headers: Operations.GetHealth.Input.Headers = .init()) async throws -> Operations.GetHealth.Output {
         try await getHealth(Operations.GetHealth.Input(headers: headers))
+    }
+    /// Email a sign-in code
+    ///
+    /// Sends a six-digit code to the address through Resend, retiring any earlier one. Answers the same whether or not the address has an account.
+    ///
+    /// - Remark: HTTP `POST /api/auth/code`.
+    /// - Remark: Generated from `#/paths//api/auth/code/post(requestSignInCode)`.
+    internal func requestSignInCode(
+        headers: Operations.RequestSignInCode.Input.Headers = .init(),
+        body: Operations.RequestSignInCode.Input.Body
+    ) async throws -> Operations.RequestSignInCode.Output {
+        try await requestSignInCode(Operations.RequestSignInCode.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Sign in with the code
+    ///
+    /// Checks the code and opens a session, creating the account on a first sign-in.
+    ///
+    /// - Remark: HTTP `POST /api/auth/verify`.
+    /// - Remark: Generated from `#/paths//api/auth/verify/post(verifySignInCode)`.
+    internal func verifySignInCode(
+        headers: Operations.VerifySignInCode.Input.Headers = .init(),
+        body: Operations.VerifySignInCode.Input.Body
+    ) async throws -> Operations.VerifySignInCode.Output {
+        try await verifySignInCode(Operations.VerifySignInCode.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Trade a refresh token for a new pair
+    ///
+    /// - Remark: HTTP `POST /api/auth/refresh`.
+    /// - Remark: Generated from `#/paths//api/auth/refresh/post(refreshSession)`.
+    internal func refreshSession(
+        headers: Operations.RefreshSession.Input.Headers = .init(),
+        body: Operations.RefreshSession.Input.Body
+    ) async throws -> Operations.RefreshSession.Output {
+        try await refreshSession(Operations.RefreshSession.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// End this session
+    ///
+    /// - Remark: HTTP `POST /api/auth/sign-out`.
+    /// - Remark: Generated from `#/paths//api/auth/sign-out/post(signOut)`.
+    internal func signOut(headers: Operations.SignOut.Input.Headers = .init()) async throws -> Operations.SignOut.Output {
+        try await signOut(Operations.SignOut.Input(headers: headers))
+    }
+    /// The signed-in account
+    ///
+    /// Identity, settings, plan and quota usage, payday period and consent flags (Profil).
+    ///
+    /// - Remark: HTTP `GET /api/me`.
+    /// - Remark: Generated from `#/paths//api/me/get(getMe)`.
+    internal func getMe(headers: Operations.GetMe.Input.Headers = .init()) async throws -> Operations.GetMe.Output {
+        try await getMe(Operations.GetMe.Input(headers: headers))
+    }
+    /// Change the focus, hidden balances or payday
+    ///
+    /// - Remark: HTTP `PATCH /api/me`.
+    /// - Remark: Generated from `#/paths//api/me/patch(updateMe)`.
+    internal func updateMe(
+        headers: Operations.UpdateMe.Input.Headers = .init(),
+        body: Operations.UpdateMe.Input.Body
+    ) async throws -> Operations.UpdateMe.Output {
+        try await updateMe(Operations.UpdateMe.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// The consents in force
+    ///
+    /// - Remark: HTTP `GET /api/me/consents`.
+    /// - Remark: Generated from `#/paths//api/me/consents/get(getConsents)`.
+    internal func getConsents(headers: Operations.GetConsents.Input.Headers = .init()) async throws -> Operations.GetConsents.Output {
+        try await getConsents(Operations.GetConsents.Input(headers: headers))
+    }
+    /// Record consent decisions
+    ///
+    /// Appends one row per purpose under the current privacy policy. The first call also records the core purpose and finishes onboarding.
+    ///
+    /// - Remark: HTTP `PUT /api/me/consents`.
+    /// - Remark: Generated from `#/paths//api/me/consents/put(updateConsents)`.
+    internal func updateConsents(
+        headers: Operations.UpdateConsents.Input.Headers = .init(),
+        body: Operations.UpdateConsents.Input.Body
+    ) async throws -> Operations.UpdateConsents.Output {
+        try await updateConsents(Operations.UpdateConsents.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Download every transaction as CSV
+    ///
+    /// - Remark: HTTP `GET /api/me/export`.
+    /// - Remark: Generated from `#/paths//api/me/export/get(exportData)`.
+    internal func exportData(headers: Operations.ExportData.Input.Headers = .init()) async throws -> Operations.ExportData.Output {
+        try await exportData(Operations.ExportData.Input(headers: headers))
+    }
+    /// Email the CSV export to the account address
+    ///
+    /// - Remark: HTTP `POST /api/me/export/email`.
+    /// - Remark: Generated from `#/paths//api/me/export/email/post(emailDataExport)`.
+    internal func emailDataExport(headers: Operations.EmailDataExport.Input.Headers = .init()) async throws -> Operations.EmailDataExport.Output {
+        try await emailDataExport(Operations.EmailDataExport.Input(headers: headers))
+    }
+    /// Delete the account and all its data
+    ///
+    /// The confirmation must read HAPUS (any case). Sends the deletion notice, then removes the account, its sessions, its subscription and every record.
+    ///
+    /// - Remark: HTTP `POST /api/me/deletion`.
+    /// - Remark: Generated from `#/paths//api/me/deletion/post(deleteAccount)`.
+    internal func deleteAccount(
+        headers: Operations.DeleteAccount.Input.Headers = .init(),
+        body: Operations.DeleteAccount.Input.Body
+    ) async throws -> Operations.DeleteAccount.Output {
+        try await deleteAccount(Operations.DeleteAccount.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Save the health check
+    ///
+    /// Stores the six quiz steps, replaces the debt accounts, sets the payday and returns the first Kira Score.
+    ///
+    /// - Remark: HTTP `PUT /api/health-check`.
+    /// - Remark: Generated from `#/paths//api/health-check/put(saveHealthCheck)`.
+    internal func saveHealthCheck(
+        headers: Operations.SaveHealthCheck.Input.Headers = .init(),
+        body: Operations.SaveHealthCheck.Input.Body
+    ) async throws -> Operations.SaveHealthCheck.Output {
+        try await saveHealthCheck(Operations.SaveHealthCheck.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// The Kira Score
+    ///
+    /// Six indicators, three groups, the band and up to three priority steps.
+    ///
+    /// - Remark: HTTP `GET /api/score`.
+    /// - Remark: Generated from `#/paths//api/score/get(getScore)`.
+    internal func getScore(headers: Operations.GetScore.Input.Headers = .init()) async throws -> Operations.GetScore.Output {
+        try await getScore(Operations.GetScore.Input(headers: headers))
+    }
+    /// One indicator in detail
+    ///
+    /// Its scoring ladder in rupiah, the next rung and the milestones of its ribbon.
+    ///
+    /// - Remark: HTTP `GET /api/score/indicators/{key}`.
+    /// - Remark: Generated from `#/paths//api/score/indicators/{key}/get(getScoreIndicator)`.
+    internal func getScoreIndicator(
+        path: Operations.GetScoreIndicator.Input.Path,
+        headers: Operations.GetScoreIndicator.Input.Headers = .init()
+    ) async throws -> Operations.GetScoreIndicator.Output {
+        try await getScoreIndicator(Operations.GetScoreIndicator.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Beranda
+    ///
+    /// The layout to show (first steps, overview or debt plan) and its numbers: money left this payday period, the next step, the Kira Score, the checklist, the debt plan and the micro target.
+    ///
+    /// - Remark: HTTP `GET /api/home`.
+    /// - Remark: Generated from `#/paths//api/home/get(getHome)`.
+    internal func getHome(headers: Operations.GetHome.Input.Headers = .init()) async throws -> Operations.GetHome.Output {
+        try await getHome(Operations.GetHome.Input(headers: headers))
+    }
+    /// The plans, their prices and quotas, and the current one
+    ///
+    /// - Remark: HTTP `GET /api/plans`.
+    /// - Remark: Generated from `#/paths//api/plans/get(listPlans)`.
+    internal func listPlans(headers: Operations.ListPlans.Input.Headers = .init()) async throws -> Operations.ListPlans.Output {
+        try await listPlans(Operations.ListPlans.Input(headers: headers))
+    }
+    /// Buy a plan (simulated: nothing is charged)
+    ///
+    /// Activates the plan now, replacing any active one, and writes an invoice.
+    ///
+    /// - Remark: HTTP `POST /api/billing/checkout`.
+    /// - Remark: Generated from `#/paths//api/billing/checkout/post(checkout)`.
+    internal func checkout(
+        headers: Operations.Checkout.Input.Headers = .init(),
+        body: Operations.Checkout.Input.Body
+    ) async throws -> Operations.Checkout.Output {
+        try await checkout(Operations.Checkout.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// The active subscription and this quota period’s usage
+    ///
+    /// - Remark: HTTP `GET /api/subscription`.
+    /// - Remark: Generated from `#/paths//api/subscription/get(getSubscription)`.
+    internal func getSubscription(headers: Operations.GetSubscription.Input.Headers = .init()) async throws -> Operations.GetSubscription.Output {
+        try await getSubscription(Operations.GetSubscription.Input(headers: headers))
+    }
+    /// Cancel at the end of the current period
+    ///
+    /// - Remark: HTTP `POST /api/subscription/cancel`.
+    /// - Remark: Generated from `#/paths//api/subscription/cancel/post(cancelSubscription)`.
+    internal func cancelSubscription(headers: Operations.CancelSubscription.Input.Headers = .init()) async throws -> Operations.CancelSubscription.Output {
+        try await cancelSubscription(Operations.CancelSubscription.Input(headers: headers))
+    }
+    /// Choose how the subscription is paid
+    ///
+    /// - Remark: HTTP `PUT /api/subscription/payment-method`.
+    /// - Remark: Generated from `#/paths//api/subscription/payment-method/put(changePaymentMethod)`.
+    internal func changePaymentMethod(
+        headers: Operations.ChangePaymentMethod.Input.Headers = .init(),
+        body: Operations.ChangePaymentMethod.Input.Body
+    ) async throws -> Operations.ChangePaymentMethod.Output {
+        try await changePaymentMethod(Operations.ChangePaymentMethod.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// The latest 50 invoices, newest first
+    ///
+    /// - Remark: HTTP `GET /api/billing/invoices`.
+    /// - Remark: Generated from `#/paths//api/billing/invoices/get(listInvoices)`.
+    internal func listInvoices(headers: Operations.ListInvoices.Input.Headers = .init()) async throws -> Operations.ListInvoices.Output {
+        try await listInvoices(Operations.ListInvoices.Input(headers: headers))
+    }
+    /// Traktir Kira: buy months of Kira Plus for Beasiswa Kira (simulated)
+    ///
+    /// - Remark: HTTP `POST /api/billing/gifts`.
+    /// - Remark: Generated from `#/paths//api/billing/gifts/post(giftMonths)`.
+    internal func giftMonths(
+        headers: Operations.GiftMonths.Input.Headers = .init(),
+        body: Operations.GiftMonths.Input.Body
+    ) async throws -> Operations.GiftMonths.Output {
+        try await giftMonths(Operations.GiftMonths.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Eligibility, this month’s quota and the current application
+    ///
+    /// - Remark: HTTP `GET /api/scholarship`.
+    /// - Remark: Generated from `#/paths//api/scholarship/get(getScholarship)`.
+    internal func getScholarship(headers: Operations.GetScholarship.Input.Headers = .init()) async throws -> Operations.GetScholarship.Output {
+        try await getScholarship(Operations.GetScholarship.Input(headers: headers))
+    }
+    /// Apply for Beasiswa Kira (review is simulated)
+    ///
+    /// In review, or waitlisted when this month’s quota is used up.
+    ///
+    /// - Remark: HTTP `POST /api/scholarship/applications`.
+    /// - Remark: Generated from `#/paths//api/scholarship/applications/post(applyForScholarship)`.
+    internal func applyForScholarship(
+        headers: Operations.ApplyForScholarship.Input.Headers = .init(),
+        body: Operations.ApplyForScholarship.Input.Body
+    ) async throws -> Operations.ApplyForScholarship.Output {
+        try await applyForScholarship(Operations.ApplyForScholarship.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Withdraw the open application
+    ///
+    /// - Remark: HTTP `DELETE /api/scholarship/applications/current`.
+    /// - Remark: Generated from `#/paths//api/scholarship/applications/current/delete(withdrawScholarshipApplication)`.
+    internal func withdrawScholarshipApplication(headers: Operations.WithdrawScholarshipApplication.Input.Headers = .init()) async throws -> Operations.WithdrawScholarshipApplication.Output {
+        try await withdrawScholarshipApplication(Operations.WithdrawScholarshipApplication.Input(headers: headers))
+    }
+    /// This period’s quota usage
+    ///
+    /// AI messages, receipts and voice seconds used against the plan, and the date they reset.
+    ///
+    /// - Remark: HTTP `GET /api/usage`.
+    /// - Remark: Generated from `#/paths//api/usage/get(getUsage)`.
+    internal func getUsage(headers: Operations.GetUsage.Input.Headers = .init()) async throws -> Operations.GetUsage.Output {
+        try await getUsage(Operations.GetUsage.Input(headers: headers))
+    }
+    /// Read the Catat chat
+    ///
+    /// A page of older messages by `before`, or a window centred on `around`.
+    ///
+    /// - Remark: HTTP `GET /api/chat/messages`.
+    /// - Remark: Generated from `#/paths//api/chat/messages/get(listChatMessages)`.
+    internal func listChatMessages(
+        query: Operations.ListChatMessages.Input.Query = .init(),
+        headers: Operations.ListChatMessages.Input.Headers = .init()
+    ) async throws -> Operations.ListChatMessages.Output {
+        try await listChatMessages(Operations.ListChatMessages.Input(
+            query: query,
+            headers: headers
+        ))
+    }
+    /// Send a message with the drafts read on the device
+    ///
+    /// Spends one AI message (and voice seconds). When the quota is spent the message is kept and `reply` is null.
+    ///
+    /// - Remark: HTTP `POST /api/chat/messages`.
+    /// - Remark: Generated from `#/paths//api/chat/messages/post(sendChatMessage)`.
+    internal func sendChatMessage(
+        headers: Operations.SendChatMessage.Input.Headers = .init(),
+        body: Operations.SendChatMessage.Input.Body
+    ) async throws -> Operations.SendChatMessage.Output {
+        try await sendChatMessage(Operations.SendChatMessage.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Send a receipt read on the device
+    ///
+    /// Spends one receipt; the items must add up to the total.
+    ///
+    /// - Remark: HTTP `POST /api/chat/receipts`.
+    /// - Remark: Generated from `#/paths//api/chat/receipts/post(sendReceipt)`.
+    internal func sendReceipt(
+        headers: Operations.SendReceipt.Input.Headers = .init(),
+        body: Operations.SendReceipt.Input.Body
+    ) async throws -> Operations.SendReceipt.Output {
+        try await sendReceipt(Operations.SendReceipt.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Replace a reply’s drafts before saving
+    ///
+    /// An empty list discards the drafts.
+    ///
+    /// - Remark: HTTP `PUT /api/chat/messages/{id}/drafts`.
+    /// - Remark: Generated from `#/paths//api/chat/messages/{id}/drafts/put(updateChatDrafts)`.
+    internal func updateChatDrafts(
+        path: Operations.UpdateChatDrafts.Input.Path,
+        headers: Operations.UpdateChatDrafts.Input.Headers = .init(),
+        body: Operations.UpdateChatDrafts.Input.Body
+    ) async throws -> Operations.UpdateChatDrafts.Output {
+        try await updateChatDrafts(Operations.UpdateChatDrafts.Input(
+            path: path,
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Save a reply’s drafts as transactions
+    ///
+    /// Answers with the saved reply and Kira’s engine-computed remaining-money message.
+    ///
+    /// - Remark: HTTP `POST /api/chat/messages/{id}/commit`.
+    /// - Remark: Generated from `#/paths//api/chat/messages/{id}/commit/post(commitChatDrafts)`.
+    internal func commitChatDrafts(
+        path: Operations.CommitChatDrafts.Input.Path,
+        headers: Operations.CommitChatDrafts.Input.Headers = .init()
+    ) async throws -> Operations.CommitChatDrafts.Output {
+        try await commitChatDrafts(Operations.CommitChatDrafts.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Riwayat Transaksi, newest first
+    ///
+    /// - Remark: HTTP `GET /api/transactions`.
+    /// - Remark: Generated from `#/paths//api/transactions/get(listTransactions)`.
+    internal func listTransactions(
+        query: Operations.ListTransactions.Input.Query = .init(),
+        headers: Operations.ListTransactions.Input.Headers = .init()
+    ) async throws -> Operations.ListTransactions.Output {
+        try await listTransactions(Operations.ListTransactions.Input(
+            query: query,
+            headers: headers
+        ))
+    }
+    /// Save a manual entry (Catat Manual)
+    ///
+    /// Spends no quota and adds Kira’s note to the chat. Idempotent on `clientId`.
+    ///
+    /// - Remark: HTTP `POST /api/transactions`.
+    /// - Remark: Generated from `#/paths//api/transactions/post(createTransaction)`.
+    internal func createTransaction(
+        headers: Operations.CreateTransaction.Input.Headers = .init(),
+        body: Operations.CreateTransaction.Input.Body
+    ) async throws -> Operations.CreateTransaction.Output {
+        try await createTransaction(Operations.CreateTransaction.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Totals out and in for a range of days
+    ///
+    /// - Remark: HTTP `GET /api/transactions/summary`.
+    /// - Remark: Generated from `#/paths//api/transactions/summary/get(summarizeTransactions)`.
+    internal func summarizeTransactions(
+        query: Operations.SummarizeTransactions.Input.Query,
+        headers: Operations.SummarizeTransactions.Input.Headers = .init()
+    ) async throws -> Operations.SummarizeTransactions.Output {
+        try await summarizeTransactions(Operations.SummarizeTransactions.Input(
+            query: query,
+            headers: headers
+        ))
+    }
+    /// Urungkan a chat save
+    ///
+    /// Within 30 seconds of the save: deletes its transactions and puts the drafts back.
+    ///
+    /// - Remark: HTTP `DELETE /api/transactions/batches/{batchId}`.
+    /// - Remark: Generated from `#/paths//api/transactions/batches/{batchId}/delete(undoTransactionBatch)`.
+    internal func undoTransactionBatch(
+        path: Operations.UndoTransactionBatch.Input.Path,
+        headers: Operations.UndoTransactionBatch.Input.Headers = .init()
+    ) async throws -> Operations.UndoTransactionBatch.Output {
+        try await undoTransactionBatch(Operations.UndoTransactionBatch.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Detail Transaksi
+    ///
+    /// - Remark: HTTP `GET /api/transactions/{id}`.
+    /// - Remark: Generated from `#/paths//api/transactions/{id}/get(getTransaction)`.
+    internal func getTransaction(
+        path: Operations.GetTransaction.Input.Path,
+        headers: Operations.GetTransaction.Input.Headers = .init()
+    ) async throws -> Operations.GetTransaction.Output {
+        try await getTransaction(Operations.GetTransaction.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Edit a transaction
+    ///
+    /// - Remark: HTTP `PATCH /api/transactions/{id}`.
+    /// - Remark: Generated from `#/paths//api/transactions/{id}/patch(updateTransaction)`.
+    internal func updateTransaction(
+        path: Operations.UpdateTransaction.Input.Path,
+        headers: Operations.UpdateTransaction.Input.Headers = .init(),
+        body: Operations.UpdateTransaction.Input.Body
+    ) async throws -> Operations.UpdateTransaction.Output {
+        try await updateTransaction(Operations.UpdateTransaction.Input(
+            path: path,
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Delete a transaction
+    ///
+    /// - Remark: HTTP `DELETE /api/transactions/{id}`.
+    /// - Remark: Generated from `#/paths//api/transactions/{id}/delete(deleteTransaction)`.
+    internal func deleteTransaction(
+        path: Operations.DeleteTransaction.Input.Path,
+        headers: Operations.DeleteTransaction.Input.Headers = .init()
+    ) async throws -> Operations.DeleteTransaction.Output {
+        try await deleteTransaction(Operations.DeleteTransaction.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Keep a parsed bank statement for review (Kira Plus)
+    ///
+    /// At most three months per file; rows already recorded are flagged `isDuplicate`.
+    ///
+    /// - Remark: HTTP `POST /api/imports`.
+    /// - Remark: Generated from `#/paths//api/imports/post(createBankImport)`.
+    internal func createBankImport(
+        headers: Operations.CreateBankImport.Input.Headers = .init(),
+        body: Operations.CreateBankImport.Input.Body
+    ) async throws -> Operations.CreateBankImport.Output {
+        try await createBankImport(Operations.CreateBankImport.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Save the reviewed rows
+    ///
+    /// Atomic and idempotent: a second commit answers the first one’s counts.
+    ///
+    /// - Remark: HTTP `POST /api/imports/{id}/commit`.
+    /// - Remark: Generated from `#/paths//api/imports/{id}/commit/post(commitBankImport)`.
+    internal func commitBankImport(
+        path: Operations.CommitBankImport.Input.Path,
+        headers: Operations.CommitBankImport.Input.Headers = .init(),
+        body: Operations.CommitBankImport.Input.Body
+    ) async throws -> Operations.CommitBankImport.Output {
+        try await commitBankImport(Operations.CommitBankImport.Input(
+            path: path,
+            headers: headers,
+            body: body
+        ))
     }
 }
 
