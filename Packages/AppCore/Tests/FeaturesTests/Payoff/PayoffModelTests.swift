@@ -80,7 +80,8 @@ struct PayoffModelTests {
         #expect(model.exceedsMaximum && model.extraPayment == 2_000_000)
         #expect(await service.calls.count == 1)
         await model.setExtra("1840000")
-        #expect(!model.exceedsMaximum && await service.calls.count == 2)
+        #expect(!model.exceedsMaximum)
+        #expect(await service.calls.count == 2)
     }
 
     @Test("before a plan is on screen nothing exceeds the maximum")
