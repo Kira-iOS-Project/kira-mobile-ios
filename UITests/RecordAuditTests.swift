@@ -1,5 +1,6 @@
 /**
- Rule 24 for CAT: Riwayat, Detail Transaksi, Riwayat Percakapan, Impor Mutasi and Tinjau Hasil Impor (the chat screens join with Catat).
+ Rule 24 for CAT: Riwayat, Detail Transaksi, Riwayat Percakapan, Impor Mutasi and Tinjau Hasil
+ Impor (the chat screens join with Catat).
  Each screen opens through `-KiraScreen <name>` and is audited top to bottom (ScreenAudit.swift).
  */
 import XCTest

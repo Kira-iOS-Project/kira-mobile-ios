@@ -6,7 +6,7 @@
  */
 import XCTest
 
-nonisolated final class CatatAuditTests: XCTestCase {
+nonisolated final class ChatAuditTests: XCTestCase {
     @MainActor
     func testRecordPassesTheAudit() throws {
         try auditScreen("record")

@@ -26,14 +26,14 @@
             case .account: AccountLaunch(screen: screen)
             case .plans: PlansLaunch(screen: screen)
             case .record: RecordLaunch(screen: screen)
-            case .catat: CatatLaunch(screen: screen)
+            case .chat: ChatLaunch(screen: screen)
             }
         }
     }
 
     /** Every screen the launcher opens, by the name the UI tests pass. */
     enum LaunchScreen: String, CaseIterable {
-        /** ONB: the splash, the intro, Buat Akun, Masuk, the code, the setup, the six quiz steps, the result, Kunci Kira. */
+        /** ONB: the splash, the intro, Buat Akun, Masuk, the code, the setup, the six quiz steps, the result. */
         case splash, intro, signUp, signIn, code, consent, focus
         case income, expenses, debts, savings, assets, protection
         case result, pin
@@ -47,12 +47,12 @@
         case scholarship, scholarshipApply, scholarshipPending, scholarshipAccepted
         /** CAT: Riwayat, Detail Transaksi, Riwayat Percakapan, Impor Mutasi, Tinjau Hasil Impor. */
         case history, transaction, conversation, statementImport, importReview
-        /** CAT: Catat; the tests open its sheets from the composer. Voice runs on Kira Plus, Kuota AI with receipts used up. */
+        /** CAT: Catat; the tests open its sheets from the composer (ChatLaunch says which account each needs). */
         case record, recordDrafts, recordManual, recordScan, recordQuota, recordVoice
 
         /** The area whose launcher builds the screen. */
         enum Area {
-            case onboarding, home, account, plans, record, catat
+            case onboarding, home, account, plans, record, chat
         }
 
         var area: Area {
@@ -68,7 +68,7 @@
                 .scholarshipApply, .scholarshipPending, .scholarshipAccepted:
                 .plans
             case .history, .transaction, .conversation, .statementImport, .importReview: .record
-            case .record, .recordDrafts, .recordManual, .recordScan, .recordQuota, .recordVoice: .catat
+            case .record, .recordDrafts, .recordManual, .recordScan, .recordQuota, .recordVoice: .chat
             }
         }
     }

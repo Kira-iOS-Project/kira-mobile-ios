@@ -33,9 +33,9 @@ extension XCTestCase {
             }
             try XCTContext.runActivity(named: "\(screen), pass \(pass + 1)") { _ in
                 try auditRetryingTimeout(app) { issue in
-                    let ok = Self.isAcceptedEverywhere(issue, window: window) || accepted(issue)
-                    NSLog("AUDITLOG %@ ok=%d type=%ld label=[%@] id=[%@] frame=%@ desc=%@", screen, ok ? 1 : 0, issue.auditType.rawValue, issue.element?.label ?? "-", issue.element?.identifier ?? "-", NSCoder.string(for: issue.element?.frame ?? .zero), issue.compactDescription)
-                    return ok
+                    let isAccepted = Self.isAcceptedEverywhere(issue, window: window) || accepted(issue)
+                    Self.record(issue, isAccepted: isAccepted)
+                    return isAccepted
                 }
             }
         }
@@ -58,6 +58,18 @@ extension XCTestCase {
          */
         guard issue.auditType == .contrast, let frame = issue.element?.frame else { return false }
         return frame.minY < window.minY + 100 || frame.maxY > window.maxY - 50
+    }
+
+    /**
+     Names each finding in the result bundle (its type, element and frame), so a failure says which
+     element it is about and an accepted one stays visible.
+     */
+    private static func record(_ issue: XCUIAccessibilityAuditIssue, isAccepted: Bool) {
+        let element = issue.element
+        let name =
+            "\(isAccepted ? "accepted" : "finding"): \(issue.compactDescription) on "
+            + "[\(element?.label ?? "no element")] \(element?.identifier ?? "") \(element.map { "\($0.frame)" } ?? "")"
+        XCTContext.runActivity(named: name) { _ in }
     }
 
     /** Waits until the screen exists and no preview service is still answering (its placeholder). */
@@ -87,15 +99,20 @@ extension XCTestCase {
      the tool timing out, not a finding. Any finding fails at once, and so does a second timeout.
      */
     @MainActor
-    private func auditRetryingTimeout(_ app: XCUIApplication, accepting accepted: @escaping (XCUIAccessibilityAuditIssue) -> Bool) throws {
+    private func auditRetryingTimeout(
+        _ app: XCUIApplication, accepting accepted: @escaping (XCUIAccessibilityAuditIssue) -> Bool
+    ) throws {
         do {
             try app.performAccessibilityAudit(accepted)
-        } catch let error as NSError
-            where error.domain == "com.apple.xcode.xctest.accessibilityAudit" && error.code == -56
-        {
+        } catch let error as NSError where Self.auditTimedOut(error) {
             XCTContext.runActivity(named: "The audit did not finish in time; running it once more") { _ in }
             try app.performAccessibilityAudit(accepted)
         }
+    }
+
+    /** XCTest's "Audit failed to complete in time": the audit stopped before it read the whole screen. */
+    private static func auditTimedOut(_ error: NSError) -> Bool {
+        error.domain == "com.apple.xcode.xctest.accessibilityAudit" && error.code == -56
     }
 
     /**

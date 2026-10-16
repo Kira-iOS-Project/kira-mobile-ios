@@ -1,5 +1,6 @@
 /**
- Rule 24 for ONB: the splash, the intro, Buat Akun and Masuk, the code, the setup, the six health-check steps, the result and Kunci Kira.
+ Rule 24 for ONB: the splash, the intro, Buat Akun and Masuk, the code, the setup, the six
+ health-check steps, the result and Kunci Kira.
  Each screen opens through `-KiraScreen <name>` and is audited top to bottom (ScreenAudit.swift).
  */
 import XCTest

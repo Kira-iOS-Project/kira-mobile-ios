@@ -9,7 +9,7 @@
     import Features
     import SwiftUI
 
-    struct CatatLaunch: View {
+    struct ChatLaunch: View {
         let screen: LaunchScreen
 
         var body: some View {
