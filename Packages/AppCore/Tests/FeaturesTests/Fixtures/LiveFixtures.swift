@@ -17,7 +17,7 @@ func meJSON(consented: Bool = true, healthCheck: Bool = true, hideBalances: Bool
         "payday":{"day":25,"endOfMonth":false},"hideBalances":\#(hideBalances),"consented":\#(consented),\#
         "healthCheckCompleted":\#(healthCheck),"plan":\#(planJSON),"usage":\#(usageJSON),"period":\#(periodJSON),\#
         "lastCategories":{"expense":"coffee","income":null},"debtAccountCount":2,\#
-        "aiEnabled":true,"weeklySummaryEnabled":false}
+        "aiEnabled":true,"weeklySummaryEnabled":false,"debtEmergencyActive":false}
         """#
 }
 

@@ -151,8 +151,18 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case scholarshipApplicationNotFound = "SCHOLARSHIP_APPLICATION_NOT_FOUND"
     /** Otherwise eligible, but Mode Darurat Utang has never been opened. */
     case scholarshipDebtEmergencyRequired = "SCHOLARSHIP_DEBT_EMERGENCY_REQUIRED"
-    /** The check-in is gone or was already handled. */
+    /** The community group does not exist, or the team suspended it for review. */
+    case communityGroupNotFound = "COMMUNITY_GROUP_NOT_FOUND"
+    /** The group has no checked invite link yet; the curation team is checking it. */
+    case communityLinkUnavailable = "COMMUNITY_LINK_UNAVAILABLE"
+    /** The Etalase product does not exist. */
+    case communityProductNotFound = "COMMUNITY_PRODUCT_NOT_FOUND"
+    /** The person already has an open report on this group. */
+    case communityReportDuplicate = "COMMUNITY_REPORT_DUPLICATE"
+    /** The current community rules have not been accepted yet. */
+    case communityRulesNotAccepted = "COMMUNITY_RULES_NOT_ACCEPTED"
+    /** The check-in is gone (cancelled, seen or never made). */
     case careCheckInNotFound = "CARE_CHECK_IN_NOT_FOUND"
-    /** No safety plan was saved yet. */
+    /** No Rencana Keselamatanku has been saved yet. */
     case careSafetyPlanNotFound = "CARE_SAFETY_PLAN_NOT_FOUND"
 }
