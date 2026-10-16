@@ -88,6 +88,7 @@ private struct DebtRows: View {
             }
             KiraButton("onboarding.debt.add", variant: .quiet, size: .small) { debts.add() }.icon(.plus)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private func subtitle(for entry: DebtEntry) -> Text {

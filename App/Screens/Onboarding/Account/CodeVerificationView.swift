@@ -27,6 +27,7 @@ struct CodeVerificationView: View {
                         OnboardingHeading(text: "onboarding.code.heading")
                         Text("onboarding.code.sentTo \(Text(model.email).fontWeight(.semibold).foregroundStyle(.ink))")
                             .onboardingLead()
+                            .fixedSize(horizontal: false, vertical: true)
                             .frame(maxWidth: 300)
                     }
                     .multilineTextAlignment(.center)
@@ -74,8 +75,12 @@ private struct CodeEntry: View {
         }
     }
 
-    /** "0:42". */
-    private var countdown: Text {
-        Text(Duration.seconds(model.secondsUntilResend), format: .time(pattern: .minuteSecond))
+    /**
+     "0:42": the board writes minutes and seconds with a colon, which the Indonesian locale would
+     make a dot, so the style keeps its own locale (`Text(_:format:)` would put the screen's back).
+     */
+    private var countdown: String {
+        Duration.seconds(model.secondsUntilResend)
+            .formatted(.time(pattern: .minuteSecond).locale(Locale(identifier: "en_US_POSIX")))
     }
 }

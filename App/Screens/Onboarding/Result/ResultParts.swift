@@ -43,6 +43,7 @@ private struct StepRow: View {
                 copy.detail.font(.subheadline).kiraLineHeight(20, size: 15).foregroundStyle(.inkMuted)
                 KiraTag(copy.gain, tone: .pandan, icon: .trendUp).padding(.top, 6)
             }
+            .fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         .foregroundStyle(.ink)
@@ -82,8 +83,11 @@ struct FormulaAccordion: View {
         formula.points.map(String.init).joined(separator: " + ")
     }
 
-    /** "61,7": one decimal with a comma, as Kira writes every number. */
-    private func average(_ formula: ScoreFormula) -> Text {
-        Text(formula.average, format: .number.precision(.fractionLength(1)).locale(Locale(identifier: "id_ID")))
+    /**
+     "61,7": one decimal with a comma, as Kira writes every number whatever the device's region, so
+     the style keeps its own locale (`Text(_:format:)` would put the screen's back).
+     */
+    private func average(_ formula: ScoreFormula) -> String {
+        formula.average.formatted(.number.precision(.fractionLength(1)).locale(Locale(identifier: "id_ID")))
     }
 }

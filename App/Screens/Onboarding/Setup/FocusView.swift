@@ -68,6 +68,7 @@ private struct FocusCard: View {
                     Text(focus == .trackSpending ? "onboarding.focus.track.detail" : "onboarding.focus.debt.detail")
                         .font(.subheadline).kiraLineHeight(20, size: 15).foregroundStyle(.inkMuted)
                 }
+                .fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 mark
             }
