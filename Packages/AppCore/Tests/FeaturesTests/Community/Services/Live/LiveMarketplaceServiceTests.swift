@@ -35,30 +35,28 @@ struct LiveMarketplaceServiceTests {
         #expect(await transport.routes == ["GET /api/community/products", "GET /api/community/products"])
     }
 
-    @Test("a product that is gone reaches Detail Produk as COMMUNITY_PRODUCT_NOT_FOUND")
+    @Test("a product that is gone (COMMUNITY_PRODUCT_NOT_FOUND) empties Detail Produk")
     func productGone() async throws {
         let (api, _) = KiraAPI.routed([
             "GET /api/community/products/lama": problem("COMMUNITY_PRODUCT_NOT_FOUND", status: 404)
         ])
         let model = ProductModel(id: "lama", service: LiveMarketplaceService(api: api))
         await model.load()
-        guard case .failed(let problem) = model.phase else { return #expect(Bool(false)) }
-        #expect(problem.knownCode == .communityProductNotFound)
-        #expect(problem.messageKey == "problem.COMMUNITY_PRODUCT_NOT_FOUND")
+        guard case .empty = model.phase else { return #expect(Bool(false)) }
     }
 
-    @Test("a lost connection shows the generic problem on both screens, and Coba Lagi asks again")
+    @Test("a lost connection shows the connection message on both screens")
     func offline() async throws {
         let api = KiraAPI(serverURL: URL(filePath: "/"), transport: OfflineTransport())
         let service = LiveMarketplaceService(api: api)
         let marketplace = MarketplaceModel(service: service)
         await marketplace.load()
         guard case .failed(let listProblem) = marketplace.phase else { return #expect(Bool(false)) }
-        #expect(listProblem.knownCode == nil && listProblem.messageKey == "problem.unknown")
+        #expect(listProblem.isConnectionLoss && !listProblem.showsReference)
         let product = ProductModel(id: "a", service: service)
         await product.load()
         guard case .failed(let detailProblem) = product.phase else { return #expect(Bool(false)) }
-        #expect(detailProblem.messageKey == "problem.unknown")
+        #expect(detailProblem.isConnectionLoss)
     }
 
     @Test("a product loads in full through GET /community/products/{id}")

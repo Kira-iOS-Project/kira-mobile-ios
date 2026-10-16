@@ -37,6 +37,6 @@
         let answer: Result<[ProductSummary], AppProblem>
 
         func products(kind _: ProductKind?) throws -> [ProductSummary] { try answer.get() }
-        func product(id: String) async throws -> Product { try await PreviewMarketplaceService().product(id: id) }
+        func product(id: String) throws -> Product { try PreviewMarketplaceService().product(id: id) }
     }
 #endif
