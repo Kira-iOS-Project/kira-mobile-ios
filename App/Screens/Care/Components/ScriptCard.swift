@@ -25,10 +25,13 @@ struct ScriptCard: View {
                 .font(.subheadline).kiraLineHeight(23, size: 15)
                 .foregroundStyle(.ink)
                 .tint(.coping)
-                .environment(\.openURL, OpenURLAction { url in
-                    if url == ScriptText.contractLink { model.edit(.contract) } else { model.edit(.reason) }
-                    return .handled
-                })
+                .environment(
+                    \.openURL,
+                    OpenURLAction { url in
+                        if url == ScriptText.contractLink { model.edit(.contract) } else { model.edit(.reason) }
+                        return .handled
+                    }
+                )
                 .accessibilityAction(named: Text("care.script.reason.a11y")) { model.edit(.reason) }
                 .accessibilityAction(named: Text("care.script.contract.a11y")) { model.edit(.contract) }
             HStack(spacing: 6) {

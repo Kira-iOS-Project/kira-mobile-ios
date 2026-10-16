@@ -42,7 +42,10 @@ struct NegotiationScriptModelTests {
         await service.configure { $0.debtList = [] }
         let model = model()
         await model.load()
-        guard case .empty = model.phase else { Issue.record("expected empty"); return }
+        guard case .empty = model.phase else {
+            Issue.record("expected empty")
+            return
+        }
         #expect(model.lender == nil)
         model.instalmentText = "230.000"
         model.affordableText = "Rp150.000"
@@ -55,7 +58,10 @@ struct NegotiationScriptModelTests {
         await service.configure { $0.failing[.debts] = error }
         let model = model()
         await model.load()
-        guard case .failed(let problem) = model.phase else { Issue.record("expected failed"); return }
+        guard case .failed(let problem) = model.phase else {
+            Issue.record("expected failed")
+            return
+        }
         #expect(problem == (offline ? AppProblem.connectionLost : FakeCareToolsService.problem))
     }
 

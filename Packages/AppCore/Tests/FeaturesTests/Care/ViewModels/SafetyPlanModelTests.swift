@@ -26,7 +26,10 @@ struct SafetyPlanModelTests {
         await service.configure { $0.failing[.plan] = error }
         let model = SafetyPlanModel(service: service)
         await model.load()
-        guard case .failed(let problem) = model.phase else { Issue.record("expected failed"); return }
+        guard case .failed(let problem) = model.phase else {
+            Issue.record("expected failed")
+            return
+        }
         #expect(problem == (offline ? AppProblem() : FakeCareToolsService.problem))
     }
 
@@ -35,7 +38,10 @@ struct SafetyPlanModelTests {
         await service.configure { $0.failing[.plan] = URLError(.timedOut) }
         let model = SafetyPlanModel(service: service)
         await model.load()
-        guard case .failed(let problem) = model.phase else { Issue.record("expected failed"); return }
+        guard case .failed(let problem) = model.phase else {
+            Issue.record("expected failed")
+            return
+        }
         #expect(problem.isConnectionLoss)
         await service.configure { $0.failing = [.save: URLError(.networkConnectionLost)] }
         await model.load()
@@ -74,8 +80,10 @@ struct SafetyPlanModelTests {
 
     @Test(
         "a refused, invalid or lost save closes the form, shows its problem, and Coba Lagi reopens it as written",
-        arguments: [FakeCareToolsService.Offline() as any Error, FakeCareToolsService.problem,
-            AppProblem(code: "AUTH_UNAUTHENTICATED"), URLError(.notConnectedToInternet)])
+        arguments: [
+            FakeCareToolsService.Offline() as any Error, FakeCareToolsService.problem,
+            AppProblem(code: "AUTH_UNAUTHENTICATED"), URLError(.notConnectedToInternet),
+        ])
     func saveFailure(error: any Error) async throws {
         await service.configure { $0.failing[.save] = error }
         let model = SafetyPlanModel(service: service)

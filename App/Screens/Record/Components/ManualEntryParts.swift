@@ -97,25 +97,7 @@ struct ManualDetails: View {
                 /** A one-line field with a prompt drops its label view: VoiceOver would read the prompt alone. */
                 .accessibilityLabel(Text("record.manual.name"))
             }
-            Button {
-                withAnimation(.easeOut(duration: 0.2)) { model.isPickingDay.toggle() }
-            } label: {
-                row("record.manual.date") {
-                    HStack {
-                        Text(model.day, format: .kiraWeekdayDate).frame(maxWidth: .infinity, alignment: .leading)
-                        KiraIcon(.chevronRight, size: 20).foregroundStyle(.inkMuted)
-                            .rotationEffect(.degrees(model.isPickingDay ? 90 : 0))
-                    }
-                }
-            }
-            .buttonStyle(.plain)
-            if model.isPickingDay {
-                DatePicker(selection: $model.day, in: ...Date.distantFuture, displayedComponents: .date) {
-                    Text("record.manual.date")
-                }
-                .datePickerStyle(.graphical)
-                .tint(.pandan)
-            }
+            dateRow
             row("record.manual.note", isLast: true) {
                 TextField(text: $model.note, prompt: Text("record.manual.optional").foregroundStyle(.inkMuted)) {
                     Text("record.manual.note")
@@ -125,6 +107,29 @@ struct ManualDetails: View {
         }
         .padding(.horizontal, KiraSpacing.space4)
         .kiraCard(.surfaceRaised, cornerRadius: KiraRadius.large)
+    }
+
+    /** The date row, and the calendar it opens under it. */
+    @ViewBuilder private var dateRow: some View {
+        Button {
+            withAnimation(.easeOut(duration: 0.2)) { model.isPickingDay.toggle() }
+        } label: {
+            row("record.manual.date") {
+                HStack {
+                    Text(model.day, format: .kiraWeekdayDate).frame(maxWidth: .infinity, alignment: .leading)
+                    KiraIcon(.chevronRight, size: 20).foregroundStyle(.inkMuted)
+                        .rotationEffect(.degrees(model.isPickingDay ? 90 : 0))
+                }
+            }
+        }
+        .buttonStyle(.plain)
+        if model.isPickingDay {
+            DatePicker(selection: $model.day, in: ...Date.distantFuture, displayedComponents: .date) {
+                Text("record.manual.date")
+            }
+            .datePickerStyle(.graphical)
+            .tint(.pandan)
+        }
     }
 
     /** A row of the card, with the `line` rule under it unless it is the last. */

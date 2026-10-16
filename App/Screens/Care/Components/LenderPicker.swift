@@ -18,7 +18,9 @@ struct LenderPicker: View {
                 .foregroundStyle(.inkMuted)
                 .padding(.horizontal, 4)
                 .accessibilityHidden(true)
-            Button { model.isPickingLender.toggle() } label: {
+            Button {
+                model.isPickingLender.toggle()
+            } label: {
                 HStack(spacing: KiraSpacing.space2) {
                     selection.font(.body).kiraLineHeight(22, size: 17).foregroundStyle(.ink)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -50,7 +52,9 @@ struct LenderPicker: View {
         VStack(spacing: 2) {
             ForEach(debts) { debt in
                 let isOn = debt.id == model.lender?.id
-                Button { model.select(debt) } label: {
+                Button {
+                    model.select(debt)
+                } label: {
                     HStack(spacing: KiraSpacing.space3) {
                         VStack(alignment: .leading, spacing: 1) {
                             Text(debt.name).font(.body.weight(isOn ? .semibold : .medium)).foregroundStyle(.ink)
@@ -64,7 +68,8 @@ struct LenderPicker: View {
                     .padding(.horizontal, KiraSpacing.space3)
                     .frame(minHeight: 48)
                     .kiraCard(
-                        isOn ? .pandanSoft : .clear, border: isOn ? .pandan : .clear, cornerRadius: KiraRadius.small)
+                        isOn ? .pandanSoft : .clear, border: isOn ? .pandan : .clear, cornerRadius: KiraRadius.small
+                    )
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)

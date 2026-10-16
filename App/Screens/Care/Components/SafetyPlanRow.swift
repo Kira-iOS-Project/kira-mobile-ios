@@ -58,7 +58,9 @@ struct SafetyPlanRow: View {
         if contacts.isEmpty { written("") }
         ForEach(Array(contacts.enumerated()), id: \.offset) { _, contact in
             if let url = contact.callURL {
-                Button { openURL(url) } label: {
+                Button {
+                    openURL(url)
+                } label: {
                     Text(contact.line).underline().foregroundStyle(.pandan).multilineTextAlignment(.leading)
                 }
                 .font(.subheadline).kiraLineHeight(21, size: 15)

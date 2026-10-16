@@ -22,7 +22,7 @@ private actor HeldCodeAPI: PinRecoveryService {
 
     /** Answers every request that is waiting. */
     func answer() {
-        held.forEach { $0.resume() }
+        for request in held { request.resume() }
         held = []
     }
 }

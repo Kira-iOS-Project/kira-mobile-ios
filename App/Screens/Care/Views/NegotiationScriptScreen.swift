@@ -95,7 +95,8 @@ struct NegotiationScriptScreen: View {
                     onOpen(.unavailable(.debtPlan))
                 },
                 primary: KiraButton("care.script.copy", size: .small) { model.copy() }
-                    .icon(.copy))
+                    .icon(.copy)
+            )
             .disabled(!model.script.isComplete)
             .padding(.top, KiraSpacing.space2)
         }
