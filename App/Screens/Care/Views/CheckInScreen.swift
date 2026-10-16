@@ -97,5 +97,6 @@ private struct CheckInSample: View {
                 .kiraCard(.surfaceMuted, cornerRadius: 22)
         }
         .accessibilityElement(children: .contain)
+        .accessibilityLabel(Text("care.checkIn.sampleGroup"))
     }
 }

@@ -1781,6 +1781,16 @@
         }
       }
     },
+    "care.checkIn.sampleGroup" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contoh sapaan di chat"
+          }
+        }
+      }
+    },
     "care.checkIn.sampleLabel" : {
       "localizations" : {
         "id" : {
