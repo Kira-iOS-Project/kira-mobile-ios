@@ -11,11 +11,13 @@ import SwiftUI
 
 struct PayoffScreen: View {
     @State private var model: PayoffModel
+    private let plans: any PayoffPlanService
     private let onOpen: (AppRoute) -> Void
     @Environment(\.dismiss) private var dismiss
 
-    init(service: any PayoffService, onOpen: @escaping (AppRoute) -> Void) {
+    init(service: any PayoffService, plans: any PayoffPlanService, onOpen: @escaping (AppRoute) -> Void) {
         _model = State(initialValue: PayoffModel(service: service))
+        self.plans = plans
         self.onOpen = onOpen
     }
 
@@ -23,11 +25,11 @@ struct PayoffScreen: View {
         Group {
             switch model.phase {
             case .loading:
-                PayoffContent(model: model, simulation: .sample, onOpen: { _ in }, onBack: {})
+                PayoffContent(model: model, simulation: .sample, makePlan: {}, onOpen: { _ in }, onBack: {})
                     .redacted(reason: .placeholder)
                     .disabled(true)
             case .loaded(let simulation):
-                PayoffContent(model: model, simulation: simulation, onOpen: onOpen) { dismiss() }
+                PayoffContent(model: model, simulation: simulation, makePlan: makePlan, onOpen: onOpen) { dismiss() }
             case .empty:
                 PayoffEmptyView { dismiss() }
             case .failed(let problem):
@@ -38,12 +40,18 @@ struct PayoffScreen: View {
         .toolbar(.hidden, for: .navigationBar)
         .task { await model.load() }
     }
+
+    /** Saves the plan on screen as Rencanaku and opens it. */
+    private func makePlan() {
+        Task { if await model.makePlan(using: plans) { onOpen(.myPlan) } }
+    }
 }
 
 /** The loaded plan, top to bottom as the boards lay it. */
 private struct PayoffContent: View {
     let model: PayoffModel
     let simulation: PayoffSimulation
+    let makePlan: () -> Void
     let onOpen: (AppRoute) -> Void
     let onBack: () -> Void
 
@@ -58,6 +66,13 @@ private struct PayoffContent: View {
                 PayoffHowAccordion(model: model, method: simulation.method)
                 PayoffResult(simulation: simulation)
                     .opacity(model.isRecalculating ? 0.5 : 1)
+                if let problem = model.makePlanProblem {
+                    KiraNotice(.warning, title: "payoff.makePlan.failed", message: problem.message)
+                }
+                if !simulation.accounts.isEmpty {
+                    KiraButton("payoff.makePlan", action: makePlan).block()
+                        .disabled(model.isMakingPlan || model.exceedsMaximum)
+                }
             }
             .padding(.horizontal, KiraSpacing.screen)
             .padding(.top, 3)

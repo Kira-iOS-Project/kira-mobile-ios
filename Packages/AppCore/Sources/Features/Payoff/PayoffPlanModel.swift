@@ -9,7 +9,7 @@ import Observation
  */
 @MainActor
 @Observable
-package final class PlanModel {
+package final class PayoffPlanModel {
     /** Empty when the person has not made a plan yet. */
     package private(set) var phase: ScreenPhase<ActivePayoffPlan> = .loading
     /** True while a payment or a move is in flight. */
@@ -18,11 +18,13 @@ package final class PlanModel {
     package private(set) var actionProblem: AppProblem?
     /** The payment that settled an account, until the person closes the celebration. */
     package private(set) var celebration: DebtPayment?
+    /** The name of the account the celebration is for. */
+    package private(set) var celebratedName: String?
 
-    private let service: any PlanService
+    private let service: any PayoffPlanService
 
     /** A model that reads and changes the plan through `service`. */
-    package init(service: any PlanService) {
+    package init(service: any PayoffPlanService) {
         self.service = service
     }
 
@@ -57,6 +59,7 @@ package final class PlanModel {
         do {
             let payment = try await service.recordPayment(debtId: next.debtId, amount: next.amount)
             celebration = payment.paidOff ? payment : nil
+            celebratedName = payment.paidOff ? next.name : nil
             phase = .loaded(try await service.active())
         } catch {
             actionProblem = error as? AppProblem ?? AppProblem()
@@ -67,5 +70,6 @@ package final class PlanModel {
     /** Closes the celebration. */
     package func dismissCelebration() {
         celebration = nil
+        celebratedName = nil
     }
 }

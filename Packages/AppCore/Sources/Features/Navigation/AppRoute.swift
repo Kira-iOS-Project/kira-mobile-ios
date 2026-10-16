@@ -15,6 +15,8 @@ package enum AppRoute: Hashable, Sendable {
     case healthCheck
     /** SKR-03: Rencana Pelunasan, with its open formula (SKR-03b) and the Avalanche method (SKR-03c). */
     case debtPlan
+    /** SKR-04: Rencanaku, the plan the person made; SKR-05 (Perayaan Lunas) opens over it. */
+    case myPlan
 
     /** CAT-01: Catat, the record section's root. */
     case record

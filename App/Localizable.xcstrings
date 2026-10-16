@@ -11497,6 +11497,26 @@
         }
       }
     },
+    "payoff.makePlan" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jadikan Rencanaku"
+          }
+        }
+      }
+    },
+    "payoff.makePlan.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rencana Belum Tersimpan"
+          }
+        }
+      }
+    },
     "payoff.method.avalanche" : {
       "localizations" : {
         "id" : {
@@ -11703,6 +11723,366 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bunga Belum Lengkap"
+          }
+        }
+      }
+    },
+    "plan.account.progress %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%% terlunasi"
+          }
+        }
+      }
+    },
+    "plan.accounts.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketuk akun berikutnya untuk memindahkannya jadi yang dilunasi lebih dulu."
+          }
+        }
+      }
+    },
+    "plan.accounts.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Urutan Pelunasan"
+          }
+        }
+      }
+    },
+    "plan.action.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Berhasil"
+          }
+        }
+      }
+    },
+    "plan.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali"
+          }
+        }
+      }
+    },
+    "plan.caption.avalanche" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avalanche"
+          }
+        }
+      }
+    },
+    "plan.caption.avalanche.extra %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avalanche · tambahan %@ per bulan"
+          }
+        }
+      }
+    },
+    "plan.caption.snowball" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snowball"
+          }
+        }
+      }
+    },
+    "plan.caption.snowball.extra %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snowball · tambahan %@ per bulan"
+          }
+        }
+      }
+    },
+    "plan.celebrate.continue" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lanjut"
+          }
+        }
+      }
+    },
+    "plan.celebrate.estimate" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ini perkiraan, bukan angka resmi."
+          }
+        }
+      }
+    },
+    "plan.celebrate.later" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nanti Saja"
+          }
+        }
+      }
+    },
+    "plan.celebrate.next %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berikutnya kita lunasi %@."
+          }
+        }
+      }
+    },
+    "plan.celebrate.score %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perkiraan Kira Score: %1$lld → %2$lld"
+          }
+        }
+      }
+    },
+    "plan.celebrate.scoreCta" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Kira Score"
+          }
+        }
+      }
+    },
+    "plan.celebrate.sheet" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lunas"
+          }
+        }
+      }
+    },
+    "plan.celebrate.title %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Lunas!"
+          }
+        }
+      }
+    },
+    "plan.done.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kerja bagus. Lihat bagaimana skormu berubah."
+          }
+        }
+      }
+    },
+    "plan.done.cta" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Kira Score"
+          }
+        }
+      }
+    },
+    "plan.done.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semua Cicilan Konsumtif Lunas"
+          }
+        }
+      }
+    },
+    "plan.empty.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simulasikan pelunasanmu dulu, lalu jadikan rencanamu."
+          }
+        }
+      }
+    },
+    "plan.empty.cta" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Rencana Pelunasan"
+          }
+        }
+      }
+    },
+    "plan.empty.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Ada Rencana"
+          }
+        }
+      }
+    },
+    "plan.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rencanaku Belum Bisa Dibuka"
+          }
+        }
+      }
+    },
+    "plan.next.in %@ %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jatuh tempo %1$@ · %2$lld hari lagi"
+          }
+        }
+      }
+    },
+    "plan.next.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan Berikutnya"
+          }
+        }
+      }
+    },
+    "plan.next.today" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jatuh tempo hari ini"
+          }
+        }
+      }
+    },
+    "plan.ongoing.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan produktif tidak masuk rencana ini."
+          }
+        }
+      }
+    },
+    "plan.ongoing.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dibayar Seperti Biasa"
+          }
+        }
+      }
+    },
+    "plan.pay" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tandai Sudah Bayar"
+          }
+        }
+      }
+    },
+    "plan.progress.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah Terlunasi"
+          }
+        }
+      }
+    },
+    "plan.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satu cicilan lunas, satu langkah lebih ringan."
+          }
+        }
+      }
+    },
+    "plan.tag.inProgress" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sedang Dilunasi"
+          }
+        }
+      }
+    },
+    "plan.tag.next" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berikutnya"
+          }
+        }
+      }
+    },
+    "plan.tag.ongoing" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jalan Terus"
+          }
+        }
+      }
+    },
+    "plan.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rencanaku"
           }
         }
       }

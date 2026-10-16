@@ -5,7 +5,7 @@ import Domain
  `POST /payoff/plans` and `POST /debts/{id}/payments`. The integrator implements it with the
  generated client; each call throws an `AppProblem`.
  */
-package protocol PlanService: Sendable {
+package protocol PayoffPlanService: Sendable {
     /** Makes the simulated plan the person's: Jadikan Rencanaku. */
     func create(method: PayoffMethod, extraPayment: Int) async throws -> ActivePayoffPlan
     /** The person's plan; throws `PAYOFF_PLAN_NOT_FOUND` before one is made. */

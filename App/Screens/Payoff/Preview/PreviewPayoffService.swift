@@ -45,6 +45,6 @@ nonisolated struct PreviewPayoffService: PayoffService {
 
 #if DEBUG
     #Preview("Rencana Pelunasan") {
-        NavigationStack { PayoffScreen(service: PreviewPayoffService()) { _ in } }
+        NavigationStack { PayoffScreen(service: PreviewPayoffService(), plans: PreviewPayoffPlanService()) { _ in } }
     }
 #endif

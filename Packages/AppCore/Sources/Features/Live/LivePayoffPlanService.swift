@@ -2,7 +2,7 @@ import APIClient
 import Domain
 
 /** Rencanaku's calls over the API client. */
-package struct LivePlanService: PlanService {
+package struct LivePayoffPlanService: PayoffPlanService {
     private let api: KiraAPI
 
     /** Calls through `api`. */

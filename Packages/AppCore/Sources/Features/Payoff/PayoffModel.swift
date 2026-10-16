@@ -73,7 +73,7 @@ package final class PayoffModel {
     }
 
     /** Makes the plan on screen the person's through `plans`; true when it is saved and Rencanaku can open. */
-    package func makePlan(using plans: any PlanService) async -> Bool {
+    package func makePlan(using plans: any PayoffPlanService) async -> Bool {
         guard !isMakingPlan, phase.value != nil, !exceedsMaximum else { return false }
         isMakingPlan = true
         makePlanProblem = nil

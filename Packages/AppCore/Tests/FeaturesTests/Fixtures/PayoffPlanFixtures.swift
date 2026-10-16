@@ -2,7 +2,7 @@ import Domain
 import Foundation
 
 /** Rencanaku's plan and payments, as the screens receive them. */
-enum PlanFixtures {
+enum PayoffPlanFixtures {
     static func account(
         _ id: String, status: PlanAccountStatus, remaining: Int, original: Int, kind: DebtKind = .paylater
     ) -> PlanAccount {
