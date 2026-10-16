@@ -54,7 +54,7 @@ struct LiveCommunityReportTests {
 
     @Test("no connection is a connection failure, not a problem")
     func offline() async throws {
-        let api = KiraAPI(serverURL: URL(string: "https://api.test") ?? URL(filePath: "/"), transport: OfflineTransport())
+        let api = KiraAPI(serverURL: URL(string: "https://api.test") ?? URL(filePath: "/"), transport: NoNetworkTransport())
         do {
             try await LiveCommunityService(api: api).report(groupID: "g-lunas", reason: .scam, story: nil)
             Issue.record("the report should not have been sent")
@@ -66,7 +66,7 @@ struct LiveCommunityReportTests {
 }
 
 /** A transport with no network: every request fails before it reaches the server. */
-private struct OfflineTransport: ClientTransport {
+private struct NoNetworkTransport: ClientTransport {
     func send(
         _: HTTPRequest, body _: HTTPBody?, baseURL _: URL, operationID _: String
     ) async throws -> (HTTPResponse, HTTPBody?) {
