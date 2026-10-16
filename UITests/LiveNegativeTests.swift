@@ -33,11 +33,13 @@ nonisolated final class LiveNegativeTests: XCTestCase {
         LiveFlow.expect(app.staticTexts["Kodenya belum cocok. Periksa lagi emailmu, ya."], in: self, app: app)
         LiveFlow.shot("neg-01-wrong-code", in: self)
         let code = try LiveFlow.waitForCode(after: sent)
-        LiveFlow.type(String(repeating: XCUIKeyboardKey.delete.rawValue, count: 6) + code, into: field, in: self, app: app)
+        LiveFlow.type(
+            String(repeating: XCUIKeyboardKey.delete.rawValue, count: 6) + code, into: field, in: self, app: app)
         LiveFlow.shot("neg-02-signed-in", in: self)
         tap(app.buttons["Catat"], app, timeout: 30)
         tap(app.buttons["Riwayat transaksi"], app)
-        LiveFlow.expect(app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Parkir'")).firstMatch, in: self, app: app)
+        LiveFlow.expect(
+            app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Parkir'")).firstMatch, in: self, app: app)
         LiveFlow.shot("neg-03-data-kept", in: self)
     }
 
@@ -65,7 +67,8 @@ nonisolated final class LiveNegativeTests: XCTestCase {
         LiveFlow.type("9000", into: app.textFields["Jumlah"], in: self, app: app)
         LiveFlow.type("Tol", into: app.textFields["Nama"], in: self, app: app)
         tap(app.buttons["Simpan Transaksi"], app)
-        LiveFlow.expect(app.staticTexts["Koneksi terputus. Coba lagi sebentar lagi, ya."], in: self, timeout: 30, app: app)
+        LiveFlow.expect(
+            app.staticTexts["Koneksi terputus. Coba lagi sebentar lagi, ya."], in: self, timeout: 30, app: app)
         LiveFlow.shot("neg-06-server-down", in: self)
         tap(app.buttons["Tutup"], app)
         LiveFlow.expect(app.textFields["Nama"], in: self, app: app)

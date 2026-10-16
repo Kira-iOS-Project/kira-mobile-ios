@@ -15,13 +15,16 @@ nonisolated final class LiveRecordTests: XCTestCase {
         let app = LiveFlow.launch(try LiveFlow.requireServer())
         LiveFlow.unlock(app)
         tap(app.buttons["Catat"], app, timeout: 20)
-        LiveFlow.type("makan siang 25rb, kopi goceng", into: app.textFields["Tulis Pengeluaran atau Pemasukan"], in: self, app: app)
+        LiveFlow.type(
+            "makan siang 25rb, kopi goceng", into: app.textFields["Tulis Pengeluaran atau Pemasukan"], in: self,
+            app: app)
         tap(app.buttons["Kirim"], app)
         let save = app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Simpan'")).firstMatch
         LiveFlow.expect(save, in: self, timeout: 20, app: app)
         LiveFlow.shot("cat-01-drafts", in: self)
         save.tap()
-        LiveFlow.expect(app.staticTexts.matching(NSPredicate(format: "label CONTAINS 'Tersimpan'")).firstMatch, in: self, app: app)
+        LiveFlow.expect(
+            app.staticTexts.matching(NSPredicate(format: "label CONTAINS 'Tersimpan'")).firstMatch, in: self, app: app)
         LiveFlow.shot("cat-02-saved", in: self)
         tap(app.buttons["Riwayat transaksi"], app)
         LiveFlow.expect(app.staticTexts["Riwayat Transaksi"], in: self, app: app)
@@ -41,7 +44,8 @@ nonisolated final class LiveRecordTests: XCTestCase {
         let amount = app.textFields["Jumlah"]
         /** A new amount every run: an unchanged form closes without "Perubahan Tersimpan". */
         let changed = (amount.value as? String ?? "").hasPrefix("27") ? "28000" : "27000"
-        LiveFlow.type(String(repeating: XCUIKeyboardKey.delete.rawValue, count: 12) + changed, into: amount, in: self, app: app)
+        LiveFlow.type(
+            String(repeating: XCUIKeyboardKey.delete.rawValue, count: 12) + changed, into: amount, in: self, app: app)
         tap(app.buttons["Simpan"], app)
         LiveFlow.expect(app.staticTexts["Perubahan Tersimpan"], in: self, app: app)
         LiveFlow.shot("cat-05-changed", in: self)
@@ -55,7 +59,7 @@ nonisolated final class LiveRecordTests: XCTestCase {
     }
 
     @MainActor
-    func test05CatatManual() throws {
+    func test05ManualEntry() throws {
         let app = LiveFlow.launch(try LiveFlow.requireServer())
         LiveFlow.unlock(app)
         tap(app.buttons["Catat"], app, timeout: 20)
