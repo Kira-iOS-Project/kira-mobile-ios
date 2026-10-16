@@ -29,7 +29,7 @@ nonisolated final class LiveFlowTests: XCTestCase {
         answerQuiz(app)
         tap(app.buttons["Amankan Akunku"], app, timeout: 20)
         LiveFlow.shot("onb-05-pin", in: self)
-        LiveFlow.type("381449", into: app.textFields.firstMatch, in: self, app: app)
+        LiveFlow.type("381449", into: app.secureTextFields["Buat PIN 6 Angka"], in: self, app: app)
         tap(app.buttons["Buat PIN"], app)
         tap(app.buttons["Mulai"], app, timeout: 15)
         LiveFlow.expect(app.buttons["Beranda"], in: self, timeout: 20, app: app)
