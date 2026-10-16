@@ -16,6 +16,7 @@ version 6, last changed 15 October 2026). When a ticket names a component (`Kira
 | `App/DesignSystem/Components/` | The components, by group: Controls, Content, Score, Lists, Navigation, Dialog, Chat |
 | `App/DesignSystem/Layout/` | Row separators, the wrapping row (chips), the weighted row, the scroll edges |
 | `App/DesignSystem/Gallery/` | The debug-only gallery of every component |
+| `App/Screens/Shared/` | Screen helpers several areas share: dates, the load-failed view, the tap card, plan and category names, problem messages ([Shared screen helpers](#shared-screen-helpers)) |
 | `Packages/AppCore/Sources/Domain/` | `RupiahFormatStyle`, `Score`, `ScoreBand`, `DigitCode`: logic, tested at 100% |
 
 ## Rules every screen keeps
@@ -276,6 +277,26 @@ which cannot hold, turn the digits on and off with its action. A presented dialo
 covers the whole window, so nothing behind it can be reached; VoiceOver starts on its title, and
 the escape gesture runs the secondary action (or the only one) and closes it. `UITests/DesignSystemGalleryAuditTests.swift` runs Apple's
 accessibility audit over every gallery page.
+
+## Shared screen helpers
+
+What several areas show the same way lives once in `App/Screens/Shared/`. An area never declares
+its own copy (a second `extension PlanID { var title }` is a redeclaration the build refuses), and
+a helper moves here as soon as a second area needs it.
+
+| Helper | What it gives | Used by |
+| --- | --- | --- |
+| `KiraFormats.swift` | Dates as Kira writes them, in Indonesian and WIB whatever the device's region: `.kiraDate` ("15 Oktober 2026"), `.kiraWeekdayDate` ("Kamis, 15 Oktober 2026"), `.kiraDayMonth`, `.kiraMonth`, `.kiraTime` ("12.41", written before "WIB"), `.kiraGroupDate` (Riwayat's "Kamis 15 Oktober 2026"); `KiraDateFormat.dateTime(_:)` and `.dayTime(_:)` for the catalog's "… · 12.41 WIB" phrases; `DayRange`'s `firstEnd`, `lastEnd` and `.kiraDayRange` ("1–30 September 2026", "25 September – 24 Oktober 2026"); `.kiraDecimal(_:)` and `.kiraMultiple` ("1,1", "0,5"); `Int.rupiah` | Beranda, Kira Score, Catat, Riwayat, Impor Mutasi |
+| `LoadFailedView` | A screen that could not load: an optional title, the problem's catalog message, the reference for a code this app does not know, and Coba Lagi | Beranda, Kira Score, Riwayat and the screens under it |
+| `KiraTapCard` | Beranda's tappable card: a 56 pt illustration tile, two lines and a chevron, one button named by its whole sentence | Beranda (Kira Score, Ringkasan Mingguan) |
+| `PlanID+Display.swift` | `title` ("Kira Gratis", "Kira Muda", "Kira Plus") and `shortTitle` ("Muda", "Plus") on the `plans.name.*` and `plans.short.*` keys | Profil, Paket, Langganan, Beasiswa Kira |
+| `AppProblem+Message.swift` | `message`, the catalog's text for a problem (`problem.<CODE>` or `problem.unknown`), and `unknownReference`, the reference to quote only when the code is unknown | Every screen that shows a problem |
+| `TransactionCategory+Display.swift` | `tile` (the `KiraCategory` the boards draw, such as Bonus on the savings tile) and `title` (the board's name on the `ledger.category.*` keys: "Makan & Minum", "Kopi") | Catat, Riwayat, Detail Transaksi, Impor Mutasi |
+
+These styles are product rules like `RupiahFormatStyle`, so they name their locale and time zone
+instead of following the device's. Plans and Account still keep a few styles of their own
+(`plansFullDay`, `accountDay`) that follow the device's locale; they print the same in Indonesian,
+and move here when one of them is needed elsewhere.
 
 ## Icons
 
