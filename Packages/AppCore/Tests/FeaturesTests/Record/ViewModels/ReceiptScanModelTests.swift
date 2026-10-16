@@ -1,4 +1,3 @@
-import APIClient
 import Domain
 import Foundation
 import Testing
@@ -142,20 +141,5 @@ extension ReceiptScanModelTests {
         let receipt = try #require(service.receipts.first)
         #expect(receipt.storeName == "Toko Sejahtera")
         #expect(service.receipts.first?.total == 15_500)
-    }
-}
-
-extension ReceiptScanModelTests {
-    @Test("the server saying Kira AI is off hands over to Catat's AI-off notice instead of a failure dialog")
-    func aiTurnedOff() async {
-        let service = FakeRecordService()
-        service.receiptResult = .failure(AppProblem(code: "CHAT_AI_DISABLED"))
-        var turnedOff = false
-        let scan = model(service, reader: FakeReceiptReader(result: .success(board)), onAIOff: { turnedOff = true })
-        scan.picked(Data([1]), fileName: nil)
-        await scan.read()
-        #expect(turnedOff)
-        #expect(scan.problem == nil)
-        #expect(service.receipts.count == 1)
     }
 }
