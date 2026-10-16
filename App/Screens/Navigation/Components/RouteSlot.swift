@@ -36,6 +36,8 @@ struct RouteSlot: View {
             DebtEmergencyScreen(care: services.care, service: services.debtEmergency, onOpen: onOpen)
         case .debtGuide(let guide): DebtGuideScreen(guide: guide, care: services.care, onOpen: onOpen)
         case .breathingExercise, .negotiationScript, .safetyPlan: PendingCareSlot()
+        /** KOM's screens land with their own branches (work/i1-community, work/i2-marketplace). */
+        case .community, .communityGroup, .marketplace, .product, .submitProduct: EmptySlot()
         case .home, .record, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history, .transaction,
             .conversation, .importStatement, .unavailable:
             EmptySlot()
