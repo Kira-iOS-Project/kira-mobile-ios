@@ -28,7 +28,7 @@ package final class CareContactsModel {
             contacts = try await service.contacts()
             problem = nil
         } catch {
-            problem = error as? AppProblem ?? AppProblem()
+            problem = AppProblem(error)
         }
     }
 

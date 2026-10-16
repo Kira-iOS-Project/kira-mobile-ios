@@ -19,6 +19,10 @@ package final class OnboardingFlowModel {
     package private(set) var focus = Focus.trackSpending
     @ObservationIgnored private var quiz: HealthCheckModel?
     @ObservationIgnored private var signUpEntry: EmailEntryModel?
+    /** Whether a cover of the email sheet (the sheet or its failure dialog) is up or on its way. */
+    @ObservationIgnored private var sheetCovers = false
+    /** Kode Verifikasi, waiting for the email sheet's covers to be down before it is pushed. */
+    @ObservationIgnored private var codeAfterSheet: OnboardingScreen?
     private let service: any OnboardingService
     private let pinSetup: any PinSetup
     private let onFinished: (OnboardingOutcome) -> Void
@@ -65,20 +69,33 @@ package final class OnboardingFlowModel {
         if let signUpEntry { return signUpEntry }
         let model = EmailEntryModel(
             service: service, onFailed: { [weak self] in self?.signUpEmail.fail($0) },
-            onSent: { [weak self] in self?.codeSent(to: $0, delivery: $1) })
+            onSent: { [weak self] in self?.sheetCodeSent(to: $0, delivery: $1) })
         signUpEntry = model
         return model
     }
 
     /** "Daftar dengan Email": opens the sheet. */
     package func openSignUpEmail() {
+        sheetCovers = true
         signUpEmail.open()
     }
 
     /** Coba Lagi on the sheet's failure: the sheet opens again on the same address and sends again. */
     package func retrySignUpEmail() async {
+        sheetCovers = true
         signUpEmail.open()
         await signUpEmailModel().submit()
+    }
+
+    /**
+     Every cover of the email sheet is down: the code screen a send from it went to is pushed now,
+     once, so the push never meets a cover still on its way up or down.
+     */
+    package func signUpSheetGone() {
+        sheetCovers = false
+        guard let screen = codeAfterSheet else { return }
+        codeAfterSheet = nil
+        open(screen)
     }
 
     /** The model of Kode Verifikasi for the code sent to `email`. */
@@ -122,8 +139,14 @@ package final class OnboardingFlowModel {
     }
 
     private func codeSent(to email: String, delivery: CodeDelivery) {
-        signUpEmail.close()
         open(.code(email: email, delivery: delivery))
+    }
+
+    /** A send from the email sheet went through: it closes, and the code screen waits for its covers. */
+    private func sheetCodeSent(to email: String, delivery: CodeDelivery) {
+        signUpEmail.close()
+        guard sheetCovers else { return codeSent(to: email, delivery: delivery) }
+        codeAfterSheet = .code(email: email, delivery: delivery)
     }
 
     private func verified(_ result: SignInResult) {

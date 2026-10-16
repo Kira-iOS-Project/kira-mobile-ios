@@ -43,7 +43,7 @@ struct AppProblemConnectionTests {
         #expect(AppProblem.connectionLost.knownCode == nil)
         #expect(AppProblem.connectionLost.messageKey == "problem.connection")
         #expect(!AppProblem.connectionLost.showsReference)
-        #expect(AppProblem().showsReference)
+        #expect(!AppProblem().showsReference)
         #expect(AppProblem().messageKey == "problem.unknown")
         #expect(!known.showsReference)
     }

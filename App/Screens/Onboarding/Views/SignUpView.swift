@@ -2,7 +2,8 @@
  Buat Akun (ONB-05): Kuku, the promise "Simpan Catatanmu dengan Aman", one way to sign up (email,
  no password) and the links to the Terms and the Privacy Policy. "Daftar dengan Email" opens a
  sheet for the address, which the board leaves out; the code then goes there. A request that fails
- closes the sheet for the failure dialog, whose Coba Lagi opens it again on the same address. No help button.
+ closes the sheet for the failure dialog, whose Coba Lagi opens it again on the same address. A send
+ that went through closes the sheet, and Kode Verifikasi is pushed only once its cover is down. No help button.
  "Aku Sudah Punya Akun" is the outlined block button of Intro, not the board's quiet link (the
  owner's choice, 2026-10-16).
  */
@@ -40,6 +41,7 @@ struct SignUpView: View {
         .kiraSheet(
             $flow.signUpEmail, title: "onboarding.signUp.sheet.title", subtitle: "onboarding.signUp.sheet.subtitle",
             failureTitle: "onboarding.signUp.sheet.failed", onRetry: { Task { await flow.retrySignUpEmail() } },
+            onGone: flow.signUpSheetGone,
             content: {
                 EmailForm(model: flow.signUpEmailModel(), submitLabel: "onboarding.signUp.sheet.send")
                     .padding(.bottom, KiraSpacing.space2)
