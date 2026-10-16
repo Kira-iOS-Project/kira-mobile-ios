@@ -42,7 +42,8 @@ struct AmountReaderTests {
     }
 
     @Test(
-        "slang", arguments: [
+        "slang",
+        arguments: [
             ("goceng", 5_000), ("gocap", 50_000), ("cepek", 100_000), ("ceban", 10_000), ("seceng", 1_000),
             ("noceng", 2_000), ("goban", 50_000), ("cepek ceng", 100_000), ("rp goceng", 5_000),
         ])
@@ -50,7 +51,8 @@ struct AmountReaderTests {
         #expect(amount(phrase) == expected)
     }
 
-    @Test("a quantity or a word is not an amount", arguments: ["2", "5", "lima", "kopi", "ribu", "puluh", "belas", "rp"])
+    @Test(
+        "a quantity or a word is not an amount", arguments: ["2", "5", "lima", "kopi", "ribu", "puluh", "belas", "rp"])
     func notAmounts(phrase: String) {
         let words = MessageTokenizer.tokens(of: phrase).map(\.text)
         #expect(AmountReader.read(words, at: 0) == nil)

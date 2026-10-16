@@ -7,7 +7,9 @@
 package struct MessageToken: Equatable, Sendable {
     /** Whether the token is a word (letters, digits or both) or ends a clause. */
     package enum Kind: Equatable, Sendable {
+        /** Letters, digits or both. */
         case word
+        /** A character that ends a clause. */
         case separator
     }
 
@@ -19,8 +21,10 @@ package struct MessageToken: Equatable, Sendable {
     package let start: Int
     /** The UTF-16 offset just after the token. */
     package let end: Int
+    /** A word or a separator. */
     package let kind: Kind
 
+    /** A token of the message. */
     package init(original: String, start: Int, end: Int, kind: Kind) {
         self.original = original
         self.text = original.lowercased()

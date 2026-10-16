@@ -6,15 +6,20 @@
 
 /** A transaction read from a message, before it has an id. */
 package struct DraftCandidate: Equatable, Sendable {
+    /** Expense or income. */
     package var type: TransactionType
+    /** The name in Title Case. */
     package var name: String
+    /** Whole rupiah. */
     package var amount: Int
+    /** The guessed category. */
     package var category: TransactionCategory
     /** The UTF-16 offset of the first character read into this draft. */
     package var spanStart: Int
     /** The UTF-16 offset just after the last character read into this draft. */
     package var spanEnd: Int
 
+    /** A draft read from a message. */
     package init(
         type: TransactionType, name: String, amount: Int, category: TransactionCategory, spanStart: Int,
         spanEnd: Int
@@ -41,6 +46,7 @@ package struct DraftTextParser: Sendable {
     /** The name of a draft whose message names only an amount, from the app's catalog. */
     private let fallbackName: String
 
+    /** A parser that names amount-only drafts `fallbackName`. */
     package init(fallbackName: String) {
         self.fallbackName = fallbackName
     }

@@ -15,11 +15,14 @@ package enum NameCasing {
         words.enumerated().map { position, word in
             let lower = word.lowercased()
             if position > 0, lowercaseWords.contains(lower) { return lower }
-            if keepsAcronyms, (2...4).contains(word.count), word == word.uppercased(), word.contains(where: \.isLetter) {
-                return word
-            }
+            if keepsAcronyms, isAcronym(word) { return word }
             return lower.prefix(1).uppercased() + lower.dropFirst()
         }
         .joined(separator: " ")
+    }
+
+    /** Two to four letters in capitals: KRL, BPJS. */
+    private static func isAcronym(_ word: String) -> Bool {
+        (2...4).contains(word.count) && word == word.uppercased() && word.contains(where: \.isLetter)
     }
 }

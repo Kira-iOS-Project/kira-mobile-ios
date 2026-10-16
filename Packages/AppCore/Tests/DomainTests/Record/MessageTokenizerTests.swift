@@ -19,5 +19,6 @@ struct MessageTokenizerTests {
         #expect(MessageTokenizer.tokens(of: ",kopi-").map(\.original) == [",", "kopi"])
         #expect(MessageTokenizer.tokens(of: "-").isEmpty)
         #expect(MessageTokenizer.tokens(of: "a.").map(\.original) == ["a"])
+        #expect(MessageTokenizer.tokens(of: "2-3 a-1 a,b").map(\.original) == ["2-3", "a-1", "a", ",", "b"])
     }
 }

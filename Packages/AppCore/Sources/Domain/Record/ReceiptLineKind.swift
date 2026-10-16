@@ -11,16 +11,17 @@ enum ReceiptLineKind: Equatable {
     /** Nothing to read: a rule, a time, a number on its own. */
     case blank
 
-    /** The trailing amount of a line, with an optional "Rp" and an optional minus before it. */
-    private static var pricedLine: Regex<(Substring, label: Substring, minus: Substring?, amount: Substring)> {
-        /^(?<label>.*?)[\s:=]*(?<minus>-)?\s*(?:[Rr][Pp]\.?\s*)?(?<amount>\d{1,3}(?:[.,]\d{3})+(?:[.,]\d{2})?|\d+(?:[.,]\d{2})?)$/
-    }
-
     /** A quantity: "2 x", "2x", "@", "2 pcs x". */
     private static var quantityLabel: Regex<Substring> { /^\d+\s*(?:pcs|buah|bh)?\s*[xX@]/ }
 
     /** Reads one line, already trimmed. */
     static func of(_ line: String) -> ReceiptLineKind {
+        /** The trailing amount of a line, with an optional "Rp" and an optional minus before it. */
+        let pricedLine =
+            #/
+            ^ (?<label> .*?) [\s:=]* (?<minus> -)? \s* (?: [Rr][Pp] \.? \s*)?
+            (?<amount> \d{1,3} (?: [.,]\d{3})+ (?: [.,]\d{2})? | \d+ (?: [.,]\d{2})?) $
+            /#
         guard let match = line.wholeMatch(of: pricedLine), let value = NumberText.value(of: String(match.amount))
         else {
             return line.contains(where: \.isLetter) ? .text(line) : .blank

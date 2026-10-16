@@ -3,13 +3,13 @@ import Foundation
 /**
  Reads a receipt from the lines Vision recognised on the device (CAT-06): the store from its head,
  each item with its amount, discounts taken off the item above them, and the printed TOTAL. Lines
- after the total (payment, change) are not items. Account and card numbers are masked first.
+ after the total (payment, change) are not items. Account and card numbers in the names, the only
+ text that leaves the device, are masked.
  */
 package enum ReceiptTextParser {
     /** The receipt's reading, or nil when no item with an amount was found. */
     package static func read(_ lines: [String]) -> ReceiptReading? {
-        let lines = lines.map { SensitiveNumbers.masked($0).trimmingCharacters(in: .whitespaces) }
-            .filter { !$0.isEmpty }
+        let lines = lines.map { $0.trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty }
         var receipt = ReceiptItems()
         for line in lines where receipt.total == nil {
             receipt.add(ReceiptLineKind.of(line))
@@ -22,6 +22,7 @@ package enum ReceiptTextParser {
 
     /** An item's name: a line printed in capitals is written in Title Case, any other as printed. */
     static func itemName(_ label: String) -> String {
+        let label = SensitiveNumbers.masked(label)
         let words = label.split(separator: " ").map(String.init)
         guard label == label.uppercased() else { return words.joined(separator: " ") }
         return NameCasing.titleCased(words, keepsAcronyms: false)
@@ -34,26 +35,31 @@ package enum ReceiptTextParser {
             guard line.filter(\.isLetter).count >= 3, case .text = ReceiptLineKind.of(line) else { return false }
             return !ReceiptWords.notStore.contains { lower.hasPrefix($0) }
         }
-        return name.map { NameCasing.titleCased($0.split(separator: " ").map(String.init), keepsAcronyms: false) }
+        return name.map { itemName($0.uppercased()) }
     }
 
     /** The printed date ("15-10-2026", "15/10/26") and the time on its line or any line ("12:58"). */
     static func printedDate(in lines: [String]) -> ReceiptDate? {
-        let datePattern = /(?<day>\d{1,2})[\-\/.](?<month>\d{1,2})[\-\/.](?<year>\d{4}|\d{2})(?!\d)/
         let timePattern = /(?:^|\D)(?<hour>\d{1,2}):(?<minute>\d{2})(?!\d)/
         for line in lines {
-            guard let date = line.firstMatch(of: datePattern), let day = Int(date.day), let month = Int(date.month),
-                let rawYear = Int(date.year), (1...31).contains(day), (1...12).contains(month)
-            else { continue }
-            let year = rawYear < 100 ? 2000 + rawYear : rawYear
+            guard let date = day(in: line) else { continue }
             let time = ([line] + lines).lazy.compactMap { $0.firstMatch(of: timePattern) }.first { match in
-                (Int(match.hour) ?? 99) < 24 && (Int(match.minute) ?? 99) < 60
+                Int(match.hour).map { $0 < 24 } == true && Int(match.minute).map { $0 < 60 } == true
             }
             return ReceiptDate(
-                day: day, month: month, year: year, hour: time.flatMap { Int($0.hour) },
+                day: date.day, month: date.month, year: date.year, hour: time.flatMap { Int($0.hour) },
                 minute: time.flatMap { Int($0.minute) })
         }
         return nil
+    }
+
+    /** The day, month and four-digit year of a printed date on `line`, when it is a real one. */
+    private static func day(in line: String) -> ReceiptDate? {
+        let pattern = /(?<day>\d{1,2})[\-\/.](?<month>\d{1,2})[\-\/.](?<year>\d{4}|\d{2})(?!\d)/
+        guard let date = line.firstMatch(of: pattern), let day = Int(date.day), let month = Int(date.month),
+            let year = Int(date.year), (1...31).contains(day), (1...12).contains(month)
+        else { return nil }
+        return ReceiptDate(day: day, month: month, year: year < 100 ? 2000 + year : year)
     }
 }
 
@@ -69,7 +75,9 @@ struct ReceiptItems {
             addPriced(label, amount)
             pendingName = nil
         case .quantity(let amount):
-            if let pendingName { items.append(ReceiptLine(name: ReceiptTextParser.itemName(pendingName), amount: amount)) }
+            if let pendingName {
+                items.append(ReceiptLine(name: ReceiptTextParser.itemName(pendingName), amount: amount))
+            }
             pendingName = nil
         case .text(let text):
             pendingName = text
@@ -79,9 +87,8 @@ struct ReceiptItems {
     }
 
     private mutating func addPriced(_ label: String, _ amount: Int) {
-        if ReceiptWords.label(label, isIn: ReceiptWords.subtotals) || ReceiptWords.label(label, isIn: ReceiptWords.payments) {
-            return
-        }
+        let isSubtotal = ReceiptWords.label(label, isIn: ReceiptWords.subtotals)
+        if isSubtotal || ReceiptWords.label(label, isIn: ReceiptWords.payments) { return }
         if ReceiptWords.label(label, isIn: ReceiptWords.totals) {
             total = amount
         } else if ReceiptWords.label(label, isIn: ReceiptWords.discounts) {

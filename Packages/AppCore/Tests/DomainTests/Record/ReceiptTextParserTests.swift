@@ -25,7 +25,8 @@ struct ReceiptTextParserTests {
     @Test("capitals, quantity lines, a discount, a subtotal and a card payment")
     func busyReceipt() throws {
         let lines = [
-            "Jl. Kenanga 3", "INDOMARET CABANG KEMANG", "15/10/26", "AQUA 600ML", "2 x 3.500 7.000", "ROTI TAWAR 15.000",
+            "Jl. Kenanga 3", "INDOMARET CABANG KEMANG", "15/10/26", "AQUA 600ML", "2 x 3.500 7.000",
+            "ROTI TAWAR 15.000",
             "DISKON -2.000", "SUBTOTAL 20.000", "PPN 2.000", "TOTAL Rp 22.000", "DEBIT 4111 1111 1111 1234 22.000",
         ]
         let reading = try #require(ReceiptTextParser.read(lines))
@@ -52,8 +53,10 @@ struct ReceiptTextParserTests {
     @Test("a date with an impossible day or a time on another line")
     func dates() {
         #expect(ReceiptTextParser.printedDate(in: ["45-10-2026"]) == nil)
-        #expect(ReceiptTextParser.printedDate(in: ["Kasir 2", "10.10.2026", "Jam 08:05"]) == ReceiptDate(
-            day: 10, month: 10, year: 2026, hour: 8, minute: 5))
+        #expect(
+            ReceiptTextParser.printedDate(in: ["Kasir 2", "10.10.2026", "Jam 08:05"])
+                == ReceiptDate(
+                    day: 10, month: 10, year: 2026, hour: 8, minute: 5))
         #expect(ReceiptTextParser.printedDate(in: ["10-10-2026 99:99"])?.hour == nil)
     }
 
@@ -61,6 +64,7 @@ struct ReceiptTextParserTests {
     func store() {
         #expect(ReceiptTextParser.storeName(in: ["Telp 021", "Kopi 18.000", "WARUNG BU TINI"]) == "Warung Bu Tini")
         #expect(ReceiptTextParser.storeName(in: ["AB"]) == nil)
+        #expect(ReceiptTextParser.itemName("Transfer ke 1234567890") == "Transfer ke ••••7890")
     }
 
     @Test("line kinds")

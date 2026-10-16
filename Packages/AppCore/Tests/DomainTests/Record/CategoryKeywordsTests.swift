@@ -14,7 +14,8 @@ struct CategoryKeywordsTests {
     @Test(
         "the first phrase or word names the category",
         arguments: [
-            (["rumah", "sakit"], TransactionCategory.health), (["bayar", "kos"], .bills), (["grab", "ke", "kantor"], .transport),
+            (["rumah", "sakit"], TransactionCategory.health), (["bayar", "kos"], .bills),
+            (["grab", "ke", "kantor"], .transport),
             (["es", "kopi"], .coffee), (["makan", "bakso"], .food), (["netflix"], .entertainment),
         ])
     func category(words: [String], expected: TransactionCategory) {

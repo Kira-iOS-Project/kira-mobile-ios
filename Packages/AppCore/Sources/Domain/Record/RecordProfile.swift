@@ -6,16 +6,24 @@ import Foundation
  read their text, and the last categories for Catat Manual's default (CAT-04).
  */
 package struct RecordProfile: Hashable, Sendable {
+    /** The name taken from the email. */
     package let displayName: String
+    /** The current plan. */
     package let plan: PlanID
+    /** The month's quotas. */
     package let usage: Usage
+    /** The first day of the payday period. */
     package let periodStart: Date
+    /** The last day of the payday period. */
     package let periodEnd: Date
     /** The "Kira AI" consent: off, chat, receipts and voice are not read; Catat Manual still works. */
     package let aiEnabled: Bool
+    /** The last expense category used, for Catat Manual. */
     package let lastExpenseCategory: TransactionCategory?
+    /** The last income category used. */
     package let lastIncomeCategory: TransactionCategory?
 
+    /** A profile for Catat. */
     package init(
         displayName: String, plan: PlanID, usage: Usage, periodStart: Date, periodEnd: Date, aiEnabled: Bool,
         lastExpenseCategory: TransactionCategory?, lastIncomeCategory: TransactionCategory?
