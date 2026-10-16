@@ -86,8 +86,8 @@
                     }
                 }
                 HStack(spacing: KiraSpacing.space4) {
-                    KiraMascot(.senang, size: 120, isFramed: false)
-                    KiraMascot(.tenang, size: 48, crop: .face).clipShape(Circle())
+                    KiraMascot(.happy, size: 120, isFramed: false)
+                    KiraMascot(.calm, size: 48, crop: .face).clipShape(Circle())
                 }
             }
         }
@@ -106,10 +106,10 @@
                     }
                 }
                 HStack(spacing: KiraSpacing.space3) {
-                    KiraCategoryIcon(.tabungan, size: 36, label: "ds.category.tabungan")
+                    KiraCategoryIcon(.savings, size: 36, label: "ds.category.savings")
                     KiraCategoryIcon(.paylater, size: 44, label: "ds.category.paylater")
-                    KiraCategoryIcon(.proteksi, size: 52, label: "ds.category.proteksi")
-                    KiraCategoryIcon(.makan, size: 26, isRound: true, label: "ds.category.makan")
+                    KiraCategoryIcon(.protection, size: 52, label: "ds.category.protection")
+                    KiraCategoryIcon(.food, size: 26, isRound: true, label: "ds.category.food")
                 }
             }
         }
@@ -127,7 +127,7 @@
                         }
                     }
                 }
-                KiraIllustration(.mekar, size: 120, label: "gallery.illustration.mekar")
+                KiraIllustration(.bloom, size: 120, label: "gallery.illustration.bloom")
             }
         }
     }

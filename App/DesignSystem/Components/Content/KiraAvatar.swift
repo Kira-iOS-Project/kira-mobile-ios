@@ -9,14 +9,14 @@ import SwiftUI
 struct KiraAvatar: View {
     /** The circle's soft colour. */
     enum Tone: CaseIterable {
-        case kunyit, hijau, langit, persik
+        case turmeric, green, sky, peach
 
         var fill: Color {
             switch self {
-            case .kunyit: .iluKunyitMuda
-            case .hijau: .iluHijauMuda
-            case .langit: .iluLangitMuda
-            case .persik: .iluPersikMuda
+            case .turmeric: .artTurmericLight
+            case .green: .artGreenLight
+            case .sky: .artSkyLight
+            case .peach: .artPeachLight
             }
         }
     }
@@ -29,7 +29,7 @@ struct KiraAvatar: View {
     @ScaledMetric private var side: CGFloat
 
     /** One or two letters; `label` names an avatar that stands alone, else it is hidden from VoiceOver. */
-    init(_ initials: String, size: CGFloat = 40, tone: Tone = .kunyit, label: LocalizedStringResource? = nil) {
+    init(_ initials: String, size: CGFloat = 40, tone: Tone = .turmeric, label: LocalizedStringResource? = nil) {
         self.initials = initials
         self.size = size
         self.tone = tone

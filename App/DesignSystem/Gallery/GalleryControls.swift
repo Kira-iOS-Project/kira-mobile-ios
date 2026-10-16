@@ -11,8 +11,8 @@
                 KiraButton("gallery.action.seePlan") {}
                 KiraButton("ds.later", variant: .secondary) {}
                 KiraButton("gallery.action.howCalculated", variant: .quiet) {}
-                KiraButton("gallery.action.call119", variant: .darurat) {}.icon(.phone)
-                KiraButton("gallery.action.deleteAccount", variant: .bahaya) {}.icon(.trash)
+                KiraButton("gallery.action.call119", variant: .emergency) {}.icon(.phone)
+                KiraButton("gallery.action.deleteAccount", variant: .destructive) {}.icon(.trash)
                 KiraButton("gallery.action.continueChat", variant: .secondary, size: .small) {}
                 KiraButton("gallery.action.start") {}.iconEnd(.arrowRight).block()
             }
@@ -79,12 +79,12 @@
         private var chips: some View {
             KiraFlowRow {
                 KiraChip("ds.category.paylater", isSelected: debts.contains("paylater")) { toggle("paylater") }
-                KiraChip("ds.category.pinjol", isSelected: debts.contains("pinjol")) { toggle("pinjol") }
-                KiraChip("ds.category.kartu", isSelected: debts.contains("kartu"), leading: .icon(.card)) {
-                    toggle("kartu")
+                KiraChip("ds.category.onlineLoan", isSelected: debts.contains("online-loan")) { toggle("online-loan") }
+                KiraChip("ds.category.card", isSelected: debts.contains("card"), leading: .icon(.card)) {
+                    toggle("card")
                 }
-                KiraChip("ds.category.makan", isSelected: debts.contains("makan"), leading: .category(.makan)) {
-                    toggle("makan")
+                KiraChip("ds.category.food", isSelected: debts.contains("food"), leading: .category(.food)) {
+                    toggle("food")
                 }
             }
         }

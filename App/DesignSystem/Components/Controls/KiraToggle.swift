@@ -31,7 +31,7 @@ struct KiraToggle: View {
                 Capsule().fill(isOn ? Color.pandan : Color.track)
                 Capsule().strokeBorder(isOn ? Color.pandan : Color.hairline, lineWidth: 1)
                 Circle()
-                    .fill(.iluPutih)
+                    .fill(.artWhite)
                     .overlay { Circle().strokeBorder(.hairline, lineWidth: 1) }
                     .frame(width: 25, height: 25)
                     .padding(3)

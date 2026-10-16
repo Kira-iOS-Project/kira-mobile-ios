@@ -54,7 +54,7 @@ struct KiraSectionTitle: View {
 
     private var heading: some View {
         HStack(spacing: KiraSpacing.space2) {
-            if showsLeaf { KiraLeaf(.daun) }
+            if showsLeaf { KiraLeaf(.single) }
             Text(title).font(.headline).foregroundStyle(.ink)
         }
         .accessibilityElement(children: .combine)
