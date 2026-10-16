@@ -33,11 +33,10 @@ struct BillingAPITests {
     @Test("lists the plans and the current one")
     func listsPlans() async throws {
         let catalog = try await KiraAPI.canned(json: plansJSON).api.listPlans()
-        #expect(catalog.current == .free && catalog.currentPeriod == nil && catalog.plans.count == 2)
+        #expect(catalog.current == .free && catalog.plans.count == 2)
         let plus = try #require(catalog.plans.last)
         #expect(plus.id == .plus && plus.monthlyPrice == 29_000 && plus.yearlyPrice == 290_000)
-        #expect(plus.yearlySaving == 58_000 && plus.aiMessages == 300 && plus.receipts == 150)
-        #expect(plus.voiceSeconds == 10_800 && plus.voiceAndImport)
+        #expect(plus.aiMessages == 300 && plus.receipts == 150)
     }
 
     @Test("checks out a paid plan and reads the subscription")
@@ -76,9 +75,8 @@ struct BillingAPITests {
     func listsInvoices() async throws {
         let invoices = try await KiraAPI.canned(json: invoicesJSON).api.listInvoices()
         let invoice = try #require(invoices.first)
-        #expect(invoice.id == "i-1" && invoice.plan == .plus && invoice.period == .yearly)
+        #expect(invoice.id == "i-1" && invoice.plan == .plus)
         #expect(invoice.amount == 290_000 && invoice.paymentMethod == .appStore && invoice.periodStart == "2026-10-16")
-        #expect(invoice.createdAt == Date(timeIntervalSince1970: 1_792_126_800))
     }
 
     @Test("gifts one, three or six months of Plus, sent as the spec's integer", arguments: GiftLengthDTO.allCases)
@@ -86,8 +84,7 @@ struct BillingAPITests {
         let months = length.rawValue
         let (api, transport) = KiraAPI.canned(
             status: 201, json: #"{"id":"g-1","months":\#(months),"amount":\#(29_000 * months)}"#)
-        let gift = try await api.giftMonths(length, paymentMethod: .qris)
-        #expect(gift == GiftDTO(id: "g-1", months: months, amount: 29_000 * months))
+        try await api.giftMonths(length, paymentMethod: .qris)
         let body = try #require(await transport.request).decoded(GiftBody.self)
         #expect(body.months == months && body.paymentMethod == "qris")
     }

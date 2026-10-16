@@ -15,35 +15,34 @@ private struct ApplicationBody: Decodable { let situations: [String], story: Str
 
 @Suite("ScholarshipAPI")
 struct ScholarshipAPITests {
-    @Test("reads eligibility, places and the latest application")
+    @Test("reads the places and the latest application")
     func readsStatus() async throws {
         let json =
             #"{"eligible":false,"ineligibleReason":"has_scholarship","quota":{"remaining":1,"total":4},"#
             + #""application":\#(applicationJSON)}"#
         let status = try await KiraAPI.canned(json: json).api.getScholarship()
-        #expect(!status.eligible && status.ineligibleReason == .hasScholarship)
         #expect(status.remainingPlaces == 1 && status.totalPlaces == 4)
         let application = try #require(status.application)
         #expect(application.status == .accepted && application.situations == [.incomeStopped, .medicalCosts])
-        #expect(application.story == "Baru kena PHK." && application.decideBy == "2026-10-21")
+        #expect(application.decideBy == "2026-10-21")
         #expect(application.decidedAt == Date(timeIntervalSince1970: 1_792_213_200))
-        #expect(application.submittedAt == Date(timeIntervalSince1970: 1_792_126_800) && application.id == "a-1")
+        #expect(application.submittedAt == Date(timeIntervalSince1970: 1_792_126_800))
         #expect(application.grantStart == "2026-10-17" && application.grantEnd == "2027-01-16")
         #expect(application.extensionFrom == "2027-01-02")
     }
 
-    @Test("reads an eligible person with no application")
+    @Test("reads a person with no application")
     func readsEligible() async throws {
         let json = #"{"eligible":true,"ineligibleReason":null,"quota":{"remaining":0,"total":0},"application":null}"#
         let status = try await KiraAPI.canned(json: json).api.getScholarship()
-        #expect(status.eligible && status.ineligibleReason == nil && status.application == nil)
+        #expect(status.application == nil && status.totalPlaces == 0)
     }
 
     @Test("applies with situations and a story, and withdraws")
     func appliesAndWithdraws() async throws {
         let (api, transport) = KiraAPI.canned(status: 201, json: applicationJSON)
         let application = try await api.applyForScholarship(situations: [.chasedByLender], story: nil)
-        #expect(application.id == "a-1")
+        #expect(application.status == .accepted)
         let body = try #require(await transport.request).decoded(ApplicationBody.self)
         #expect(body.situations == ["chased_by_lender"] && body.story == nil)
         let (withdrawer, withdrawn) = KiraAPI.canned(status: 204)

@@ -19,8 +19,6 @@ struct TransactionAPITests {
 
         let saved = try await api.createTransaction(entry)
 
-        #expect(saved.transaction.amount == 18_000)
-        #expect(saved.transaction.source == .chat)
         #expect(saved.message.id == "m-1")
         let body = try decodeSent(
             Components.Schemas.ManualTransactionInput.self, from: try #require(await transport.request))

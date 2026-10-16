@@ -44,8 +44,6 @@ package struct HomeChecklistDTO: Hashable, Sendable {
     package let healthCheck: Bool
     /** Catat Transaksi Pertama done. */
     package let firstTransaction: Bool
-    /** Tambah Dompet: always false until wallets exist. */
-    package let walletAdded: Bool
     /** Atur Tanggal Gajian done. */
     package let paydaySet: Bool
 }

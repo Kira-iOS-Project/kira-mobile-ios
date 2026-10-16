@@ -121,15 +121,12 @@ package struct TransactionSummaryDTO: Hashable, Sendable {
     }
 }
 
-/** A manual entry and Kira's chat note about it (CAT-04b). */
+/** Kira's chat note about a manual entry (CAT-04b). */
 package struct ManualTransactionSavedDTO: Hashable, Sendable {
-    /** The saved transaction. */
-    package let transaction: TransactionDTO
     /** Kira's manual_saved message. */
     package let message: ChatMessageDTO
 
     init(_ saved: Components.Schemas.ManualTransactionSaved) throws {
-        transaction = try TransactionDTO(saved.transaction)
         message = try ChatMessageDTO(saved.message)
     }
 }

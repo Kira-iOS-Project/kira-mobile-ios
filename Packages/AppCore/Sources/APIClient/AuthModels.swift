@@ -2,13 +2,10 @@
 
 /** A sign-in code is on its way. */
 package struct SignInCodeSentDTO: Hashable, Sendable {
-    /** How long the code works: 600 seconds. */
-    package let expiresInSeconds: Int
     /** When "Kirim Ulang Kode" opens: 60 seconds. */
     package let resendAfterSeconds: Int
 
     init(_ body: Components.Schemas.CodeRequested) {
-        expiresInSeconds = body.expiresInSeconds
         resendAfterSeconds = body.resendAfterSeconds
     }
 }

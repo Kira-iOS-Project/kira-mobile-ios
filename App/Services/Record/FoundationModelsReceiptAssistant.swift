@@ -28,10 +28,6 @@ nonisolated struct FoundationModelsReceiptAssistant: ReceiptAssisting {
     struct ReceiptLook {
         @Guide(description: "The store or merchant name exactly as printed at the top, or empty when there is none")
         var storeName: String
-        @Guide(
-            description: "receipt for a shop receipt, transfer for a bank transfer proof",
-            .anyOf(["receipt", "transfer"]))
-        var kind: String
     }
 
     @available(iOS 27, *)
@@ -51,13 +47,12 @@ nonisolated struct FoundationModelsReceiptAssistant: ReceiptAssisting {
             do {
                 let session = LanguageModelSession(model: model, instructions: instructions)
                 let look = try await session.respond(generating: ReceiptLook.self) {
-                    "Read the store name and the kind of this document."
+                    "Read the store name of this document."
                     Attachment(image, orientation: orientation)
                 }
                 .content
                 let name = look.storeName.trimmingCharacters(in: .whitespacesAndNewlines)
-                return ReceiptGlance(
-                    storeName: name.isEmpty ? nil : name, kind: look.kind == "transfer" ? .transferProof : .receipt)
+                return ReceiptGlance(storeName: name.isEmpty ? nil : name)
             } catch {
                 return nil
             }

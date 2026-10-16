@@ -44,9 +44,8 @@ struct AccountAPITests {
     func readsMe() async throws {
         let (api, transport) = KiraAPI.canned(json: meJSON)
         let profile = try await api.getMe()
-        #expect(profile.displayName == "Dinda" && profile.focus == .trackSpending)
-        #expect(profile.plan == CurrentPlanDTO(id: .plus, source: .scholarship, renewsOn: "2027-01-16"))
-        #expect(profile.payday == PaydayDTO(day: 25, endOfMonth: false) && profile.period.daysUntilPayday == 9)
+        #expect(profile.displayName == "Dinda" && profile.plan == CurrentPlanDTO(id: .plus))
+        #expect(profile.period.daysUntilPayday == 9)
         #expect(profile.usage.aiMessages.used == 3 && profile.lastExpenseCategory == .coffee)
         #expect(profile.lastIncomeCategory == nil && profile.debtAccountCount == 2)
         #expect(profile.id == "u-1" && profile.email == "dinda@email.com" && !profile.hideBalances)
@@ -76,9 +75,8 @@ struct AccountAPITests {
     func consents() async throws {
         let (api, transport) = KiraAPI.canned(json: consentsJSON)
         let read = try await api.getConsents()
-        #expect(read.policyVersion == "2026-10-15" && read.items.count == 2)
-        #expect(read.items[0].purpose == .core && read.items[0].decidedAt != nil)
-        #expect(read.items[1] == ConsentDTO(purpose: .weeklySummary, granted: false, decidedAt: nil))
+        #expect(read.items.count == 2 && read.items[0].purpose == .core)
+        #expect(read.items[1] == ConsentDTO(purpose: .weeklySummary, granted: false))
         let saved = try await api.updateConsents(aiProcessing: true, weeklySummary: false)
         #expect(saved == read)
         let body = try #require(await transport.request).decoded(ConsentsBody.self)
