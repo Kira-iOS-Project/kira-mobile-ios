@@ -1,12 +1,18 @@
 /**
- Gallery page for dialogs: success, failure, a confirmation that deletes and one that does not, the
- round-icon art, each shown inline on the scrim, and one presented over the whole window.
+ Gallery page for dialogs: success, failure, the Atur Budget save failure, confirmations, and round
+ icon art, shown inline on the scrim or presented over the whole window.
  */
 #if DEBUG
     import SwiftUI
 
     struct GalleryDialogs: View {
         @State private var isConfirming = false
+        // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
+        @State private var isBudgetSaveFailurePresented = false
+        // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
+        @State private var budgetAmount = "350000"
+        // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
+        @State private var didRetryBudgetSave = false
 
         var body: some View {
             GallerySection(title: "gallery.section.dialogPresented") {
@@ -33,6 +39,23 @@
                     secondary: KiraButton("gallery.dialog.close", variant: .secondary) {}
                 )
                 .onScrim()
+            }
+            GallerySection(title: "gallery.section.dialogBudgetFailure") {
+                KiraField("gallery.dialog.budgetFailure.amount", text: $budgetAmount)
+                    .prefix("gallery.field.rupiah")
+                    .keyboardType(.numberPad)
+                Text(
+                    didRetryBudgetSave
+                        ? "gallery.dialog.budgetFailure.retried" : "gallery.dialog.budgetFailure.notRetried"
+                )
+                .font(.footnote)
+                .foregroundStyle(.inkMuted)
+                KiraButton("gallery.dialog.budgetFailure.open", variant: .secondary) {
+                    isBudgetSaveFailurePresented = true
+                }
+                .budgetSaveFailureDialog(isPresented: $isBudgetSaveFailurePresented) {
+                    didRetryBudgetSave = true
+                }
             }
             GallerySection(title: "gallery.section.dialogConfirm") {
                 KiraDialog(
