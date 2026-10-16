@@ -1,12 +1,14 @@
 /**
- Gallery page for dialogs: success, failure, a confirmation that deletes and one that does not, the
- round-icon art, each shown inline on the scrim, and one presented over the whole window.
+ Gallery page for dialogs: success, failure, budget save success, a confirmation that deletes and
+ one that does not, and round-icon art, shown inline on the scrim or over the whole window.
  */
 #if DEBUG
     import SwiftUI
 
     struct GalleryDialogs: View {
         @State private var isConfirming = false
+        // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
+        @State private var isBudgetSaveSuccessPresented = false
 
         var body: some View {
             GallerySection(title: "gallery.section.dialogPresented") {
@@ -25,6 +27,17 @@
                     primary: KiraButton("gallery.dialog.done") {}
                 )
                 .onScrim()
+                KiraDialog(
+                    "budget.save.success.title",
+                    message: "budget.save.success.message",
+                    art: .success,
+                    primary: KiraButton("budget.save.success.done") {}
+                )
+                .onScrim()
+                KiraButton("gallery.dialog.open", variant: .secondary) {
+                    isBudgetSaveSuccessPresented = true
+                }
+                .budgetSaveSuccessDialog(isPresented: $isBudgetSaveSuccessPresented)
             }
             GallerySection(title: "gallery.section.dialogFailure") {
                 KiraDialog(
