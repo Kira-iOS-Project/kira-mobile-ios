@@ -32,7 +32,7 @@ struct ProblemMessage: View {
 
     var body: some View {
         VStack(spacing: 2) {
-            Text(LocalizedStringKey(problem.messageKey))
+            Text(problem.message)
             if problem.knownCode == nil {
                 Text(problem.reference).font(.caption.monospaced())
             }

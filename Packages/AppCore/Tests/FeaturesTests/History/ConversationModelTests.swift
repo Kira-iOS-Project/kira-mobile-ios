@@ -17,10 +17,11 @@ struct ConversationModelTests {
         let blocks = try #require(model.phase.value)
         #expect(blocks.map(\.id) == ["m-0812", "m-1241"])
         #expect(blocks.map(\.isSource) == [false, true])
-        #expect(blocks[1].framed.map(\.id) == ["m-1241", "r-1241"])
+        #expect(blocks[1].framed.map(\.id) == ["separator-m-1241", "m-1241", "r-1241"])
         #expect(blocks[1].trailing.map(\.id) == ["left-1241"])
-        #expect(blocks[0].framed.count == 2 && blocks[0].trailing.isEmpty)
-        #expect(blocks[1].startedAt == HistorySample.at(HistorySample.today, 12, 41))
+        #expect(blocks[0].framed.map(\.id) == ["separator-m-0812", "m-0812", "r-0812"] && blocks[0].trailing.isEmpty)
+        #expect(
+            blocks[1].framed[2] == .saved(HistorySample.messages[3], source: HistorySample.messages[2], canUndo: false))
         #expect(model.sourceBlockId == "m-1241")
         #expect(model.personInitial == "D")
     }

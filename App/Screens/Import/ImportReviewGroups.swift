@@ -34,7 +34,7 @@ struct ImportReviewGroups: View {
         let category = model.category(of: row)
         let amount = KiraAmount(Decimal(row.amount), size: .small)
         return KiraListRow(
-            Text(row.description), leading: .category(category.artwork), trailing: .check(model.isChecked(row)),
+            Text(row.description), leading: .category(category.tile), trailing: .check(model.isChecked(row)),
             action: action
         )
         .subtitle(Text("review.row.details \(Text(category.title)) \(row.day.date.formatted(.kiraDate))"))
@@ -73,7 +73,7 @@ struct ImportRowSheet: View {
                     ForEach(model.categories(for: row), id: \.self) { category in
                         KiraChip(
                             category.title, isSelected: model.category(of: row) == category,
-                            leading: .category(category.artwork)
+                            leading: .category(category.tile)
                         ) { model.setCategory(category, for: row) }
                     }
                 }

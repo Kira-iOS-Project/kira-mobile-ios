@@ -41,7 +41,7 @@ struct HistoryList: View {
                 KiraChip("history.category.all", isSelected: model.category == nil) { select(nil) }
                 ForEach(model.categories, id: \.self) { category in
                     KiraChip(
-                        category.title, isSelected: model.category == category, leading: .category(category.artwork)
+                        category.title, isSelected: model.category == category, leading: .category(category.tile)
                     ) {
                         select(category)
                     }

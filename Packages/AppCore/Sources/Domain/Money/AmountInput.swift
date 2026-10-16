@@ -16,6 +16,12 @@ package enum AmountInput {
         Int(DigitCode.digits(in: text, length: maximumDigits))
     }
 
+    /** The digits of `text` without leading zeros, at most `maximumDigits`: what a transaction's field keeps. */
+    package static func digits(of text: String) -> String {
+        let digits = text.filter(\.isASCII).filter(\.isNumber).drop { $0 == "0" }
+        return String(digits.prefix(maximumDigits))
+    }
+
     /** The amount of a transaction: like `value(of:)`, but nil for zero, which no transaction has. */
     package static func amount(_ text: String) -> Int? {
         guard let value = value(of: text), value > 0 else { return nil }

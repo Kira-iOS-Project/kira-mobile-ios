@@ -13,4 +13,10 @@ package struct UsageMeter: Hashable, Sendable {
         self.used = used
         self.limit = limit
     }
+
+    /** What is left, never below zero. */
+    package var remaining: Int { max(0, limit - used) }
+
+    /** Whether nothing is left. */
+    package var isExhausted: Bool { used >= limit }
 }

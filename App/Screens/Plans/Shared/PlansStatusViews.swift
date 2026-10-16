@@ -36,7 +36,7 @@ struct PlansProblemNotice: View {
         VStack(alignment: .leading, spacing: KiraSpacing.space1) {
             KiraNotice(
                 .warning, title: "plans.problem.title",
-                message: LocalizedStringResource(String.LocalizationValue(problem.messageKey)))
+                message: problem.message)
             if problem.knownCode == nil {
                 Text(problem.reference)
                     .font(.footnote).foregroundStyle(.inkMuted)

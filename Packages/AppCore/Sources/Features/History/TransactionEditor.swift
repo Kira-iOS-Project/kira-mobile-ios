@@ -14,7 +14,7 @@ package struct TransactionEditor: Hashable, Sendable {
     /** The amount as the field shows it, "18.000"; anything but digits is dropped as typed. */
     package var amountText: String {
         didSet {
-            let grouped = AmountInput.grouped(amountText)
+            let grouped = AmountInput.grouped(AmountInput.digits(of: amountText))
             if grouped != amountText { amountText = grouped }
         }
     }

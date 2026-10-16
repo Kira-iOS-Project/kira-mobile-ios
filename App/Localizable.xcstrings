@@ -1841,156 +1841,6 @@
         }
       }
     },
-    "conversation.kira.aiMeta %@" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dijawab Kira AI · dari pesan %@ WIB"
-          }
-        }
-      }
-    },
-    "conversation.kira.discarded" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Draf ini tidak jadi disimpan."
-          }
-        }
-      }
-    },
-    "conversation.kira.engineMeta" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dihitung mesin"
-          }
-        }
-      }
-    },
-    "conversation.kira.noDrafts" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aku belum menemukan nominal di pesan itu."
-          }
-        }
-      }
-    },
-    "conversation.kira.pendingExpense %lld" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aku tangkap %lld pengeluaran. Cek dulu sebelum disimpan, ya."
-          }
-        }
-      }
-    },
-    "conversation.kira.pendingIncome %lld" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aku tangkap %lld pemasukan. Cek dulu sebelum disimpan, ya."
-          }
-        }
-      }
-    },
-    "conversation.kira.pendingMixed %lld" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aku tangkap %lld transaksi. Cek dulu sebelum disimpan, ya."
-          }
-        }
-      }
-    },
-    "conversation.kira.remaining %@ %@" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sisa uangmu periode ini %1$@, sekitar %2$@ per hari."
-          }
-        }
-      }
-    },
-    "conversation.kira.savedFive" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lima transaksi tersimpan."
-          }
-        }
-      }
-    },
-    "conversation.kira.savedFour" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Empat transaksi tersimpan."
-          }
-        }
-      }
-    },
-    "conversation.kira.savedMany %lld" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld transaksi tersimpan."
-          }
-        }
-      }
-    },
-    "conversation.kira.savedMeta %@" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tersimpan · dari pesan %@ WIB"
-          }
-        }
-      }
-    },
-    "conversation.kira.savedOne" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sudah aku catat, ya."
-          }
-        }
-      }
-    },
-    "conversation.kira.savedThree" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tiga transaksi tersimpan."
-          }
-        }
-      }
-    },
-    "conversation.kira.savedTwo" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dua transaksi tersimpan."
-          }
-        }
-      }
-    },
     "conversation.sourceLabel" : {
       "localizations" : {
         "id" : {
@@ -12474,6 +12324,1366 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ada isian yang belum sesuai. Periksa lagi, ya."
+          }
+        }
+      }
+    },
+    "record.aiOff.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chat, struk, dan suara butuh izin Kira AI. Catat Manual tetap jalan tanpa AI."
+          }
+        }
+      }
+    },
+    "record.aiOff.link" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atur di Data & Privasi"
+          }
+        }
+      }
+    },
+    "record.aiOff.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira AI Sedang Mati"
+          }
+        }
+      }
+    },
+    "record.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "record.cents" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ",00"
+          }
+        }
+      }
+    },
+    "record.composer.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tulis pengeluaran atau pemasukan"
+          }
+        }
+      }
+    },
+    "record.composer.manual" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catat manual, isi formulir"
+          }
+        }
+      }
+    },
+    "record.composer.prompt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketik atau ucapkan…"
+          }
+        }
+      }
+    },
+    "record.composer.scan" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foto struk atau pilih screenshot"
+          }
+        }
+      }
+    },
+    "record.composer.send" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirim"
+          }
+        }
+      }
+    },
+    "record.composer.voice" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catat dengan suara"
+          }
+        }
+      }
+    },
+    "record.continueChat" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lanjut Chat"
+          }
+        }
+      }
+    },
+    "record.count.eight" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delapan"
+          }
+        }
+      }
+    },
+    "record.count.five" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lima"
+          }
+        }
+      }
+    },
+    "record.count.four" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empat"
+          }
+        }
+      }
+    },
+    "record.count.nine" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sembilan"
+          }
+        }
+      }
+    },
+    "record.count.seven" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tujuh"
+          }
+        }
+      }
+    },
+    "record.count.six" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enam"
+          }
+        }
+      }
+    },
+    "record.count.ten" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sepuluh"
+          }
+        }
+      }
+    },
+    "record.count.three" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiga"
+          }
+        }
+      }
+    },
+    "record.count.two" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dua"
+          }
+        }
+      }
+    },
+    "record.currency" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rp"
+          }
+        }
+      }
+    },
+    "record.discarded" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semua draf dihapus. Belum ada yang disimpan ke catatanmu."
+          }
+        }
+      }
+    },
+    "record.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
+    "record.dot" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "·"
+          }
+        }
+      }
+    },
+    "record.draft.fallbackName" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaksi"
+          }
+        }
+      }
+    },
+    "record.drafts.expenses %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aku tangkap %lld pengeluaran. Cek dulu sebelum disimpan, ya."
+          }
+        }
+      }
+    },
+    "record.drafts.income %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aku tangkap %lld pemasukan. Cek dulu sebelum disimpan, ya."
+          }
+        }
+      }
+    },
+    "record.drafts.mixed %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aku tangkap %lld transaksi. Cek dulu sebelum disimpan, ya."
+          }
+        }
+      }
+    },
+    "record.drafts.receipt %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aku baca struk dari %@. Cek dulu sebelum disimpan, ya."
+          }
+        }
+      }
+    },
+    "record.drafts.receiptEyebrow" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dari struk · belum disimpan"
+          }
+        }
+      }
+    },
+    "record.edit.amount" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jumlah"
+          }
+        }
+      }
+    },
+    "record.edit.amountHint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ",00 ditambah otomatis"
+          }
+        }
+      }
+    },
+    "record.edit.category" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategori"
+          }
+        }
+      }
+    },
+    "record.edit.date" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanggal"
+          }
+        }
+      }
+    },
+    "record.edit.dateValue %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@ WIB"
+          }
+        }
+      }
+    },
+    "record.edit.delete" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus dari Draf"
+          }
+        }
+      }
+    },
+    "record.edit.deleteBody" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaksi ini tidak akan disimpan ke catatanmu."
+          }
+        }
+      }
+    },
+    "record.edit.deleteConfirm" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus"
+          }
+        }
+      }
+    },
+    "record.edit.deleteTitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus dari Draf?"
+          }
+        }
+      }
+    },
+    "record.edit.name" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama"
+          }
+        }
+      }
+    },
+    "record.edit.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan"
+          }
+        }
+      }
+    },
+    "record.edit.savedBody" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Draf sudah diperbarui. Cek lagi sebelum disimpan ke catatan."
+          }
+        }
+      }
+    },
+    "record.edit.savedTitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perubahan Tersimpan"
+          }
+        }
+      }
+    },
+    "record.edit.subtitle %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Draf · dari pesan %@ WIB"
+          }
+        }
+      }
+    },
+    "record.edit.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah Transaksi"
+          }
+        }
+      }
+    },
+    "record.failure.connection" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koneksi terputus. Coba lagi sebentar lagi, ya."
+          }
+        }
+      }
+    },
+    "record.failure.reference %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada yang tidak beres. Sebutkan kode ini saat menghubungi kami: %@"
+          }
+        }
+      }
+    },
+    "record.failure.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Berhasil"
+          }
+        }
+      }
+    },
+    "record.history" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat transaksi"
+          }
+        }
+      }
+    },
+    "record.manual.amount" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jumlah"
+          }
+        }
+      }
+    },
+    "record.manual.amountHint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketik angkanya saja, ,00 ditambah otomatis."
+          }
+        }
+      }
+    },
+    "record.manual.category" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategori"
+          }
+        }
+      }
+    },
+    "record.manual.date" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanggal"
+          }
+        }
+      }
+    },
+    "record.manual.expense" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengeluaran"
+          }
+        }
+      }
+    },
+    "record.manual.failedBody" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koneksi terputus. Isianmu tidak hilang, coba simpan lagi."
+          }
+        }
+      }
+    },
+    "record.manual.failedTitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Berhasil Menyimpan"
+          }
+        }
+      }
+    },
+    "record.manual.food" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Makan"
+          }
+        }
+      }
+    },
+    "record.manual.income" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pemasukan"
+          }
+        }
+      }
+    },
+    "record.manual.name" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama"
+          }
+        }
+      }
+    },
+    "record.manual.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catatan"
+          }
+        }
+      }
+    },
+    "record.manual.optional" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opsional"
+          }
+        }
+      }
+    },
+    "record.manual.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Transaksi"
+          }
+        }
+      }
+    },
+    "record.manual.savedBody" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah masuk ke catatanmu dan budget periode ini."
+          }
+        }
+      }
+    },
+    "record.manual.savedTitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaksi Tersimpan"
+          }
+        }
+      }
+    },
+    "record.manual.saveIncome" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Pemasukan"
+          }
+        }
+      }
+    },
+    "record.manual.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi sendiri tanpa chat"
+          }
+        }
+      }
+    },
+    "record.manual.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catat Manual"
+          }
+        }
+      }
+    },
+    "record.manual.type" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jenis transaksi"
+          }
+        }
+      }
+    },
+    "record.meta.answered %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dijawab Kira AI · dari pesan %@ WIB"
+          }
+        }
+      }
+    },
+    "record.meta.engine" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dihitung mesin"
+          }
+        }
+      }
+    },
+    "record.meta.manual %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tersimpan · dicatat manual %@ WIB"
+          }
+        }
+      }
+    },
+    "record.meta.receipt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dibaca Kira AI · foto sudah dihapus"
+          }
+        }
+      }
+    },
+    "record.meta.saved %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tersimpan · dari pesan %@ WIB"
+          }
+        }
+      }
+    },
+    "record.noDrafts" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aku belum menemukan nominal di pesan ini. Coba tulis seperti “kopi 15rb”, ya."
+          }
+        }
+      }
+    },
+    "record.period %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Periode %1$@ – %2$@"
+          }
+        }
+      }
+    },
+    "record.plan.free" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Gratis"
+          }
+        }
+      }
+    },
+    "record.plan.plus" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Plus"
+          }
+        }
+      }
+    },
+    "record.plan.young" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Muda"
+          }
+        }
+      }
+    },
+    "record.quota.chatBody %lld %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu sudah memakai %1$lld dari %2$lld pesan. Terisi lagi %3$@."
+          }
+        }
+      }
+    },
+    "record.quota.chatRibbon" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pesan AI bulan ini"
+          }
+        }
+      }
+    },
+    "record.quota.chatTitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuota Chat AI Bulan Ini Habis"
+          }
+        }
+      }
+    },
+    "record.quota.free" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catat Manual, Kira Score, dan kalkulator tetap jalan tanpa AI, gratis selamanya."
+          }
+        }
+      }
+    },
+    "record.quota.manual" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catat Manual"
+          }
+        }
+      }
+    },
+    "record.quota.plans" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Paket"
+          }
+        }
+      }
+    },
+    "record.quota.receiptBody %lld %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu sudah memakai %1$lld dari %2$lld struk. Terisi lagi %3$@."
+          }
+        }
+      }
+    },
+    "record.quota.receiptRibbon" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Struk bulan ini"
+          }
+        }
+      }
+    },
+    "record.quota.receiptTitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuota Struk Bulan Ini Habis"
+          }
+        }
+      }
+    },
+    "record.quota.ribbonValue %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld dari %2$lld"
+          }
+        }
+      }
+    },
+    "record.quota.subtitle %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paket %1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "record.quota.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuota AI"
+          }
+        }
+      }
+    },
+    "record.quota.voiceBody %lld %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu sudah memakai %1$lld dari %2$lld menit suara. Terisi lagi %3$@."
+          }
+        }
+      }
+    },
+    "record.quota.voiceRibbon" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menit suara bulan ini"
+          }
+        }
+      }
+    },
+    "record.quota.voiceTitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuota Suara Bulan Ini Habis"
+          }
+        }
+      }
+    },
+    "record.receipt.fallbackName" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Struk"
+          }
+        }
+      }
+    },
+    "record.receipt.photo" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foto struk"
+          }
+        }
+      }
+    },
+    "record.receipt.photoLabel %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foto struk %@"
+          }
+        }
+      }
+    },
+    "record.receipt.privacy" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yang disimpan hanya teksnya. Nomor rekening dan kartu di struk disamarkan."
+          }
+        }
+      }
+    },
+    "record.remaining %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sisa uangmu periode ini %1$@, sekitar %2$@ per hari."
+          }
+        }
+      }
+    },
+    "record.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
+          }
+        }
+      }
+    },
+    "record.saved.many %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ transaksi tersimpan."
+          }
+        }
+      }
+    },
+    "record.saved.one" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah aku catat, ya."
+          }
+        }
+      }
+    },
+    "record.scan.cameraBody" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Izinkan kamera di Pengaturan, atau pilih gambar struk dari galeri."
+          }
+        }
+      }
+    },
+    "record.scan.cameraTitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamera Belum Bisa Dipakai"
+          }
+        }
+      }
+    },
+    "record.scan.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup kamera, kembali ke Catat"
+          }
+        }
+      }
+    },
+    "record.scan.frame" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paskan Struk di Dalam Bingkai"
+          }
+        }
+      }
+    },
+    "record.scan.fromGallery" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gambar dari Galeri"
+          }
+        }
+      }
+    },
+    "record.scan.gallery" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih dari galeri"
+          }
+        }
+      }
+    },
+    "record.scan.manual" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketik manual"
+          }
+        }
+      }
+    },
+    "record.scan.manualLong" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketik Manual"
+          }
+        }
+      }
+    },
+    "record.scan.photoLabel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foto struk yang baru diambil"
+          }
+        }
+      }
+    },
+    "record.scan.pickAnother" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih Gambar Lain"
+          }
+        }
+      }
+    },
+    "record.scan.picked" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gambar dari Galeri"
+          }
+        }
+      }
+    },
+    "record.scan.pickedName %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ · dari Galeri"
+          }
+        }
+      }
+    },
+    "record.scan.quota %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuota struk: %1$lld dari %2$lld bulan ini"
+          }
+        }
+      }
+    },
+    "record.scan.read" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baca Struk"
+          }
+        }
+      }
+    },
+    "record.scan.reading" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Membaca struk…"
+          }
+        }
+      }
+    },
+    "record.scan.ready" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foto Siap Dibaca"
+          }
+        }
+      }
+    },
+    "record.scan.retake" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foto Ulang"
+          }
+        }
+      }
+    },
+    "record.scan.shutter" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ambil foto struk"
+          }
+        }
+      }
+    },
+    "record.scan.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scan Struk"
+          }
+        }
+      }
+    },
+    "record.scan.torch" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lampu kilat"
+          }
+        }
+      }
+    },
+    "record.scan.unreadableBody" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba foto ulang dengan cahaya cukup dan struk di dalam bingkai, atau ketik manual."
+          }
+        }
+      }
+    },
+    "record.scan.unreadableTitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Struk Belum Terbaca"
+          }
+        }
+      }
+    },
+    "record.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catat"
+          }
+        }
+      }
+    },
+    "record.undo" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Urungkan"
+          }
+        }
+      }
+    },
+    "record.undo.label %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Urungkan, batalkan simpan %lld transaksi"
+          }
+        }
+      }
+    },
+    "record.voice.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batalkan rekaman"
+          }
+        }
+      }
+    },
+    "record.voice.deleted" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suara diubah jadi teks lalu dihapus."
+          }
+        }
+      }
+    },
+    "record.voice.denied" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Izinkan mikrofon dan pengenalan suara di Pengaturan untuk mencatat dengan suara."
+          }
+        }
+      }
+    },
+    "record.voice.duration %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durasi %lld detik"
+          }
+        }
+      }
+    },
+    "record.voice.listening" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mendengarkan…"
+          }
+        }
+      }
+    },
+    "record.voice.quota" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Memakai kuota suara Kira Plus."
+          }
+        }
+      }
+    },
+    "record.voice.stop" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berhenti merekam"
+          }
+        }
+      }
+    },
+    "record.voice.unavailable" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perangkat ini belum bisa mengubah suara bahasa Indonesia jadi teks tanpa internet. Ketik saja, ya."
+          }
+        }
+      }
+    },
+    "record.voice.wave" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gelombang suara"
           }
         }
       }

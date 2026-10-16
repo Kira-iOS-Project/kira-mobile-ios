@@ -7,9 +7,9 @@ import Foundation
 /** A canned account, the board's Dinda. */
 enum Sample {
     static let day = Date(timeIntervalSince1970: 1_793_491_200)
-    static let usage = AccountUsage(
+    static let usage = Usage(
         aiMessages: UsageMeter(used: 18, limit: 30), receipts: UsageMeter(used: 4, limit: 10),
-        voiceSeconds: UsageMeter(used: 0, limit: 0), resetsOn: day)
+        voiceSeconds: UsageMeter(used: 0, limit: 0), resetsOn: CalendarDay(day))
 
     static func profile(hidesBalances: Bool = false) -> AccountProfile {
         AccountProfile(

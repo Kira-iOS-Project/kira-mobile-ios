@@ -58,7 +58,7 @@ package enum BankStatementParser {
         guard !fields[1].isEmpty else { throw .missingDescription(line: number) }
         guard let amount = amount(fields[2]), amount != 0 else { throw .invalidAmount(line: number) }
         return StatementRow(
-            line: number, day: day, description: AccountNumberMask.masked(fields[1]), amount: amount)
+            line: number, day: day, description: SensitiveNumbers.masked(fields[1], minimumDigits: 8), amount: amount)
     }
 
     /** A signed whole number of rupiah: "-22000", "+7500000", "7500000"; nil for anything else. */

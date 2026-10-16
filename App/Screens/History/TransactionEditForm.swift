@@ -42,7 +42,7 @@ struct TransactionEditForm: View {
                 ForEach(editor.wrappedValue.categories, id: \.self) { category in
                     KiraChip(
                         category.title, isSelected: editor.wrappedValue.category == category,
-                        leading: .category(category.artwork)
+                        leading: .category(category.tile)
                     ) { editor.wrappedValue.category = category }
                 }
             }

@@ -57,6 +57,9 @@ Shared by every target of the app project, in Debug and Release.
 | `ENABLE_USER_SCRIPT_SANDBOXING` | `YES` | Build scripts run sandboxed |
 | `GENERATE_INFOPLIST_FILE` | `YES` | Xcode writes the Info.plist from build settings |
 | `ALWAYS_SEARCH_USER_PATHS` | `NO` | Headers resolve only through explicit search paths |
+| `INFOPLIST_KEY_NSCameraUsageDescription` | Indonesian sentence | Why Scan Struk asks for the camera (CAT-05): the photo is read on the phone and deleted |
+| `INFOPLIST_KEY_NSMicrophoneUsageDescription` | Indonesian sentence | Why Input Suara asks for the microphone (CAT-10): the voice becomes text and is deleted |
+| `INFOPLIST_KEY_NSSpeechRecognitionUsageDescription` | Indonesian sentence | Why Input Suara asks for speech recognition, which runs on the device only |
 
 ## `Config/Debug.xcconfig`
 

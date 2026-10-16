@@ -70,29 +70,29 @@ nonisolated enum PreviewHistoryData {
         "fuel": Span(message: "bensin 30rb", sentAt: at(today, 8, 12), start: 0, end: 11),
     ]
 
-    static let messages: [ConversationMessage] = [
-        ConversationMessage(
+    static let messages: [ChatMessage] = [
+        ChatMessage(
             id: "m-0812", sender: .person, kind: .personText, body: "bensin 30rb", createdAt: at(today, 8, 12)),
-        ConversationMessage(
+        ChatMessage(
             id: "r-0812", sender: .kira, kind: .drafts, body: nil, createdAt: at(today, 8, 12), replyToId: "m-0812",
             drafts: [draft("d1", "Bensin", 30_000, .transport)], draftStatus: .committed),
-        ConversationMessage(
+        ChatMessage(
             id: "m-1241", sender: .person, kind: .personText, body: lunchMessage, createdAt: at(today, 12, 41)),
-        ConversationMessage(
+        ChatMessage(
             id: "r-1241", sender: .kira, kind: .drafts, body: nil, createdAt: at(today, 12, 41), replyToId: "m-1241",
             drafts: [
                 draft("d2", "Makan Siang", 25_000, .food), draft("d3", "Grab ke Kantor", 18_000, .transport),
                 draft("d4", "Kopi", 5_000, .coffee),
             ],
             draftStatus: .committed),
-        ConversationMessage(
+        ChatMessage(
             id: "left-1241", sender: .kira, kind: .remaining, body: nil, createdAt: at(today, 12, 41),
             remaining: 1_792_000, perDay: 179_200),
     ]
 
     private static func draft(_ id: String, _ name: String, _ amount: Int, _ category: TransactionCategory)
-        -> ConversationMessage.Draft
+        -> DraftItem
     {
-        ConversationMessage.Draft(id: id, type: .expense, name: name, amount: amount, category: category)
+        DraftItem(id: id, type: .expense, name: name, amount: amount, category: category, occurredAt: at(today, 12, 41))
     }
 }
