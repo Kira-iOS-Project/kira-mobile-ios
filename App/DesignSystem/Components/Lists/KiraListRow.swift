@@ -40,8 +40,11 @@ struct KiraListRow<Extra: View>: View {
                 Button(action: action) { row }
                     .buttonStyle(.plain)
                     .accessibilityAddTraits(isChecked ? .isSelected : [])
-            } else {
+            } else if case .toggle = trailing {
                 row
+            } else {
+                /** A row without an action reads as one element, its parts in order. */
+                row.accessibilityElement(children: .combine)
             }
         }
         .kiraRowSeparator()
@@ -56,10 +59,16 @@ struct KiraListRow<Extra: View>: View {
         HStack(spacing: KiraSpacing.space3) {
             RowLeadingTile(leading: leading, isDanger: isDanger)
             VStack(alignment: .leading, spacing: 2) {
-                title.font(.callout.weight(.semibold)).foregroundStyle(isDanger ? Color.vulnerable : Color.ink)
-                if let subtitle { subtitle.font(.footnote).foregroundStyle(.inkMuted) }
+                title.font(.callout.weight(.semibold)).kiraLineHeight(21, size: 16).foregroundStyle(
+                    isDanger ? Color.vulnerable : Color.ink)
+                if let subtitle {
+                    subtitle.font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
+                }
                 if let amount { amount.padding(.top, 2) }
-                if let value { value.font(.subheadline.weight(.semibold)).foregroundStyle(.ink).padding(.top, 2) }
+                if let value {
+                    value.font(.subheadline.weight(.semibold)).kiraLineHeight(20, size: 15)
+                        .foregroundStyle(.ink).padding(.top, 2)
+                }
                 VStack(alignment: .leading, spacing: 6) { extra }.padding(.top, Extra.self == EmptyView.self ? 0 : 6)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -77,7 +86,7 @@ struct KiraListRow<Extra: View>: View {
         case .chevron:
             chevron(.chevronRight)
         case .external:
-            chevron(.external)
+            KiraIcon(.external, size: 18).foregroundStyle(.inkMuted)
         case .toggle(let isOn):
             KiraToggle(label: title, isOn: isOn)
         case .check(let isOn):

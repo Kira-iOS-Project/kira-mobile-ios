@@ -47,16 +47,14 @@ struct KiraChatBubble<Content: View>: View {
 
     var body: some View {
         VStack(alignment: sender == .user ? .trailing : .leading, spacing: 4) {
-            HStack(alignment: .bottom, spacing: KiraSpacing.space2) {
-                if sender == .user { Spacer(minLength: 56) }
-                if sender == .kira, showsAvatar { KiraAvatarFace() }
+            ChatLineLayout(isUser: sender == .user, isCard: !saved.isEmpty) {
                 bubble
+                if sender == .kira, showsAvatar { KiraAvatarFace() }
                 if sender == .user, showsAvatar, let initial { initialAvatar(initial) }
-                if sender == .kira { Spacer(minLength: 40) }
             }
             if let meta {
                 Text(meta)
-                    .font(.caption.weight(.medium))
+                    .font(.caption.weight(.medium)).kiraLineHeight(16, size: 12)
                     .foregroundStyle(.inkMuted)
                     .padding(sender == .user ? .trailing : .leading, hasAvatar ? 44 : 4)
             }
@@ -68,9 +66,11 @@ struct KiraChatBubble<Content: View>: View {
             topLeadingRadius: 20, bottomLeadingRadius: sender == .kira ? 6 : 20,
             bottomTrailingRadius: sender == .user ? 6 : 20, topTrailingRadius: 20, style: .continuous)
         return VStack(alignment: .leading, spacing: KiraSpacing.space2) {
-            content.font(.body)
+            content.font(.body).kiraLineHeight(22, size: 17)
             if !saved.isEmpty { SavedList(items: saved) }
         }
+        /** A bubble with saved transactions spans the width ChatLineLayout gives it. */
+        .frame(maxWidth: saved.isEmpty ? nil : .infinity, alignment: .leading)
         .foregroundStyle(sender == .user ? Color.onPandan : Color.ink)
         .padding(.vertical, 10)
         .padding(.horizontal, 14)
@@ -95,6 +95,51 @@ struct KiraChatBubble<Content: View>: View {
         var bubble = self
         bubble.showsAvatar = false
         return bubble
+    }
+}
+
+/**
+ A message's line (`.k-bubble__line`): the bubble at most 82 % of the width, or 76 % beside an avatar,
+ a bubble with saved transactions exactly 82 %; the avatar 8 pt from it, both on the line's bottom.
+ Kira's line starts at the left, the person's at the right. Its subviews are the bubble, then the
+ avatar if any.
+ */
+private struct ChatLineLayout: Layout {
+    let isUser: Bool
+    let isCard: Bool
+
+    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache _: inout ()) -> CGSize {
+        let width = proposal.width ?? 361
+        let frames = arrange(width: width, subviews: subviews)
+        return CGSize(width: width, height: frames.map(\.maxY).max() ?? 0)
+    }
+
+    func placeSubviews(in bounds: CGRect, proposal _: ProposedViewSize, subviews: Subviews, cache _: inout ()) {
+        for (subview, frame) in zip(subviews, arrange(width: bounds.width, subviews: subviews)) {
+            subview.place(
+                at: CGPoint(x: bounds.minX + frame.minX, y: bounds.minY + frame.minY),
+                proposal: ProposedViewSize(frame.size))
+        }
+    }
+
+    /** The bubble's and the avatar's frames, bottom-aligned, in the line's coordinates. */
+    private func arrange(width: CGFloat, subviews: Subviews) -> [CGRect] {
+        guard let bubble = subviews.first else { return [] }
+        let avatar = subviews.count > 1 ? subviews[1].sizeThatFits(.unspecified) : nil
+        let limit = (width * (isCard ? 0.82 : avatar == nil ? 0.82 : 0.76)).rounded(.down)
+        var size = bubble.sizeThatFits(ProposedViewSize(width: limit, height: nil))
+        if isCard { size.width = limit }
+        let height = max(size.height, avatar?.height ?? 0)
+        let inset = avatar.map { $0.width + KiraSpacing.space2 } ?? 0
+        let bubbleX = isUser ? width - inset - size.width : inset
+        var frames = [CGRect(x: bubbleX, y: height - size.height, width: size.width, height: size.height)]
+        if let avatar {
+            frames.append(
+                CGRect(
+                    x: isUser ? width - avatar.width : 0, y: height - avatar.height, width: avatar.width,
+                    height: avatar.height))
+        }
+        return frames
     }
 }
 
@@ -128,9 +173,11 @@ private struct SavedList: View {
                 HStack(alignment: .top, spacing: 10) {
                     KiraCategoryIcon(item.category, size: 32).padding(.top, 2)
                     VStack(alignment: .leading, spacing: 0) {
-                        item.label.font(.subheadline.weight(.semibold))
+                        item.label.font(.subheadline.weight(.semibold)).kiraLineHeight(20, size: 15)
                         KiraAmount(item.amount, size: .small)
-                        if let name = item.categoryName { name.font(.footnote).foregroundStyle(.inkMuted) }
+                        if let name = item.categoryName {
+                            name.font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
+                        }
                     }
                 }
             }

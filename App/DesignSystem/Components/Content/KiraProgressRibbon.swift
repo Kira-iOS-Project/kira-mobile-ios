@@ -50,13 +50,14 @@ struct KiraProgressRibbon: View {
         VStack(alignment: .leading, spacing: KiraSpacing.space2) {
             if let label {
                 Text("ds.ribbon.head \(Text(label).fontWeight(.semibold)) \(valueText)")
-                    .font(.subheadline)
+                    .font(.subheadline).kiraLineHeight(20, size: 15)
                     .foregroundStyle(isInverse ? Color.onHero : Color.ink)
             }
             RibbonTrack(fraction: fraction, ticks: milestones.map { $0.position / target }, colors: colors)
             if !milestones.isEmpty { milestoneLabels }
             if let caption {
-                Text(caption).font(.footnote).foregroundStyle(isInverse ? Color.onHeroMuted : Color.inkMuted)
+                Text(caption).font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(
+                    isInverse ? Color.onHeroMuted : Color.inkMuted)
             }
         }
         .accessibilityElement(children: .ignore)
@@ -65,7 +66,8 @@ struct KiraProgressRibbon: View {
     }
 
     private var valueText: Text {
-        (valueLabel.map { Text($0) } ?? percent).foregroundStyle(isInverse ? Color.onHeroMuted : Color.inkMuted)
+        (valueLabel.map { Text($0) } ?? percent).fontWeight(.medium)
+            .foregroundStyle(isInverse ? Color.onHeroMuted : Color.inkMuted)
     }
 
     private var colors: RibbonTrack.Colors {
@@ -77,7 +79,9 @@ struct KiraProgressRibbon: View {
         MilestoneLayout(places: milestones.map { $0.position / target }) {
             ForEach(milestones) { milestone in
                 Text(milestone.label)
-                    .font(.caption.weight(milestone.position <= value ? .semibold : .medium))
+                    .font(.caption.weight(milestone.position <= value ? .semibold : .medium)).kiraLineHeight(
+                        16, size: 12
+                    )
                     .foregroundStyle(milestone.position <= value ? Color.ink : Color.inkMuted)
                     .fixedSize()
             }

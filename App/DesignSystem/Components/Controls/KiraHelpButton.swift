@@ -1,6 +1,6 @@
 /**
  HelpButton (design system): the way into Kira Peduli, "Butuh Bantuan Sekarang", on every main
- screen. Calm, never red: a pandan heart in a pandan-soft circle on a `button` capsule. A tap opens
+ screen. Calm, never red: a pandan duotone heart in a pandan-soft circle on a `button` capsule. A tap opens
  the help sheet over the current screen without closing the chat or a form.
  */
 import SwiftUI
@@ -19,10 +19,12 @@ struct KiraHelpButton: View {
 
     private let variant: Variant
     private let action: () -> Void
-    private let label: LocalizedStringResource = "ds.help.label"
+    private let label: LocalizedStringResource
 
-    init(_ variant: Variant = .pill, action: @escaping () -> Void) {
+    /** `label` replaces "Butuh Bantuan Sekarang", as on a row that names the counsellor. */
+    init(_ variant: Variant = .pill, label: LocalizedStringResource = "ds.help.label", action: @escaping () -> Void) {
         self.variant = variant
+        self.label = label
         self.action = action
     }
 
@@ -36,6 +38,7 @@ struct KiraHelpButton: View {
                 }
             }
             .font(variant == .row ? .subheadline.weight(.semibold) : .footnote.weight(.semibold))
+            .kiraLineHeight(18, size: variant == .row ? 15 : 13)
             .foregroundStyle(.ink)
             .padding(insets)
             .frame(minWidth: variant == .icon ? KiraSize.tap : nil, minHeight: minHeight)
@@ -67,8 +70,8 @@ struct KiraHelpButton: View {
 
     private var heart: some View {
         let side: CGFloat = variant == .icon ? 32 : 24
-        return Image(systemName: "heart.fill")
-            .font(.system(size: variant == .icon ? 15 : 11, weight: .semibold))
+        /** The design system's duotone heart, 20 pt in the icon button and 15 pt in the pill and row. */
+        return KiraIcon(.heart, size: variant == .icon ? 20 : 15, weight: .semibold, isFilled: true)
             .foregroundStyle(.pandan)
             .frame(width: side, height: side)
             .background(.pandanSoft, in: Circle())
