@@ -24,7 +24,43 @@ struct SignUpEmailSheetTests {
         #expect(flow.signUpEmail.failure == nil && !flow.signUpEmail.isOpen)
         #expect(flow.signUpEmailModel().email == "dinda@email.com")
         #expect(await service.calls == [.requestCode("dinda@email.com"), .requestCode("dinda@email.com")])
+        #expect(flow.path == [.signUp])
+        flow.signUpSheetGone()
+        let delivery = CodeDelivery(resendAfterSeconds: 60)
+        #expect(flow.path == [.signUp, .code(email: "dinda@email.com", delivery: delivery)])
+    }
+
+    @Test("a send that goes through waits for the sheet's covers, then pushes the code screen exactly once")
+    func codeWaitsForTheSheet() async {
+        let flow = OnboardingFlowModel(service: FakeOnboardingService(failures: 2), pinSetup: FakePinSetup()) { _ in }
+        flow.open(.signUp)
+        flow.openSignUpEmail()
+        flow.signUpEmailModel().email = "dinda@email.com"
+        await flow.signUpEmailModel().submit()
+        flow.signUpSheetGone()
+        await flow.retrySignUpEmail()
+        #expect(flow.signUpEmail.failure != nil && flow.path == [.signUp])
+        flow.signUpSheetGone()
+        await flow.retrySignUpEmail()
+        #expect(!flow.signUpEmail.isOpen && flow.signUpEmail.failure == nil)
+        #expect(flow.path == [.signUp])
+        flow.signUpSheetGone()
+        flow.signUpSheetGone()
+        let code = OnboardingScreen.code(email: "dinda@email.com", delivery: CodeDelivery(resendAfterSeconds: 60))
+        #expect(flow.path == [.signUp, code])
+    }
+
+    @Test("a send that answers after the sheet was closed and is gone pushes the code screen at once")
+    func lateAnswerAfterTheSheetIsGone() async {
+        let flow = OnboardingFlowModel(service: FakeOnboardingService(), pinSetup: FakePinSetup()) { _ in }
+        flow.open(.signUp)
+        flow.openSignUpEmail()
+        flow.signUpEmail.close()
+        flow.signUpSheetGone()
+        flow.signUpEmailModel().email = "dinda@email.com"
+        await flow.signUpEmailModel().submit()
         #expect(flow.path.last == .code(email: "dinda@email.com", delivery: CodeDelivery(resendAfterSeconds: 60)))
+        #expect(flow.path.count == 2)
     }
 
     @Test("an invalid address stays inline in the open sheet")
