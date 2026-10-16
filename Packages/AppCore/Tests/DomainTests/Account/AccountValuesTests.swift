@@ -27,7 +27,10 @@ struct AccountValuesTests {
     func consents() {
         let settings = ConsentSettings(
             policyVersion: "1",
-            items: [ConsentItem(purpose: .aiProcessing, granted: true), ConsentItem(purpose: .weeklySummary, granted: false)])
+            items: [
+                ConsentItem(purpose: .aiProcessing, granted: true),
+                ConsentItem(purpose: .weeklySummary, granted: false),
+            ])
         #expect(settings.isGranted(.core))
         #expect(settings.isGranted(.aiProcessing))
         #expect(!settings.isGranted(.weeklySummary))

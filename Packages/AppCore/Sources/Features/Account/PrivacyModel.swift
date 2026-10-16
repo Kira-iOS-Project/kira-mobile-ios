@@ -9,15 +9,19 @@ import Observation
 @MainActor
 @Observable
 package final class PrivacyModel {
+    /** The consents and the email, once loaded. */
     package private(set) var phase: ScreenPhase<PrivacyOverview> = .loading
     /** A consent or an export the API refused. */
     package var problem: AppProblem?
+    /** A consent is being saved. */
     package private(set) var isSaving = false
+    /** The CSV is being fetched. */
     package private(set) var isExporting = false
     /** The CSV to hand to the file exporter, until it is saved or dismissed. */
     package private(set) var export: DataExport?
     private let service: any AccountService
 
+    /** A model that reads and writes through `service`. */
     package init(service: any AccountService) {
         self.service = service
     }
@@ -75,6 +79,8 @@ package final class PrivacyModel {
 
 /** What Data & Privasi shows: the consents, and the address the export is emailed to. */
 package struct PrivacyOverview: Equatable, Sendable {
+    /** The decisions per purpose. */
     package let consents: ConsentSettings
+    /** The account's address. */
     package let email: String
 }

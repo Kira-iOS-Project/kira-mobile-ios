@@ -35,7 +35,7 @@ struct PrivacyModelTests {
         await model.setAIProcessing(false)
         #expect(model.phase.value?.consents.isGranted(.aiProcessing) == false)
         await model.setWeeklySummary(false)
-        #expect(model.phase.value?.consents == Sample.consents(ai: false, weekly: false))
+        #expect(model.phase.value?.consents == Sample.consents(aiProcessing: false, weekly: false))
         #expect(!model.isSaving)
         #expect(
             await service.calls.suffix(2) == ["updateConsents false true", "updateConsents false false"])

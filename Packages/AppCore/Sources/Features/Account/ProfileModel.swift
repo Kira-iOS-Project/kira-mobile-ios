@@ -9,15 +9,19 @@ import Observation
 @MainActor
 @Observable
 package final class ProfileModel {
+    /** The account, once loaded. */
     package private(set) var phase: ScreenPhase<AccountProfile> = .loading
+    /** Whether the PIN lock is on, for Keamanan's subtitle. */
     package private(set) var isPinLockEnabled = false
     /** The Keluar sheet is up. */
     package var isConfirmingSignOut = false
+    /** Keluar is in progress. */
     package private(set) var isSigningOut = false
     private let service: any AccountService
     private let settings: any SecuritySettings
     private let onSignedOut: @MainActor () -> Void
 
+    /** A model that calls `onSignedOut` once the device is signed out. */
     package init(
         service: any AccountService, settings: any SecuritySettings, onSignedOut: @escaping @MainActor () -> Void
     ) {

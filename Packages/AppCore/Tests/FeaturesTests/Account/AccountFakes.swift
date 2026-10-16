@@ -18,11 +18,11 @@ enum Sample {
             aiEnabled: true, weeklySummaryEnabled: true)
     }
 
-    static func consents(ai: Bool = true, weekly: Bool = true) -> ConsentSettings {
+    static func consents(aiProcessing: Bool = true, weekly: Bool = true) -> ConsentSettings {
         ConsentSettings(
             policyVersion: "2026-10-15",
             items: [
-                ConsentItem(purpose: .core, granted: true), ConsentItem(purpose: .aiProcessing, granted: ai),
+                ConsentItem(purpose: .core, granted: true), ConsentItem(purpose: .aiProcessing, granted: aiProcessing),
                 ConsentItem(purpose: .weeklySummary, granted: weekly),
             ])
     }
@@ -48,44 +48,44 @@ actor FakeAccountService: AccountService {
     func set(fails: Bool) { self.fails = fails }
     func set(profile: AccountProfile?) { profileResult = profile }
 
-    func profile() async throws -> AccountProfile {
+    func profile() throws -> AccountProfile {
         calls.append("profile")
         return try value(profileResult)
     }
 
-    func setHidesBalances(_ hidden: Bool) async throws -> AccountProfile {
+    func setHidesBalances(_ hidden: Bool) throws -> AccountProfile {
         calls.append("setHidesBalances \(hidden)")
         _ = try value(fails ? nil : profileResult)
         return Sample.profile(hidesBalances: hidden)
     }
 
-    func consents() async throws -> ConsentSettings {
+    func consents() throws -> ConsentSettings {
         calls.append("consents")
         return try value(consentsResult)
     }
 
-    func updateConsents(aiProcessing: Bool, weeklySummary: Bool) async throws -> ConsentSettings {
+    func updateConsents(aiProcessing: Bool, weeklySummary: Bool) throws -> ConsentSettings {
         calls.append("updateConsents \(aiProcessing) \(weeklySummary)")
         _ = try value(fails ? nil : consentsResult)
-        return Sample.consents(ai: aiProcessing, weekly: weeklySummary)
+        return Sample.consents(aiProcessing: aiProcessing, weekly: weeklySummary)
     }
 
-    func exportData() async throws -> DataExport {
+    func exportData() throws -> DataExport {
         calls.append("exportData")
         return try value(fails ? nil : exportResult)
     }
 
-    func emailExport() async throws {
+    func emailExport() throws {
         calls.append("emailExport")
         _ = try value(fails ? nil : ())
     }
 
-    func deleteAccount(confirmation: String) async throws {
+    func deleteAccount(confirmation: String) throws {
         calls.append("deleteAccount \(confirmation)")
         _ = try value(fails ? nil : ())
     }
 
-    func signOut() async throws {
+    func signOut() throws {
         calls.append("signOut")
         _ = try value(fails ? nil : ())
     }
@@ -110,21 +110,21 @@ actor FakeSecuritySettings: SecuritySettings {
 
     func set(savingFails: Bool) { self.savingFails = savingFails }
 
-    func preferences() async -> SecurityPreferences {
+    func preferences() -> SecurityPreferences {
         SecurityPreferences(isPinLockEnabled: storedPin != nil, autoLock: autoLock, obscuresAppSwitcher: obscures)
     }
 
-    func verifyPin(_ pin: String) async -> Bool { pin == storedPin }
+    func verifyPin(_ pin: String) -> Bool { pin == storedPin }
 
-    func setPin(_ pin: String) async throws {
+    func setPin(_ pin: String) throws {
         if savingFails { throw Sample.problem }
         storedPin = pin
     }
 
-    func disablePinLock() async { storedPin = nil }
-    func setAutoLock(_ delay: AutoLockDelay) async { autoLock = delay }
-    func setObscuresAppSwitcher(_ isOn: Bool) async { obscures = isOn }
-    func clearLocalData() async { cleared = true }
+    func disablePinLock() { storedPin = nil }
+    func setAutoLock(_ delay: AutoLockDelay) { autoLock = delay }
+    func setObscuresAppSwitcher(_ isOn: Bool) { obscures = isOn }
+    func clearLocalData() { cleared = true }
 }
 
 /** Counts a callback's calls. */

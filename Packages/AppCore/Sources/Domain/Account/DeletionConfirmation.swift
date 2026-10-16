@@ -1,6 +1,5 @@
 import Foundation
 
-
 /**
  The word a person types to delete their account (AKN-05): "HAPUS", in any case, with spaces
  around it ignored, as the API's `POST /me/deletion` checks it.

@@ -9,7 +9,9 @@ import Observation
 @MainActor
 @Observable
 package final class SecurityModel {
+    /** The device's settings, once loaded. */
     package private(set) var phase: ScreenPhase<SecurityPreferences> = .loading
+    /** Sembunyikan Saldo saat Membuka, from the account. */
     package private(set) var hidesBalances = false
     /** A setting the API refused to save. */
     package var problem: AppProblem?
@@ -19,12 +21,14 @@ package final class SecurityModel {
     package var pin = "" {
         didSet { pinError = nil }
     }
+    /** Why the last PIN step did not go on. */
     package private(set) var pinError: PinError?
     /** The Kunci Otomatis sheet is up. */
     package var isChoosingAutoLock = false
     private let service: any AccountService
     private let settings: any SecuritySettings
 
+    /** A model over the account API and the device settings. */
     package init(service: any AccountService, settings: any SecuritySettings) {
         self.service = service
         self.settings = settings

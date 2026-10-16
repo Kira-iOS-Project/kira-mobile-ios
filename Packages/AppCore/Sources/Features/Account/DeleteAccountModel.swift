@@ -12,7 +12,9 @@ import Observation
 package final class DeleteAccountModel {
     /** The confirmation field. */
     package var confirmation = ""
+    /** Where Unduh Datamu Dulu stands. */
     package private(set) var emailExport = EmailExportState.idle
+    /** Hapus Permanen is waiting for the API. */
     package private(set) var isDeleting = false
     /** How the deletion went: the success or the failure dialog. */
     package var outcome: DeletionOutcome?
@@ -20,6 +22,7 @@ package final class DeleteAccountModel {
     private let settings: any SecuritySettings
     private let onDeleted: @MainActor () -> Void
 
+    /** A model that calls `onDeleted` once the person taps Selesai. */
     package init(
         service: any AccountService, settings: any SecuritySettings, onDeleted: @escaping @MainActor () -> Void
     ) {
@@ -65,14 +68,20 @@ package final class DeleteAccountModel {
 
 /** Where Unduh Datamu Dulu stands. */
 package enum EmailExportState: Equatable, Sendable {
+    /** Not asked yet. */
     case idle
+    /** Waiting for the API. */
     case sending
+    /** The email is on its way. */
     case sent
+    /** The API refused or could not be reached. */
     case failed(AppProblem)
 }
 
 /** How Hapus Permanen ended. */
 package enum DeletionOutcome: Equatable, Sendable {
+    /** The account is gone. */
     case deleted
+    /** The API refused or could not be reached. */
     case failed(AppProblem)
 }

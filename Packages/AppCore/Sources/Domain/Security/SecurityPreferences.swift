@@ -4,10 +4,14 @@
  itself never leaves the device and is never part of this value.
  */
 package struct SecurityPreferences: Equatable, Sendable {
+    /** Kunci dengan PIN: Kira asks for the PIN when it opens. */
     package let isPinLockEnabled: Bool
+    /** Kunci Otomatis. */
     package let autoLock: AutoLockDelay
+    /** Samarkan di Pengalih Aplikasi. */
     package let obscuresAppSwitcher: Bool
 
+    /** Settings with every value given. */
     package init(isPinLockEnabled: Bool, autoLock: AutoLockDelay, obscuresAppSwitcher: Bool) {
         self.isPinLockEnabled = isPinLockEnabled
         self.autoLock = autoLock
@@ -17,8 +21,11 @@ package struct SecurityPreferences: Equatable, Sendable {
 
 /** How long Kira may stay in the background before it asks for the PIN again. */
 package enum AutoLockDelay: String, CaseIterable, Codable, Sendable {
+    /** Segera: as soon as Kira leaves the screen. */
     case immediately
+    /** After 1 minute away. */
     case oneMinute
+    /** After 5 minutes away. */
     case fiveMinutes
 
     /** The delay in seconds: 0, 60 or 300. */

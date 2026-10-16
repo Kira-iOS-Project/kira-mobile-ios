@@ -4,8 +4,10 @@ import Foundation
 package struct ConsentSettings: Equatable, Sendable {
     /** The privacy policy version the decisions were made under. */
     package let policyVersion: String
+    /** The latest decision per purpose. */
     package let items: [ConsentItem]
 
+    /** Decisions made under `policyVersion`. */
     package init(policyVersion: String, items: [ConsentItem]) {
         self.policyVersion = policyVersion
         self.items = items
@@ -19,10 +21,14 @@ package struct ConsentSettings: Equatable, Sendable {
 
 /** One decision: its purpose, the answer and when it was given. */
 package struct ConsentItem: Equatable, Sendable {
+    /** What the data is used for. */
     package let purpose: ConsentPurpose
+    /** Whether the person allowed it. */
     package let granted: Bool
+    /** When they decided; nil before any decision. */
     package let decidedAt: Date?
 
+    /** A decision about `purpose`. */
     package init(purpose: ConsentPurpose, granted: Bool, decidedAt: Date? = nil) {
         self.purpose = purpose
         self.granted = granted
@@ -44,8 +50,10 @@ package enum ConsentPurpose: String, CaseIterable, Codable, Sendable {
 package struct DataExport: Equatable, Sendable {
     /** `kira-data-YYYY-MM-DD.csv`, as the API names it. */
     package let fileName: String
+    /** The file's bytes, UTF-8 with an Indonesian header row. */
     package let csv: Data
 
+    /** An export named `fileName`. */
     package init(fileName: String, csv: Data) {
         self.fileName = fileName
         self.csv = csv
