@@ -41,6 +41,17 @@ private struct Harness {
 @MainActor
 @Suite("PinRecoveryModel")
 struct PinRecoveryModelTests {
+    @Test("sends the first code once: a task that runs again on the new PIN step sends nothing")
+    func startsOnce() async {
+        let model = Harness().model
+        await model.start()
+        model.code = "123456"
+        await model.verifyCode()
+        #expect(model.phase == .choosingPin)
+        await model.start()
+        #expect(model.phase == .choosingPin)
+    }
+
     @Test("sends the code and counts down to the next send")
     func sendsCode() async {
         let clock = TestClock()

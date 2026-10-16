@@ -42,6 +42,7 @@ package final class PinRecoveryModel: Identifiable {
     /** Where the code goes. */
     package let email: String
 
+    @ObservationIgnored private var hasStarted = false
     @ObservationIgnored private let service: any PinRecoveryService
     @ObservationIgnored private let session: SessionStore
     @ObservationIgnored private let lock: AppLockModel
@@ -57,6 +58,13 @@ package final class PinRecoveryModel: Identifiable {
         self.session = session
         self.lock = lock
         self.now = now
+    }
+
+    /** The first code, sent once when the flow opens, however often its view's task runs. */
+    package func start() async {
+        guard !hasStarted else { return }
+        hasStarted = true
+        await sendCode()
     }
 
     /** Sends the code (the first time, and again from "Kirim Ulang Kode"). */
