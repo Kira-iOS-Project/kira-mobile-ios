@@ -23,18 +23,7 @@ extension Subscription {
             price: dto.price, paymentMethod: try dto.paymentMethod.map { try Bridge.value($0) },
             currentPeriodStart: CalendarDay(dto.currentPeriodStart), renewsOn: try Bridge.day(dto.renewsOn),
             reminderOn: try Bridge.day(dto.reminderOn), cancelAtPeriodEnd: dto.cancelAtPeriodEnd,
-            usage: try PlanUsage(dto.usage))
-    }
-}
-
-extension PlanUsage {
-    /** The quotas used this period. */
-    init(_ usage: UsageDTO) throws {
-        self.init(
-            aiMessages: Quota(used: usage.aiMessages.used, limit: usage.aiMessages.limit),
-            receipts: Quota(used: usage.receipts.used, limit: usage.receipts.limit),
-            voiceSeconds: Quota(used: usage.voiceSeconds.used, limit: usage.voiceSeconds.limit),
-            resetsOn: try Bridge.day(usage.resetsOn))
+            usage: try Usage(dto.usage))
     }
 }
 
