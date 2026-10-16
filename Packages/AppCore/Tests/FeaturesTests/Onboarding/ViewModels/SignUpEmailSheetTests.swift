@@ -24,7 +24,8 @@ struct SignUpEmailSheetTests {
         #expect(flow.signUpEmail.failure == nil && !flow.signUpEmail.isOpen)
         #expect(flow.signUpEmailModel().email == "dinda@email.com")
         #expect(await service.calls == [.requestCode("dinda@email.com"), .requestCode("dinda@email.com")])
-        #expect(flow.path.last == .code(email: "dinda@email.com", delivery: CodeDelivery(resendAfterSeconds: 60)))
+        let delivery = CodeDelivery(resendAfterSeconds: 60)
+        #expect(flow.path == [.signUp, .code(email: "dinda@email.com", delivery: delivery)])
     }
 
     @Test("an invalid address stays inline in the open sheet")

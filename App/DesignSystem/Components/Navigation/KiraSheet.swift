@@ -18,17 +18,17 @@ extension View {
     /**
      Presents `content` as a Kira sheet over the window while `isPresented` is true, its panel from
      `top` points below the top of the screen (56 by default), with `leaf` in its top corner if any;
-     `onDismiss` runs once the sheet's layer is down.
+     `onShown` runs once the panel has risen, and `onDismiss` once the sheet's layer is down.
      */
     func kiraSheet<Content: View>(
         isPresented: Binding<Bool>, title: LocalizedStringResource, subtitle: LocalizedStringResource? = nil,
-        top: CGFloat? = nil, leaf: KiraLeaf? = nil, onDismiss: (() -> Void)? = nil,
+        top: CGFloat? = nil, leaf: KiraLeaf? = nil, onShown: (() -> Void)? = nil, onDismiss: (() -> Void)? = nil,
         @ViewBuilder content: @escaping () -> Content
     ) -> some View {
         kiraCover(isPresented: isPresented, onDismiss: onDismiss) { onGone in
             SheetCover(
-                isPresented: isPresented, title: title, subtitle: subtitle, top: top, leaf: leaf, onGone: onGone,
-                content: content)
+                isPresented: isPresented, title: title, subtitle: subtitle, top: top, leaf: leaf, onShown: onShown,
+                onGone: onGone, content: content)
         }
     }
 }
@@ -40,6 +40,7 @@ private struct SheetCover<Content: View>: View {
     let subtitle: LocalizedStringResource?
     let top: CGFloat?
     let leaf: KiraLeaf?
+    let onShown: (() -> Void)?
     let onGone: () -> Void
     @ViewBuilder let content: () -> Content
     @State private var isShown = false
@@ -163,6 +164,7 @@ private struct SheetCover<Content: View>: View {
         } completion: {
             if presented {
                 titleFocused = true
+                if isPresented { onShown?() }
             } else if !isPresented {
                 drag = 0
                 onGone()
