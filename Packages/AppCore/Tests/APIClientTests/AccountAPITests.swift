@@ -107,7 +107,7 @@ struct AccountAPITests {
         await expectProblems([401]) { _ = try await $0.getConsents() }
         await expectProblems([401, 422]) { _ = try await $0.updateConsents(aiProcessing: true, weeklySummary: true) }
         await expectProblems([401]) { _ = try await $0.exportData() }
-        await expectProblems([401, 503]) { try await $0.emailDataExport() }
+        await expectProblems([401, 429, 503]) { try await $0.emailDataExport() }
         await expectProblems([401, 422]) { try await $0.deleteAccount(confirmation: "x") }
     }
 }

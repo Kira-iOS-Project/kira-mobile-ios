@@ -1,7 +1,8 @@
 /**
  Detail Transaksi (CAT-08): the category tile, name and amount, then the details card, then Ubah
  and Hapus. Hapus asks first (08b) and reports the result (08c, 08e); Ubah opens the "Ubah
- Transaksi" sheet: its success shows over it (08d), a failed save closes it for its dialog (08e). The Sumber row opens Riwayat
+ Transaksi" sheet: its success shows over it (08d), a failed save closes it for its dialog
+ (08e). The Sumber row opens Riwayat
  Percakapan on the source message (08f).
  */
 import Domain
@@ -65,10 +66,8 @@ struct TransactionDetailScreen: View {
         .kiraSheet(
             $model.editSheet, title: "transaction.edit.title", subtitle: editSubtitle,
             failureTitle: "transaction.failed.title", connectionMessage: "transaction.failed.body",
-            onRetry: { Task { await model.retryEdit() } }
-        ) {
-            TransactionEditForm(model: model)
-        }
+            onRetry: { Task { await model.retryEdit() } }, content: { TransactionEditForm(model: model) }
+        )
         .kiraDialog(isPresented: hasDialog) { TransactionDialogs.screen(model) }
     }
 

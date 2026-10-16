@@ -4,7 +4,8 @@
  own sentence (`problem.<CODE>`), the connection's for a request that got no answer, or the generic
  one with the reference. Coba Lagi on top opens the sheet again on what was typed and submits again;
  Tutup under it closes the dialog. A check the app makes itself stays inline in the open sheet.
- Both are covers over the window, so one comes up only after the other's layer is down.
+ Both are covers over the window, so one comes up only after the other's layer is down, and Coba
+ Lagi's retry starts only then too.
  */
 import APIClient
 import Features
@@ -69,12 +70,15 @@ private struct SubmissionSheet<Sheet: View>: ViewModifier {
     let onRetry: () -> Void
     @ViewBuilder let sheet: () -> Sheet
     @State private var layer: SheetLayer?
+    /** Coba Lagi was tapped: the retry starts once the dialog's layer is down, so no cover is mid-way. */
+    @State private var retriesWhenGone = false
 
     func body(content: Content) -> some View {
         content
             .kiraSheet(
                 isPresented: sheetShown, title: header.title, subtitle: header.subtitle, top: header.top,
-                leaf: header.leaf, onDismiss: coverGone, content: sheet)
+                leaf: header.leaf, onDismiss: coverGone, content: sheet
+            )
             .kiraDialog(isPresented: dialogShown, onDismiss: coverGone) { dialog }
             .onChange(of: wanted, initial: true) { _, wanted in
                 if layer == nil { layer = wanted }
@@ -99,14 +103,19 @@ private struct SubmissionSheet<Sheet: View>: ViewModifier {
 
     /** The dialog of the problem in `layer`, kept while the dialog fades out. */
     private var dialog: KiraDialog {
-        let problem = if case .dialog(let problem) = layer { problem } else { AppProblem.connectionLost }
+        var problem = AppProblem.connectionLost
+        if case .dialog(let shown) = layer { problem = shown }
         return KiraDialog(
             failure.title, message: failure.message(for: problem), art: .illustration(.umbrella),
-            primary: KiraButton("sheet.failure.retry", action: onRetry),
+            primary: KiraButton("sheet.failure.retry") { retriesWhenGone = true },
             secondary: KiraButton("ds.close", variant: .secondary) {})
     }
 
     private func coverGone() {
         layer = wanted
+        if retriesWhenGone {
+            retriesWhenGone = false
+            onRetry()
+        }
     }
 }
