@@ -1,5 +1,3 @@
-import Foundation
-
 /**
  The signed-in person's account, the part of `GET /me` the Akun screens read: who they are, their
  plan and its AI quota, the pay period and the counts behind the Profil rows.
@@ -50,27 +48,13 @@ package struct AccountProfile: Equatable, Sendable {
     }
 }
 
-/** The plan in force: which one, how it was obtained and when it renews. */
+/** The plan in force. */
 package struct AccountPlan: Equatable, Sendable {
-    /** How the plan was obtained: the backend's `PLAN_SOURCE` values. */
-    package enum Source: String, Codable, Sendable {
-        /** Bought (a simulation). */
-        case purchase
-        /** Granted by Beasiswa Kira. */
-        case scholarship
-    }
-
     /** Kira Gratis, Muda or Plus. */
     package let id: PlanID
-    /** How it was obtained; nil on Kira Gratis. */
-    package let source: Source?
-    /** The day it renews; nil on Kira Gratis. */
-    package let renewsOn: Date?
 
-    /** A plan, Kira Gratis unless told otherwise. */
-    package init(id: PlanID, source: Source? = nil, renewsOn: Date? = nil) {
+    /** The plan `id`. */
+    package init(id: PlanID) {
         self.id = id
-        self.source = source
-        self.renewsOn = renewsOn
     }
 }

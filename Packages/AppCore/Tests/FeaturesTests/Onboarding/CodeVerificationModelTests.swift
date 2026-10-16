@@ -10,7 +10,7 @@ struct CodeVerificationModelTests {
         _ service: FakeOnboardingService, resendAfter: Int = 3, onVerified: @escaping (SignInResult) -> Void = { _ in }
     ) -> CodeVerificationModel {
         CodeVerificationModel(
-            email: "dinda@email.com", delivery: CodeDelivery(expiresInSeconds: 600, resendAfterSeconds: resendAfter),
+            email: "dinda@email.com", delivery: CodeDelivery(resendAfterSeconds: resendAfter),
             service: service, sleep: { _ in }, onVerified: onVerified)
     }
 
@@ -25,7 +25,7 @@ struct CodeVerificationModelTests {
     @Test("a cancelled countdown stops where it is, with the real clock")
     func cancelled() async {
         let model = CodeVerificationModel(
-            email: "a@b.co", delivery: CodeDelivery(expiresInSeconds: 600, resendAfterSeconds: 60),
+            email: "a@b.co", delivery: CodeDelivery(resendAfterSeconds: 60),
             service: FakeOnboardingService()
         ) { _ in }
         let task = Task { await model.runCountdown() }

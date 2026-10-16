@@ -40,13 +40,13 @@ struct TreatModelTests {
         let model = TreatModel(service: service)
         model.months = 1
         await model.send()
-        #expect(model.gift?.amount == 87_000)
+        #expect(model.isSent)
         #expect(!model.isSending)
         #expect(await service.log.calls == ["treat 1 qris"])
 
         let refused = TreatModel(service: FakePlansService(treatResult: .failure(problem("VALIDATION_FAILED"))))
         await refused.send()
-        #expect(refused.gift == nil)
+        #expect(!refused.isSent)
         #expect(refused.sendProblem?.code == "VALIDATION_FAILED")
     }
 }

@@ -49,10 +49,9 @@ package struct LivePlansService: PlansService {
     }
 
     /** `POST /billing/gifts` (simulated); 1, 3 or 6 months. */
-    package func treat(months: Int, paymentMethod: PaymentMethod) async throws -> TreatGift {
+    package func treat(months: Int, paymentMethod: PaymentMethod) async throws {
         guard let length = GiftLengthDTO(rawValue: months) else { throw AppProblem() }
-        let gift = try await api.giftMonths(length, paymentMethod: try Bridge.value(paymentMethod))
-        return TreatGift(id: gift.id, months: gift.months, amount: gift.amount)
+        try await api.giftMonths(length, paymentMethod: try Bridge.value(paymentMethod))
     }
 
     /** `GET /scholarship`. */

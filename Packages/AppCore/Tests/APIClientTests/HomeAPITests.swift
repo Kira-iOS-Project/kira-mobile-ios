@@ -49,7 +49,7 @@ struct HomeAPITests {
         let home = try await KiraAPI.canned(json: firstStepsJSON).api.getHome()
         #expect(home.variant == .firstSteps && home.hideBalances && home.money == nil && home.score == nil)
         let checklist = HomeChecklistDTO(
-            healthCheck: true, firstTransaction: false, walletAdded: false, paydaySet: true)
+            healthCheck: true, firstTransaction: false, paydaySet: true)
         #expect(home.checklist == checklist)
         #expect(home.step == nil && home.stepPosition == nil && home.microTarget == nil)
     }

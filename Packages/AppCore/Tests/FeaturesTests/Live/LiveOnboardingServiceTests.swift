@@ -22,7 +22,7 @@ struct LiveOnboardingServiceTests {
             "POST /api/auth/code": ok(#"{"expiresInSeconds":600,"resendAfterSeconds":60}"#, status: 202)
         ])
         let delivery = try await service.requestCode(email: "dinda@email.com")
-        #expect(delivery == CodeDelivery(expiresInSeconds: 600, resendAfterSeconds: 60))
+        #expect(delivery == CodeDelivery(resendAfterSeconds: 60))
         #expect(await transport.sent.first?.json["email"] == .string("dinda@email.com"))
     }
 

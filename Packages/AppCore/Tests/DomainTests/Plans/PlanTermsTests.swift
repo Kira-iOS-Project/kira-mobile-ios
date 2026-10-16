@@ -6,8 +6,7 @@ import Testing
 struct PlanTermsTests {
     private func terms(monthly: Int, yearly: Int) -> PlanTerms {
         PlanTerms(
-            id: .young, monthlyPrice: monthly, yearlyPrice: yearly, aiMessages: 100, receipts: 40, voiceSeconds: 0,
-            voiceAndImport: false)
+            id: .young, monthlyPrice: monthly, yearlyPrice: yearly, aiMessages: 100, receipts: 40)
     }
 
     @Test("prices each period")

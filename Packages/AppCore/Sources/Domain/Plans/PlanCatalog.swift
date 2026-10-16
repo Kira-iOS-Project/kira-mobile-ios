@@ -1,16 +1,13 @@
 /** `GET /plans`: every plan's terms and the plan the person is on now. */
 package struct PlanCatalog: Hashable, Sendable {
-    /** The plan the person is on, and its period when it is paid. */
+    /** The plan the person is on. */
     package struct Current: Hashable, Sendable {
         /** The plan. */
         package let plan: PlanID
-        /** How it is paid; nil on Kira Gratis. */
-        package let period: BillingPeriod?
 
         /** The current plan as the API sends it. */
-        package init(plan: PlanID, period: BillingPeriod?) {
+        package init(plan: PlanID) {
             self.plan = plan
-            self.period = period
         }
     }
 

@@ -12,9 +12,4 @@ struct DebtKindTests {
                 "paylater", "online_loan", "credit_card", "vehicle", "mortgage", "family_loan",
             ])
     }
-
-    @Test("paylater, online loans and credit cards are consumer debt; the rest are not")
-    func isConsumer() {
-        #expect(DebtKind.allCases.filter(\.isConsumer) == [.paylater, .onlineLoan, .creditCard])
-    }
 }
