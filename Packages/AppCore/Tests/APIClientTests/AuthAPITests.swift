@@ -1,5 +1,6 @@
 /** The sign-in calls: what each sends, what it returns, and every problem it can throw. */
 import Foundation
+import HTTPTypes
 import Testing
 
 @testable import APIClient
@@ -19,7 +20,7 @@ struct AuthAPITests {
         let sent = try await api.requestSignInCode(email: "dinda@email.com")
         #expect(sent.expiresInSeconds == 600 && sent.resendAfterSeconds == 60)
         let request = try #require(await transport.request)
-        #expect(request.method == "POST" && request.path == "/api/auth/code")
+        #expect(request.method == .post && request.operation == "requestSignInCode")
         #expect(try request.decoded(EmailBody.self).email == "dinda@email.com")
     }
 
@@ -45,7 +46,7 @@ struct AuthAPITests {
     func signsOut() async throws {
         let (api, transport) = KiraAPI.canned(status: 204)
         try await api.signOut()
-        #expect(try #require(await transport.request).path == "/api/auth/sign-out")
+        #expect(try #require(await transport.request).operation == "signOut")
     }
 
     @Test("throws every problem the sign-in routes answer")

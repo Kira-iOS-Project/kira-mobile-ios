@@ -8,9 +8,11 @@ import Testing
 
 /** One request the client sent, as the server would read it. */
 struct RecordedRequest: Sendable {
+    /** The spec's operationId, such as `requestSignInCode`: which route was called. */
+    let operation: String
     /** GET, POST, PUT, PATCH or DELETE. */
-    let method: String
-    /** The path with its query, such as `/api/score/indicators/emergency_fund`. */
+    let method: HTTPRequest.Method
+    /** The path with its query; tests read path parameters and queries from it. */
     let path: String
     /** The request's headers. */
     let headers: HTTPFields
@@ -49,12 +51,13 @@ actor CannedTransport: ClientTransport {
     var request: RecordedRequest? { requests.last }
 
     func send(
-        _ request: HTTPRequest, body: HTTPBody?, baseURL _: URL, operationID _: String
+        _ request: HTTPRequest, body: HTTPBody?, baseURL _: URL, operationID: String
     ) async throws -> (HTTPResponse, HTTPBody?) {
         let sent: Data? = if let body { try await Data(collecting: body, upTo: 1_000_000) } else { nil }
         requests.append(
             RecordedRequest(
-                method: request.method.rawValue, path: request.path ?? "", headers: request.headerFields, body: sent))
+                operation: operationID,
+                method: request.method, path: request.path ?? "", headers: request.headerFields, body: sent))
         var fields = HTTPFields()
         if self.body != nil { fields[.contentType] = contentType }
         let response = HTTPResponse(status: .init(code: status), headerFields: fields)
