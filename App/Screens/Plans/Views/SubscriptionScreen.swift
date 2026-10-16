@@ -32,7 +32,7 @@ struct SubscriptionScreen: View {
     var body: some View {
         PlansScreenFrame {
             KiraNavBar("subscription.title", leading: .back("subscription.back") { dismiss() }) {
-                KiraHelpButton(.icon) { onOpen(.unavailable(.care)) }
+                KiraHelpButton(.icon) { onOpen(.care) }
             }
             content
         }

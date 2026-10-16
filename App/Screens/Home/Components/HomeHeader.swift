@@ -75,7 +75,7 @@ struct HomeHeader: View {
 
     private var help: some View {
         /** One line beside the greeting; at accessibility sizes it wraps rather than widen the page. */
-        KiraHelpButton { onOpen(.unavailable(.care)) }
+        KiraHelpButton { onOpen(.care) }
             .fixedSize(horizontal: !typeSize.isAccessibilitySize, vertical: true)
     }
 }

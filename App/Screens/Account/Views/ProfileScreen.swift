@@ -31,7 +31,7 @@ struct ProfileScreen: View {
                 AccountFailure(problem: problem) { Task { await model.load() } }
             }
         }
-        .onHelp { onOpen(.unavailable(.care)) }
+        .onHelp { onOpen(.care) }
         .leaf(size: 150)
         .task { await model.load() }
         .kiraSheet(isPresented: $model.isConfirmingSignOut, title: "account.signOut.title") {
@@ -71,7 +71,7 @@ private struct ProfileContent: View {
             KiraListRow(Text("account.profile.subscription"), leading: .icon(.star)) { onOpen(.subscription) }
                 .subtitle(Text(profile.plan.id.title))
         }
-        KiraHelpButton(.row) { onOpen(.unavailable(.care)) }
+        KiraHelpButton(.row) { onOpen(.care) }
         KiraListGroup("account.profile.more") {
             KiraListRow(Text("account.profile.about"), leading: .icon(.info)) { onOpen(.about) }
                 .subtitle(Text("account.version \(Bundle.main.shortVersion)"))
