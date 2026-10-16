@@ -3,7 +3,7 @@
  From md up, "Rp" and ",00" are smaller and muted so the whole rupiah reads first. It never wraps:
  put a big amount on its own line with its words in a small label above. Income and spending are
  told apart by the sign (`.signed()`) and a label, never by green and red. Every balance can be
- hidden (`.masked(_:)`): "Rp ••••••", read by VoiceOver as "Nominal disembunyikan".
+ hidden (`.masked(_:)`): "Rp••••••", read by VoiceOver as "Nominal disembunyikan".
  */
 import Domain
 import SwiftUI
@@ -39,20 +39,37 @@ struct KiraAmount: View {
     }
 
     var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: 0) {
-            Text(value, format: style.part(.sign))
-            Text(value, format: style.part(.symbol)).minor(minorFont, minorColor)
-                .padding(.trailing, symbolGap)
-            Text(value, format: style.part(.integer)).tracking(tracking)
-            Text(value, format: style.part(.fraction)).minor(minorFont, minorColor)
-        }
-        .font(mainFont)
-        .foregroundStyle(mainColor)
-        /** One line always; at the largest text sizes a long amount shrinks to fit instead. */
-        .lineLimit(1)
-        .minimumScaleFactor(0.4)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(isMasked ? Text("ds.amount.hidden") : spoken)
+        composed
+            .font(mainFont)
+            .foregroundStyle(mainColor)
+            /** One line always; at the largest text sizes a long amount shrinks to fit, all of it at once. */
+            .lineLimit(1)
+            .minimumScaleFactor(0.4)
+            /** On the text and on the element: the audit reads the text inside an element too. */
+            .kiraSmallType(size == .medium)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(isMasked ? Text("ds.amount.hidden") : spoken)
+            .kiraSmallType(size == .medium)
+    }
+
+    /**
+     The amount as one Text, so it shrinks as a whole: sign, "Rp", the integer, ",00". The space
+     after "Rp" and before ",00" (`.k-amount__cur` 0.14em, `.k-amount__dec` 0.03em, of their own
+     size) is tracking on the glyph before it.
+     */
+    private var composed: Text {
+        let symbol = style.part(.symbol).format(value)
+        let integer = style.part(.integer).format(value)
+        return Text(style.part(.sign).format(value))
+            + spaced(symbol, tracking: 0, after: symbolGap).minor(minorFont, minorColor)
+            + spaced(integer, tracking: tracking, after: tracking + fractionGap)
+            + Text(style.part(.fraction).format(value)).minor(minorFont, minorColor)
+    }
+
+    /** `text` with `tracking` between its glyphs and `after` behind its last one. */
+    private func spaced(_ text: String, tracking: CGFloat, after: CGFloat) -> Text {
+        guard let last = text.last else { return Text(text) }
+        return Text(String(text.dropLast())).tracking(tracking) + Text(String(last)).tracking(after)
     }
 
     /** What VoiceOver reads: the number in the reader's locale, then "rupiah" ("1.840.000 rupiah"). */
@@ -70,11 +87,14 @@ struct KiraAmount: View {
         }
     }
 
-    /** The space after "Rp": none at small, a little from medium up, a word space before the mask. */
-    private var symbolGap: CGFloat {
-        if isMasked { return mainSize * 0.25 }
-        return size == .small ? 0 : mainSize * 0.14
-    }
+    /** The size of "Rp" and ",00": the amount's from small, 0.55 of it from medium up. */
+    private var minorSize: CGFloat { size == .small ? mainSize : mainSize * 0.55 }
+
+    /** The space after "Rp": none at small, 0.14 of its own size from medium up. */
+    private var symbolGap: CGFloat { size == .small ? 0 : minorSize * 0.14 }
+
+    /** The space before ",00": none at small, 0.03 of its own size from medium up. */
+    private var fractionGap: CGFloat { size == .small ? 0 : minorSize * 0.03 }
 
     private var tracking: CGFloat {
         switch size {
@@ -95,13 +115,12 @@ struct KiraAmount: View {
     }
 
     /**
-     "Rp" and ",00" at 0.55 of the amount, as the design system draws them, but never under
-     13 pt, and scaled like Title 3: Apple's audit reports smaller text, and these sizes scaled
-     like Large Title, as only partly following Dynamic Type.
+     "Rp" and ",00" at 0.55 of the amount, Bold, as `.k-amount__cur` and `.k-amount__dec` draw
+     them (11, 18.7 and 23.1 pt), scaled like Title 3.
      */
     private var minorFont: Font? {
         if size == .small { return nil }
-        return KiraFont.display(max(13, mainSize * 0.55), .bold, relativeTo: .title3)
+        return KiraFont.display(minorSize, .bold, relativeTo: .title3)
     }
 
     private var mainColor: Color {

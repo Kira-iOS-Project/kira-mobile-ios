@@ -16,6 +16,7 @@ struct KiraField: View {
     private var errorText: LocalizedStringResource?
     private var prefixText: LocalizedStringResource?
     private var suffixText: LocalizedStringResource?
+    private var iconName: KiraIconName?
     private var minimumLines = 1
     @FocusState private var isFocused: Bool
     /**
@@ -33,14 +34,14 @@ struct KiraField: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(label)
-                .font(.footnote.weight(.semibold))
+                .font(.footnote.weight(.semibold)).kiraLineHeight(18, size: 13)
                 .foregroundStyle(.inkMuted)
                 .padding(.horizontal, 4)
                 .accessibilityHidden(true)
             box
             if let message = errorText ?? hintText {
                 Text(message)
-                    .font(.footnote)
+                    .font(.footnote).kiraLineHeight(18, size: 13)
                     .foregroundStyle(errorText == nil ? Color.inkMuted : Color.vulnerable)
                     .padding(.horizontal, 4)
             }
@@ -50,19 +51,27 @@ struct KiraField: View {
     private var box: some View {
         HStack(spacing: KiraSpacing.space2) {
             if let prefixText { affix(prefixText) }
-            TextField(
-                text: $text, prompt: prompt.map { Text($0).foregroundStyle(.inkMuted) } ?? Text(Self.noPrompt),
-                axis: minimumLines > 1 ? .vertical : .horizontal
-            ) {
-                Text(label)
+            ZStack(alignment: .leading) {
+                /**
+                 A single-line field draws its prompt itself, so a long one wraps at large text sizes
+                 instead of being cut off; VoiceOver hears it as the field's hint.
+                 */
+                if isSingleLine, text.isEmpty, let prompt {
+                    Text(prompt).font(.body).foregroundStyle(.inkMuted).accessibilityHidden(true)
+                }
+                TextField(text: $text, prompt: systemPrompt, axis: isSingleLine ? .horizontal : .vertical) {
+                    Text(label)
+                }
+                .lineLimit(minimumLines...max(minimumLines, 6))
+                .font(.body)
+                .foregroundStyle(.ink)
+                .focused($isFocused)
+                .accessibilityLabel(Text(label))
+                .accessibilityHint(prompt.map { Text($0) } ?? Text(Self.noPrompt))
             }
-            .lineLimit(minimumLines...max(minimumLines, 6))
-            .font(.body)
-            .foregroundStyle(.ink)
-            .focused($isFocused)
-            .accessibilityLabel(Text(label))
             .padding(.vertical, 14)
             if let suffixText { affix(suffixText) }
+            if let iconName { KiraIcon(iconName, size: 20).foregroundStyle(.inkMuted) }
         }
         .padding(.horizontal, KiraSpacing.space4)
         .frame(minHeight: 52)
@@ -74,13 +83,21 @@ struct KiraField: View {
         }
     }
 
+    private var isSingleLine: Bool { minimumLines == 1 }
+
+    /** The prompt the system draws: a multi-line field's, which wraps already; none for a single line. */
+    private var systemPrompt: Text {
+        guard !isSingleLine, let prompt else { return Text(Self.noPrompt) }
+        return Text(prompt).foregroundStyle(.inkMuted)
+    }
+
     private var borderColor: Color {
         if errorText != nil { return .vulnerable }
         return isFocused ? .pandan : .hairline
     }
 
     private func affix(_ text: LocalizedStringResource) -> some View {
-        Text(text).font(.body.weight(.semibold)).foregroundStyle(.inkMuted)
+        Text(text).font(.body.weight(.semibold)).kiraLineHeight(22, size: 17).foregroundStyle(.inkMuted)
     }
 
     /** The same field with a hint under it. */
@@ -94,6 +111,9 @@ struct KiraField: View {
 
     /** The same field with a suffix in the box, such as "%". */
     func suffix(_ text: LocalizedStringResource) -> Self { copy { $0.suffixText = text } }
+
+    /** The same field with an icon at the end of the box, such as `.search`. */
+    func icon(_ name: KiraIconName) -> Self { copy { $0.iconName = name } }
 
     /** The same field, growing to show at least `lines` lines. */
     func multiline(_ lines: Int) -> Self { copy { $0.minimumLines = lines } }

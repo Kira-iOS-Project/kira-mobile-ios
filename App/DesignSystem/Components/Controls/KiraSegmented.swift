@@ -42,7 +42,7 @@ struct KiraSegmented<ID: Hashable>: View {
             selection = option.id
         } label: {
             Text(option.title)
-                .font(.subheadline.weight(isOn ? .bold : .semibold))
+                .font(.subheadline.weight(isOn ? .bold : .semibold)).kiraLineHeight(20, size: 15)
                 .foregroundStyle(isOn ? Color.pandan : Color.inkMuted)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 18)

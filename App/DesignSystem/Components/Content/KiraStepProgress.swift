@@ -9,14 +9,17 @@ import SwiftUI
 struct KiraStepProgress: View {
     private let current: Int
     private let total: Int
+    private let label: LocalizedStringResource
 
-    /** `current` counts from 1. The line under the bar always shows: it says how many steps are left. */
-    init(current: Int, total: Int) {
+    /**
+     `current` counts from 1; `label` replaces "Langkah 2 dari 6" ("Pertanyaan 2 dari 6"). The line
+     under the bar always shows: it says how many steps are left.
+     */
+    init(current: Int, total: Int, label: LocalizedStringResource? = nil) {
         self.current = current
         self.total = max(total, 1)
+        self.label = label ?? "ds.steps.label \(current) \(max(total, 1))"
     }
-
-    private var label: LocalizedStringResource { "ds.steps.label \(current) \(total)" }
 
     var body: some View {
         VStack(alignment: .leading, spacing: KiraSpacing.space2) {
@@ -27,7 +30,8 @@ struct KiraStepProgress: View {
                         .frame(height: 6)
                 }
             }
-            Text(label).font(.footnote.weight(.semibold)).foregroundStyle(.inkMuted)
+            Text(label).font(.footnote.weight(.semibold)).kiraLineHeight(18, size: 13).foregroundStyle(
+                .inkMuted)
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(label))

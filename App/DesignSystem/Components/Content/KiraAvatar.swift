@@ -39,7 +39,7 @@ struct KiraAvatar: View {
 
     var body: some View {
         Text(initials)
-            .font(KiraFont.display(max(13, size * 0.4), .heavy, relativeTo: .body))
+            .font(KiraFont.display((size * 0.4).rounded(), .heavy, relativeTo: .body))
             .textCase(.uppercase)
             .foregroundStyle(.ink)
             .frame(width: side, height: side)

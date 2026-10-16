@@ -42,7 +42,7 @@ struct KiraChip: View {
                     KiraCategoryIcon(category, size: 26, isRound: true)
                         .padding(.leading, 6)
                         .frame(minHeight: 40)
-                        .contentShape(Rectangle())
+                        .contentShape(Rectangle().inset(by: -2))
                 }
                 .buttonStyle(.plain)
                 .accessibilityHidden(true)
@@ -55,19 +55,17 @@ struct KiraChip: View {
                 .padding(.leading, isCategory ? 6 : 14)
                 .padding(.trailing, 14)
                 .frame(minHeight: 40)
-                .contentShape(Rectangle())
+                .contentShape(Rectangle().inset(by: -2))
             }
             .buttonStyle(.plain)
             .accessibilityAddTraits(isSelected ? .isSelected : [])
         }
-        .font(.subheadline.weight(.semibold))
+        .font(.subheadline.weight(.semibold)).kiraLineHeight(20, size: 15)
         .foregroundStyle(isSelected ? Color.pandan : Color.ink)
         .kiraCard(
             isSelected ? .pandanSoft : .button, border: isSelected ? .pandan : .buttonLine,
             cornerRadius: KiraRadius.full
         )
-        /** 40 pt chip, 44 pt touch target. */
-        .padding(.vertical, 2)
     }
 
     private var isCategory: Bool {

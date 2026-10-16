@@ -41,11 +41,13 @@ struct KiraIndicatorRow: View {
     private var content: some View {
         HStack(spacing: KiraSpacing.space3) {
             VStack(alignment: .leading, spacing: 2) {
-                name.font(.headline).foregroundStyle(.ink)
-                valueLine.font(.subheadline).foregroundStyle(.inkMuted)
+                name.font(.headline).kiraLineHeight(22, size: 17).foregroundStyle(.ink)
+                valueLine.font(.subheadline).kiraLineHeight(20, size: 15).foregroundStyle(.inkMuted)
                 HStack(spacing: KiraSpacing.space2) {
                     Text(points.value, format: .number)
-                        .font(KiraFont.display(17, .heavy, relativeTo: .headline).monospacedDigit())
+                        .font(KiraFont.display(17, .heavy, relativeTo: .headline).monospacedDigit()).kiraLineHeight(
+                            22, size: 17, natural: 1.26, relativeTo: .headline
+                        )
                         .foregroundStyle(.ink)
                     KiraBandPill(band, size: .small)
                     bar

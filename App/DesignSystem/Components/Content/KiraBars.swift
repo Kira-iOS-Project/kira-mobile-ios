@@ -33,7 +33,8 @@ struct KiraBars: View {
             ForEach(columns) { column in
                 VStack(spacing: 6) {
                     if let caption = column.caption {
-                        Text(caption).font(.caption.weight(.semibold)).foregroundStyle(.inkMuted).fixedSize()
+                        Text(caption).font(.caption2.weight(.semibold)).kiraLineHeight(14, size: 11)
+                            .foregroundStyle(.inkMuted).kiraSmallType().fixedSize()
                     }
                     RoundedRectangle(cornerRadius: 10, style: .continuous)
                         .fill(column.isHighlighted ? Color.pandan : Color.artGreenSoft)
@@ -42,7 +43,7 @@ struct KiraBars: View {
                         .frame(height: height, alignment: .bottom)
                         .background(.surfaceMuted, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
                     Text(column.label)
-                        .font(.caption.weight(.semibold))
+                        .font(.caption.weight(.semibold)).kiraLineHeight(16, size: 12)
                         .foregroundStyle(column.isHighlighted ? Color.ink : Color.inkMuted)
                 }
                 .frame(maxWidth: .infinity)
