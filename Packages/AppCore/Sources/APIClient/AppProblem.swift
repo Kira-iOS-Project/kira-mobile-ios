@@ -149,6 +149,8 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case scholarshipNotEligible = "SCHOLARSHIP_NOT_ELIGIBLE"
     /** There is no open application. */
     case scholarshipApplicationNotFound = "SCHOLARSHIP_APPLICATION_NOT_FOUND"
+    /** Otherwise eligible, but Mode Darurat Utang has never been opened. */
+    case scholarshipDebtEmergencyRequired = "SCHOLARSHIP_DEBT_EMERGENCY_REQUIRED"
     /** The community group does not exist, or the team suspended it for review. */
     case communityGroupNotFound = "COMMUNITY_GROUP_NOT_FOUND"
     /** The group has no checked invite link yet; the curation team is checking it. */
@@ -159,6 +161,8 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case communityReportDuplicate = "COMMUNITY_REPORT_DUPLICATE"
     /** The current community rules have not been accepted yet. */
     case communityRulesNotAccepted = "COMMUNITY_RULES_NOT_ACCEPTED"
-    /** Otherwise eligible, but Mode Darurat Utang has never been opened. */
-    case scholarshipDebtEmergencyRequired = "SCHOLARSHIP_DEBT_EMERGENCY_REQUIRED"
+    /** The check-in is gone (cancelled, seen or never made). */
+    case careCheckInNotFound = "CARE_CHECK_IN_NOT_FOUND"
+    /** No Rencana Keselamatanku has been saved yet. */
+    case careSafetyPlanNotFound = "CARE_SAFETY_PLAN_NOT_FOUND"
 }

@@ -2698,9 +2698,9 @@ extension Components {
                 /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/rules`.
                 internal var rules: [Swift.String]
                 /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/linkCheckedOn`.
-                internal var linkCheckedOn: Swift.String
+                internal var linkCheckedOn: Swift.String?
                 /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/adminUnchanged`.
-                internal var adminUnchanged: Swift.Bool
+                internal var adminUnchanged: Swift.Bool?
                 /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/rulesAccepted`.
                 internal var rulesAccepted: Swift.Bool
                 /// Creates a new `Value2Payload`.
@@ -2716,8 +2716,8 @@ extension Components {
                     about: Swift.String,
                     admin: Components.Schemas.CommunityGroup.Value2Payload.AdminPayload,
                     rules: [Swift.String],
-                    linkCheckedOn: Swift.String,
-                    adminUnchanged: Swift.Bool,
+                    linkCheckedOn: Swift.String? = nil,
+                    adminUnchanged: Swift.Bool? = nil,
                     rulesAccepted: Swift.Bool
                 ) {
                     self.about = about
@@ -2841,13 +2841,15 @@ extension Components {
             }
             /// - Remark: Generated from `#/components/schemas/CommunityReportRequest/reason`.
             internal var reason: Components.Schemas.CommunityReportRequest.ReasonPayload
+            /// At most 500 characters (grapheme clusters).
+            ///
             /// - Remark: Generated from `#/components/schemas/CommunityReportRequest/story`.
             internal var story: Swift.String?
             /// Creates a new `CommunityReportRequest`.
             ///
             /// - Parameters:
             ///   - reason:
-            ///   - story:
+            ///   - story: At most 500 characters (grapheme clusters).
             internal init(
                 reason: Components.Schemas.CommunityReportRequest.ReasonPayload,
                 story: Swift.String? = nil

@@ -17,8 +17,8 @@ extension ProductModel {
             .transactionNotFound, .transactionBatchNotFound, .transactionUndoExpired, .importNotFound,
             .importRangeTooLong, .importRowUnknown, .subscriptionNotFound, .subscriptionNotCancellable,
             .subscriptionNotPaid, .scholarshipNotEligible, .scholarshipApplicationNotFound,
-            .communityGroupNotFound, .communityLinkUnavailable, .communityReportDuplicate,
-            .communityRulesNotAccepted, .scholarshipDebtEmergencyRequired:
+            .scholarshipDebtEmergencyRequired, .communityGroupNotFound, .communityLinkUnavailable,
+            .communityReportDuplicate, .communityRulesNotAccepted, .careCheckInNotFound, .careSafetyPlanNotFound:
             false
         }
     }
