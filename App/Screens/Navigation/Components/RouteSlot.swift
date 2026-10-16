@@ -32,7 +32,6 @@ struct RouteSlot: View {
             .scholarshipApply, .scholarshipStatus:
             PlansRoute(route: route, service: services.plans, onOpen: onOpen)
         case .communityGroup(let id): GroupDetailScreen(groupID: id, service: services.community, onOpen: onOpen)
-        case .marketplace, .product, .submitProduct: EmptySlot()
         case .care: CareScreen(service: services.care, onOpen: onOpen)
         case .trustedMessage: TrustedMessageScreen(service: services.care)
         case .debtEmergency:
