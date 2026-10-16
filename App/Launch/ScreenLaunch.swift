@@ -71,6 +71,11 @@
         /** KOM: Etalase (also empty and failed), Detail Produk of each kind, a product that is gone, Kirim Produk. */
         case marketplace, marketplaceEmpty, marketplaceFailed, product, productConsultation, productEbook, productEvent
         case productGone, submitProduct
+        /**
+         PED: Latihan Menenangkan Diri; Rencana Keselamatanku (saved, never saved, a save that fails) and
+         its form.
+         */
+        case breathing, safetyPlan, safetyPlanEmpty, safetyPlanFailing, safetyPlanForm
 
         /** The area whose launcher builds the screen. */
         enum Area {
@@ -97,7 +102,8 @@
                 .groupReport, .groupReportOther, .groupReportSent, .groupReportFailed:
                 .community
             case .care, .careOffline, .careHelp, .trustedMessage, .trustedMessageNoRecipient: .care
-            case .negotiationScript: .careTools
+            case .breathing, .negotiationScript, .safetyPlan, .safetyPlanEmpty, .safetyPlanFailing, .safetyPlanForm:
+                .careTools
             case .debtEmergency, .harshCollection, .illegalLender, .unresolvedComplaint, .payoffOffer: .debtEmergency
             case .marketplace, .marketplaceEmpty, .marketplaceFailed, .product, .productConsultation, .productEbook,
                 .productEvent, .productGone, .submitProduct:

@@ -1,52 +1,38 @@
-import APIClient
 import Domain
 import Observation
 
 /**
  Isi Rencana Keselamatanku (PED-10c): the five parts to fill in, every one optional. Parts 3 and 4
- take up to three contacts, each a name and a number. Simpan Rencana saves the whole plan and shows
- "Rencana Tersimpan" (PED-10b); a failure keeps every field and offers Coba Lagi. Batal leaves
- without saving.
+ take up to three contacts, each a name and a number. A text over 500 characters is flagged on its
+ field and holds Simpan Rencana back. Simpan Rencana hands the plan to Rencana Keselamatanku, which
+ saves it and closes the form; Batal leaves without saving.
  */
 @MainActor
 @Observable
 package final class SafetyPlanFormModel {
-    /** A dialog over the form. */
-    package enum Dialog: Hashable, Sendable {
-        /** "Rencana Tersimpan". */
-        case saved
-        /** The save failed, with the API's problem; the fields stay. */
-        case failed(AppProblem)
-    }
-
     /** The plan being written. */
     package var plan: SafetyPlan
     /** The part whose field takes the focus when the form opens. */
     package let focus: SafetyPlanPart
+    /** Whether Simpan Rencana is on its way. */
     package private(set) var isSaving = false
-    package private(set) var dialog: Dialog? {
-        didSet { if let dialog { shownDialog = dialog } }
-    }
-    /** The dialog to draw, kept while a closing dialog fades out. */
-    package private(set) var shownDialog = Dialog.saved
-    /** True once the person leaves after saving. */
-    package private(set) var isFinished = false
 
-    private let service: any CareToolsService
-    private let onSaved: @MainActor (SafetyPlan) -> Void
+    private let onSave: @MainActor (SafetyPlan, SafetyPlanPart) async -> Void
 
-    /** A form on `plan`; `onSaved` receives the plan as the server stored it. */
+    /** A form on `plan`; `onSave` saves what was written, with the part the form opened on. */
     package init(
-        plan: SafetyPlan, focus: SafetyPlanPart, service: any CareToolsService,
-        onSaved: @escaping @MainActor (SafetyPlan) -> Void
+        plan: SafetyPlan, focus: SafetyPlanPart,
+        onSave: @escaping @MainActor (SafetyPlan, SafetyPlanPart) async -> Void
     ) {
         self.plan = plan
         self.focus = focus
-        self.service = service
-        self.onSaved = onSaved
+        self.onSave = onSave
         if plan.people.isEmpty { self.plan.people = [SafetyContact(name: "", phone: "")] }
         if plan.professionals.isEmpty { self.plan.professionals = [SafetyContact(name: "", phone: "")] }
     }
+
+    /** Whether Simpan Rencana can go: no text is over the limit and no save is running. */
+    package var canSave: Bool { !plan.isTooLong && !isSaving }
 
     /** Whether part 3 or 4 can take another contact. */
     package func canAdd(to part: SafetyPlanPart) -> Bool {
@@ -66,25 +52,12 @@ package final class SafetyPlanFormModel {
         }
     }
 
-    /** Saves the plan, cleaned; the fields stay on failure. */
+    /** Simpan Rencana: hands the plan over to be saved, once at a time. */
     package func save() async {
-        dialog = nil
-        guard !isSaving else { return }
+        guard canSave else { return }
         isSaving = true
         defer { isSaving = false }
-        do {
-            let saved = try await service.saveSafetyPlan(plan.cleaned)
-            onSaved(saved)
-            dialog = .saved
-        } catch {
-            dialog = .failed(careProblem(error))
-        }
-    }
-
-    /** A dialog closed: closing "Rencana Tersimpan" leaves the form. */
-    package func dialogClosed() {
-        if dialog == .saved { isFinished = true }
-        dialog = nil
+        await onSave(plan, focus)
     }
 
     private func contacts(of part: SafetyPlanPart) -> [SafetyContact] {

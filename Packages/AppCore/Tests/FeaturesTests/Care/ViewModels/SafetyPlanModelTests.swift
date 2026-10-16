@@ -22,15 +22,29 @@ struct SafetyPlanModelTests {
 
     @Test("a refused or lost load shows the problem", arguments: [true, false])
     func failure(offline: Bool) async {
-        await service.configure { $0.failing[.plan] = offline ? FakeCareToolsService.Offline() : FakeCareToolsService.problem }
+        let error: any Error = offline ? FakeCareToolsService.Offline() : FakeCareToolsService.problem
+        await service.configure { $0.failing[.plan] = error }
         let model = SafetyPlanModel(service: service)
         await model.load()
         guard case .failed(let problem) = model.phase else { Issue.record("expected failed"); return }
         #expect(problem == (offline ? AppProblem() : FakeCareToolsService.problem))
     }
 
-    @Test("a pencil opens the form on the plan, focused on its part; a save shows on the plan")
-    func edit() async throws {
+    @Test("a lost connection reads as one, on the load and on the save, never as an unknown problem")
+    func connectionLost() async {
+        await service.configure { $0.failing[.plan] = URLError(.timedOut) }
+        let model = SafetyPlanModel(service: service)
+        await model.load()
+        guard case .failed(let problem) = model.phase else { Issue.record("expected failed"); return }
+        #expect(problem.isConnectionLoss)
+        await service.configure { $0.failing = [.save: URLError(.networkConnectionLost)] }
+        await model.load()
+        await model.saveShown()
+        #expect(model.dialog == .failed(.connectionLost))
+    }
+
+    @Test("a pencil opens the form on the plan, focused on its part; its save closes it with Rencana Tersimpan")
+    func editAndSave() async throws {
         let model = SafetyPlanModel(service: service)
         model.edit(.people)
         #expect(model.form?.plan.people == [SafetyContact(name: "", phone: "")])
@@ -38,22 +52,81 @@ struct SafetyPlanModelTests {
         model.edit(.safePlace)
         let form = try #require(model.form)
         #expect(form.focus == .safePlace && form.plan.safePlace == "rumah keluarga")
-        form.plan.calmingThings = "jalan sore"
+        form.plan.calmingThings = "  jalan sore  "
         await form.save()
-        #expect(model.phase.value?.calmingThings == "jalan sore")
+        #expect(await service.saved.last?.calmingThings == "jalan sore")
+        #expect(model.phase.value?.calmingThings == "jalan sore" && model.phase.value?.updatedAt != nil)
+        #expect(model.form == nil && model.dialog == .saved && model.shownDialog == .saved && !model.isSaving)
+        model.dialogClosed()
+        #expect(model.isFinished && model.dialog == nil)
         #expect(SafetyPlanPart.allCases.map(\.rawValue) == [1, 2, 3, 4, 5])
+    }
+
+    @Test("Simpan Rencana under the plan saves it as it shows, and only once it has loaded")
+    func saveShown() async {
+        let model = SafetyPlanModel(service: service)
+        await model.saveShown()
+        #expect(await service.saved.isEmpty)
+        await model.load()
+        await model.saveShown()
+        #expect(await service.saved.first?.safePlace == "rumah keluarga" && model.dialog == .saved)
+    }
+
+    @Test(
+        "a refused, invalid or lost save closes the form, shows its problem, and Coba Lagi reopens it as written",
+        arguments: [FakeCareToolsService.Offline() as any Error, FakeCareToolsService.problem,
+            AppProblem(code: "AUTH_UNAUTHENTICATED"), URLError(.notConnectedToInternet)])
+    func saveFailure(error: any Error) async throws {
+        await service.configure { $0.failing[.save] = error }
+        let model = SafetyPlanModel(service: service)
+        await model.load()
+        model.edit(.calmingThings)
+        try #require(model.form).plan.calmingThings = "dengar lagu"
+        await model.form?.save()
+        #expect(model.form == nil && model.dialog == .failed(AppProblem(error)))
+        #expect(model.phase.value?.calmingThings == "")
+        model.retry()
+        let reopened = try #require(model.form)
+        #expect(model.dialog == nil && reopened.focus == .calmingThings && reopened.plan.calmingThings == "dengar lagu")
+        await service.configure { $0.failing = [:] }
+        await reopened.save()
+        #expect(model.dialog == .saved && model.phase.value?.calmingThings == "dengar lagu")
+    }
+
+    @Test("Tutup keeps what was written for the next pencil; Coba Lagi with nothing kept only closes")
+    func closeKeeps() async throws {
+        await service.configure { $0.failing[.save] = FakeCareToolsService.problem }
+        let model = SafetyPlanModel(service: service)
+        model.retry()
+        #expect(model.form == nil)
+        await model.load()
+        model.edit(.warningSigns)
+        try #require(model.form).plan.warningSigns = "malas makan"
+        await model.form?.save()
+        model.dialogClosed()
+        #expect(!model.isFinished && model.dialog == nil)
+        model.edit(.safePlace)
+        #expect(model.form?.plan.warningSigns == "malas makan" && model.form?.focus == .safePlace)
+    }
+
+    @Test("a save already running is not started twice")
+    func saveOnce() async {
+        let model = SafetyPlanModel(service: service)
+        await model.load()
+        async let first: Void = model.saveShown()
+        async let second: Void = model.saveShown()
+        _ = await (first, second)
+        #expect(await service.saved.count == 1)
     }
 }
 
 @MainActor
 @Suite("SafetyPlanFormModel")
 struct SafetyPlanFormModelTests {
-    private let service = FakeCareToolsService()
-
-    @MainActor final class Saved { var plans: [SafetyPlan] = [] }
+    @MainActor final class Saved { var plans: [(SafetyPlan, SafetyPlanPart)] = [] }
 
     private func form(_ plan: SafetyPlan = .empty, saved: Saved = Saved()) -> SafetyPlanFormModel {
-        SafetyPlanFormModel(plan: plan, focus: .warningSigns, service: service) { saved.plans.append($0) }
+        SafetyPlanFormModel(plan: plan, focus: .people) { saved.plans.append(($0, $1)) }
     }
 
     @Test("parts 3 and 4 start with one empty contact and take up to three")
@@ -71,42 +144,17 @@ struct SafetyPlanFormModelTests {
         #expect(form.plan.people.count == 2 && form.plan.professionals.isEmpty)
     }
 
-    @Test("saves the cleaned plan, shows Rencana Tersimpan, and leaves when it closes")
+    @Test("Simpan Rencana hands over the plan and its part, and holds back while a text is over 500")
     func save() async {
         let saved = Saved()
-        let form = form(saved: saved)
-        form.plan.warningSigns = "  susah tidur  "
-        form.plan.people = [SafetyContact(name: "Ibu", phone: "0812")]
+        let form = form(SafetyPlan(people: [SafetyContact(name: "Ibu", phone: "0812")]), saved: saved)
+        form.plan.safePlace = String(repeating: "a", count: 501)
+        #expect(!form.canSave)
         await form.save()
-        #expect(await service.saved.first?.warningSigns == "susah tidur")
-        #expect(saved.plans.first?.updatedAt != nil)
-        #expect(form.dialog == .saved && form.shownDialog == .saved && !form.isSaving)
-        form.dialogClosed()
-        #expect(form.isFinished && form.dialog == nil)
-    }
-
-    @Test("a refused or lost save keeps every field and offers Coba Lagi", arguments: [true, false])
-    func saveFailure(offline: Bool) async {
-        await service.configure { $0.failing[.save] = offline ? FakeCareToolsService.Offline() : FakeCareToolsService.problem }
-        let saved = Saved()
-        let form = form(saved: saved)
-        form.plan.safePlace = "rumah keluarga"
+        #expect(saved.plans.isEmpty)
+        form.plan.safePlace = "rumah"
+        #expect(form.canSave)
         await form.save()
-        #expect(form.dialog == .failed(offline ? AppProblem() : FakeCareToolsService.problem))
-        #expect(form.plan.safePlace == "rumah keluarga" && saved.plans.isEmpty)
-        form.dialogClosed()
-        #expect(!form.isFinished)
-        await service.configure { $0.failing = [:] }
-        await form.save()
-        #expect(form.dialog == .saved && saved.plans.count == 1)
-    }
-
-    @Test("a save already running is not started twice")
-    func saveOnce() async {
-        let form = form()
-        async let first: Void = form.save()
-        async let second: Void = form.save()
-        _ = await (first, second)
-        #expect(await service.saved.count == 1)
+        #expect(saved.plans.first?.0.safePlace == "rumah" && saved.plans.first?.1 == .people && !form.isSaving)
     }
 }

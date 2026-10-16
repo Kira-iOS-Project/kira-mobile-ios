@@ -1681,6 +1681,176 @@
         }
       }
     },
+    "care.breathing.calm" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pelan-pelan saja, ikuti napasnya."
+          }
+        }
+      }
+    },
+    "care.breathing.circle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lingkaran napas"
+          }
+        }
+      }
+    },
+    "care.breathing.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup latihan"
+          }
+        }
+      }
+    },
+    "care.breathing.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
+    "care.breathing.exhale" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hembuskan"
+          }
+        }
+      }
+    },
+    "care.breathing.exhale.short %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hembuskan %lld"
+          }
+        }
+      }
+    },
+    "care.breathing.finished" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latihan Selesai"
+          }
+        }
+      }
+    },
+    "care.breathing.haptics" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Getaran Halus"
+          }
+        }
+      }
+    },
+    "care.breathing.healing" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bicara dengan Healing119"
+          }
+        }
+      }
+    },
+    "care.breathing.hold" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tahan"
+          }
+        }
+      }
+    },
+    "care.breathing.hold.short %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tahan %lld"
+          }
+        }
+      }
+    },
+    "care.breathing.inhale" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarik napas"
+          }
+        }
+      }
+    },
+    "care.breathing.inhale.short %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarik %lld"
+          }
+        }
+      }
+    },
+    "care.breathing.pause" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeda latihan"
+          }
+        }
+      }
+    },
+    "care.breathing.resume" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lanjutkan latihan"
+          }
+        }
+      }
+    },
+    "care.breathing.round %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Putaran %1$lld dari %2$lld"
+          }
+        }
+      }
+    },
+    "care.breathing.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latihan Menenangkan Diri"
+          }
+        }
+      }
+    },
     "care.checkIn.accept" : {
       "localizations" : {
         "id" : {
@@ -2257,6 +2427,376 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kira adalah fitur otomatis, bukan konselor. Kontak diverifikasi ulang tiap bulan · terakhir %@."
+          }
+        }
+      }
+    },
+    "care.plan.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Kira Peduli"
+          }
+        }
+      }
+    },
+    "care.plan.call.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketuk untuk menelepon."
+          }
+        }
+      }
+    },
+    "care.plan.calmingThings" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hal yang Menenangkanku"
+          }
+        }
+      }
+    },
+    "care.plan.calmingThings.edit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah Hal yang Menenangkanku"
+          }
+        }
+      }
+    },
+    "care.plan.calmingThings.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contoh: jalan sore, dengar lagu"
+          }
+        }
+      }
+    },
+    "care.plan.contact.add" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah Kontak"
+          }
+        }
+      }
+    },
+    "care.plan.contact.name" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama"
+          }
+        }
+      }
+    },
+    "care.plan.contact.phone" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nomor Telepon"
+          }
+        }
+      }
+    },
+    "care.plan.contact.remove" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Kontak"
+          }
+        }
+      }
+    },
+    "care.plan.empty" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum diisi."
+          }
+        }
+      }
+    },
+    "care.plan.failed.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup"
+          }
+        }
+      }
+    },
+    "care.plan.failed.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
+          }
+        }
+      }
+    },
+    "care.plan.failed.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rencana Belum Tersimpan"
+          }
+        }
+      }
+    },
+    "care.plan.form.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Rencana Keselamatanku"
+          }
+        }
+      }
+    },
+    "care.plan.form.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "care.plan.form.lead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi dengan kata-katamu sendiri. Boleh dikosongkan dulu."
+          }
+        }
+      }
+    },
+    "care.plan.form.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi Rencana Keselamatanku"
+          }
+        }
+      }
+    },
+    "care.plan.lead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tulis sekarang, saat tenang, untuk dibaca saat berat."
+          }
+        }
+      }
+    },
+    "care.plan.notice" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hanya tersimpan di akunmu, terpisah dari data keuangan."
+          }
+        }
+      }
+    },
+    "care.plan.people" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orang yang Bisa Kuhubungi"
+          }
+        }
+      }
+    },
+    "care.plan.people.edit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah Orang yang Bisa Kuhubungi"
+          }
+        }
+      }
+    },
+    "care.plan.people.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama kontak dan hubunganmu dengannya"
+          }
+        }
+      }
+    },
+    "care.plan.professionals" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Layanan Profesional"
+          }
+        }
+      }
+    },
+    "care.plan.professionals.edit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah Layanan Profesional"
+          }
+        }
+      }
+    },
+    "care.plan.professionals.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama layanan dan nomornya"
+          }
+        }
+      }
+    },
+    "care.plan.safePlace" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tempat Aku Merasa Aman"
+          }
+        }
+      }
+    },
+    "care.plan.safePlace.edit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah Tempat Aku Merasa Aman"
+          }
+        }
+      }
+    },
+    "care.plan.safePlace.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contoh: rumah keluarga, taman dekat rumah"
+          }
+        }
+      }
+    },
+    "care.plan.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Rencana"
+          }
+        }
+      }
+    },
+    "care.plan.saved.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rencanamu aman dan bisa dibuka kapan saja dari Kira Peduli."
+          }
+        }
+      }
+    },
+    "care.plan.saved.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
+    "care.plan.saved.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rencana Tersimpan"
+          }
+        }
+      }
+    },
+    "care.plan.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rencana Keselamatanku"
+          }
+        }
+      }
+    },
+    "care.plan.tooLong" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paling banyak 500 karakter."
+          }
+        }
+      }
+    },
+    "care.plan.warningSigns" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanda Aku Mulai Berat"
+          }
+        }
+      }
+    },
+    "care.plan.warningSigns.edit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah Tanda Aku Mulai Berat"
+          }
+        }
+      }
+    },
+    "care.plan.warningSigns.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contoh: susah tidur, malas buka chat"
           }
         }
       }

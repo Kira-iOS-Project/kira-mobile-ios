@@ -1,11 +1,10 @@
 /**
  The screen of each pushed route, by area: Score (score, indicator), Account (profile … deleteAccount,
  about … complaints), Plans (plans … scholarshipStatus), Kira Peduli (care, trustedMessage,
- negotiationScript; the PED screens of other branches keep a back button until they land), Mode Darurat
- Utang and its guides (debtEmergency, debtGuide), Etalase (marketplace, product, submitProduct). "Cek
- Ulang" (`healthCheck`) covers the shell instead (MainShell); Komunitas (`community`) is the dock's own
- section; Catat's and Riwayat's routes stay empty for their own integration, and an unavailable area
- never gets here.
+ negotiationScript, breathingExercise, safetyPlan), Mode Darurat Utang and its guides (debtEmergency,
+ debtGuide), Etalase (marketplace, product, submitProduct). "Cek Ulang" (`healthCheck`) covers the shell
+ instead (MainShell); Komunitas (`community`) is the dock's own section; Catat's and Riwayat's routes
+ stay empty for their own integration, and an unavailable area never gets here.
  */
 import Features
 import SwiftUI
@@ -39,7 +38,8 @@ struct RouteSlot: View {
             DebtEmergencyScreen(care: services.care, service: services.debtEmergency, onOpen: onOpen)
         case .debtGuide(let guide): DebtGuideScreen(guide: guide, care: services.care, onOpen: onOpen)
         case .negotiationScript: NegotiationScriptScreen(service: services.careTools, onOpen: onOpen)
-        case .breathingExercise, .safetyPlan: PendingCareSlot()
+        case .breathingExercise: BreathingScreen()
+        case .safetyPlan: SafetyPlanScreen(service: services.careTools)
         case .marketplace: MarketplaceScreen(service: services.marketplace, onOpen: onOpen)
         case .product(let id): ProductScreen(id: id, service: services.marketplace, onOpen: onOpen)
         case .submitProduct: SubmitProductScreen(onOpen: onOpen)
@@ -52,6 +52,7 @@ struct RouteSlot: View {
 
 /**
  A Kira Peduli screen linked to before its own branch lands (PED-09, PED-10, PED-11): an
+ A Kira Peduli screen Kira Peduli links to before its own branch lands (PED-07): an
  empty surface that keeps the navigation bar, so its back button returns to Kira Peduli.
  */
 private struct PendingCareSlot: View {

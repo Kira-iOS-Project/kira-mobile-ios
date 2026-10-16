@@ -52,6 +52,17 @@ package struct SafetyPlan: Hashable, Sendable {
             safePlace: Self.clean(safePlace), updatedAt: updatedAt)
     }
 
+    /** Whether `text` is longer than a part holds, counted as it is saved (trimmed). */
+    package static func isTooLong(_ text: String) -> Bool {
+        text.trimmingCharacters(in: .whitespacesAndNewlines).count > maximumTextLength
+    }
+
+    /** Whether any text of the plan is longer than a part holds, so it cannot be saved as written. */
+    package var isTooLong: Bool {
+        let contacts = (people + professionals).flatMap { [$0.name, $0.phone] }
+        return ([warningSigns, calmingThings, safePlace] + contacts).contains(where: Self.isTooLong)
+    }
+
     private static func clean(_ text: String) -> String {
         String(text.trimmingCharacters(in: .whitespacesAndNewlines).prefix(maximumTextLength))
     }
@@ -89,6 +100,16 @@ package struct SafetyContact: Hashable, Sendable {
         guard let marker else { return main }
         let extensionDigits = Self.digits(text[marker.range.upperBound...], keepsPlus: false)
         return extensionDigits.isEmpty ? main : main + "," + extensionDigits
+    }
+
+    /** The contact as the plan shows it, "Healing119 · 119 ekstensi 8", leaving out what is not written. */
+    package var line: String {
+        [name, phone].filter { !$0.isEmpty }.joined(separator: " · ")
+    }
+
+    /** `tel:` the dialable number, the extension after a pause ("tel:119,8"); nil when there is no digit. */
+    package var callURL: URL? {
+        dialable.flatMap { URL(string: "tel:\($0)") }
     }
 
     private static func digits(_ text: Substring, keepsPlus: Bool) -> String {
