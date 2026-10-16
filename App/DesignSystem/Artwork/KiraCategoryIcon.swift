@@ -25,7 +25,7 @@ struct KiraCategoryIcon: View {
 
     var body: some View {
         let shape = RoundedRectangle(cornerRadius: isRound ? size / 2 : KiraRadius.small, style: .continuous)
-        Image(decorative: "kategori-\(category.rawValue)")
+        Image(decorative: "category-\(category.rawValue)")
             .resizable()
             .frame(width: (size * 0.8).rounded(), height: (size * 0.8).rounded())
             .frame(width: size, height: size)

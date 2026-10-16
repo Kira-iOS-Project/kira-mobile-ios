@@ -1,6 +1,6 @@
 /**
  Logo (design system): the leaf-bubble ("daun-gelembung"), a leaf that is also a chat bubble, with
- a kunyit dot for the late-afternoon sun. The marks in Assets.xcassets cut the vein out of the
+ a turmeric dot for the late-afternoon sun. The marks in Assets.xcassets cut the vein out of the
  leaf, so the vein always shows what is behind it, as the design system asks. Keep half the mark's
  width clear around it; the mark is at least 16 pt, the wordmark at least 24 pt. Never Kuku in its
  place.
@@ -47,7 +47,7 @@ struct KiraLogo: View {
     @ViewBuilder private var content: some View {
         switch variant {
         case .icon:
-            Image(decorative: "logo-ikon").resizable().frame(width: size, height: size)
+            Image(decorative: "logo-icon").resizable().frame(width: size, height: size)
         case .mark:
             mark
         case .wordmark:
@@ -64,9 +64,9 @@ struct KiraLogo: View {
 
     private var markImage: Image {
         switch tone {
-        case .pandan: Image(decorative: "logo-tanda")
-        case .hero: Image(decorative: "logo-tanda-hero")
-        case .mono: Image(decorative: "logo-tanda-mono")
+        case .pandan: Image(decorative: "logo-mark")
+        case .hero: Image(decorative: "logo-mark-hero")
+        case .mono: Image(decorative: "logo-mark-mono")
         }
     }
 }

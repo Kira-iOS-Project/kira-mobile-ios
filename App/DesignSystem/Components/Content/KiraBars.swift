@@ -1,6 +1,6 @@
 /**
  Bars (design system): simple columns for the weekly summary and the Kira Score history. The
- highlighted column (pandan) is the period in focus; the others are ilu-hijau-lembut. No red for a
+ highlighted column (pandan) is the period in focus; the others are art-green-soft. No red for a
  big spending day and no judging target line; the full amounts are written in the text around it.
  */
 import SwiftUI
@@ -36,7 +36,7 @@ struct KiraBars: View {
                         Text(caption).font(.caption.weight(.semibold)).foregroundStyle(.inkMuted).fixedSize()
                     }
                     RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .fill(column.isHighlighted ? Color.pandan : Color.iluHijauLembut)
+                        .fill(column.isHighlighted ? Color.pandan : Color.artGreenSoft)
                         .frame(height: max(6, (height * column.value / top).rounded()))
                         .frame(maxWidth: 30)
                         .frame(height: height, alignment: .bottom)

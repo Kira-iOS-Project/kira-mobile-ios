@@ -10,21 +10,21 @@ import SwiftUI
 
 /** The dock's destinations. */
 enum KiraTab: CaseIterable {
-    case beranda, rencana, komunitas
+    case home, plan, community
 
     var title: LocalizedStringResource {
         switch self {
-        case .beranda: "ds.tab.beranda"
-        case .rencana: "ds.tab.rencana"
-        case .komunitas: "ds.tab.komunitas"
+        case .home: "ds.tab.home"
+        case .plan: "ds.tab.plan"
+        case .community: "ds.tab.community"
         }
     }
 
     var icon: KiraIconName {
         switch self {
-        case .beranda: .home
-        case .rencana: .target
-        case .komunitas: .users
+        case .home: .home
+        case .plan: .target
+        case .community: .users
         }
     }
 }
@@ -32,14 +32,14 @@ enum KiraTab: CaseIterable {
 /** The navigation dock: three destinations and the Catat button. */
 struct KiraTabBar: View {
     @Binding private var selection: KiraTab
-    private let isCatatActive: Bool
-    private let onCatat: () -> Void
+    private let isRecordActive: Bool
+    private let onRecord: () -> Void
 
-    /** `isCatatActive` rings the Catat bubble while the Catat screen is open. */
-    init(selection: Binding<KiraTab>, isCatatActive: Bool = false, onCatat: @escaping () -> Void) {
+    /** `isRecordActive` rings the Catat bubble while the Catat screen is open. */
+    init(selection: Binding<KiraTab>, isRecordActive: Bool = false, onRecord: @escaping () -> Void) {
         _selection = selection
-        self.isCatatActive = isCatatActive
-        self.onCatat = onCatat
+        self.isRecordActive = isRecordActive
+        self.onRecord = onRecord
     }
 
     var body: some View {
@@ -54,14 +54,14 @@ struct KiraTabBar: View {
             .background { Capsule().fill(.glass) }
             .background(.ultraThinMaterial, in: Capsule())
             .capsuleHairline()
-            catat
+            recordButton
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(Text("ds.tab.navigation"))
     }
 
     private func tabButton(_ tab: KiraTab) -> some View {
-        let isOn = !isCatatActive && tab == selection
+        let isOn = !isRecordActive && tab == selection
         return Button {
             selection = tab
         } label: {
@@ -86,24 +86,24 @@ struct KiraTabBar: View {
         .accessibilityAddTraits(isOn ? .isSelected : [])
     }
 
-    private var catat: some View {
+    private var recordButton: some View {
         let bubble = UnevenRoundedRectangle(
             topLeadingRadius: 24, bottomLeadingRadius: 24, bottomTrailingRadius: 8, topTrailingRadius: 24,
             style: .continuous)
-        return Button(action: onCatat) {
+        return Button(action: onRecord) {
             VStack(spacing: 1) {
-                KiraIcon(isCatatActive ? .chat : .plus, size: 22, weight: .semibold)
-                Text("ds.tab.catat").font(.caption.weight(.bold))
+                KiraIcon(isRecordActive ? .chat : .plus, size: 22, weight: .semibold)
+                Text("ds.tab.record").font(.caption.weight(.bold))
             }
             .foregroundStyle(.onPandan)
             .frame(minWidth: 60, minHeight: 60)
             .background(.pandan, in: bubble)
             .overlay { bubble.strokeBorder(.hairline, lineWidth: 1) }
-            .overlay { bubble.stroke(isCatatActive ? Color.pandan : .clear, lineWidth: 2).padding(-4) }
+            .overlay { bubble.stroke(isRecordActive ? Color.pandan : .clear, lineWidth: 2).padding(-4) }
             .contentShape(bubble)
         }
         .buttonStyle(.plain)
-        .accessibilityAddTraits(isCatatActive ? .isSelected : [])
+        .accessibilityAddTraits(isRecordActive ? .isSelected : [])
     }
 }
 

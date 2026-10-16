@@ -2,8 +2,8 @@
  ListRow (design system): a tile on the left, the title and its details stacked, an action on the
  right. Numbers always sit under the title, left-aligned (`.amount`, `.value`), so long names and
  big amounts stay whole; the right side is for actions only: chevron, toggle, check, or an outside
- link. `extra` holds a Tag or a ProgressPita under the text. `.danger()` is for rows that delete
- (Hapus Akun dan Data): rentan, never the darurat red. The title is a Text, so it holds copy
+ link. `extra` holds a Tag or a ProgressRibbon under the text. `.danger()` is for rows that delete
+ (Hapus Akun dan Data): vulnerable, never the emergency red. The title is a Text, so it holds copy
  (`Text("settings.pin")`) or data (`Text(transaction.name)`) alike.
  */
 import SwiftUI
@@ -56,7 +56,7 @@ struct KiraListRow<Extra: View>: View {
         HStack(spacing: KiraSpacing.space3) {
             RowLeadingTile(leading: leading, isDanger: isDanger)
             VStack(alignment: .leading, spacing: 2) {
-                title.font(.callout.weight(.semibold)).foregroundStyle(isDanger ? Color.rentan : Color.ink)
+                title.font(.callout.weight(.semibold)).foregroundStyle(isDanger ? Color.vulnerable : Color.ink)
                 if let subtitle { subtitle.font(.footnote).foregroundStyle(.inkMuted) }
                 if let amount { amount.padding(.top, 2) }
                 if let value { value.font(.subheadline.weight(.semibold)).foregroundStyle(.ink).padding(.top, 2) }
@@ -104,7 +104,7 @@ struct KiraListRow<Extra: View>: View {
     /** The same row with a short value under the title ("3 hari sebelumnya"). */
     func value(_ text: Text) -> Self { copy { $0.value = text } }
 
-    /** The same row as a destructive one, in rentan. */
+    /** The same row as a destructive one, in vulnerable. */
     func danger() -> Self { copy { $0.isDanger = true } }
 
     private func copy(_ change: (inout Self) -> Void) -> Self {

@@ -56,7 +56,7 @@ struct KiraCodeBox: View {
         case .empty: .hairline
         case .next: .pandan
         case .filled: kind == .pin ? .inkMuted : .hairline
-        case .error: .rentan
+        case .error: .vulnerable
         }
     }
 }

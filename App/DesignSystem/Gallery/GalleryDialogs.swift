@@ -14,21 +14,21 @@
                     .kiraDialog(isPresented: $isConfirming) {
                         KiraDialog(
                             "gallery.dialog.unsubscribe.title", message: "gallery.dialog.unsubscribe.body",
-                            art: .illustration(.peduli),
-                            primary: KiraButton("gallery.dialog.unsubscribe", variant: .bahaya) {},
+                            art: .illustration(.care),
+                            primary: KiraButton("gallery.dialog.unsubscribe", variant: .destructive) {},
                             secondary: KiraButton("gallery.dialog.keep", variant: .secondary) {})
                     }
             }
             GallerySection(title: "gallery.section.dialogSuccess") {
                 KiraDialog(
-                    "gallery.dialog.saved.title", message: "gallery.dialog.saved.body", art: .illustration(.mekar),
+                    "gallery.dialog.saved.title", message: "gallery.dialog.saved.body", art: .illustration(.bloom),
                     primary: KiraButton("gallery.dialog.done") {}
                 )
                 .onScrim()
             }
             GallerySection(title: "gallery.section.dialogFailure") {
                 KiraDialog(
-                    "gallery.dialog.failed.title", message: "gallery.dialog.failed.body", art: .illustration(.payung),
+                    "gallery.dialog.failed.title", message: "gallery.dialog.failed.body", art: .illustration(.umbrella),
                     primary: KiraButton("gallery.dialog.retry") {},
                     secondary: KiraButton("gallery.dialog.close", variant: .secondary) {}
                 )
@@ -36,14 +36,14 @@
             }
             GallerySection(title: "gallery.section.dialogConfirm") {
                 KiraDialog(
-                    "gallery.dialog.delete.title", message: "gallery.dialog.delete.body", art: .illustration(.peduli),
-                    primary: KiraButton("gallery.dialog.delete", variant: .bahaya) {},
+                    "gallery.dialog.delete.title", message: "gallery.dialog.delete.body", art: .illustration(.care),
+                    primary: KiraButton("gallery.dialog.delete", variant: .destructive) {},
                     secondary: KiraButton("gallery.dialog.cancel", variant: .secondary) {}
                 )
                 .onScrim()
                 KiraDialog(
                     "gallery.dialog.download.title", message: "gallery.dialog.download.body",
-                    art: .illustration(.perisai), primary: KiraButton("gallery.dialog.download") {},
+                    art: .illustration(.shield), primary: KiraButton("gallery.dialog.download") {},
                     secondary: KiraButton("gallery.dialog.cancel", variant: .secondary) {}
                 )
                 .onScrim()

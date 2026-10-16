@@ -18,22 +18,22 @@ the IPA alone. Add the SDK later only for a feature that needs it (Crashlytics, 
 
 ### 1. Apple Developer
 
-The bundle identifier is `com.codesheesh.kira` (the `Kira` target, `PRODUCT_BUNDLE_IDENTIFIER`).
+The bundle identifier is `com.kira` (the `Kira` target, `PRODUCT_BUNDLE_IDENTIFIER`).
 Change it in the project before registering anything if you want another one.
 
-1. **Identifiers** → register the App ID `com.codesheesh.kira` (explicit).
+1. **Identifiers** → register the App ID `com.kira` (explicit).
 2. **Devices** → register every tester's iPhone (UDID). Firebase can collect them: App Distribution
    → Testers & Groups → enable device registration, then export the UDIDs for Apple.
 3. **Certificates** → an **Apple Distribution** certificate. Export it from Keychain Access with
    its private key as a `.p12`, protected by a strong password.
-4. **Profiles** → an **Ad Hoc** profile for `com.codesheesh.kira` with that certificate and the
+4. **Profiles** → an **Ad Hoc** profile for `com.kira` with that certificate and the
    devices. Download the `.mobileprovision`. The workflow reads the team ID and the profile name
    from the file itself, and refuses a profile for another app or one without devices.
 
 ### 2. Firebase
 
 1. Firebase console → add a project (or use one), then **Add app → iOS** with the bundle ID
-   `com.codesheesh.kira`. Skip the SDK and `GoogleService-Info.plist` steps.
+   `com.kira`. Skip the SDK and `GoogleService-Info.plist` steps.
 2. Project settings → your iOS app → copy the **App ID** (`1:<project-number>:ios:<hex>`).
 3. Release & Monitor → **App Distribution** → Get started. Under **Testers & Groups**, create a
    group (its alias, for example `internal-testers`) and add the testers.

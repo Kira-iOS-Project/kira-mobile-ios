@@ -40,10 +40,10 @@ struct RowLeadingTile: View {
             KiraCategoryIcon(category, size: KiraSize.tile)
         case .icon(let icon):
             KiraIcon(icon, size: 20)
-                .foregroundStyle(isDanger ? Color.rentan : Color.pandan)
+                .foregroundStyle(isDanger ? Color.vulnerable : Color.pandan)
                 .frame(width: 38, height: 38)
                 .kiraCard(
-                    isDanger ? .rentanSoft : .pandanSoft, border: isDanger ? .rentanLine : .pandanLine,
+                    isDanger ? .vulnerableSoft : .pandanSoft, border: isDanger ? .vulnerableLine : .pandanLine,
                     cornerRadius: KiraRadius.small)
         case .illustration(let name):
             KiraIllustration(name, size: 44)

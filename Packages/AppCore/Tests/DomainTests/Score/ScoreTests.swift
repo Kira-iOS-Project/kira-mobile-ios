@@ -14,9 +14,9 @@ struct ScoreTests {
 
     @Test("the band and the fraction follow the clamped value")
     func bandAndFraction() {
-        #expect(Score(66).band == .bertahan)
+        #expect(Score(66).band == .coping)
         #expect(Score(66).fraction == 0.66)
-        #expect(Score(140).band == .sehat)
+        #expect(Score(140).band == .healthy)
         #expect(Score(140).fraction == 1)
         #expect(Score(-1).fraction == 0)
     }

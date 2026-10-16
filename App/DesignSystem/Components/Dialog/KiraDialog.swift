@@ -1,9 +1,9 @@
 /**
  Dialog (design system: `.k-dialog`): confirmations and the result of an action, over the screen.
- A 112 pt spot illustration (mekar for success, payung for failure, peduli for a confirmation) or a
+ A 112 pt spot illustration (`bloom` for success, `umbrella` for failure, `care` for a confirmation) or a
  round icon, a Title Case title, one sentence, then the buttons stacked as wide as the dialog with
  the primary action on top:
-   - confirm before deleting or cancelling: `bahaya` primary ("Hapus"), `secondary` "Batal";
+   - confirm before deleting or cancelling: `destructive` primary ("Hapus"), `secondary` "Batal";
    - success names the result ("Transaksi Tersimpan") with one "Selesai";
    - failure names the cause and the way out without blame, keeps what was typed, and offers
      "Coba Lagi" with "Tutup".
@@ -101,7 +101,7 @@ struct KiraDialog: View {
         case .success:
             ResultBadge(icon: .check, color: .pandan, fill: .pandanSoft, border: .pandanLine)
         case .failure:
-            ResultBadge(icon: .alert, color: .rentan, fill: .rentanSoft, border: .rentanLine)
+            ResultBadge(icon: .alert, color: .vulnerable, fill: .vulnerableSoft, border: .vulnerableLine)
         }
     }
 }
