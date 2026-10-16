@@ -6,7 +6,9 @@ import Testing
 @testable import APIClient
 
 private struct HealthCheckBody: Decodable {
-    struct Debt: Decodable { let kind: String, remaining: Int, remainingTenorMonths: Int? }
+    struct Debt: Decodable {
+        let kind: String, remaining: Int, remainingTenorMonths: Int?, annualInterestRate: Double?, dueDay: Int?
+    }
     let netMonthlyIncome: Int?
     let debts: [Debt]
     let dependents: Int
@@ -61,7 +63,7 @@ struct ScoreAPITests {
         answers.debts = [
             HealthCheckDebtDTO(
                 kind: .onlineLoan, name: "Pinjol B", remaining: 3_000_000, monthlyInstalment: 900_000,
-                remainingTenorMonths: nil)
+                remainingTenorMonths: nil, annualInterestRate: 2.5, dueDay: 28)
         ]
         answers.dependents = 2
         answers.maritalStatus = .married
@@ -71,6 +73,7 @@ struct ScoreAPITests {
         let body = try #require(await transport.request).decoded(HealthCheckBody.self)
         #expect(body.netMonthlyIncome == 7_500_000 && body.dependents == 2 && body.maritalStatus == "married")
         #expect(body.debts.first?.kind == "online_loan" && body.debts.first?.remainingTenorMonths == nil)
+        #expect(body.debts.first?.annualInterestRate == 2.5 && body.debts.first?.dueDay == 28)
         #expect(body.protections == ["bpjs_health", "life_insurance"])
         #expect(HealthCheckInputDTO().debts.isEmpty && HealthCheckInputDTO().emergencyFund == nil)
     }

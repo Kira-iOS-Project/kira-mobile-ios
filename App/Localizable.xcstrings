@@ -9527,6 +9527,36 @@
         }
       }
     },
+    "onboarding.debt.sheet.dueDay" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanggal Jatuh Tempo (opsional)"
+          }
+        }
+      }
+    },
+    "onboarding.debt.sheet.dueDay.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanggal tiap bulan kamu harus bayar, dari 1 sampai 31."
+          }
+        }
+      }
+    },
+    "onboarding.debt.sheet.dueDay.prompt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contoh: 25"
+          }
+        }
+      }
+    },
     "onboarding.debt.sheet.instalment" : {
       "localizations" : {
         "id" : {
@@ -9543,6 +9573,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Isi cicilan per bulannya, kira-kira juga boleh."
+          }
+        }
+      }
+    },
+    "onboarding.debt.sheet.interest" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bunga per Tahun (opsional)"
+          }
+        }
+      }
+    },
+    "onboarding.debt.sheet.interest.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi kalau kamu tahu, supaya rencana pelunasan bisa menghitung bunganya."
           }
         }
       }
@@ -9593,6 +9643,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Misalnya: Paylater C"
+          }
+        }
+      }
+    },
+    "onboarding.debt.sheet.percent" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%"
           }
         }
       }
