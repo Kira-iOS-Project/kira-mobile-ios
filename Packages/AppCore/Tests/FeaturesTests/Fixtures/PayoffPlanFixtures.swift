@@ -22,7 +22,8 @@ enum PayoffPlanFixtures {
                 account("m-1", status: .ongoing, remaining: 13_000_000, original: 15_000_000, kind: .vehicle),
             ],
             nextPayment: NextPayment(
-                debtId: focusIsFirst ? "a-1" : "a-2", name: "Akun", amount: 210_000, dueDate: "2026-11-05", daysLeft: 20))
+                debtId: focusIsFirst ? "a-1" : "a-2", name: "Akun", amount: 210_000, dueDate: "2026-11-05",
+                daysLeft: 20))
     }
 
     /** A plan whose consumer accounts are all paid. */

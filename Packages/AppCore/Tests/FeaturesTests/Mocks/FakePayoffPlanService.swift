@@ -8,7 +8,8 @@ actor FakePayoffPlanService: PayoffPlanService {
     private(set) var calls: [String] = []
     private var createResult: Result<ActivePayoffPlan, any Error> = .success(PayoffPlanFixtures.plan())
     private var activeResult: Result<ActivePayoffPlan, any Error> = .success(PayoffPlanFixtures.plan())
-    private var focusResult: Result<ActivePayoffPlan, any Error> = .success(PayoffPlanFixtures.plan(focusIsFirst: false))
+    private var focusResult: Result<ActivePayoffPlan, any Error> = .success(
+        PayoffPlanFixtures.plan(focusIsFirst: false))
     private var paymentResult: Result<DebtPayment, any Error> = .success(PayoffPlanFixtures.partPayment)
 
     func creates(_ result: Result<ActivePayoffPlan, any Error>) { createResult = result }

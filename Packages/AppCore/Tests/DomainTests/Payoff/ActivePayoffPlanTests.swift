@@ -37,7 +37,8 @@ struct ActivePayoffPlanTests {
     @Test("progress counts what is paid of the consumer accounts' original balances, and ignores the rest")
     func progress() {
         let partway = plan([
-            account("a", .inProgress, remaining: 420, original: 600), account("b", .next, remaining: 400, original: 400),
+            account("a", .inProgress, remaining: 420, original: 600),
+            account("b", .next, remaining: 400, original: 400),
             account("m", .ongoing, remaining: 1, original: 1_000_000),
         ])
         #expect(partway.progressPercent == 18)
