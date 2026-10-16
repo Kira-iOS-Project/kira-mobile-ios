@@ -57,23 +57,21 @@ package struct AppProblem: Error, Codable, Hashable, Sendable {
     }
 
     /**
-     The String Catalog key of the message to show: `problem.<CODE>` for a known code,
-     `problem.connection` when the request got no answer, else `problem.unknown`, which is shown
-     together with `reference`.
+     The String Catalog key of the message to show: `problem.<CODE>` for a known code, the key of a
+     problem this app made itself (no answer, Kira unreachable, too many requests), else
+     `problem.unknown`.
      */
     package var messageKey: String {
-        guard let knownCode else { return isConnectionLoss ? "problem.connection" : "problem.unknown" }
+        guard let knownCode else { return clientMessageKey ?? "problem.unknown" }
         return "problem.\(knownCode.rawValue)"
     }
 
     /**
-     `CODE · <first 8 characters of the request id>`, the reference a person can quote to
-     support. `UNKNOWN` stands in for a missing code.
+     The first 8 characters of the request id, the reference a person can quote to support. Shown
+     only when `showsReference`, so never empty on a screen.
      */
     package var reference: String {
-        let shown = code ?? "UNKNOWN"
-        guard let requestId, !requestId.isEmpty else { return shown }
-        return "\(shown) · \(requestId.prefix(8))"
+        String((requestId ?? "").prefix(8))
     }
 }
 

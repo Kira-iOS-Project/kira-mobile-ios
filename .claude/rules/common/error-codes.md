@@ -32,8 +32,13 @@ member on its own, so a code added after this build shipped still decodes. `know
   (SwiftLint `no_default_on_problem_code`): a code added to `ProblemCode` then fails the build until
   every screen maps it.
 - Show the catalog message `problem.<CODE>` (`problem.messageKey`); for an unknown problem show
-  `problem.unknown` and the reference `CODE · <request id prefix>` (`problem.reference`) a person
-  can quote to support.
+  `problem.unknown`, and only when it carries a request id the reference "Kode bantuan: <first 8
+  characters of the request id>" (`problem.reference`, gated by `showsReference`) a person can
+  quote to support. Never show a placeholder such as "UNKNOWN".
+- A status answered without a problem body (a proxy's HTML 404, an empty 503) becomes a problem the
+  app makes itself (`AppProblem(_:)`): 404 or any 5xx `problem.serviceUnavailable`, 429
+  `problem.rateLimited`, 401 `AUTH_UNAUTHENTICATED`, anything else `problem.unknown` without a
+  reference; a request with no answer is `problem.connection`.
 - Branch on the code, never on `status`: "any 409 means a duplicate" reports a refused request as
   something else.
 
