@@ -24,6 +24,12 @@ struct ProfileQuotaCard: View {
                     Text("account.profile.quota.subtitle")
                         .font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
                 }
+                /**
+                 The column's whole width, growing downwards: sized to its own one-line width, the
+                 title is reported by the accessibility audit as clipped (as KiraListRow's text was).
+                 */
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
             KiraProgressRibbon(
                 value: Double(usage.aiMessages.used), target: Double(usage.aiMessages.limit),

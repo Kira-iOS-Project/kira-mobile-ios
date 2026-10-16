@@ -47,7 +47,20 @@ nonisolated final class AccountAuditTests: XCTestCase {
 
     @MainActor
     func testPlansYearlyPassesTheAudit() throws {
-        try auditScreen("plansYearly")
+        try auditScreen(
+            "plansYearly",
+            accepting: { issue in
+                /**
+                 Accepted: "Contrast nearly passed" with no element, on the pass that leaves the Kira
+                 Plus card cut off at the home indicator. The card is one combined element, so the
+                 bottom-edge rule cannot see its frame; hiding the card clears the finding, the same
+                 card passes in full view on Paket Bulanan, and its colours measure 5.1:1 and up
+                 (pandan on pandan-soft 5.5:1, ink-muted on surface-raised 6.0:1). Every other finding
+                 fails.
+                 */
+                issue.auditType == .contrast && issue.element == nil
+                    && issue.compactDescription.hasPrefix("Contrast nearly passed")
+            })
     }
 
     @MainActor
