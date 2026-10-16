@@ -51,7 +51,7 @@ struct PrivacyScreen: View {
                 KiraListRow(Text("account.privacy.delete"), leading: .icon(.trash)) { deletes = true }.danger()
             }
         }
-        .onHelp { onOpen(.unavailable(.care)) }
+        .onHelp { onOpen(.care) }
         .task { await model.load() }
         .kiraDialog(isPresented: $confirmsExport) {
             KiraDialog(
