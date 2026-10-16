@@ -90,13 +90,14 @@ struct LiveCareToolsServiceTests {
     func undocumented(route: String) async {
         let reply = RoutedTransport.Reply(status: 500, body: "{}", contentType: "application/json")
         let (service, _) = service([route: reply])
-        await #expect(throws: AppProblem()) {
+        let error = await #expect(throws: (any Error).self) {
             if route.hasPrefix("GET") {
                 _ = try await service.debts()
             } else {
                 _ = try await service.saveSafetyPlan(.empty)
             }
         }
+        #expect(error.map(careProblem) == AppProblem())
         let (unauthorized, _) = self.service(["GET /api/debts": problem("AUTH_UNAUTHENTICATED", status: 401)])
         await #expect(throws: AppProblem.self) { try await unauthorized.debts() }
         let (plan, _) = self.service(["GET /api/care/safety-plan": RoutedTransport.Reply(status: 500, body: "{}")])

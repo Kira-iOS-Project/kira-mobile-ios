@@ -17,7 +17,7 @@ package protocol CareToolsService: Sendable {
     func saveSafetyPlan(_ plan: SafetyPlan) async throws -> SafetyPlan
 }
 
-/** The API's problem behind `error`, or a problem without a code (a lost connection) for anything else. */
+/** The API's problem behind `error`, connection loss for a request without an answer, else the generic one. */
 func careProblem(_ error: any Error) -> AppProblem {
-    (error as? AppProblem) ?? AppProblem()
+    AppProblem(error)
 }

@@ -1,5 +1,6 @@
 import APIClient
 import Domain
+import Foundation
 import Testing
 
 @testable import Features
@@ -48,14 +49,14 @@ struct NegotiationScriptModelTests {
         #expect(model.script.currentInstalment == 230_000 && model.affordableText == "150.000")
     }
 
-    @Test("a refused or lost load shows the problem", arguments: [true, false])
+    @Test("a refused load shows its problem, a lost one the connection loss", arguments: [true, false])
     func failure(offline: Bool) async {
-        let error: any Error = offline ? FakeCareToolsService.Offline() : FakeCareToolsService.problem
+        let error: any Error = offline ? URLError(.notConnectedToInternet) : FakeCareToolsService.problem
         await service.configure { $0.failing[.debts] = error }
         let model = model()
         await model.load()
         guard case .failed(let problem) = model.phase else { Issue.record("expected failed"); return }
-        #expect(problem == (offline ? AppProblem() : FakeCareToolsService.problem))
+        #expect(problem == (offline ? AppProblem.connectionLost : FakeCareToolsService.problem))
     }
 
     @Test("a name that fails to load stays a gap; the lenders still load")
