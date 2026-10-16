@@ -23,7 +23,8 @@ struct OnboardingFlowModelTests {
         #expect(flow.signUpEmailModel() === email)
         email.email = "dinda@email.com"
         await email.submit()
-        #expect(!flow.signUpEmail.isOpen)
+        #expect(!flow.signUpEmail.isOpen && flow.path == [.signUp])
+        flow.signUpSheetGone()
         let delivery = CodeDelivery(resendAfterSeconds: 60)
         #expect(flow.path == [.signUp, .code(email: "dinda@email.com", delivery: delivery)])
         let code = flow.makeCodeModel(email: "dinda@email.com", delivery: delivery)

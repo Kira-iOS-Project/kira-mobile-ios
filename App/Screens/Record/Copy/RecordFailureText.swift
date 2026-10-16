@@ -19,21 +19,22 @@ extension RecordFailure {
         }
     }
 
-    /** The failure dialog: what happened and Tutup; the screen keeps what the person entered. */
-    var dialog: KiraDialog {
+    /** The failure dialog: what happened, Coba Lagi on top and Tutup; the screen keeps what was entered. */
+    func dialog(onRetry: @escaping () -> Void) -> KiraDialog {
         KiraDialog(
             "record.failure.title", message: recordMessage, art: .illustration(.umbrella),
-            primary: KiraButton("ds.close", variant: .secondary) {})
+            primary: KiraButton("record.retry", action: onRetry),
+            secondary: KiraButton("ds.close", variant: .secondary) {})
     }
 }
 
 extension View {
-    /** Shows `failure` as a dialog while it is set, and clears it when the dialog closes. */
-    func recordFailureDialog(_ failure: Binding<RecordFailure?>) -> some View {
+    /** Shows `failure` as a dialog while it is set, and clears it when the dialog closes; Coba Lagi runs `onRetry`. */
+    func recordFailureDialog(_ failure: Binding<RecordFailure?>, onRetry: @escaping () -> Void) -> some View {
         kiraDialog(
             isPresented: Binding(get: { failure.wrappedValue != nil }, set: { if !$0 { failure.wrappedValue = nil } })
         ) {
-            (failure.wrappedValue ?? .connection).dialog
+            (failure.wrappedValue ?? .connection).dialog(onRetry: onRetry)
         }
     }
 }
