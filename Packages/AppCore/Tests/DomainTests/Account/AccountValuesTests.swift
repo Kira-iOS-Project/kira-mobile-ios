@@ -35,11 +35,6 @@ struct AccountValuesTests {
         #expect(!settings.isGranted(.weeklySummary))
     }
 
-    @Test("auto-lock delays in seconds", arguments: zip(AutoLockDelay.allCases, [0, 60, 300]))
-    func autoLock(delay: AutoLockDelay, seconds: Int) {
-        #expect(delay.seconds == seconds)
-    }
-
     @Test("HAPUS confirms in any case, spaces ignored", arguments: ["HAPUS", "hapus", " Hapus\n"])
     func confirms(text: String) {
         #expect(DeletionConfirmation.accepts(text))

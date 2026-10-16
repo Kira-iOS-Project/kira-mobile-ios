@@ -11,10 +11,8 @@ extension ChatMessage {
         self.init(
             id: dto.id, sender: try Bridge.value(dto.sender), kind: try Bridge.value(dto.kind), body: dto.body,
             createdAt: dto.createdAt, replyToId: dto.replyToId, drafts: dto.drafts?.map(DraftItem.init),
-            draftStatus: try dto.draftStatus.map(Bridge.value), parser: try dto.parser.map(Bridge.value),
-            inputMethod: try dto.inputMethod.map(Bridge.value), batchId: dto.batchId,
-            transactionIds: dto.transactionIds, committedAt: dto.committedAt, itemCount: dto.itemCount,
-            remaining: dto.remaining, perDay: dto.perDay)
+            draftStatus: try dto.draftStatus.map(Bridge.value), batchId: dto.batchId, remaining: dto.remaining,
+            perDay: dto.perDay)
     }
 }
 

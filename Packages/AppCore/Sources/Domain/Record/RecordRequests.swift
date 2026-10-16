@@ -135,16 +135,13 @@ package struct ManualTransactionInput: Hashable, Sendable {
     }
 }
 
-/** The saved transaction's id and Kira's `manual_saved` message for the chat. */
+/** Kira's `manual_saved` message for the chat, the answer to a manual save. */
 package struct ManualSaveResult: Sendable {
-    /** The saved transaction's id. */
-    package let transactionId: String
     /** Kira's `manual_saved` message. */
     package let message: ChatMessage
 
     /** The answer to a manual save. */
-    package init(transactionId: String, message: ChatMessage) {
-        self.transactionId = transactionId
+    package init(message: ChatMessage) {
         self.message = message
     }
 }

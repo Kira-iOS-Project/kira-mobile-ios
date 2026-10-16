@@ -20,7 +20,7 @@ struct ScoreAPITests {
     func readsReport() async throws {
         let (api, _) = KiraAPI.canned(json: reportJSON)
         let report = try await api.getScore()
-        #expect(report.score == 66 && report.band == .coping && report.delta == 4 && !report.isInitial)
+        #expect(report.score == 66 && report.band == .coping && report.delta == 4)
         #expect(report.computedAt == Date(timeIntervalSince1970: 1_792_126_800))
         #expect(report.nextCheckOn == "2026-10-25" && !report.cappedByConsumerDebt)
         #expect(report.groups[0] == GroupScoreDTO(group: .save, points: 48, band: .coping))

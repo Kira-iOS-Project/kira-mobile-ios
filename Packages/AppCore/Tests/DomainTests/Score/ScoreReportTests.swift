@@ -6,11 +6,10 @@ import Testing
 
 @Suite("ScoreReport")
 struct ScoreReportTests {
-    @Test("starts as an initial report with nothing listed, and finds a group it holds")
+    @Test("starts with nothing listed, and finds a group it holds")
     func report() {
         let day = Date(timeIntervalSince1970: 0)
         var report = ScoreReport(score: 62, band: .coping, computedAt: day, nextCheckOn: day)
-        #expect(report.isInitial)
         #expect(report.delta == nil)
         #expect(report.groups.isEmpty && report.indicators.isEmpty && report.steps.isEmpty)
         #expect(!report.cappedByConsumerDebt)

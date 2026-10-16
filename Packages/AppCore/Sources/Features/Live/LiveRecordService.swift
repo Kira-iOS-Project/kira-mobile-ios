@@ -59,6 +59,6 @@ package struct LiveRecordService: RecordService {
                 clientId: transaction.clientId, type: transaction.type, amount: transaction.amount,
                 category: transaction.category, name: transaction.name, occurredAt: transaction.occurredAt,
                 note: transaction.note))
-        return ManualSaveResult(transactionId: saved.transaction.id, message: try ChatMessage(saved.message))
+        return ManualSaveResult(message: try ChatMessage(saved.message))
     }
 }

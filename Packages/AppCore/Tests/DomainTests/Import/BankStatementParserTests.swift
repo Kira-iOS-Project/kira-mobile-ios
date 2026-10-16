@@ -16,7 +16,7 @@ struct BankStatementParserTests {
         #expect(
             statement.rows[0]
                 == StatementRow(
-                    line: 2, day: CalendarDay(year: 2026, month: 9, day: 26), description: "Kopi Susu", amount: -22_000)
+                    day: CalendarDay(year: 2026, month: 9, day: 26), description: "Kopi Susu", amount: -22_000)
         )
         #expect(statement.rows[0].type == .expense)
         #expect(statement.rows[2].type == .income)
@@ -31,7 +31,7 @@ struct BankStatementParserTests {
         #expect(
             statement.rows == [
                 StatementRow(
-                    line: 3, day: CalendarDay(year: 2026, month: 9, day: 1), description: "Toko \"Maju\"; Jaya",
+                    day: CalendarDay(year: 2026, month: 9, day: 1), description: "Toko \"Maju\"; Jaya",
                     amount: 150_000)
             ])
     }

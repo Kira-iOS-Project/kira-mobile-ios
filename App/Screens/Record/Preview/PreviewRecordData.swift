@@ -24,14 +24,14 @@ nonisolated enum PreviewRecordData {
             ChatMessage(id: "m1", sender: .person, kind: .personText, body: "bensin 30rb", createdAt: morning),
             ChatMessage(
                 id: "k1", sender: .kira, kind: .drafts, createdAt: morning, replyToId: "m1", drafts: [fuel],
-                draftStatus: .committed, batchId: "batch-k1", itemCount: 1),
+                draftStatus: .committed, batchId: "batch-k1"),
             ChatMessage(
                 id: "m2", sender: .person, kind: .personText,
                 body: "makan siang 25rb, grab ke kantor 18rb, kopi goceng",
                 createdAt: noon),
             ChatMessage(
                 id: "k2", sender: .kira, kind: .drafts, createdAt: noon, replyToId: "m2", drafts: drafts,
-                draftStatus: .pending, parser: .slangRules, itemCount: 3),
+                draftStatus: .pending),
         ]
     }()
 

@@ -76,24 +76,11 @@ package final class AppLockModel {
         isLocked = false
     }
 
-    /** Turns the PIN off after checking it (AKN-03: turning the lock off asks for the PIN). */
-    package func removePin(confirmingWith pin: String) -> PinCheck {
-        let check = pins.verify(pin)
-        if check == .correct {
-            pins.removePin()
-            hasPin = false
-        }
-        return check
-    }
-
     /** Turns the PIN off once Keamanan has checked it (AKN-03): Kira opens without one. */
     package func forgetPin() {
         pins.removePin()
         hasPin = false
     }
-
-    /** Shows or hides amounts until the next open (the eye on Beranda). */
-    package func toggleBalances() { balancesHidden.toggle() }
 
     /** Changes the settings and keeps them. */
     package func update(_ change: (inout LockSettings) -> Void) {

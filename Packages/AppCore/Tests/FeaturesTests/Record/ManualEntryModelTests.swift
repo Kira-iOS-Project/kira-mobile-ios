@@ -41,7 +41,7 @@ struct ManualEntryModelTests {
     @Test("Simpan saves once with today's time, then Transaksi Tersimpan and Selesai close the form")
     func save() async throws {
         let service = FakeRecordService()
-        let result = ManualSaveResult(transactionId: "t1", message: Fixtures.kira("k9", kind: .manualSaved))
+        let result = ManualSaveResult(message: Fixtures.kira("k9", kind: .manualSaved))
         service.manualResult = .success(result)
         var received: ManualSaveResult?
         let form = model(service) { received = $0 }
@@ -55,7 +55,7 @@ struct ManualEntryModelTests {
         #expect(input.name == "Belanja Mingguan")
         #expect(input.note == nil)
         #expect(input.occurredAt == Fixtures.noon)
-        #expect(received?.transactionId == "t1")
+        #expect(received?.message.kind == .manualSaved)
         #expect(form.showsSaved)
         form.finish()
         #expect(form.isClosed)
@@ -72,7 +72,7 @@ struct ManualEntryModelTests {
         #expect(form.failure == .connection)
         #expect(form.amountText == "7500000")
         service.manualResult = .success(
-            ManualSaveResult(transactionId: "t1", message: Fixtures.kira("k", kind: .manualSaved)))
+            ManualSaveResult(message: Fixtures.kira("k", kind: .manualSaved)))
         await form.save()
         #expect(service.manuals.map(\.clientId) == ["id-1", "id-1"])
         #expect(service.manuals.last?.name == "shopping")

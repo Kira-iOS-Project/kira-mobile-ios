@@ -5,8 +5,6 @@
 
 /** One row of the file: a day, what the bank wrote, and the signed amount. */
 package struct StatementRow: Hashable, Sendable {
-    /** The row's line in the file, counting the header as line 1. */
-    package let line: Int
     /** The row's date. */
     package let day: CalendarDay
     /** The bank's description with account numbers masked. */
@@ -15,8 +13,7 @@ package struct StatementRow: Hashable, Sendable {
     package let amount: Int
 
     /** A row with the given fields. */
-    package init(line: Int, day: CalendarDay, description: String, amount: Int) {
-        self.line = line
+    package init(day: CalendarDay, description: String, amount: Int) {
         self.day = day
         self.description = description
         self.amount = amount

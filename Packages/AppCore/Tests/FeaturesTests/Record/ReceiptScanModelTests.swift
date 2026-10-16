@@ -129,7 +129,7 @@ extension ReceiptScanModelTests {
                 quotaExhausted: false,
                 usage: Fixtures.usage()))
         let lines = ["Kasir 2", "Sabun Cuci 15.500,00", "TOTAL 15.500,00", "Toko Sejahtera Jakarta"]
-        let assistant = FakeReceiptAssistant(ReceiptGlance(storeName: "Toko Sejahtera", kind: .receipt))
+        let assistant = FakeReceiptAssistant(ReceiptGlance(storeName: "Toko Sejahtera"))
         let scan = ReceiptScanModel(
             quota: UsageMeter(used: 0, limit: 10),
             dependencies: Fixtures.dependencies(

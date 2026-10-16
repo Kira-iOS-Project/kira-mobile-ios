@@ -1,5 +1,4 @@
 import APIClient
-import Domain
 
 /** Lupa PIN's calls (AKN-02): a sign-in code by email, then its check, which opens a new session. */
 package struct LivePinRecoveryService: PinRecoveryService {

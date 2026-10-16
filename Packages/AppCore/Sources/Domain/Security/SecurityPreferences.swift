@@ -27,13 +27,4 @@ package enum AutoLockDelay: String, CaseIterable, Codable, Sendable {
     case oneMinute
     /** After 5 minutes away. */
     case fiveMinutes
-
-    /** The delay in seconds: 0, 60 or 300. */
-    package var seconds: Int {
-        switch self {
-        case .immediately: 0
-        case .oneMinute: 60
-        case .fiveMinutes: 300
-        }
-    }
 }

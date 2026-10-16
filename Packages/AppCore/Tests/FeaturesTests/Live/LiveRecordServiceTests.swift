@@ -39,10 +39,7 @@ struct LiveRecordServiceTests {
         #expect(reply.sender == .kira)
         #expect(reply.kind == .drafts)
         #expect(reply.draftStatus == .committed)
-        #expect(reply.parser == .slangRules)
-        #expect(reply.inputMethod == .keyboard)
         #expect(reply.drafts?.first?.category == .coffee)
-        #expect(reply.committedAt == liveNow)
         #expect(reply.remaining == 1_840_000)
         #expect(page.items.first?.drafts == nil)
         #expect(try #require(await transport.request).path.hasSuffix("chat/messages?before=c-0"))
@@ -103,7 +100,6 @@ struct LiveRecordServiceTests {
             clientId: "c-3", type: .expense, amount: 18_000, category: .transport, name: "Grab", occurredAt: liveNow,
             note: "pagi")
         let saved = try await LiveRecordService(api: manualAPI).saveManual(entry)
-        #expect(saved.transactionId == "t-1")
         #expect(saved.message.id == "m-2")
         #expect(try #require(await manualTransport.request).compact.contains(#""note":"pagi""#))
     }

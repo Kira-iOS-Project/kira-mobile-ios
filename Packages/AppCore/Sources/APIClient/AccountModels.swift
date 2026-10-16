@@ -66,8 +66,7 @@ package struct MeDTO: Hashable, Sendable {
         plan = CurrentPlanDTO(id: try bridged(profile.plan.id))
         usage = UsageDTO(profile.usage)
         period = PaydayPeriodDTO(
-            start: profile.period.start, end: profile.period.end, nextPayday: profile.period.nextPayday,
-            daysUntilPayday: profile.period.daysUntilPayday)
+            start: profile.period.start, end: profile.period.end, daysUntilPayday: profile.period.daysUntilPayday)
         lastExpenseCategory = try bridged(profile.lastCategories.expense)
         lastIncomeCategory = try bridged(profile.lastCategories.income)
         debtAccountCount = profile.debtAccountCount
