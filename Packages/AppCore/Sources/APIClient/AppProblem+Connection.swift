@@ -5,6 +5,7 @@
  `type` is this app's own, which no API code ever resolves from.
  */
 import Foundation
+import HTTPTypes
 import OpenAPIRuntime
 
 extension AppProblem {
@@ -22,16 +23,34 @@ extension AppProblem {
 
     /**
      The problem an error from a call stands for: the API's own problem (also when a middleware threw
-     it and the client wrapped it), connection loss for a transport failure, else the generic one.
+     it and the client wrapped it), connection loss for a transport failure, the status's problem
+     when an answer came without a problem body (a proxy's HTML 404, an empty 503), else the
+     generic one.
      */
     package init(_ error: any Error) {
-        let cause = (error as? ClientError)?.underlyingError ?? error
+        let client = error as? ClientError
+        let cause = client?.underlyingError ?? error
         if let problem = cause as? AppProblem {
             self = problem
         } else if cause is URLError {
             self = .connectionLost
+        } else if let status = client?.response?.status.code {
+            self = AppProblem(code: Self.code(forStatus: status).rawValue)
         } else {
             self = AppProblem()
+        }
+    }
+
+    /**
+     The code that words a status answered without a problem body, so the screen never shows an
+     "UNKNOWN" reference for what is only a missing route or a server that is down.
+     */
+    static func code(forStatus status: Int) -> ProblemCode {
+        switch status {
+        case 404: .routeNotFound
+        case 502, 503: .metaHealthUnhealthy
+        case 504: .requestTimeout
+        default: .httpError
         }
     }
 }

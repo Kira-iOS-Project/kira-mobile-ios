@@ -26,7 +26,9 @@ struct HomeScreen: View {
             case .loaded(let home):
                 HomeContent(home: home, model: model, onOpen: onOpen)
             case .empty:
-                LoadFailedView(title: "home.failed", problem: AppProblem()) { reload() }
+                LoadFailedView(title: "home.failed", problem: AppProblem(code: ProblemCode.httpError.rawValue)) {
+                    reload()
+                }
             case .failed(let problem):
                 LoadFailedView(title: "home.failed", problem: problem) { reload() }
             }
