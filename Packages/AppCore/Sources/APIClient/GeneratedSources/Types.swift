@@ -165,6 +165,45 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `DELETE /api/scholarship/applications/current`.
     /// - Remark: Generated from `#/paths//api/scholarship/applications/current/delete(withdrawScholarshipApplication)`.
     func withdrawScholarshipApplication(_ input: Operations.WithdrawScholarshipApplication.Input) async throws -> Operations.WithdrawScholarshipApplication.Output
+    /// The curated groups, in curation order (Komunitas)
+    ///
+    /// - Remark: HTTP `GET /api/community/groups`.
+    /// - Remark: Generated from `#/paths//api/community/groups/get(listCommunityGroups)`.
+    func listCommunityGroups(_ input: Operations.ListCommunityGroups.Input) async throws -> Operations.ListCommunityGroups.Output
+    /// A group, its admin and rules (Detail Grup)
+    ///
+    /// - Remark: HTTP `GET /api/community/groups/{id}`.
+    /// - Remark: Generated from `#/paths//api/community/groups/{id}/get(getCommunityGroup)`.
+    func getCommunityGroup(_ input: Operations.GetCommunityGroup.Input) async throws -> Operations.GetCommunityGroup.Output
+    /// Accept the current community rules (Aturan Komunitas)
+    ///
+    /// - Remark: HTTP `POST /api/community/rules/consent`.
+    /// - Remark: Generated from `#/paths//api/community/rules/consent/post(acceptCommunityRules)`.
+    func acceptCommunityRules(_ input: Operations.AcceptCommunityRules.Input) async throws -> Operations.AcceptCommunityRules.Output
+    /// The verified invite link (Membuka Tautan Keluar)
+    ///
+    /// Needs the current community rules accepted; records that the invite was opened.
+    ///
+    /// - Remark: HTTP `POST /api/community/groups/{id}/join`.
+    /// - Remark: Generated from `#/paths//api/community/groups/{id}/join/post(joinCommunityGroup)`.
+    func joinCommunityGroup(_ input: Operations.JoinCommunityGroup.Input) async throws -> Operations.JoinCommunityGroup.Output
+    /// Report a group (Laporkan Grup)
+    ///
+    /// One open report a person per group. Reports from five people within 24 hours take the group down until the team reviews it.
+    ///
+    /// - Remark: HTTP `POST /api/community/groups/{id}/reports`.
+    /// - Remark: Generated from `#/paths//api/community/groups/{id}/reports/post(reportCommunityGroup)`.
+    func reportCommunityGroup(_ input: Operations.ReportCommunityGroup.Input) async throws -> Operations.ReportCommunityGroup.Output
+    /// The curated Etalase products
+    ///
+    /// - Remark: HTTP `GET /api/community/products`.
+    /// - Remark: Generated from `#/paths//api/community/products/get(listCommunityProducts)`.
+    func listCommunityProducts(_ input: Operations.ListCommunityProducts.Input) async throws -> Operations.ListCommunityProducts.Output
+    /// A product and its seller (Detail Produk)
+    ///
+    /// - Remark: HTTP `GET /api/community/products/{id}`.
+    /// - Remark: Generated from `#/paths//api/community/products/{id}/get(getCommunityProduct)`.
+    func getCommunityProduct(_ input: Operations.GetCommunityProduct.Input) async throws -> Operations.GetCommunityProduct.Output
     /// This period’s quota usage
     ///
     /// AI messages, receipts and voice seconds used against the plan, and the date they reset.
@@ -541,6 +580,103 @@ extension APIProtocol {
     /// - Remark: Generated from `#/paths//api/scholarship/applications/current/delete(withdrawScholarshipApplication)`.
     internal func withdrawScholarshipApplication(headers: Operations.WithdrawScholarshipApplication.Input.Headers = .init()) async throws -> Operations.WithdrawScholarshipApplication.Output {
         try await withdrawScholarshipApplication(Operations.WithdrawScholarshipApplication.Input(headers: headers))
+    }
+    /// The curated groups, in curation order (Komunitas)
+    ///
+    /// - Remark: HTTP `GET /api/community/groups`.
+    /// - Remark: Generated from `#/paths//api/community/groups/get(listCommunityGroups)`.
+    internal func listCommunityGroups(
+        query: Operations.ListCommunityGroups.Input.Query = .init(),
+        headers: Operations.ListCommunityGroups.Input.Headers = .init()
+    ) async throws -> Operations.ListCommunityGroups.Output {
+        try await listCommunityGroups(Operations.ListCommunityGroups.Input(
+            query: query,
+            headers: headers
+        ))
+    }
+    /// A group, its admin and rules (Detail Grup)
+    ///
+    /// - Remark: HTTP `GET /api/community/groups/{id}`.
+    /// - Remark: Generated from `#/paths//api/community/groups/{id}/get(getCommunityGroup)`.
+    internal func getCommunityGroup(
+        path: Operations.GetCommunityGroup.Input.Path,
+        headers: Operations.GetCommunityGroup.Input.Headers = .init()
+    ) async throws -> Operations.GetCommunityGroup.Output {
+        try await getCommunityGroup(Operations.GetCommunityGroup.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Accept the current community rules (Aturan Komunitas)
+    ///
+    /// - Remark: HTTP `POST /api/community/rules/consent`.
+    /// - Remark: Generated from `#/paths//api/community/rules/consent/post(acceptCommunityRules)`.
+    internal func acceptCommunityRules(
+        headers: Operations.AcceptCommunityRules.Input.Headers = .init(),
+        body: Operations.AcceptCommunityRules.Input.Body
+    ) async throws -> Operations.AcceptCommunityRules.Output {
+        try await acceptCommunityRules(Operations.AcceptCommunityRules.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// The verified invite link (Membuka Tautan Keluar)
+    ///
+    /// Needs the current community rules accepted; records that the invite was opened.
+    ///
+    /// - Remark: HTTP `POST /api/community/groups/{id}/join`.
+    /// - Remark: Generated from `#/paths//api/community/groups/{id}/join/post(joinCommunityGroup)`.
+    internal func joinCommunityGroup(
+        path: Operations.JoinCommunityGroup.Input.Path,
+        headers: Operations.JoinCommunityGroup.Input.Headers = .init()
+    ) async throws -> Operations.JoinCommunityGroup.Output {
+        try await joinCommunityGroup(Operations.JoinCommunityGroup.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Report a group (Laporkan Grup)
+    ///
+    /// One open report a person per group. Reports from five people within 24 hours take the group down until the team reviews it.
+    ///
+    /// - Remark: HTTP `POST /api/community/groups/{id}/reports`.
+    /// - Remark: Generated from `#/paths//api/community/groups/{id}/reports/post(reportCommunityGroup)`.
+    internal func reportCommunityGroup(
+        path: Operations.ReportCommunityGroup.Input.Path,
+        headers: Operations.ReportCommunityGroup.Input.Headers = .init(),
+        body: Operations.ReportCommunityGroup.Input.Body
+    ) async throws -> Operations.ReportCommunityGroup.Output {
+        try await reportCommunityGroup(Operations.ReportCommunityGroup.Input(
+            path: path,
+            headers: headers,
+            body: body
+        ))
+    }
+    /// The curated Etalase products
+    ///
+    /// - Remark: HTTP `GET /api/community/products`.
+    /// - Remark: Generated from `#/paths//api/community/products/get(listCommunityProducts)`.
+    internal func listCommunityProducts(
+        query: Operations.ListCommunityProducts.Input.Query = .init(),
+        headers: Operations.ListCommunityProducts.Input.Headers = .init()
+    ) async throws -> Operations.ListCommunityProducts.Output {
+        try await listCommunityProducts(Operations.ListCommunityProducts.Input(
+            query: query,
+            headers: headers
+        ))
+    }
+    /// A product and its seller (Detail Produk)
+    ///
+    /// - Remark: HTTP `GET /api/community/products/{id}`.
+    /// - Remark: Generated from `#/paths//api/community/products/{id}/get(getCommunityProduct)`.
+    internal func getCommunityProduct(
+        path: Operations.GetCommunityProduct.Input.Path,
+        headers: Operations.GetCommunityProduct.Input.Headers = .init()
+    ) async throws -> Operations.GetCommunityProduct.Output {
+        try await getCommunityProduct(Operations.GetCommunityProduct.Input(
+            path: path,
+            headers: headers
+        ))
     }
     /// This period’s quota usage
     ///
