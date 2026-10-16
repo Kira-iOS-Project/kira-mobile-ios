@@ -38,16 +38,16 @@ struct ChatTimelineView: View {
     }
 }
 
-/** One row of the chat. */
-private struct ChatRowView: View {
+/** One row of the chat; without a model (Riwayat Percakapan) it is read only. */
+struct ChatRowView: View {
     let row: ChatRow
-    let model: RecordModel
-    let initial: String
+    let model: RecordModel?
+    let initial: String?
 
     var body: some View {
         switch row {
         case .separator(_, let date):
-            Text("record.separator \(date.formatted(RecordFormat.day)) \(date.formatted(RecordFormat.time))")
+            Text(KiraDateFormat.dayTime(date))
                 .font(.caption.weight(.semibold)).kiraLineHeight(16, size: 12)
                 .foregroundStyle(.inkMuted)
                 .frame(maxWidth: .infinity)
@@ -55,15 +55,19 @@ private struct ChatRowView: View {
         case .person(let message):
             PersonBubble(message: message, initial: initial)
         case .drafts(let message, let source):
-            DraftsReply(message: message, source: source, model: model)
+            if let model {
+                DraftsReply(message: message, source: source, model: model)
+            } else {
+                DraftsNote(message: message, source: source)
+            }
         case .saved(let message, let source, let canUndo):
-            SavedReply(message: message, source: source, canUndo: canUndo) { Task { await model.undo(message) } }
+            SavedReply(message: message, source: source, canUndo: canUndo) { Task { await model?.undo(message) } }
         case .discarded:
             KiraChatBubble(.kira) { Text("record.discarded") }
         case .remaining(let message):
             RemainingReply(message: message)
         case .manualSaved(let message):
-            KiraChatBubble(.kira, meta: "record.meta.manual \(message.createdAt.formatted(RecordFormat.time))") {
+            KiraChatBubble(.kira, meta: "record.meta.manual \(message.createdAt.formatted(.kiraTime))") {
                 Text("record.saved.one")
             }
             .saved(SavedItems.of(message))

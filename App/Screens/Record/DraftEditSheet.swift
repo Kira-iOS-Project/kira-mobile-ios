@@ -53,8 +53,8 @@ struct DraftEditSheet: View {
     }
 
     private var dateText: String {
-        let day = model.occurredAt.formatted(RecordFormat.weekday)
-        return String(localized: "record.edit.dateValue \(day) \(model.occurredAt.formatted(RecordFormat.time))")
+        let day = model.occurredAt.formatted(.kiraWeekdayDate)
+        return String(localized: "record.edit.dateValue \(day) \(model.occurredAt.formatted(.kiraTime))")
     }
 
     private var categories: some View {

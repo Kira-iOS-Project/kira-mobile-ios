@@ -18,7 +18,7 @@ struct ReceiptScanModelTests {
         onRead: @escaping (SendResult) -> Void = { _ in }, onManual: @escaping () -> Void = {}
     ) -> ReceiptScanModel {
         ReceiptScanModel(
-            quota: UsageCounter(used: 4, limit: 10),
+            quota: UsageMeter(used: 4, limit: 10),
             dependencies: Fixtures.dependencies(service: service, receiptReader: reader, camera: camera),
             onRead: onRead, onManual: onManual)
     }
@@ -103,7 +103,7 @@ struct ReceiptScanModelTests {
     func input() {
         let clock = ManualClock()
         let scan = ReceiptScanModel(
-            quota: UsageCounter(used: 0, limit: 10),
+            quota: UsageMeter(used: 0, limit: 10),
             dependencies: Fixtures.dependencies(service: FakeRecordService(), clock: clock),
             onRead: { _ in }, onManual: {})
         let reading = ReceiptReading(

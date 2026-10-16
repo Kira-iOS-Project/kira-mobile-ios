@@ -29,13 +29,13 @@ package struct Subscription: Hashable, Sendable {
     /** Whether it ends at the end of this period. */
     package let cancelAtPeriodEnd: Bool
     /** The period's use of each quota. */
-    package let usage: PlanUsage
+    package let usage: Usage
 
     /** The subscription as the API sends it. */
     package init(
         id: String, plan: PlanID, period: BillingPeriod, source: Source, price: Int,
         paymentMethod: PaymentMethod?, currentPeriodStart: CalendarDay, renewsOn: CalendarDay,
-        reminderOn: CalendarDay, cancelAtPeriodEnd: Bool, usage: PlanUsage
+        reminderOn: CalendarDay, cancelAtPeriodEnd: Bool, usage: Usage
     ) {
         self.id = id
         self.plan = plan

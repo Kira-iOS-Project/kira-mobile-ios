@@ -13,8 +13,8 @@ nonisolated final class PreviewRecordService: RecordService, @unchecked Sendable
     private let lock = NSLock()
     private var counter = 0
     private var usage = Usage(
-        aiMessages: UsageCounter(used: 12, limit: 30), receipts: UsageCounter(used: 4, limit: 10),
-        voiceSeconds: UsageCounter(used: 0, limit: 0), resetsOn: Date(timeIntervalSince1970: 1_793_466_000))
+        aiMessages: UsageMeter(used: 12, limit: 30), receipts: UsageMeter(used: 4, limit: 10),
+        voiceSeconds: UsageMeter(used: 0, limit: 0), resetsOn: CalendarDay(Date(timeIntervalSince1970: 1_793_466_000)))
     private var items: [ChatMessage] = PreviewRecordData.board
 
     func profile() -> RecordProfile {

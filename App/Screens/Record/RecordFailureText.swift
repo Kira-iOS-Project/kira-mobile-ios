@@ -16,7 +16,7 @@ extension RecordFailure {
         case .problem(let problem) where problem.knownCode == nil:
             "record.failure.reference \(problem.reference)"
         case .problem(let problem):
-            LocalizedStringResource(String.LocalizationValue(problem.messageKey))
+            problem.message
         }
     }
 

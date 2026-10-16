@@ -48,7 +48,7 @@ struct SubscriptionHero: View {
 
 /** Kuota Bulan Ini: chat, voice (on a plan that has it) and receipts, refilled on the reset day. */
 struct SubscriptionQuotas: View {
-    let usage: PlanUsage
+    let usage: Usage
 
     var body: some View {
         VStack(alignment: .leading, spacing: KiraSpacing.space4) {
@@ -85,7 +85,7 @@ struct SubscriptionQuotas: View {
     private var voiceHours: Int { usage.voiceSeconds.limit / 3600 }
 
     private func ribbon(
-        _ quota: PlanUsage.Quota, label: LocalizedStringResource, value: LocalizedStringResource
+        _ quota: UsageMeter, label: LocalizedStringResource, value: LocalizedStringResource
     ) -> KiraProgressRibbon {
         KiraProgressRibbon(value: Double(quota.used), target: Double(quota.limit), label: label, valueLabel: value)
     }

@@ -10,7 +10,7 @@ import SwiftUI
 /** The person's text, or the photo of a scanned receipt. */
 struct PersonBubble: View {
     let message: ChatMessage
-    let initial: String
+    let initial: String?
 
     var body: some View {
         KiraChatBubble(.user, initial: initial) {
@@ -52,7 +52,7 @@ struct DraftsReply: View {
                 KiraNotice(.privacy, message: "record.receipt.privacy")
             } else {
                 KiraChatBubble(
-                    .kira, meta: "record.meta.answered \(model.sourceTime(of: message).formatted(RecordFormat.time))"
+                    .kira, meta: "record.meta.answered \(model.sourceTime(of: message).formatted(.kiraTime))"
                 ) {
                     sentence
                 }
@@ -61,13 +61,27 @@ struct DraftsReply: View {
         }
     }
 
-    private var sentence: Text {
-        let count = message.drafts?.count ?? 0
-        switch message.draftType {
-        case .expense: return Text("record.drafts.expenses \(count)")
-        case .income: return Text("record.drafts.income \(count)")
-        case nil: return Text("record.drafts.mixed \(count)")
-        }
+    private var sentence: Text { draftsSentence(message) }
+}
+
+/** "Aku tangkap 3 pengeluaran. Cek dulu sebelum disimpan, ya.", by the drafts' direction. */
+private func draftsSentence(_ message: ChatMessage) -> Text {
+    let count = message.drafts?.count ?? 0
+    switch message.draftType {
+    case .expense: return Text("record.drafts.expenses \(count)")
+    case .income: return Text("record.drafts.income \(count)")
+    case nil: return Text("record.drafts.mixed \(count)")
+    }
+}
+
+/** Kira's drafts as Riwayat Percakapan shows them, read only: the sentence without the card. */
+struct DraftsNote: View {
+    let message: ChatMessage
+    let source: ChatMessage?
+
+    var body: some View {
+        let time = (source?.createdAt ?? message.createdAt).formatted(.kiraTime)
+        KiraChatBubble(.kira, meta: "record.meta.answered \(time)") { draftsSentence(message) }
     }
 }
 
@@ -79,7 +93,7 @@ struct SavedReply: View {
     let onUndo: () -> Void
 
     private var count: Int { message.drafts?.count ?? 0 }
-    private var time: String { (source?.createdAt ?? message.createdAt).formatted(RecordFormat.time) }
+    private var time: String { (source?.createdAt ?? message.createdAt).formatted(.kiraTime) }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {

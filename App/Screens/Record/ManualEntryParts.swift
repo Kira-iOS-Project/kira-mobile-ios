@@ -67,7 +67,7 @@ struct ManualDetails: View {
             } label: {
                 row("record.manual.date") {
                     HStack {
-                        Text(model.day, format: RecordFormat.weekday).frame(maxWidth: .infinity, alignment: .leading)
+                        Text(model.day, format: .kiraWeekdayDate).frame(maxWidth: .infinity, alignment: .leading)
                         KiraIcon(.chevronRight, size: 20).foregroundStyle(.inkMuted)
                             .rotationEffect(.degrees(model.isPickingDay ? 90 : 0))
                     }

@@ -90,8 +90,8 @@ struct BankStatementParserTests {
     }
 }
 
-@Suite("AccountNumberMask")
-struct AccountNumberMaskTests {
+@Suite("SensitiveNumbers in bank statements")
+struct StatementMaskingTests {
     @Test(
         "keeps the last four digits of long numbers only",
         arguments: [
@@ -100,7 +100,7 @@ struct AccountNumberMaskTests {
             ("A 12345678 B 87654321", "A ••••5678 B ••••4321"),
         ])
     func masked(text: String, shown: String) {
-        #expect(AccountNumberMask.masked(text) == shown)
+        #expect(SensitiveNumbers.masked(text, minimumDigits: 8) == shown)
     }
 }
 
@@ -120,7 +120,8 @@ struct CategorySuggestionTests {
             ("Telkomsel", .expense, .bills), ("Uniqlo", .expense, .shopping), ("Parkir Mal", .expense, .transport),
             ("Sesuatu", .expense, .otherExpense), ("Gaji", .income, .salary), ("THR", .income, .bonus),
             ("Penjualan Online", .income, .business), ("Transfer dari Ibu", .income, .otherIncome),
-            ("Transfer Tolong", .expense, .otherExpense),
+            ("Transfer Tolong", .expense, .otherExpense), ("Martabak Manis", .expense, .food),
+            ("Gajian Kantor", .expense, .otherExpense),
         ])
     func suggests(description: String, type: TransactionType, category: TransactionCategory) {
         #expect(CategorySuggestion.category(for: description, type: type) == category)

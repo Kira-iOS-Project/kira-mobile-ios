@@ -14,7 +14,7 @@ struct HistoryDayGroup: View {
     var body: some View {
         KiraListGroup(title, footer: footer) {
             ForEach(day.transactions) { transaction in
-                KiraListRow(Text(transaction.name), leading: .category(transaction.category.artwork)) {
+                KiraListRow(Text(transaction.name), leading: .category(transaction.category.tile)) {
                     open(transaction)
                 }
                 .subtitle(subtitle(transaction))

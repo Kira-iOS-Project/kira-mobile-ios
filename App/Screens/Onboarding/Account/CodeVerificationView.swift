@@ -61,7 +61,7 @@ private struct CodeEntry: View {
     var body: some View {
         VStack(spacing: 14) {
             KiraCodeField("onboarding.code.field", code: $model.code, kind: .code)
-                .error(model.phase.problem.map { LocalizedStringResource(String.LocalizationValue($0.messageKey)) })
+                .error(model.phase.problem.map(\.message))
             if let problem = model.phase.problem, problem.knownCode == nil {
                 Text(problem.reference).font(.caption.monospaced()).foregroundStyle(.inkMuted)
             }

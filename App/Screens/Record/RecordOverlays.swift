@@ -40,14 +40,14 @@ struct RecordOverlays: ViewModifier {
 
     /** "Draf · dari pesan 12.41 WIB". */
     private var editorSubtitle: LocalizedStringResource? {
-        model.editor.map { "record.edit.subtitle \($0.sourceTime.formatted(RecordFormat.time))" }
+        model.editor.map { "record.edit.subtitle \($0.sourceTime.formatted(.kiraTime))" }
     }
 
     /** "Paket Kira Gratis · Oktober". */
     private var quotaSubtitle: LocalizedStringResource? {
         model.quotaSheet.map { sheet in
             let plan = String(localized: sheet.plan.recordName)
-            return "record.quota.subtitle \(plan) \(sheet.today.formatted(RecordFormat.month))"
+            return "record.quota.subtitle \(plan) \(sheet.today.formatted(.kiraMonth))"
         }
     }
 

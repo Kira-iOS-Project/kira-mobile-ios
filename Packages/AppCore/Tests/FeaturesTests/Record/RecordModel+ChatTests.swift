@@ -52,7 +52,7 @@ struct RecordModelChatTests {
         #expect(model.messages.map(\.id) == ["m1"])
         let sheet = try #require(model.quotaSheet)
         #expect(sheet.kind == .aiMessages)
-        #expect(sheet.counter == UsageCounter(used: 30, limit: 30))
+        #expect(sheet.counter == UsageMeter(used: 30, limit: 30))
         #expect(sheet.plan == .free)
     }
 

@@ -10,9 +10,9 @@ enum Fixtures {
 
     static func usage(messages: Int = 12, receipts: Int = 4, voice: (used: Int, limit: Int) = (0, 0)) -> Usage {
         Usage(
-            aiMessages: UsageCounter(used: messages, limit: 30), receipts: UsageCounter(used: receipts, limit: 10),
-            voiceSeconds: UsageCounter(used: voice.used, limit: voice.limit),
-            resetsOn: noon.addingTimeInterval(17 * 86_400))
+            aiMessages: UsageMeter(used: messages, limit: 30), receipts: UsageMeter(used: receipts, limit: 10),
+            voiceSeconds: UsageMeter(used: voice.used, limit: voice.limit),
+            resetsOn: CalendarDay(noon.addingTimeInterval(17 * 86_400)))
     }
 
     static func profile(

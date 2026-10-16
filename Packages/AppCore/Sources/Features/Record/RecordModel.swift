@@ -126,7 +126,7 @@ package struct QuotaSheet: Equatable, Sendable {
     /** Which quota ran out. */
     package let kind: Kind
     /** Its used and limit. */
-    package let counter: UsageCounter
+    package let counter: UsageMeter
     /** The day it fills again. */
     package let resetsOn: Date
     /** The plan, for "Paket Kira Gratis". */

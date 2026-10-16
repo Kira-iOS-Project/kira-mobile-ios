@@ -6,9 +6,10 @@ import Testing
 @Suite("RecordProfile")
 struct RecordProfileTests {
     private func profile(_ name: String, voiceLimit: Int) -> RecordProfile {
-        let none = UsageCounter(used: 0, limit: 0)
+        let none = UsageMeter(used: 0, limit: 0)
         let usage = Usage(
-            aiMessages: none, receipts: none, voiceSeconds: UsageCounter(used: 0, limit: voiceLimit), resetsOn: .now)
+            aiMessages: none, receipts: none, voiceSeconds: UsageMeter(used: 0, limit: voiceLimit),
+            resetsOn: CalendarDay(year: 2026, month: 11, day: 1))
         return RecordProfile(
             displayName: name, plan: .plus, usage: usage, periodStart: .now, periodEnd: .now, aiEnabled: true,
             lastExpenseCategory: nil, lastIncomeCategory: nil)
@@ -24,8 +25,8 @@ struct RecordProfileTests {
 
     @Test("a counter's remaining never goes below zero")
     func counter() {
-        #expect(UsageCounter(used: 31, limit: 30).remaining == 0)
-        #expect(UsageCounter(used: 4, limit: 10).remaining == 6)
-        #expect(UsageCounter(used: 30, limit: 30).isExhausted)
+        #expect(UsageMeter(used: 31, limit: 30).remaining == 0)
+        #expect(UsageMeter(used: 4, limit: 10).remaining == 6)
+        #expect(UsageMeter(used: 30, limit: 30).isExhausted)
     }
 }

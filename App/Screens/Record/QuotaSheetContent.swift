@@ -42,7 +42,7 @@ struct QuotaSheetContent: View {
     /** Voice is counted in seconds and shown in minutes. */
     private var unit: Int { sheet.kind == .voice ? 60 : 1 }
 
-    private var resets: String { sheet.resetsOn.formatted(RecordFormat.day) }
+    private var resets: String { sheet.resetsOn.formatted(.kiraDate) }
 
     private var title: LocalizedStringResource {
         switch sheet.kind {

@@ -36,7 +36,7 @@ struct RecordHeader: View {
 
     /** "Periode 25 September – 24 Oktober 2026". */
     private func period(_ profile: RecordProfile) -> Text {
-        let start = profile.periodStart.formatted(RecordFormat.dayMonth)
-        return Text("record.period \(start) \(profile.periodEnd.formatted(RecordFormat.day))")
+        let start = profile.periodStart.formatted(.kiraDayMonth)
+        return Text("record.period \(start) \(profile.periodEnd.formatted(.kiraDate))")
     }
 }

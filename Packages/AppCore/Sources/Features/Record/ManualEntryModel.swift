@@ -62,7 +62,7 @@ package final class ManualEntryModel {
     }
 
     /** The amount in whole rupiah; the view shows it with ",00" (`KiraAmount`). */
-    package var amount: Int { AmountInput.value(of: amountDigits) }
+    package var amount: Int { AmountInput.value(of: amountDigits) ?? 0 }
 
     /** What the hidden number field holds: digits only. */
     package var amountText: String {

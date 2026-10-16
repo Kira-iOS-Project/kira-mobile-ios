@@ -69,7 +69,7 @@ package final class DraftEditModel: Identifiable {
 
     /** Whether Simpan may run: a name and an amount above zero. */
     package var canSave: Bool {
-        !isSaving && AmountInput.value(of: amountDigits) > 0
+        !isSaving && AmountInput.amount(amountDigits) != nil
             && !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 
@@ -80,10 +80,10 @@ package final class DraftEditModel: Identifiable {
 
     /** Sends the list with this draft changed, then shows "Perubahan Tersimpan". */
     package func save() async {
-        guard canSave else { return }
+        guard canSave, let amount = AmountInput.amount(amountDigits) else { return }
         var changed = item
         changed.name = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        changed.amount = AmountInput.value(of: amountDigits)
+        changed.amount = amount
         changed.category = category
         let drafts = (message.drafts ?? []).map { $0.id == item.id ? changed : $0 }
         if await update(drafts) { showsSaved = true }

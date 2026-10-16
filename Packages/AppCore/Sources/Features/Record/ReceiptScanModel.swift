@@ -39,14 +39,14 @@ package final class ReceiptScanModel {
     /** Why the scan stopped, shown as a dialog. */
     package var problem: Problem?
     /** "Kuota struk: 4 dari 10 bulan ini". */
-    package let quota: UsageCounter
+    package let quota: UsageMeter
     private let dependencies: RecordDependencies
     private let onRead: (SendResult) -> Void
     private let onManual: () -> Void
 
     /** The scanner with the month's receipt quota; `onRead` gets the sent receipt, `onManual` swaps to Catat Manual. */
     package init(
-        quota: UsageCounter, dependencies: RecordDependencies, onRead: @escaping (SendResult) -> Void,
+        quota: UsageMeter, dependencies: RecordDependencies, onRead: @escaping (SendResult) -> Void,
         onManual: @escaping () -> Void
     ) {
         self.quota = quota

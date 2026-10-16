@@ -14,7 +14,7 @@ package struct AccountProfile: Equatable, Sendable {
     /** The plan in force. */
     package let plan: AccountPlan
     /** This period's AI quota. */
-    package let usage: AccountUsage
+    package let usage: Usage
     /** The current pay period. */
     package let period: PayPeriod
     /** How many debt accounts the person keeps. */
@@ -28,7 +28,7 @@ package struct AccountProfile: Equatable, Sendable {
 
     /** An account with every value given. */
     package init(
-        id: String, email: String, displayName: String, plan: AccountPlan, usage: AccountUsage, period: PayPeriod,
+        id: String, email: String, displayName: String, plan: AccountPlan, usage: Usage, period: PayPeriod,
         debtAccountCount: Int, hidesBalances: Bool, aiEnabled: Bool, weeklySummaryEnabled: Bool
     ) {
         self.id = id

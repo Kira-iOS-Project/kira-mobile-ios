@@ -92,13 +92,14 @@ extension RecordModel {
     /** The quota sheet for `kind`, from the latest quotas. */
     func sheet(for kind: QuotaSheet.Kind) -> QuotaSheet? {
         guard let profile, let usage else { return nil }
-        let counter: UsageCounter
+        let counter: UsageMeter
         switch kind {
         case .aiMessages: counter = usage.aiMessages
         case .receipts: counter = usage.receipts
         case .voice: counter = usage.voiceSeconds
         }
         return QuotaSheet(
-            kind: kind, counter: counter, resetsOn: usage.resetsOn, plan: profile.plan, today: dependencies.clock.now)
+            kind: kind, counter: counter, resetsOn: usage.resetsOn.date, plan: profile.plan,
+            today: dependencies.clock.now)
     }
 }

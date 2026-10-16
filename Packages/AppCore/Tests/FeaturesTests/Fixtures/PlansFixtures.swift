@@ -23,7 +23,7 @@ enum PlansFixtures {
             currentPeriodStart: CalendarDay(year: 2026, month: 10, day: 15),
             renewsOn: CalendarDay(year: 2026, month: 11, day: 15),
             reminderOn: CalendarDay(year: 2026, month: 11, day: 12), cancelAtPeriodEnd: cancelled,
-            usage: PlanUsage(
+            usage: Usage(
                 aiMessages: .init(used: 112, limit: 300), receipts: .init(used: 23, limit: 150),
                 voiceSeconds: .init(used: 2520, limit: 10_800), resetsOn: CalendarDay(year: 2026, month: 11, day: 15)))
     }

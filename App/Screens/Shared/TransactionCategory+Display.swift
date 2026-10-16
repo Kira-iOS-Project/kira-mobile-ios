@@ -1,14 +1,15 @@
 /**
- How a transaction's category and source show: the design system's tile and the name a person
- reads. The board's names win over the tiles' own ("Makan & Minum", not "Makan"); coffee keeps
- its own name, "Kopi", so the Makan & Minum filter and the rows it shows agree.
+ How a transaction's category shows on every screen (Catat, Riwayat, Detail Transaksi, Impor
+ Mutasi): the design system's tile and the name a person reads. The boards' names win over the
+ tiles' own ("Makan & Minum", not "Makan"; Bonus on the savings tile); coffee keeps its own name,
+ "Kopi", so the Makan & Minum filter and the rows it shows agree.
  */
 import Domain
 import SwiftUI
 
-extension TransactionCategory {
+nonisolated extension TransactionCategory {
     /** The design system's tile. */
-    var artwork: KiraCategory {
+    var tile: KiraCategory {
         switch self {
         case .food: .food
         case .coffee: .coffee
@@ -46,28 +47,6 @@ extension TransactionCategory {
         case .salary: "ledger.category.salary"
         case .bonus: "ledger.category.bonus"
         case .business: "ledger.category.business"
-        }
-    }
-}
-
-extension TransactionSource {
-    /** The end of a Riwayat row's subtitle: "dari chat", "manual", "struk", "impor". */
-    var rowLabel: LocalizedStringResource {
-        switch self {
-        case .chat: "history.source.chat"
-        case .manual: "history.source.manual"
-        case .receipt: "history.source.receipt"
-        case .bankImport: "history.source.import"
-        }
-    }
-
-    /** The Sumber row's value on Detail Transaksi. */
-    var detailLabel: LocalizedStringResource {
-        switch self {
-        case .chat: "transaction.source.chat"
-        case .manual: "transaction.source.manual"
-        case .receipt: "transaction.source.receipt"
-        case .bankImport: "transaction.source.import"
         }
     }
 }

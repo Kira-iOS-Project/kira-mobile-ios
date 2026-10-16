@@ -48,7 +48,7 @@ struct RecordModelOpeningsTests {
         let model = await loaded(service, reader: FakeReceiptReader(result: .success(["Roti 15.000", "TOTAL 15.000"])))
         model.openScanner()
         let scan = try #require(model.scanner)
-        #expect(scan.quota == UsageCounter(used: 4, limit: 10))
+        #expect(scan.quota == UsageMeter(used: 4, limit: 10))
         scan.typeManually()
         #expect(model.scanner == nil)
         #expect(model.manualEntry != nil)

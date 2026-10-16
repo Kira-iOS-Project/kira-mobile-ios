@@ -15,7 +15,7 @@ struct TransactionDetailCard: View {
         let transaction = detail.transaction
         KiraRowStack {
             row("transaction.category") {
-                KiraCategoryIcon(transaction.category.artwork, size: 38)
+                KiraCategoryIcon(transaction.category.tile, size: 38)
             } value: {
                 Text(transaction.category.title)
             }
