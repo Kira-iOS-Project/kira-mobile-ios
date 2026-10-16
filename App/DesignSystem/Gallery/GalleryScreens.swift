@@ -1,4 +1,7 @@
-/** Gallery pages for the screen parts: the Kira Score, lists, navigation and chat. */
+/**
+ Gallery page for the Kira Score, each section the artifact's preview of the component with its
+ words: band pills, the meter, indicator rows and the next-step card.
+ */
 #if DEBUG
     import Domain
     import SwiftUI
@@ -6,89 +9,55 @@
     struct GalleryScore: View {
         var body: some View {
             GallerySection(title: "gallery.section.band") {
-                HStack(spacing: KiraSpacing.space2) {
-                    ForEach(ScoreBand.allCases, id: \.self) { band in KiraBandPill(band) }
-                }
-                HStack(spacing: KiraSpacing.space2) {
-                    ForEach(ScoreBand.allCases, id: \.self) { band in KiraBandPill(band, size: .small) }
+                KiraFlowRow {
+                    ForEach(ScoreBand.allCases.reversed(), id: \.self) { band in KiraBandPill(band) }
+                    ForEach(ScoreBand.allCases.reversed(), id: \.self) { band in KiraBandPill(band, size: .small) }
                 }
             }
             GallerySection(title: "gallery.section.meter") {
+                KiraScoreMeter(Score(66), delta: 4, deltaLabel: "gallery.meter.since")
                 KiraIllustration(.plant(for: Score(66).band), size: 96)
-                KiraScoreMeter(Score(66), delta: 5)
+                KiraScoreMeter(Score(38), delta: 0)
                 Text("gallery.type.caption").kiraFont(.caption).foregroundStyle(.inkMuted)
             }
             GallerySection(title: "gallery.section.indicator") {
                 KiraRowStack {
                     KiraIndicatorRow(
                         name: Text("gallery.indicator.fund"), value: Text("gallery.indicator.fund.value"),
-                        points: Score(37), action: {}
+                        points: Score(50), action: {}
                     )
                     .target(Text("gallery.indicator.fund.target"))
                     KiraIndicatorRow(
-                        name: Text("gallery.indicator.saving"), value: Text("gallery.indicator.saving.value"),
-                        points: Score(82))
+                        name: Text("gallery.indicator.instalment"), value: Text("gallery.indicator.instalment.value"),
+                        points: Score(70), action: {}
+                    )
+                    .target(Text("gallery.indicator.instalment.target"))
                     KiraIndicatorRow(
                         name: Text("gallery.indicator.debt"), value: Text("gallery.indicator.debt.value"),
+                        points: Score(50), action: {})
+                    KiraIndicatorRow(
+                        name: Text("gallery.indicator.assets"), value: Text("gallery.indicator.assets.value"),
                         points: Score(0)
                     )
                     .band(.vulnerable)
                 }
+                .padding(.vertical, KiraSpacing.space1)
                 .padding(.horizontal, KiraSpacing.space4)
                 .kiraCard()
             }
             GallerySection(title: "gallery.section.nextStep") {
                 KiraNextStepCard(
-                    "gallery.step.title", message: "gallery.step.body", primaryLabel: "gallery.step.primary",
+                    "gallery.step.title", message: "gallery.step.body", primaryLabel: "gallery.action.seePlan",
                     onPrimary: {}, onSecondary: {}
                 )
                 .eyebrow("gallery.step.eyebrow")
                 .meta("gallery.step.meta")
                 .illustration(.cardPaidOff)
                 .impact("gallery.step.impact")
-                .secondaryLabel("gallery.step.secondary")
-            }
-        }
-    }
-
-    struct GalleryLists: View {
-        // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
-        @State private var locks = true
-        @State private var method = 0
-
-        var body: some View {
-            KiraSectionTitle("gallery.list.priority", trailing: .note("gallery.hand.start"))
-            KiraSectionTitle("gallery.list.bills", trailing: .action("gallery.list.seeAll", {}))
-            KiraSectionTitle("gallery.list.plain", showsLeaf: false)
-            KiraListGroup("gallery.list.wallets", footer: "gallery.list.wallets.footer") {
-                KiraListRow(Text("gallery.list.bank"), leading: .category(.bank), action: {})
-                    .amount(KiraAmount(2_450_000, size: .medium))
-                KiraListRow(Text("gallery.list.ewallet"), leading: .category(.ewallet))
-                    .subtitle(Text("gallery.list.ewallet.sub"))
-                    .amount(KiraAmount(320_000, size: .small).masked())
-                KiraListRow(
-                    Text("gallery.list.paylater"), leading: .category(.paylater), action: {},
-                    extra: {
-                        KiraTag("gallery.tag.soon", tone: .turmeric)
-                        KiraProgressRibbon(value: 2, target: 6)
-                    })
-            }
-            KiraListGroup("gallery.list.settings") {
-                KiraListRow(Text("gallery.list.pin"), leading: .icon(.lock), trailing: .toggle($locks))
-                KiraListRow(Text("gallery.list.weekly"), leading: .illustration(.letter), action: {})
-                    .value(Text("gallery.list.weekly.value"))
-                KiraListRow(Text("gallery.list.ojk"), leading: .icon(.shield), trailing: .external, action: {})
-                KiraListRow(Text("gallery.list.admin"), leading: .initials("D", .green))
-                    .subtitle(Text("gallery.list.admin.sub"))
-                KiraListRow(Text("gallery.action.deleteAccount"), leading: .icon(.trash), action: {}).danger()
-            }
-            KiraListGroup("gallery.segmented.label") {
-                KiraListRow(Text("gallery.segmented.snowball"), trailing: .check(method == 0), action: { method = 0 })
-                KiraListRow(Text("gallery.segmented.avalanche"), trailing: .check(method == 1), action: { method = 1 })
+                .secondaryLabel("ds.later")
             }
         }
     }
 
     #Preview { GalleryScore().galleryPage() }
-    #Preview { GalleryLists().galleryPage() }
 #endif

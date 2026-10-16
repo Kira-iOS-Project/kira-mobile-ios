@@ -581,6 +581,16 @@
         }
       }
     },
+    "ds.meter.deltaSince %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
     "ds.meter.label %lld %@" : {
       "localizations" : {
         "id" : {
@@ -716,27 +726,37 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dana darurat dibagi pengeluaran pokok sebulan. Targetnya paling sedikit 3× pengeluaran pokok."
+            "value" : "Rata-rata enam indikator, bobotnya sama. Tiap indikator bernilai 0–100."
           }
         }
       }
     },
-    "gallery.accordion.legal" : {
+    "gallery.accordion.credit" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Catatan Hukum"
+            "value" : "Kenapa Bukan Skor Kredit?"
           }
         }
       }
     },
-    "gallery.accordion.legal.body" : {
+    "gallery.accordion.credit.body" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kira Score adalah simulasi edukatif, bukan penilaian kredit dan bukan rekomendasi produk keuangan."
+            "value" : "Kira Score hanya untuk kamu."
+          }
+        }
+      }
+    },
+    "gallery.accordion.credit.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data kamu tidak dibagikan"
           }
         }
       }
@@ -746,7 +766,17 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rumus dana darurat dan sumber angkanya"
+            "value" : "Rumus, pita, dan sumber metodenya"
+          }
+        }
+      }
+    },
+    "gallery.action.aboutNumber" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tentang angka ini"
           }
         }
       }
@@ -757,6 +787,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Telepon 119"
+          }
+        }
+      }
+    },
+    "gallery.action.changeCategory" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah Kategori"
           }
         }
       }
@@ -777,6 +817,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hapus Akun dan Data"
+          }
+        }
+      }
+    },
+    "gallery.action.deletePermanently" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Permanen"
           }
         }
       }
@@ -811,22 +861,22 @@
         }
       }
     },
+    "gallery.action.scanReceipt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scan Struk"
+          }
+        }
+      }
+    },
     "gallery.action.seePlan" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lihat Rencana"
-          }
-        }
-      }
-    },
-    "gallery.action.share" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bagikan"
           }
         }
       }
@@ -856,7 +906,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kembali ke Daftar Komponen"
+            "value" : "Kembali"
           }
         }
       }
@@ -871,12 +921,32 @@
         }
       }
     },
+    "gallery.bars.fri" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jum"
+          }
+        }
+      }
+    },
     "gallery.bars.label" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pengeluaran per pekan bulan ini, pekan keempat disorot"
+            "value" : "Pengeluaran tujuh hari terakhir"
+          }
+        }
+      }
+    },
+    "gallery.bars.mon" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sen"
           }
         }
       }
@@ -886,47 +956,67 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pekan Ini"
+            "value" : "Hari ini"
           }
         }
       }
     },
-    "gallery.bars.w1" : {
+    "gallery.bars.sat" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pekan 1"
+            "value" : "Sab"
           }
         }
       }
     },
-    "gallery.bars.w2" : {
+    "gallery.bars.sun" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pekan 2"
+            "value" : "Min"
           }
         }
       }
     },
-    "gallery.bars.w3" : {
+    "gallery.bars.thu" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pekan 3"
+            "value" : "Kam"
           }
         }
       }
     },
-    "gallery.bars.w4" : {
+    "gallery.bars.tue" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pekan 4"
+            "value" : "Sel"
+          }
+        }
+      }
+    },
+    "gallery.bars.wed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rab"
+          }
+        }
+      }
+    },
+    "gallery.chat.fuel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bensin"
           }
         }
       }
@@ -936,7 +1026,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cek dulu sebelum disimpan, ya."
+            "value" : "Aku tangkap 3 pengeluaran. Cek dulu sebelum disimpan, ya."
           }
         }
       }
@@ -946,7 +1036,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "makan siang 25rb, grab 18rb, kopi goceng"
+            "value" : "bensin 30rb"
           }
         }
       }
@@ -956,7 +1046,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dijawab Kira AI · dari pesan 12.41 WIB"
+            "value" : "Dijawab Kira AI · dari pesan 12.41"
           }
         }
       }
@@ -976,7 +1066,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tersimpan. Pengeluaranmu hari ini Rp25.000,00."
+            "value" : "Sudah aku catat, ya."
           }
         }
       }
@@ -986,7 +1076,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dijawab Kira AI · dari pesan 12.43 WIB"
+            "value" : "Tersimpan · dari pesan 08.12"
           }
         }
       }
@@ -996,7 +1086,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "15 Oktober 2026 · 12.41 WIB"
+            "value" : "Hari ini · 08.12"
           }
         }
       }
@@ -1017,6 +1107,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saya setuju data keuangan saya diolah untuk menghitung Kira Score."
+          }
+        }
+      }
+    },
+    "gallery.chip.allCategories" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semua Kategori"
+          }
+        }
+      }
+    },
+    "gallery.chip.bpjs" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BPJS Kesehatan"
+          }
+        }
+      }
+    },
+    "gallery.chip.lifeInsurance" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asuransi Jiwa"
           }
         }
       }
@@ -1306,7 +1426,17 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "“goceng” dibaca Rp5.000,00"
+            "value" : "dari \"goceng\""
+          }
+        }
+      }
+    },
+    "gallery.draft.foodDrink" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Makan & Minum"
           }
         }
       }
@@ -1326,7 +1456,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ojek ke Kantor"
+            "value" : "Grab ke Kantor"
           }
         }
       }
@@ -1341,52 +1471,62 @@
         }
       }
     },
-    "gallery.field.amount" : {
+    "gallery.field.email" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nominal"
+            "value" : "Email"
           }
         }
       }
     },
-    "gallery.field.amount.hint" : {
+    "gallery.field.email.error" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ketik angka saja; ,00 ditambahkan saat disimpan."
+            "value" : "Format email belum lengkap."
           }
         }
       }
     },
-    "gallery.field.amount.prompt" : {
+    "gallery.field.entity" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "0"
+            "value" : "Nama entitas atau aplikasi"
           }
         }
       }
     },
-    "gallery.field.nickname" : {
+    "gallery.field.entity.prompt" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nama Panggilan"
+            "value" : "Mis. nama aplikasi pinjaman"
           }
         }
       }
     },
-    "gallery.field.nickname.error" : {
+    "gallery.field.income" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nama panggilan masih kosong. Isi dulu, ya."
+            "value" : "Penghasilan per bulan"
+          }
+        }
+      }
+    },
+    "gallery.field.income.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gaji bersih setelah potongan. ,00 ditambah otomatis."
           }
         }
       }
@@ -1466,7 +1606,17 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "mulai dari yang kecil dulu"
+            "value" : "mulai dari yang kecil"
+          }
+        }
+      }
+    },
+    "gallery.help.counsellor" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bicara dengan Konselor Healing119"
           }
         }
       }
@@ -1511,6 +1661,26 @@
         }
       }
     },
+    "gallery.indicator.assets" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utang terhadap Aset"
+          }
+        }
+      }
+    },
+    "gallery.indicator.assets.value" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utang lebih besar dari aset"
+          }
+        }
+      }
+    },
     "gallery.indicator.debt" : {
       "localizations" : {
         "id" : {
@@ -1526,7 +1696,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ada cicilan konsumtif yang lewat jatuh tempo"
+            "value" : "Paylater di 2 platform, bayar tepat waktu, satu tagihan jatuh tempo minggu depan"
           }
         }
       }
@@ -1561,22 +1731,42 @@
         }
       }
     },
-    "gallery.indicator.saving" : {
+    "gallery.indicator.instalment" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rasio Menabung"
+            "value" : "Rasio Cicilan"
           }
         }
       }
     },
-    "gallery.indicator.saving.value" : {
+    "gallery.indicator.instalment.target" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "22% dari gaji"
+            "value" : "batas 30%"
+          }
+        }
+      }
+    },
+    "gallery.indicator.instalment.value" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "18% dari gaji"
+          }
+        }
+      }
+    },
+    "gallery.leaf.sectionTitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Judul bagian"
           }
         }
       }
@@ -1621,22 +1811,32 @@
         }
       }
     },
-    "gallery.list.bank" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rekening Gaji"
-          }
-        }
-      }
-    },
     "gallery.list.bills" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tagihan Bulan Ini"
+            "value" : "Tagihan Terdekat"
+          }
+        }
+      }
+    },
+    "gallery.list.coffee" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopi"
+          }
+        }
+      }
+    },
+    "gallery.list.coffee.sub" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Makan & Minum · Hari ini 08.12"
           }
         }
       }
@@ -1656,7 +1856,47 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Saldo disembunyikan"
+            "value" : "E-wallet"
+          }
+        }
+      }
+    },
+    "gallery.list.goal" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabungan Rumah"
+          }
+        }
+      }
+    },
+    "gallery.list.hide.value" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saat membuka Kira"
+          }
+        }
+      }
+    },
+    "gallery.list.history" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat"
+          }
+        }
+      }
+    },
+    "gallery.list.nextStep" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langkah Berikutnya"
           }
         }
       }
@@ -1681,32 +1921,42 @@
         }
       }
     },
+    "gallery.list.paylater.sub" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jatuh tempo 25 Okt"
+          }
+        }
+      }
+    },
     "gallery.list.pin" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kunci PIN"
+            "value" : "Kunci dengan PIN"
           }
         }
       }
     },
-    "gallery.list.plain" : {
+    "gallery.list.pin.sub" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Riwayat Transaksi"
+            "value" : "Diminta tiap membuka Kira"
           }
         }
       }
     },
-    "gallery.list.priority" : {
+    "gallery.list.salary" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tiga Langkah Prioritas"
+            "value" : "Rekening Gaji"
           }
         }
       }
@@ -1726,7 +1976,17 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Keamanan"
+            "value" : "Pengaturan"
+          }
+        }
+      }
+    },
+    "gallery.list.snowball.sub" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utang terkecil dulu"
           }
         }
       }
@@ -1746,7 +2006,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Saldo hanya bisa kamu lihat di perangkat ini."
+            "value" : "Paylater dan pinjol dicatat sebagai utang, bukan pengeluaran."
           }
         }
       }
@@ -1771,12 +2031,22 @@
         }
       }
     },
+    "gallery.meter.since" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dari September"
+          }
+        }
+      }
+    },
     "gallery.nav.detail" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rincian Utang"
+            "value" : "Rencana Pelunasan"
           }
         }
       }
@@ -1796,7 +2066,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kamis, 15 Oktober 2026"
+            "value" : "Periode 25 Sep – 24 Okt"
           }
         }
       }
@@ -1806,7 +2076,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beranda"
+            "value" : "Rencana"
           }
         }
       }
@@ -1821,22 +2091,22 @@
         }
       }
     },
+    "gallery.nav.modal.sub" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi sendiri tanpa chat"
+          }
+        }
+      }
+    },
     "gallery.notice.ai.body" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jawaban ini ditulis AI. Cek lagi sebelum kamu memutuskan."
-          }
-        }
-      }
-    },
-    "gallery.notice.ai.title" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dijawab Kira AI"
+            "value" : "Ditulis Kira AI, ditinjau tim konten."
           }
         }
       }
@@ -1846,7 +2116,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kira tidak menyarankan produk atau kode saham tertentu."
+            "value" : "Modul ini tidak menyebut produk atau kode saham tertentu."
           }
         }
       }
@@ -1876,17 +2146,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jawaban kuis hanya dipakai untuk menghitung Kira Score."
-          }
-        }
-      }
-    },
-    "gallery.notice.privacy.title" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rahasiamu Aman"
+            "value" : "Foto struk dihapus setelah dibaca."
           }
         }
       }
@@ -1906,7 +2166,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dihitung mesin, bukan AI. Angkanya berubah saat datamu berubah."
+            "value" : "Dihitung mesin dari angka yang kamu isi. Hasil nyata bisa berbeda."
           }
         }
       }
@@ -1926,7 +2186,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kira tidak pernah meminta PIN, password, atau OTP rekeningmu."
+            "value" : "Admin grup resmi tidak pernah meminta kode atau PIN."
           }
         }
       }
@@ -1936,7 +2196,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hati-Hati dengan Tautan Luar"
+            "value" : "Jangan bagikan OTP"
           }
         }
       }
@@ -2136,17 +2396,17 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Target 3× pengeluaran pokok: Rp4.200.000,00"
+            "value" : "Rp4.800.000,00 dari Rp12.600.000,00. Tonggak 1 bulan tercapai."
           }
         }
       }
     },
-    "gallery.ribbon.goal" : {
+    "gallery.ribbon.fund" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "3 Bulan"
+            "value" : "Dana darurat"
           }
         }
       }
@@ -2156,7 +2416,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "1 Bulan"
+            "value" : "1 bulan"
           }
         }
       }
@@ -2181,12 +2441,52 @@
         }
       }
     },
+    "gallery.ribbon.threeMonths" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 bulan"
+          }
+        }
+      }
+    },
+    "gallery.ribbon.twoMonths" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2 bulan"
+          }
+        }
+      }
+    },
+    "gallery.ribbon.used" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah terpakai"
+          }
+        }
+      }
+    },
+    "gallery.ribbon.usedValue" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "75% dari gaji"
+          }
+        }
+      }
+    },
     "gallery.ribbon.week" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "1 Minggu"
+            "value" : "1 minggu"
           }
         }
       }
@@ -2451,6 +2751,26 @@
         }
       }
     },
+    "gallery.section.listGroup" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ListGroup"
+          }
+        }
+      }
+    },
+    "gallery.section.listRow" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ListRow"
+          }
+        }
+      }
+    },
     "gallery.section.logo" : {
       "localizations" : {
         "id" : {
@@ -2511,16 +2831,6 @@
         }
       }
     },
-    "gallery.section.pair" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pasangan Tombol"
-          }
-        }
-      }
-    },
     "gallery.section.pin" : {
       "localizations" : {
         "id" : {
@@ -2557,6 +2867,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Scenery"
+          }
+        }
+      }
+    },
+    "gallery.section.sectionTitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SectionTitle"
           }
         }
       }
@@ -2651,6 +2971,26 @@
         }
       }
     },
+    "gallery.segmented.income" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pemasukan"
+          }
+        }
+      }
+    },
+    "gallery.segmented.kind" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jenis transaksi"
+          }
+        }
+      }
+    },
     "gallery.segmented.label" : {
       "localizations" : {
         "id" : {
@@ -2671,6 +3011,16 @@
         }
       }
     },
+    "gallery.segmented.spending" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengeluaran"
+          }
+        }
+      }
+    },
     "gallery.sheet.open" : {
       "localizations" : {
         "id" : {
@@ -2681,12 +3031,42 @@
         }
       }
     },
+    "gallery.sheet.remember" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingat untuk Grab"
+          }
+        }
+      }
+    },
+    "gallery.sheet.remember.sub" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lain kali Kira langsung pakai Transportasi"
+          }
+        }
+      }
+    },
+    "gallery.sheet.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Perubahan"
+          }
+        }
+      }
+    },
     "gallery.sheet.subtitle" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Makan Siang"
+            "value" : "Grab ke Kantor · Rp18.000,00"
           }
         }
       }
@@ -2706,7 +3086,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bunganya paling mahal di antara utangmu. Lunasi yang ini dulu, sisanya jadi lebih ringan."
+            "value" : "Tambah Rp210.000,00 di cicilan 25 Okt."
           }
         }
       }
@@ -2716,7 +3096,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prioritas"
+            "value" : "Langkah berikutnya"
           }
         }
       }
@@ -2741,32 +3121,22 @@
         }
       }
     },
-    "gallery.step.primary" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lihat Rencana"
-          }
-        }
-      }
-    },
-    "gallery.step.secondary" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lewati"
-          }
-        }
-      }
-    },
     "gallery.step.title" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lunasi Paylater A Bulan Ini"
+          }
+        }
+      }
+    },
+    "gallery.steps.question" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pertanyaan 2 dari 6"
           }
         }
       }
@@ -2781,22 +3151,12 @@
         }
       }
     },
-    "gallery.tag.fromGallery" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gambar dari Galeri"
-          }
-        }
-      }
-    },
     "gallery.tag.overdue" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lewat Jatuh Tempo"
+            "value" : "Lewat jatuh tempo"
           }
         }
       }
@@ -2811,12 +3171,22 @@
         }
       }
     },
+    "gallery.tag.simulationOnly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hanya simulasi"
+          }
+        }
+      }
+    },
     "gallery.tag.soon" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sebentar Lagi"
+            "value" : "10 hari lagi"
           }
         }
       }
@@ -2851,12 +3221,22 @@
         }
       }
     },
-    "gallery.toggle.hideBalance" : {
+    "gallery.toggle.remindersOff" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sembunyikan Saldo"
+            "value" : "Pengingat mati"
+          }
+        }
+      }
+    },
+    "gallery.toggle.remindersOn" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengingat aktif"
           }
         }
       }
@@ -2926,7 +3306,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "4.800.000 ÷ 4.200.000 = 1,1×"
+            "value" : "(50 + 45 + 70 + 50 + 80 + 100) ÷ 6 = 66"
           }
         }
       }

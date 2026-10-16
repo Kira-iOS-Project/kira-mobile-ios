@@ -47,45 +47,49 @@
         }
     }
 
-    /** Every icon, outline and filled. */
+    /**
+     The Icon preview: every icon beside its name, the first three in pandan duotone. A list rather
+     than the preview's grid, so a long name never meets a narrow column at large text sizes.
+     */
     struct GalleryIcons: View {
         var body: some View {
             GallerySection(title: "gallery.section.icons") {
                 VStack(alignment: .leading, spacing: KiraSpacing.space3) {
-                    ForEach(KiraIconName.allCases, id: \.self) { name in
+                    ForEach(Array(KiraIconName.allCases.enumerated()), id: \.element) { index, name in
                         HStack(spacing: KiraSpacing.space3) {
-                            KiraIcon(name).foregroundStyle(.ink)
-                            KiraIcon(name, isFilled: true).foregroundStyle(.pandan)
-                            Text(name.rawValue).font(.footnote).foregroundStyle(.ink)
+                            KiraIcon(name, isFilled: index < 3)
+                            Text(name.rawValue).font(.footnote)
                         }
+                        .foregroundStyle(index < 3 ? Color.pandan : Color.inkMuted)
                     }
                 }
             }
         }
     }
 
-    /** The logo's forms and tones, and Kuku's expressions. */
+    /** The Logo and Mascot previews. */
     struct GalleryBrand: View {
         var body: some View {
             GallerySection(title: "gallery.section.logo") {
-                HStack(spacing: KiraSpacing.space4) {
+                KiraFlowRow(spacing: 20) {
+                    KiraLogo(.icon, size: 96)
+                    KiraLogo(.wordmark, size: 44)
+                    HStack(spacing: 14) {
+                        KiraLogo(.mark, tone: .hero, size: 40)
+                        KiraLogo(.wordmark, tone: .hero, size: 28)
+                    }
+                    .padding(.vertical, 14)
+                    .padding(.horizontal, 18)
+                    .background(.hero, in: RoundedRectangle(cornerRadius: 20, style: .continuous))
+                    KiraLogo(.mark, tone: .mono, size: 32).foregroundStyle(.ink)
                     KiraLogo()
-                    KiraLogo(.mark, tone: .mono, size: 40).foregroundStyle(.ink)
-                    KiraLogo(.icon, size: 56)
-                    KiraLogo(.mark, tone: .hero, size: 40).padding(KiraSpacing.space2).background(.hero, in: Circle())
                 }
-                KiraLogo(.wordmark, size: 32)
-                KiraLogo(.wordmark, tone: .hero, size: 28)
-                    .padding(KiraSpacing.space4)
-                    .kiraCard(.hero, cornerRadius: KiraRadius.extraLarge)
             }
             GallerySection(title: "gallery.section.mascot") {
-                HStack(spacing: KiraSpacing.space3) {
+                KiraFlowRow(spacing: KiraSpacing.space4) {
                     ForEach(KiraMascot.Expression.allCases, id: \.self) { expression in
-                        KiraMascot(expression, size: 104)
+                        KiraMascot(expression, size: 180)
                     }
-                }
-                HStack(spacing: KiraSpacing.space4) {
                     KiraMascot(.happy, size: 120, isFramed: false)
                     KiraMascot(.calm, size: 48, crop: .face).clipShape(Circle())
                 }
@@ -93,15 +97,16 @@
         }
     }
 
-    /** Every category tile, and the three standard sizes. */
+    /** The CategoryIcon preview: every tile over its name; then the standard sizes and the round tile. */
     struct GalleryCategories: View {
         var body: some View {
             GallerySection(title: "gallery.section.categories") {
-                VStack(alignment: .leading, spacing: KiraSpacing.space3) {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 72), spacing: 10)], spacing: 10) {
                     ForEach(KiraCategory.allCases, id: \.self) { category in
-                        HStack(spacing: KiraSpacing.space3) {
-                            KiraCategoryIcon(category, size: KiraSize.tile)
-                            Text(category.title).font(.footnote).foregroundStyle(.ink)
+                        VStack(spacing: 6) {
+                            KiraCategoryIcon(category)
+                            Text(category.title).font(.caption).foregroundStyle(.inkMuted).lineLimit(1)
+                                .minimumScaleFactor(0.5)
                         }
                     }
                 }
@@ -115,15 +120,19 @@
         }
     }
 
-    /** Every spot illustration. */
+    /** The Illustration preview: every illustration at 96 pt over its name. */
     struct GalleryIllustrations: View {
         var body: some View {
             GallerySection(title: "gallery.section.illustrations") {
-                VStack(alignment: .leading, spacing: KiraSpacing.space3) {
+                LazyVGrid(
+                    columns: [GridItem(.adaptive(minimum: 112), spacing: KiraSpacing.space3)],
+                    spacing: KiraSpacing.space3
+                ) {
                     ForEach(KiraIllustrationName.allCases, id: \.self) { name in
-                        HStack(spacing: KiraSpacing.space3) {
-                            KiraIllustration(name, size: 84)
-                            Text(name.rawValue).font(.footnote).foregroundStyle(.ink)
+                        VStack(spacing: 6) {
+                            KiraIllustration(name, size: 96)
+                            Text(name.rawValue).font(.caption).foregroundStyle(.inkMuted).lineLimit(1)
+                                .minimumScaleFactor(0.5)
                         }
                     }
                 }
