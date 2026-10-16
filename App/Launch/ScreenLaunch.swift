@@ -51,7 +51,7 @@
         /** CAT: Catat; the tests open its sheets from the composer (ChatLaunch says which account each needs). */
         case record, recordDrafts, recordManual, recordScan, recordQuota, recordVoice
         /** KOM: Komunitas and Detail Grup; the tests open its sheets and dialogs from Detail Grup. */
-        case community, communityGroup, communityRules, communityOutbound
+        case community, communityGroup, communityRules, communityOutbound, communityLinkUnavailable
         case groupReport, groupReportOther, groupReportSent, groupReportFailed
 
         /** The area whose launcher builds the screen. */
@@ -73,8 +73,8 @@
                 .plans
             case .history, .transaction, .conversation, .statementImport, .importReview: .record
             case .record, .recordDrafts, .recordManual, .recordScan, .recordQuota, .recordVoice: .chat
-            case .community, .communityGroup, .communityRules, .communityOutbound, .groupReport, .groupReportOther,
-                .groupReportSent, .groupReportFailed:
+            case .community, .communityGroup, .communityRules, .communityOutbound, .communityLinkUnavailable,
+                .groupReport, .groupReportOther, .groupReportSent, .groupReportFailed:
                 .community
             }
         }

@@ -18,6 +18,8 @@ struct GroupRulesSheet: View {
                         model.rulesAgreed.toggle()
                     }
                 }
+                .accessibilityElement(children: .contain)
+                .accessibilityLabel(Text("community.rules.consent"))
             }
         }
         .scrollBounceBehavior(.basedOnSize)
@@ -58,6 +60,7 @@ struct CommunityRulesList: View {
                         .subtitle(Text(rules[index].detail))
                 }
             }
+            .accessibilityElement(children: .contain)
             .accessibilityLabel(Text("community.rules.listLabel"))
         }
     }

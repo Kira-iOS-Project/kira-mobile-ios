@@ -14,7 +14,7 @@ struct GroupReportFlowTests {
         return model
     }
 
-    @Test("nothing is sent without a reason; a sent report closes the sheet and shows Laporan Terkirim")
+    @Test("nothing is sent without a reason; a sent report shows Laporan Terkirim over the sheet")
     func sent() async {
         let service = FakeCommunityService()
         let model = await model(service)
@@ -25,9 +25,11 @@ struct GroupReportFlowTests {
         model.reportForm.choose(.other)
         model.reportForm.report.story = "  Admin jualan data.  "
         await model.sendReport()
-        #expect(!model.showsReport && model.showsReportSent)
+        #expect(model.showsReport && model.showsReportSent && !model.reportFinished)
         #expect(await service.calls.last == .report("g-1", .other, "Admin jualan data."))
         #expect(model.reportForm.report == GroupReport())
+        model.finishReport()
+        #expect(!model.showsReportSent && model.reportFinished)
     }
 
     @Test("offline closes the sheet and keeps the report; Coba Lagi reopens it and sends again")
@@ -39,7 +41,16 @@ struct GroupReportFlowTests {
         #expect(!model.showsReport && model.failure?.failure == .connection && model.failure?.attempt == .report)
         #expect(model.reportForm.report.reason == .scam && model.canRetry)
         await model.retry()
-        #expect(model.showsReportSent && !model.showsReport)
+        #expect(model.showsReportSent && model.showsReport)
+    }
+
+    @Test("Tutup on the failure drops the report as typed")
+    func closeDrops() async {
+        let model = await model(FakeCommunityService(failures: ["report": [FakeCommunityService.Offline()]]))
+        model.reportForm.choose(.scam)
+        await model.sendReport()
+        model.dismissFailure()
+        #expect(model.failure == nil && model.reportForm.report == GroupReport())
     }
 
     @Test("a duplicate after a lost answer is the report already sent")
@@ -54,16 +65,34 @@ struct GroupReportFlowTests {
         #expect(model.showsReportSent)
     }
 
-    @Test("an open report already, a gone group or a refused story show their problem; only the story offers a retry")
+    @Test("an open report already or a refused story show their problem without Coba Lagi; other problems offer it")
     func refusals() async {
-        for code in [ProblemCode.communityReportDuplicate, .communityGroupNotFound, .validationFailed] {
+        for code in [ProblemCode.communityReportDuplicate, .validationFailed, .internalError] {
             let model = await model(FakeCommunityService(failures: ["report": [communityProblem(code)]]))
             model.reportForm.choose(.inappropriate)
             await model.sendReport()
-            #expect(model.failure?.failure == .problem(communityProblem(code)))
-            #expect(model.canRetry == (code == .validationFailed))
+            #expect(!model.showsReport && model.failure?.failure == .problem(communityProblem(code)))
+            #expect(model.canRetry == (code == .internalError))
             #expect(model.reportForm.report.reason == .inappropriate)
         }
+    }
+
+    @Test("a group gone while reporting shows its problem in place of the group, as on joining")
+    func goneGroup() async {
+        let model = await model(
+            FakeCommunityService(failures: ["report": [communityProblem(.communityGroupNotFound)]]))
+        model.reportForm.choose(.scam)
+        await model.sendReport()
+        #expect(!model.showsReport && model.failure == nil)
+        #expect(model.phase.problem?.knownCode == .communityGroupNotFound)
+    }
+
+    @Test("a send cancelled with its task shows nothing")
+    func cancelled() async {
+        let model = await model(FakeCommunityService(failures: ["report": [CancellationError()]]))
+        model.reportForm.choose(.scam)
+        await model.sendReport()
+        #expect(model.showsReport && model.failure == nil && !model.showsReportSent)
     }
 
     @Test("a second send while one is on its way does nothing")

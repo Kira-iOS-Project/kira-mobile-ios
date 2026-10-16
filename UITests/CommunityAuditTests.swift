@@ -28,9 +28,19 @@ nonisolated final class CommunityAuditTests: XCTestCase {
     func testOutboundLinkPassesTheAudit() throws {
         try auditScreen("communityOutbound") { app in
             tap("Gabung Grup", in: app)
-            tap("Aku Sudah Membaca dan Setuju", in: app)
+            tap("Aku sudah membaca dan setuju", in: app)
             tap("Setuju dan Lanjut", in: app)
             XCTAssertTrue(app.buttons["Batal"].waitForExistence(timeout: 5))
+        }
+    }
+
+    @MainActor
+    func testLinkUnavailablePassesTheAudit() throws {
+        try auditScreen("communityLinkUnavailable") { app in
+            tap("Gabung Grup", in: app)
+            tap("Aku sudah membaca dan setuju", in: app)
+            tap("Setuju dan Lanjut", in: app)
+            XCTAssertTrue(app.buttons["Tutup"].waitForExistence(timeout: 5))
         }
     }
 

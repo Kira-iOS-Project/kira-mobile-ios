@@ -33,6 +33,13 @@ struct LiveCommunityReportTests {
         #expect(await transport.sent.first?.json["reason"] == .string(reason.rawValue))
     }
 
+    @Test("no story is left out of the body, not sent as null")
+    func noStory() async throws {
+        let (service, transport) = service(ok(#"{"id":"r-1"}"#, status: 201))
+        try await service.report(groupID: "g-lunas", reason: .scam, story: nil)
+        #expect(await transport.sent.first?.json == ["reason": .string("scam")])
+    }
+
     @Test(
         "a refusal reaches the screen as its problem code",
         arguments: [
@@ -40,6 +47,7 @@ struct LiveCommunityReportTests {
             ("COMMUNITY_GROUP_NOT_FOUND", 404, .communityGroupNotFound),
             ("VALIDATION_FAILED", 422, .validationFailed),
             ("AUTH_UNAUTHENTICATED", 401, .authUnauthenticated),
+            ("INTERNAL_ERROR", 500, .internalError),
         ])
     func refused(code: String, status: Int, known: ProblemCode) async throws {
         let (service, _) = service(problem(code, status: status))

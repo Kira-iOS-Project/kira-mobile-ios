@@ -1,7 +1,7 @@
 /**
  The tabs: Beranda and Catat, each its own navigation stack driven by `AppRoute`, under Kira's
- dock (KiraTabBar). Rencana and Komunitas stay on the dock but open nothing yet. The dock shows at
- each root and on the screens whose board draws it (`AppRoute.showsDock`).
+ dock (KiraTabBar), and Komunitas (KOM-01) in its own stack. Rencana stays on the dock but opens
+ nothing yet. The dock shows at each root and on the screens whose board draws it (`AppRoute.showsDock`).
  */
 import Features
 import SwiftUI

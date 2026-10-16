@@ -44,7 +44,7 @@ private struct GroupReportForm: View {
 
     @ViewBuilder private var story: some View {
         let tooLong: LocalizedStringResource? =
-            form.report.story.count > GroupReport.storyLimit ? "community.report.story.tooLong" : nil
+            form.report.isStoryTooLong ? "community.report.story.tooLong" : nil
         if form.report.requiresStory {
             KiraField(
                 "community.report.story.required", text: $form.report.story,

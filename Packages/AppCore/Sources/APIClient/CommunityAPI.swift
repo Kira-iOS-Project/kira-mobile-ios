@@ -36,7 +36,7 @@ extension Operations.ListCommunityGroups.Output {
         case .ok(let response): return try CommunityGroupsDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -48,7 +48,7 @@ extension Operations.GetCommunityGroup.Output {
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .notFound(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -59,7 +59,7 @@ extension Operations.AcceptCommunityRules.Output {
         case .noContent: return
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -72,7 +72,7 @@ extension Operations.JoinCommunityGroup.Output {
         case .notFound(let response): throw try response.body.applicationProblemJson
         case .conflict(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -85,7 +85,7 @@ extension Operations.ReportCommunityGroup.Output {
         case .notFound(let response): throw try response.body.applicationProblemJson
         case .conflict(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }

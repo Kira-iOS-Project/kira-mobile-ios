@@ -29,14 +29,15 @@ struct OutboundLinkSheet: View {
             .padding(.top, 10)
             KiraNotice(.warning, title: "community.outbound.warning.title", message: "community.outbound.warning.body")
             Spacer(minLength: 0)
-            KiraButtonPair(
-                secondary: KiraButton("community.outbound.cancel", variant: .secondary, size: .small, action: onClose),
-                primary: KiraButton(invite.platform.openTitle, size: .small) {
+            WeightedRow(weights: [1, 1.3], spacing: KiraSpacing.space2) {
+                KiraButton("community.outbound.cancel", variant: .secondary, size: .small, action: onClose).block()
+                KiraButton(invite.platform.openTitle, size: .small) {
                     openURL(invite.url)
                     onClose()
                 }
                 .iconEnd(.external)
-            )
+                .block()
+            }
             .padding(.bottom, KiraSpacing.space2)
         }
     }

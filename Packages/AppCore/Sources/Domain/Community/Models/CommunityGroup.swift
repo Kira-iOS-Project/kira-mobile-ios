@@ -12,7 +12,7 @@ package struct CommunityGroup: Hashable, Sendable {
     /** "Aturan Utama": three rules. */
     package let rules: [String]
     /** The day the moderation team last checked the invite link. */
-    package let linkCheckedOn: CalendarDay
+    package let linkCheckedOn: CalendarDay?
     /** Whether the admin is still the one verified ("admin masih sama"). */
     package let adminUnchanged: Bool
     /** Whether the person accepted the current version of the community rules. */
@@ -21,7 +21,7 @@ package struct CommunityGroup: Hashable, Sendable {
     /** A group with every field given. */
     package init(
         summary: CommunityGroupSummary, about: String, admin: CommunityAdmin, rules: [String],
-        linkCheckedOn: CalendarDay, adminUnchanged: Bool, rulesAccepted: Bool
+        linkCheckedOn: CalendarDay?, adminUnchanged: Bool, rulesAccepted: Bool
     ) {
         self.summary = summary
         self.about = about

@@ -98,9 +98,9 @@ package struct CommunityGroupDTO: Hashable, Sendable {
     package let adminVerifiedSince: String
     /** The three main rules. */
     package let rules: [String]
-    /** The day the link was last checked (`YYYY-MM-DD`). */
-    package let linkCheckedOn: String
-    /** Whether the admin is still the one verified. */
+    /** The day the link was last checked (`YYYY-MM-DD`); nil while the group has no verified link. */
+    package let linkCheckedOn: String?
+    /** Whether the admin is still the one verified; false while the group has no verified link. */
     package let adminUnchanged: Bool
     /** Whether the current community rules are accepted. */
     package let rulesAccepted: Bool

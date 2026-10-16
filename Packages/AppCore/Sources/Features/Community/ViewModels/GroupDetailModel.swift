@@ -5,8 +5,9 @@ import Observation
 /**
  Detail Grup (KOM-02) and the way in: "Gabung Grup" shows Aturan Komunitas (KOM-03) unless the
  current rules are accepted, then asks the API for the invite and confirms the outside link
- (KOM-04) every time. "Laporkan Grup" (KOM-05) is always there. A submit that fails closes its
- sheet and shows the failure dialog here; Coba Lagi reopens that sheet with its input and repeats.
+ (KOM-04) every time. "Laporkan Grup" (KOM-05) is always there; "Laporan Terkirim" shows over
+ its sheet, and Selesai goes back to Komunitas. A submit that fails closes its sheet and shows the
+ failure dialog here; Coba Lagi reopens that sheet with its input and repeats, Tutup drops it.
  */
 @MainActor @Observable
 package final class GroupDetailModel {
@@ -30,8 +31,10 @@ package final class GroupDetailModel {
     package var invite: GroupInvite?
     /** Whether the Laporkan Grup sheet is open. */
     package var showsReport = false
-    /** Whether "Laporan Terkirim" is showing. */
+    /** Whether "Laporan Terkirim" is showing over the report sheet. */
     package var showsReportSent = false
+    /** Selesai was tapped: the sheet closes, then Detail Grup goes back to Komunitas. */
+    package private(set) var reportFinished = false
     /** The last failure, shown as a dialog, and what Coba Lagi repeats. */
     package private(set) var failure: (failure: CommunityFailure, attempt: Attempt)?
     /** Whether a rules or join request is on its way. */
@@ -54,6 +57,8 @@ package final class GroupDetailModel {
         if phase.value == nil { phase = .loading }
         do {
             phase = .loaded(try await service.group(id: groupID))
+        } catch is CancellationError {
+            return
         } catch {
             if phase.value == nil { phase = .failed(CommunityFailure(error).screenProblem) }
         }
@@ -80,38 +85,35 @@ package final class GroupDetailModel {
             showsRules = false
             isWorking = false
             await requestInvite()
+        } catch is CancellationError {
+            isWorking = false
         } catch {
             isWorking = false
             showsRules = false
-            failure = (CommunityFailure(error), .acceptRules)
+            let failure = CommunityFailure(error)
+            self.failure = (failure, .acceptRules)
+            /** The API refused this rules version: what it holds now is loaded again. */
+            if failure.kind == .refused { await load() }
         }
     }
 
-    /** "Laporkan Grup". */
-    package func report() {
-        showsReport = true
-    }
-
-    /** "Kirim Laporan": closes the sheet, then shows "Laporan Terkirim" or the failure. */
+    /**
+     "Kirim Laporan": "Laporan Terkirim" over the sheet, or the sheet closes on the failure; a gone
+     group shows in place of the group, as on joining.
+     */
     package func sendReport() async {
         guard let outcome = await reportForm.send() else { return }
-        showsReport = false
         switch outcome {
-        case .sent: showsReportSent = true
-        case .failed(let failure): self.failure = (failure, .report)
+        case .sent:
+            showsReportSent = true
+        case .failed(let failure):
+            showsReport = false
+            if failure.kind == .groupGone {
+                phase = .failed(failure.screenProblem)
+            } else {
+                self.failure = (failure, .report)
+            }
         }
-    }
-
-    /** Whether Coba Lagi can help: not for a report already open, a link still being checked or a gone group. */
-    package var canRetry: Bool {
-        guard case .problem(let problem) = failure?.failure else { return true }
-        let final: [ProblemCode?] = [.communityReportDuplicate, .communityLinkUnavailable, .communityGroupNotFound]
-        return !final.contains(problem.knownCode)
-    }
-
-    /** Tutup on the failure dialog. */
-    package func dismissFailure() {
-        failure = nil
     }
 
     /** Coba Lagi: reopens the failed sheet with its input and repeats the submit. */
@@ -135,13 +137,45 @@ package final class GroupDetailModel {
         defer { isWorking = false }
         do {
             invite = try await service.join(groupID: groupID)
-        } catch let problem as AppProblem where problem.knownCode == .communityRulesNotAccepted {
-            rulesAgreed = false
-            showsRules = true
-        } catch let problem as AppProblem where problem.knownCode == .communityGroupNotFound {
-            phase = .failed(problem)
+        } catch is CancellationError {
+            return
         } catch {
-            failure = (CommunityFailure(error), .join)
+            let failure = CommunityFailure(error)
+            switch failure.kind {
+            case .rulesNotAccepted:
+                rulesAgreed = false
+                showsRules = true
+            case .groupGone: phase = .failed(failure.screenProblem)
+            case .linkUnavailable, .reportDuplicate, .refused, .other, nil: self.failure = (failure, .join)
+            }
         }
+    }
+}
+
+extension GroupDetailModel {
+    /** "Laporkan Grup". */
+    package func report() {
+        showsReport = true
+    }
+
+    /** Selesai on "Laporan Terkirim": the dialog and the sheet close, and the screen goes back. */
+    package func finishReport() {
+        showsReportSent = false
+        reportFinished = true
+    }
+
+    /** Whether Coba Lagi can help: not when the same thing sent again cannot work. */
+    package var canRetry: Bool {
+        failure?.failure.kind?.allowsRetry ?? true
+    }
+
+    /** Tutup on the failure dialog: what the failed sheet held is dropped. */
+    package func dismissFailure() {
+        switch failure?.attempt {
+        case .acceptRules: rulesAgreed = false
+        case .report: reportForm.report = GroupReport()
+        case .join, nil: break
+        }
+        failure = nil
     }
 }

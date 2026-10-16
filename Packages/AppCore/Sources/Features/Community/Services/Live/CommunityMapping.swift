@@ -30,7 +30,7 @@ extension CommunityGroup {
             admin: CommunityAdmin(
                 name: dto.adminName, initials: dto.adminInitials,
                 verifiedSince: try Bridge.day(dto.adminVerifiedSince + "-01")),
-            rules: dto.rules, linkCheckedOn: try Bridge.day(dto.linkCheckedOn), adminUnchanged: dto.adminUnchanged,
+            rules: dto.rules, linkCheckedOn: try dto.linkCheckedOn.map(Bridge.day), adminUnchanged: dto.adminUnchanged,
             rulesAccepted: dto.rulesAccepted)
     }
 }

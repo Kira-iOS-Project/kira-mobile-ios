@@ -62,17 +62,19 @@ struct GroupAbout: View {
             .padding(.horizontal, KiraSpacing.space4)
             .padding(.vertical, KiraSpacing.space1)
             .kiraCard(cornerRadius: KiraRadius.large)
-            HStack(spacing: 6) {
-                KiraIcon(.shield, size: 16, weight: .semibold).foregroundStyle(.pandan)
-                Text(checked).kiraFont(.footnote).foregroundStyle(.inkMuted)
+            if let checked {
+                HStack(spacing: 6) {
+                    KiraIcon(.shield, size: 16, weight: .semibold).foregroundStyle(.pandan)
+                    Text(checked).kiraFont(.footnote).foregroundStyle(.inkMuted)
+                }
+                .padding(.horizontal, KiraSpacing.space1)
             }
-            .padding(.horizontal, KiraSpacing.space1)
         }
     }
 
-    /** "Link dicek 12 Oktober 2026 · admin masih sama". */
-    private var checked: LocalizedStringResource {
-        let day = group.linkCheckedOn.date.formatted(.kiraDate)
+    /** "Link dicek 12 Oktober 2026 · admin masih sama"; nil while the group has no verified link. */
+    private var checked: LocalizedStringResource? {
+        guard let day = group.linkCheckedOn?.date.formatted(.kiraDate) else { return nil }
         return group.adminUnchanged
             ? "community.detail.checkedSameAdmin \(day)" : "community.detail.checked \(day)"
     }

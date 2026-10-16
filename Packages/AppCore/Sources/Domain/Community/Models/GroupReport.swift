@@ -37,6 +37,11 @@ package struct GroupReport: Hashable, Sendable {
         self.story = story
     }
 
+    /** Whether the story, without its outer spaces, is longer than `storyLimit`. */
+    package var isStoryTooLong: Bool {
+        (trimmedStory?.count ?? 0) > Self.storyLimit
+    }
+
     /** The story without spaces around it, nil when blank: what is sent. */
     package var trimmedStory: String? {
         let trimmed = story.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -48,7 +53,7 @@ package struct GroupReport: Hashable, Sendable {
 
     /** Whether "Kirim Laporan" may be tapped: a reason, a story when required, within 500 characters. */
     package var canSend: Bool {
-        guard reason != nil, story.count <= Self.storyLimit else { return false }
+        guard reason != nil, !isStoryTooLong else { return false }
         return !requiresStory || trimmedStory != nil
     }
 }

@@ -106,11 +106,16 @@ struct CommunityRulesLine: View {
     let onRead: () -> Void
 
     var body: some View {
-        VStack(spacing: 0) {
-            Text("community.rulesLine").kiraFont(.footnote).foregroundStyle(.inkMuted)
-            KiraLink("community.readRules", action: onRead)
+        ViewThatFits(in: .horizontal) {
+            HStack(spacing: 6) { line }
+            VStack(spacing: 0) { line }
         }
         .multilineTextAlignment(.center)
         .frame(maxWidth: .infinity)
+    }
+
+    @ViewBuilder private var line: some View {
+        Text("community.rulesLine").kiraFont(.footnote).foregroundStyle(.inkMuted)
+        KiraLink("community.readRules", action: onRead)
     }
 }

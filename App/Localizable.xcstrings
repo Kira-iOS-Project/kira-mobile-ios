@@ -2191,12 +2191,12 @@
         }
       }
     },
-    "community.outbound.label" : {
+    "community.outbound.label %@" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Konfirmasi membuka tautan grup"
+            "value" : "Konfirmasi membuka %@"
           }
         }
       }
@@ -2307,6 +2307,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Baca Aturan"
+          }
+        }
+      }
+    },
+    "community.report.duplicate.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grup Ini Sudah Kamu Laporkan"
           }
         }
       }
@@ -2566,7 +2576,17 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aku Sudah Membaca dan Setuju"
+            "value" : "Aku sudah membaca dan setuju"
+          }
+        }
+      }
+    },
+    "community.rules.consent" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Persetujuan"
           }
         }
       }
@@ -2657,6 +2677,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Termasuk pom-pom saham dan sinyal berbayar."
+          }
+        }
+      }
+    },
+    "community.rules.outdated" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aturan komunitas baru saja diperbarui. Perbarui aplikasi Kira, lalu setujui aturan yang baru."
           }
         }
       }

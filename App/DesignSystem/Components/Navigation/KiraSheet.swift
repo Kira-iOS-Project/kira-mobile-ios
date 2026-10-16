@@ -38,9 +38,9 @@ extension View {
      */
     func kiraSheet<Content: View>(
         isPresented: Binding<Bool>, label: LocalizedStringResource, top: CGFloat? = nil,
-        @ViewBuilder content: @escaping () -> Content
+        onDismiss: (() -> Void)? = nil, @ViewBuilder content: @escaping () -> Content
     ) -> some View {
-        kiraCover(isPresented: isPresented) { onGone in
+        kiraCover(isPresented: isPresented, onDismiss: onDismiss) { onGone in
             SheetCover(
                 isPresented: isPresented, title: label, subtitle: nil, top: top, leaf: nil, showsHeader: false,
                 onGone: onGone, content: content)

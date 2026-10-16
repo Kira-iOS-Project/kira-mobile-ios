@@ -46,6 +46,8 @@ package final class GroupReportModel {
         } catch let problem as AppProblem where landedBefore(problem) {
             /** The send before landed and only its answer was lost: the report exists. */
             return sent()
+        } catch is CancellationError {
+            return nil
         } catch {
             let failure = CommunityFailure(error)
             lastSendLostConnection = failure == .connection
@@ -55,7 +57,7 @@ package final class GroupReportModel {
 
     /** Whether `problem` says the previous send, whose answer was lost, landed. */
     private func landedBefore(_ problem: AppProblem) -> Bool {
-        problem.knownCode == .communityReportDuplicate && lastSendLostConnection
+        CommunityFailure.problem(problem).kind == .reportDuplicate && lastSendLostConnection
     }
 
     private func sent() -> Outcome {

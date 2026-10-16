@@ -102,4 +102,30 @@ struct GroupDetailModelTests {
         await model.retry()
         #expect(model.invite != nil && model.phase.value?.rulesAccepted == true)
     }
+
+    @Test("an old rules version refused (422) shows without Coba Lagi, drops the tick on Tutup, and reloads")
+    func rulesRefused() async {
+        let service = FakeCommunityService(failures: ["acceptRules": [communityProblem(.validationFailed)]])
+        let model = await loaded(service)
+        await model.join()
+        model.rulesAgreed = true
+        await model.acceptRules()
+        #expect(model.failure?.attempt == .acceptRules && !model.canRetry)
+        #expect(await service.calls.filter { $0 == .group("g-1") }.count == 2)
+        model.dismissFailure()
+        #expect(!model.rulesAgreed && model.failure == nil)
+    }
+
+    @Test("a load or a join cancelled with its task changes nothing")
+    func cancelled() async {
+        let model = await loaded(
+            FakeCommunityService(rulesAccepted: true, failures: ["join": [CancellationError()]]))
+        await model.join()
+        #expect(model.failure == nil && model.invite == nil && model.phase.value != nil)
+        let loading = GroupDetailModel(
+            groupID: "g-1", service: FakeCommunityService(failures: ["group": [CancellationError()]]))
+        await loading.load()
+        #expect(loading.phase.value == nil && loading.phase.problem == nil)
+    }
+
 }

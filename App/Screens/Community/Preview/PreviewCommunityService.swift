@@ -1,18 +1,23 @@
 /**
  Komunitas's service before the API answers: the four groups of the Komunitas board, Lunas Bareng
  Jakarta's detail from Detail Grup (and the same shape for the others), after a short pause.
- Joining needs the rules first, as on the server; every report is sent, or none when
- `reportsFail` (the connection drops, for Laporan Belum Terkirim).
+ Joining needs the rules first, as on the server. No group has a verified link yet (the curation
+ team gives them), so joining answers 409 COMMUNITY_LINK_UNAVAILABLE and Detail Grup has no "Link
+ dicek" line; with `linksVerified` a join opens the platform's own address, never an invented
+ invite. Every report is sent, or none when `reportsFail` (the connection drops).
  */
+import APIClient
 import Domain
 import Features
 import Foundation
 
 actor PreviewCommunityService: CommunityService {
     private var rulesAccepted = false
+    private let linksVerified: Bool
     private let reportsFail: Bool
 
-    init(reportsFail: Bool = false) {
+    init(linksVerified: Bool = false, reportsFail: Bool = false) {
+        self.linksVerified = linksVerified
         self.reportsFail = reportsFail
     }
 
@@ -29,7 +34,7 @@ actor PreviewCommunityService: CommunityService {
             admin: CommunityAdmin(
                 name: "Rani A.", initials: "RA", verifiedSince: CalendarDay(year: 2026, month: 3, day: 1)),
             rules: ["Tanpa Ajakan Gagal Bayar", "Tanpa Jual-Beli Data atau Joki", "Jaga Privasi Sesama Anggota"],
-            linkCheckedOn: CalendarDay(year: 2026, month: 10, day: 12), adminUnchanged: true,
+            linkCheckedOn: linksVerified ? Self.checkedOn : nil, adminUnchanged: linksVerified,
             rulesAccepted: rulesAccepted)
     }
 
@@ -40,10 +45,20 @@ actor PreviewCommunityService: CommunityService {
 
     func join(groupID: String) async throws -> GroupInvite {
         try await pause()
+        guard linksVerified else { throw AppProblem(code: "COMMUNITY_LINK_UNAVAILABLE") }
         let platform = Self.groups.first { $0.id == groupID }?.platform ?? .whatsapp
-        let url = URL(string: "https://chat.whatsapp.com/LunasBarengJakarta") ?? URL(filePath: "/")
-        return GroupInvite(url: url, platform: platform, linkCheckedOn: CalendarDay(year: 2026, month: 10, day: 12))
+        let url = Self.platformHome[platform] ?? URL(filePath: "/")
+        return GroupInvite(url: url, platform: platform, linkCheckedOn: Self.checkedOn)
     }
+
+    /** The day the verified links were checked. */
+    private static let checkedOn = CalendarDay(year: 2026, month: 10, day: 12)
+
+    /** Each platform's own address, standing in for an invite the team has not given yet. */
+    private static let platformHome: [CommunityPlatform: URL] = [
+        .whatsapp: URL(string: "https://www.whatsapp.com/"), .telegram: URL(string: "https://telegram.org/"),
+        .discord: URL(string: "https://discord.com/"),
+    ].compactMapValues { $0 }
 
     func report(groupID _: String, reason _: GroupReportReason, story _: String?) async throws {
         try await pause()
