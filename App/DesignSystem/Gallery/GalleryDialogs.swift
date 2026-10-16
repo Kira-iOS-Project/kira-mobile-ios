@@ -7,6 +7,7 @@
 
     struct GalleryDialogs: View {
         @State private var isConfirming = false
+        @State private var isConfirmingBillDelete = false
 
         var body: some View {
             GallerySection(title: "gallery.section.dialogPresented") {
@@ -18,6 +19,19 @@
                             primary: KiraButton("gallery.dialog.unsubscribe", variant: .destructive) {},
                             secondary: KiraButton("gallery.dialog.keep", variant: .secondary) {})
                     }
+            }
+            GallerySection(title: "gallery.dialog.billDelete.section") {
+                KiraButton("gallery.dialog.billDelete.open", variant: .secondary) {
+                    isConfirmingBillDelete = true
+                }
+                .kiraDialog(isPresented: $isConfirmingBillDelete) {
+                    KiraDialog(
+                        "gallery.dialog.billDelete.title", message: "gallery.dialog.billDelete.body",
+                        art: .illustration(.care),
+                        primary: KiraButton("gallery.dialog.billDelete.confirm", variant: .destructive) {},
+                        secondary: KiraButton("gallery.dialog.cancel", variant: .secondary) {}
+                    )
+                }
             }
             GallerySection(title: "gallery.section.dialogSuccess") {
                 KiraDialog(
