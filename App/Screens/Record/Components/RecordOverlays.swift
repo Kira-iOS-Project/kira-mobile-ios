@@ -16,18 +16,20 @@ struct RecordOverlays: ViewModifier {
             .kiraSheet(
                 Self.submission($model.editor, \.sheet), title: "record.edit.title", subtitle: editorSubtitle,
                 top: 150, failureTitle: "record.failure.title", connectionMessage: "record.failure.connection",
-                onRetry: { Task { await model.editor?.retry() } }
-            ) {
-                if let editor = model.editor { DraftEditSheet(model: editor) { model.editor = nil } }
-            }
+                onRetry: { Task { await model.editor?.retry() } },
+                content: {
+                    if let editor = model.editor { DraftEditSheet(model: editor) { model.editor = nil } }
+                }
+            )
             .kiraSheet(
                 Self.submission($model.manualEntry, \.sheet), title: "record.manual.title",
                 subtitle: "record.manual.subtitle", leaf: KiraLeaf(.twig, tone: .soft, size: 120, isFlipped: true),
                 failureTitle: "record.manual.failedTitle", connectionMessage: "record.manual.failedBody",
-                onRetry: { Task { await model.manualEntry?.retry() } }
-            ) {
-                if let form = model.manualEntry { ManualEntrySheet(model: form) { model.manualEntry = nil } }
-            }
+                onRetry: { Task { await model.manualEntry?.retry() } },
+                content: {
+                    if let form = model.manualEntry { ManualEntrySheet(model: form) { model.manualEntry = nil } }
+                }
+            )
             .kiraSheet(
                 isPresented: Self.presence($model.quotaSheet), title: "record.quota.title", subtitle: quotaSubtitle,
                 top: 330
@@ -61,7 +63,7 @@ struct RecordOverlays: ViewModifier {
      The sheet of the model in `form`; once the sheet is closed with no failure dialog left (the X,
      Tutup), `form` is cleared. Without a model, a closed sheet.
      */
-    static func submission<Form: AnyObject>(
+    static func submission<Form>(
         _ form: Binding<Form?>, _ sheet: ReferenceWritableKeyPath<Form, SheetSubmission>
     ) -> Binding<SheetSubmission> {
         Binding(
