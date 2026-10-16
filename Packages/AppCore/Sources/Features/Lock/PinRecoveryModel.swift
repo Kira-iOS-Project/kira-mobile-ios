@@ -112,6 +112,6 @@ package final class PinRecoveryModel: Identifiable {
     }
 
     private static func problem(from error: any Error) -> AppProblem {
-        error as? AppProblem ?? AppProblem()
+        AppProblem(error)
     }
 }

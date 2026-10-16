@@ -113,7 +113,7 @@ struct AccountFailure: View {
     var body: some View {
         VStack(alignment: .leading, spacing: KiraSpacing.space3) {
             KiraNotice(.warning, title: "account.failure.title", message: problem.message)
-            if problem.knownCode == nil {
+            if problem.showsReference {
                 Text("account.failure.reference \(problem.reference)")
                     .font(.footnote).foregroundStyle(.inkMuted)
             }

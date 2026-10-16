@@ -118,7 +118,7 @@ struct ChatAPITests {
     @Test("throws the problem of a failure", arguments: Self.failures)
     func throwsProblems(failure: FailureCase) async {
         let (api, _) = KiraAPI.canned(status: failure.status, json: problemJSON("X_CODE"))
-        await #expect(throws: failure.expectedProblem(documented: failure.status != 500)) {
+        await #expect(throws: failure.expectedProblem) {
             try await failure.call(api)
         }
     }

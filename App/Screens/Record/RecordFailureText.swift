@@ -12,7 +12,7 @@ extension RecordFailure {
         switch self {
         case .connection:
             "record.failure.connection"
-        case .problem(let problem) where problem.knownCode == nil:
+        case .problem(let problem) where problem.showsReference:
             "record.failure.reference \(problem.reference)"
         case .problem(let problem):
             problem.message

@@ -54,14 +54,14 @@ struct PinRecoveryModelTests {
         #expect(model.secondsUntilResend(at: clock.now().addingTimeInterval(90)) == 0)
     }
 
-    @Test("shows the API's problem, or the generic one for any other failure")
+    @Test("shows the API's problem, or connection loss when the request got no answer")
     func sendFails() async {
         let model = Harness(RecoveryAPI(sendError: invalid)).model
         await model.sendCode()
         #expect(model.problem == invalid)
         let other = Harness(RecoveryAPI(sendError: URLError(.timedOut))).model
         await other.sendCode()
-        #expect(other.problem == AppProblem())
+        #expect(other.problem == .connectionLost)
         #expect(other.phase == .enteringCode)
     }
 

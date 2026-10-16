@@ -57,11 +57,12 @@ package struct AppProblem: Error, Codable, Hashable, Sendable {
     }
 
     /**
-     The String Catalog key of the message to show: `problem.<CODE>` for a known code, else
-     `problem.unknown`, which is shown together with `reference`.
+     The String Catalog key of the message to show: `problem.<CODE>` for a known code,
+     `problem.connection` when the request got no answer, else `problem.unknown`, which is shown
+     together with `reference`.
      */
     package var messageKey: String {
-        guard let knownCode else { return "problem.unknown" }
+        guard let knownCode else { return isConnectionLoss ? "problem.connection" : "problem.unknown" }
         return "problem.\(knownCode.rawValue)"
     }
 
