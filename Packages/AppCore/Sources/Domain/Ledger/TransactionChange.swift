@@ -3,12 +3,18 @@ import Foundation
 
 /** The fields of a transaction a person changed; nil leaves a field as it is. */
 package struct TransactionChange: Hashable, Sendable {
+    /** The new name. */
     package var name: String?
+    /** The new amount in whole rupiah. */
     package var amount: Int?
+    /** The new category. */
     package var category: TransactionCategory?
+    /** The new time. */
     package var occurredAt: Date?
+    /** The new note; empty clears it. */
     package var note: String?
 
+    /** A change of the given fields. */
     package init(
         name: String? = nil, amount: Int? = nil, category: TransactionCategory? = nil, occurredAt: Date? = nil,
         note: String? = nil

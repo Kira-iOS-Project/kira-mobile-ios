@@ -16,11 +16,16 @@ package struct HistoryDay: Identifiable, Hashable, Sendable {
         case past
     }
 
+    /** The day. */
     package let day: CalendarDay
+    /** What the day is to the person. */
     package let kind: Kind
+    /** Its transactions, newest first. */
     package let transactions: [Transaction]
+    /** The engine's totals of the day. */
     package let totals: DayTotals
 
+    /** The day identifies the group. */
     package var id: CalendarDay { day }
 }
 
@@ -29,12 +34,13 @@ package enum HistorySection: Identifiable, Hashable, Sendable {
     /** A day's group. */
     case day(HistoryDay)
     /** The folded days, from the first to the last, newest last. */
-    case olderDays(from: CalendarDay, to: CalendarDay)
+    case olderDays(first: CalendarDay, last: CalendarDay)
 
+    /** A stable id for the list. */
     package var id: String {
         switch self {
         case .day(let day): "day-\(day.day.iso)"
-        case .olderDays(let from, _): "older-\(from.iso)"
+        case .olderDays(let first, _): "older-\(first.iso)"
         }
     }
 }
@@ -68,7 +74,7 @@ package enum HistoryTimeline {
         let oldestShown = recent[recent.index(before: recent.endIndex)].day
         let from = payday == nil ? period.start : period.start.adding(days: 1)
         var sections = recent.map(HistorySection.day)
-        sections.append(.olderDays(from: from, to: oldestShown.adding(days: -1)))
+        sections.append(.olderDays(first: from, last: oldestShown.adding(days: -1)))
         if let payday { sections.append(.day(payday)) }
         return sections
     }

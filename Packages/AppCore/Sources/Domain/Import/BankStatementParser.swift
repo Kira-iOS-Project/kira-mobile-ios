@@ -78,6 +78,7 @@ package enum BankStatementParser {
 
 /** Splits one CSV line into its fields, honouring double quotes ("a, b" and "" for a quote). */
 package enum CSVLine {
+    /** The fields of `line`, split at `separator` outside quotes. */
     package static func fields(_ line: Substring, separator: Character = ",") -> [String] {
         var fields: [String] = []
         var current = ""

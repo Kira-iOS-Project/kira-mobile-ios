@@ -43,7 +43,7 @@ struct HistoryTimelineTests {
         #expect(
             sections == [
                 .day(days[0]), .day(days[1]),
-                .olderDays(from: period.start.adding(days: 1), to: today.adding(days: -2)),
+                .olderDays(first: period.start.adding(days: 1), last: today.adding(days: -2)),
                 .day(days[4]),
             ])
         #expect(sections[2].id == "older-2026-09-26")
@@ -54,7 +54,7 @@ struct HistoryTimelineTests {
     func foldedWithoutPayday() {
         let days = dayList([0, -1, -3], payday: false)
         let sections = HistoryTimeline.sections(days, period: period, isExpanded: false)
-        #expect(sections.last == .olderDays(from: period.start, to: today.adding(days: -2)))
+        #expect(sections.last == .olderDays(first: period.start, last: today.adding(days: -2)))
     }
 
     @Test("shows every day when opened, or when nothing would fold")
@@ -81,6 +81,8 @@ struct ConversationMessageTests {
         #expect(message.drafts.isEmpty && message.replyToId == nil && message.draftStatus == nil)
         #expect(message.remaining == nil && message.perDay == nil)
         #expect(ConversationMessage.Kind(rawValue: "no_drafts") == .noDrafts)
-        #expect(ConversationMessage.Draft(id: "d1", name: "Bensin", amount: 30_000, category: .transport).amount == 30_000)
+        #expect(
+            ConversationMessage.Draft(id: "d1", type: .expense, name: "Bensin", amount: 30_000, category: .transport)
+                .amount == 30_000)
     }
 }

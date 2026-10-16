@@ -13,7 +13,11 @@ struct BankStatementParserTests {
     func sample() throws {
         let statement = try parse(StatementTemplate.text)
         #expect(statement.rows.count == 3)
-        #expect(statement.rows[0] == StatementRow(line: 2, day: CalendarDay(year: 2026, month: 9, day: 26), description: "Kopi Susu", amount: -22_000))
+        #expect(
+            statement.rows[0]
+                == StatementRow(
+                    line: 2, day: CalendarDay(year: 2026, month: 9, day: 26), description: "Kopi Susu", amount: -22_000)
+        )
         #expect(statement.rows[0].type == .expense)
         #expect(statement.rows[2].type == .income)
         #expect(statement.dateFrom == CalendarDay(year: 2026, month: 9, day: 26))
@@ -24,7 +28,12 @@ struct BankStatementParserTests {
     func spreadsheetExport() throws {
         let text = "\u{FEFF}Tanggal;Keterangan;Nominal\r\n\r\n2026-09-01;\"Toko \"\"Maju\"\"; Jaya\";+150000\r\n"
         let statement = try parse(text)
-        #expect(statement.rows == [StatementRow(line: 3, day: CalendarDay(year: 2026, month: 9, day: 1), description: "Toko \"Maju\"; Jaya", amount: 150_000)])
+        #expect(
+            statement.rows == [
+                StatementRow(
+                    line: 3, day: CalendarDay(year: 2026, month: 9, day: 1), description: "Toko \"Maju\"; Jaya",
+                    amount: 150_000)
+            ])
     }
 
     @Test("masks account numbers before anything else sees them")
@@ -87,7 +96,8 @@ struct AccountNumberMaskTests {
         "keeps the last four digits of long numbers only",
         arguments: [
             ("TRF 1234567890 BUDI", "TRF ••••7890 BUDI"), ("KARTU 4111-1111-1111-1234", "KARTU ••••1234"),
-            ("Kopi Susu", "Kopi Susu"), ("INV 1234567", "INV 1234567"), ("A 12345678 B 87654321", "A ••••5678 B ••••4321"),
+            ("Kopi Susu", "Kopi Susu"), ("INV 1234567", "INV 1234567"),
+            ("A 12345678 B 87654321", "A ••••5678 B ••••4321"),
         ])
     func masked(text: String, shown: String) {
         #expect(AccountNumberMask.masked(text) == shown)

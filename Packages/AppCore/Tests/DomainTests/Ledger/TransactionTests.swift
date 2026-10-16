@@ -32,7 +32,9 @@ struct TransactionTests {
     @Test("cuts the source message around the span")
     func quoteParts() {
         let quote = quote("makan siang 25rb, grab ke kantor 18rb, kopi goceng", 18, 37)
-        #expect(quote.parts == QuoteParts(before: "makan siang 25rb, ", highlight: "grab ke kantor 18rb", after: ", kopi goceng"))
+        #expect(
+            quote.parts
+                == QuoteParts(before: "makan siang 25rb, ", highlight: "grab ke kantor 18rb", after: ", kopi goceng"))
     }
 
     @Test("counts the span in UTF-16 units and widens it to whole characters")
@@ -98,7 +100,7 @@ struct TransactionSummaryTests {
             expense: 78_000, income: 0, days: [DayTotals(day: day, expense: 78_000, income: 0)])
         #expect(summary.totals(on: day).expense == 78_000)
         #expect(summary.totals(on: day.adding(days: -1)) == DayTotals(day: day.adding(days: -1), expense: 0, income: 0))
-        let query = TransactionQuery(from: day, to: day, limit: 50)
+        let query = TransactionQuery(start: day, end: day, limit: 50)
         #expect(query.type == nil && query.category == nil && query.text == nil && query.cursor == nil)
         #expect(TransactionPage(items: [], nextCursor: nil).items.isEmpty)
         #expect(PayPeriod(start: day, end: day).end == day)

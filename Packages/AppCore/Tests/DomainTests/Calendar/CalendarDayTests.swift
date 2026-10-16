@@ -60,7 +60,7 @@ struct CalendarDayTests {
     func coding() throws {
         let day = CalendarDay(year: 2026, month: 9, day: 5)
         let data = try JSONEncoder().encode([day])
-        #expect(String(decoding: data, as: UTF8.self) == "[\"2026-09-05\"]")
+        #expect(String(bytes: data, encoding: .utf8) == "[\"2026-09-05\"]")
         #expect(try JSONDecoder().decode([CalendarDay].self, from: data) == [day])
         #expect(throws: DecodingError.self) {
             try JSONDecoder().decode([CalendarDay].self, from: Data("[\"5 Sep\"]".utf8))

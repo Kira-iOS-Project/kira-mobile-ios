@@ -11,8 +11,11 @@ package struct CalendarDay: Hashable, Comparable, Codable, Sendable {
     package static let wibOffset = 7 * 3600
     private static let secondsPerDay = 86_400
 
+    /** The year, such as 2026. */
     package let year: Int
+    /** The month, 1 to 12. */
     package let month: Int
+    /** The day of the month, 1 to 31. */
     package let day: Int
 
     /** The day with these parts, which the caller knows to be a real date. */
@@ -63,10 +66,12 @@ package struct CalendarDay: Hashable, Comparable, Codable, Sendable {
         other.daysSince1970 - daysSince1970
     }
 
+    /** Earlier days come first. */
     package static func < (lhs: CalendarDay, rhs: CalendarDay) -> Bool {
         lhs.daysSince1970 < rhs.daysSince1970
     }
 
+    /** Reads a `YYYY-MM-DD` string. */
     package init(from decoder: any Decoder) throws {
         let text = try decoder.singleValueContainer().decode(String.self)
         guard let day = CalendarDay(iso: text) else {
@@ -76,6 +81,7 @@ package struct CalendarDay: Hashable, Comparable, Codable, Sendable {
         self = day
     }
 
+    /** Writes a `YYYY-MM-DD` string. */
     package func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(iso)
