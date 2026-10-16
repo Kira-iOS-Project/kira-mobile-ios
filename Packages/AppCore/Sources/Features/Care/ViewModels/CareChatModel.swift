@@ -9,7 +9,7 @@ import Observation
  person when Catat opens (PED-06).
 
  Recording a signal never shows anything: a person in crisis never meets an error, and a signal that
- did not arrive waits on the device and is sent again at the next signal, quick reply or opening
+ did not arrive waits in memory and is sent again at the next signal, quick reply or opening
  of Catat; an ordinary message never waits for it. A check-in greeting that could not load waits
  for the next opening. Only scheduling the check-in, which the person asked for, says when it
  failed, with Coba Lagi. A check-in already scheduled opens with its delay chosen, and Tidak Perlu

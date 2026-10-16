@@ -5,8 +5,10 @@ import Foundation
 /**
  What Kira Peduli tells the server without the person waiting for it or ever seeing it fail: that a
  crisis signal happened (PED-02) and that a check-in is no longer wanted (PED-05, Tidak Perlu).
- Each waits on the device, in order, until the server takes it; one that fails stays, with those
- after it, for the next try.
+ Each waits in memory, in order, until the server takes it; one that fails stays, with those after
+ it, for the next try. The queue lives as long as Catat's model: an item still waiting when the app
+ is closed is lost, so a cancel lost that way lets its greeting show once more. Keeping the queue
+ on the device is a known follow-up.
  */
 @MainActor
 final class CareOutbox {
