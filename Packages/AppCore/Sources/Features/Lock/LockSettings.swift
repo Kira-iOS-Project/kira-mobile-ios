@@ -15,8 +15,11 @@ package struct LockSettings: Codable, Equatable, Sendable {
 
 /** Kunci Otomatis: Segera, 1 menit, 5 menit. */
 package enum AutoLock: String, CaseIterable, Codable, Sendable {
+    /** Segera: as soon as Kira leaves the screen. */
     case immediately
+    /** After a minute in the background. */
     case oneMinute
+    /** After five minutes in the background. */
     case fiveMinutes
 
     /** The time in the background after which Kira locks. */
@@ -31,7 +34,10 @@ package enum AutoLock: String, CaseIterable, Codable, Sendable {
 
 /** Where the app's scene is, as the app reports it from SwiftUI's scene phase. */
 package enum ScenePresence: Sendable {
+    /** On screen and taking input. */
     case active
+    /** On screen without input: the app switcher, a system sheet. */
     case inactive
+    /** Off screen. */
     case background
 }

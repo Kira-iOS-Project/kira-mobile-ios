@@ -50,9 +50,13 @@ package final class RootModel {
         return lock.isLocked ? .locked : .main
     }
 
-    /** Shows the splash, then routes by the stored session and the lock. */
+    /**
+     Shows the splash, then routes by the stored session and the lock. From then on, a refresh
+     token the API refuses ends the session here.
+     */
     package func start() async {
         guard isStarting else { return }
+        await session.setSessionEndedHandler { [weak self] in await self?.endSession() }
         await sleep(Self.splashDuration)
         isSignedIn = session.hasSession
         if isSignedIn { lock.launch() }

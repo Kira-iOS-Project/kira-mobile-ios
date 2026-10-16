@@ -4,7 +4,7 @@ import os
 /**
  The device's secret storage (AGENTS.md Rule 13): the app implements it with the Keychain
  (`kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly`), the tests and previews with `InMemoryVault`.
- Nothing in it ever reaches `UserDefaults`, a log or the server.
+ Nothing in it is ever written to the app's preferences, a log or the server.
  */
 package protocol SecretVault: Sendable {
     /** The data stored under `key`, or nil when there is none. */

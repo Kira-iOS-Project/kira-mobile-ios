@@ -3381,6 +3381,276 @@
         }
       }
     },
+    "lock.dots %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld dari 6 angka PIN terisi"
+          }
+        }
+      }
+    },
+    "lock.erase" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus angka terakhir"
+          }
+        }
+      }
+    },
+    "lock.forgot" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lupa PIN?"
+          }
+        }
+      }
+    },
+    "lock.greeting %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hai lagi, %@"
+          }
+        }
+      }
+    },
+    "lock.greeting.anonymous" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hai lagi"
+          }
+        }
+      }
+    },
+    "lock.keypad" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Papan angka PIN"
+          }
+        }
+      }
+    },
+    "lock.open" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka Kira"
+          }
+        }
+      }
+    },
+    "lock.paused %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terlalu banyak PIN salah. Coba lagi dalam %lld detik."
+          }
+        }
+      }
+    },
+    "lock.prompt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masukkan PIN untuk membuka Kira"
+          }
+        }
+      }
+    },
+    "lock.recovery.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Kira Terkunci"
+          }
+        }
+      }
+    },
+    "lock.recovery.code.field" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kode verifikasi 6 digit"
+          }
+        }
+      }
+    },
+    "lock.recovery.code.heading" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cek Emailmu"
+          }
+        }
+      }
+    },
+    "lock.recovery.code.notice" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kode ini hanya untuk masuk ke Kira. Jangan bagikan ke siapa pun, termasuk yang mengaku dari Kira."
+          }
+        }
+      }
+    },
+    "lock.recovery.code.resend" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirim Ulang Kode"
+          }
+        }
+      }
+    },
+    "lock.recovery.code.resend.wait %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirim ulang kode dalam %@"
+          }
+        }
+      }
+    },
+    "lock.recovery.code.sent %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kode 6 digit sudah dikirim ke %@"
+          }
+        }
+      }
+    },
+    "lock.recovery.code.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kode Verifikasi"
+          }
+        }
+      }
+    },
+    "lock.recovery.code.verify" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verifikasi"
+          }
+        }
+      }
+    },
+    "lock.recovery.pin.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emailmu sudah terverifikasi dan datamu tetap utuh. Buat 6 angka baru yang mudah kamu ingat."
+          }
+        }
+      }
+    },
+    "lock.recovery.pin.error.length" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PIN harus 6 angka."
+          }
+        }
+      }
+    },
+    "lock.recovery.pin.error.simple" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PIN ini mudah ditebak. Hindari angka yang berulang atau berurutan."
+          }
+        }
+      }
+    },
+    "lock.recovery.pin.field" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buat PIN 6 Angka"
+          }
+        }
+      }
+    },
+    "lock.recovery.pin.heading" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buat PIN Baru"
+          }
+        }
+      }
+    },
+    "lock.recovery.pin.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jangan pakai PIN bank atau tanggal lahir."
+          }
+        }
+      }
+    },
+    "lock.recovery.pin.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan PIN"
+          }
+        }
+      }
+    },
+    "lock.recovery.pin.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunci Kira"
+          }
+        }
+      }
+    },
+    "lock.wrong %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PIN salah. Sisa %lld kesempatan lagi."
+          }
+        }
+      }
+    },
     "problem.HTTP_ERROR" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3469,17 +3739,17 @@
         }
       }
     },
-    "root.subtitle" : {
+    "splash.note" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Catat, pahami, dan rencanakan keuanganmu bersama Kira."
+            "value" : "pelan-pelan, uangmu tumbuh"
           }
         }
       }
     },
-    "root.title" : {
+    "splash.title" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {

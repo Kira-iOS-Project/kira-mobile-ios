@@ -58,6 +58,18 @@ struct RootModelTests {
         #expect(model.navigation.homePath.isEmpty)
     }
 
+    @Test("a refused refresh token returns to onboarding")
+    func refusedRefresh() async throws {
+        let vault = InMemoryVault()
+        let session = SessionStore(vault: vault) { _ in .rejected }
+        try await session.signIn(tokens, email: "dinda@email.com")
+        let model = RootModel(session: session, lock: AppLockModel(pins: PinStore(vault: vault), vault: vault)) { _ in }
+        await model.start()
+        #expect(model.stage == .main)
+        #expect(await session.renewedBearerToken(replacing: "a") == nil)
+        #expect(model.stage == .onboarding)
+    }
+
     @Test("waits out the splash by default")
     func defaultSleep() async {
         let vault = InMemoryVault()

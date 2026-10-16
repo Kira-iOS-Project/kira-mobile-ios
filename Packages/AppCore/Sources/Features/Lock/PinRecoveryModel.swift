@@ -8,7 +8,7 @@ import Observation
  PIN. Their data stays: only the PIN is replaced, and the code's check opens a fresh session.
  */
 @MainActor @Observable
-package final class PinRecoveryModel {
+package final class PinRecoveryModel: Identifiable {
     /** The step of the recovery. */
     package enum Phase: Equatable, Sendable {
         /** Sending the code. */

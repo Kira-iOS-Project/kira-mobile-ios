@@ -10,12 +10,12 @@ private struct RecoveryAPI: PinRecoveryService {
     var sendError: (any Error)?
     var verifyError: (any Error)?
 
-    func sendCode(to email: String) throws -> Int {
+    func sendCode(to _: String) throws -> Int {
         if let sendError { throw sendError }
         return 60
     }
 
-    func verify(code: String, email: String) throws -> SessionTokens {
+    func verify(code: String, email _: String) throws -> SessionTokens {
         if let verifyError { throw verifyError }
         return SessionTokens(accessToken: "a", refreshToken: "r-\(code)", accessExpiresInSeconds: 900)
     }
@@ -23,15 +23,19 @@ private struct RecoveryAPI: PinRecoveryService {
 
 private let invalid = AppProblem(code: "AUTH_CODE_INVALID")
 
+/** The model under test with the session and the lock it changes. */
 @MainActor
-private func recovery(_ api: RecoveryAPI = RecoveryAPI(), clock: TestClock = TestClock()) -> (
-    PinRecoveryModel, SessionStore, AppLockModel
-) {
-    let vault = InMemoryVault()
-    let session = SessionStore(vault: vault, now: clock.now) { _ in .rejected }
-    let lock = AppLockModel(pins: PinStore(vault: vault, now: clock.now), vault: vault, now: clock.now)
-    let model = PinRecoveryModel(email: "dinda@email.com", service: api, session: session, lock: lock, now: clock.now)
-    return (model, session, lock)
+private struct Harness {
+    let model: PinRecoveryModel
+    let session: SessionStore
+    let lock: AppLockModel
+
+    init(_ api: RecoveryAPI = RecoveryAPI(), clock: TestClock = TestClock()) {
+        let vault = InMemoryVault()
+        session = SessionStore(vault: vault, now: clock.now) { _ in .rejected }
+        lock = AppLockModel(pins: PinStore(vault: vault, now: clock.now), vault: vault, now: clock.now)
+        model = PinRecoveryModel(email: "dinda@email.com", service: api, session: session, lock: lock, now: clock.now)
+    }
 }
 
 @MainActor
@@ -40,7 +44,7 @@ struct PinRecoveryModelTests {
     @Test("sends the code and counts down to the next send")
     func sendsCode() async {
         let clock = TestClock()
-        let (model, _, _) = recovery(clock: clock)
+        let model = Harness(clock: clock).model
         #expect(model.phase == .sending)
         #expect(model.secondsUntilResend(at: clock.now()) == 0)
         await model.sendCode()
@@ -52,10 +56,10 @@ struct PinRecoveryModelTests {
 
     @Test("shows the API's problem, or the generic one for any other failure")
     func sendFails() async {
-        let (model, _, _) = recovery(RecoveryAPI(sendError: invalid))
+        let model = Harness(RecoveryAPI(sendError: invalid)).model
         await model.sendCode()
         #expect(model.problem == invalid)
-        let (other, _, _) = recovery(RecoveryAPI(sendError: URLError(.timedOut)))
+        let other = Harness(RecoveryAPI(sendError: URLError(.timedOut))).model
         await other.sendCode()
         #expect(other.problem == AppProblem())
         #expect(other.phase == .enteringCode)
@@ -63,7 +67,7 @@ struct PinRecoveryModelTests {
 
     @Test("keeps only six digits of what is typed or pasted")
     func digitsOnly() {
-        let (model, _, _) = recovery()
+        let model = Harness().model
         model.code = "Kode kamu: 381 449 7"
         model.newPin = "90-27-16"
         #expect(model.code == "381449")
@@ -72,7 +76,10 @@ struct PinRecoveryModelTests {
 
     @Test("the right code renews the session, then the new PIN opens Kira")
     func recovers() async {
-        let (model, session, lock) = recovery()
+        let harness = Harness()
+        let model = harness.model
+        let session = harness.session
+        let lock = harness.lock
         await model.verifyCode()
         #expect(model.phase == .sending)
         await model.sendCode()
@@ -96,7 +103,9 @@ struct PinRecoveryModelTests {
 
     @Test("a wrong code clears the boxes and shows the problem")
     func wrongCode() async {
-        let (model, session, _) = recovery(RecoveryAPI(verifyError: invalid))
+        let harness = Harness(RecoveryAPI(verifyError: invalid))
+        let model = harness.model
+        let session = harness.session
         await model.sendCode()
         model.code = "381449"
         await model.verifyCode()

@@ -18,7 +18,7 @@ struct PinStoreTests {
         try store.setPin("381449")
         #expect(store.hasPin)
         let stored = try #require(vault.data(for: .pin))
-        #expect(stored.range(of: Data("381449".utf8)) == nil)
+        #expect(!stored.contains(Data("381449".utf8)))
         #expect(store.verify("381449") == .correct)
     }
 

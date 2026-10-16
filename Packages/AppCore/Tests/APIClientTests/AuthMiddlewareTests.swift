@@ -43,7 +43,7 @@ private actor Server {
 private struct CannedTransport: ClientTransport {
     let server: Server
 
-    func send(_ request: HTTPRequest, body: HTTPBody?, baseURL: URL, operationID: String) async throws -> (
+    func send(_ request: HTTPRequest, body _: HTTPBody?, baseURL _: URL, operationID _: String) async throws -> (
         HTTPResponse, HTTPBody?
     ) {
         var response = await server.answer(request)
@@ -59,9 +59,11 @@ private func run(
     _ middleware: AuthMiddleware, server: Server, operation: String = "getMe", body: HTTPBody? = nil
 ) async throws -> HTTPResponse.Status {
     let base = try #require(url)
-    let (response, _) = try await middleware.intercept(request, body: body, baseURL: base, operationID: operation) {
-        request, _, _ in await server.answer(request)
+    let next: @Sendable (HTTPRequest, HTTPBody?, URL) async throws -> (HTTPResponse, HTTPBody?) = { request, _, _ in
+        await server.answer(request)
     }
+    let (response, _) = try await middleware.intercept(
+        request, body: body, baseURL: base, operationID: operation, next: next)
     return response.status
 }
 
@@ -70,7 +72,8 @@ struct AuthMiddlewareTests {
     @Test("leaves the public operations unsigned")
     func publicOperation() async throws {
         let server = Server([.ok])
-        let status = try await run(AuthMiddleware(tokens: Tokens(current: "a")), server: server, operation: "refreshSession")
+        let middleware = AuthMiddleware(tokens: Tokens(current: "a"))
+        let status = try await run(middleware, server: server, operation: "refreshSession")
         #expect(status == .ok)
         #expect(await server.authorizations == [nil])
     }
