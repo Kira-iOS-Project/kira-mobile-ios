@@ -7,8 +7,7 @@
 package enum DisplayName {
     /** The leading letters of the local part, capitalised, or nil when it starts with no letter. */
     package static func from(email: String) -> String? {
-        let local = email.split(separator: "@", maxSplits: 1, omittingEmptySubsequences: false).first ?? ""
-        let letters = local.prefix { $0.isLetter }
+        let letters = email.prefix { $0.isLetter }
         guard let first = letters.first else { return nil }
         return first.uppercased() + letters.dropFirst().lowercased()
     }

@@ -52,9 +52,9 @@ package final class UnlockModel {
         digits.removeLast()
     }
 
-    /** Buka Kira: checks the six digits; the right PIN opens Kira. */
+    /** Buka Kira: checks the six digits; the right PIN opens Kira, and a pause holds them back. */
     package func open() {
-        guard isComplete, !isPaused else { return }
+        guard isComplete else { return }
         let check = lock.unlock(with: digits)
         digits = ""
         switch check {

@@ -31,12 +31,12 @@ package actor SessionStore: BearerTokenSource {
 
     /** Whether a refresh token is stored: the person signed in on this device and never left. */
     package nonisolated var hasSession: Bool {
-        ((try? vault.data(for: .refreshToken)) ?? nil) != nil
+        (try? vault.data(for: .refreshToken)) != nil
     }
 
     /** The signed-in account's email, or nil. */
     package nonisolated var accountEmail: String? {
-        guard let data = (try? vault.data(for: .accountEmail)) ?? nil else { return nil }
+        guard let data = try? vault.data(for: .accountEmail) else { return nil }
         return String(data: data, encoding: .utf8)
     }
 
@@ -84,7 +84,7 @@ package actor SessionStore: BearerTokenSource {
     }
 
     private func performRenewal() async -> String? {
-        guard let stored = (try? vault.data(for: .refreshToken)) ?? nil,
+        guard let stored = try? vault.data(for: .refreshToken),
             let refreshToken = String(data: stored, encoding: .utf8)
         else { return nil }
         do {

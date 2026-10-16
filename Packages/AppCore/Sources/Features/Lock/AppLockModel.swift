@@ -31,7 +31,7 @@ package final class AppLockModel {
         self.pins = pins
         self.vault = vault
         self.now = now
-        let stored = ((try? vault.data(for: .lockSettings)) ?? nil)
+        let stored = (try? vault.data(for: .lockSettings))
             .flatMap { try? JSONDecoder().decode(LockSettings.self, from: $0) }
         settings = stored ?? LockSettings()
         hasPin = pins.hasPin

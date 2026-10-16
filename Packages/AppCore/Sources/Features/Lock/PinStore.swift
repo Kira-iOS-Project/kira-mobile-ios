@@ -72,7 +72,7 @@ package final class PinStore: Sendable {
     }
 
     private func record() -> PinRecord? {
-        guard let data = (try? vault.data(for: .pin)) ?? nil else { return nil }
+        guard let data = try? vault.data(for: .pin) else { return nil }
         return try? JSONDecoder().decode(PinRecord.self, from: data)
     }
 
