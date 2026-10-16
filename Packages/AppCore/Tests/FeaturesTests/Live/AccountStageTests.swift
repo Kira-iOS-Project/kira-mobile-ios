@@ -3,7 +3,11 @@ import Testing
 
 @testable import Features
 
-@Suite("AccountStage")
+/**
+ Serialized: run in parallel, the four stages' cases raced on the coverage counters and the
+ report lost the `.ready` branch now and then, failing the 100% floor with every test passing.
+ */
+@Suite("AccountStage", .serialized)
 struct AccountStageTests {
     @Test(
         "GET /me says where onboarding stands",

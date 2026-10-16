@@ -4,7 +4,6 @@
  only: SystemLanguageModel, never Private Cloud Compute, which has a quota. Any error, or an older
  iOS, gives nothing, and the receipt goes with what Vision and the parser read.
  */
-import Domain
 import Features
 import Foundation
 import ImageIO

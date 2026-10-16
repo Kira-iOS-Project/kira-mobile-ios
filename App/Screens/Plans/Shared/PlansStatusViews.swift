@@ -3,7 +3,6 @@
  message (with its reference when the code is unknown) and Coba Lagi (AGENTS.md Rule 12).
  */
 import APIClient
-import Domain
 import SwiftUI
 
 struct PlansLoadingView: View {

@@ -3,7 +3,6 @@
  or the generic one with the reference a person quotes to support (AGENTS.md Rule 12).
  */
 import APIClient
-import Domain
 import Features
 import SwiftUI
 

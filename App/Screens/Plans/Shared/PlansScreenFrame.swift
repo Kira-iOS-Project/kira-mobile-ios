@@ -5,7 +5,6 @@
  safe area, so nothing is added to it; the column is at least the screen's height, so a Spacer
  pins a screen's buttons to the bottom (the boards' `margin-top: auto`).
  */
-import Domain
 import SwiftUI
 
 struct PlansScreenFrame<Content: View>: View {

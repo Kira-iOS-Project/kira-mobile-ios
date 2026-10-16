@@ -3,7 +3,6 @@
  Bingkai", the frozen photo with "Foto Siap Dibaca", or the picked image with its file name. The
  receipt stays paper-light inside the dark screen, since it is the photo itself.
  */
-import Domain
 import Features
 import SwiftUI
 import UIKit

@@ -3,7 +3,6 @@
  its torch for dim receipts. A photo is JPEG data in memory, never written to the library or disk.
  */
 import AVFoundation
-import Domain
 import Features
 
 nonisolated final class AVReceiptCamera: NSObject, ReceiptCapturing, @unchecked Sendable {

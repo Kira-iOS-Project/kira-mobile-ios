@@ -3,7 +3,6 @@
  scrolls to the source message and frames it in pandan ("Pesan Sumber Transaksi"); the back button
  returns to Detail Transaksi. The dock the board draws belongs to the app's root, which shows it.
  */
-import Domain
 import Features
 import SwiftUI
 

@@ -8,9 +8,9 @@ import Security
 
 /** The Keychain behind the session and the app lock. */
 nonisolated struct KeychainVault: SecretVault {
-    /** The Keychain call that failed and its status. */
-    struct Failure: Error {
-        let status: OSStatus
+    /** The error a failed Keychain call throws: its status, in the system's OSStatus domain. */
+    private static func failure(_ status: OSStatus) -> NSError {
+        NSError(domain: NSOSStatusErrorDomain, code: Int(status))
     }
 
     /** The items' service, one per app. */
@@ -23,7 +23,7 @@ nonisolated struct KeychainVault: SecretVault {
         var result: CFTypeRef?
         let status = SecItemCopyMatching(query as CFDictionary, &result)
         if status == errSecItemNotFound { return nil }
-        guard status == errSecSuccess else { throw Failure(status: status) }
+        guard status == errSecSuccess else { throw Self.failure(status) }
         return result as? Data
     }
 
@@ -36,15 +36,15 @@ nonisolated struct KeychainVault: SecretVault {
         if status == errSecItemNotFound {
             let added = baseQuery(key).merging(attributes) { _, new in new }
             let addStatus = SecItemAdd(added as CFDictionary, nil)
-            guard addStatus == errSecSuccess else { throw Failure(status: addStatus) }
+            guard addStatus == errSecSuccess else { throw Self.failure(addStatus) }
             return
         }
-        guard status == errSecSuccess else { throw Failure(status: status) }
+        guard status == errSecSuccess else { throw Self.failure(status) }
     }
 
     func remove(_ key: VaultKey) throws {
         let status = SecItemDelete(baseQuery(key) as CFDictionary)
-        guard status == errSecSuccess || status == errSecItemNotFound else { throw Failure(status: status) }
+        guard status == errSecSuccess || status == errSecItemNotFound else { throw Self.failure(status) }
     }
 
     private func baseQuery(_ key: VaultKey) -> [String: CFTypeRef] {

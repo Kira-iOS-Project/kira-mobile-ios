@@ -13698,6 +13698,16 @@
         }
       }
     },
+    "record.voice.transcript %@%@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@%2$@"
+          }
+        }
+      }
+    },
     "record.voice.unavailable" : {
       "localizations" : {
         "id" : {

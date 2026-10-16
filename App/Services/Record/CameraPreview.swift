@@ -3,7 +3,6 @@
  the simulator) leaves the frame's dark mask showing.
  */
 import AVFoundation
-import Domain
 import Features
 import SwiftUI
 import UIKit

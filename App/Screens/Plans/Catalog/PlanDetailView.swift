@@ -19,7 +19,6 @@ struct PlanDetailView: View {
     let onOpen: (AppRoute) -> Void
     @State private var page: Page?
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         PlansScreenFrame {

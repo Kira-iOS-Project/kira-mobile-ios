@@ -5,7 +5,6 @@
  server. The audio goes from the microphone to the recogniser and nowhere else, and is not kept.
  */
 import AVFoundation
-import Domain
 import Features
 import Foundation
 import Speech

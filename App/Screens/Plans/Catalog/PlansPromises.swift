@@ -2,7 +2,6 @@
  The lower half of Paket Kira: what is always free, Janji Kami, the Beasiswa Kira row, then Nanti
  Saja and Coba Kira Plus with how to pay.
  */
-import Domain
 import SwiftUI
 
 struct PlansPromises: View {

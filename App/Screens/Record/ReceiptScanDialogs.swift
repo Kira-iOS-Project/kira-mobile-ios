@@ -2,7 +2,6 @@
  Why a scan stopped: the camera could not be used, the receipt could not be read (CAT-06: "gagal
  baca → ajak foto ulang atau Ketik Manual"), or sending its text failed.
  */
-import Domain
 import Features
 import SwiftUI
 

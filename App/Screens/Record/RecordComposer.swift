@@ -3,7 +3,6 @@
  Manual, the text field, the microphone to Input Suara and the send button, in one raised capsule.
  While the person types it has a 1.5 pt pandan border; nothing is saved until Kirim.
  */
-import Domain
 import Features
 import SwiftUI
 

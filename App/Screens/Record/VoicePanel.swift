@@ -3,7 +3,6 @@
  the waveform, the live transcript with its caret, the duration, the stop button and Batalkan; under
  it, that the audio becomes text and is deleted, and that it uses Kira Plus's voice quota.
  */
-import Domain
 import Features
 import SwiftUI
 
@@ -76,7 +75,7 @@ struct VoicePanel: View {
 
     /** The caret runs on after the last word, as the board's does, not at the trailing edge. */
     private var transcript: some View {
-        Text("\(Text(model.transcript))\(Self.caret.baselineOffset(-4))")
+        Text("record.voice.transcript \(Text(model.transcript))\(Self.caret.baselineOffset(-4))")
             .font(.body).kiraLineHeight(24, size: 17).foregroundStyle(.ink)
             .frame(maxWidth: .infinity, alignment: .leading)
             .accessibilityLabel(Text(model.transcript))
