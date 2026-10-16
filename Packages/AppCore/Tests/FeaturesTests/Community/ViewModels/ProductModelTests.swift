@@ -48,4 +48,13 @@ struct ProductModelTests {
         await model.load()
         #expect(model.phase.value == MarketplaceFixtures.detail)
     }
+
+    @Test("a load cut off by leaving the screen stays loading instead of failing")
+    func cancelled() async {
+        let model = ProductModel(id: "p", service: OfflineMarketplaceService())
+        let leaving = Task { await model.load() }
+        leaving.cancel()
+        await leaving.value
+        guard case .loading = model.phase else { return #expect(Bool(false)) }
+    }
 }

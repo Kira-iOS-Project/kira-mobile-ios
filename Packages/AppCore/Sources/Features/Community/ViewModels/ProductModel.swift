@@ -31,6 +31,8 @@ package final class ProductModel {
             /** Gone for good: a retry cannot bring it back, so the screen offers the way back. */
             phase = .empty
         } catch {
+            /** Leaving the screen cancels the load: it stays loading, and loads again on return. */
+            guard !Task.isCancelled else { return }
             phase = .failed(AppProblem(error))
         }
     }
