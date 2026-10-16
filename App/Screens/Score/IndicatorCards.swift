@@ -95,7 +95,7 @@ private struct IndicatorRungRow: View {
                     .kiraSmallType()
             }
             .foregroundStyle(rung.isCurrent ? Color.onPandan : .ink)
-            .frame(width: 48, height: 48)
+            .frame(minWidth: 48, minHeight: 48)
             .kiraCard(
                 rung.isCurrent ? .pandan : .surfaceMuted, border: rung.isCurrent ? .pandan : .hairline,
                 cornerRadius: KiraRadius.small)

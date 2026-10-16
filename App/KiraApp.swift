@@ -2,7 +2,8 @@
  The composition root (AGENTS.md Rule 1): the one place that builds what each screen needs and
  hands it over. The session and the lock keep their secrets in the Keychain. A debug build
  launched with `-KiraGallery [page]` opens the design system gallery instead (the Kira scheme
- lists it, off).
+ lists it, off), and one launched with `-KiraScreen <name>` opens that screen on the preview services
+ (App/Launch/ScreenLaunch.swift), for the accessibility audit UI tests.
 
  Until the integrator builds the generated client (with `AuthMiddleware(tokens: session)`), the
  session cannot reach `POST /auth/refresh` and Lupa PIN runs on its preview service.
@@ -21,6 +22,8 @@ struct KiraApp: App {
             #if DEBUG
                 if let gallery = DesignSystemGallery(arguments: ProcessInfo.processInfo.arguments) {
                     gallery
+                } else if let screen = ScreenLaunch(arguments: ProcessInfo.processInfo.arguments) {
+                    screen
                 } else {
                     rootView
                 }

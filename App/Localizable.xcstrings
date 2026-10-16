@@ -5941,6 +5941,16 @@
         }
       }
     },
+    "home.micro.spoken %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dana darurat terkumpul %@"
+          }
+        }
+      }
+    },
     "home.micro.week" : {
       "localizations" : {
         "id" : {

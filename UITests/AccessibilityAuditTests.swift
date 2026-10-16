@@ -27,4 +27,18 @@ nonisolated final class AccessibilityAuditTests: XCTestCase {
             issue.auditType == .contrast && issue.element?.label == "Lupa PIN?"
         }
     }
+
+    /** AKN-02b Lupa PIN: "Lupa PIN?" on the lock screen opens the emailed code step. */
+    @MainActor
+    func testPinRecoveryPassesTheAudit() throws {
+        let app = XCUIApplication()
+        app.launchArguments = ["-KiraLocked"]
+        app.launch()
+        let forgot = app.buttons["Lupa PIN?"]
+        XCTAssertTrue(forgot.waitForExistence(timeout: 5))
+        forgot.tap()
+        XCTAssertTrue(app.staticTexts["Kode Verifikasi"].waitForExistence(timeout: 5))
+        Thread.sleep(forTimeInterval: 1.5)
+        try app.performAccessibilityAudit()
+    }
 }
