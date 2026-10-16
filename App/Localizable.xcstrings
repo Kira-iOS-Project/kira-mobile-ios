@@ -3191,6 +3191,16 @@
         }
       }
     },
+    "debtGuide.step.spoken %lld %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld. %2$@, %3$@"
+          }
+        }
+      }
+    },
     "debtGuide.steps" : {
       "localizations" : {
         "id" : {

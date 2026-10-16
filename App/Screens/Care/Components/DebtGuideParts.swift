@@ -106,6 +106,9 @@ struct DebtGuideSteps: View {
             .padding(.bottom, isLast ? 0 : KiraSpacing.space6)
         }
         .fixedSize(horizontal: false, vertical: true)
-        .accessibilityElement(children: .combine)
+        /** One element read as "1. Simpan Bukti, Screenshot chat, …", so no part of a step stands alone. */
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(
+            Text("debtGuide.step.spoken \(index + 1) \(Text(steps[index].title)) \(Text(steps[index].detail))"))
     }
 }
