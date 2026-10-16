@@ -36,7 +36,9 @@ struct ProductCard: View {
             Text(product.kind.title).kiraFont(.overline).foregroundStyle(.inkMuted)
             Text(product.title).font(.headline).kiraLineHeight(22, size: 17).foregroundStyle(.ink)
             HStack(spacing: 6) {
+                /** Decorative: the card's label already names the seller. */
                 KiraAvatar(product.sellerInitials, size: 26, tone: product.kind.avatarTone)
+                    .accessibilityHidden(true)
                 Text(product.sellerName).font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
             }
             .padding(.top, 2)

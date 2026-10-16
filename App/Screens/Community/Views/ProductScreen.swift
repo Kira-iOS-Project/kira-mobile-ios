@@ -60,9 +60,11 @@ struct ProductScreen: View {
             VStack(spacing: KiraSpacing.space4) {
                 KiraIllustration(.care, size: 112)
                 Text("product.failed").kiraFont(.title).foregroundStyle(.ink).multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
                     .accessibilityAddTraits(.isHeader)
                 Text("problem.COMMUNITY_PRODUCT_NOT_FOUND").kiraFont(.callout).foregroundStyle(.inkMuted)
                     .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
                 KiraButton("product.back") { dismiss() }.block()
             }
             .padding(KiraSpacing.screen)

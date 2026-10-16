@@ -40,9 +40,11 @@ struct MarketplaceAPITests {
         #expect(request.method == .get && request.path.hasSuffix("community/products"))
     }
 
-    @Test("asks for one kind with the query", arguments: [
-        (ProductKind.course, "course"), (.consultation, "consultation"), (.ebook, "ebook"), (.event, "event"),
-    ])
+    @Test(
+        "asks for one kind with the query",
+        arguments: [
+            (ProductKind.course, "course"), (.consultation, "consultation"), (.ebook, "ebook"), (.event, "event"),
+        ])
     func filtersByKind(kind: ProductKind, query: String) async throws {
         let (api, transport) = KiraAPI.canned(json: #"{"products":[]}"#)
         #expect(try await api.listCommunityProducts(kind: kind).isEmpty)
@@ -62,27 +64,33 @@ struct MarketplaceAPITests {
             try #require(await transport.request).path.hasSuffix("products/6f1c2b9e-0000-4000-8000-000000000002"))
     }
 
-    @Test("a seller link that is null or not a web page is no link; an unknown icon is the kind's", arguments: [
-        "null", #""mailto:penjual@example.id""#, #""""#, #""penjual""#,
-    ])
+    @Test(
+        "a seller link that is null or not a web page is no link; an unknown icon is the kind's",
+        arguments: [
+            "null", #""mailto:penjual@example.id""#, #""""#, #""penjual""#,
+        ])
     func noSellerLink(sellerUrl: String) async throws {
         let (api, _) = KiraAPI.canned(json: detailJSON(sellerUrl: sellerUrl, icon: "tunas"))
         let product = try await api.getCommunityProduct(id: "p")
         #expect(product.sellerURL == nil && product.summary.art == .cardPaidOff)
     }
 
-    @Test("a product that is gone, a lost session and a refused query throw the API's problem", arguments: [
-        (404, "COMMUNITY_PRODUCT_NOT_FOUND"), (401, "AUTH_UNAUTHENTICATED"), (422, "VALIDATION_FAILED"),
-    ])
+    @Test(
+        "a product that is gone, a lost session and a refused query throw the API's problem",
+        arguments: [
+            (404, "COMMUNITY_PRODUCT_NOT_FOUND"), (401, "AUTH_UNAUTHENTICATED"), (422, "VALIDATION_FAILED"),
+        ])
     func productProblems(status: Int, code: String) async throws {
         let (api, _) = KiraAPI.canned(status: status, json: problemJSON(code))
         let error = await #expect(throws: AppProblem.self) { try await api.getCommunityProduct(id: "p") }
         #expect(error?.code == code)
     }
 
-    @Test("the list throws a lost session and a refused query as the API's problem", arguments: [
-        (401, "AUTH_UNAUTHENTICATED"), (422, "VALIDATION_FAILED"),
-    ])
+    @Test(
+        "the list throws a lost session and a refused query as the API's problem",
+        arguments: [
+            (401, "AUTH_UNAUTHENTICATED"), (422, "VALIDATION_FAILED"),
+        ])
     func listProblems(status: Int, code: String) async throws {
         let (api, _) = KiraAPI.canned(status: status, json: problemJSON(code))
         let error = await #expect(throws: AppProblem.self) { try await api.listCommunityProducts(kind: nil) }
