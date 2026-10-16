@@ -33,8 +33,9 @@ struct PinSetupView: View {
             if let problem = model.phase.problem { ProblemMessage(problem: problem) }
             KiraButtonPair(
                 secondary: KiraButton("ds.later", variant: .secondary) { Task { await model.skip() } },
-                primary: KiraButton("onboarding.pin.create") { Task { await model.createPin() } })
-                .disabled(model.phase.isSubmitting)
+                primary: KiraButton("onboarding.pin.create") { Task { await model.createPin() } }
+            )
+            .disabled(model.phase.isSubmitting)
         }
         .onboardingBackdrop(leaf: .pandan)
         .kiraDialog(isPresented: $model.showsSuccess) {
@@ -55,8 +56,11 @@ private struct PinForm: View {
                 .hint("onboarding.pin.hint")
                 .error(model.showsWeakPin ? "onboarding.pin.weak" : nil)
             KiraListGroup {
-                KiraListRow(Text("onboarding.pin.hideBalances"), leading: .icon(.eyeOff), trailing: .toggle($model.hidesBalances))
-                    .subtitle(Text("onboarding.pin.hideBalances.subtitle"))
+                KiraListRow(
+                    Text("onboarding.pin.hideBalances"), leading: .icon(.eyeOff),
+                    trailing: .toggle($model.hidesBalances)
+                )
+                .subtitle(Text("onboarding.pin.hideBalances.subtitle"))
             }
         }
     }

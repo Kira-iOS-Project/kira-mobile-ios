@@ -36,7 +36,8 @@ struct OnboardingFlowModelTests {
         #expect(flow.path.suffix(3) == [.consent, .focus, .healthCheck(.income)])
         for step in HealthCheckStep.allCases { flow.next(after: step) }
         #expect(flow.path.last == .healthCheck(.protection))
-        #expect(flow.healthCheckModel() === flow.healthCheckModel())
+        let quiz = flow.healthCheckModel()
+        #expect(flow.healthCheckModel() === quiz)
         await flow.healthCheckModel().submit()
         #expect(flow.path.last == .result(FakeOnboardingService.report))
         flow.makeResultModel(report: FakeOnboardingService.report).continueToLock()
@@ -49,7 +50,8 @@ struct OnboardingFlowModelTests {
     func signedIn() async {
         var outcome: OnboardingOutcome?
         let flow = flow(FakeOnboardingService(needsOnboarding: false)) { outcome = $0 }
-        let code = flow.makeCodeModel(email: "a@b.co", delivery: CodeDelivery(expiresInSeconds: 1, resendAfterSeconds: 1))
+        let code = flow.makeCodeModel(
+            email: "a@b.co", delivery: CodeDelivery(expiresInSeconds: 1, resendAfterSeconds: 1))
         code.code = "381449"
         await code.verify()
         #expect(outcome == .signedIn)

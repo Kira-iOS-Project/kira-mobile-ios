@@ -44,7 +44,8 @@ struct OnboardingFlow: View {
         switch step {
         case .debts: DebtStepView(flow: flow, model: flow.healthCheckModel())
         case .protection: ProtectionStepView(flow: flow, model: flow.healthCheckModel())
-        case .income, .expenses, .savings, .assets: AmountStepView(step: step, flow: flow, model: flow.healthCheckModel())
+        case .income, .expenses, .savings, .assets:
+            AmountStepView(step: step, flow: flow, model: flow.healthCheckModel())
         }
     }
 }

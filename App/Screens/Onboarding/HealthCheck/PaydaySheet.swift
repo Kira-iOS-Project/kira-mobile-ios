@@ -29,7 +29,8 @@ struct PaydaySheet: View {
                 VStack(alignment: .leading, spacing: KiraSpacing.space2) {
                     KiraCheckbox("onboarding.payday.endOfMonth.option", isOn: $model.isEndOfMonth)
                     if model.isEndOfMonth {
-                        Text("onboarding.payday.endOfMonth.note").onboardingNote().padding(.horizontal, KiraSpacing.space1)
+                        Text("onboarding.payday.endOfMonth.note").onboardingNote().padding(
+                            .horizontal, KiraSpacing.space1)
                     }
                 }
             }
@@ -51,7 +52,9 @@ private struct DayButton: View {
 
     var body: some View {
         let isChosen = model.isChosen(day)
-        Button { model.choose(day) } label: {
+        Button {
+            model.choose(day)
+        } label: {
             Text(day, format: .number)
                 .font(.callout.weight(isChosen ? .bold : .medium))
                 .foregroundStyle(isChosen ? Color.pandan : .ink)

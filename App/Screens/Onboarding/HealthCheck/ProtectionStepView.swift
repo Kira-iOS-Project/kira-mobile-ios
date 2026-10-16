@@ -33,35 +33,50 @@ struct ProtectionStepView: View {
 
 private struct ProtectionChoices: View {
     @Bindable var answers: ProtectionAnswersModel
-    private let dependentChoices: [LocalizedStringResource] = [
+    fileprivate let dependentChoices: [LocalizedStringResource] = [
         "onboarding.protection.dependents.none", "onboarding.protection.dependents.one",
         "onboarding.protection.dependents.two", "onboarding.protection.dependents.many",
     ]
 
     var body: some View {
         VStack(alignment: .leading, spacing: KiraSpacing.space5) {
-            VStack(alignment: .leading, spacing: KiraSpacing.space3) {
-                VStack(alignment: .leading, spacing: KiraSpacing.space2) {
-                    QuizQuestion(text: "onboarding.protection.question").padding(.horizontal, -KiraSpacing.space1)
-                    Text("onboarding.protection.lead").font(.subheadline).kiraLineHeight(21, size: 15)
-                        .foregroundStyle(.inkMuted)
-                }
-                .padding(.horizontal, KiraSpacing.space1)
-                KiraFlowRow {
-                    ForEach(dependentChoices.indices, id: \.self) { count in
-                        KiraChip(dependentChoices[count], isSelected: answers.dependents == count) { answers.dependents = count }
-                    }
-                }
-            }
+            dependents
             ChipSection(title: "onboarding.protection.marital") {
-                KiraChip("onboarding.protection.single", isSelected: answers.maritalStatus == .single) { answers.maritalStatus = .single }
-                KiraChip("onboarding.protection.married", isSelected: answers.maritalStatus == .married) { answers.maritalStatus = .married }
+                KiraChip("onboarding.protection.single", isSelected: answers.maritalStatus == .single) {
+                    answers.maritalStatus = .single
+                }
+                KiraChip("onboarding.protection.married", isSelected: answers.maritalStatus == .married) {
+                    answers.maritalStatus = .married
+                }
             }
             ChipSection(title: "onboarding.protection.cover") {
                 ForEach(Protection.allCases, id: \.self) { protection in
-                    KiraChip(protection.title, isSelected: answers.protections.contains(protection)) { answers.toggle(protection) }
+                    KiraChip(protection.title, isSelected: answers.protections.contains(protection)) {
+                        answers.toggle(protection)
+                    }
                 }
                 KiraChip("onboarding.protection.none", isSelected: answers.hasNone) { answers.toggleNone() }
+            }
+        }
+    }
+}
+
+extension ProtectionChoices {
+    /** "Siapa yang Bergantung padamu?" and one chip per count. */
+    fileprivate var dependents: some View {
+        VStack(alignment: .leading, spacing: KiraSpacing.space3) {
+            VStack(alignment: .leading, spacing: KiraSpacing.space2) {
+                QuizQuestion(text: "onboarding.protection.question").padding(.horizontal, -KiraSpacing.space1)
+                Text("onboarding.protection.lead").font(.subheadline).kiraLineHeight(21, size: 15)
+                    .foregroundStyle(.inkMuted)
+            }
+            .padding(.horizontal, KiraSpacing.space1)
+            KiraFlowRow {
+                ForEach(dependentChoices.indices, id: \.self) { count in
+                    KiraChip(dependentChoices[count], isSelected: answers.dependents == count) {
+                        answers.dependents = count
+                    }
+                }
             }
         }
     }

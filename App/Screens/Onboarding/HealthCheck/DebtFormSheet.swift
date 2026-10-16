@@ -17,8 +17,9 @@ struct DebtFormSheet: View {
         .scrollBounceBehavior(.basedOnSize)
         KiraButtonPair(
             secondary: KiraButton("onboarding.cancel", variant: .secondary) { debts.isFormPresented = false },
-            primary: KiraButton("onboarding.debt.save") { debts.saveForm() })
-            .padding(.bottom, KiraSpacing.space2)
+            primary: KiraButton("onboarding.debt.save") { debts.saveForm() }
+        )
+        .padding(.bottom, KiraSpacing.space2)
     }
 }
 

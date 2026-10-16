@@ -62,10 +62,14 @@ private struct ConsentPurposes: View {
             }
             .subtitle(Text("onboarding.consent.core.subtitle"))
             .disabled(true)
-            KiraListRow(Text("onboarding.consent.aiRow"), leading: .icon(.sparkle), trailing: .toggle($model.aiProcessing))
-                .subtitle(Text("onboarding.consent.aiRow.subtitle"))
-            KiraListRow(Text("onboarding.consent.weekly"), leading: .icon(.chart), trailing: .toggle($model.weeklySummary))
-                .subtitle(Text("onboarding.consent.weekly.subtitle"))
+            KiraListRow(
+                Text("onboarding.consent.aiRow"), leading: .icon(.sparkle), trailing: .toggle($model.aiProcessing)
+            )
+            .subtitle(Text("onboarding.consent.aiRow.subtitle"))
+            KiraListRow(
+                Text("onboarding.consent.weekly"), leading: .icon(.chart), trailing: .toggle($model.weeklySummary)
+            )
+            .subtitle(Text("onboarding.consent.weekly.subtitle"))
         }
     }
 }

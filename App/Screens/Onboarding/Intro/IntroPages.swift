@@ -4,8 +4,10 @@ import SwiftUI
 /** Onboarding 1 · Kenalan: Kuku, happy, 248 pt. */
 struct IntroWelcome: View {
     var body: some View {
-        IntroCopy(overline: "onboarding.intro.welcome.overline", title: "onboarding.intro.welcome.title",
-            lead: "onboarding.intro.welcome.lead") {
+        IntroCopy(
+            overline: "onboarding.intro.welcome.overline", title: "onboarding.intro.welcome.title",
+            lead: "onboarding.intro.welcome.lead"
+        ) {
             KiraMascot(.happy, size: 248)
             KiraHandNote("onboarding.intro.welcome.note")
         }
@@ -15,8 +17,10 @@ struct IntroWelcome: View {
 /** Onboarding 2 · Catat: a static example chat, read into two records (not an AI call). */
 struct IntroChat: View {
     var body: some View {
-        IntroCopy(overline: "onboarding.intro.chat.overline", title: "onboarding.intro.chat.title",
-            lead: "onboarding.intro.chat.lead") {
+        IntroCopy(
+            overline: "onboarding.intro.chat.overline", title: "onboarding.intro.chat.title",
+            lead: "onboarding.intro.chat.lead"
+        ) {
             VStack(spacing: KiraSpacing.space3) {
                 Text("onboarding.intro.chat.time")
                     .font(.caption.weight(.semibold)).kiraLineHeight(16, size: 12).foregroundStyle(.inkMuted)
@@ -41,8 +45,10 @@ struct IntroChat: View {
 /** Onboarding 3 · Tumbuh: Kuku, calm, 232 pt, and two promises. */
 struct IntroScore: View {
     var body: some View {
-        IntroCopy(overline: "onboarding.intro.score.overline", title: "onboarding.intro.score.title",
-            lead: "onboarding.intro.score.lead") {
+        IntroCopy(
+            overline: "onboarding.intro.score.overline", title: "onboarding.intro.score.title",
+            lead: "onboarding.intro.score.lead"
+        ) {
             KiraMascot(.calm, size: 232)
             KiraHandNote("onboarding.intro.score.note")
         } footer: {

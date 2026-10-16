@@ -45,6 +45,8 @@ struct DebtFormModelTests {
         model.name = " Motor "
         let saved = try #require(model.entry())
         #expect(saved.id == debt.id && saved.name == "Motor" && saved.remaining == 12_740_000)
-        #expect(DebtFormModel(editing: DebtEntry(kind: .paylater, name: "A", remaining: 1, monthlyInstalment: 1)).tenor.isEmpty)
+        #expect(
+            DebtFormModel(editing: DebtEntry(kind: .paylater, name: "A", remaining: 1, monthlyInstalment: 1)).tenor
+                .isEmpty)
     }
 }

@@ -49,7 +49,8 @@ struct PreviewOnboardingService: OnboardingService {
     private static let sampleIndicators: [ScoreIndicator] = [
         ScoreIndicator(
             key: .emergencyFund, group: .save, points: 25, band: .vulnerable,
-            measure: .emergencyFund(ratio: 0.8, liquid: 3_360_000, essential: 4_200_000, targetMultiple: 6, targetAmount: 25_200_000)),
+            measure: .emergencyFund(
+                ratio: 0.8, liquid: 3_360_000, essential: 4_200_000, targetMultiple: 6, targetAmount: 25_200_000)),
         ScoreIndicator(
             key: .savingsRatio, group: .save, points: 45, band: .coping,
             measure: .savingsRatio(percent: 8, monthlySavings: 600_000, income: 7_500_000)),
@@ -85,5 +86,5 @@ struct PreviewOnboardingService: OnboardingService {
 
 /** The PIN store before agent I0's Keychain one: it keeps nothing. */
 struct PreviewPinStore: PinStore {
-    func save(pin _: String) async throws {}
+    func save(pin _: String) throws {}
 }

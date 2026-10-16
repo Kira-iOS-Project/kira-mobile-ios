@@ -48,7 +48,9 @@ package final class DebtFormModel {
     }
 
     private func regroup(_ field: ReferenceWritableKeyPath<DebtFormModel, String>, _ oldValue: String) {
-        let grouped = field == \.tenor ? DigitCode.digits(in: self[keyPath: field], length: 3) : AmountInput.grouped(self[keyPath: field])
+        let grouped =
+            field == \.tenor
+            ? DigitCode.digits(in: self[keyPath: field], length: 3) : AmountInput.grouped(self[keyPath: field])
         if grouped != self[keyPath: field] { self[keyPath: field] = grouped }
         if showsMissing, grouped != oldValue { showsMissing = false }
     }

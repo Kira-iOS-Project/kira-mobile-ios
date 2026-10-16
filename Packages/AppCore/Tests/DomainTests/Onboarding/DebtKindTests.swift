@@ -7,9 +7,10 @@ import Testing
 struct DebtKindTests {
     @Test("raw values are the backend's")
     func rawValues() {
-        #expect(DebtKind.allCases.map(\.rawValue) == [
-            "paylater", "online_loan", "credit_card", "vehicle", "mortgage", "family_loan",
-        ])
+        #expect(
+            DebtKind.allCases.map(\.rawValue) == [
+                "paylater", "online_loan", "credit_card", "vehicle", "mortgage", "family_loan",
+            ])
     }
 
     @Test("paylater, online loans and credit cards are consumer debt; the rest are not")

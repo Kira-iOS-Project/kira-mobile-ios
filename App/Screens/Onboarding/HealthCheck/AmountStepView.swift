@@ -35,11 +35,17 @@ struct AmountStepView: View {
         case .expenses:
             QuizAmountField(label: "onboarding.expenses.field", hint: "onboarding.expenses.hint", text: $model.expenses)
         case .savings:
-            QuizAmountField(label: "onboarding.savings.fund", hint: "onboarding.savings.fund.hint", text: $model.emergencyFund)
-            QuizAmountField(label: "onboarding.savings.monthly", hint: "onboarding.savings.monthly.hint", text: $model.monthlySavings)
+            QuizAmountField(
+                label: "onboarding.savings.fund", hint: "onboarding.savings.fund.hint", text: $model.emergencyFund)
+            QuizAmountField(
+                label: "onboarding.savings.monthly", hint: "onboarding.savings.monthly.hint",
+                text: $model.monthlySavings)
         case .assets:
-            QuizAmountField(label: "onboarding.assets.other", hint: "onboarding.assets.other.hint", text: $model.otherAssets)
-            QuizAmountField(label: "onboarding.assets.property", hint: "onboarding.assets.property.hint", text: $model.propertyAssets)
+            QuizAmountField(
+                label: "onboarding.assets.other", hint: "onboarding.assets.other.hint", text: $model.otherAssets)
+            QuizAmountField(
+                label: "onboarding.assets.property", hint: "onboarding.assets.property.hint",
+                text: $model.propertyAssets)
         case .debts, .protection:
             EmptyView()
         }

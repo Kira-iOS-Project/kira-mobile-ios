@@ -76,8 +76,10 @@ private struct DebtRows: View {
                         KiraListRow(Text(entry.name), leading: .category(entry.kind.category), trailing: .chevron) {
                             debts.edit(entry)
                         } extra: {
-                            Text("onboarding.debt.instalment \(Text(Decimal(entry.monthlyInstalment), format: .rupiah))")
-                                .onboardingNote()
+                            Text(
+                                "onboarding.debt.instalment \(Text(Decimal(entry.monthlyInstalment), format: .rupiah))"
+                            )
+                            .onboardingNote()
                         }
                         .subtitle(subtitle(for: entry))
                         .amount(KiraAmount(Decimal(entry.remaining)))

@@ -24,7 +24,8 @@ struct HealthCheckResultView: View {
                 ForEach(model.groups, id: \.group) { GroupCard(score: $0) }
             }
             if !model.steps.isEmpty { ResultSteps(model: model) }
-            KiraNotice(.simulation, title: "onboarding.result.simulation.title", message: "onboarding.result.simulation.body")
+            KiraNotice(
+                .simulation, title: "onboarding.result.simulation.title", message: "onboarding.result.simulation.body")
             FormulaAccordion(model: model)
             Spacer(minLength: 0)
             VStack(spacing: 10) {
@@ -53,8 +54,10 @@ private struct ResultHero: View {
             KiraHandNote("onboarding.result.note", tone: noteTone)
             Text("onboarding.result.overline").kiraFont(.overline).foregroundStyle(.inkMuted).padding(.top, 4)
             HStack(alignment: .firstTextBaseline, spacing: 4) {
-                Text(report.score, format: .number).font(KiraFont.display(72, .heavy, relativeTo: .largeTitle).monospacedDigit())
-                Text("onboarding.result.outOf").font(KiraFont.display(17, .bold, relativeTo: .headline)).foregroundStyle(.inkMuted)
+                Text(report.score, format: .number).font(
+                    KiraFont.display(72, .heavy, relativeTo: .largeTitle).monospacedDigit())
+                Text("onboarding.result.outOf").font(KiraFont.display(17, .bold, relativeTo: .headline))
+                    .foregroundStyle(.inkMuted)
             }
             .foregroundStyle(.ink)
             .padding(.top, -6)
@@ -77,7 +80,8 @@ private struct ResultHero: View {
         if let points = model.pointsToNextBand, let next = model.report.band.next {
             return Text("onboarding.result.toNext \(band) \(points) \(Text(next.title))")
         }
-        return model.report.cappedByConsumerDebt ? Text("onboarding.result.capped") : Text("onboarding.result.top \(band)")
+        return model.report.cappedByConsumerDebt
+            ? Text("onboarding.result.capped") : Text("onboarding.result.top \(band)")
     }
 }
 

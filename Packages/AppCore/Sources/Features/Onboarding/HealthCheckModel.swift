@@ -19,11 +19,15 @@ package final class HealthCheckModel {
     /** Step 4: "Dana darurat". */
     package var emergencyFund = "" { didSet { if let grouped = regrouped(emergencyFund) { emergencyFund = grouped } } }
     /** Step 4: "Menabung per bulan". */
-    package var monthlySavings = "" { didSet { if let grouped = regrouped(monthlySavings) { monthlySavings = grouped } } }
+    package var monthlySavings = "" {
+        didSet { if let grouped = regrouped(monthlySavings) { monthlySavings = grouped } }
+    }
     /** Step 5: "Aset lain". */
     package var otherAssets = "" { didSet { if let grouped = regrouped(otherAssets) { otherAssets = grouped } } }
     /** Step 5: "Kendaraan dan properti". */
-    package var propertyAssets = "" { didSet { if let grouped = regrouped(propertyAssets) { propertyAssets = grouped } } }
+    package var propertyAssets = "" {
+        didSet { if let grouped = regrouped(propertyAssets) { propertyAssets = grouped } }
+    }
     /** Step 6. */
     package let protection = ProtectionAnswersModel()
     /** Editing, sending or failed. */

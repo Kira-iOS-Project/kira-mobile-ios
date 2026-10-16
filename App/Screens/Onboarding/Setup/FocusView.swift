@@ -57,7 +57,9 @@ private struct FocusCard: View {
     private var isSelected: Bool { model.selection == focus }
 
     var body: some View {
-        Button { model.selection = focus } label: {
+        Button {
+            model.selection = focus
+        } label: {
             HStack(spacing: KiraSpacing.space3) {
                 KiraIllustration(art, size: 68)
                 VStack(alignment: .leading, spacing: 3) {
@@ -71,7 +73,10 @@ private struct FocusCard: View {
             }
             .foregroundStyle(.ink)
             .padding(EdgeInsets(top: 16, leading: 14, bottom: 16, trailing: 16))
-            .kiraCard(isSelected ? .pandanSoft : .surfaceRaised, border: isSelected ? .pandan : .hairline, cornerRadius: KiraRadius.large)
+            .kiraCard(
+                isSelected ? .pandanSoft : .surfaceRaised, border: isSelected ? .pandan : .hairline,
+                cornerRadius: KiraRadius.large
+            )
             .overlay {
                 RoundedRectangle(cornerRadius: KiraRadius.large, style: .continuous)
                     .strokeBorder(isSelected ? Color.pandan : .clear, lineWidth: 2)

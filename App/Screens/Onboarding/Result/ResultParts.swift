@@ -34,7 +34,9 @@ private struct StepRow: View {
                 .font(KiraFont.display(14, .heavy, relativeTo: .footnote))
                 .foregroundStyle(number == 1 ? Color.onPandan : .ink)
                 .frame(width: 28, height: 28)
-                .kiraCard(number == 1 ? .pandan : .surfaceMuted, border: number == 1 ? .pandan : .hairline, cornerRadius: 14)
+                .kiraCard(
+                    number == 1 ? .pandan : .surfaceMuted, border: number == 1 ? .pandan : .hairline, cornerRadius: 14
+                )
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
                 copy.title.font(.headline).kiraLineHeight(22, size: 17)
@@ -62,8 +64,8 @@ struct FormulaAccordion: View {
             VStack(alignment: .leading, spacing: KiraSpacing.space3) {
                 Text("onboarding.result.formula.lead").font(.subheadline).kiraLineHeight(20, size: 15)
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("onboarding.result.formula.sum \(formula.points.map(String.init).joined(separator: " + ")) \(formula.points.count)")
-                    Text("onboarding.result.formula.total \(Text(formula.average, format: .number.precision(.fractionLength(1)).locale(Locale(identifier: "id_ID")))) \(formula.rounded)")
+                    Text("onboarding.result.formula.sum \(sum(formula)) \(formula.points.count)")
+                    Text("onboarding.result.formula.total \(average(formula)) \(formula.rounded)")
                 }
                 .kiraFont(.formula)
                 .foregroundStyle(.ink)
@@ -73,5 +75,15 @@ struct FormulaAccordion: View {
                 Text("onboarding.result.formula.bands").onboardingNote()
             }
         }
+    }
+
+    /** "25 + 45 + 70 + 50 + 80 + 100". */
+    private func sum(_ formula: ScoreFormula) -> String {
+        formula.points.map(String.init).joined(separator: " + ")
+    }
+
+    /** "61,7": one decimal with a comma, as Kira writes every number. */
+    private func average(_ formula: ScoreFormula) -> Text {
+        Text(formula.average, format: .number.precision(.fractionLength(1)).locale(Locale(identifier: "id_ID")))
     }
 }

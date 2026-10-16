@@ -16,7 +16,9 @@ struct PaydayField: View {
                 .font(.footnote.weight(.semibold)).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
                 .padding(.horizontal, KiraSpacing.space1)
                 .accessibilityHidden(true)
-            Button { isPicking = true } label: {
+            Button {
+                isPicking = true
+            } label: {
                 HStack(spacing: KiraSpacing.space3) {
                     KiraIcon(.calendar, size: 22).foregroundStyle(.pandan)
                     PaydayName(payday: payday).font(.body).kiraLineHeight(22, size: 17).foregroundStyle(.ink)
@@ -37,7 +39,10 @@ struct PaydayField: View {
             .accessibilityValue(PaydayName(payday: payday).text)
             Text("onboarding.payday.hint").onboardingNote().padding(.horizontal, KiraSpacing.space1)
         }
-        .kiraSheet(isPresented: $isPicking, title: "onboarding.payday.sheet.title", subtitle: "onboarding.payday.sheet.subtitle") {
+        .kiraSheet(
+            isPresented: $isPicking, title: "onboarding.payday.sheet.title",
+            subtitle: "onboarding.payday.sheet.subtitle"
+        ) {
             PaydaySheet(payday: $payday, isPresented: $isPicking)
         }
     }

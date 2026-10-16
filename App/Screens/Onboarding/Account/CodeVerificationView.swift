@@ -65,12 +65,17 @@ private struct CodeEntry: View {
                 Text(problem.reference).font(.caption.monospaced()).foregroundStyle(.inkMuted)
             }
             if model.secondsUntilResend > 0 {
-                Text("onboarding.code.resendIn \(Duration.seconds(model.secondsUntilResend), format: .time(pattern: .minuteSecond))")
+                Text("onboarding.code.resendIn \(countdown)")
                     .font(.subheadline.monospacedDigit()).kiraLineHeight(20, size: 15)
                     .foregroundStyle(.inkMuted)
             } else {
                 KiraLink("onboarding.code.resend") { Task { await model.resend() } }
             }
         }
+    }
+
+    /** "0:42". */
+    private var countdown: Text {
+        Text(Duration.seconds(model.secondsUntilResend), format: .time(pattern: .minuteSecond))
     }
 }

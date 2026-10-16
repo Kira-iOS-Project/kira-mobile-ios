@@ -9,9 +9,10 @@ struct OnboardingValuesTests {
     func rawValues() {
         #expect(Focus.allCases.map(\.rawValue) == ["track_spending", "debt_free"])
         #expect(MaritalStatus.allCases.map(\.rawValue) == ["single", "married"])
-        #expect(Protection.allCases.map(\.rawValue) == [
-            "bpjs_health", "bpjs_employment", "life_insurance", "private_health",
-        ])
+        #expect(
+            Protection.allCases.map(\.rawValue) == [
+                "bpjs_health", "bpjs_employment", "life_insurance", "private_health",
+            ])
     }
 
     @Test("consents start on; a delivery and a sign-in result keep their fields")
