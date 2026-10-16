@@ -72,18 +72,3 @@ struct HistoryTimelineTests {
         return HistoryTimeline.days(transactions, summary: summary, period: period, today: today)
     }
 }
-
-@Suite("ConversationMessage")
-struct ConversationMessageTests {
-    @Test("reads the API's words and defaults the reply fields to empty")
-    func defaults() {
-        let message = ConversationMessage(
-            id: "m1", sender: .person, kind: .personText, body: "bensin 30rb", createdAt: .distantPast)
-        #expect(message.drafts.isEmpty && message.replyToId == nil && message.draftStatus == nil)
-        #expect(message.remaining == nil && message.perDay == nil)
-        #expect(ConversationMessage.Kind(rawValue: "no_drafts") == .noDrafts)
-        #expect(
-            ConversationMessage.Draft(id: "d1", type: .expense, name: "Bensin", amount: 30_000, category: .transport)
-                .amount == 30_000)
-    }
-}

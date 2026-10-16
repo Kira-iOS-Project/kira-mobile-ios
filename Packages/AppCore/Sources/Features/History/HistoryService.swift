@@ -20,7 +20,7 @@ package protocol HistoryService: Sendable {
     /** `DELETE /transactions/{id}`. */
     func delete(id: String) async throws
     /** `GET /chat/messages?around=`: the log around a message, oldest first. */
-    func messages(around messageId: String) async throws -> [ConversationMessage]
+    func messages(around messageId: String) async throws -> [ChatMessage]
     /** `POST /imports`: stores the parsed rows and marks the likely duplicates. */
     func upload(_ upload: ImportUpload) async throws -> ImportPreview
     /** `POST /imports/{id}/commit`: saves the chosen rows at once; repeating it is safe. */

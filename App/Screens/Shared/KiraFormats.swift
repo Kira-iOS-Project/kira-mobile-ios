@@ -37,6 +37,9 @@ extension FormatStyle where Self == Date.FormatStyle {
     /** "28 September", the first end of a range within one year. */
     static var kiraDayMonth: Date.FormatStyle { wib.day().month(.wide) }
 
+    /** "Oktober", the month a quota or a period names. */
+    static var kiraMonth: Date.FormatStyle { wib.month(.wide) }
+
     /** "12.41", a time written before "WIB". */
     static var kiraTime: Date.FormatStyle { wib.hour(.twoDigits(amPM: .omitted)).minute(.twoDigits) }
 }

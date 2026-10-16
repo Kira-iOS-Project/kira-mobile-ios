@@ -2,17 +2,23 @@
  The category an imported row starts with (CAT-12: "Kategori diisi otomatis"), chosen on the device
  from a keyword table: the first entry whose keyword appears as whole words in the description
  wins, so specific entries ("grabfood", "bpjs ketenagakerjaan") come before general ones ("grab",
- "bpjs"). The person can change it on the review screen before saving.
+ "bpjs"). The bank's merchants and the board's choices (BPJS Kesehatan is Kesehatan) come first;
+ a description they miss falls back to Catat's own keywords (`CategoryKeywords`), when those name a
+ category of the row's direction. The person can change it on the review screen before saving.
  */
 
 /** Suggests a category for a statement row. */
 package enum CategorySuggestion {
     /** The category for a row described as `description` that went `type`'s way. */
     package static func category(for description: String, type: TransactionType) -> TransactionCategory {
-        let words = " " + description.lowercased().split { !($0.isLetter || $0.isNumber) }.joined(separator: " ") + " "
+        let tokens = description.lowercased().split { !($0.isLetter || $0.isNumber) }.map(String.init)
+        let words = " " + tokens.joined(separator: " ") + " "
         let table = type == .expense ? expenseTable : incomeTable
-        let match = table.first { entry in entry.keywords.contains { words.contains(" \($0) ") } }
-        return match?.category ?? (type == .expense ? .otherExpense : .otherIncome)
+        if let match = table.first(where: { entry in entry.keywords.contains { words.contains(" \($0) ") } }) {
+            return match.category
+        }
+        if let known = CategoryKeywords.category(of: tokens), known.type == type { return known }
+        return type == .expense ? .otherExpense : .otherIncome
     }
 
     private typealias Entry = (category: TransactionCategory, keywords: [String])

@@ -17,9 +17,9 @@ nonisolated enum AccountSamples {
 
     static let profile = AccountProfile(
         id: "user-dinda", email: "dinda@email.com", displayName: "Dinda", plan: AccountPlan(id: .free),
-        usage: AccountUsage(
+        usage: Usage(
             aiMessages: UsageMeter(used: 18, limit: 30), receipts: UsageMeter(used: 4, limit: 10),
-            voiceSeconds: UsageMeter(used: 0, limit: 0), resetsOn: day(11, 1)),
+            voiceSeconds: UsageMeter(used: 0, limit: 0), resetsOn: CalendarDay(day(11, 1))),
         period: PayPeriod(
             start: CalendarDay(year: 2026, month: 9, day: 25), end: CalendarDay(year: 2026, month: 10, day: 24),
             daysUntilPayday: 10),

@@ -74,7 +74,7 @@ actor FakeHistoryService: HistoryService {
         deleted.append(id)
     }
 
-    func messages(around _: String) throws -> [ConversationMessage] {
+    func messages(around _: String) throws -> [ChatMessage] {
         try check(.messages)
         return messages
     }

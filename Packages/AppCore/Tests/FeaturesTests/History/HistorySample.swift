@@ -41,20 +41,20 @@ enum HistorySample {
             id: "m-1241", body: "makan siang 25rb, grab ke kantor 18rb, kopi goceng", createdAt: at(today, 12, 41),
             spanStart: 18, spanEnd: 37))
 
-    static let messages: [ConversationMessage] = [
-        ConversationMessage(
+    static let messages: [ChatMessage] = [
+        ChatMessage(
             id: "m-0812", sender: .person, kind: .personText, body: "bensin 30rb", createdAt: at(today, 8, 12)),
-        ConversationMessage(
+        ChatMessage(
             id: "r-0812", sender: .kira, kind: .drafts, body: nil, createdAt: at(today, 8, 12), replyToId: "m-0812",
             draftStatus: .committed),
-        ConversationMessage(
+        ChatMessage(
             id: "m-1241", sender: .person, kind: .personText,
             body: "makan siang 25rb, grab ke kantor 18rb, kopi goceng",
             createdAt: at(today, 12, 41)),
-        ConversationMessage(
+        ChatMessage(
             id: "r-1241", sender: .kira, kind: .drafts, body: nil, createdAt: at(today, 12, 41), replyToId: "m-1241",
             draftStatus: .committed),
-        ConversationMessage(
+        ChatMessage(
             id: "left-1241", sender: .kira, kind: .remaining, body: nil, createdAt: at(today, 12, 42),
             remaining: 1_792_000,
             perDay: 179_200),

@@ -36,8 +36,8 @@ nonisolated enum PreviewPlansData {
             grantEnd: CalendarDay(year: 2027, month: 1, day: 19),
             extensionFrom: CalendarDay(year: 2027, month: 1, day: 5)))
 
-    static func usage(resetsOn: CalendarDay) -> PlanUsage {
-        PlanUsage(
+    static func usage(resetsOn: CalendarDay) -> Usage {
+        Usage(
             aiMessages: .init(used: 112, limit: 300), receipts: .init(used: 23, limit: 150),
             voiceSeconds: .init(used: 42 * 60, limit: 10_800), resetsOn: resetsOn)
     }

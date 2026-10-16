@@ -70,7 +70,7 @@ struct TransactionDetailScreen: View {
         let transaction = detail.transaction
         return VStack(spacing: KiraSpacing.space4) {
             VStack(spacing: KiraSpacing.space1) {
-                KiraCategoryIcon(transaction.category.artwork, size: 52, label: transaction.category.title)
+                KiraCategoryIcon(transaction.category.tile, size: 52, label: transaction.category.title)
                 Text(transaction.name)
                     .font(KiraFont.display(22, .heavy, relativeTo: .title2))
                     .kiraLineHeight(28, size: 22, natural: 1.26, relativeTo: .title2)

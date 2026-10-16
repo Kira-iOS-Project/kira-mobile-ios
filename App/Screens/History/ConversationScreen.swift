@@ -62,7 +62,7 @@ struct ConversationScreen: View {
     }
 }
 
-/** One block: the time it started, the person's message and Kira's replies, framed when it is the source. */
+/** One block: Catat's rows of the person's message and Kira's replies, framed when it is the source. */
 private struct ConversationBlockView: View {
     let block: ConversationBlock
     let initial: String?
@@ -77,7 +77,7 @@ private struct ConversationBlockView: View {
                 }
                 .font(.caption.weight(.bold)).kiraLineHeight(16, size: 12)
                 .foregroundStyle(.pandan)
-                messages(block.framed)
+                rows(block.framed)
             }
             .padding(.vertical, KiraSpacing.space4)
             .padding(.horizontal, 14)
@@ -89,19 +89,15 @@ private struct ConversationBlockView: View {
             .padding(.horizontal, -4)
             .padding(.vertical, 6)
             .accessibilityElement(children: .contain)
-            ForEach(block.trailing) { ConversationMessageView(message: $0, sentAt: block.startedAt, initial: initial) }
+            rows(block.trailing)
         } else {
-            messages(block.framed)
+            rows(block.framed)
         }
     }
 
-    private func messages(_ messages: [ConversationMessage]) -> some View {
+    private func rows(_ rows: [ChatRow]) -> some View {
         VStack(spacing: KiraSpacing.space3) {
-            Text(KiraDateFormat.dayTime(block.startedAt))
-                .font(.caption.weight(.semibold)).kiraLineHeight(16, size: 12)
-                .foregroundStyle(.inkMuted)
-                .frame(maxWidth: .infinity)
-            ForEach(messages) { ConversationMessageView(message: $0, sentAt: block.startedAt, initial: initial) }
+            ForEach(rows) { ChatRowView(row: $0, model: nil, initial: initial) }
         }
     }
 }

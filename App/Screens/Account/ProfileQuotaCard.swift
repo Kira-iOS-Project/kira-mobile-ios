@@ -7,7 +7,7 @@ import SwiftUI
 
 /** The AI quota card. */
 struct ProfileQuotaCard: View {
-    let usage: AccountUsage
+    let usage: Usage
     let onPlans: () -> Void
 
     var body: some View {
@@ -42,7 +42,7 @@ struct ProfileQuotaCard: View {
         HStack(spacing: KiraSpacing.space3) {
             HStack(spacing: 6) {
                 KiraIcon(.refresh, size: 16).accessibilityHidden(true)
-                Text("account.profile.quota.resets \(usage.resetsOn, format: .accountDay)")
+                Text("account.profile.quota.resets \(usage.resetsOn.date, format: .accountDay)")
             }
             .font(.footnote.weight(.medium)).kiraLineHeight(18, size: 13)
             .foregroundStyle(.inkMuted)

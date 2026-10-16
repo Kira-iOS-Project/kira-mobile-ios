@@ -67,7 +67,7 @@ actor PreviewHistoryService: HistoryService {
         stored.removeAll { $0.id == id }
     }
 
-    func messages(around _: String) -> [ConversationMessage] {
+    func messages(around _: String) -> [ChatMessage] {
         PreviewHistoryData.messages
     }
 
