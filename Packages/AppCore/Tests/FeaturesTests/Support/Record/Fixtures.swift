@@ -34,7 +34,7 @@ enum Fixtures {
     static func person(_ id: String, _ text: String, at date: Date = noon, kind: ChatMessageKind = .personText)
         -> ChatMessage
     {
-        ChatMessage(id: id, sender: .person, kind: kind, body: text, createdAt: date, inputMethod: .keyboard)
+        ChatMessage(id: id, sender: .person, kind: kind, body: text, createdAt: date)
     }
 
     static func drafts(
@@ -43,9 +43,7 @@ enum Fixtures {
     ) -> ChatMessage {
         ChatMessage(
             id: id, sender: .kira, kind: .drafts, createdAt: date, replyToId: replyTo, drafts: items,
-            draftStatus: status,
-            parser: .slangRules, batchId: batchId, transactionIds: batchId.map { _ in items.map(\.id) },
-            committedAt: status == .committed ? date : nil, itemCount: items.count)
+            draftStatus: status, batchId: batchId)
     }
 
     static func kira(_ id: String, kind: ChatMessageKind, at date: Date = noon) -> ChatMessage {

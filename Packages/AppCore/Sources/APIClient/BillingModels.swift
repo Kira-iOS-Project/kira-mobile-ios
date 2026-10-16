@@ -27,26 +27,17 @@ package struct PlanTermsDTO: Hashable, Sendable {
     package let monthlyPrice: Int
     /** Rupiah per year. */
     package let yearlyPrice: Int
-    /** What a year saves against twelve months. */
-    package let yearlySaving: Int
     /** Kira AI chat messages per quota period. */
     package let aiMessages: Int
     /** Receipt scans per quota period. */
     package let receipts: Int
-    /** Seconds of voice input per quota period. */
-    package let voiceSeconds: Int
-    /** Voice input and bank-statement import. */
-    package let voiceAndImport: Bool
 
     init(_ plan: Components.Schemas.Plan) throws {
         id = try bridged(plan.id)
         monthlyPrice = plan.monthlyPrice
         yearlyPrice = plan.yearlyPrice
-        yearlySaving = plan.yearlySaving
         aiMessages = plan.aiMessages
         receipts = plan.receipts
-        voiceSeconds = plan.voiceSeconds
-        voiceAndImport = plan.voiceAndImport
     }
 }
 
@@ -56,8 +47,6 @@ package struct PlanCatalogDTO: Hashable, Sendable {
     package let plans: [PlanTermsDTO]
     /** The plan in force. */
     package let current: PlanID
-    /** Its billing period; nil on Gratis. */
-    package let currentPeriod: BillingPeriodDTO?
 }
 
 /** A paid plan, bought or granted by Beasiswa Kira. */
@@ -106,16 +95,12 @@ package struct InvoiceDTO: Hashable, Sendable {
     package let id: String
     /** The plan paid for. */
     package let plan: PlanID
-    /** Monthly or yearly. */
-    package let period: BillingPeriodDTO
     /** Rupiah. */
     package let amount: Int
     /** How it was paid. */
     package let paymentMethod: PaymentMethodDTO
     /** The period it paid for began on (`YYYY-MM-DD`). */
     package let periodStart: String
-    /** When it was written. */
-    package let createdAt: Date
 }
 
 /** Traktir Kira: one, three or six months of Kira Plus for Beasiswa Kira. */
@@ -135,14 +120,4 @@ package enum GiftLengthDTO: Int, CaseIterable, Sendable {
         case .sixMonths: ._6
         }
     }
-}
-
-/** A gift bought (simulated). */
-package struct GiftDTO: Hashable, Sendable {
-    /** Its id. */
-    package let id: String
-    /** Months of Kira Plus. */
-    package let months: Int
-    /** Rupiah: Plus's monthly price times the months. */
-    package let amount: Int
 }

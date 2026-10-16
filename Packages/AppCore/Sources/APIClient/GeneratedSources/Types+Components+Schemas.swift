@@ -2508,13 +2508,15 @@ extension Components {
             internal typealias SituationsPayload = [Components.Schemas.ScholarshipApplicationRequest.SituationsPayloadPayload]
             /// - Remark: Generated from `#/components/schemas/ScholarshipApplicationRequest/situations`.
             internal var situations: Components.Schemas.ScholarshipApplicationRequest.SituationsPayload
+            /// At most 1000 characters (grapheme clusters).
+            ///
             /// - Remark: Generated from `#/components/schemas/ScholarshipApplicationRequest/story`.
             internal var story: Swift.String?
             /// Creates a new `ScholarshipApplicationRequest`.
             ///
             /// - Parameters:
             ///   - situations:
-            ///   - story:
+            ///   - story: At most 1000 characters (grapheme clusters).
             internal init(
                 situations: Components.Schemas.ScholarshipApplicationRequest.SituationsPayload,
                 story: Swift.String? = nil
@@ -2960,7 +2962,7 @@ extension Components {
                 /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2/investmentRisk`.
                 internal var investmentRisk: Swift.Bool
                 /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2/sellerUrl`.
-                internal var sellerUrl: Swift.String
+                internal var sellerUrl: Swift.String?
                 /// Creates a new `Value2Payload`.
                 ///
                 /// - Parameters:
@@ -2980,7 +2982,7 @@ extension Components {
                     contents: [Swift.String],
                     affiliate: Swift.Bool,
                     investmentRisk: Swift.Bool,
-                    sellerUrl: Swift.String
+                    sellerUrl: Swift.String? = nil
                 ) {
                     self.description = description
                     self.meta = meta

@@ -23,10 +23,6 @@ package enum PlanSourceDTO: String, CaseIterable, Sendable {
 package struct CurrentPlanDTO: Hashable, Sendable {
     /** Gratis, Muda or Plus. */
     package let id: PlanID
-    /** How it was obtained; nil on Gratis. */
-    package let source: PlanSourceDTO?
-    /** When it renews (`YYYY-MM-DD`); nil on Gratis. */
-    package let renewsOn: String?
 }
 
 /** The signed-in person, with what Beranda, Catat and Akun read on launch (`GET /api/me`). */
@@ -37,10 +33,6 @@ package struct MeDTO: Hashable, Sendable {
     package let email: String
     /** The name shown ("Dinda"), from the address. */
     package let displayName: String
-    /** Pilih Fokus. */
-    package let focus: FocusDTO
-    /** Tanggal gajian. */
-    package let payday: PaydayDTO
     /** Amounts show as Rp•••••• when true. */
     package let hideBalances: Bool
     /** Persetujuan Data was given. */
@@ -68,17 +60,13 @@ package struct MeDTO: Hashable, Sendable {
         id = profile.id
         email = profile.email
         displayName = profile.displayName
-        focus = try bridged(profile.focus)
-        payday = PaydayDTO(day: profile.payday.day, endOfMonth: profile.payday.endOfMonth)
         hideBalances = profile.hideBalances
         consented = profile.consented
         healthCheckCompleted = profile.healthCheckCompleted
-        plan = CurrentPlanDTO(
-            id: try bridged(profile.plan.id), source: try bridged(profile.plan.source), renewsOn: profile.plan.renewsOn)
+        plan = CurrentPlanDTO(id: try bridged(profile.plan.id))
         usage = UsageDTO(profile.usage)
         period = PaydayPeriodDTO(
-            start: profile.period.start, end: profile.period.end, nextPayday: profile.period.nextPayday,
-            daysUntilPayday: profile.period.daysUntilPayday)
+            start: profile.period.start, end: profile.period.end, daysUntilPayday: profile.period.daysUntilPayday)
         lastExpenseCategory = try bridged(profile.lastCategories.expense)
         lastIncomeCategory = try bridged(profile.lastCategories.income)
         debtAccountCount = profile.debtAccountCount
@@ -113,21 +101,14 @@ package struct ConsentDTO: Hashable, Sendable {
     package let purpose: ConsentPurposeDTO
     /** Granted or refused. */
     package let granted: Bool
-    /** When it was decided; nil when never decided. */
-    package let decidedAt: Date?
 }
 
-/** The consents in force, under the privacy policy they were given for. */
+/** The consents in force. */
 package struct ConsentsDTO: Hashable, Sendable {
-    /** The privacy policy's version ("2026-10-15"). */
-    package let policyVersion: String
     /** One decision per purpose. */
     package let items: [ConsentDTO]
 
     init(_ body: Components.Schemas.Consents) throws {
-        policyVersion = body.policyVersion
-        items = try body.items.map {
-            ConsentDTO(purpose: try bridged($0.purpose), granted: $0.granted, decidedAt: $0.decidedAt)
-        }
+        items = try body.items.map { ConsentDTO(purpose: try bridged($0.purpose), granted: $0.granted) }
     }
 }

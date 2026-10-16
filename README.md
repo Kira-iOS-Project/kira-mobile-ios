@@ -146,7 +146,7 @@ flowchart TB
 Every screen follows this shape; Riwayat Percakapan is one of the smallest.
 
 ```swift
-/** Packages/AppCore/Sources/Features/History/ConversationModel.swift: the ViewModel */
+/** Packages/AppCore/Sources/Features/History/ViewModels/ConversationModel.swift: the ViewModel */
 @MainActor @Observable
 package final class ConversationModel {
     package private(set) var phase: ScreenPhase<[ConversationBlock]> = .loading
@@ -167,7 +167,7 @@ package final class ConversationModel {
 ```
 
 ```swift
-/** App/Screens/History/ConversationScreen.swift: the View */
+/** App/Screens/History/Views/ConversationScreen.swift: the View */
 struct ConversationScreen: View {
     @State private var model: ConversationModel
 
@@ -255,7 +255,7 @@ stateDiagram-v2
 - **Routes.** `AppRoute` (in `Features/Navigation`) lists every destination. Screens call
   `onOpen(AppRoute)`; `.home` and `.record` switch sections, every other route is pushed on the
   open section's stack, and `.unavailable(area)` does nothing.
-- **Slots.** Each area's entry view plugs into its slot in `App/Screens/Slots/AreaSlots.swift`.
+- **Slots.** Each area's entry view plugs into its slot in `App/Screens/Navigation/Components/AreaSlots.swift`.
   The slots are empty surfaces until the root wires the areas with their live services (E1, in
   progress).
 
@@ -510,17 +510,16 @@ Release builds compile none of them. Release signing and Firebase are set up onc
 ```text
 App/
   KiraApp.swift              the composition root
-  Screens/<Area>/            SwiftUI views per area, each with Preview/ (its preview service)
-  Screens/Root/              RootView, MainShell, the privacy cover
-  Screens/Slots/             where each area's entry view plugs into the shell
+  Screens/<Area>/            Views/, Components/, Copy/, Preview/ (docs/architecture.md)
+  Screens/Navigation/        RootView, MainShell, the privacy cover, the route slots
   Screens/Shared/            helpers several areas share (formats, LoadFailedView, names)
-  Services/Record/           Vision, Speech, the camera and Foundation Models
+  Services/<Area>/           Vision, Speech, the camera, Foundation Models, the Keychain
   DesignSystem/              tokens, type, artwork, the Kira… components, the gallery
   Localizable.xcstrings      the String Catalog (Indonesian)
   PrivacyInfo.xcprivacy      the privacy manifest
 Packages/AppCore/
-  Sources/Domain/            values and rules, Foundation only
-  Sources/Features/          screen models and service protocols, one folder per area
+  Sources/Domain/<Area>/     Models/ and Logic/: values and rules, Foundation only
+  Sources/Features/<Area>/   ViewModels/ and Services/{Protocols,Live}/
   Sources/APIClient/         KiraAPI, AppProblem, the spec copy, GeneratedSources/
   Tests/                     Swift Testing tests, one target per library target
 UITests/                     the accessibility audits

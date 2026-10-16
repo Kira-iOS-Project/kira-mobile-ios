@@ -1,10 +1,9 @@
 /**
  What the Catat chat sends and answers (CAT-01 to CAT-06, CAT-10): its messages, the drafts a Kira
  reply carries, and the inputs of a typed message or a scanned receipt. Amounts are whole rupiah;
- `createdAt`, `occurredAt` and `committedAt` are instants. The words of a message are nested in
+ `createdAt` and `occurredAt` are instants. The words of a message are nested in
  `ChatMessageDTO` so they never meet the screens' own vocabulary of the same names.
  */
-import Domain
 import Foundation
 
 /** One message of the Catat chat; a field its kind does not use is nil. */
@@ -75,18 +74,8 @@ package struct ChatMessageDTO: Hashable, Sendable {
     package let drafts: [DraftItemDTO]?
     /** Where those drafts stand. */
     package let draftStatus: DraftStatus?
-    /** What read the drafts. */
-    package let parser: Parser?
-    /** How a person's text was entered. */
-    package let inputMethod: InputMethod?
     /** The save batch, for Urungkan. */
     package let batchId: String?
-    /** The transactions a save created. */
-    package let transactionIds: [String]?
-    /** When the drafts were saved. */
-    package let committedAt: Date?
-    /** How many transactions a save held. */
-    package let itemCount: Int?
     /** Sisa uang after a save; negative when overspent. */
     package let remaining: Int?
     /** What that leaves per day until payday. */
@@ -101,12 +90,7 @@ package struct ChatMessageDTO: Hashable, Sendable {
         replyToId = message.replyToId
         drafts = try message.drafts?.map(DraftItemDTO.init)
         draftStatus = try bridged(message.draftStatus)
-        parser = try bridged(message.parser)
-        inputMethod = try bridged(message.inputMethod)
         batchId = message.batchId
-        transactionIds = message.transactionIds
-        committedAt = message.committedAt
-        itemCount = message.itemCount
         remaining = message.remaining
         perDay = message.perDay
     }
