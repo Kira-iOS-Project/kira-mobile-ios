@@ -53,8 +53,6 @@ package struct ScoreReportDTO: Hashable, Sendable {
     package let band: ScoreBand
     /** Change since the last score before this payday period; nil when there is none. */
     package let delta: Int?
-    /** Only the first health check has been scored ("dari cek awal"). */
-    package let isInitial: Bool
     /** When this period's score was taken. */
     package let computedAt: Date
     /** The next automatic check: the next payday (`YYYY-MM-DD`). */
@@ -72,7 +70,6 @@ package struct ScoreReportDTO: Hashable, Sendable {
         score = report.score
         band = try bridged(report.band)
         delta = report.delta
-        isInitial = report.isInitial
         computedAt = report.computedAt
         nextCheckOn = report.nextCheckOn
         groups = try report.groups.map {
