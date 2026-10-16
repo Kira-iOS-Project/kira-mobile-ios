@@ -67,6 +67,7 @@ private struct DebtFormFields: View {
 
     private func amountField(_ label: LocalizedStringResource, text: Binding<String>) -> KiraField {
         KiraField(label, text: text, prompt: "onboarding.debt.sheet.zero")
+            .amount()
             .prefix("onboarding.quiz.currency")
             .suffix("onboarding.quiz.cents")
     }

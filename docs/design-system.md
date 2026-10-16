@@ -31,12 +31,15 @@ a screen built from them keeps them by default.
 - **Buttons are capsules with Title Case labels.** Non-primary buttons use `button` with a
   `button-line` border. A pair is `KiraButtonPair`: secondary on the left, primary on the right
   (stacked, primary on top). Back buttons are icon-only (`KiraIconButton.back`).
+- **Rupiah fields group their digits as they are typed** ("10.000.000", never "10000000"):
+  `KiraField(…).amount()`.
 - **Under a primary block button, the next action is a secondary block button**, never a quiet
   text button: `KiraButton(_, variant: .secondary).block()`, `KiraSpacing.space2` below the primary
   ("Aku Sudah Punya Akun", "Ganti Email", "Baca Kebijakan Privasi", "Belum Tahu, Lihat-Lihat
   Dulu"). The owner's rule (2026-10-16), over the boards' quiet links. `.quiet` stays for actions
   that do not follow a primary button: a header's "Lewati", "Tambah" under a list, a fold.
-- **Title Case** for titles, headings, notice titles, tags and buttons; Indonesian prepositions and
+- **Title Case** for titles, headings, notice titles, tags, buttons, and a field's label and placeholder
+  ("Penghasilan Bersih", "Cari Transaksi"; the owner's rule, 2026-10-16); Indonesian prepositions and
   conjunctions (dari, di, ke, dan, untuk, yang, terhadap) stay lowercase. Small labels, overlines
   and sentences stay sentence case. The catalog holds the cased copy: no code changes case.
 - **Money in full with two decimals**: `Rp10.000,00`, through `RupiahFormatStyle` or `KiraAmount`.

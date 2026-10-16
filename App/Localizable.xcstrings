@@ -406,7 +406,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ketik HAPUS untuk konfirmasi"
+            "value" : "Ketik HAPUS untuk Konfirmasi"
           }
         }
       }
@@ -5496,7 +5496,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cari transaksi"
+            "value" : "Cari Transaksi"
           }
         }
       }
@@ -8722,7 +8722,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kode verifikasi 6 digit"
+            "value" : "Kode Verifikasi 6 Digit"
           }
         }
       }
@@ -8962,7 +8962,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Emas, saham, dan simpanan lain"
+            "value" : "Emas, Saham, dan Simpanan Lain"
           }
         }
       }
@@ -8982,7 +8982,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kendaraan dan properti"
+            "value" : "Kendaraan dan Properti"
           }
         }
       }
@@ -9072,7 +9072,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kode verifikasi 6 digit"
+            "value" : "Kode Verifikasi 6 Digit"
           }
         }
       }
@@ -9632,7 +9632,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sisa Tenor (opsional)"
+            "value" : "Sisa Tenor (Opsional)"
           }
         }
       }
@@ -9712,7 +9712,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pengeluaran pokok"
+            "value" : "Pengeluaran Pokok"
           }
         }
       }
@@ -9852,7 +9852,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Penghasilan bersih"
+            "value" : "Penghasilan Bersih"
           }
         }
       }
@@ -11002,7 +11002,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dana darurat"
+            "value" : "Dana Darurat"
           }
         }
       }
@@ -11022,7 +11022,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Menabung per bulan"
+            "value" : "Menabung per Bulan"
           }
         }
       }
@@ -12403,7 +12403,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tulis pengeluaran atau pemasukan"
+            "value" : "Tulis Pengeluaran atau Pemasukan"
           }
         }
       }
@@ -12423,7 +12423,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ketik atau ucapkan"
+            "value" : "Ketik atau Ucapkan"
           }
         }
       }

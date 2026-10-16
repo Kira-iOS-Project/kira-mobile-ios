@@ -63,6 +63,7 @@ struct QuizAmountField: View {
 
     var body: some View {
         KiraField(label, text: $text)
+            .amount()
             .prefix("onboarding.quiz.currency")
             .suffix("onboarding.quiz.cents")
             .hint(hint)

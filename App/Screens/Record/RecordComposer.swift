@@ -66,7 +66,7 @@ struct RecordComposer: View {
     }
 
     /**
-     "Ketik atau ucapkan…": the words, then the board's three dots drawn, not typed. Apple's audit
+     "Ketik atau Ucapkan…": the words, then the board's three dots drawn, not typed. Apple's audit
      reads a text that ends in "…" as cut off.
      */
     private var prompt: some View {
