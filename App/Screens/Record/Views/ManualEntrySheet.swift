@@ -75,6 +75,7 @@ private struct ManualAmountInput: View {
                     Text("record.manual.amount")
                 }
                 .keyboardType(.numberPad)
+                .accessibilityLabel(Text("record.manual.amount"))
                 .focused(isFocused)
                 .foregroundStyle(.clear)
                 .tint(.clear)

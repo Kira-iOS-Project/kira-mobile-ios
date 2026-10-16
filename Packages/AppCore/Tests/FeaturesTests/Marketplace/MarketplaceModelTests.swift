@@ -34,7 +34,7 @@ struct MarketplaceModelTests {
         #expect(model.kind == nil && model.phase.value == all)
     }
 
-    @Test("shows the API's problem, and the generic one when the connection is lost; retry loads again")
+    @Test("shows the API's problem, and the connection message when the connection is lost; retry loads again")
     func failures() async {
         var service = FakeMarketplaceService(lists: [nil: .failure(AppProblem(code: "INTERNAL_ERROR"))])
         let model = MarketplaceModel(service: service)
@@ -43,8 +43,8 @@ struct MarketplaceModelTests {
         #expect(problem.code == "INTERNAL_ERROR")
         let offline = MarketplaceModel(service: OfflineMarketplaceService())
         await offline.load()
-        guard case .failed(let generic) = offline.phase else { return #expect(Bool(false)) }
-        #expect(generic == AppProblem())
+        guard case .failed(let lost) = offline.phase else { return #expect(Bool(false)) }
+        #expect(lost.isConnectionLoss)
         service.lists[nil] = .success(all)
         let retried = MarketplaceModel(service: service)
         await retried.load()
