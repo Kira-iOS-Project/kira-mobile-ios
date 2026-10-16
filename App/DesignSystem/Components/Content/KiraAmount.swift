@@ -45,6 +45,8 @@ struct KiraAmount: View {
             /** One line always; at the largest text sizes a long amount shrinks to fit, all of it at once. */
             .lineLimit(1)
             .minimumScaleFactor(0.4)
+            /** On the text and on the element: the audit reads the text inside an element too. */
+            .kiraSmallType(size == .medium)
             .accessibilityElement(children: .ignore)
             .accessibilityLabel(isMasked ? Text("ds.amount.hidden") : spoken)
             .kiraSmallType(size == .medium)

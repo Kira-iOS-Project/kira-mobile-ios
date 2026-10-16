@@ -51,17 +51,24 @@ struct KiraField: View {
     private var box: some View {
         HStack(spacing: KiraSpacing.space2) {
             if let prefixText { affix(prefixText) }
-            TextField(
-                text: $text, prompt: prompt.map { Text($0).foregroundStyle(.inkMuted) } ?? Text(Self.noPrompt),
-                axis: minimumLines > 1 ? .vertical : .horizontal
-            ) {
-                Text(label)
+            ZStack(alignment: .leading) {
+                /**
+                 A single-line field draws its prompt itself, so a long one wraps at large text sizes
+                 instead of being cut off; VoiceOver hears it as the field's hint.
+                 */
+                if isSingleLine, text.isEmpty, let prompt {
+                    Text(prompt).font(.body).foregroundStyle(.inkMuted).accessibilityHidden(true)
+                }
+                TextField(text: $text, prompt: systemPrompt, axis: isSingleLine ? .horizontal : .vertical) {
+                    Text(label)
+                }
+                .lineLimit(minimumLines...max(minimumLines, 6))
+                .font(.body)
+                .foregroundStyle(.ink)
+                .focused($isFocused)
+                .accessibilityLabel(Text(label))
+                .accessibilityHint(prompt.map { Text($0) } ?? Text(Self.noPrompt))
             }
-            .lineLimit(minimumLines...max(minimumLines, 6))
-            .font(.body)
-            .foregroundStyle(.ink)
-            .focused($isFocused)
-            .accessibilityLabel(Text(label))
             .padding(.vertical, 14)
             if let suffixText { affix(suffixText) }
             if let iconName { KiraIcon(iconName, size: 20).foregroundStyle(.inkMuted) }
@@ -74,6 +81,14 @@ struct KiraField: View {
                 .strokeBorder(isFocused ? Color.pandanLine : .clear, lineWidth: 3)
                 .padding(-3)
         }
+    }
+
+    private var isSingleLine: Bool { minimumLines == 1 }
+
+    /** The prompt the system draws: a multi-line field's, which wraps already; none for a single line. */
+    private var systemPrompt: Text {
+        guard !isSingleLine, let prompt else { return Text(Self.noPrompt) }
+        return Text(prompt).foregroundStyle(.inkMuted)
     }
 
     private var borderColor: Color {
