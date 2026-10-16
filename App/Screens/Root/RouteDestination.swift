@@ -11,6 +11,10 @@ struct RouteDestination: View {
     let onOpen: (AppRoute) -> Void
 
     var body: some View {
-        RouteSlot(route: route, onOpen: onOpen)
+        if RecordRoute.handles(route) {
+            RecordRoute(route: route, onOpen: onOpen)
+        } else {
+            RouteSlot(route: route, onOpen: onOpen)
+        }
     }
 }

@@ -21,11 +21,18 @@ struct HomeSlot: View {
     var body: some View { EmptySlot() }
 }
 
-/** CAT-01: Catat, the record section's root. */
+/** CAT-01: Catat, the record section's root, on the record service of `RecordComposition`. */
 struct RecordSlot: View {
     let onOpen: (AppRoute) -> Void
+    @Environment(\.recordComposition) private var composition
 
-    var body: some View { EmptySlot() }
+    var body: some View {
+        if let record = (composition ?? .fallback)?.record {
+            RecordScreen(service: record, onOpen: onOpen)
+        } else {
+            EmptySlot()
+        }
+    }
 }
 
 /** A pushed destination of any area, by its route (RouteDestination picks the area). */
