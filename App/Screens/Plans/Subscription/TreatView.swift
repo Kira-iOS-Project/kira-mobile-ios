@@ -63,6 +63,7 @@ struct TreatView: View {
             .accessibilityElement(children: .combine)
             KiraNotice(.education, title: "treat.where.title", message: "treat.where.body")
             KiraNotice(.info, title: "plans.prototype", message: "treat.prototype")
+            Spacer(minLength: 0)
             if let problem = model.sendProblem { PlansProblemNotice(problem: problem) }
             PlansButtonRow(
                 secondary: KiraButton("treat.cancel", variant: .secondary, size: .small) { dismiss() },

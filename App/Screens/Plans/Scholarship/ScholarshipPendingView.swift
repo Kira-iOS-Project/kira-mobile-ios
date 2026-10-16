@@ -33,22 +33,25 @@ struct ScholarshipPendingView: View {
         }
         .accessibilityLabel(Text("scholarship.summary.group"))
         meanwhile
-        KiraNotice(.info, title: "plans.prototype", message: "scholarship.prototype")
-            .padding(.top, KiraSpacing.space2)
-        if let problem = model.withdrawProblem { PlansProblemNotice(problem: problem) }
-        VStack(spacing: 10) {
-            KiraButton("scholarship.openEmergency") { onOpen(.unavailable(.debtEmergency)) }.block()
-            KiraButton("scholarship.withdraw", variant: .secondary) { Task { await model.withdraw() } }.block()
-                .disabled(model.isWithdrawing)
+        Spacer(minLength: 0)
+        VStack(spacing: KiraSpacing.space3) {
+            KiraNotice(.info, title: "plans.prototype", message: "scholarship.prototype")
+            if let problem = model.withdrawProblem { PlansProblemNotice(problem: problem) }
+            VStack(spacing: 10) {
+                KiraButton("scholarship.openEmergency") { onOpen(.unavailable(.debtEmergency)) }.block()
+                KiraButton("scholarship.withdraw", variant: .secondary) { Task { await model.withdraw() } }.block()
+                    .disabled(model.isWithdrawing)
+            }
         }
+        .padding(.top, KiraSpacing.space2)
     }
 
     private var status: some View {
         VStack(alignment: .leading, spacing: 10) {
             if application.status == .waitlisted {
-                KiraTag("scholarship.status.waitlisted", tone: .turmeric, icon: .clock)
+                KiraTag("scholarship.status.waitlisted", tone: .turmeric, icon: .clock).keepsOfferedWidth()
             } else {
-                KiraTag("scholarship.status.inReview", tone: .turmeric, icon: .clock)
+                KiraTag("scholarship.status.inReview", tone: .turmeric, icon: .clock).keepsOfferedWidth()
             }
             PlansDisplayTitle("scholarship.status.headline", size: 22)
             Text("scholarship.status.decideBy \(application.decideBy.date, format: .plansFullDay)")

@@ -17,6 +17,7 @@ struct InvoicesView: View {
             PlansHeader("invoices.title", subtitle: "invoices.lede")
             content
             KiraNotice(.info, title: "plans.prototype", message: "invoices.prototype")
+            Spacer(minLength: 0)
             KiraButton("invoices.done", variant: .secondary) { dismiss() }.block()
         }
         .task { await model.load() }

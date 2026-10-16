@@ -23,31 +23,12 @@ struct DeleteAccountSheet: View {
     }
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: KiraSpacing.space4) {
-                DeletedItemsList()
-                KiraNotice(
-                    .info, title: "account.delete.subscription.title", message: "account.delete.subscription.message")
-                KiraListGroup {
-                    KiraListRow(Text("account.delete.export"), leading: .icon(.download)) {
-                        Task { await model.emailData() }
-                    }
-                    .subtitle(exportSubtitle)
-                }
-                KiraField("account.delete.field", text: $model.confirmation, prompt: "account.delete.field.prompt")
-                    .hint("account.delete.field.hint")
-                    .textInputAutocapitalization(.characters)
-                    .autocorrectionDisabled()
-                VStack(spacing: KiraSpacing.space2) {
-                    KiraButton("account.delete.confirm", variant: .destructive) { Task { await model.delete() } }
-                        .block()
-                        .disabled(!model.canDelete)
-                    KiraButton("account.cancel", variant: .secondary, action: onClose).block()
-                }
+        GeometryReader { frame in
+            ScrollView {
+                form.frame(minHeight: frame.size.height, alignment: .top)
             }
-            .padding(.bottom, KiraSpacing.space4)
+            .scrollBounceBehavior(.basedOnSize)
         }
-        .scrollBounceBehavior(.basedOnSize)
         .kiraDialog(isPresented: outcomeShown(.deleted)) {
             KiraDialog(
                 "account.delete.done.title", message: "account.delete.done.message", art: .illustration(.bloom),
@@ -58,6 +39,32 @@ struct DeleteAccountSheet: View {
                 "account.delete.failed.title", message: "account.delete.failed.message", art: .illustration(.umbrella),
                 primary: KiraButton("account.retry") { Task { await model.delete() } },
                 secondary: KiraButton("account.close", variant: .secondary) {})
+        }
+    }
+
+    /** The form, its buttons at the bottom of the sheet as the board's `margin-top: auto` puts them. */
+    private var form: some View {
+        VStack(alignment: .leading, spacing: KiraSpacing.space4) {
+            DeletedItemsList()
+            KiraNotice(
+                .info, title: "account.delete.subscription.title", message: "account.delete.subscription.message")
+            KiraListGroup {
+                KiraListRow(Text("account.delete.export"), leading: .icon(.download)) {
+                    Task { await model.emailData() }
+                }
+                .subtitle(exportSubtitle)
+            }
+            KiraField("account.delete.field", text: $model.confirmation, prompt: "account.delete.field.prompt")
+                .hint("account.delete.field.hint")
+                .textInputAutocapitalization(.characters)
+                .autocorrectionDisabled()
+            Spacer(minLength: 0)
+            VStack(spacing: KiraSpacing.space2) {
+                KiraButton("account.delete.confirm", variant: .destructive) { Task { await model.delete() } }
+                    .block()
+                    .disabled(!model.canDelete)
+                KiraButton("account.cancel", variant: .secondary, action: onClose).block()
+            }
         }
     }
 

@@ -96,7 +96,7 @@ struct SubscriptionScreen: View {
                     .disabled(model.isCancelling)
                 cancelNote(subscription)
                     .font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
-                    .multilineTextAlignment(.center).padding(.horizontal, KiraSpacing.space3)
+                    .multilineTextAlignment(.center).balancedLines().padding(.horizontal, KiraSpacing.space3)
                 if let problem = model.cancelProblem { PlansProblemNotice(problem: problem) }
             }
             .padding(.top, KiraSpacing.space2)

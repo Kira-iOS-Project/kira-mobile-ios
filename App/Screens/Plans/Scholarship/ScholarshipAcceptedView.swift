@@ -25,9 +25,12 @@ struct ScholarshipAcceptedView: View {
                 .subtitle(Text("scholarship.next.after.detail"))
         }
         KiraNotice(.education, title: "scholarship.thanks.title", message: "scholarship.thanks.body")
-        KiraNotice(.info, title: "plans.prototype", message: "scholarship.prototype")
-            .padding(.top, KiraSpacing.space2)
-        KiraButton("scholarship.start", action: onStart).block()
+        Spacer(minLength: 0)
+        VStack(spacing: KiraSpacing.space3) {
+            KiraNotice(.info, title: "plans.prototype", message: "scholarship.prototype")
+            KiraButton("scholarship.start", action: onStart).block()
+        }
+        .padding(.top, KiraSpacing.space2)
     }
 
     private var hero: some View {

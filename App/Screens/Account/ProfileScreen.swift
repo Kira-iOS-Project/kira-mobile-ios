@@ -32,6 +32,7 @@ struct ProfileScreen: View {
             }
         }
         .onHelp { onOpen(.unavailable(.care)) }
+        .leaf(size: 150)
         .task { await model.load() }
         .kiraSheet(isPresented: $model.isConfirmingSignOut, title: "account.signOut.title") {
             SignOutSheet(model: model)
@@ -89,14 +90,22 @@ private struct ProfileContent: View {
 /** The avatar, the name, the email and the plan's tag. */
 private struct ProfileIdentity: View {
     let profile: AccountProfile
+    @Environment(\.dynamicTypeSize) private var typeSize
+
+    /** The avatar beside the words, above them at the accessibility text sizes. */
+    private var layout: AnyLayout {
+        typeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: KiraSpacing.space3))
+            : AnyLayout(HStackLayout(spacing: KiraSpacing.space4))
+    }
 
     var body: some View {
-        HStack(spacing: KiraSpacing.space4) {
+        layout {
             KiraAvatar(profile.initial, size: 64, tone: .turmeric)
             VStack(alignment: .leading, spacing: 2) {
                 Text(profile.displayName).kiraFont(.title).accessibilityAddTraits(.isHeader)
                 Text(profile.email).font(.subheadline).kiraLineHeight(20, size: 15).foregroundStyle(.inkMuted)
-                KiraTag(profile.plan.id.title, tone: .pandan, icon: .sparkle).padding(.top, 6)
+                KiraTag(profile.plan.id.title, tone: .pandan, icon: .sparkle).keepsOfferedWidth().padding(.top, 6)
             }
         }
         .padding(EdgeInsets(top: 8, leading: 4, bottom: 4, trailing: 4))

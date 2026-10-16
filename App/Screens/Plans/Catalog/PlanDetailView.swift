@@ -19,6 +19,7 @@ struct PlanDetailView: View {
     let onOpen: (AppRoute) -> Void
     @State private var page: Page?
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         PlansScreenFrame {
@@ -36,6 +37,7 @@ struct PlanDetailView: View {
                     .subtitle(Text("plans.detail.treat.detail"))
             }
             KiraNotice(.info, title: "plans.prototype", message: "plans.detail.prototype")
+            Spacer(minLength: 0)
             PlansButtonRow(
                 secondary: KiraButton("plans.treat.row", variant: .secondary, size: .small) { page = .treat },
                 primary: KiraButton(terms.id == .young ? "plans.tryYoung" : "plans.tryPlus", size: .small) {
@@ -53,10 +55,12 @@ struct PlanDetailView: View {
     private var header: some View {
         VStack(alignment: .leading, spacing: 6) {
             PlansDisplayTitle(terms.id.title, size: 28)
-            HStack(alignment: .firstTextBaseline, spacing: 6) {
+            PlanPriceLine {
                 KiraAmount(Decimal(terms.monthlyPrice))
+                /** One line, as on the board, down to 90 % of its size; it wraps at accessibility sizes. */
                 Text("plans.detail.price \(Decimal(terms.yearlyPrice), format: .rupiah)")
                     .font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
+                    .lineLimit(typeSize.isAccessibilitySize ? nil : 1).minimumScaleFactor(0.9)
             }
             Text(terms.id == .young ? "plans.detail.young.lede" : "plans.detail.plus.lede")
                 .font(.subheadline).kiraLineHeight(20, size: 15).foregroundStyle(.inkMuted)

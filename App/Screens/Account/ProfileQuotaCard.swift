@@ -9,6 +9,7 @@ import SwiftUI
 struct ProfileQuotaCard: View {
     let usage: Usage
     let onPlans: () -> Void
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         VStack(alignment: .leading, spacing: KiraSpacing.space4) {
@@ -38,16 +39,26 @@ struct ProfileQuotaCard: View {
         .kiraCard(cornerRadius: KiraRadius.large)
     }
 
+    /** The reset day beside Lihat Paket, above it at the accessibility text sizes. */
+    private var footerLayout: AnyLayout {
+        typeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: KiraSpacing.space3))
+            : AnyLayout(HStackLayout(spacing: KiraSpacing.space3))
+    }
+
     private var footer: some View {
-        HStack(spacing: KiraSpacing.space3) {
+        footerLayout {
             HStack(spacing: 6) {
                 KiraIcon(.refresh, size: 16).accessibilityHidden(true)
                 Text("account.profile.quota.resets \(usage.resetsOn.date, format: .accountDay)")
             }
             .font(.footnote.weight(.medium)).kiraLineHeight(18, size: 13)
             .foregroundStyle(.inkMuted)
-            Spacer(minLength: 0)
+            /** Fills the row instead of a Spacer, so only the board's one 12 pt gap stays. */
+            .frame(maxWidth: .infinity, alignment: .leading)
+            /** At its own width, so the reset day keeps the rest on one line as on the board. */
             KiraButton("account.profile.quota.plans", variant: .secondary, size: .small, action: onPlans)
+                .fixedSize()
         }
         .padding(.top, 14)
         .overlay(alignment: .top) { Rectangle().fill(.line).frame(height: 1) }

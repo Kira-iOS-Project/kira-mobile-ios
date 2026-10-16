@@ -22,6 +22,7 @@ struct PaymentMethodView: View {
             PlansHeader("method.title", subtitle: "method.lede")
             PaymentMethodRows(title: "method.options", selection: $model.paymentMethod)
             KiraNotice(.info, title: "plans.prototype", message: "method.prototype")
+            Spacer(minLength: 0)
             if case .failed(let problem) = model.phase { PlansProblemNotice(problem: problem) }
             PlansButtonRow(
                 secondary: KiraButton("method.cancel", variant: .secondary, size: .small) { dismiss() },

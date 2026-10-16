@@ -14,7 +14,7 @@ struct SubscriptionHero: View {
                 KiraLogo(.mark, tone: .hero, size: 26)
             }
             .frame(minHeight: 24)
-            HStack(alignment: .firstTextBaseline, spacing: KiraSpacing.space2) {
+            PlanPriceLine(spacing: KiraSpacing.space2) {
                 KiraAmount(Decimal(subscription.price), size: .large).inverse()
                 Text(subscription.period == .monthly ? "plans.price.perMonth" : "plans.price.perYear")
                     .font(.subheadline).kiraLineHeight(20, size: 15).foregroundStyle(.onHeroMuted)

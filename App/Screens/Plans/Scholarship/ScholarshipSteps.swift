@@ -16,6 +16,8 @@ struct ScholarshipStep {
 
 struct ScholarshipSteps: View {
     let steps: [ScholarshipStep]
+    /** The 28 pt disc grows with its number. */
+    @ScaledMetric(relativeTo: .footnote) private var disc: CGFloat = 28
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
@@ -41,7 +43,7 @@ struct ScholarshipSteps: View {
         switch step.state {
         case .done:
             KiraIcon(.check, size: 16, weight: .bold).foregroundStyle(.onPandan)
-                .frame(width: 28, height: 28).background(.pandan, in: Circle())
+                .frame(width: disc, height: disc).background(.pandan, in: Circle())
         case .current:
             number(step.number).foregroundStyle(.pandan)
                 .background(.pandanSoft, in: Circle())
@@ -55,7 +57,7 @@ struct ScholarshipSteps: View {
 
     private func number(_ value: Int) -> some View {
         Text(value, format: .number).font(KiraFont.display(14, .heavy, relativeTo: .footnote))
-            .frame(width: 28, height: 28)
+            .frame(width: disc, height: disc)
             .accessibilityHidden(true)
     }
 }
