@@ -31,15 +31,18 @@ struct KiraAPITests {
         }
     }
 
-    @Test("reads usage and a payday period")
+    @Test("reads usage, a payday and a payday period")
     func sharedValues() throws {
-        let usage = Usage(
+        let usage = UsageDTO(
             .init(
                 aiMessages: .init(used: 3, limit: 30), receipts: .init(used: 0, limit: 10),
                 voiceSeconds: .init(used: 0, limit: 0), resetsOn: "2026-11-01"))
-        #expect(usage.aiMessages == UsageMeter(.init(used: 3, limit: 30)))
+        #expect(usage.aiMessages == UsageMeterDTO(.init(used: 3, limit: 30)))
         #expect(usage.voiceSeconds.limit == 0 && usage.resetsOn == "2026-11-01")
-        let period = PaydayPeriod(
+        #expect(PaydayDTO(day: 25, endOfMonth: false).isSet)
+        #expect(PaydayDTO(day: nil, endOfMonth: true).isSet)
+        #expect(!PaydayDTO(day: nil, endOfMonth: false).isSet)
+        let period = PaydayPeriodDTO(
             .init(start: "2026-09-25", end: "2026-10-24", nextPayday: "2026-10-25", daysUntilPayday: 9))
         #expect(period.nextPayday == "2026-10-25" && period.daysUntilPayday == 9)
     }
