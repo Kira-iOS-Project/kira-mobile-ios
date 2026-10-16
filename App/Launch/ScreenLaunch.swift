@@ -58,9 +58,11 @@
         case care, careOffline, careHelp, trustedMessage
         /** PED: Naskah Pengajuan Keringanan. */
         case negotiationScript
-
-        /** PED: Naskah Pengajuan Keringanan. */
-        case negotiationScript
+        /**
+         PED: Latihan Menenangkan Diri; Rencana Keselamatanku (saved, never saved, a save that fails) and
+         its form.
+         */
+        case breathing, safetyPlan, safetyPlanEmpty, safetyPlanFailing, safetyPlanForm
 
         /** The area whose launcher builds the screen. */
         enum Area {
@@ -82,7 +84,8 @@
             case .history, .transaction, .conversation, .statementImport, .importReview: .record
             case .record, .recordDrafts, .recordManual, .recordScan, .recordQuota, .recordVoice: .chat
             case .care, .careOffline, .careHelp, .trustedMessage: .care
-            case .negotiationScript: .careTools
+            case .breathing, .negotiationScript, .safetyPlan, .safetyPlanEmpty, .safetyPlanFailing, .safetyPlanForm:
+                .careTools
             }
         }
     }

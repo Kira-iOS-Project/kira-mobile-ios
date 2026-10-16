@@ -13,22 +13,27 @@ package final class BreathingExerciseModel {
     package let pattern: BreathingPattern
     /** Whole seconds counted so far. */
     package private(set) var elapsed = 0
+    /** Whether Jeda stopped the count. */
     package private(set) var isPaused = false
     /** Whether a step begins with a tap of the phone. */
-    package private(set) var hapticsOn = true
+    package private(set) var hapticsOn: Bool
 
     private let tick: @Sendable () async throws -> Void
     private let haptic: @MainActor (BreathingPattern.Step) -> Void
+    private let settings: BreathingSettings
 
     /**
      An exercise counted by `tick` (a one-second wait, cancelled when the screen goes) that taps the
-     phone through `haptic` at each step.
+     phone through `haptic` at each step, unless the person turned the taps off in `settings`.
      */
     package init(
-        pattern: BreathingPattern = .calming, tick: @escaping @Sendable () async throws -> Void,
+        pattern: BreathingPattern = .calming, settings: BreathingSettings = BreathingSettings(),
+        tick: @escaping @Sendable () async throws -> Void,
         haptic: @escaping @MainActor (BreathingPattern.Step) -> Void
     ) {
         self.pattern = pattern
+        self.settings = settings
+        self.hapticsOn = settings.hapticsOn
         self.tick = tick
         self.haptic = haptic
     }
@@ -56,9 +61,10 @@ package final class BreathingExerciseModel {
         isPaused.toggle()
     }
 
-    /** Turns the taps on or off. */
+    /** Turns the taps on or off, and keeps the choice. */
     package func toggleHaptics() {
         hapticsOn.toggle()
+        settings.setHapticsOn(hapticsOn)
     }
 
     private func tap(_ step: BreathingPattern.Step) {

@@ -33,7 +33,9 @@ struct RouteSlot: View {
         case .care: CareScreen(service: services.care, onOpen: onOpen)
         case .trustedMessage: TrustedMessageScreen(service: services.care)
         case .negotiationScript: NegotiationScriptScreen(service: services.careTools, onOpen: onOpen)
-        case .breathingExercise, .debtEmergency, .safetyPlan: PendingCareSlot()
+        case .breathingExercise: BreathingScreen()
+        case .debtEmergency: PendingCareSlot()
+        case .safetyPlan: SafetyPlanScreen(service: services.careTools)
         case .home, .record, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history, .transaction,
             .conversation, .importStatement, .unavailable:
             EmptySlot()
@@ -42,7 +44,7 @@ struct RouteSlot: View {
 }
 
 /**
- A Kira Peduli screen Kira Peduli links to before its own branch lands (PED-07, PED-10, PED-11): an
+ A Kira Peduli screen Kira Peduli links to before its own branch lands (PED-07): an
  empty surface that keeps the navigation bar, so its back button returns to Kira Peduli.
  */
 private struct PendingCareSlot: View {
