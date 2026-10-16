@@ -14,6 +14,7 @@ actor FakeHistoryService: HistoryService {
 
     var period = HistorySample.period
     var displayName = "dinda"
+    var canImport = true
     var summary = HistorySample.summary
     var pages: [String?: TransactionPage] = [nil: TransactionPage(items: HistorySample.transactions, nextCursor: nil)]
     var detail = HistorySample.detail
@@ -21,6 +22,8 @@ actor FakeHistoryService: HistoryService {
     var preview = HistorySample.preview
     var commitResult = ImportCommitResult(savedCount: 2, skippedCount: 1)
     var failing: Set<Call> = []
+    /** What a failing call throws. */
+    var failure = FakeHistoryService.problem
     /** The next `transactions` call waits for `release()`. */
     var holdsNextTransactions = false
     private(set) var queries: [TransactionQuery] = []
@@ -40,7 +43,7 @@ actor FakeHistoryService: HistoryService {
 
     func currentAccount() throws -> HistoryAccount {
         try check(.period)
-        return HistoryAccount(period: period, displayName: displayName)
+        return HistoryAccount(period: period, displayName: displayName, canImport: canImport)
     }
 
     func transactions(_ query: TransactionQuery) async throws -> TransactionPage {
@@ -92,7 +95,7 @@ actor FakeHistoryService: HistoryService {
     }
 
     private func check(_ call: Call) throws {
-        if failing.contains(call) { throw Self.problem }
+        if failing.contains(call) { throw failure }
     }
 }
 

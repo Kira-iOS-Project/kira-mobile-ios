@@ -43,6 +43,7 @@ package final class PinRecoveryModel: Identifiable {
     package let email: String
 
     @ObservationIgnored private var hasStarted = false
+    @ObservationIgnored private var isSendingCode = false
     @ObservationIgnored private let service: any PinRecoveryService
     @ObservationIgnored private let session: SessionStore
     @ObservationIgnored private let lock: AppLockModel
@@ -67,8 +68,15 @@ package final class PinRecoveryModel: Identifiable {
         await sendCode()
     }
 
-    /** Sends the code (the first time, and again from "Kirim Ulang Kode"). */
+    /**
+     Sends the code (the first time, and again from "Kirim Ulang Kode"): once at a time, and never
+     before the wait the API gave has passed, so a second tap cannot spend the API's cooldown and
+     come back as AUTH_CODE_RATE_LIMITED for a code that was sent.
+     */
     package func sendCode() async {
+        guard !isSendingCode, secondsUntilResend(at: now()) == 0 else { return }
+        isSendingCode = true
+        defer { isSendingCode = false }
         phase = .sending
         problem = nil
         do {

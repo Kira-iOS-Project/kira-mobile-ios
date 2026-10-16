@@ -6951,6 +6951,17 @@
         }
       }
     },
+    "import.plans" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Paket"
+          }
+        }
+      }
+    },
     "import.privacy" : {
       "localizations" : {
         "id" : {

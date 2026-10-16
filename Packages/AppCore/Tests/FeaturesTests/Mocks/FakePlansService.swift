@@ -22,6 +22,8 @@ struct FakePlansService: PlansService {
     var applyResult: Result<ScholarshipApplication, AppProblem> = .success(PlansFixtures.application())
     var withdrawResult: Result<Void, AppProblem> = .success(())
     var emailResult: Result<String, AppProblem> = .success("dinda@email.com")
+    /** How many email loads fail with `INTERNAL_ERROR` before `emailResult` answers (Coba Lagi). */
+    var emailFailures = 0
     let log = PlansCallLog()
 
     func plans() async throws -> PlanCatalog {
@@ -76,6 +78,7 @@ struct FakePlansService: PlansService {
 
     func accountEmail() async throws -> String {
         await log.record("email")
+        if await log.calls.count(where: { $0 == "email" }) <= emailFailures { throw problem("INTERNAL_ERROR") }
         return try emailResult.get()
     }
 }

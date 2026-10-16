@@ -30,15 +30,18 @@ package final class ScholarshipApplyModel {
         self.service = service
     }
 
-    /** Whether Kirim Pengajuan can be tapped: a situation picked and the story within its limit. */
+    /**
+     Whether Kirim Pengajuan can be tapped: the account email loaded (it is what the form says is
+     sent along), a situation picked and the story within its limit.
+     */
     package var canSend: Bool {
-        !situations.isEmpty && story.count <= Self.storyLimit && !isSending
+        phase.value != nil && !situations.isEmpty && story.count <= Self.storyLimit && !isSending
     }
 
     /** Whether the story is longer than the API takes. */
     package var isStoryTooLong: Bool { story.count > Self.storyLimit }
 
-    /** Loads the account email. */
+    /** Loads the account email, or loads it again after a failure; the picks and the story stay. */
     package func load() async {
         phase = .loading
         do {

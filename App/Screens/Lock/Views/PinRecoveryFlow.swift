@@ -77,7 +77,7 @@ struct PinRecoveryFlow: View {
                         .font(.subheadline)
                         .monospacedDigit()
                         .foregroundStyle(.inkMuted)
-                } else {
+                } else if model.phase != .sending {
                     KiraLink("lock.recovery.code.resend") { Task { await model.sendCode() } }
                 }
             }

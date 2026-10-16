@@ -20,13 +20,33 @@ struct ScholarshipApplyModelTests {
         }
     }
 
+    @Test("a failed email load blocks sending, and Coba Lagi loads it again with the form kept")
+    func retriesTheEmail() async {
+        let service = FakePlansService(emailFailures: 1)
+        let model = ScholarshipApplyModel(service: service)
+        model.toggle(.medicalCosts)
+        model.story = "Cicilan menumpuk."
+        await model.load()
+        #expect(!model.canSend)
+        await model.send()
+        #expect(model.sent == nil)
+        await model.load()
+        #expect(model.phase.value == "dinda@email.com")
+        #expect(model.situations == [.medicalCosts] && model.story == "Cicilan menumpuk.")
+        #expect(model.canSend)
+    }
+
     @Test("needs a situation and a story within its limit")
     func canSend() async {
         let service = FakePlansService()
         let model = ScholarshipApplyModel(service: service)
+        model.toggle(.medicalCosts)
+        #expect(!model.canSend)
+        await model.load()
+        model.toggle(.medicalCosts)
         #expect(!model.canSend)
         await model.send()
-        #expect(await service.log.calls.isEmpty)
+        #expect(await service.log.calls == ["email"])
         model.toggle(.medicalCosts)
         #expect(model.canSend)
         model.story = String(repeating: "a", count: ScholarshipApplyModel.storyLimit + 1)
@@ -40,6 +60,7 @@ struct ScholarshipApplyModelTests {
     func sends() async {
         let service = FakePlansService()
         let model = ScholarshipApplyModel(service: service)
+        await model.load()
         model.toggle(.chasedByLender)
         model.toggle(.instalmentsPilingUp)
         model.story = "  \n"
@@ -50,6 +71,7 @@ struct ScholarshipApplyModelTests {
         await model.send()
         #expect(
             await service.log.calls == [
+                "email",
                 "apply instalments_piling_up,chased_by_lender -",
                 "apply instalments_piling_up,chased_by_lender Aku mau mencatat semua cicilan.",
             ])
@@ -59,6 +81,7 @@ struct ScholarshipApplyModelTests {
     func refused() async {
         let model = ScholarshipApplyModel(
             service: FakePlansService(applyResult: .failure(problem("SCHOLARSHIP_NOT_ELIGIBLE"))))
+        await model.load()
         model.toggle(.otherHardship)
         await model.send()
         #expect(model.sent == nil)

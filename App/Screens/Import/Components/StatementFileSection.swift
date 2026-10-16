@@ -11,6 +11,8 @@ import SwiftUI
 struct StatementFileSection: View {
     let model: StatementImportModel
     let pick: () -> Void
+    /** Lihat Paket, under a refusal by the plan. */
+    let openPlans: () -> Void
 
     var body: some View {
         switch model.phase {
@@ -71,6 +73,9 @@ struct StatementFileSection: View {
                 KiraNotice(
                     .warning, title: "import.upload.failed",
                     message: problem.message)
+                if model.needsPlan {
+                    KiraButton("import.plans", variant: .secondary, action: openPlans).block()
+                }
             }
         }
         .padding(KiraSpacing.space4)

@@ -57,7 +57,12 @@ struct HistoryScreen: View {
 
     private var navBar: some View {
         KiraNavBar("history.title", subtitle: subtitle, leading: .back("history.back") { dismiss() }) {
-            KiraIconButton(.upload, label: "history.import", variant: .outline) { isImporting = true }
+            KiraIconButton(.upload, label: "history.import", variant: .outline) {
+                switch model.importEntry {
+                case .importer: isImporting = true
+                case .plans: onOpen(.plans)
+                }
+            }
             KiraHelpButton(.icon) { onOpen(.help) }
         }
     }
