@@ -1961,6 +1961,46 @@
         }
       }
     },
+    "budget.save.failure.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup"
+          }
+        }
+      }
+    },
+    "budget.save.failure.message" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koneksi terputus. Angka budgetmu tetap ada di layar. Sambungkan koneksi lalu coba lagi."
+          }
+        }
+      }
+    },
+    "budget.save.failure.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
+          }
+        }
+      }
+    },
+    "budget.save.failure.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Berhasil Menyimpan"
+          }
+        }
+      }
+    },
     "budget.save.success.done" : {
       "localizations" : {
         "id" : {
@@ -3421,6 +3461,46 @@
         }
       }
     },
+    "gallery.dialog.budgetFailure.amount" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alokasi Budget"
+          }
+        }
+      }
+    },
+    "gallery.dialog.budgetFailure.notRetried" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum ada percobaan ulang."
+          }
+        }
+      }
+    },
+    "gallery.dialog.budgetFailure.open" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uji Gagal Menyimpan Budget"
+          }
+        }
+      }
+    },
+    "gallery.dialog.budgetFailure.retried" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Percobaan ulang dipanggil."
+          }
+        }
+      }
+    },
     "gallery.dialog.cancel" : {
       "localizations" : {
         "id" : {
@@ -4837,6 +4917,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Token Warna"
+          }
+        }
+      }
+    },
+    "gallery.section.dialogBudgetFailure" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dialog Gagal Menyimpan Budget"
           }
         }
       }
