@@ -3,12 +3,39 @@
  kira-backend `src/lib/constants/money.ts`). The app draws each with a design-system tile.
  */
 package enum TransactionCategory: String, CaseIterable, Codable, Sendable {
-    case food, coffee, transport, shopping, bills
+    /** Makan & Minum. */
+    case food
+    /** Kopi. */
+    case coffee
+    /** Transportasi. */
+    case transport
+    /** Belanja. */
+    case shopping
+    /** Tagihan. */
+    case bills
+    /** Paylater: an instalment paid. */
     case paylaterInstalment = "paylater_instalment"
+    /** Tabungan: money set aside. */
     case savingsDeposit = "savings_deposit"
-    case insurance, entertainment, health, education, household
+    /** Proteksi: an insurance premium. */
+    case insurance
+    /** Hiburan. */
+    case entertainment
+    /** Kesehatan. */
+    case health
+    /** Pendidikan. */
+    case education
+    /** Rumah. */
+    case household
+    /** Lainnya, for an expense. */
     case otherExpense = "other_expense"
-    case salary, bonus, business
+    /** Gaji. */
+    case salary
+    /** Bonus. */
+    case bonus
+    /** Usaha. */
+    case business
+    /** Lainnya, for income. */
     case otherIncome = "other_income"
 
     /** The direction a category belongs to. */
