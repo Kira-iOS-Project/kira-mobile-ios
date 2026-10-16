@@ -66,20 +66,13 @@ struct KiraField: View {
                 if isSingleLine, text.isEmpty, let prompt {
                     Text(prompt).font(.body).foregroundStyle(.inkMuted).accessibilityHidden(true)
                 }
-                /**
-                 Vertical always, so a long value wraps at large text sizes instead of being cut off
-                 (Apple's audit reports a cut line as clipped text); a single-line field keeps to one
-                 paragraph, as Return ends the editing instead of starting a new line.
-                 */
-                TextField(text: groupsDigits ? $shown : $text, prompt: systemPrompt, axis: .vertical) {
+                TextField(
+                    text: groupsDigits ? $shown : $text, prompt: systemPrompt,
+                    axis: isSingleLine ? .horizontal : .vertical
+                ) {
                     Text(label)
                 }
-                .lineLimit(isSingleLine ? 1...4 : minimumLines...max(minimumLines, 6))
-                .onChange(of: text) { _, value in
-                    guard isSingleLine, value.contains("\n") else { return }
-                    text = value.replacingOccurrences(of: "\n", with: "")
-                    isFocused = false
-                }
+                .lineLimit(minimumLines...max(minimumLines, 6))
                 .onChange(of: shown) { _, value in regroup(value) }
                 .onChange(of: text, initial: true) { _, value in
                     if groupsDigits, value != AmountInput.grouped(shown) { shown = value }

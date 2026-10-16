@@ -15,10 +15,21 @@ nonisolated final class ChatAuditTests: XCTestCase {
     /** EditDraf: the pencil of a draft item opens the drafts sheet. */
     @MainActor
     func testDraftsSheetPassesTheAudit() throws {
-        try auditScreen("recordDrafts") { app in
-            Self.tap(app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Ubah '")).firstMatch)
-            XCTAssertTrue(app.staticTexts["Ubah Transaksi"].waitForExistence(timeout: 5))
-        }
+        try auditScreen(
+            "recordDrafts",
+            prepare: { app in
+                Self.tap(app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Ubah '")).firstMatch)
+                XCTAssertTrue(app.staticTexts["Ubah Transaksi"].waitForExistence(timeout: 5))
+            },
+            accepting: { issue in
+                /**
+                 Accepted, as for a presented dialog (docs/design-system.md, "Text behind a dialog's
+                 scrim"): the chat shows through the sheet's scrim, and its text, which VoiceOver
+                 rightly cannot reach while the sheet is modal, reads as text without an element. The
+                 audit names no element for it; any finding on an element still fails.
+                 */
+                issue.auditType == .elementDetection && issue.element == nil
+            })
     }
 
     @MainActor
@@ -49,10 +60,25 @@ nonisolated final class ChatAuditTests: XCTestCase {
     /** InputSuara on Kira Plus: the microphone opens the voice panel. */
     @MainActor
     func testVoicePanelPassesTheAudit() throws {
-        try auditScreen("recordVoice") { app in
-            Self.tap(app.buttons["Catat dengan suara"])
-            XCTAssertTrue(app.buttons["Berhenti merekam"].waitForExistence(timeout: 5))
-        }
+        let app = XCUIApplication()
+        try auditScreen(
+            "recordVoice",
+            prepare: { app in
+                Self.tap(app.buttons["Catat dengan suara"])
+                XCTAssertTrue(app.buttons["Berhenti merekam"].waitForExistence(timeout: 5))
+            },
+            accepting: { issue in Self.isUnderHeader(issue, in: app) })
+    }
+
+    /**
+     Accepted: a message the timeline has scrolled up under Catat's opaque header (its title and the
+     pay period), where it is hidden and the audit samples the header instead of the bubble.
+     */
+    @MainActor
+    private static func isUnderHeader(_ issue: XCUIAccessibilityAuditIssue, in app: XCUIApplication) -> Bool {
+        guard issue.auditType == .contrast, let frame = issue.element?.frame else { return false }
+        let period = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH 'Periode'")).firstMatch
+        return period.exists && frame.minY < period.frame.maxY + 12
     }
 
     @MainActor

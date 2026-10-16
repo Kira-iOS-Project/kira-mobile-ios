@@ -11,6 +11,7 @@ import SwiftUI
 struct DraftEditSheet: View {
     @Bindable var model: DraftEditModel
     let onClose: () -> Void
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         VStack(alignment: .leading, spacing: KiraSpacing.space3) {
@@ -47,19 +48,50 @@ struct DraftEditSheet: View {
     /** Nama and Jumlah side by side, the category chips and the draft's date. */
     private var fields: some View {
         VStack(alignment: .leading, spacing: KiraSpacing.space3) {
-            HStack(alignment: .top, spacing: 10) {
-                KiraField("record.edit.name", text: $model.name)
-                KiraField("record.edit.amount", text: $model.amountText)
-                    .amount()
-                    .prefix("record.currency")
-                    .suffix("record.cents")
-                    .hint("record.edit.amountHint")
-                    .keyboardType(.numberPad)
+            /** Side by side as on the board; stacked at the accessibility sizes, where half a row cuts the values. */
+            if typeSize.isAccessibilitySize {
+                VStack(alignment: .leading, spacing: KiraSpacing.space3) { nameAndAmount }
+            } else {
+                HStack(alignment: .top, spacing: 10) { nameAndAmount }
             }
             categories
-            KiraField("record.edit.date", text: .constant(dateText))
-                .icon(.calendar)
-                .allowsHitTesting(false)
+            dateRow
+        }
+    }
+
+    @ViewBuilder private var nameAndAmount: some View {
+        KiraField("record.edit.name", text: $model.name)
+        KiraField("record.edit.amount", text: $model.amountText)
+            .amount()
+            .prefix("record.currency")
+            .suffix("record.cents")
+            .hint("record.edit.amountHint")
+            .keyboardType(.numberPad)
+    }
+
+    /**
+     The draft's date, read only: drawn like a field (its label above a hairline box with the
+     calendar icon) but as text, which wraps at large sizes where a field's single line is cut off.
+     */
+    private var dateRow: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text("record.edit.date")
+                .font(.footnote.weight(.semibold)).kiraLineHeight(18, size: 13)
+                .foregroundStyle(.inkMuted)
+                .padding(.horizontal, 4)
+                .accessibilityHidden(true)
+            HStack(spacing: KiraSpacing.space2) {
+                Text(dateText).font(.body).foregroundStyle(.ink)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                KiraIcon(.calendar, size: 20).foregroundStyle(.inkMuted)
+            }
+            .padding(.vertical, 14)
+            .padding(.horizontal, KiraSpacing.space4)
+            .frame(minHeight: 52)
+            .kiraCard(cornerRadius: KiraRadius.medium)
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel(Text("record.edit.date"))
+            .accessibilityValue(Text(dateText))
         }
     }
 

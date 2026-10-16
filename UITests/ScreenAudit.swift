@@ -28,8 +28,9 @@ extension XCTestCase {
         let scroll = app.scrollViews.firstMatch
         for pass in 0..<8 {
             if pass > 0 {
-                guard scroll.exists, !lastElementIsVisible(in: scroll, window: window) else { break }
-                scrollDown(scroll)
+                let remaining = scroll.exists ? hiddenBelow(in: scroll, window: window) : 0
+                guard remaining >= 20 else { break }
+                scrollDown(scroll, by: remaining)
             }
             try XCTContext.runActivity(named: "\(screen), pass \(pass + 1)") { _ in
                 try auditInPlace(app, accepting: accepted)
@@ -66,6 +67,13 @@ extension XCTestCase {
          */
         if issue.auditType == .dynamicType, issue.element?.identifier == "kira.small-type" { return true }
         /**
+         Accepted pending the owner, from the same deviation: "Text clipped" on those small texts,
+         such as the 11 pt overline ("RENCANA BEBAS UTANG", "BEASISWA KIRA DITERIMA"), which have no
+         line limit and render whole (the element screenshots); the audit predicts a cut at sizes the
+         small style does not scale to.
+         */
+        if issue.auditType == .textClipped, issue.element?.identifier == "kira.small-type" { return true }
+        /**
          Accepted: the contrast of a disabled control, such as "Verifikasi" before the six digits are
          in. A disabled KiraButton is drawn at 45% opacity (bundle.css, docs/design-system.md), and
          WCAG 1.4.3 exempts an inactive control from the contrast minimum; enabled, the same button
@@ -77,6 +85,11 @@ extension XCTestCase {
          home indicator, where the audit samples the bar instead of the text's own background.
          */
         guard issue.auditType == .contrast, let frame = issue.element?.frame else { return false }
+        /**
+         Accepted, for the same reason: an element the screen's left or right edge cuts, such as the
+         last chip of a row that scrolls sideways, where the audit samples pixels off the screen.
+         */
+        if frame.minX < window.minX || frame.maxX > window.maxX { return true }
         return frame.minY < window.minY + 100 || frame.maxY > window.maxY - 50
     }
 
@@ -104,14 +117,14 @@ extension XCTestCase {
         Thread.sleep(forTimeInterval: 1.5)
     }
 
-    /** Whether the bottom of the scroll view's content is already on screen. */
+    /** How far the bottom of the scroll view's content lies below what is on screen. */
     @MainActor
-    private func lastElementIsVisible(in scroll: XCUIElement, window: CGRect) -> Bool {
+    private func hiddenBelow(in scroll: XCUIElement, window: CGRect) -> CGFloat {
         let bottoms = [scroll.staticTexts, scroll.buttons].compactMap { query -> CGFloat? in
             let count = query.count
             return count > 0 ? query.element(boundBy: count - 1).frame.maxY : nil
         }
-        return (bottoms.max() ?? 0) <= min(scroll.frame.maxY, window.maxY)
+        return (bottoms.max() ?? 0) - min(scroll.frame.maxY, window.maxY)
     }
 
     /**
@@ -142,14 +155,17 @@ extension XCTestCase {
     }
 
     /**
-     Scrolls about two thirds of a screen with a drag that holds still before lifting, then lets the
-     page settle, so the audit never reads moving text.
+     Scrolls by `distance`, at most about two thirds of a screen, with a drag that holds still before
+     lifting, then lets the page settle. Never past the end: a bounce there leaves the accessibility
+     frames where the content was, and the audit then measures the wrong pixels.
      */
     @MainActor
-    private func scrollDown(_ scroll: XCUIElement) {
+    private func scrollDown(_ scroll: XCUIElement, by distance: CGFloat) {
+        let height = scroll.frame.height
+        let travel = min(distance, height * 0.65) / max(height, 1)
         let start = scroll.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.85))
-        let end = scroll.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.2))
-        start.press(forDuration: 0.05, thenDragTo: end, withVelocity: .default, thenHoldForDuration: 0.5)
+        let end = scroll.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.85 - travel))
+        start.press(forDuration: 0.05, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.5)
         Thread.sleep(forTimeInterval: 1)
     }
 }
