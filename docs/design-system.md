@@ -186,7 +186,7 @@ Options beyond five initializer parameters are chained modifiers, such as
 | `Toggle` | `KiraToggle(_:isOn:)` | `Components/Controls/KiraToggle.swift` |
 | `Field` (prefix, suffix, hint, error, multiline) | `KiraField(_:text:prompt:)` `.prefix` `.suffix` `.hint` `.error` `.multiline` | `Components/Controls/KiraField.swift` |
 | `Checkbox` (canvas ONB-10c: a full-width row) | `KiraCheckbox(_:isOn:)` | `Components/Controls/KiraCheckbox.swift` |
-| Code boxes (canvas "PIN 6 kotak (pola OTP)": the app-lock PIN, the email code; hint, error) | `KiraCodeField(_:code:kind:)` (`.pin`, `.code`) `.hint` `.error`; digits kept by `DigitCode` | `Components/Controls/KiraCodeField.swift`, `KiraCodeFieldParts.swift`, `Packages/AppCore/Sources/Domain/Code/DigitCode.swift` |
+| Code boxes (canvas "PIN 6 kotak (pola OTP)": the app-lock PIN, the email code; hint, error) | `KiraCodeField(_:code:kind:)` (`.pin`, `.code`) `.hint` `.error`; digits kept by `DigitCode` | `Components/Controls/KiraCodeField.swift`, `KiraCodeFieldParts.swift`, `Packages/AppCore/Sources/Domain/Shared/Models/DigitCode.swift` |
 | `.k-link` (on its own; inside a sentence) | `KiraLink(_:action:)`; `KiraLinkText(_:onOpen:)` with Markdown links in the catalog value | `Components/Controls/KiraLink.swift` |
 | `Segmented` | `KiraSegmented(_:options:selection:)` | `Components/Controls/KiraSegmented.swift` |
 | `Chip` (selected, icon, category) | `KiraChip(_:isSelected:leading:action:)`; wrap many in `KiraFlowRow` | `Components/Controls/KiraChip.swift`, `Layout/KiraFlowRow.swift` |
