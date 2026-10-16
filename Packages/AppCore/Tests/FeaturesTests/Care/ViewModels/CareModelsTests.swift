@@ -16,10 +16,10 @@ struct FakeCareService: CareService {
 
 enum CareFixtures {
     static let kiraCare = CareContact(
-        key: .kiraCare, name: "Layanan Kira Peduli", phone: "081234567890", whatsApp: "081234567890", note: "n")
+        key: .kiraCare, name: "Layanan Kira Peduli", phone: "081234567890", whatsApp: "081234567890")
     static let server = CareContactList(
         verifiedOn: CalendarDay(year: 2026, month: 11, day: 1),
-        contacts: [kiraCare, CareContact(key: .psc119, name: "PSC 119", phone: "112", note: "n")])
+        contacts: [kiraCare, CareContact(key: .psc119, name: "PSC 119", phone: "112")])
 }
 
 @MainActor

@@ -11,22 +11,16 @@ extension CareContactList {
         contacts: [
             CareContact(
                 key: .healing119, name: "Healing119", phone: "119", phoneExtension: "8",
-                website: URL(string: "https://healing119.id"),
-                note: "Free mental-health counselling by health workers."),
+                website: URL(string: "https://healing119.id")),
             CareContact(
-                key: .psc119, name: "PSC 119", phone: "119",
-                note: "Public safety centre for medical emergencies, in every regency and city."),
+                key: .psc119, name: "PSC 119", phone: "119"),
             CareContact(
-                key: .ojk157, name: "OJK 157", phone: "157", whatsApp: "081157157157",
-                note: "The financial services authority: complaints about lenders and collection."),
+                key: .ojk157, name: "OJK 157", phone: "157", whatsApp: "081157157157"),
             CareContact(
-                key: .satgasPasti, name: "Satgas PASTI", website: URL(string: "https://sipasti.ojk.go.id"),
-                note: "Reports of illegal lending and investment."),
+                key: .satgasPasti, name: "Satgas PASTI", website: URL(string: "https://sipasti.ojk.go.id")),
             CareContact(
-                key: .iasc, name: "IASC", website: URL(string: "https://iasc.ojk.go.id"),
-                note: "Anti-scam centre: blocks accounts used in a fraud."),
+                key: .iasc, name: "IASC", website: URL(string: "https://iasc.ojk.go.id")),
             CareContact(
-                key: .lapsSjk, name: "LAPS SJK", website: URL(string: "https://lapssjk.id"),
-                note: "Dispute resolution when a complaint to the lender is not settled."),
+                key: .lapsSjk, name: "LAPS SJK", website: URL(string: "https://lapssjk.id")),
         ])
 }

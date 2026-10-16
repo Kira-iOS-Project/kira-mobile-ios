@@ -3,7 +3,6 @@
  editable, sent only when the person taps WhatsApp or SMS, or a call. Each opens the other app with
  the message typed in; Kira itself never sends or calls.
  */
-import Domain
 import Features
 import SwiftUI
 

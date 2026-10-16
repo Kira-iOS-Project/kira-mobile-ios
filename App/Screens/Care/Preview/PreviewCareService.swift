@@ -17,8 +17,7 @@ struct PreviewCareService: CareService {
         if isOffline { throw AppProblem() }
         guard listsKiraCare else { return .shipped }
         let kiraCare = CareContact(
-            key: .kiraCare, name: "Layanan Kira Peduli", phone: "080000000000", whatsApp: "080000000000",
-            note: "Contoh untuk pratinjau")
+            key: .kiraCare, name: "Layanan Kira Peduli", phone: "080000000000", whatsApp: "080000000000")
         return CareContactList(
             verifiedOn: CareContactList.shipped.verifiedOn, contacts: [kiraCare] + CareContactList.shipped.contacts)
     }

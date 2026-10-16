@@ -31,6 +31,6 @@ extension CareContact {
     init(_ body: Components.Schemas.CareContact) throws {
         self.init(
             key: try bridged(body.key), name: body.name, phone: body.phone, phoneExtension: body._extension,
-            whatsApp: body.whatsapp, website: body.url.flatMap(URL.init(string:)), note: body.note)
+            whatsApp: body.whatsapp, website: body.url.flatMap(URL.init(string:)))
     }
 }
