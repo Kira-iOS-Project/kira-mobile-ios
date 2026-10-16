@@ -12183,6 +12183,61 @@
         }
       }
     },
+    "problem.PAYOFF_DEBT_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akun utang ini sudah lunas atau tidak ada lagi."
+          }
+        }
+      }
+    },
+    "problem.PAYOFF_EXTRA_TOO_HIGH" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambahan bayar melebihi sisa uang periode ini. Turunkan jumlahnya."
+          }
+        }
+      }
+    },
+    "problem.PAYOFF_NOTHING_TO_PLAN" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum ada utang konsumtif untuk dibuatkan rencana."
+          }
+        }
+      }
+    },
+    "problem.PAYOFF_PAYMENT_TOO_HIGH" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pembayaran lebih besar dari sisa akun ini."
+          }
+        }
+      }
+    },
+    "problem.PAYOFF_PLAN_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu belum punya rencana pelunasan."
+          }
+        }
+      }
+    },
     "problem.PLAN_FEATURE_UNAVAILABLE" : {
       "extractionState" : "manual",
       "localizations" : {
