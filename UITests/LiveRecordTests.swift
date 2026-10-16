@@ -39,7 +39,9 @@ nonisolated final class LiveRecordTests: XCTestCase {
         LiveFlow.shot("cat-04-detail", in: self)
         tap(app.buttons["Ubah"], app)
         let amount = app.textFields["Jumlah"]
-        LiveFlow.type(String(repeating: XCUIKeyboardKey.delete.rawValue, count: 12) + "27000", into: amount, in: self, app: app)
+        /** A new amount every run: an unchanged form closes without "Perubahan Tersimpan". */
+        let changed = (amount.value as? String ?? "").hasPrefix("27") ? "28000" : "27000"
+        LiveFlow.type(String(repeating: XCUIKeyboardKey.delete.rawValue, count: 12) + changed, into: amount, in: self, app: app)
         tap(app.buttons["Simpan"], app)
         LiveFlow.expect(app.staticTexts["Perubahan Tersimpan"], in: self, app: app)
         LiveFlow.shot("cat-05-changed", in: self)
