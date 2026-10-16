@@ -61,7 +61,8 @@ struct TransactionAPITests {
     @Test("reads a detail with and without its source message")
     func readsDetail() async throws {
         let quote =
-            #""sourceMessage":{"id":"m-1","body":"grab 18rb","createdAt":"\#(recordNowJSON)","spanStart":0,"spanEnd":4}"#
+            #""sourceMessage":{"id":"m-1","body":"grab 18rb","createdAt":"\#(recordNowJSON)","#
+            + #""spanStart":0,"spanEnd":4}"#
         let withSource = String(transactionJSON.dropLast()) + "," + quote + "}"
         let (api, _) = KiraAPI.canned(json: withSource)
         let detail = try await api.getTransaction(id: "t-1")
