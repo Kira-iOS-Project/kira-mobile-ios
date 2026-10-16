@@ -24,7 +24,7 @@ struct HistoryDayGroup: View {
     }
 
     private var title: LocalizedStringResource {
-        let date = KiraDateFormat.weekdayDay.format(day.day.start)
+        let date = day.day.date.formatted(.kiraGroupDate)
         switch day.kind {
         case .today: return "history.day.today \(date)"
         case .payday: return "history.day.payday \(date)"
@@ -34,7 +34,7 @@ struct HistoryDayGroup: View {
 
     private var footer: LocalizedStringResource {
         if day.kind == .payday {
-            return "history.day.paydayFooter \(DayRangeFormatStyle().format(.init(period)))"
+            return "history.day.paydayFooter \(DayRange(period).formatted(.kiraDayRange))"
         }
         let isToday = day.kind == .today
         let totals = day.totals
@@ -47,7 +47,7 @@ struct HistoryDayGroup: View {
     }
 
     private func subtitle(_ transaction: Domain.Transaction) -> Text {
-        let time = KiraDateFormat.time.format(transaction.occurredAt)
+        let time = transaction.occurredAt.formatted(.kiraTime)
         let source = Text(transaction.source.rowLabel)
         if transaction.type == .income {
             return Text("history.row.income \(time) \(source)")

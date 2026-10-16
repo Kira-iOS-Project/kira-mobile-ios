@@ -37,7 +37,7 @@ struct ImportReviewGroups: View {
             Text(row.description), leading: .category(category.artwork), trailing: .check(model.isChecked(row)),
             action: action
         )
-        .subtitle(Text("review.row.details \(Text(category.title)) \(KiraDateFormat.day.format(row.day.start))"))
+        .subtitle(Text("review.row.details \(Text(category.title)) \(row.day.date.formatted(.kiraDate))"))
         .amount(row.type == .income ? amount.signed() : amount)
     }
 

@@ -14,7 +14,7 @@ enum Sample {
     static func profile(hidesBalances: Bool = false) -> AccountProfile {
         AccountProfile(
             id: "u1", email: "dinda@email.com", displayName: "Dinda", plan: AccountPlan(id: .free), usage: usage,
-            period: PayPeriod(start: CalendarDay(day), end: CalendarDay(day)), debtAccountCount: 3,
+            period: PayPeriod(start: CalendarDay(day), end: CalendarDay(day), daysUntilPayday: 1), debtAccountCount: 3,
             hidesBalances: hidesBalances,
             aiEnabled: true, weeklySummaryEnabled: true)
     }

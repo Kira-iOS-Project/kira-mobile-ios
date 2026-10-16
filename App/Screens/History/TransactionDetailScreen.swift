@@ -62,7 +62,7 @@ struct TransactionDetailScreen: View {
         case .loaded(let detail):
             loaded(detail)
         case .failed(let problem):
-            HistoryProblemView(problem: problem) { Task { await model.load() } }
+            LoadFailedView(problem: problem) { Task { await model.load() } }
         }
     }
 
@@ -96,7 +96,7 @@ struct TransactionDetailScreen: View {
 
     private var editSubtitle: LocalizedStringResource? {
         guard let quote = model.phase.value?.sourceMessage else { return nil }
-        return "transaction.edit.subtitle \(KiraDateFormat.time.format(quote.createdAt))"
+        return "transaction.edit.subtitle \(quote.createdAt.formatted(.kiraTime))"
     }
 
     private var isEditing: Binding<Bool> {

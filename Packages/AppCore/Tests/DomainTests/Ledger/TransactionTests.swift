@@ -103,6 +103,6 @@ struct TransactionSummaryTests {
         let query = TransactionQuery(start: day, end: day, limit: 50)
         #expect(query.type == nil && query.category == nil && query.text == nil && query.cursor == nil)
         #expect(TransactionPage(items: [], nextCursor: nil).items.isEmpty)
-        #expect(PayPeriod(start: day, end: day).end == day)
+        #expect(PayPeriod(start: day, end: day, daysUntilPayday: 1).nextPayday == day.adding(days: 1))
     }
 }

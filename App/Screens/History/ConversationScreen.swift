@@ -57,7 +57,7 @@ struct ConversationScreen: View {
             }
             .padding(.top, KiraSpacing.space2)
         case .failed(let problem):
-            HistoryProblemView(problem: problem) { Task { await model.load() } }
+            LoadFailedView(problem: problem) { Task { await model.load() } }
         }
     }
 }

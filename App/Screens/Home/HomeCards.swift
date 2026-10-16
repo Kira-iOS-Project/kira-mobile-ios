@@ -68,13 +68,7 @@ struct HomeWeeklyCard: View {
     }
 
     /** The first day, as much of it as the last day does not already say. */
-    private var firstEnd: Text {
-        switch range.shape {
-        case .sameMonth: Text(range.firstDay, format: .number)
-        case .sameYear: Text(range.first, format: .kiraDayMonth)
-        case .acrossYears: Text(range.first, format: .kiraDate)
-        }
-    }
+    private var firstEnd: String { range.firstEnd }
 
-    private var lastEnd: Text { Text(range.last, format: .kiraDate) }
+    private var lastEnd: String { range.lastEnd }
 }
