@@ -9,7 +9,7 @@ struct ScoreRoutesTests {
         "a step opens the indicator it improves, or the debt plan and the emergency mode not built yet",
         arguments: [
             (ScoreStepKind.payOffDebt, AppRoute.unavailable(.debtPlan)),
-            (.seekRelief, .unavailable(.debtEmergency)),
+            (.seekRelief, .debtEmergency),
             (.buildEmergencyFund, .indicator(.emergencyFund)),
             (.addProtection, .indicator(.protection)),
             (.raiseSavings, .indicator(.savingsRatio)),

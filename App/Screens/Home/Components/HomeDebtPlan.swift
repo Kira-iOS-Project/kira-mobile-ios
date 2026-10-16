@@ -21,7 +21,7 @@ struct HomeDebtPlanSections: View {
         if let target = home.microTarget {
             HomeMicroTargetCard(target: target)
         }
-        HomeDebtEmergencyCard { onOpen(.unavailable(.debtEmergency)) }
+        HomeDebtEmergencyCard { onOpen(.debtEmergency) }
     }
 }
 

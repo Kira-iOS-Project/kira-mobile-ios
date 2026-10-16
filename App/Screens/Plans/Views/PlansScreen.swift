@@ -32,7 +32,7 @@ struct PlansScreen: View {
     var body: some View {
         PlansScreenFrame(leaf: .standard(size: 150)) {
             KiraNavBar("plans.title", leading: .close("plans.close") { dismiss() }) {
-                KiraHelpButton(.icon) { onOpen(.unavailable(.care)) }
+                KiraHelpButton(.icon) { onOpen(.care) }
             }
             PlansDisplayTitle("plans.headline", size: 28, tracking: 0.02)
                 .padding(EdgeInsets(top: 8, leading: 4, bottom: 0, trailing: 4))

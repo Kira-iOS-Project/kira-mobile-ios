@@ -1,6 +1,7 @@
 /**
  The screen of each pushed route, by area: Score (score, indicator), Account (profile … deleteAccount,
- about … complaints), Plans (plans … scholarshipStatus). "Cek Ulang" (`healthCheck`) covers the
+ about … complaints), Plans (plans … scholarshipStatus), Kira Peduli (care, trustedMessage), Mode
+ Darurat Utang and its guides (debtEmergency, debtGuide). "Cek Ulang" (`healthCheck`) covers the
  shell instead (MainShell); Catat's and Riwayat's routes stay empty for their own integration, and
  an unavailable area never gets here.
  */
@@ -29,8 +30,13 @@ struct RouteSlot: View {
         case .plans, .planDetail, .checkout, .subscription, .paymentMethod, .invoices, .treat, .scholarship,
             .scholarshipApply, .scholarshipStatus:
             PlansRoute(route: route, service: services.plans, onOpen: onOpen)
+        case .care: CareScreen(service: services.care, onOpen: onOpen)
+        case .trustedMessage: TrustedMessageScreen(service: services.care)
+        case .debtEmergency:
+            DebtEmergencyScreen(care: services.care, service: services.debtEmergency, onOpen: onOpen)
+        case .debtGuide(let guide): DebtGuideScreen(guide: guide, care: services.care, onOpen: onOpen)
         case .home, .record, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history, .transaction,
-            .conversation, .importStatement, .unavailable:
+            .conversation, .importStatement, .breathingExercise, .negotiationScript, .safetyPlan, .unavailable:
             EmptySlot()
         }
     }

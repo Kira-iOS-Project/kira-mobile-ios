@@ -16,7 +16,7 @@ let liveMeJSON =
     + #""healthCheckCompleted":true,"plan":{"id":"free","source":null,"renewsOn":null},"#
     + #""usage":\#(liveUsageJSON),"period":{"start":"2026-09-25","end":"2026-10-24","#
     + #""nextPayday":"2026-10-25","daysUntilPayday":9},"lastCategories":{"expense":"food","income":null},"#
-    + #""debtAccountCount":0,"aiEnabled":true,"weeklySummaryEnabled":false}"#
+    + #""debtAccountCount":0,"aiEnabled":true,"weeklySummaryEnabled":false,"debtEmergencyActive":false}"#
 
 let liveDraftJSON =
     #"{"id":"d-1","type":"expense","name":"Iced Latte","amount":25000,"category":"coffee","#

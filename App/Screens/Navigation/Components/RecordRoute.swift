@@ -1,7 +1,7 @@
 /**
  The record routes Riwayat owns (CAT-07 to CAT-12): Riwayat Transaksi, Detail Transaksi, Riwayat
- Percakapan and Impor Mutasi, on the history service of `RecordComposition`. Kira Peduli, which
- every one of them links to, is `AppRoute.unavailable(.care)` until that area is built.
+ Percakapan and Impor Mutasi, on the history service of `RecordComposition`. Their help button
+ opens Kira Peduli (`AppRoute.care`).
  */
 import Features
 import SwiftUI
@@ -39,7 +39,7 @@ struct RecordRoute: View {
 
     private func open(_ destination: HistoryDestination) {
         switch destination {
-        case .help: onOpen(.unavailable(.care))
+        case .help: onOpen(.care)
         }
     }
 }
