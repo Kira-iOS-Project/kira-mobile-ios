@@ -36,13 +36,11 @@ package struct CareContact: Hashable, Sendable {
     package let whatsApp: String?
     /** Its website, if any. */
     package let website: URL?
-    /** What the contact is for, in English: the team's note, never shown (the catalog has the copy). */
-    package let note: String
 
     /** A contact. */
     package init(
         key: CareContactKey, name: String, phone: String? = nil, phoneExtension: String? = nil, whatsApp: String? = nil,
-        website: URL? = nil, note: String
+        website: URL? = nil
     ) {
         self.key = key
         self.name = name
@@ -50,7 +48,6 @@ package struct CareContact: Hashable, Sendable {
         self.phoneExtension = phoneExtension
         self.whatsApp = whatsApp
         self.website = website
-        self.note = note
     }
 }
 

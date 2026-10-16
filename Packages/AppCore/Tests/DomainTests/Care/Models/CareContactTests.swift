@@ -5,13 +5,13 @@ import Testing
 
 @Suite("CareContact")
 struct CareContactTests {
-    private let ojk = CareContact(key: .ojk157, name: "OJK 157", phone: "157", whatsApp: "081157157157", note: "n")
+    private let ojk = CareContact(key: .ojk157, name: "OJK 157", phone: "157", whatsApp: "081157157157")
 
     @Test("calls the number, then the extension after a pause")
     func call() {
         #expect(CareContactList.shipped.contact(.healing119)?.callURL?.absoluteString == "tel:119,8")
         #expect(ojk.callURL?.absoluteString == "tel:157")
-        let international = CareContact(key: .kiraCare, name: "K", phone: "+62 811-2345", note: "n")
+        let international = CareContact(key: .kiraCare, name: "K", phone: "+62 811-2345")
         #expect(international.callURL?.absoluteString == "tel:+628112345")
     }
 
@@ -22,7 +22,7 @@ struct CareContactTests {
         #expect(
             ojk.whatsAppURL(message: "Halo, bisa & mau?")?.absoluteString
                 == "https://wa.me/6281157157157?text=Halo,%20bisa%20%26%20mau%3F")
-        let international = CareContact(key: .kiraCare, name: "K", whatsApp: "628111", note: "n")
+        let international = CareContact(key: .kiraCare, name: "K", whatsApp: "628111")
         #expect(international.whatsAppURL(message: nil)?.absoluteString == "https://wa.me/628111")
     }
 
@@ -34,11 +34,11 @@ struct CareContactTests {
 
     @Test("has no link for a missing or empty number")
     func missing() {
-        let web = CareContact(key: .iasc, name: "IASC", website: URL(string: "https://iasc.ojk.go.id"), note: "n")
+        let web = CareContact(key: .iasc, name: "IASC", website: URL(string: "https://iasc.ojk.go.id"))
         #expect(web.callURL == nil)
         #expect(web.smsURL(message: "x") == nil)
         #expect(web.whatsAppURL(message: "x") == nil)
-        let empty = CareContact(key: .kiraCare, name: "K", phone: "-", whatsApp: "-", note: "n")
+        let empty = CareContact(key: .kiraCare, name: "K", phone: "-", whatsApp: "-")
         #expect(empty.callURL == nil)
         #expect(empty.smsURL(message: nil) == nil)
         #expect(empty.whatsAppURL(message: nil) == nil)
@@ -58,7 +58,7 @@ struct CareContactListTests {
 
     @Test("falls back to the shipped contact the server's list lacks")
     func orShipped() {
-        let kira = CareContact(key: .kiraCare, name: "Layanan Kira Peduli", phone: "0811", note: "n")
+        let kira = CareContact(key: .kiraCare, name: "Layanan Kira Peduli", phone: "0811")
         let list = CareContactList(verifiedOn: CalendarDay(year: 2026, month: 11, day: 1), contacts: [kira])
         #expect(list.contactOrShipped(.kiraCare) == kira)
         #expect(list.contact(.psc119) == nil)

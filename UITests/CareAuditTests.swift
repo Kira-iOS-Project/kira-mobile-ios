@@ -59,10 +59,10 @@ nonisolated final class CareAuditTests: XCTestCase {
     @MainActor
     func testCareOfflineStillListsTheContacts() throws {
         let app = launch("careOffline")
-        XCTAssertTrue(app.buttons["Telepon Healing119"].waitForExistence(timeout: 5))
-        XCTAssertTrue(app.buttons["Chat Healing119"].exists)
+        XCTAssertTrue(row(app, "Telepon Healing119").waitForExistence(timeout: 5))
+        XCTAssertTrue(row(app, "Chat Healing119").exists)
         XCTAssertTrue(app.buttons["Telepon 119"].exists)
-        XCTAssertTrue(app.buttons["Mode Darurat Utang"].exists)
+        XCTAssertTrue(row(app, "Mode Darurat Utang").exists)
         XCTAssertFalse(app.buttons["Hubungi Layanan Kira. Pesan pembuka sudah disiapkan"].exists)
         app.terminate()
     }
@@ -80,14 +80,22 @@ nonisolated final class CareAuditTests: XCTestCase {
         app.terminate()
     }
 
-    /** The swipe down closes the sheet too. */
+    /**
+     The grabber's centre: the help sheet's panel starts 226 pt down (CareHelpSheet's `top`), and
+     only its grabber (8 pt padding, 5 pt tall) takes the drag, as the sheet has no header.
+     */
+    private static let grabberY: CGFloat = 236
+
+    /** A swipe down from the grabber closes the sheet too. */
     @MainActor
     func testCareHelpClosesBySwipe() throws {
         let app = launch("careHelp")
         let title = app.staticTexts["Bicara dengan Orang Sekarang"]
         XCTAssertTrue(title.waitForExistence(timeout: 5))
-        let top = app.windows.firstMatch.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.29))
-        top.press(forDuration: 0.05, thenDragTo: top.withOffset(CGVector(dx: 0, dy: 500)))
+        let window = app.windows.firstMatch
+        let grabber = window.coordinate(withNormalizedOffset: .zero)
+            .withOffset(CGVector(dx: window.frame.width / 2, dy: Self.grabberY))
+        grabber.press(forDuration: 0.05, thenDragTo: grabber.withOffset(CGVector(dx: 0, dy: 400)))
         XCTAssertTrue(title.waitForNonExistence(timeout: 5))
         app.terminate()
     }
@@ -104,10 +112,16 @@ nonisolated final class CareAuditTests: XCTestCase {
         XCTAssertFalse(whatsApp.isEnabled)
         XCTAssertFalse(app.buttons["Kirim lewat SMS"].isEnabled)
         XCTAssertFalse(app.buttons["Telepon Layanan Kira sekarang"].isEnabled)
-        let field = app.textViews.firstMatch
+        let message = "Halo, aku lagi nggak baik-baik saja. Bisa dihubungi sekarang?"
+        let field = app.descendants(matching: .any).matching(NSPredicate(format: "value == %@", message)).firstMatch
         XCTAssertTrue(field.exists)
-        XCTAssertEqual(field.value as? String, "Halo, aku lagi nggak baik-baik saja. Bisa dihubungi sekarang?")
         app.terminate()
+    }
+
+    /** A list row, whose label is its title followed by its subtitle. */
+    @MainActor
+    private func row(_ app: XCUIApplication, _ title: String) -> XCUIElement {
+        app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", title)).firstMatch
     }
 
     @MainActor

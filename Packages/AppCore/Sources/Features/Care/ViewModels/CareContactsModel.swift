@@ -10,18 +10,8 @@ import Observation
 @MainActor
 @Observable
 package final class CareContactsModel {
-    /** Where the contacts on screen came from. */
-    package enum Source: Sendable, Equatable {
-        /** The list the app ships, before the server answers or when it cannot be reached. */
-        case shipped
-        /** The server's list. */
-        case server
-    }
-
     /** The contacts to show. */
     package private(set) var contacts: CareContactList = .shipped
-    /** Where `contacts` came from. */
-    package private(set) var source: Source = .shipped
     /** The problem of the last failed load, kept for the log; the screen still shows the shipped list. */
     package private(set) var problem: AppProblem?
 
@@ -36,7 +26,6 @@ package final class CareContactsModel {
     package func load() async {
         do {
             contacts = try await service.contacts()
-            source = .server
             problem = nil
         } catch {
             problem = AppProblem(error)

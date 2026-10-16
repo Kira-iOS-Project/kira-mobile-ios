@@ -19,10 +19,10 @@ struct FakeCareService: CareService {
 
 enum CareFixtures {
     static let kiraCare = CareContact(
-        key: .kiraCare, name: "Layanan Kira Peduli", phone: "081234567890", whatsApp: "081234567890", note: "n")
+        key: .kiraCare, name: "Layanan Kira Peduli", phone: "081234567890", whatsApp: "081234567890")
     static let server = CareContactList(
         verifiedOn: CalendarDay(year: 2026, month: 11, day: 1),
-        contacts: [kiraCare, CareContact(key: .psc119, name: "PSC 119", phone: "112", note: "n")])
+        contacts: [kiraCare, CareContact(key: .psc119, name: "PSC 119", phone: "112")])
 }
 
 @MainActor
@@ -32,10 +32,8 @@ struct CareContactsModelTests {
     func loads() async {
         let model = CareContactsModel(service: FakeCareService())
         #expect(model.contacts == .shipped)
-        #expect(model.source == .shipped)
         await model.load()
         #expect(model.contacts == CareFixtures.server)
-        #expect(model.source == .server)
         #expect(model.problem == nil)
         #expect(model.contact(.psc119)?.phone == "112")
         #expect(model.contact(.healing119)?.phone == "119")
@@ -46,7 +44,6 @@ struct CareContactsModelTests {
         let model = CareContactsModel(service: FakeCareService(result: .failure(AppProblem())))
         await model.load()
         #expect(model.contacts == .shipped)
-        #expect(model.source == .shipped)
         #expect(model.problem?.code == nil)
         #expect(model.contact(.kiraCare) == nil)
     }
@@ -55,19 +52,8 @@ struct CareContactsModelTests {
     func connectionLoss() async {
         let model = CareContactsModel(service: FakeCareService(error: URLError(.notConnectedToInternet)))
         await model.load()
-        #expect(model.source == .shipped)
+        #expect(model.contacts == .shipped)
         #expect(model.problem == .connectionLost)
-    }
-
-    @Test("keeps the server's list it had when a later load fails")
-    func keepsServer() async {
-        let service = FakeCareService()
-        let model = CareContactsModel(service: service)
-        await model.load()
-        let failing = CareContactsModel(service: FakeCareService(result: .failure(AppProblem())))
-        await failing.load()
-        #expect(model.source == .server)
-        #expect(failing.source == .shipped)
     }
 }
 
