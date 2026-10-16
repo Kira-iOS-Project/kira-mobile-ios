@@ -40,7 +40,7 @@
             }
         }
 
-        private var delivery: CodeDelivery { CodeDelivery(expiresInSeconds: 600, resendAfterSeconds: 60) }
+        private var delivery: CodeDelivery { CodeDelivery(resendAfterSeconds: 60) }
     }
 
     /** BRD and SKR: the three Beranda, Kira Score and the six indicators. */

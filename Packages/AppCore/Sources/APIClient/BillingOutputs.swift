@@ -6,10 +6,9 @@ extension Operations.ListPlans.Output {
         case .ok(let response):
             let body = try response.body.json
             return PlanCatalogDTO(
-                plans: try body.plans.map(PlanTermsDTO.init), current: try bridged(body.current.plan),
-                currentPeriod: try bridged(body.current.period))
+                plans: try body.plans.map(PlanTermsDTO.init), current: try bridged(body.current.plan))
         case .unauthorized(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -20,7 +19,7 @@ extension Operations.Checkout.Output {
         case .ok(let response): return try SubscriptionDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -31,7 +30,7 @@ extension Operations.GetSubscription.Output {
         case .ok(let response): return try SubscriptionDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .notFound(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -43,7 +42,7 @@ extension Operations.CancelSubscription.Output {
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .notFound(let response): throw try response.body.applicationProblemJson
         case .conflict(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -55,7 +54,7 @@ extension Operations.ChangePaymentMethod.Output {
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .notFound(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -66,25 +65,23 @@ extension Operations.ListInvoices.Output {
         case .ok(let response):
             return try response.body.json.items.map {
                 InvoiceDTO(
-                    id: $0.id, plan: try bridged($0.plan), period: try bridged($0.period), amount: $0.amount,
-                    paymentMethod: try bridged($0.paymentMethod), periodStart: $0.periodStart,
-                    createdAt: $0.createdAt)
+                    id: $0.id, plan: try bridged($0.plan), amount: $0.amount,
+                    paymentMethod: try bridged($0.paymentMethod), periodStart: $0.periodStart)
             }
         case .unauthorized(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
 
 extension Operations.GiftMonths.Output {
-    func gift() throws -> GiftDTO {
+    /** Nothing a screen reads comes back: the thank-you dialog only needs the gift to be accepted. */
+    func confirm() throws {
         switch self {
-        case .created(let response):
-            let body = try response.body.json
-            return GiftDTO(id: body.id, months: body.months, amount: body.amount)
+        case .created: return
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }

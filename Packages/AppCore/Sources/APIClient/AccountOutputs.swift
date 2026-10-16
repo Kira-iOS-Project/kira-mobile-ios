@@ -11,7 +11,7 @@ extension Operations.GetMe.Output {
         switch self {
         case .ok(let response): return try MeDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -22,7 +22,7 @@ extension Operations.UpdateMe.Output {
         case .ok(let response): return try MeDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -32,7 +32,7 @@ extension Operations.GetConsents.Output {
         switch self {
         case .ok(let response): return try ConsentsDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -43,7 +43,7 @@ extension Operations.UpdateConsents.Output {
         case .ok(let response): return try ConsentsDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -53,7 +53,7 @@ extension Operations.ExportData.Output {
         switch self {
         case .ok(let response): return try await Data(collecting: try response.body.csv, upTo: exportLimit)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -63,8 +63,9 @@ extension Operations.EmailDataExport.Output {
         switch self {
         case .accepted: return
         case .unauthorized(let response): throw try response.body.applicationProblemJson
+        case .tooManyRequests(let response): throw try response.body.applicationProblemJson
         case .serviceUnavailable(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -75,7 +76,7 @@ extension Operations.DeleteAccount.Output {
         case .noContent: return
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }

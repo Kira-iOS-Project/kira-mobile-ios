@@ -46,7 +46,7 @@
 
         /** BeasiswaKiraStatus: sent 16 October 2026, a decision by 21 October. */
         private static let pending = ScholarshipApplication(
-            id: "app-pending", status: .inReview, situations: [.instalmentsPilingUp], story: nil,
+            status: .inReview, situations: [.instalmentsPilingUp],
             submittedAt: PreviewPlansData.sentAt, decideBy: CalendarDay(year: 2026, month: 10, day: 21))
     }
 #endif

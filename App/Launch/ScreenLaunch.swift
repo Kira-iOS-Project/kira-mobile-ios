@@ -50,7 +50,10 @@
         case history, transaction, conversation, statementImport, importReview
         /** CAT: Catat; the tests open its sheets from the composer (ChatLaunch says which account each needs). */
         case record, recordDrafts, recordManual, recordScan, recordQuota, recordVoice
-        /** PED: Kira Peduli (and offline, on the shipped contacts), its sheet over the chat, the message to Layanan Kira. */
+        /**
+         PED: Kira Peduli (and offline, on the shipped contacts), its sheet over the chat, the message to
+         Layanan Kira.
+         */
         case care, careOffline, careHelp, trustedMessage
 
         /** The area whose launcher builds the screen. */

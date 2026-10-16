@@ -30,8 +30,7 @@ nonisolated final class PreviewRecordService: RecordService, @unchecked Sendable
 
     func send(_ message: OutgoingMessage) -> SendResult {
         let person = ChatMessage(
-            id: nextId(), sender: .person, kind: .personText, body: message.text, createdAt: stamp(),
-            inputMethod: message.inputMethod)
+            id: nextId(), sender: .person, kind: .personText, body: message.text, createdAt: stamp())
         let drafts = message.drafts.map { draft in
             DraftItem(
                 id: nextId(), type: draft.type, name: draft.name, amount: draft.amount, category: draft.category,
@@ -39,8 +38,7 @@ nonisolated final class PreviewRecordService: RecordService, @unchecked Sendable
         }
         let reply = ChatMessage(
             id: nextId(), sender: .kira, kind: drafts.isEmpty ? .noDrafts : .drafts, createdAt: stamp(),
-            replyToId: person.id, drafts: drafts, draftStatus: drafts.isEmpty ? nil : .pending, parser: message.parser,
-            itemCount: drafts.count)
+            replyToId: person.id, drafts: drafts, draftStatus: drafts.isEmpty ? nil : .pending)
         return store([person, reply])
     }
 
@@ -52,12 +50,9 @@ nonisolated final class PreviewRecordService: RecordService, @unchecked Sendable
     }
 
     func commit(messageId: String) -> CommitResult {
-        /** Stamped before `update` takes the lock: `stamp()` takes it too, and NSLock is not recursive. */
-        let committedAt = stamp()
         let message = update(messageId) { message in
             message.draftStatus = .committed
             message.batchId = "batch-\(messageId)"
-            message.committedAt = committedAt
         }
         let remaining = ChatMessage(
             id: nextId(), sender: .kira, kind: .remaining, createdAt: stamp(), replyToId: messageId,
@@ -83,7 +78,7 @@ nonisolated final class PreviewRecordService: RecordService, @unchecked Sendable
         }
         let reply = ChatMessage(
             id: nextId(), sender: .kira, kind: .drafts, createdAt: stamp(), replyToId: person.id, drafts: drafts,
-            draftStatus: .pending, itemCount: drafts.count)
+            draftStatus: .pending)
         return store([person, reply])
     }
 
@@ -93,8 +88,8 @@ nonisolated final class PreviewRecordService: RecordService, @unchecked Sendable
             category: transaction.category, occurredAt: transaction.occurredAt)
         let message = ChatMessage(
             id: nextId(), sender: .kira, kind: .manualSaved, createdAt: stamp(), drafts: [draft],
-            draftStatus: .committed, itemCount: 1)
-        return ManualSaveResult(transactionId: transaction.clientId, message: message)
+            draftStatus: .committed)
+        return ManualSaveResult(message: message)
     }
 
     /** The board's 12.41, a minute later for each message added. */

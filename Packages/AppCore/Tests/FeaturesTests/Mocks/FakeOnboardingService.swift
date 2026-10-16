@@ -43,7 +43,7 @@ actor FakeOnboardingService: OnboardingService {
 
     func requestCode(email: String) throws -> CodeDelivery {
         try record(.requestCode(email))
-        return CodeDelivery(expiresInSeconds: 600, resendAfterSeconds: resendAfter)
+        return CodeDelivery(resendAfterSeconds: resendAfter)
     }
 
     func verify(email: String, code: String) throws -> SignInResult {
