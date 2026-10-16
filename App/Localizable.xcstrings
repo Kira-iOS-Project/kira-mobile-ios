@@ -1,6 +1,156 @@
 {
   "sourceLanguage" : "id",
   "strings" : {
+    "checkout.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali"
+          }
+        }
+      }
+    },
+    "checkout.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "checkout.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
+    "checkout.lede.monthly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langganan bulanan, bisa dibatalkan kapan saja."
+          }
+        }
+      }
+    },
+    "checkout.lede.yearly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langganan tahunan, bisa dibatalkan kapan saja."
+          }
+        }
+      }
+    },
+    "checkout.method" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metode Pembayaran"
+          }
+        }
+      }
+    },
+    "checkout.pay %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bayar %@"
+          }
+        }
+      }
+    },
+    "checkout.prototype.monthly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pembayaran ini hanya simulasi. Tidak ada uang yang ditagih, dan langganan belum benar-benar aktif. Pembayaran sungguhan dibuat saat pengembangan."
+          }
+        }
+      }
+    },
+    "checkout.prototype.yearly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pembayaran ini hanya simulasi. Pengingat perpanjangan dikirim lewat email 3 hari sebelumnya. Tidak ada uang yang ditagih, dan langganan belum benar-benar aktif. Pembayaran sungguhan dibuat saat pengembangan."
+          }
+        }
+      }
+    },
+    "checkout.renews.monthly %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diperpanjang tiap %@"
+          }
+        }
+      }
+    },
+    "checkout.renews.yearly %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tahunan · diperpanjang %@"
+          }
+        }
+      }
+    },
+    "checkout.success.monthly %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ini simulasi, tidak ada tagihan sungguhan. Fitur %@ ditampilkan sebagai contoh."
+          }
+        }
+      }
+    },
+    "checkout.success.title %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Aktif"
+          }
+        }
+      }
+    },
+    "checkout.success.yearly %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ini simulasi, tidak ada tagihan sungguhan. %1$@ tahunan aktif sampai %2$@ sebagai contoh."
+          }
+        }
+      }
+    },
+    "checkout.title %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bayar %@"
+          }
+        }
+      }
+    },
     "ds.accordion.closed" : {
       "localizations" : {
         "id" : {
@@ -3381,6 +3531,956 @@
         }
       }
     },
+    "invoices.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali"
+          }
+        }
+      }
+    },
+    "invoices.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali"
+          }
+        }
+      }
+    },
+    "invoices.empty" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum ada tagihan."
+          }
+        }
+      }
+    },
+    "invoices.lede" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bukti tiap pembayaran langgananmu."
+          }
+        }
+      }
+    },
+    "invoices.list" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan"
+          }
+        }
+      }
+    },
+    "invoices.prototype" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daftar ini contoh data. Tagihan sungguhan muncul setelah pembayaran dihubungkan saat pengembangan."
+          }
+        }
+      }
+    },
+    "invoices.row.detail %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "invoices.row.title %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "invoices.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat Tagihan"
+          }
+        }
+      }
+    },
+    "method.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali"
+          }
+        }
+      }
+    },
+    "method.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "method.lede" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih cara bayar langgananmu."
+          }
+        }
+      }
+    },
+    "method.options" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilihan"
+          }
+        }
+      }
+    },
+    "method.prototype" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilihan ini hanya tampilan. Metode pembayaran sungguhan dihubungkan saat pengembangan."
+          }
+        }
+      }
+    },
+    "method.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan"
+          }
+        }
+      }
+    },
+    "method.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metode Pembayaran"
+          }
+        }
+      }
+    },
+    "plans.alwaysFree.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Peduli dan Mode Darurat Utang tidak pernah dikunci di balik paket."
+          }
+        }
+      }
+    },
+    "plans.alwaysFree.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selalu Gratis untuk Semua"
+          }
+        }
+      }
+    },
+    "plans.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup, kembali ke Profil"
+          }
+        }
+      }
+    },
+    "plans.current" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paketmu"
+          }
+        }
+      }
+    },
+    "plans.detail.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Paket"
+          }
+        }
+      }
+    },
+    "plans.detail.contents" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi Paket"
+          }
+        }
+      }
+    },
+    "plans.detail.help" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bantu Orang Lain"
+          }
+        }
+      }
+    },
+    "plans.detail.link" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Detail"
+          }
+        }
+      }
+    },
+    "plans.detail.messages %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Pesan AI"
+          }
+        }
+      }
+    },
+    "plans.detail.messages.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catat dan tanya lewat chat"
+          }
+        }
+      }
+    },
+    "plans.detail.plus.lede" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paling lengkap untuk yang ingin semua fitur Kira."
+          }
+        }
+      }
+    },
+    "plans.detail.plus.portfolio.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pantau aset di satu tempat"
+          }
+        }
+      }
+    },
+    "plans.detail.plus.score" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Score Otomatis tiap Bulan"
+          }
+        }
+      }
+    },
+    "plans.detail.plus.score.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dihitung tanggal 25"
+          }
+        }
+      }
+    },
+    "plans.detail.plus.voice" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Input Suara dan Impor Mutasi"
+          }
+        }
+      }
+    },
+    "plans.detail.plus.voice.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catat tanpa mengetik"
+          }
+        }
+      }
+    },
+    "plans.detail.plus.young.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Termasuk ringkasan mingguan mendalam"
+          }
+        }
+      }
+    },
+    "plans.detail.price %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "per bulan · atau %@ per tahun"
+          }
+        }
+      }
+    },
+    "plans.detail.prototype" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langganan ini hanya simulasi. Tidak ada uang yang ditagih."
+          }
+        }
+      }
+    },
+    "plans.detail.quota" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuota Tiap Bulan"
+          }
+        }
+      }
+    },
+    "plans.detail.receipts %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Struk"
+          }
+        }
+      }
+    },
+    "plans.detail.receipts.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foto struk dibaca otomatis"
+          }
+        }
+      }
+    },
+    "plans.detail.treat.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belikan langganan untuk pengguna Mode Darurat Utang"
+          }
+        }
+      }
+    },
+    "plans.detail.young.free.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catat manual, budget, Kira Score, dan Kira Peduli"
+          }
+        }
+      }
+    },
+    "plans.detail.young.lede" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Untuk pelajar dan pekerja muda yang mulai rutin mencatat."
+          }
+        }
+      }
+    },
+    "plans.detail.young.summary" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ringkasan Mingguan Lebih Mendalam"
+          }
+        }
+      }
+    },
+    "plans.detail.young.summary.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pola belanja per kategori tiap minggu"
+          }
+        }
+      }
+    },
+    "plans.feature.quota %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld pesan AI dan %2$lld struk per bulan"
+          }
+        }
+      }
+    },
+    "plans.free.feature.care" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Peduli"
+          }
+        }
+      }
+    },
+    "plans.free.feature.core" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catat manual, budget, dan Kira Score"
+          }
+        }
+      }
+    },
+    "plans.free.feature.tools" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalkulator, edukasi, dan komunitas"
+          }
+        }
+      }
+    },
+    "plans.headline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih yang Pas Buatmu"
+          }
+        }
+      }
+    },
+    "plans.later" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nanti Saja"
+          }
+        }
+      }
+    },
+    "plans.lede" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fitur inti Kira tetap gratis. Paket berbayar menambah kuota AI dan fitur lanjutan."
+          }
+        }
+      }
+    },
+    "plans.loading" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Memuat"
+          }
+        }
+      }
+    },
+    "plans.method.appStore" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Store"
+          }
+        }
+      }
+    },
+    "plans.method.appStore.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ditagih lewat akun Apple-mu"
+          }
+        }
+      }
+    },
+    "plans.method.qris" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "QRIS"
+          }
+        }
+      }
+    },
+    "plans.method.qris.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bayar lewat aplikasi bank atau e-wallet"
+          }
+        }
+      }
+    },
+    "plans.name.free" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Gratis"
+          }
+        }
+      }
+    },
+    "plans.name.plus" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Plus"
+          }
+        }
+      }
+    },
+    "plans.name.young" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Muda"
+          }
+        }
+      }
+    },
+    "plans.payVia" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bayar lewat App Store atau QRIS."
+          }
+        }
+      }
+    },
+    "plans.period" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Periode pembayaran"
+          }
+        }
+      }
+    },
+    "plans.period.monthly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bulanan"
+          }
+        }
+      }
+    },
+    "plans.period.yearly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tahunan"
+          }
+        }
+      }
+    },
+    "plans.plus.feature.portfolio" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Portofolio"
+          }
+        }
+      }
+    },
+    "plans.plus.feature.score" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Score otomatis tiap bulan"
+          }
+        }
+      }
+    },
+    "plans.plus.feature.voice" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Input suara dan impor mutasi"
+          }
+        }
+      }
+    },
+    "plans.plus.feature.young" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semua di Kira Muda"
+          }
+        }
+      }
+    },
+    "plans.plus.tag" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paling Lengkap"
+          }
+        }
+      }
+    },
+    "plans.price.forever" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "selamanya"
+          }
+        }
+      }
+    },
+    "plans.price.perMonth" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "per bulan"
+          }
+        }
+      }
+    },
+    "plans.price.perYear" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "per tahun"
+          }
+        }
+      }
+    },
+    "plans.problem.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Berhasil"
+          }
+        }
+      }
+    },
+    "plans.promise.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal Satu Ketukan"
+          }
+        }
+      }
+    },
+    "plans.promise.cancel.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanpa telepon, tanpa pertanyaan"
+          }
+        }
+      }
+    },
+    "plans.promise.price" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanpa Harga Coret Palsu"
+          }
+        }
+      }
+    },
+    "plans.promise.price.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Harga yang kamu lihat adalah harganya"
+          }
+        }
+      }
+    },
+    "plans.promise.reminder" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengingat 3 Hari sebelum Perpanjangan"
+          }
+        }
+      }
+    },
+    "plans.promise.reminder.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lewat email"
+          }
+        }
+      }
+    },
+    "plans.promise.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Janji Kami"
+          }
+        }
+      }
+    },
+    "plans.prototype" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catatan Prototipe"
+          }
+        }
+      }
+    },
+    "plans.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
+          }
+        }
+      }
+    },
+    "plans.scholarship.group" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beasiswa Kira"
+          }
+        }
+      }
+    },
+    "plans.scholarship.row" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beasiswa Kira"
+          }
+        }
+      }
+    },
+    "plans.scholarship.row.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Plus gratis 3–6 bulan untuk pengguna Mode Darurat Utang"
+          }
+        }
+      }
+    },
+    "plans.short.free" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gratis"
+          }
+        }
+      }
+    },
+    "plans.short.plus" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plus"
+          }
+        }
+      }
+    },
+    "plans.short.young" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muda"
+          }
+        }
+      }
+    },
+    "plans.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paket Kira"
+          }
+        }
+      }
+    },
+    "plans.treat.row" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Traktir Kira"
+          }
+        }
+      }
+    },
+    "plans.tryPlus" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Kira Plus"
+          }
+        }
+      }
+    },
+    "plans.tryYoung" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Kira Muda"
+          }
+        }
+      }
+    },
+    "plans.yearly.months %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bayar %lld bulan untuk 12 bulan."
+          }
+        }
+      }
+    },
+    "plans.yearly.saving %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hemat %@"
+          }
+        }
+      }
+    },
+    "plans.young.feature.free" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semua di Kira Gratis"
+          }
+        }
+      }
+    },
+    "plans.young.feature.summary" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ringkasan mingguan yang lebih mendalam"
+          }
+        }
+      }
+    },
+    "plans.young.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "untuk pelajar dan pekerja muda"
+          }
+        }
+      }
+    },
     "problem.HTTP_ERROR" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3485,6 +4585,1426 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kira"
+          }
+        }
+      }
+    },
+    "scholarship.accepted.headline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Plus Aktif untukmu"
+          }
+        }
+      }
+    },
+    "scholarship.accepted.overline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beasiswa Kira diterima"
+          }
+        }
+      }
+    },
+    "scholarship.accepted.until %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gratis sampai %@"
+          }
+        }
+      }
+    },
+    "scholarship.apply" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajukan Beasiswa"
+          }
+        }
+      }
+    },
+    "scholarship.apply.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Beasiswa Kira"
+          }
+        }
+      }
+    },
+    "scholarship.apply.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "scholarship.apply.facing" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apa yang Sedang Kamu Hadapi?"
+          }
+        }
+      }
+    },
+    "scholarship.apply.facing.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boleh pilih lebih dari satu."
+          }
+        }
+      }
+    },
+    "scholarship.apply.headline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dua Pertanyaan Singkat"
+          }
+        }
+      }
+    },
+    "scholarship.apply.lede" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jawab sebisanya. Tidak ada jawaban yang salah."
+          }
+        }
+      }
+    },
+    "scholarship.apply.send" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirim Pengajuan"
+          }
+        }
+      }
+    },
+    "scholarship.apply.sent" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikut Terkirim"
+          }
+        }
+      }
+    },
+    "scholarship.apply.sent.email" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email Akunmu"
+          }
+        }
+      }
+    },
+    "scholarship.apply.sent.email.detail %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ · untuk mengirim hasil"
+          }
+        }
+      }
+    },
+    "scholarship.apply.sent.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak ada data transaksi atau saldo yang dikirim."
+          }
+        }
+      }
+    },
+    "scholarship.apply.sent.mode" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pemakaian Mode Darurat Utang"
+          }
+        }
+      }
+    },
+    "scholarship.apply.sent.mode.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hanya ya atau tidak, tanpa isi"
+          }
+        }
+      }
+    },
+    "scholarship.apply.story" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bagaimana Kira Plus Membantumu?"
+          }
+        }
+      }
+    },
+    "scholarship.apply.story.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opsional. Hanya dibaca tim peninjau."
+          }
+        }
+      }
+    },
+    "scholarship.apply.story.tooLong" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceritamu terlalu panjang. Paling banyak 1.000 karakter."
+          }
+        }
+      }
+    },
+    "scholarship.apply.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajukan Beasiswa"
+          }
+        }
+      }
+    },
+    "scholarship.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Paket Kira"
+          }
+        }
+      }
+    },
+    "scholarship.gets.free" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanpa Kartu dan Tanpa Tagihan"
+          }
+        }
+      }
+    },
+    "scholarship.gets.free.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setelah selesai, kembali ke Kira Gratis tanpa biaya apa pun"
+          }
+        }
+      }
+    },
+    "scholarship.gets.months" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 Bulan, Bisa Diperpanjang"
+          }
+        }
+      }
+    },
+    "scholarship.gets.months.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajukan lagi 3 bulan kalau masih butuh, paling lama 6 bulan"
+          }
+        }
+      }
+    },
+    "scholarship.gets.plus" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semua Fitur Kira Plus"
+          }
+        }
+      }
+    },
+    "scholarship.gets.plus.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "300 pesan AI, 150 struk, input suara, dan impor mutasi"
+          }
+        }
+      }
+    },
+    "scholarship.gets.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yang Kamu Dapat"
+          }
+        }
+      }
+    },
+    "scholarship.headline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Plus Gratis Saat Kamu Sedang Berjuang"
+          }
+        }
+      }
+    },
+    "scholarship.how.active" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langsung bisa dipakai selama 3 bulan"
+          }
+        }
+      }
+    },
+    "scholarship.how.apply" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi dua pertanyaan singkat, sekitar satu menit"
+          }
+        }
+      }
+    },
+    "scholarship.how.review" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paling lama 3 hari kerja, hasilnya lewat email"
+          }
+        }
+      }
+    },
+    "scholarship.how.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cara Kerjanya"
+          }
+        }
+      }
+    },
+    "scholarship.lede" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Untuk pengguna Mode Darurat Utang. Didanai pengguna lain lewat Traktir Kira."
+          }
+        }
+      }
+    },
+    "scholarship.meanwhile" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sambil menunggu, Mode Darurat Utang tetap bisa kamu pakai penuh."
+          }
+        }
+      }
+    },
+    "scholarship.meanwhile.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pelan-pelan, satu per satu"
+          }
+        }
+      }
+    },
+    "scholarship.next.after" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setelah Selesai"
+          }
+        }
+      }
+    },
+    "scholarship.next.after.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Kira Gratis otomatis, tanpa tagihan"
+          }
+        }
+      }
+    },
+    "scholarship.next.extend" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perpanjang 3 Bulan Lagi"
+          }
+        }
+      }
+    },
+    "scholarship.next.extend.detail %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bisa diajukan mulai %@ kalau masih butuh"
+          }
+        }
+      }
+    },
+    "scholarship.next.extend.later" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bisa diajukan 14 hari sebelum berakhir kalau masih butuh"
+          }
+        }
+      }
+    },
+    "scholarship.next.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selanjutnya"
+          }
+        }
+      }
+    },
+    "scholarship.openEmergency" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka Mode Darurat Utang"
+          }
+        }
+      }
+    },
+    "scholarship.privacy.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Penraktir tidak tahu siapa penerimanya, dan ceritamu hanya dibaca tim peninjau."
+          }
+        }
+      }
+    },
+    "scholarship.privacy.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privasimu Terjaga"
+          }
+        }
+      }
+    },
+    "scholarship.prototype" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengajuan dan peninjauan beasiswa hanya simulasi. Tidak ada data yang dikirim."
+          }
+        }
+      }
+    },
+    "scholarship.quota" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuota bulan ini"
+          }
+        }
+      }
+    },
+    "scholarship.quota.group" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuota beasiswa"
+          }
+        }
+      }
+    },
+    "scholarship.quota.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuota bertambah setiap ada yang mentraktir. Kalau habis, pengajuanmu masuk daftar tunggu."
+          }
+        }
+      }
+    },
+    "scholarship.quota.value %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld dari %2$lld tersisa"
+          }
+        }
+      }
+    },
+    "scholarship.sent.body %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tim Kira meninjau paling lama 3 hari kerja. Hasilnya dikirim ke %@."
+          }
+        }
+      }
+    },
+    "scholarship.sent.status" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Status"
+          }
+        }
+      }
+    },
+    "scholarship.sent.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengajuan Terkirim"
+          }
+        }
+      }
+    },
+    "scholarship.situation.income" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Penghasilan Berhenti"
+          }
+        }
+      }
+    },
+    "scholarship.situation.instalments" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan Menumpuk"
+          }
+        }
+      }
+    },
+    "scholarship.situation.lender" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ditagih Pinjol"
+          }
+        }
+      }
+    },
+    "scholarship.situation.medical" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biaya Berobat"
+          }
+        }
+      }
+    },
+    "scholarship.situation.other" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lainnya"
+          }
+        }
+      }
+    },
+    "scholarship.start" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mulai Pakai Kira Plus"
+          }
+        }
+      }
+    },
+    "scholarship.status.decideBy %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hasilnya paling lambat %@, dikirim lewat email."
+          }
+        }
+      }
+    },
+    "scholarship.status.headline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengajuanmu Sudah Kami Terima"
+          }
+        }
+      }
+    },
+    "scholarship.status.inReview" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sedang Ditinjau"
+          }
+        }
+      }
+    },
+    "scholarship.status.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status Beasiswa"
+          }
+        }
+      }
+    },
+    "scholarship.status.waitlisted" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daftar Tunggu"
+          }
+        }
+      }
+    },
+    "scholarship.step.active" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Plus Aktif"
+          }
+        }
+      }
+    },
+    "scholarship.step.active.pending" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 bulan sejak diterima"
+          }
+        }
+      }
+    },
+    "scholarship.step.active.range %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ sampai %2$@"
+          }
+        }
+      }
+    },
+    "scholarship.step.apply" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajukan"
+          }
+        }
+      }
+    },
+    "scholarship.step.review" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ditinjau Tim Kira"
+          }
+        }
+      }
+    },
+    "scholarship.step.review.accepted %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diterima %@"
+          }
+        }
+      }
+    },
+    "scholarship.step.review.pending" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paling lama 3 hari kerja"
+          }
+        }
+      }
+    },
+    "scholarship.step.sent" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengajuan Terkirim"
+          }
+        }
+      }
+    },
+    "scholarship.step.sent.at %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@ WIB"
+          }
+        }
+      }
+    },
+    "scholarship.summary.facing" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yang Dihadapi"
+          }
+        }
+      }
+    },
+    "scholarship.summary.group" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ringkasan pengajuan"
+          }
+        }
+      }
+    },
+    "scholarship.summary.join %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "scholarship.summary.length" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lama Beasiswa"
+          }
+        }
+      }
+    },
+    "scholarship.summary.length.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 bulan, bisa diperpanjang sampai 6 bulan"
+          }
+        }
+      }
+    },
+    "scholarship.summary.none" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "–"
+          }
+        }
+      }
+    },
+    "scholarship.summary.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengajuanmu"
+          }
+        }
+      }
+    },
+    "scholarship.tag" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gratis 3–6 Bulan"
+          }
+        }
+      }
+    },
+    "scholarship.thanks.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beasiswa ini ada karena pengguna lain mentraktir lewat Traktir Kira. Kamu tidak berutang apa pun."
+          }
+        }
+      }
+    },
+    "scholarship.thanks.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dari Para Penraktir"
+          }
+        }
+      }
+    },
+    "scholarship.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beasiswa Kira"
+          }
+        }
+      }
+    },
+    "scholarship.who.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanpa bukti utang dan tanpa dokumen. Kira percaya pada ceritamu."
+          }
+        }
+      }
+    },
+    "scholarship.who.mode" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah Memakai Mode Darurat Utang"
+          }
+        }
+      }
+    },
+    "scholarship.who.mode.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Misalnya membuka naskah negosiasi atau panduan aduan"
+          }
+        }
+      }
+    },
+    "scholarship.who.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siapa yang Bisa Mengajukan"
+          }
+        }
+      }
+    },
+    "scholarship.who.unpaid" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Berlangganan Paket Berbayar"
+          }
+        }
+      }
+    },
+    "scholarship.who.unpaid.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satu akun, satu beasiswa dalam satu waktu"
+          }
+        }
+      }
+    },
+    "scholarship.withdraw" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarik Pengajuan"
+          }
+        }
+      }
+    },
+    "subscription.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Profil"
+          }
+        }
+      }
+    },
+    "subscription.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batalkan Langganan"
+          }
+        }
+      }
+    },
+    "subscription.cancel.confirm.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fitur Plus tetap aktif sampai akhir periode. Setelah itu akunmu kembali ke Kira Gratis."
+          }
+        }
+      }
+    },
+    "subscription.cancel.confirm.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batalkan Langganan?"
+          }
+        }
+      }
+    },
+    "subscription.cancel.done.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fitur Plus aktif sampai akhir periode. Kamu bisa berlangganan lagi kapan saja."
+          }
+        }
+      }
+    },
+    "subscription.cancel.done.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langganan Dibatalkan"
+          }
+        }
+      }
+    },
+    "subscription.cancel.keep" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tetap Berlangganan"
+          }
+        }
+      }
+    },
+    "subscription.cancel.note %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Satu ketukan, tanpa pertanyaan. Fitur %1$@ tetap aktif sampai %2$@."
+          }
+        }
+      }
+    },
+    "subscription.change" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ganti Paket"
+          }
+        }
+      }
+    },
+    "subscription.change.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muda atau Plus"
+          }
+        }
+      }
+    },
+    "subscription.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
+    "subscription.free.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum ada langganan berbayar. Lihat paket kalau butuh kuota AI lebih."
+          }
+        }
+      }
+    },
+    "subscription.free.plans" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Paket"
+          }
+        }
+      }
+    },
+    "subscription.free.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu Memakai Kira Gratis"
+          }
+        }
+      }
+    },
+    "subscription.hero.ends %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berakhir %@"
+          }
+        }
+      }
+    },
+    "subscription.hero.reminder %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email pengingat %@"
+          }
+        }
+      }
+    },
+    "subscription.hero.renews %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diperpanjang %@"
+          }
+        }
+      }
+    },
+    "subscription.hero.status %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ · aktif"
+          }
+        }
+      }
+    },
+    "subscription.invoices" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat Tagihan"
+          }
+        }
+      }
+    },
+    "subscription.invoices.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bukti tiap pembayaran"
+          }
+        }
+      }
+    },
+    "subscription.manage" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atur Langganan"
+          }
+        }
+      }
+    },
+    "subscription.method" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metode Pembayaran"
+          }
+        }
+      }
+    },
+    "subscription.method.none" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beasiswa Kira"
+          }
+        }
+      }
+    },
+    "subscription.quota.chat" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chat AI"
+          }
+        }
+      }
+    },
+    "subscription.quota.chat.value %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld dari %2$lld pesan"
+          }
+        }
+      }
+    },
+    "subscription.quota.receipts" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scan Struk"
+          }
+        }
+      }
+    },
+    "subscription.quota.receipts.value %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld dari %2$lld struk"
+          }
+        }
+      }
+    },
+    "subscription.quota.resets %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terisi lagi %@"
+          }
+        }
+      }
+    },
+    "subscription.quota.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuota Bulan Ini"
+          }
+        }
+      }
+    },
+    "subscription.quota.voice" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Input Suara"
+          }
+        }
+      }
+    },
+    "subscription.quota.voice.value %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld menit dari %2$lld jam"
+          }
+        }
+      }
+    },
+    "subscription.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langganan"
+          }
+        }
+      }
+    },
+    "subscription.treat.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belikan langganan untuk orang yang sedang berjuang"
+          }
+        }
+      }
+    },
+    "treat.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali"
+          }
+        }
+      }
+    },
+    "treat.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "treat.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
+    "treat.lede" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belikan langganan untuk orang yang sedang berjuang."
+          }
+        }
+      }
+    },
+    "treat.length" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lama Langganan"
+          }
+        }
+      }
+    },
+    "treat.length.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lama langganan"
+          }
+        }
+      }
+    },
+    "treat.months.one" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 Bulan"
+          }
+        }
+      }
+    },
+    "treat.months.six" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "6 Bulan"
+          }
+        }
+      }
+    },
+    "treat.months.three" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 Bulan"
+          }
+        }
+      }
+    },
+    "treat.prototype" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Traktir ini hanya simulasi. Tidak ada uang yang ditagih."
+          }
+        }
+      }
+    },
+    "treat.send %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Traktir %@"
+          }
+        }
+      }
+    },
+    "treat.success.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ini simulasi, tidak ada tagihan sungguhan. Di versi nyata, langgananmu sampai ke penerima Beasiswa Kira."
+          }
+        }
+      }
+    },
+    "treat.success.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terima Kasih"
+          }
+        }
+      }
+    },
+    "treat.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Traktir Kira"
+          }
+        }
+      }
+    },
+    "treat.total" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total"
+          }
+        }
+      }
+    },
+    "treat.where.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langgananmu dibagikan lewat Beasiswa Kira ke pengguna Mode Darurat Utang."
+          }
+        }
+      }
+    },
+    "treat.where.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ke Mana Perginya?"
           }
         }
       }
