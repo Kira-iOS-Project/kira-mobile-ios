@@ -105,6 +105,8 @@ private struct ProfileIdentity: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(profile.displayName).kiraFont(.title).accessibilityAddTraits(.isHeader)
                 Text(profile.email).font(.subheadline).kiraLineHeight(20, size: 15).foregroundStyle(.inkMuted)
+                    /** "Email dinda@email.com": an address alone reads as an identifier, not a label. */
+                    .accessibilityLabel(Text("account.profile.email.label \(profile.email)"))
                 KiraTag(profile.plan.id.title, tone: .pandan, icon: .sparkle).padding(.top, 6)
             }
         }
