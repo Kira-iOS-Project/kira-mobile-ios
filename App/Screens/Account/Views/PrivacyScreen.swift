@@ -76,10 +76,8 @@ struct PrivacyScreen: View {
             $deletion.sheet, title: "account.delete.title", subtitle: "account.delete.subtitle", top: 124,
             failureTitle: exportFailed ? "account.delete.export.failedTitle" : "account.delete.failed.title",
             connectionMessage: exportFailed ? "problem.connection" : "account.delete.failed.message",
-            onRetry: { Task { await deletion.retry() } }
-        ) {
-            DeleteAccountSheet(model: deletion, email: model.phase.value?.email ?? "")
-        }
+            onRetry: { Task { await deletion.retry() } },
+            content: { DeleteAccountSheet(model: deletion, email: model.phase.value?.email ?? "") })
     }
 
     /** Whether Unduh Datamu Dulu, not Hapus Permanen, is what the failure dialog reports. */
