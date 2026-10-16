@@ -25,7 +25,7 @@ package struct LiveSecuritySettings: SecuritySettings {
     }
 
     /** Whether `pin` is the PIN; a wrong one counts towards the pause, as on the lock screen. */
-    package func verifyPin(_ pin: String) async -> Bool {
+    package func verifyPin(_ pin: String) -> Bool {
         pins.verify(pin) == .correct
     }
 

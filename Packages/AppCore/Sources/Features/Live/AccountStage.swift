@@ -10,19 +10,19 @@ package enum AccountStage: Equatable, Sendable {
     case needsHealthCheck
 
     /** The stage of the person `me` describes. */
-    init(_ me: MeDTO) {
-        if !me.consented {
+    init(_ account: MeDTO) {
+        if !account.consented {
             self = .needsConsent
-        } else if !me.healthCheckCompleted {
+        } else if !account.healthCheckCompleted {
             self = .needsHealthCheck
         } else {
-            self = .ready(hidesBalances: me.hideBalances)
+            self = .ready(hidesBalances: account.hideBalances)
         }
     }
 
     /** The stage `GET /me` reports, or nil when the API cannot answer now. */
     package static func check(with api: KiraAPI) async -> AccountStage? {
-        guard let me = try? await api.getMe() else { return nil }
-        return AccountStage(me)
+        guard let account = try? await api.getMe() else { return nil }
+        return AccountStage(account)
     }
 }

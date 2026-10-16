@@ -9,15 +9,16 @@ import Testing
 struct LiveOnboardingServiceTests {
     private let recorder = HideBalancesRecorder()
 
-    private func service(_ replies: [String: RoutedTransport.Reply]) -> (LiveOnboardingService, RoutedTransport, SessionStore) {
+    private func service(_ replies: [String: RoutedTransport.Reply], session: SessionStore = newSession())
+        -> (LiveOnboardingService, RoutedTransport)
+    {
         let (api, transport) = KiraAPI.routed(replies)
-        let session = SessionStore(vault: InMemoryVault()) { _ in .rejected }
-        return (LiveOnboardingService(api: api, session: session, onHideBalances: recorder.sync), transport, session)
+        return (LiveOnboardingService(api: api, session: session, onHideBalances: recorder.sync), transport)
     }
 
     @Test("a code request returns its two durations")
     func requestCode() async throws {
-        let (service, transport, _) = service([
+        let (service, transport) = service([
             "POST /api/auth/code": ok(#"{"expiresInSeconds":600,"resendAfterSeconds":60}"#, status: 202)
         ])
         let delivery = try await service.requestCode(email: "dinda@email.com")
@@ -27,24 +28,26 @@ struct LiveOnboardingServiceTests {
 
     @Test("a right code starts the session on this device and says whether onboarding is needed")
     func verify() async throws {
-        let (service, _, session) = service([
-            "POST /api/auth/verify": ok("{\(tokensJSON),\"needsOnboarding\":true}")
-        ])
-        #expect(try await service.verify(email: "dinda@email.com", code: "381449") == SignInResult(needsOnboarding: true))
+        let session = newSession()
+        let (service, _) = service(
+            ["POST /api/auth/verify": ok("{\(tokensJSON),\"needsOnboarding\":true}")], session: session)
+        #expect(
+            try await service.verify(email: "dinda@email.com", code: "381449") == SignInResult(needsOnboarding: true))
         #expect(session.hasSession && session.accountEmail == "dinda@email.com")
         #expect(await session.bearerToken() == "a-1")
     }
 
     @Test("a wrong code keeps the device signed out and throws the problem")
     func wrongCode() async throws {
-        let (service, _, session) = service(["POST /api/auth/verify": problem("AUTH_CODE_INVALID")])
+        let session = newSession()
+        let (service, _) = service(["POST /api/auth/verify": problem("AUTH_CODE_INVALID")], session: session)
         await #expect(throws: AppProblem.self) { try await service.verify(email: "dinda@email.com", code: "000000") }
         #expect(!session.hasSession)
     }
 
     @Test("consents, focus and the balance choice reach the account; the lock gets the choice")
     func settings() async throws {
-        let (service, transport, _) = service([
+        let (service, transport) = service([
             "PUT /api/me/consents": ok(consentsJSON), "PATCH /api/me": ok(meJSON()),
         ])
         try await service.saveConsents(ConsentChoices(aiProcessing: false, weeklySummary: true))
@@ -59,12 +62,14 @@ struct LiveOnboardingServiceTests {
 
     @Test("the quiz's answers go out as PUT /health-check and the first score comes back")
     func healthCheck() async throws {
-        let (service, transport, _) = service(["PUT /api/health-check": ok(reportJSON)])
+        let (service, transport) = service(["PUT /api/health-check": ok(reportJSON)])
         var answers = HealthCheckAnswers()
         answers.netMonthlyIncome = 7_500_000
         answers.payday = .endOfMonth
         answers.debts = [
-            DebtEntry(kind: .onlineLoan, name: "Pinjol B", remaining: 900_000, monthlyInstalment: 300_000, remainingTenorMonths: 3)
+            DebtEntry(
+                kind: .onlineLoan, name: "Pinjol B", remaining: 900_000, monthlyInstalment: 300_000,
+                remainingTenorMonths: 3)
         ]
         answers.dependents = 2
         answers.maritalStatus = .married
@@ -80,9 +85,18 @@ struct LiveOnboardingServiceTests {
         #expect(body["payday"] == .object(["endOfMonth": .bool(true)]))
         #expect(body["dependents"] == .number(2) && body["maritalStatus"] == .string("married"))
         #expect(body["protections"] == .array([.string("bpjs_health"), .string("private_health")]))
-        #expect(body["debts"] == .array([.object([
-            "kind": .string("online_loan"), "name": .string("Pinjol B"), "remaining": .number(900_000),
-            "monthlyInstalment": .number(300_000), "remainingTenorMonths": .number(3),
-        ])]))
+        #expect(
+            body["debts"]
+                == .array([
+                    .object([
+                        "kind": .string("online_loan"), "name": .string("Pinjol B"), "remaining": .number(900_000),
+                        "monthlyInstalment": .number(300_000), "remainingTenorMonths": .number(3),
+                    ])
+                ]))
     }
+}
+
+/** A signed-out session in memory. */
+func newSession() -> SessionStore {
+    SessionStore(vault: InMemoryVault()) { _ in .rejected }
 }

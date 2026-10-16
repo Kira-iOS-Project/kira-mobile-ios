@@ -87,7 +87,9 @@ extension KiraAPI {
     /** A client answered by `replies`, and the transport to inspect. */
     static func routed(_ replies: [String: RoutedTransport.Reply]) -> (api: KiraAPI, transport: RoutedTransport) {
         let transport = RoutedTransport(replies)
-        return (KiraAPI(serverURL: URL(string: "https://api.test") ?? URL(filePath: "/"), transport: transport), transport)
+        return (
+            KiraAPI(serverURL: URL(string: "https://api.test") ?? URL(filePath: "/"), transport: transport), transport
+        )
     }
 }
 

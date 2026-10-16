@@ -21,9 +21,11 @@ struct LivePlansServiceTests {
         let (api, _) = KiraAPI.routed(["GET /api/plans": ok(plansJSON)])
         let catalog = try await LivePlansService(api: api).plans()
         #expect(catalog.plans.map(\.id) == [.free, .plus])
-        #expect(catalog.plans[1] == PlanTerms(
-            id: .plus, monthlyPrice: 29_000, yearlyPrice: 290_000, aiMessages: 300, receipts: 150,
-            voiceSeconds: 10_800, voiceAndImport: true))
+        #expect(
+            catalog.plans[1]
+                == PlanTerms(
+                    id: .plus, monthlyPrice: 29_000, yearlyPrice: 290_000, aiMessages: 300, receipts: 150,
+                    voiceSeconds: 10_800, voiceAndImport: true))
         #expect(catalog.current == PlanCatalog.Current(plan: .plus, period: .yearly))
     }
 
@@ -36,9 +38,10 @@ struct LivePlansServiceTests {
         ])
         let service = LivePlansService(api: api)
         #expect(try await service.checkout(plan: .plus, period: .monthly, paymentMethod: .appStore) == subscription)
-        #expect(await transport.sent[0].json == [
-            "plan": .string("plus"), "period": .string("monthly"), "paymentMethod": .string("app_store"),
-        ])
+        #expect(
+            await transport.sent[0].json == [
+                "plan": .string("plus"), "period": .string("monthly"), "paymentMethod": .string("app_store"),
+            ])
         #expect(try await service.cancelSubscription() == subscription)
         #expect(try await service.setPaymentMethod(.qris).paymentMethod == nil)
         #expect(await transport.sent[2].json == ["paymentMethod": .string("qris")])
@@ -61,24 +64,32 @@ struct LivePlansServiceTests {
             "POST /api/billing/gifts": ok(#"{"id":"g-1","months":3,"amount":87000}"#, status: 201),
         ])
         let service = LivePlansService(api: api)
-        #expect(try await service.invoices() == [Invoice(
-            id: "i-1", plan: .plus, period: .yearly, amount: 290_000, paymentMethod: .appStore,
-            periodStart: CalendarDay(year: 2026, month: 10, day: 16))])
-        #expect(try await service.treat(months: 3, paymentMethod: .qris) == TreatGift(id: "g-1", months: 3, amount: 87_000))
+        #expect(
+            try await service.invoices() == [
+                Invoice(
+                    id: "i-1", plan: .plus, period: .yearly, amount: 290_000, paymentMethod: .appStore,
+                    periodStart: CalendarDay(year: 2026, month: 10, day: 16))
+            ])
+        #expect(
+            try await service.treat(months: 3, paymentMethod: .qris) == TreatGift(id: "g-1", months: 3, amount: 87_000))
         #expect(await transport.sent[1].json == ["months": .number(3), "paymentMethod": .string("qris")])
         await #expect(throws: AppProblem()) { try await service.treat(months: 2, paymentMethod: .qris) }
     }
 
     @Test("Beasiswa Kira: an accepted application carries its decision, one in review none")
     func scholarship() async throws {
-        let (api, _) = KiraAPI.routed(["GET /api/scholarship": ok(scholarshipJSON(application: acceptedApplicationJSON))])
+        let (api, _) = KiraAPI.routed([
+            "GET /api/scholarship": ok(scholarshipJSON(application: acceptedApplicationJSON))
+        ])
         let overview = try await LivePlansService(api: api).scholarship()
         #expect(!overview.eligible && overview.ineligibleReason == .hasScholarship)
         #expect(overview.quotaRemaining == 1 && overview.quotaTotal == 4)
         let application = try #require(overview.application)
         #expect(application.status == .accepted && application.situations == [.incomeStopped, .medicalCosts])
         #expect(application.decidedAt == CalendarDay(year: 2026, month: 10, day: 17))
-        #expect(application.grant == CalendarDay(year: 2026, month: 10, day: 17)...CalendarDay(year: 2027, month: 1, day: 16))
+        #expect(
+            application.grant == CalendarDay(
+                year: 2026, month: 10, day: 17)...CalendarDay(year: 2027, month: 1, day: 16))
         #expect(application.extensionFrom == CalendarDay(year: 2027, month: 1, day: 2))
         let (none, _) = KiraAPI.routed(["GET /api/scholarship": ok(scholarshipJSON(application: "null"))])
         #expect(try await LivePlansService(api: none).scholarship().application == nil)

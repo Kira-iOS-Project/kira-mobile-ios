@@ -17,8 +17,10 @@ struct LiveSecuritySettingsTests {
     @Test("starts without a PIN, locking at once and blurred in the app switcher")
     func defaults() async {
         let (settings, _) = settings()
-        #expect(await settings.preferences() == SecurityPreferences(
-            isPinLockEnabled: false, autoLock: .immediately, obscuresAppSwitcher: true))
+        #expect(
+            await settings.preferences()
+                == SecurityPreferences(
+                    isPinLockEnabled: false, autoLock: .immediately, obscuresAppSwitcher: true))
     }
 
     @Test("a PIN set turns the lock on, checks right and wrong, and turning it off forgets it")
@@ -26,8 +28,8 @@ struct LiveSecuritySettingsTests {
         let (settings, lock) = settings()
         try await settings.setPin("481923")
         #expect(lock.hasPin && !lock.isLocked)
-        #expect(await settings.verifyPin("481923"))
-        #expect(await !settings.verifyPin("000000"))
+        #expect(settings.verifyPin("481923"))
+        #expect(!settings.verifyPin("000000"))
         await settings.disablePinLock()
         #expect(!lock.hasPin)
         #expect(await !settings.preferences().isPinLockEnabled)
@@ -45,8 +47,10 @@ struct LiveSecuritySettingsTests {
         let (settings, lock) = settings()
         await settings.setAutoLock(delay)
         await settings.setObscuresAppSwitcher(false)
-        #expect(await settings.preferences() == SecurityPreferences(
-            isPinLockEnabled: false, autoLock: delay, obscuresAppSwitcher: false))
+        #expect(
+            await settings.preferences()
+                == SecurityPreferences(
+                    isPinLockEnabled: false, autoLock: delay, obscuresAppSwitcher: false))
         #expect(AutoLockDelay(lock.settings.autoLock) == delay)
     }
 

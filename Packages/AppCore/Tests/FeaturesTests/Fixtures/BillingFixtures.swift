@@ -36,5 +36,6 @@ let pendingApplicationJSON = #"""
 
 /** `GET /scholarship` with `application` (JSON or null). */
 func scholarshipJSON(application: String) -> String {
-    #"{"eligible":false,"ineligibleReason":"has_scholarship","quota":{"remaining":1,"total":4},"application":\#(application)}"#
+    #"{"eligible":false,"ineligibleReason":"has_scholarship","quota":{"remaining":1,"total":4},"#
+        + #""application":\#(application)}"#
 }

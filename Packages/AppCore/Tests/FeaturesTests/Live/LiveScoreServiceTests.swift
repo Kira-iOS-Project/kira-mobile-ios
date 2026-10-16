@@ -14,14 +14,16 @@ struct LiveScoreServiceTests {
         #expect(report.score == 66 && report.band == .coping && report.delta == 4 && !report.isInitial)
         #expect(report.nextCheckOn == CalendarDay(year: 2026, month: 10, day: 25).date)
         #expect(report.groups.map(\.group) == [.save, .debt, .protect])
-        #expect(report.indicators.map(\.measure) == [
-            .emergencyFund(ratio: 1.1, liquid: 4_800_000, essential: 4_200_000, targetMultiple: 6, targetAmount: 25_200_000),
-            .savingsRatio(percent: 8, monthlySavings: 600_000, income: 7_500_000),
-            .instalmentRatio(percent: 18, monthlyInstalments: 1_350_000, income: 7_500_000),
-            .consumerDebt(platforms: 2, anyLate: true, anyOverdue: false),
-            .debtToAsset(percent: 32, totalDebt: 14_310_000, totalAssets: 44_700_000),
-            .protectionCover(health: true, income: false),
-        ])
+        #expect(
+            report.indicators.map(\.measure) == [
+                .emergencyFund(
+                    ratio: 1.1, liquid: 4_800_000, essential: 4_200_000, targetMultiple: 6, targetAmount: 25_200_000),
+                .savingsRatio(percent: 8, monthlySavings: 600_000, income: 7_500_000),
+                .instalmentRatio(percent: 18, monthlyInstalments: 1_350_000, income: 7_500_000),
+                .consumerDebt(platforms: 2, anyLate: true, anyOverdue: false),
+                .debtToAsset(percent: 32, totalDebt: 14_310_000, totalAssets: 44_700_000),
+                .protectionCover(health: true, income: false),
+            ])
         #expect(report.steps[0].kind == .payOffDebt && report.steps[0].debtName == "Paylater A")
         #expect(report.steps[0].remaining == 420_000)
         #expect(report.steps[1].targetMultiple == 4.5 && report.steps[1].targetAmount == 12_600_000)
@@ -42,10 +44,15 @@ struct LiveScoreServiceTests {
         let detail = try await LiveScoreService(api: api).indicator(.emergencyFund)
         #expect(detail.indicator.key == .emergencyFund && detail.indicator.points == 50)
         #expect(detail.ladder.map(\.points) == [100, 50])
-        #expect(detail.ladder[1] == LadderRung(
-            points: 50, lower: 1, upper: 3, amountLower: 4_200_000, amountUpper: 12_600_000, isCurrent: true))
+        #expect(
+            detail.ladder[1]
+                == LadderRung(
+                    points: 50, lower: 1, upper: 3, amountLower: 4_200_000, amountUpper: 12_600_000, isCurrent: true))
         #expect(detail.nextRung == NextRung(points: 75, amountNeeded: 7_800_000, scoreFrom: 66, scoreTo: 70))
-        #expect(detail.milestones == [Milestone(amount: 4_200_000, label: "1×"), Milestone(amount: 12_600_000, label: "3×")])
+        #expect(
+            detail.milestones == [
+                Milestone(amount: 4_200_000, label: "1×"), Milestone(amount: 12_600_000, label: "3×"),
+            ])
         #expect(await transport.routes == ["GET /api/score/indicators/emergency_fund"])
     }
 }

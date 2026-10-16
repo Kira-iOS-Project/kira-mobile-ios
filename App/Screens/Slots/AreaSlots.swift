@@ -14,9 +14,10 @@ struct OnboardingSlot: View {
     @State private var legal: LegalLink?
 
     var body: some View {
-        OnboardingFlow(service: services.onboarding, pinSetup: services.pinSetup, start: start, onFinished: onFinished) {
-            legal = LegalLink(route: $0)
-        }
+        OnboardingFlow(
+            service: services.onboarding, pinSetup: services.pinSetup, start: start, onFinished: onFinished,
+            onOpen: { legal = LegalLink(route: $0) }
+        )
         .fullScreenCover(item: $legal) { link in LegalCover(first: link.route) }
     }
 }

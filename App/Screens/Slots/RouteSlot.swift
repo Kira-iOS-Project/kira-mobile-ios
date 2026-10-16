@@ -18,10 +18,13 @@ struct RouteSlot: View {
         case .score: ScoreScreen(service: services.score, onOpen: onOpen)
         case .indicator(let key): IndicatorScreen(key: key, service: services.score, onOpen: onOpen)
         case .profile:
-            ProfileScreen(service: services.account, settings: services.security, onOpen: onOpen, onSignedOut: { endSession() })
-        case .security, .changePin: SecurityScreen(service: services.account, settings: services.security, onOpen: onOpen)
+            ProfileScreen(
+                service: services.account, settings: services.security, onOpen: onOpen, onSignedOut: { endSession() })
+        case .security, .changePin:
+            SecurityScreen(service: services.account, settings: services.security, onOpen: onOpen)
         case .privacy, .deleteAccount:
-            PrivacyScreen(service: services.account, settings: services.security, onOpen: onOpen, onSignedOut: { endSession() })
+            PrivacyScreen(
+                service: services.account, settings: services.security, onOpen: onOpen, onSignedOut: { endSession() })
         case .about, .terms, .privacyPolicy, .complaints: LegalScreen(route: route, onOpen: onOpen)
         case .plans, .planDetail, .checkout, .subscription, .paymentMethod, .invoices, .treat, .scholarship,
             .scholarshipApply, .scholarshipStatus:

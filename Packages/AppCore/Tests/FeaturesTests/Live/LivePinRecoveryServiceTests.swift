@@ -13,16 +13,21 @@ struct LivePinRecoveryServiceTests {
         ])
         let service = LivePinRecoveryService(api: api)
         #expect(try await service.sendCode(to: "dinda@email.com") == 45)
-        #expect(try await service.verify(code: "381449", email: "dinda@email.com") == SessionTokens(
-            accessToken: "a-1", refreshToken: "r-1", accessExpiresInSeconds: 900))
+        #expect(
+            try await service.verify(code: "381449", email: "dinda@email.com")
+                == SessionTokens(
+                    accessToken: "a-1", refreshToken: "r-1", accessExpiresInSeconds: 900))
         #expect(await transport.sent[1].json == ["email": .string("dinda@email.com"), "code": .string("381449")])
     }
 
     @Test("a refresh renews the tokens, a refused token ends the session, any other failure is thrown")
     func refresh() async throws {
         let (api, _) = KiraAPI.routed(["POST /api/auth/refresh": ok("{\(tokensJSON)}")])
-        #expect(try await SessionRefresh.refresh("r-0", with: api) == .renewed(SessionTokens(
-            accessToken: "a-1", refreshToken: "r-1", accessExpiresInSeconds: 900)))
+        #expect(
+            try await SessionRefresh.refresh("r-0", with: api)
+                == .renewed(
+                    SessionTokens(
+                        accessToken: "a-1", refreshToken: "r-1", accessExpiresInSeconds: 900)))
         let (refused, _) = KiraAPI.routed(["POST /api/auth/refresh": problem("AUTH_REFRESH_INVALID", status: 401)])
         #expect(try await SessionRefresh.refresh("r-0", with: refused) == .rejected)
         let (failing, _) = KiraAPI.routed(["POST /api/auth/refresh": problem("VALIDATION_FAILED", status: 422)])
