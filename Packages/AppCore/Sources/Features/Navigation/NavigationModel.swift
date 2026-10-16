@@ -8,7 +8,7 @@ package enum MainSection: CaseIterable, Sendable {
     case record
     /** Rencana (REN): not built yet; the tab stays visible and opens nothing. */
     case plan
-    /** Komunitas (KOM): not built yet; the tab stays visible and opens nothing. */
+    /** Komunitas (KOM-01), the dock's third destination. */
     case community
 }
 
@@ -19,12 +19,14 @@ package enum MainSection: CaseIterable, Sendable {
  */
 @MainActor @Observable
 package final class NavigationModel {
-    /** The open section: Beranda or Catat. */
+    /** The open section: Beranda, Catat or Komunitas. */
     package private(set) var section: MainSection = .home
     /** Beranda's stack. */
     package var homePath: [AppRoute] = []
     /** Catat's stack. */
     package var recordPath: [AppRoute] = []
+    /** Komunitas's stack. */
+    package var communityPath: [AppRoute] = []
     /** Whether the health check, opened again from the score ("Cek Ulang"), covers the shell. */
     package var showsHealthCheck = false
 
@@ -41,16 +43,21 @@ package final class NavigationModel {
         switch route {
         case .home: select(.home)
         case .record: select(.record)
+        case .community: select(.community)
         case .unavailable: break
         case .healthCheck: showsHealthCheck = true
         default:
-            if section == .record { recordPath.append(route) } else { homePath.append(route) }
+            switch section {
+            case .record: recordPath.append(route)
+            case .community: communityPath.append(route)
+            case .home, .plan: homePath.append(route)
+            }
         }
     }
 
     /**
-     A dock tap: Beranda or Catat opens its section, or returns to its root when it is open
-     already; Rencana and Komunitas are unavailable and do nothing.
+     A dock tap: Beranda, Catat or Komunitas opens its section, or returns to its root when it is
+     open already; Rencana is unavailable and does nothing.
      */
     package func select(_ target: MainSection) {
         switch target {
@@ -60,7 +67,10 @@ package final class NavigationModel {
         case .record:
             if section == .record { recordPath.removeAll() }
             section = .record
-        case .plan, .community:
+        case .community:
+            if section == .community { communityPath.removeAll() }
+            section = .community
+        case .plan:
             break
         }
     }
@@ -70,11 +80,16 @@ package final class NavigationModel {
         section = .home
         homePath.removeAll()
         recordPath.removeAll()
+        communityPath.removeAll()
         showsHealthCheck = false
     }
 
     private var currentPath: [AppRoute] {
-        section == .record ? recordPath : homePath
+        switch section {
+        case .record: recordPath
+        case .community: communityPath
+        case .home, .plan: homePath
+        }
     }
 }
 
