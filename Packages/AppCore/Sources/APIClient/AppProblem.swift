@@ -98,6 +98,8 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case metaHealthUnhealthy = "META_HEALTH_UNHEALTHY"
     /** Too many codes were asked for; wait before asking again. */
     case authCodeRateLimited = "AUTH_CODE_RATE_LIMITED"
+    /** Too many codes were checked for this address or network; wait a few minutes. */
+    case authVerifyRateLimited = "AUTH_VERIFY_RATE_LIMITED"
     /** The sign-in code does not match. */
     case authCodeInvalid = "AUTH_CODE_INVALID"
     /** The sign-in code is past its ten minutes. */
@@ -110,6 +112,8 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case authRefreshInvalid = "AUTH_REFRESH_INVALID"
     /** The email could not be sent right now. */
     case emailDeliveryFailed = "EMAIL_DELIVERY_FAILED"
+    /** The data export was emailed less than ten minutes ago. */
+    case accountExportRateLimited = "ACCOUNT_EXPORT_RATE_LIMITED"
     /** There is no Kira Score before the health check. */
     case scoreNotAvailable = "SCORE_NOT_AVAILABLE"
     /** Kira AI is off in the consents, so chat reading is off. */
@@ -138,6 +142,8 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case subscriptionNotFound = "SUBSCRIPTION_NOT_FOUND"
     /** A Beasiswa Kira plan cannot be cancelled. */
     case subscriptionNotCancellable = "SUBSCRIPTION_NOT_CANCELLABLE"
+    /** A Beasiswa Kira plan is free: it has no payment method to change. */
+    case subscriptionNotPaid = "SUBSCRIPTION_NOT_PAID"
     /** Applying is not possible right now. */
     case scholarshipNotEligible = "SCHOLARSHIP_NOT_ELIGIBLE"
     /** There is no open application. */

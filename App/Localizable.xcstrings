@@ -12007,6 +12007,17 @@
         }
       }
     },
+    "problem.ACCOUNT_EXPORT_RATE_LIMITED" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datamu baru saja dikirim ke emailmu. Cek kotak masuk dulu, atau coba lagi nanti."
+          }
+        }
+      }
+    },
     "problem.AUTH_CODE_ATTEMPTS_EXCEEDED" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -12069,6 +12080,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sesimu sudah berakhir. Masuk lagi untuk melanjutkan."
+          }
+        }
+      }
+    },
+    "problem.AUTH_VERIFY_RATE_LIMITED" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kode sudah terlalu sering dicoba. Tunggu beberapa menit, lalu coba lagi."
           }
         }
       }
@@ -12300,6 +12322,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kamu sedang memakai Kira Gratis."
+          }
+        }
+      }
+    },
+    "problem.SUBSCRIPTION_NOT_PAID" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paket dari Beasiswa Kira gratis, jadi tidak ada metode pembayaran yang perlu diganti."
           }
         }
       }
