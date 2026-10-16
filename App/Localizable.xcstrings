@@ -1,6 +1,1706 @@
 {
   "sourceLanguage" : "id",
   "strings" : {
+    "account.about.ai" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI dan Angka"
+          }
+        }
+      }
+    },
+    "account.about.ai.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI membaca chat dan gambar struk, semua angka dihitung mesin"
+          }
+        }
+      }
+    },
+    "account.about.communityRules" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aturan Komunitas"
+          }
+        }
+      }
+    },
+    "account.about.documents" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokumen"
+          }
+        }
+      }
+    },
+    "account.about.education" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konten Edukasi"
+          }
+        }
+      }
+    },
+    "account.about.education.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ditinjau tim sebelum terbit, tanpa rekomendasi produk"
+          }
+        }
+      }
+    },
+    "account.about.method" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cara Kira Bekerja"
+          }
+        }
+      }
+    },
+    "account.about.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pelan-pelan, uangmu tumbuh"
+          }
+        }
+      }
+    },
+    "account.about.position" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pendamping keuangan, bukan bank, pinjol, atau penasihat investasi."
+          }
+        }
+      }
+    },
+    "account.about.score" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Score"
+          }
+        }
+      }
+    },
+    "account.about.score.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metode FinHealth Score dari Financial Health Network"
+          }
+        }
+      }
+    },
+    "account.about.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tentang Kira"
+          }
+        }
+      }
+    },
+    "account.autoLock.fiveMinutes" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5 menit"
+          }
+        }
+      }
+    },
+    "account.autoLock.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira meminta PIN lagi setelah ditinggal selama ini."
+          }
+        }
+      }
+    },
+    "account.autoLock.immediately" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Segera"
+          }
+        }
+      }
+    },
+    "account.autoLock.oneMinute" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 menit"
+          }
+        }
+      }
+    },
+    "account.back.about" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Tentang Kira"
+          }
+        }
+      }
+    },
+    "account.back.profile" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Profil"
+          }
+        }
+      }
+    },
+    "account.bullet" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "•"
+          }
+        }
+      }
+    },
+    "account.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "account.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup"
+          }
+        }
+      }
+    },
+    "account.complaints.1.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirim keluhanmu lewat email bantuan@kira.id beserta tangkapan layar jika ada."
+          }
+        }
+      }
+    },
+    "account.complaints.1.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hubungi Kira"
+          }
+        }
+      }
+    },
+    "account.complaints.2.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Balasan paling lambat 5 hari kerja."
+          }
+        }
+      }
+    },
+    "account.complaints.2.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kami Membalas"
+          }
+        }
+      }
+    },
+    "account.complaints.3.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adukan ke OJK lewat Kontak OJK 157."
+          }
+        }
+      }
+    },
+    "account.complaints.3.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Selesai?"
+          }
+        }
+      }
+    },
+    "account.complaints.call" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OJK 157"
+          }
+        }
+      }
+    },
+    "account.complaints.email" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirim Email"
+          }
+        }
+      }
+    },
+    "account.complaints.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada keluhan? Kami dengarkan."
+          }
+        }
+      }
+    },
+    "account.complaints.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Layanan Pengaduan"
+          }
+        }
+      }
+    },
+    "account.delete.confirm" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Permanen"
+          }
+        }
+      }
+    },
+    "account.delete.done.message" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semua datamu sudah dihapus. Terima kasih sudah mencoba Kira."
+          }
+        }
+      }
+    },
+    "account.delete.done.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akunmu Sudah Dihapus"
+          }
+        }
+      }
+    },
+    "account.delete.export" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unduh Datamu Dulu"
+          }
+        }
+      }
+    },
+    "account.delete.export.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum terkirim. Ketuk untuk coba lagi."
+          }
+        }
+      }
+    },
+    "account.delete.export.sent %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSV · terkirim ke %@"
+          }
+        }
+      }
+    },
+    "account.delete.export.subtitle %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSV · dikirim ke %@"
+          }
+        }
+      }
+    },
+    "account.delete.failed.message" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koneksi terputus. Datamu masih utuh, coba lagi sebentar lagi."
+          }
+        }
+      }
+    },
+    "account.delete.failed.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akun Belum Terhapus"
+          }
+        }
+      }
+    },
+    "account.delete.field" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketik HAPUS untuk konfirmasi"
+          }
+        }
+      }
+    },
+    "account.delete.field.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tombol hapus aktif setelah HAPUS diketik."
+          }
+        }
+      }
+    },
+    "account.delete.field.prompt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HAPUS"
+          }
+        }
+      }
+    },
+    "account.delete.item.chat" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat chat dan catatan Kira Peduli"
+          }
+        }
+      }
+    },
+    "account.delete.item.goals" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tujuan dan rencana pelunasan"
+          }
+        }
+      }
+    },
+    "account.delete.item.score" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Score dan riwayatnya"
+          }
+        }
+      }
+    },
+    "account.delete.item.transactions" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaksi, dompet, dan budget"
+          }
+        }
+      }
+    },
+    "account.delete.items" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yang akan dihapus permanen:"
+          }
+        }
+      }
+    },
+    "account.delete.subscription.message" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu tidak akan ditagih lagi setelah akun dihapus."
+          }
+        }
+      }
+    },
+    "account.delete.subscription.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langganan Aktif Dibatalkan Otomatis"
+          }
+        }
+      }
+    },
+    "account.delete.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak bisa dibatalkan"
+          }
+        }
+      }
+    },
+    "account.delete.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Akun dan Data"
+          }
+        }
+      }
+    },
+    "account.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
+    "account.export.confirm" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unduh"
+          }
+        }
+      }
+    },
+    "account.export.message" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File CSV berisi catatanmu akan diunduh ke perangkat ini."
+          }
+        }
+      }
+    },
+    "account.export.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unduh Datamu?"
+          }
+        }
+      }
+    },
+    "account.failure.reference %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kode referensi: %@"
+          }
+        }
+      }
+    },
+    "account.failure.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Berhasil"
+          }
+        }
+      }
+    },
+    "account.legal.effective" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berlaku sejak 15 Oktober 2026"
+          }
+        }
+      }
+    },
+    "account.objection.confirm" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka Email"
+          }
+        }
+      }
+    },
+    "account.objection.message" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tulis keberatanmu ke privasi@kira.id. Sertakan keputusan yang menurutmu tidak tepat, tim kami membalas lewat email."
+          }
+        }
+      }
+    },
+    "account.objection.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sampaikan Lewat Email"
+          }
+        }
+      }
+    },
+    "account.pin.change.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ganti PIN"
+          }
+        }
+      }
+    },
+    "account.pin.create.action" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buat PIN"
+          }
+        }
+      }
+    },
+    "account.pin.create.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunci dengan PIN"
+          }
+        }
+      }
+    },
+    "account.pin.current" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masukkan PIN Kira"
+          }
+        }
+      }
+    },
+    "account.pin.disable.action" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Matikan"
+          }
+        }
+      }
+    },
+    "account.pin.disable.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Matikan Kunci PIN"
+          }
+        }
+      }
+    },
+    "account.pin.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jangan pakai PIN bank atau tanggal lahir."
+          }
+        }
+      }
+    },
+    "account.pin.new" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buat PIN 6 Angka"
+          }
+        }
+      }
+    },
+    "account.pin.next" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lanjut"
+          }
+        }
+      }
+    },
+    "account.pin.notSaved" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PIN belum tersimpan. Coba lagi sebentar lagi."
+          }
+        }
+      }
+    },
+    "account.pin.replacement" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buat PIN Baru"
+          }
+        }
+      }
+    },
+    "account.pin.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan PIN"
+          }
+        }
+      }
+    },
+    "account.pin.verify.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PIN yang kamu pakai untuk membuka Kira."
+          }
+        }
+      }
+    },
+    "account.pin.wrong" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PIN belum cocok. Coba lagi."
+          }
+        }
+      }
+    },
+    "account.plan.free" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Gratis"
+          }
+        }
+      }
+    },
+    "account.plan.plus" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Plus"
+          }
+        }
+      }
+    },
+    "account.plan.young" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Muda"
+          }
+        }
+      }
+    },
+    "account.privacy.ai" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira AI Membaca Chat dan Struk"
+          }
+        }
+      }
+    },
+    "account.privacy.ai.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalau mati, catat manual saja"
+          }
+        }
+      }
+    },
+    "account.privacy.consents" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Persetujuan"
+          }
+        }
+      }
+    },
+    "account.privacy.consents.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perubahan berlaku saat itu juga."
+          }
+        }
+      }
+    },
+    "account.privacy.core" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mencatat dan Menghitung Kira Score"
+          }
+        }
+      }
+    },
+    "account.privacy.core.required" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wajib"
+          }
+        }
+      }
+    },
+    "account.privacy.core.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inti layanan Kira"
+          }
+        }
+      }
+    },
+    "account.privacy.delete" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Akun dan Data"
+          }
+        }
+      }
+    },
+    "account.privacy.delete.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu bisa unduh datamu dulu sebelum menghapus."
+          }
+        }
+      }
+    },
+    "account.privacy.export" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unduh Datamu"
+          }
+        }
+      }
+    },
+    "account.privacy.export.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSV · diunduh ke perangkat"
+          }
+        }
+      }
+    },
+    "account.privacy.intro" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datamu, keputusanmu."
+          }
+        }
+      }
+    },
+    "account.privacy.intro.message" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atur apa yang boleh Kira pakai, dan ambil datamu kapan saja."
+          }
+        }
+      }
+    },
+    "account.privacy.objection" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keberatan atas Keputusan Otomatis"
+          }
+        }
+      }
+    },
+    "account.privacy.objection.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mis. Kira Score yang terasa tidak tepat"
+          }
+        }
+      }
+    },
+    "account.privacy.processing" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bagaimana Datamu Diproses?"
+          }
+        }
+      }
+    },
+    "account.privacy.processing.encrypted" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semua data dienkripsi saat disimpan dan saat dikirim."
+          }
+        }
+      }
+    },
+    "account.privacy.processing.law" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mengacu pada UU Pelindungan Data Pribadi. Rincian lengkap ada di Kebijakan Privasi."
+          }
+        }
+      }
+    },
+    "account.privacy.processing.sensitive" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data keuangan dan kesehatan diperlakukan sebagai data pribadi spesifik."
+          }
+        }
+      }
+    },
+    "account.privacy.processing.separate" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sinyal Kira Peduli disimpan terpisah dari data keuangan."
+          }
+        }
+      }
+    },
+    "account.privacy.processing.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enkripsi dan penyimpanan terpisah"
+          }
+        }
+      }
+    },
+    "account.privacy.rights" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hakmu"
+          }
+        }
+      }
+    },
+    "account.privacy.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data & Privasi"
+          }
+        }
+      }
+    },
+    "account.privacy.weekly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ringkasan Mingguan"
+          }
+        }
+      }
+    },
+    "account.privacy.weekly.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dibaca di dalam aplikasi"
+          }
+        }
+      }
+    },
+    "account.privacyPolicy.1.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email, catatan keuangan yang kamu isi, dan pengaturan akunmu."
+          }
+        }
+      }
+    },
+    "account.privacyPolicy.1.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data yang Kami Simpan"
+          }
+        }
+      }
+    },
+    "account.privacyPolicy.2.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Untuk menghitung Kira Score dan simulasi. Tidak dijual dan tidak dipakai untuk iklan."
+          }
+        }
+      }
+    },
+    "account.privacyPolicy.2.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cara Kami Memakainya"
+          }
+        }
+      }
+    },
+    "account.privacyPolicy.3.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data dienkripsi saat disimpan dan saat dikirim. Data Kira Peduli disimpan terpisah."
+          }
+        }
+      }
+    },
+    "account.privacyPolicy.3.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Penyimpanan dan Keamanan"
+          }
+        }
+      }
+    },
+    "account.privacyPolicy.4.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu bisa mengunduh, memperbaiki, atau menghapus datamu kapan saja."
+          }
+        }
+      }
+    },
+    "account.privacyPolicy.4.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hakmu"
+          }
+        }
+      }
+    },
+    "account.privacyPolicy.manage" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atur Data & Privasi"
+          }
+        }
+      }
+    },
+    "account.privacyPolicy.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kebijakan Privasi"
+          }
+        }
+      }
+    },
+    "account.profile.about" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tentang Kira"
+          }
+        }
+      }
+    },
+    "account.profile.account" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akun"
+          }
+        }
+      }
+    },
+    "account.profile.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Beranda"
+          }
+        }
+      }
+    },
+    "account.profile.bills" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan & Cicilan"
+          }
+        }
+      }
+    },
+    "account.profile.budget" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Budget"
+          }
+        }
+      }
+    },
+    "account.profile.budget.subtitle %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Periode %1$@ – %2$@"
+          }
+        }
+      }
+    },
+    "account.profile.money" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uangku"
+          }
+        }
+      }
+    },
+    "account.profile.more" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lainnya"
+          }
+        }
+      }
+    },
+    "account.profile.privacy" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data & Privasi"
+          }
+        }
+      }
+    },
+    "account.profile.privacy.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Persetujuan dan hakmu"
+          }
+        }
+      }
+    },
+    "account.profile.quota.chat" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chat AI"
+          }
+        }
+      }
+    },
+    "account.profile.quota.chat.value %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld dari %2$lld pesan"
+          }
+        }
+      }
+    },
+    "account.profile.quota.plans" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Paket"
+          }
+        }
+      }
+    },
+    "account.profile.quota.receipts" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scan Struk"
+          }
+        }
+      }
+    },
+    "account.profile.quota.receipts.value %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld dari %2$lld struk"
+          }
+        }
+      }
+    },
+    "account.profile.quota.resets %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terisi lagi %@"
+          }
+        }
+      }
+    },
+    "account.profile.quota.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catat manual tetap tanpa batas"
+          }
+        }
+      }
+    },
+    "account.profile.quota.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuota AI Bulan Ini"
+          }
+        }
+      }
+    },
+    "account.profile.security" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keamanan"
+          }
+        }
+      }
+    },
+    "account.profile.security.off" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunci PIN nonaktif"
+          }
+        }
+      }
+    },
+    "account.profile.security.on" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunci PIN aktif"
+          }
+        }
+      }
+    },
+    "account.profile.signOut" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keluar"
+          }
+        }
+      }
+    },
+    "account.profile.subscription" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paket & Langganan"
+          }
+        }
+      }
+    },
+    "account.profile.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profil"
+          }
+        }
+      }
+    },
+    "account.profile.wallets" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dompet & Akun Utang"
+          }
+        }
+      }
+    },
+    "account.profile.wallets.subtitle %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld akun utang"
+          }
+        }
+      }
+    },
+    "account.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
+          }
+        }
+      }
+    },
+    "account.security.autoLock" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunci Otomatis"
+          }
+        }
+      }
+    },
+    "account.security.changePin" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ganti PIN"
+          }
+        }
+      }
+    },
+    "account.security.changePin.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "6 angka, bukan PIN bank"
+          }
+        }
+      }
+    },
+    "account.security.display" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tampilan"
+          }
+        }
+      }
+    },
+    "account.security.hideBalances" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sembunyikan Saldo saat Membuka"
+          }
+        }
+      }
+    },
+    "account.security.hideBalances.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketuk ikon mata untuk melihat"
+          }
+        }
+      }
+    },
+    "account.security.intro" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catatan keuanganmu hanya terbuka untukmu."
+          }
+        }
+      }
+    },
+    "account.security.lock" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunci Aplikasi"
+          }
+        }
+      }
+    },
+    "account.security.notice" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira tidak pernah meminta PIN, password, atau OTP bankmu."
+          }
+        }
+      }
+    },
+    "account.security.obscure" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Samarkan di Pengalih Aplikasi"
+          }
+        }
+      }
+    },
+    "account.security.obscure.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi layar Kira tidak terlihat"
+          }
+        }
+      }
+    },
+    "account.security.pin" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunci dengan PIN"
+          }
+        }
+      }
+    },
+    "account.security.pin.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diminta tiap membuka Kira"
+          }
+        }
+      }
+    },
+    "account.security.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keamanan"
+          }
+        }
+      }
+    },
+    "account.signOut.confirm" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keluar"
+          }
+        }
+      }
+    },
+    "account.signOut.message" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catatanmu tetap tersimpan di akunmu. Masuk lagi kapan saja dengan email dan kode."
+          }
+        }
+      }
+    },
+    "account.signOut.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keluar dari Kira?"
+          }
+        }
+      }
+    },
+    "account.terms.1.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira adalah pendamping keuangan, bukan bank, pinjol, atau penasihat investasi."
+          }
+        }
+      }
+    },
+    "account.terms.1.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tentang Layanan"
+          }
+        }
+      }
+    },
+    "account.terms.2.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu masuk dengan email. Jaga akses ke emailmu karena itu kunci akunmu."
+          }
+        }
+      }
+    },
+    "account.terms.2.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akunmu"
+          }
+        }
+      }
+    },
+    "account.terms.3.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Angka yang kamu isi dipakai untuk simulasi. Hasilnya perkiraan, bukan jaminan."
+          }
+        }
+      }
+    },
+    "account.terms.3.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catatan dan Perhitungan"
+          }
+        }
+      }
+    },
+    "account.terms.4.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Plus bisa dibatalkan kapan saja. Fiturnya tetap aktif sampai akhir periode."
+          }
+        }
+      }
+    },
+    "account.terms.4.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langganan"
+          }
+        }
+      }
+    },
+    "account.terms.5.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalau syarat berubah, kami memberi tahu lewat aplikasi."
+          }
+        }
+      }
+    },
+    "account.terms.5.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perubahan"
+          }
+        }
+      }
+    },
+    "account.terms.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syarat dan Ketentuan"
+          }
+        }
+      }
+    },
+    "account.version %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versi %@"
+          }
+        }
+      }
+    },
     "ds.accordion.closed" : {
       "localizations" : {
         "id" : {
