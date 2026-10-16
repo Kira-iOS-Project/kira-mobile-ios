@@ -110,12 +110,14 @@ package final class ReceiptScanModel {
         guard let image else { return }
         stage = .reading
         do {
-            let reading = ReceiptTextParser.read(try await dependencies.receiptReader.lines(in: image))
-            guard let reading, reading.isBalanced else {
+            let lines = try await dependencies.receiptReader.lines(in: image)
+            guard let parsed = ReceiptTextParser.read(lines), parsed.isBalanced else {
                 stage = .camera
                 problem = .unreadable
                 return
             }
+            let assist = ReceiptStoreAssist(assistant: dependencies.receiptAssistant)
+            let reading = await assist.named(parsed, lines: lines, image: image)
             onRead(try await dependencies.service.sendReceipt(input(for: reading)))
         } catch {
             stage = .camera

@@ -13658,6 +13658,16 @@
         }
       }
     },
+    "record.voice.preparing" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menyiapkan bahasa…"
+          }
+        }
+      }
+    },
     "record.voice.quota" : {
       "localizations" : {
         "id" : {

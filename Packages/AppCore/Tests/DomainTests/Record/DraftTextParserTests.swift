@@ -31,6 +31,14 @@ struct DraftTextParserTests {
         #expect(drafts.map(\.category) == [.transport, .food])
     }
 
+    @Test("DictationTranscriber's own transcript of the spoken sample reads the same drafts")
+    func dictated() {
+        let drafts = parser.parse("Parkir 5000 terus bakso 20.000 rupiah")
+        #expect(drafts.map(\.name) == ["Parkir", "Bakso"])
+        #expect(drafts.map(\.amount) == [5_000, 20_000])
+        #expect(drafts.map(\.category) == [.transport, .food])
+    }
+
     @Test("items without commas, joined by words, or with the amount first")
     func layouts() {
         #expect(parser.parse("kopi 15rb parkir 3rb").map(\.name) == ["Kopi", "Parkir"])
