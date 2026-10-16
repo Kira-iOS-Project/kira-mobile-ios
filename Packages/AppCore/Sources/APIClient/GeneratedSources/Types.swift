@@ -182,7 +182,7 @@ internal protocol APIProtocol: Sendable {
     func acceptCommunityRules(_ input: Operations.AcceptCommunityRules.Input) async throws -> Operations.AcceptCommunityRules.Output
     /// The verified invite link (Membuka Tautan Keluar)
     ///
-    /// Needs the current community rules accepted; records that the invite was opened.
+    /// Needs the current community rules accepted and a verified link (409 COMMUNITY_LINK_UNAVAILABLE while the team checks it); records that the invite was opened.
     ///
     /// - Remark: HTTP `POST /api/community/groups/{id}/join`.
     /// - Remark: Generated from `#/paths//api/community/groups/{id}/join/post(joinCommunityGroup)`.
@@ -674,7 +674,7 @@ extension APIProtocol {
     }
     /// The verified invite link (Membuka Tautan Keluar)
     ///
-    /// Needs the current community rules accepted; records that the invite was opened.
+    /// Needs the current community rules accepted and a verified link (409 COMMUNITY_LINK_UNAVAILABLE while the team checks it); records that the invite was opened.
     ///
     /// - Remark: HTTP `POST /api/community/groups/{id}/join`.
     /// - Remark: Generated from `#/paths//api/community/groups/{id}/join/post(joinCommunityGroup)`.
