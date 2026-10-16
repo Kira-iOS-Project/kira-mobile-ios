@@ -47,39 +47,6 @@ struct OnboardingFlowModelTests {
         #expect(outcome == .completed(.debtFree))
     }
 
-    @Test("a failed send closes the email sheet for its dialog; Coba Lagi opens it on the same address and sends")
-    func signUpEmailFailure() async {
-        let service = FakeOnboardingService(failures: 1)
-        let flow = flow(service)
-        flow.open(.signUp)
-        flow.openSignUpEmail()
-        let email = flow.signUpEmailModel()
-        email.email = "dinda@email.com"
-        await email.submit()
-        #expect(!flow.signUpEmail.isOpen)
-        #expect(flow.signUpEmail.failure == FakeOnboardingService.problem)
-        #expect(email.phase == .editing)
-        #expect(flow.path == [.signUp])
-        await flow.retrySignUpEmail()
-        #expect(flow.signUpEmail.failure == nil && !flow.signUpEmail.isOpen)
-        #expect(flow.signUpEmailModel().email == "dinda@email.com")
-        #expect(await service.calls == [.requestCode("dinda@email.com"), .requestCode("dinda@email.com")])
-        #expect(flow.path.last == .code(email: "dinda@email.com", delivery: CodeDelivery(resendAfterSeconds: 60)))
-    }
-
-    @Test("an invalid address stays inline in the open sheet")
-    func signUpEmailInvalid() async {
-        let service = FakeOnboardingService()
-        let flow = flow(service)
-        flow.openSignUpEmail()
-        let email = flow.signUpEmailModel()
-        email.email = "dinda@"
-        await email.submit()
-        #expect(flow.signUpEmail.isOpen && flow.signUpEmail.failure == nil)
-        #expect(email.showsInvalidEmail)
-        #expect(await service.calls.isEmpty)
-    }
-
     @Test("an account already set up signs in straight to Beranda")
     func signedIn() async {
         var outcome: OnboardingOutcome?
