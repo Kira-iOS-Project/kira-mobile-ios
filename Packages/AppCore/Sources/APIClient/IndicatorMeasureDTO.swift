@@ -25,8 +25,8 @@ package enum IndicatorMeasureDTO: Hashable, Sendable {
                 targetMultiple: fund.targetMultiple, targetAmount: fund.targetAmount)
         case .savingsRatio:
             guard let savings = measure.value2 else { throw AppProblem() }
-            self = .savingsRatio(percent: savings.percent, monthlySavings: savings.monthlySavings,
-                income: savings.income)
+            self = .savingsRatio(
+                percent: savings.percent, monthlySavings: savings.monthlySavings, income: savings.income)
         case .instalmentRatio:
             guard let ratio = measure.value3 else { throw AppProblem() }
             self = .instalmentRatio(

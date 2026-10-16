@@ -35,8 +35,9 @@ struct HomeAPITests {
     func overview() async throws {
         let home = try await KiraAPI.canned(json: overviewJSON).api.getHome()
         #expect(home.variant == .overview && home.today == "2026-10-16" && home.displayName == "Dinda")
-        #expect(home.money == HomeMoneyDTO(income: 7_500_000, spent: 5_660_000, remaining: 1_840_000,
-            perDay: 204_444, spentPercent: 75))
+        let money = HomeMoneyDTO(
+            income: 7_500_000, spent: 5_660_000, remaining: 1_840_000, perDay: 204_444, spentPercent: 75)
+        #expect(home.money == money)
         #expect(home.step?.kind == .payOffDebt && home.stepPosition == StepPositionDTO(index: 1, total: 3))
         #expect(home.score == HomeScoreDTO(score: 66, band: .coping, delta: 4, isInitial: false))
         #expect(home.weeklySummary == DateRangeDTO(first: "2026-10-09", last: "2026-10-15"))
@@ -47,8 +48,9 @@ struct HomeAPITests {
     func firstSteps() async throws {
         let home = try await KiraAPI.canned(json: firstStepsJSON).api.getHome()
         #expect(home.variant == .firstSteps && home.hideBalances && home.money == nil && home.score == nil)
-        #expect(home.checklist == HomeChecklistDTO(healthCheck: true, firstTransaction: false,
-            walletAdded: false, paydaySet: true))
+        let checklist = HomeChecklistDTO(
+            healthCheck: true, firstTransaction: false, walletAdded: false, paydaySet: true)
+        #expect(home.checklist == checklist)
         #expect(home.step == nil && home.stepPosition == nil && home.microTarget == nil)
     }
 

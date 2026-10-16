@@ -34,7 +34,8 @@ package struct HomeDTO: Hashable, Sendable {
         hideBalances = home.hideBalances
         period = PaydayPeriodDTO(home.period)
         money = home.money.map {
-            HomeMoneyDTO(income: $0.income, spent: $0.spent, remaining: $0.remaining, perDay: $0.perDay,
+            HomeMoneyDTO(
+                income: $0.income, spent: $0.spent, remaining: $0.remaining, perDay: $0.perDay,
                 spentPercent: $0.spentPercent)
         }
         step = try home.step.map { try ScoreStepDTO($0.value1) }
@@ -48,8 +49,9 @@ package struct HomeDTO: Hashable, Sendable {
                 healthCheck: $0.healthCheck, firstTransaction: $0.firstTransaction, walletAdded: $0.walletAdded,
                 paydaySet: $0.paydaySet)
         }
-        debtPlan = home.debtPlan.map { DebtPlanDTO(paidOff: $0.paidOff, total: $0.total,
-            remaining: $0.remaining, percent: $0.percent) }
+        debtPlan = home.debtPlan.map {
+            DebtPlanDTO(paidOff: $0.paidOff, total: $0.total, remaining: $0.remaining, percent: $0.percent)
+        }
         microTarget = try home.microTarget.map {
             MicroTargetDTO(kind: try bridged($0.kind), current: $0.current, target: $0.target)
         }

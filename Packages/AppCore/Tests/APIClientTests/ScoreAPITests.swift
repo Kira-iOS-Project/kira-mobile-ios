@@ -24,15 +24,16 @@ struct ScoreAPITests {
         #expect(report.computedAt == Date(timeIntervalSince1970: 1_792_126_800))
         #expect(report.nextCheckOn == "2026-10-25" && !report.cappedByConsumerDebt)
         #expect(report.groups[0] == GroupScoreDTO(group: .save, points: 48, band: .coping))
-        #expect(report.indicators.map(\.measure) == [
-            .emergencyFund(ratio: 1.1, liquid: 4_800_000, essential: 4_200_000, targetMultiple: 6,
-                targetAmount: 25_200_000),
+        let measures: [IndicatorMeasureDTO] = [
+            .emergencyFund(
+                ratio: 1.1, liquid: 4_800_000, essential: 4_200_000, targetMultiple: 6, targetAmount: 25_200_000),
             .savingsRatio(percent: 8, monthlySavings: 600_000, income: 7_500_000),
             .instalmentRatio(percent: 18, monthlyInstalments: 1_350_000, income: 7_500_000),
             .consumerDebt(platforms: 2, anyLate: false, anyOverdue: false),
             .debtToAsset(percent: 32, totalDebt: 14_310_000, totalAssets: 44_700_000),
             .protection(health: true, income: true),
-        ])
+        ]
+        #expect(report.indicators.map(\.measure) == measures)
         #expect(report.indicators[4].band == .healthy && report.indicators[5].group == .protect)
         let step = try #require(report.steps.first)
         #expect(step.kind == .payOffDebt && step.debtName == "Paylater A" && step.remaining == 420_000)
@@ -44,8 +45,9 @@ struct ScoreAPITests {
         let (api, transport) = KiraAPI.canned(json: detailJSON)
         let detail = try await api.getScoreIndicator(.emergencyFund)
         #expect(detail.indicator.points == 50 && detail.ladder.count == 2)
-        #expect(detail.ladder[1] == LadderRungDTO(points: 50, lower: 1, upper: 3, amountLower: 4_200_000,
-            amountUpper: 12_600_000, isCurrent: true))
+        let current = LadderRungDTO(
+            points: 50, lower: 1, upper: 3, amountLower: 4_200_000, amountUpper: 12_600_000, isCurrent: true)
+        #expect(detail.ladder[1] == current)
         #expect(detail.nextRung == NextRungDTO(points: 75, amountNeeded: 7_800_000, scoreFrom: 66, scoreTo: 70))
         #expect(detail.milestones.last == MilestoneDTO(amount: 12_600_000, label: "3×"))
         #expect(try #require(await transport.request).path.hasSuffix("emergency_fund"))
@@ -57,8 +59,9 @@ struct ScoreAPITests {
         answers.netMonthlyIncome = 7_500_000
         answers.payday = PaydayDTO(day: 25, endOfMonth: false)
         answers.debts = [
-            HealthCheckDebtDTO(kind: .onlineLoan, name: "Pinjol B", remaining: 3_000_000,
-                monthlyInstalment: 900_000, remainingTenorMonths: nil)
+            HealthCheckDebtDTO(
+                kind: .onlineLoan, name: "Pinjol B", remaining: 3_000_000, monthlyInstalment: 900_000,
+                remainingTenorMonths: nil)
         ]
         answers.dependents = 2
         answers.maritalStatus = .married
