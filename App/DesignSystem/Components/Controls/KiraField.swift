@@ -44,6 +44,8 @@ struct KiraField: View {
                     .font(.footnote).kiraLineHeight(18, size: 13)
                     .foregroundStyle(errorText == nil ? Color.inkMuted : Color.vulnerable)
                     .padding(.horizontal, 4)
+                    /** As tall as its lines at every text size, never squeezed by the field's container. */
+                    .fixedSize(horizontal: false, vertical: true)
             }
         }
     }
@@ -59,10 +61,20 @@ struct KiraField: View {
                 if isSingleLine, text.isEmpty, let prompt {
                     Text(prompt).font(.body).foregroundStyle(.inkMuted).accessibilityHidden(true)
                 }
-                TextField(text: $text, prompt: systemPrompt, axis: isSingleLine ? .horizontal : .vertical) {
+                /**
+                 Vertical always, so a long value wraps at large text sizes instead of being cut off
+                 (Apple's audit reports a cut line as clipped text); a single-line field keeps to one
+                 paragraph, as Return ends the editing instead of starting a new line.
+                 */
+                TextField(text: $text, prompt: systemPrompt, axis: .vertical) {
                     Text(label)
                 }
-                .lineLimit(minimumLines...max(minimumLines, 6))
+                .lineLimit(isSingleLine ? 1...4 : minimumLines...max(minimumLines, 6))
+                .onChange(of: text) { _, value in
+                    guard isSingleLine, value.contains("\n") else { return }
+                    text = value.replacingOccurrences(of: "\n", with: "")
+                    isFocused = false
+                }
                 .font(.body)
                 .foregroundStyle(.ink)
                 .focused($isFocused)

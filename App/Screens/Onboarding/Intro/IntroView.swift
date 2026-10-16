@@ -45,6 +45,9 @@ struct IntroView: View {
                 }
             }
             .padding(.leading, KiraSpacing.space1)
+            /** The row is 44 pt already; the indicator takes its height, which the audit asks of an element. */
+            .frame(minHeight: KiraSize.tap)
+            .contentShape(Rectangle())
             .accessibilityElement(children: .ignore)
             .accessibilityLabel(Text("onboarding.intro.progress \(page + 1) \(pageCount)"))
             Spacer()

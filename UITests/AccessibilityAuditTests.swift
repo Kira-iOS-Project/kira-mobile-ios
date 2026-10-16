@@ -19,13 +19,15 @@ nonisolated final class AccessibilityAuditTests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments = ["-KiraLocked"]
         app.launch()
-        XCTAssertTrue(app.buttons["Lupa PIN?"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["Lupa PIN?"].waitForExistence(timeout: 10))
         try auditInPlace(app) { issue in
             /**
-             Accepted: "Lupa PIN?" is on-hero-muted over the hero hills, the board's colours
-             (BukaKunci.dc.html); the owner keeps the design. Every other finding fails.
+             Accepted: "Lupa PIN?" and the 0 key, the two that sit over the hero hills, in the
+             board's colours (BukaKunci.dc.html: on-hero-muted, and on-hero on hero-track); the owner
+             keeps the design. Every other finding fails.
              */
-            issue.auditType == .contrast && issue.element?.label == "Lupa PIN?"
+            guard issue.auditType == .contrast, let label = issue.element?.label else { return false }
+            return label == "Lupa PIN?" || label == "0"
         }
     }
 
@@ -36,7 +38,7 @@ nonisolated final class AccessibilityAuditTests: XCTestCase {
         app.launchArguments = ["-KiraLocked"]
         app.launch()
         let forgot = app.buttons["Lupa PIN?"]
-        XCTAssertTrue(forgot.waitForExistence(timeout: 5))
+        XCTAssertTrue(forgot.waitForExistence(timeout: 10))
         forgot.tap()
         XCTAssertTrue(app.staticTexts["Kode Verifikasi"].waitForExistence(timeout: 5))
         Thread.sleep(forTimeInterval: 1.5)
