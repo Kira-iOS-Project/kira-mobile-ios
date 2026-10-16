@@ -8,8 +8,9 @@ app through `bash scripts/ios/app.sh`, which picks the simulator and never signs
 
 ## Decisions to keep
 
-- Bundle ID `com.kira` (UI tests `com.kira.uitests`); if Apple refuses `com.kira` as taken, use
-  `com.serenitycode.kira` (UI tests `com.serenitycode.kira.uitests`). The backend is `kira-backend`
+- Bundle ID `com.kira.finance` (UI tests `com.kira.finance.uitests`; the owner's choice, 2026-10-16);
+  if Apple refuses it as taken, use `com.serenitycode.kira` (UI tests
+  `com.serenitycode.kira.uitests`). The backend is `kira-backend`
   (`https://api-kira.serenitycode.tech`), whose `openapi.json` is copied into
   `Packages/AppCore/Sources/APIClient/`.
 - String Catalogs: source language `id`, Indonesian only (`App/Localizable.xcstrings`).

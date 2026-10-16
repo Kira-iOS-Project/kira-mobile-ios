@@ -1171,6 +1171,16 @@
         }
       }
     },
+    "account.profile.email.label %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email %@"
+          }
+        }
+      }
+    },
     "account.profile.money" : {
       "localizations" : {
         "id" : {
@@ -13653,7 +13663,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mendengarkan…"
+            "value" : "Mendengarkan"
           }
         }
       }
@@ -13663,7 +13673,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Menyiapkan bahasa…"
+            "value" : "Menyiapkan bahasa"
           }
         }
       }

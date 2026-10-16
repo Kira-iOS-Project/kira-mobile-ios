@@ -22,7 +22,9 @@
                 case .treat: TreatView(service: service)
                 case .scholarship: ScholarshipScreen(service: PreviewPlansService(onFreePlan: true)) { _ in }
                 case .scholarshipApply:
-                    ScholarshipApplyView(service: PreviewPlansService(onFreePlan: true), onOpen: { _ in }, onSent: {})
+                    ScholarshipApplyView(
+                        service: PreviewPlansService(onFreePlan: true), draft: Self.formDraft, onOpen: { _ in },
+                        onSent: {})
                 case .scholarshipPending: scholarship(Self.pending)
                 case .scholarshipAccepted: scholarship(PreviewPlansData.acceptedApplication)
                 default: PlansScreen(service: service) { _ in }
@@ -35,6 +37,12 @@
         private func scholarship(_ application: ScholarshipApplication) -> some View {
             ScholarshipScreen(service: PreviewPlansService(onFreePlan: true, application: application)) { _ in }
         }
+
+        /** BeasiswaKiraForm: two situations picked and the story typed, so Kirim Pengajuan is on. */
+        private static let formDraft = ScholarshipDraft(
+            situations: [.instalmentsPilingUp, .chasedByLender],
+            story: "Aku mau mencatat semua cicilan dari foto struk dan mutasi rekening supaya tahu mana yang harus "
+                + "dinego dulu.")
 
         /** BeasiswaKiraStatus: sent 16 October 2026, a decision by 21 October. */
         private static let pending = ScholarshipApplication(

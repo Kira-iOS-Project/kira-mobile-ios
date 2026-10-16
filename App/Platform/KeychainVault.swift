@@ -14,7 +14,7 @@ nonisolated struct KeychainVault: SecretVault {
     }
 
     /** The items' service, one per app. */
-    private let service = "com.kira.vault"
+    private let service = "com.kira.finance.vault"
 
     func data(for key: VaultKey) throws -> Data? {
         var query = baseQuery(key)

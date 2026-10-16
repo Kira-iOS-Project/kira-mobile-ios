@@ -111,18 +111,20 @@ struct PlansDisplayTitle: View {
 struct PlansButtonRow: View {
     let secondary: KiraButton
     let primary: KiraButton
+    /** Turns off the primary alone: the secondary (Batal) always works. */
+    var isPrimaryDisabled = false
     @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         if typeSize.isAccessibilitySize {
             VStack(spacing: KiraSpacing.space2) {
-                primary.block()
+                primary.block().disabled(isPrimaryDisabled)
                 secondary.block()
             }
         } else {
             WeightedRow(weights: [1, 1.3], spacing: 10) {
                 secondary.block()
-                primary.block()
+                primary.block().disabled(isPrimaryDisabled)
             }
         }
     }

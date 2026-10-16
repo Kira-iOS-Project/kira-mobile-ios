@@ -13,27 +13,35 @@ struct QuotaSheetContent: View {
     let onPlans: () -> Void
     let onManual: () -> Void
 
+    /**
+     All but the two choices scrolls: the sheet opens at the board's height, and at the larger text
+     sizes its words grow down the scroll instead of being squeezed out of the panel.
+     */
     var body: some View {
-        VStack(spacing: KiraSpacing.space1) {
-            KiraIllustration(.receipt, size: 96)
-            Text(title)
-                .font(KiraFont.display(22, .heavy, relativeTo: .title2))
-                .tracking(-0.33)
-                .foregroundStyle(.ink)
-                .padding(.top, KiraSpacing.space2)
-                .accessibilityAddTraits(.isHeader)
-            Text(message)
-                .font(.subheadline).kiraLineHeight(21, size: 15)
-                .foregroundStyle(.inkMuted)
-                .frame(maxWidth: 300)
+        ScrollView {
+            VStack(spacing: KiraSpacing.space4) {
+                VStack(spacing: KiraSpacing.space1) {
+                    KiraIllustration(.receipt, size: 96)
+                    Text(title)
+                        .font(KiraFont.display(22, .heavy, relativeTo: .title2))
+                        .tracking(-0.33)
+                        .foregroundStyle(.ink)
+                        .padding(.top, KiraSpacing.space2)
+                        .accessibilityAddTraits(.isHeader)
+                    Text(message)
+                        .font(.subheadline).kiraLineHeight(21, size: 15)
+                        .foregroundStyle(.inkMuted)
+                        .frame(maxWidth: 300)
+                }
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity)
+                KiraProgressRibbon(
+                    value: Double(sheet.counter.used), target: Double(sheet.counter.limit), label: ribbonLabel,
+                    valueLabel: "record.quota.ribbonValue \(sheet.counter.used / unit) \(sheet.counter.limit / unit)")
+                KiraNotice(.safe, message: "record.quota.free")
+            }
         }
-        .multilineTextAlignment(.center)
-        .frame(maxWidth: .infinity)
-        KiraProgressRibbon(
-            value: Double(sheet.counter.used), target: Double(sheet.counter.limit), label: ribbonLabel,
-            valueLabel: "record.quota.ribbonValue \(sheet.counter.used / unit) \(sheet.counter.limit / unit)")
-        KiraNotice(.safe, message: "record.quota.free")
-        Spacer(minLength: 0)
+        .scrollBounceBehavior(.basedOnSize)
         KiraButtonPair(
             secondary: KiraButton("record.quota.plans", variant: .secondary, action: onPlans),
             primary: KiraButton("record.quota.manual", action: onManual))

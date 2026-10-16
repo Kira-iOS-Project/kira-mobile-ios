@@ -36,7 +36,7 @@ struct ScholarshipAcceptedView: View {
     private var hero: some View {
         VStack(spacing: KiraSpacing.space2) {
             KiraMascot(.happy, size: 104)
-            Text("scholarship.accepted.overline").kiraFont(.overline).foregroundStyle(.onHeroMuted)
+            overline
             PlansDisplayTitle("scholarship.accepted.headline", size: 26, color: .onHero)
             endText.font(.subheadline).kiraLineHeight(21, size: 15).foregroundStyle(.onHeroMuted)
         }
@@ -46,6 +46,21 @@ struct ScholarshipAcceptedView: View {
         .background(alignment: .bottom) { KiraScenery(tone: .hero, height: 92).accessibilityHidden(true) }
         .background(.hero)
         .clipShape(RoundedRectangle(cornerRadius: KiraRadius.extraLarge, style: .continuous))
+    }
+
+    /**
+     The overline's look with its letter spacing set as kerning, not tracking: centred, a tracked
+     line is reported by the accessibility audit as clipped at larger text sizes.
+     */
+    private var overline: some View {
+        let style = KiraTextStyle.overline
+        return Text("scholarship.accepted.overline")
+            .font(style.font).kerning(style.tracking).textCase(.uppercase)
+            .kiraLineHeight(
+                style.lineHeight, size: style.pointSize, natural: style.naturalLine, relativeTo: style.textStyle
+            )
+            .kiraSmallType()
+            .foregroundStyle(.onHeroMuted)
     }
 
     private var endText: Text {
