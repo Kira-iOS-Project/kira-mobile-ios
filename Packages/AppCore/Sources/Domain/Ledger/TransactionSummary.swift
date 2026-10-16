@@ -1,21 +1,7 @@
 /**
- The pay period and the engine's totals for it (`GET /me` period, `GET /transactions/summary`):
+ The engine's totals for a pay period (`GET /me` period, `GET /transactions/summary`):
  Riwayat shows them as they come, it never adds transactions up itself.
  */
-
-/** The payday period: from the last payday to the day before the next. */
-package struct PayPeriod: Hashable, Sendable {
-    /** The payday that opens the period. */
-    package let start: CalendarDay
-    /** The last day of the period. */
-    package let end: CalendarDay
-
-    /** The period from `start` to `end`, both included. */
-    package init(start: CalendarDay, end: CalendarDay) {
-        self.start = start
-        self.end = end
-    }
-}
 
 /** Money out and money in on one day. */
 package struct DayTotals: Hashable, Sendable {

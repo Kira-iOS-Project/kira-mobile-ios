@@ -1,18 +1,14 @@
 /**
- Values more than one tag returns: a plan's usage this quota period, a payday and the payday
- period a date falls in. Dates are `YYYY-MM-DD` strings in WIB, as the API sends them.
+ Values more than one tag returns: a plan's usage this quota period and the payday period a
+ date falls in. The meter itself is Domain's `UsageMeter`, and a payday is Domain's `Payday`.
+ Dates are `YYYY-MM-DD` strings in WIB, as the API sends them.
  */
+import Domain
 
-/** How much of one plan allowance is used. */
-package struct UsageMeter: Hashable, Sendable {
-    /** Used so far this quota period. */
-    package let used: Int
-    /** The plan's allowance; 0 when the plan has none. */
-    package let limit: Int
-
+extension UsageMeter {
+    /** The API's meter as the Domain value. */
     init(_ meter: Components.Schemas.UsageMeter) {
-        used = meter.used
-        limit = meter.limit
+        self.init(used: meter.used, limit: meter.limit)
     }
 }
 
@@ -33,23 +29,6 @@ package struct Usage: Hashable, Sendable {
         voiceSeconds = UsageMeter(usage.voiceSeconds)
         resetsOn = usage.resetsOn
     }
-}
-
-/** Tanggal gajian: a day of the month, the last day of every month, or not set. */
-package struct Payday: Hashable, Sendable {
-    /** The day of the month, 1–31, or nil. */
-    package let day: Int?
-    /** Paid on the last day of every month. */
-    package let endOfMonth: Bool
-
-    /** A payday to send. */
-    package init(day: Int?, endOfMonth: Bool) {
-        self.day = day
-        self.endOfMonth = endOfMonth
-    }
-
-    /** Whether a payday was chosen at all. */
-    package var isSet: Bool { day != nil || endOfMonth }
 }
 
 /** The budget period today falls in, from one payday to the day before the next. */

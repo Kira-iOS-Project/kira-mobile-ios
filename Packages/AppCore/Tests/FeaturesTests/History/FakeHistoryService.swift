@@ -12,13 +12,13 @@ actor FakeHistoryService: HistoryService {
 
     static let problem = AppProblem(code: "INTERNAL_ERROR", requestId: "req-1")
 
-    var period = Sample.period
+    var period = HistorySample.period
     var displayName = "dinda"
-    var summary = Sample.summary
-    var pages: [String?: TransactionPage] = [nil: TransactionPage(items: Sample.transactions, nextCursor: nil)]
-    var detail = Sample.detail
-    var messages = Sample.messages
-    var preview = Sample.preview
+    var summary = HistorySample.summary
+    var pages: [String?: TransactionPage] = [nil: TransactionPage(items: HistorySample.transactions, nextCursor: nil)]
+    var detail = HistorySample.detail
+    var messages = HistorySample.messages
+    var preview = HistorySample.preview
     var commitResult = ImportCommitResult(savedCount: 2, skippedCount: 1)
     var failing: Set<Call> = []
     /** The next `transactions` call waits for `release()`. */

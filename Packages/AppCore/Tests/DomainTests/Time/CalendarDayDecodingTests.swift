@@ -3,8 +3,8 @@ import Testing
 
 @testable import Domain
 
-@Suite("CalendarDay")
-struct CalendarDayTests {
+@Suite("CalendarDay parsing, coding and day ranges")
+struct CalendarDayParsingTests {
     @Test("reads and writes YYYY-MM-DD", arguments: ["2026-10-15", "2024-02-29", "1969-12-31", "0001-01-01"])
     func roundTrip(text: String) throws {
         let day = try #require(CalendarDay(iso: text))

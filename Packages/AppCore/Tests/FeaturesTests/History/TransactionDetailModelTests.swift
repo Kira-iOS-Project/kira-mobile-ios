@@ -22,7 +22,7 @@ struct TransactionDetailModelTests {
     @Test("loads the transaction with its source message, or the API's problem")
     func load() async {
         let model = await loaded()
-        #expect(model.phase.value == Sample.detail)
+        #expect(model.phase.value == HistorySample.detail)
         await service.configure { $0.failing = [.transaction] }
         let failing = TransactionDetailModel(id: "grab", service: service)
         failing.startEditing()
@@ -126,7 +126,7 @@ struct TransactionDetailModelTests {
 struct TransactionEditorTests {
     @Test("opens on the saved values and groups the amount as typed")
     func fields() {
-        var editor = TransactionEditor(Sample.grab)
+        var editor = TransactionEditor(HistorySample.grab)
         #expect(editor.name == "Grab ke Kantor" && editor.amountText == "18.000" && editor.note.isEmpty)
         #expect(editor.categories.allSatisfy { $0.type == .expense })
         editor.amountText = "Rp250000"
@@ -137,7 +137,7 @@ struct TransactionEditorTests {
 
     @Test("sends every changed field, trimmed, and nothing else")
     func change() {
-        let noted = TransactionChange(note: "x").applied(to: Sample.grab)
+        let noted = TransactionChange(note: "x").applied(to: HistorySample.grab)
         var editor = TransactionEditor(noted)
         #expect(editor.note == "x")
         #expect(editor.change(from: noted).isEmpty)

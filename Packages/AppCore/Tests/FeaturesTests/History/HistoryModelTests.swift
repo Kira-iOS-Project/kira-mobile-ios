@@ -11,7 +11,7 @@ struct HistoryModelTests {
     private let service = FakeHistoryService()
 
     private func model(pause: @escaping @Sendable (Duration) async throws -> Void = { _ in }) -> HistoryModel {
-        HistoryModel(service: service, now: { Sample.now }, pause: pause)
+        HistoryModel(service: service, now: { HistorySample.now }, pause: pause)
     }
 
     @Test("loads the period's totals and folds the days between the two newest and payday")
@@ -20,16 +20,19 @@ struct HistoryModelTests {
         #expect(model.phase.value == nil)
         await model.load()
         let content = try #require(model.phase.value)
-        #expect(content.period == Sample.period)
+        #expect(content.period == HistorySample.period)
         #expect(content.summary.expense == 5_660_000)
         #expect(content.sections.count == 4)
         #expect(
             content.sections[2]
-                == .olderDays(first: Sample.period.start.adding(days: 1), last: Sample.today.adding(days: -2)))
+                == .olderDays(
+                    first: HistorySample.period.start.adding(days: 1), last: HistorySample.today.adding(days: -2)))
         #expect(!content.canLoadMore)
         let query = try #require(await service.queries.first)
         #expect(
-            query == TransactionQuery(start: Sample.period.start, end: Sample.period.end, limit: HistoryModel.pageSize))
+            query
+                == TransactionQuery(
+                    start: HistorySample.period.start, end: HistorySample.period.end, limit: HistoryModel.pageSize))
     }
 
     @Test("an empty period is empty; a filter that matches nothing is an empty list")

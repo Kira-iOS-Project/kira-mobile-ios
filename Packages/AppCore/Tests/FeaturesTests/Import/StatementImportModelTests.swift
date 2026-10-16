@@ -52,7 +52,7 @@ struct StatementImportModelTests {
         await service.configure { $0.failing = [] }
         await model.continueToReview()
         #expect(model.uploadProblem == nil)
-        #expect(model.preview == Sample.preview)
+        #expect(model.preview == HistorySample.preview)
         let upload = try #require(await service.uploads.last)
         #expect(upload.fileName == "mutasi-september.csv" && upload.rows.count == 3)
     }
@@ -63,7 +63,7 @@ struct StatementImportModelTests {
 struct ImportReviewModelTests {
     private let service = FakeHistoryService()
 
-    private func model(_ preview: ImportPreview = Sample.preview) -> ImportReviewModel {
+    private func model(_ preview: ImportPreview = HistorySample.preview) -> ImportReviewModel {
         ImportReviewModel(preview: preview, fileName: "mutasi-september.csv", service: service)
     }
 
@@ -73,14 +73,15 @@ struct ImportReviewModelTests {
         #expect(model.duplicates.map(\.id) == ["r1"])
         #expect(model.ready.map(\.id) == ["r2", "r3"])
         #expect(model.checkedCount == 2)
-        #expect(!model.isChecked(Sample.preview.rows[0]))
+        #expect(!model.isChecked(HistorySample.preview.rows[0]))
         #expect(model.fileName == "mutasi-september.csv")
     }
 
     @Test("folds the ready rows after five until opened")
     func folding() {
-        let rows = (1...8).map { Sample.row("x\($0)", "Kopi", 1_000, .coffee, duplicate: false) }
-        let model = model(ImportPreview(id: "imp", dateFrom: Sample.today, dateTo: Sample.today, rows: rows))
+        let rows = (1...8).map { HistorySample.row("x\($0)", "Kopi", 1_000, .coffee, duplicate: false) }
+        let model = model(
+            ImportPreview(id: "imp", dateFrom: HistorySample.today, dateTo: HistorySample.today, rows: rows))
         #expect(model.visibleReady.count == ImportReviewModel.readyPreviewCount)
         #expect(model.hiddenReady.map(\.id) == ["x6", "x7", "x8"])
         model.showAllReady()
@@ -90,9 +91,9 @@ struct ImportReviewModelTests {
     @Test("checks rows, changes categories, and saves the checked rows with them")
     func save() async throws {
         let model = model()
-        let duplicate = Sample.preview.rows[0]
+        let duplicate = HistorySample.preview.rows[0]
         model.toggle(duplicate)
-        model.toggle(Sample.preview.rows[2])
+        model.toggle(HistorySample.preview.rows[2])
         model.editingRowId = duplicate.id
         #expect(model.editingRow == duplicate)
         model.setCategory(.food, for: duplicate)

@@ -74,17 +74,3 @@ package struct AccountPlan: Equatable, Sendable {
         self.renewsOn = renewsOn
     }
 }
-
-/** The pay period a budget and a summary cover: from one payday to the day before the next. */
-package struct PayPeriod: Equatable, Sendable {
-    /** The payday the period starts on. */
-    package let start: Date
-    /** The day before the next payday. */
-    package let end: Date
-
-    /** A period from `start` to `end`, both included. */
-    package init(start: Date, end: Date) {
-        self.start = start
-        self.end = end
-    }
-}

@@ -12,7 +12,8 @@ struct AccountValuesTests {
             id: "u1", email: email, displayName: name,
             plan: AccountPlan(id: .plus, source: .scholarship, renewsOn: day),
             usage: AccountUsage(aiMessages: meter, receipts: meter, voiceSeconds: meter, resetsOn: day),
-            period: PayPeriod(start: day, end: day), debtAccountCount: 0, hidesBalances: false, aiEnabled: true,
+            period: PayPeriod(start: CalendarDay(day), end: CalendarDay(day)), debtAccountCount: 0,
+            hidesBalances: false, aiEnabled: true,
             weeklySummaryEnabled: false)
     }
 

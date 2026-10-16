@@ -1,4 +1,5 @@
 /** GET /usage through a canned transport. */
+import Domain
 import Foundation
 import HTTPTypes
 import Testing

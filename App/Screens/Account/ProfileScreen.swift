@@ -80,8 +80,8 @@ private struct ProfileContent: View {
 
     /** "Periode 25 September – 24 Oktober 2026". */
     private var periodText: Text {
-        let start = profile.period.start
-        let end = profile.period.end
+        let start = profile.period.start.date
+        let end = profile.period.end.date
         return Text("account.profile.budget.subtitle \(start, format: .accountDayMonth) \(end, format: .accountDay)")
     }
 }

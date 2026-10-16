@@ -2,12 +2,13 @@ import Foundation
 
 /**
  A day of the calendar in Western Indonesian Time (WIB), as the API writes dates (`YYYY-MM-DD`):
- a renewal, a reminder, a scholarship's end. It is plain arithmetic on the Gregorian calendar, so a
- day never shifts with the device's time zone; `date` is the instant to format it from.
+ a transaction's day, a pay period, a renewal, a scholarship's end. It is plain arithmetic on the
+ Gregorian calendar (Howard Hinnant's civil calendar algorithms), so a day never shifts with the
+ device's time zone and needs no time zone database. WIB is UTC+7 all year.
  */
 package struct CalendarDay: Hashable, Comparable, Sendable {
-    /** WIB is seven hours ahead of UTC all year (Indonesia keeps no daylight saving). */
-    private static let offset = 7 * 3600
+    /** WIB's offset from UTC, in seconds: seven hours, no daylight saving. */
+    package static let wibOffset = 7 * 3600
     private static let secondsPerDay = 86_400
 
     /** The year, such as 2026. */
@@ -26,38 +27,47 @@ package struct CalendarDay: Hashable, Comparable, Sendable {
 
     /** The WIB day an instant falls on. */
     package init(_ instant: Date) {
-        let seconds = Int(instant.timeIntervalSince1970.rounded(.down)) + Self.offset
-        let days = Int((Double(seconds) / Double(Self.secondsPerDay)).rounded(.down))
-        self = Self(daysSinceEpoch: days)
+        let seconds = Int(instant.timeIntervalSince1970.rounded(.down)) + Self.wibOffset
+        self.init(daysSinceEpoch: Int((Double(seconds) / Double(Self.secondsPerDay)).rounded(.down)))
     }
 
-    /** A day written `YYYY-MM-DD`, or nil when the text is not one. */
+    /** Reads exactly `YYYY-MM-DD`; nil for any other shape or a date the calendar does not have. */
     package init?(iso text: String) {
-        let parts = text.split(separator: "-").compactMap { Int($0) }
-        guard parts.count == 3, (1...12).contains(parts[1]),
-            (1...Self.length(ofMonth: parts[1], in: parts[0])).contains(parts[2])
+        let parts = text.split(separator: "-", omittingEmptySubsequences: false)
+        guard parts.count == 3, parts[0].count == 4, parts[1].count == 2, parts[2].count == 2,
+            parts.allSatisfy({ $0.allSatisfy(\.isASCII) && $0.allSatisfy(\.isNumber) }),
+            let year = Int(parts[0]), let month = Int(parts[1]), let day = Int(parts[2]),
+            (1...12).contains(month), (1...Self.length(ofMonth: month, in: year)).contains(day)
         else { return nil }
-        self.init(year: parts[0], month: parts[1], day: parts[2])
+        self.init(year: year, month: month, day: day)
+    }
+
+    /** `YYYY-MM-DD`, as the API writes it. */
+    package var iso: String {
+        func padded(_ value: Int, to width: Int) -> String {
+            let digits = String(value)
+            return String(repeating: "0", count: max(0, width - digits.count)) + digits
+        }
+        return "\(padded(year, to: 4))-\(padded(month, to: 2))-\(padded(day, to: 2))"
+    }
+
+    /** Midnight at the start of the day in WIB: where a day's range begins. */
+    package var start: Date {
+        Date(timeIntervalSince1970: TimeInterval(daysSinceEpoch * Self.secondsPerDay - Self.wibOffset))
     }
 
     /**
-     Noon WIB of the day: formatted in any time zone from UTC−5 to UTC+11 it still reads as this
-     day, and in Indonesia always.
+     Noon WIB of the day, the instant to format a day from: formatted in any time zone from UTC−5
+     to UTC+11 it still reads as this day, and in Indonesia always.
      */
     package var date: Date {
         Date(timeIntervalSince1970: TimeInterval(daysSinceEpoch * Self.secondsPerDay + 5 * 3600))
     }
 
-    /** `YYYY-MM-DD`, as the API writes it. */
-    package var iso: String {
-        let monthText = month < 10 ? "0\(month)" : "\(month)"
-        let dayText = day < 10 ? "0\(day)" : "\(day)"
-        return "\(year)-\(monthText)-\(dayText)"
-    }
-
     /**
      The day `days` later, or `months` and `years` later on the same day of the month; a day the
      later month lacks becomes its last (31 January plus one month is 28 or 29 February).
+     Negative values go back.
      */
     package func adding(days: Int = 0, months: Int = 0, years: Int = 0) -> Self {
         let monthIndex = year * 12 + (month - 1) + months + years * 12
@@ -67,7 +77,12 @@ package struct CalendarDay: Hashable, Comparable, Sendable {
         return Self(daysSinceEpoch: shifted.daysSinceEpoch + days)
     }
 
-    /** Whether `lhs` comes before `rhs`. */
+    /** How many days from this day to `other`: 1 from today to tomorrow. */
+    package func days(to other: CalendarDay) -> Int {
+        other.daysSinceEpoch - daysSinceEpoch
+    }
+
+    /** Earlier days come first. */
     package static func < (lhs: Self, rhs: Self) -> Bool {
         lhs.daysSinceEpoch < rhs.daysSinceEpoch
     }
@@ -82,10 +97,10 @@ package struct CalendarDay: Hashable, Comparable, Sendable {
     }
 
     private static func isLeap(_ year: Int) -> Bool {
-        (year % 4 == 0 && year % 100 != 0) || year % 400 == 0
+        year.isMultiple(of: 4) && (!year.isMultiple(of: 100) || year.isMultiple(of: 400))
     }
 
-    /** Days since 1 January 1970 (Howard Hinnant's days_from_civil). */
+    /** Days since 1 January 1970 (Hinnant's `days_from_civil`). */
     private var daysSinceEpoch: Int {
         let shiftedYear = month <= 2 ? year - 1 : year
         let era = (shiftedYear >= 0 ? shiftedYear : shiftedYear - 399) / 400
@@ -95,7 +110,7 @@ package struct CalendarDay: Hashable, Comparable, Sendable {
         return era * 146_097 + dayOfEra - 719_468
     }
 
-    /** The day `days` after 1 January 1970 (Howard Hinnant's civil_from_days). */
+    /** The day `days` after 1 January 1970 (Hinnant's `civil_from_days`). */
     private init(daysSinceEpoch days: Int) {
         let shifted = days + 719_468
         let era = (shifted >= 0 ? shifted : shifted - 146_096) / 146_097
@@ -106,5 +121,24 @@ package struct CalendarDay: Hashable, Comparable, Sendable {
         let day = dayOfYear - (153 * monthPrime + 2) / 5 + 1
         let month = monthPrime < 10 ? monthPrime + 3 : monthPrime - 9
         self.init(year: yearOfEra + era * 400 + (month <= 2 ? 1 : 0), month: month, day: day)
+    }
+}
+
+/** A day codes as its `YYYY-MM-DD` string. */
+extension CalendarDay: Codable {
+    /** Reads a `YYYY-MM-DD` string. */
+    package init(from decoder: any Decoder) throws {
+        let text = try decoder.singleValueContainer().decode(String.self)
+        guard let day = CalendarDay(iso: text) else {
+            throw DecodingError.dataCorrupted(
+                DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Not a YYYY-MM-DD date"))
+        }
+        self = day
+    }
+
+    /** Writes a `YYYY-MM-DD` string. */
+    package func encode(to encoder: any Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(iso)
     }
 }

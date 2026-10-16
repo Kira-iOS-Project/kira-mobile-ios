@@ -26,6 +26,20 @@ package struct Payday: Hashable, Sendable {
     /** Pay on the last day of every month. */
     package static let endOfMonth = Self()
 
+    /**
+     The payday the API writes as `{day, endOfMonth}`: the end of the month when `endOfMonth`,
+     else `day`; nil when neither is set (no payday chosen yet).
+     */
+    package init?(day: Int?, endOfMonth: Bool) {
+        if endOfMonth {
+            self = .endOfMonth
+        } else if let day {
+            self.init(day: day)
+        } else {
+            return nil
+        }
+    }
+
     /** Whether pay arrives at the end of every month. */
     package var isEndOfMonth: Bool { day == nil }
 }

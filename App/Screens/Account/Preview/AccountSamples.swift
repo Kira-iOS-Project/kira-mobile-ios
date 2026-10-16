@@ -20,7 +20,9 @@ nonisolated enum AccountSamples {
         usage: AccountUsage(
             aiMessages: UsageMeter(used: 18, limit: 30), receipts: UsageMeter(used: 4, limit: 10),
             voiceSeconds: UsageMeter(used: 0, limit: 0), resetsOn: day(11, 1)),
-        period: PayPeriod(start: day(9, 25), end: day(10, 24)), debtAccountCount: 3, hidesBalances: true,
+        period: PayPeriod(
+            start: CalendarDay(year: 2026, month: 9, day: 25), end: CalendarDay(year: 2026, month: 10, day: 24)),
+        debtAccountCount: 3, hidesBalances: true,
         aiEnabled: true, weeklySummaryEnabled: true)
 
     static func consents(aiProcessing: Bool = true, weekly: Bool = true) -> ConsentSettings {
