@@ -29,6 +29,7 @@ struct RouteSlot: View {
         case .plans, .planDetail, .checkout, .subscription, .paymentMethod, .invoices, .treat, .scholarship,
             .scholarshipApply, .scholarshipStatus:
             PlansRoute(route: route, service: services.plans, onOpen: onOpen)
+        case .negotiationScript: NegotiationScriptScreen(service: services.careTools, onOpen: onOpen)
         case .home, .record, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history, .transaction,
             .conversation, .importStatement, .unavailable:
             EmptySlot()

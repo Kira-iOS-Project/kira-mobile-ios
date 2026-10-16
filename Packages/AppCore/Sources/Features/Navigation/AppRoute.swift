@@ -73,6 +73,9 @@ package enum AppRoute: Hashable, Sendable {
     /** AKN-08d: Layanan Pengaduan. */
     case complaints
 
+    /** PED-09: Naskah Pengajuan Keringanan. */
+    case negotiationScript
+
     /** A link the boards show to an area not built yet: it stays visible and opens nothing. */
     case unavailable(UnavailableArea)
 }

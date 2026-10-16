@@ -17,6 +17,7 @@ struct AppServices {
     let home: any HomeService
     let score: any ScoreService
     let recovery: any PinRecoveryService
+    let careTools: any CareToolsService
 }
 
 extension AppServices {
@@ -34,7 +35,7 @@ extension AppServices {
             plans: LivePlansService(api: api),
             home: LiveHomeService(api: api, onHideBalances: sync),
             score: LiveScoreService(api: api),
-            recovery: LivePinRecoveryService(api: api))
+            recovery: LivePinRecoveryService(api: api), careTools: LiveCareToolsService(api: api))
     }
 
     /** The canvas's sample data: nothing leaves the device. */
@@ -42,7 +43,8 @@ extension AppServices {
         AppServices(
             onboarding: PreviewOnboardingService(), pinSetup: PreviewPinSetup(), account: PreviewAccountService(),
             security: PreviewSecuritySettings(), plans: PreviewPlansService(), home: PreviewHomeService(),
-            score: PreviewScoreService(), recovery: PreviewPinRecoveryService())
+            score: PreviewScoreService(), recovery: PreviewPinRecoveryService(),
+            careTools: PreviewCareToolsService())
     }
 }
 

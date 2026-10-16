@@ -1,3 +1,4 @@
+import APIClient
 import Domain
 
 /**
@@ -14,4 +15,9 @@ package protocol CareToolsService: Sendable {
     func safetyPlan() async throws -> SafetyPlan?
     /** `PUT /care/safety-plan`: saves the whole plan and returns it as stored. */
     func saveSafetyPlan(_ plan: SafetyPlan) async throws -> SafetyPlan
+}
+
+/** The API's problem behind `error`, or a problem without a code (a lost connection) for anything else. */
+func careProblem(_ error: any Error) -> AppProblem {
+    (error as? AppProblem) ?? AppProblem()
 }

@@ -22,6 +22,13 @@ package struct BreathingPattern: Hashable, Sendable {
         package let step: Step
         /** The seconds left in the step, from its length down to 1. */
         package let secondsLeft: Int
+
+        /** A moment of the given round and step. */
+        package init(round: Int, step: Step, secondsLeft: Int) {
+            self.round = round
+            self.step = step
+            self.secondsLeft = secondsLeft
+        }
     }
 
     /** Seconds to breathe in. */

@@ -95,8 +95,3 @@ package final class SafetyPlanFormModel {
         if part == .people { change(&plan.people) } else { change(&plan.professionals) }
     }
 }
-
-/** The API's problem behind `error`, or a problem without a code (a lost connection) for anything else. */
-func careProblem(_ error: any Error) -> AppProblem {
-    (error as? AppProblem) ?? AppProblem()
-}

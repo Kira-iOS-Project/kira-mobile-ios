@@ -1681,6 +1681,366 @@
         }
       }
     },
+    "care.script.affordable" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kemampuan Bayar per Bulan"
+          }
+        }
+      }
+    },
+    "care.script.affordableHint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Angka yang sanggup kamu bayar tanpa mengorbankan kebutuhan pokok."
+          }
+        }
+      }
+    },
+    "care.script.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Mode Darurat Utang"
+          }
+        }
+      }
+    },
+    "care.script.body %@ %@ %@ %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halo, saya %1$@, pengguna dengan nomor kontrak %2$@. Saat ini saya kesulitan membayar cicilan %3$@ per bulan karena %4$@. Saya ingin mengajukan penjadwalan ulang dengan cicilan %5$@ per bulan. Mohon informasi syarat dan langkahnya. Terima kasih."
+          }
+        }
+      }
+    },
+    "care.script.cents" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ",00"
+          }
+        }
+      }
+    },
+    "care.script.contract.a11y" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi nomor kontrak"
+          }
+        }
+      }
+    },
+    "care.script.contract.field" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nomor Kontrak"
+          }
+        }
+      }
+    },
+    "care.script.contract.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hanya dipakai di layar ini, tidak dikirim atau disimpan Kira."
+          }
+        }
+      }
+    },
+    "care.script.contract.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nomor Kontrak"
+          }
+        }
+      }
+    },
+    "care.script.contractGap" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[nomor kontrak]"
+          }
+        }
+      }
+    },
+    "care.script.contractPlaceholder" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "nomor kontrak"
+          }
+        }
+      }
+    },
+    "care.script.copied.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tempel naskah ke pesan atau formulir pengaduan pemberi pinjaman."
+          }
+        }
+      }
+    },
+    "care.script.copied.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
+    "care.script.copied.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naskah Disalin"
+          }
+        }
+      }
+    },
+    "care.script.copy" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salin Naskah"
+          }
+        }
+      }
+    },
+    "care.script.currency" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rp"
+          }
+        }
+      }
+    },
+    "care.script.editHint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketuk bagian berwarna untuk mengubah."
+          }
+        }
+      }
+    },
+    "care.script.for %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "untuk %@"
+          }
+        }
+      }
+    },
+    "care.script.instalment" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan Sekarang"
+          }
+        }
+      }
+    },
+    "care.script.lead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajukan penjadwalan ulang atau restrukturisasi langsung ke pemberi pinjaman."
+          }
+        }
+      }
+    },
+    "care.script.lender" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pemberi Pinjaman"
+          }
+        }
+      }
+    },
+    "care.script.lenderHint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Membuka daftar pemberi pinjaman"
+          }
+        }
+      }
+    },
+    "care.script.lenderInfo %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan %@ per bulan"
+          }
+        }
+      }
+    },
+    "care.script.lenderPrompt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih Pemberi Pinjaman"
+          }
+        }
+      }
+    },
+    "care.script.noDebts" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Ada Utang Tercatat"
+          }
+        }
+      }
+    },
+    "care.script.notice" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naskah disusun dari templat tetap dan angka yang kamu isi. Periksa dulu sebelum dikirim."
+          }
+        }
+      }
+    },
+    "care.script.overline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naskah"
+          }
+        }
+      }
+    },
+    "care.script.reason.a11y" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi alasan singkat"
+          }
+        }
+      }
+    },
+    "care.script.reason.field" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alasan Singkat"
+          }
+        }
+      }
+    },
+    "care.script.reason.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contoh: penghasilan berkurang, kena PHK"
+          }
+        }
+      }
+    },
+    "care.script.reason.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alasan Singkat"
+          }
+        }
+      }
+    },
+    "care.script.reasonDefault" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "penghasilan berkurang"
+          }
+        }
+      }
+    },
+    "care.script.sheet.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "care.script.sheet.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan"
+          }
+        }
+      }
+    },
+    "care.script.simulation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Simulasi"
+          }
+        }
+      }
+    },
+    "care.script.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naskah Pengajuan Keringanan"
+          }
+        }
+      }
+    },
     "checkout.back" : {
       "localizations" : {
         "id" : {
