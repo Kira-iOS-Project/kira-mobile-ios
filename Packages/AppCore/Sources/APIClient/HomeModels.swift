@@ -3,7 +3,7 @@ import Domain
 /** Beranda in one of its three layouts (BRD-01 to BRD-03), as `GET /api/home` sends it. */
 
 /** Which Beranda to draw. */
-package enum HomeVariant: String, CaseIterable, Sendable {
+package enum HomeVariantDTO: String, CaseIterable, Sendable {
     /** BerandaBaru: no transaction yet. */
     case firstSteps = "first_steps"
     /** Main: money left, next step, score, weekly summary. */
@@ -13,7 +13,7 @@ package enum HomeVariant: String, CaseIterable, Sendable {
 }
 
 /** Sisa uang this payday period. */
-package struct HomeMoney: Hashable, Sendable {
+package struct HomeMoneyDTO: Hashable, Sendable {
     /** Income this period, or the answered income when none is recorded. */
     package let income: Int
     /** Spent this period. */
@@ -27,7 +27,7 @@ package struct HomeMoney: Hashable, Sendable {
 }
 
 /** The score card. */
-package struct HomeScore: Hashable, Sendable {
+package struct HomeScoreDTO: Hashable, Sendable {
     /** 0–100. */
     package let score: Int
     /** Its band. */
@@ -39,7 +39,7 @@ package struct HomeScore: Hashable, Sendable {
 }
 
 /** Langkah Awal on BerandaBaru. */
-package struct HomeChecklist: Hashable, Sendable {
+package struct HomeChecklistDTO: Hashable, Sendable {
     /** Cek Kesehatan done. */
     package let healthCheck: Bool
     /** Catat Transaksi Pertama done. */
@@ -51,7 +51,7 @@ package struct HomeChecklist: Hashable, Sendable {
 }
 
 /** Rencana bebas utang: how much of the debt is paid. */
-package struct DebtPlan: Hashable, Sendable {
+package struct DebtPlanDTO: Hashable, Sendable {
     /** Paid off so far ("Sudah lunas Rp1.600.000,00"). */
     package let paidOff: Int
     /** All the debt there was. */
@@ -63,7 +63,7 @@ package struct DebtPlan: Hashable, Sendable {
 }
 
 /** Target mikro: a week of essential spending first, then a month. */
-package struct MicroTarget: Hashable, Sendable {
+package struct MicroTargetDTO: Hashable, Sendable {
     /** Which target. */
     package enum Kind: String, CaseIterable, Sendable {
         /** Dana 1 Minggu. */
@@ -81,7 +81,7 @@ package struct MicroTarget: Hashable, Sendable {
 }
 
 /** A run of dates, both included (`YYYY-MM-DD`). */
-package struct DateRange: Hashable, Sendable {
+package struct DateRangeDTO: Hashable, Sendable {
     /** The first day. */
     package let first: String
     /** The last day. */
@@ -89,7 +89,7 @@ package struct DateRange: Hashable, Sendable {
 }
 
 /** A step's place in the engine's list ("1 dari 3"). */
-package struct StepPosition: Hashable, Sendable {
+package struct StepPositionDTO: Hashable, Sendable {
     /** Its place, from 1. */
     package let index: Int
     /** How many steps there are. */

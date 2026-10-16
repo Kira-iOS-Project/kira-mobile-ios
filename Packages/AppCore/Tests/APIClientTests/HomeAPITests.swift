@@ -35,11 +35,11 @@ struct HomeAPITests {
     func overview() async throws {
         let home = try await KiraAPI.canned(json: overviewJSON).api.getHome()
         #expect(home.variant == .overview && home.today == "2026-10-16" && home.displayName == "Dinda")
-        #expect(home.money == HomeMoney(income: 7_500_000, spent: 5_660_000, remaining: 1_840_000,
+        #expect(home.money == HomeMoneyDTO(income: 7_500_000, spent: 5_660_000, remaining: 1_840_000,
             perDay: 204_444, spentPercent: 75))
-        #expect(home.step?.kind == .payOffDebt && home.stepPosition == StepPosition(index: 1, total: 3))
-        #expect(home.score == HomeScore(score: 66, band: .coping, delta: 4, isInitial: false))
-        #expect(home.weeklySummary == DateRange(first: "2026-10-09", last: "2026-10-15"))
+        #expect(home.step?.kind == .payOffDebt && home.stepPosition == StepPositionDTO(index: 1, total: 3))
+        #expect(home.score == HomeScoreDTO(score: 66, band: .coping, delta: 4, isInitial: false))
+        #expect(home.weeklySummary == DateRangeDTO(first: "2026-10-09", last: "2026-10-15"))
         #expect(home.period.daysUntilPayday == 9 && home.checklist == nil && home.debtPlan == nil)
     }
 
@@ -47,7 +47,7 @@ struct HomeAPITests {
     func firstSteps() async throws {
         let home = try await KiraAPI.canned(json: firstStepsJSON).api.getHome()
         #expect(home.variant == .firstSteps && home.hideBalances && home.money == nil && home.score == nil)
-        #expect(home.checklist == HomeChecklist(healthCheck: true, firstTransaction: false,
+        #expect(home.checklist == HomeChecklistDTO(healthCheck: true, firstTransaction: false,
             walletAdded: false, paydaySet: true))
         #expect(home.step == nil && home.stepPosition == nil && home.microTarget == nil)
     }
@@ -56,8 +56,8 @@ struct HomeAPITests {
     func debtPlan() async throws {
         let home = try await KiraAPI.canned(json: debtPlanJSON).api.getHome()
         #expect(home.variant == .debtPlan && home.score?.band == .vulnerable && home.score?.delta == nil)
-        #expect(home.debtPlan == DebtPlan(paidOff: 1_600_000, total: 20_000_000, remaining: 18_400_000, percent: 8))
-        #expect(home.microTarget == MicroTarget(kind: .oneWeek, current: 120_000, target: 350_000))
+        #expect(home.debtPlan == DebtPlanDTO(paidOff: 1_600_000, total: 20_000_000, remaining: 18_400_000, percent: 8))
+        #expect(home.microTarget == MicroTargetDTO(kind: .oneWeek, current: 120_000, target: 350_000))
     }
 
     @Test("throws every problem Beranda answers")

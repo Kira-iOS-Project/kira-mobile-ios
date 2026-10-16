@@ -1,17 +1,17 @@
 /** Sign-in with an email and a six-digit code, and the session's token pair. */
 extension KiraAPI {
     /** Emails a sign-in code (`POST /api/auth/code`). 429 `AUTH_CODE_RATE_LIMITED` when too soon. */
-    package func requestSignInCode(email: String) async throws -> SignInCodeSent {
+    package func requestSignInCode(email: String) async throws -> SignInCodeSentDTO {
         try await client.requestSignInCode(body: .json(.init(email: email))).sent()
     }
 
     /** Trades the code for a session (`POST /api/auth/verify`), creating the account if new. */
-    package func verifySignInCode(email: String, code: String) async throws -> SignedIn {
+    package func verifySignInCode(email: String, code: String) async throws -> SignedInDTO {
         try await client.verifySignInCode(body: .json(.init(email: email, code: code))).signedIn()
     }
 
     /** Trades a refresh token for a new pair (`POST /api/auth/refresh`); the old one stops working. */
-    package func refreshSession(refreshToken: String) async throws -> SessionTokens {
+    package func refreshSession(refreshToken: String) async throws -> SessionTokensDTO {
         try await client.refreshSession(body: .json(.init(refreshToken: refreshToken))).tokens()
     }
 
@@ -22,9 +22,9 @@ extension KiraAPI {
 }
 
 extension Operations.RequestSignInCode.Output {
-    func sent() throws -> SignInCodeSent {
+    func sent() throws -> SignInCodeSentDTO {
         switch self {
-        case .accepted(let response): return SignInCodeSent(try response.body.json)
+        case .accepted(let response): return SignInCodeSentDTO(try response.body.json)
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
         case .tooManyRequests(let response): throw try response.body.applicationProblemJson
         case .serviceUnavailable(let response): throw try response.body.applicationProblemJson
@@ -34,9 +34,9 @@ extension Operations.RequestSignInCode.Output {
 }
 
 extension Operations.VerifySignInCode.Output {
-    func signedIn() throws -> SignedIn {
+    func signedIn() throws -> SignedInDTO {
         switch self {
-        case .ok(let response): return SignedIn(try response.body.json)
+        case .ok(let response): return SignedInDTO(try response.body.json)
         case .badRequest(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
         case .tooManyRequests(let response): throw try response.body.applicationProblemJson
@@ -46,9 +46,9 @@ extension Operations.VerifySignInCode.Output {
 }
 
 extension Operations.RefreshSession.Output {
-    func tokens() throws -> SessionTokens {
+    func tokens() throws -> SessionTokensDTO {
         switch self {
-        case .ok(let response): return SessionTokens(try response.body.json)
+        case .ok(let response): return SessionTokensDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
         case .undocumented: throw AppProblem()

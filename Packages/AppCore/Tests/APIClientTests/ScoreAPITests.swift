@@ -23,7 +23,7 @@ struct ScoreAPITests {
         #expect(report.score == 66 && report.band == .coping && report.delta == 4 && !report.isInitial)
         #expect(report.computedAt == Date(timeIntervalSince1970: 1_792_126_800))
         #expect(report.nextCheckOn == "2026-10-25" && !report.cappedByConsumerDebt)
-        #expect(report.groups[0] == GroupScore(group: .save, points: 48, band: .coping))
+        #expect(report.groups[0] == GroupScoreDTO(group: .save, points: 48, band: .coping))
         #expect(report.indicators.map(\.measure) == [
             .emergencyFund(ratio: 1.1, liquid: 4_800_000, essential: 4_200_000, targetMultiple: 6,
                 targetAmount: 25_200_000),
@@ -44,20 +44,20 @@ struct ScoreAPITests {
         let (api, transport) = KiraAPI.canned(json: detailJSON)
         let detail = try await api.getScoreIndicator(.emergencyFund)
         #expect(detail.indicator.points == 50 && detail.ladder.count == 2)
-        #expect(detail.ladder[1] == LadderRung(points: 50, lower: 1, upper: 3, amountLower: 4_200_000,
+        #expect(detail.ladder[1] == LadderRungDTO(points: 50, lower: 1, upper: 3, amountLower: 4_200_000,
             amountUpper: 12_600_000, isCurrent: true))
-        #expect(detail.nextRung == NextRung(points: 75, amountNeeded: 7_800_000, scoreFrom: 66, scoreTo: 70))
-        #expect(detail.milestones.last == Milestone(amount: 12_600_000, label: "3×"))
+        #expect(detail.nextRung == NextRungDTO(points: 75, amountNeeded: 7_800_000, scoreFrom: 66, scoreTo: 70))
+        #expect(detail.milestones.last == MilestoneDTO(amount: 12_600_000, label: "3×"))
         #expect(try #require(await transport.request).path.hasSuffix("emergency_fund"))
     }
 
     @Test("sends the quiz's answers")
     func savesHealthCheck() async throws {
-        var answers = HealthCheckAnswers()
+        var answers = HealthCheckInputDTO()
         answers.netMonthlyIncome = 7_500_000
-        answers.payday = Payday(day: 25, endOfMonth: false)
+        answers.payday = PaydayDTO(day: 25, endOfMonth: false)
         answers.debts = [
-            HealthCheckDebt(kind: .onlineLoan, name: "Pinjol B", remaining: 3_000_000,
+            HealthCheckDebtDTO(kind: .onlineLoan, name: "Pinjol B", remaining: 3_000_000,
                 monthlyInstalment: 900_000, remainingTenorMonths: nil)
         ]
         answers.dependents = 2
@@ -69,17 +69,17 @@ struct ScoreAPITests {
         #expect(body.netMonthlyIncome == 7_500_000 && body.dependents == 2 && body.maritalStatus == "married")
         #expect(body.debts.first?.kind == "online_loan" && body.debts.first?.remainingTenorMonths == nil)
         #expect(body.protections == ["bpjs_health", "life_insurance"])
-        #expect(HealthCheckAnswers().debts.isEmpty && HealthCheckAnswers().emergencyFund == nil)
+        #expect(HealthCheckInputDTO().debts.isEmpty && HealthCheckInputDTO().emergencyFund == nil)
     }
 
     @Test("refuses a measure that does not match its indicator", arguments: IndicatorKey.allCases)
     func mismatchedMeasure(key: IndicatorKey) {
-        #expect(throws: AppProblem()) { try IndicatorMeasure(key: key, .init()) }
+        #expect(throws: AppProblem()) { try IndicatorMeasureDTO(key: key, .init()) }
     }
 
     @Test("throws every problem the score routes answer")
     func problems() async {
-        await expectProblems([401, 404, 422]) { _ = try await $0.saveHealthCheck(HealthCheckAnswers()) }
+        await expectProblems([401, 404, 422]) { _ = try await $0.saveHealthCheck(HealthCheckInputDTO()) }
         await expectProblems([401, 404]) { _ = try await $0.getScore() }
         await expectProblems([401, 404, 422]) { _ = try await $0.getScoreIndicator(.protection) }
     }

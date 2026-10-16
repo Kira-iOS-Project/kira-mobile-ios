@@ -6,7 +6,7 @@ import Testing
 
 @testable import APIClient
 
-private let usageJSON = #"""
+private let accountUsageJSON = #"""
     {"aiMessages":{"used":3,"limit":30},"receipts":{"used":0,"limit":10},\#
     "voiceSeconds":{"used":0,"limit":0},"resetsOn":"2026-11-01"}
     """#
@@ -15,7 +15,7 @@ private let meJSON = #"""
     {"id":"u-1","email":"dinda@email.com","displayName":"Dinda","focus":"track_spending",\#
     "payday":{"day":25,"endOfMonth":false},"hideBalances":false,"consented":true,\#
     "healthCheckCompleted":true,"plan":{"id":"plus","source":"scholarship","renewsOn":"2027-01-16"},\#
-    "usage":\#(usageJSON),"period":{"start":"2026-09-25","end":"2026-10-24",\#
+    "usage":\#(accountUsageJSON),"period":{"start":"2026-09-25","end":"2026-10-24",\#
     "nextPayday":"2026-10-25","daysUntilPayday":9},\#
     "lastCategories":{"expense":"coffee","income":null},"debtAccountCount":2,\#
     "aiEnabled":true,"weeklySummaryEnabled":false}
@@ -45,20 +45,20 @@ struct AccountAPITests {
         let (api, transport) = KiraAPI.canned(json: meJSON)
         let profile = try await api.getMe()
         #expect(profile.displayName == "Dinda" && profile.focus == .trackSpending)
-        #expect(profile.plan == CurrentPlan(id: .plus, source: .scholarship, renewsOn: "2027-01-16"))
-        #expect(profile.payday == Payday(day: 25, endOfMonth: false) && profile.period.daysUntilPayday == 9)
+        #expect(profile.plan == CurrentPlanDTO(id: .plus, source: .scholarship, renewsOn: "2027-01-16"))
+        #expect(profile.payday == PaydayDTO(day: 25, endOfMonth: false) && profile.period.daysUntilPayday == 9)
         #expect(profile.usage.aiMessages.used == 3 && profile.lastExpenseCategory == .coffee)
         #expect(profile.lastIncomeCategory == nil && profile.debtAccountCount == 2)
         #expect(profile.id == "u-1" && profile.email == "dinda@email.com" && !profile.hideBalances)
         #expect(profile.consented && profile.healthCheckCompleted && profile.aiEnabled && !profile.weeklySummaryEnabled)
-        #expect(try #require(await transport.request).operation == "getMe")
+        #expect(try #require(await transport.request).path.hasSuffix("me"))
     }
 
     @Test("sends only the settings that change")
     func updatesMe() async throws {
         let (api, transport) = KiraAPI.canned(json: meJSON)
         _ = try await api.updateMe([
-            .focus(.debtFree), .hideBalances(true), .payday(Payday(day: nil, endOfMonth: true)),
+            .focus(.debtFree), .hideBalances(true), .payday(PaydayDTO(day: nil, endOfMonth: true)),
         ])
         let request = try #require(await transport.request)
         let body = try request.decoded(MeUpdateBody.self)
@@ -78,7 +78,7 @@ struct AccountAPITests {
         let read = try await api.getConsents()
         #expect(read.policyVersion == "2026-10-15" && read.items.count == 2)
         #expect(read.items[0].purpose == .core && read.items[0].decidedAt != nil)
-        #expect(read.items[1] == Consent(purpose: .weeklySummary, granted: false, decidedAt: nil))
+        #expect(read.items[1] == ConsentDTO(purpose: .weeklySummary, granted: false, decidedAt: nil))
         let saved = try await api.updateConsents(aiProcessing: true, weeklySummary: false)
         #expect(saved == read)
         let body = try #require(await transport.request).decoded(ConsentsBody.self)
@@ -96,7 +96,7 @@ struct AccountAPITests {
     func emailsAndDeletes() async throws {
         let (mailer, mailed) = KiraAPI.canned(status: 202)
         try await mailer.emailDataExport()
-        #expect(try #require(await mailed.request).operation == "emailDataExport")
+        #expect(try #require(await mailed.request).path.hasSuffix("export/email"))
         let (api, transport) = KiraAPI.canned(status: 204)
         try await api.deleteAccount(confirmation: "hapus")
         #expect(try #require(await transport.request).decoded(DeletionBody.self).confirmation == "hapus")

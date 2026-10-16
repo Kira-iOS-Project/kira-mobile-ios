@@ -3,7 +3,7 @@ import Foundation
 /** Beasiswa Kira (AKN-10 to AKN-10d): three months of Kira Plus, funded by gifted months. */
 
 /** What the applicant is going through. */
-package enum HardshipSituation: String, CaseIterable, Sendable {
+package enum ScholarshipSituationDTO: String, CaseIterable, Sendable {
     /** Cicilan menumpuk. */
     case instalmentsPilingUp = "instalments_piling_up"
     /** Dikejar penagih. */
@@ -17,7 +17,7 @@ package enum HardshipSituation: String, CaseIterable, Sendable {
 }
 
 /** Why a person cannot apply now. */
-package enum ScholarshipIneligibility: String, CaseIterable, Sendable {
+package enum ScholarshipIneligibilityDTO: String, CaseIterable, Sendable {
     /** A bought plan is active. */
     case hasPaidPlan = "has_paid_plan"
     /** A scholarship is running. */
@@ -27,7 +27,7 @@ package enum ScholarshipIneligibility: String, CaseIterable, Sendable {
 }
 
 /** Where an application stands. */
-package enum ApplicationStatus: String, CaseIterable, Sendable {
+package enum ApplicationStatusDTO: String, CaseIterable, Sendable {
     /** Being reviewed. */
     case inReview = "in_review"
     /** No place this month; waits for the next. */
@@ -39,13 +39,13 @@ package enum ApplicationStatus: String, CaseIterable, Sendable {
 }
 
 /** One application. */
-package struct ScholarshipApplication: Hashable, Sendable {
+package struct ScholarshipApplicationDTO: Hashable, Sendable {
     /** Its id. */
     package let id: String
     /** Where it stands. */
-    package let status: ApplicationStatus
+    package let status: ApplicationStatusDTO
     /** The situations chosen. */
-    package let situations: [HardshipSituation]
+    package let situations: [ScholarshipSituationDTO]
     /** The applicant's story; nil when none. */
     package let story: String?
     /** When it was sent. */
@@ -76,23 +76,23 @@ package struct ScholarshipApplication: Hashable, Sendable {
 }
 
 /** Whether a person may apply, this month's places, and their latest application. */
-package struct ScholarshipStatus: Hashable, Sendable {
+package struct ScholarshipDTO: Hashable, Sendable {
     /** May apply now. */
     package let eligible: Bool
     /** Why not; nil when eligible. */
-    package let ineligibleReason: ScholarshipIneligibility?
+    package let ineligibleReason: ScholarshipIneligibilityDTO?
     /** Places left this month. */
     package let remainingPlaces: Int
     /** Places this month. */
     package let totalPlaces: Int
     /** The latest application; nil when none. */
-    package let application: ScholarshipApplication?
+    package let application: ScholarshipApplicationDTO?
 
     init(_ status: Components.Schemas.Scholarship) throws {
         eligible = status.eligible
         ineligibleReason = try bridged(status.ineligibleReason)
         remainingPlaces = status.quota.remaining
         totalPlaces = status.quota.total
-        application = try status.application.map(ScholarshipApplication.init)
+        application = try status.application.map(ScholarshipApplicationDTO.init)
     }
 }

@@ -4,7 +4,7 @@
  */
 
 /** How much of one plan allowance is used. */
-package struct UsageMeter: Hashable, Sendable {
+package struct UsageMeterDTO: Hashable, Sendable {
     /** Used so far this quota period. */
     package let used: Int
     /** The plan's allowance; 0 when the plan has none. */
@@ -17,26 +17,26 @@ package struct UsageMeter: Hashable, Sendable {
 }
 
 /** The AI-backed inputs used this quota period, and when they reset. */
-package struct Usage: Hashable, Sendable {
+package struct UsageDTO: Hashable, Sendable {
     /** Chat messages read by Kira AI. */
-    package let aiMessages: UsageMeter
+    package let aiMessages: UsageMeterDTO
     /** Receipts scanned. */
-    package let receipts: UsageMeter
+    package let receipts: UsageMeterDTO
     /** Seconds of voice input. */
-    package let voiceSeconds: UsageMeter
+    package let voiceSeconds: UsageMeterDTO
     /** The date the counters start again (`YYYY-MM-DD`). */
     package let resetsOn: String
 
     init(_ usage: Components.Schemas.Usage) {
-        aiMessages = UsageMeter(usage.aiMessages)
-        receipts = UsageMeter(usage.receipts)
-        voiceSeconds = UsageMeter(usage.voiceSeconds)
+        aiMessages = UsageMeterDTO(usage.aiMessages)
+        receipts = UsageMeterDTO(usage.receipts)
+        voiceSeconds = UsageMeterDTO(usage.voiceSeconds)
         resetsOn = usage.resetsOn
     }
 }
 
 /** Tanggal gajian: a day of the month, the last day of every month, or not set. */
-package struct Payday: Hashable, Sendable {
+package struct PaydayDTO: Hashable, Sendable {
     /** The day of the month, 1–31, or nil. */
     package let day: Int?
     /** Paid on the last day of every month. */
@@ -53,7 +53,7 @@ package struct Payday: Hashable, Sendable {
 }
 
 /** The budget period today falls in, from one payday to the day before the next. */
-package struct PaydayPeriod: Hashable, Sendable {
+package struct PaydayPeriodDTO: Hashable, Sendable {
     /** The payday the period began on. */
     package let start: String
     /** The day before the next payday. */

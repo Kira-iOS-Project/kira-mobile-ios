@@ -7,9 +7,9 @@ import OpenAPIRuntime
 private let exportLimit = 10 * 1024 * 1024
 
 extension Operations.GetMe.Output {
-    func profile() throws -> Profile {
+    func profile() throws -> MeDTO {
         switch self {
-        case .ok(let response): return try Profile(try response.body.json)
+        case .ok(let response): return try MeDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .undocumented: throw AppProblem()
         }
@@ -17,9 +17,9 @@ extension Operations.GetMe.Output {
 }
 
 extension Operations.UpdateMe.Output {
-    func profile() throws -> Profile {
+    func profile() throws -> MeDTO {
         switch self {
-        case .ok(let response): return try Profile(try response.body.json)
+        case .ok(let response): return try MeDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
         case .undocumented: throw AppProblem()
@@ -28,9 +28,9 @@ extension Operations.UpdateMe.Output {
 }
 
 extension Operations.GetConsents.Output {
-    func consents() throws -> Consents {
+    func consents() throws -> ConsentsDTO {
         switch self {
-        case .ok(let response): return try Consents(try response.body.json)
+        case .ok(let response): return try ConsentsDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .undocumented: throw AppProblem()
         }
@@ -38,9 +38,9 @@ extension Operations.GetConsents.Output {
 }
 
 extension Operations.UpdateConsents.Output {
-    func consents() throws -> Consents {
+    func consents() throws -> ConsentsDTO {
         switch self {
-        case .ok(let response): return try Consents(try response.body.json)
+        case .ok(let response): return try ConsentsDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
         case .undocumented: throw AppProblem()

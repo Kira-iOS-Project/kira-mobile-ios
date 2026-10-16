@@ -4,7 +4,7 @@ import Foundation
 /** The signed-in person and their consents (AKN-01, AKN-04, ONB-08, ONB-09). */
 
 /** Which Beranda a person starts on (Pilih Fokus). */
-package enum Focus: String, CaseIterable, Sendable {
+package enum FocusDTO: String, CaseIterable, Sendable {
     /** Catat pengeluaran: the overview. */
     case trackSpending = "track_spending"
     /** Keluar dari utang: the debt plan. */
@@ -12,7 +12,7 @@ package enum Focus: String, CaseIterable, Sendable {
 }
 
 /** How the current plan was obtained. */
-package enum PlanSource: String, CaseIterable, Sendable {
+package enum PlanSourceDTO: String, CaseIterable, Sendable {
     /** Bought (simulated). */
     case purchase
     /** Granted by Beasiswa Kira. */
@@ -20,17 +20,17 @@ package enum PlanSource: String, CaseIterable, Sendable {
 }
 
 /** The plan in force for the person. */
-package struct CurrentPlan: Hashable, Sendable {
+package struct CurrentPlanDTO: Hashable, Sendable {
     /** Gratis, Muda or Plus. */
     package let id: PlanID
     /** How it was obtained; nil on Gratis. */
-    package let source: PlanSource?
+    package let source: PlanSourceDTO?
     /** When it renews (`YYYY-MM-DD`); nil on Gratis. */
     package let renewsOn: String?
 }
 
 /** The signed-in person, with what Beranda, Catat and Akun read on launch (`GET /api/me`). */
-package struct Profile: Hashable, Sendable {
+package struct MeDTO: Hashable, Sendable {
     /** The account's id. */
     package let id: String
     /** The sign-in address. */
@@ -38,9 +38,9 @@ package struct Profile: Hashable, Sendable {
     /** The name shown ("Dinda"), from the address. */
     package let displayName: String
     /** Pilih Fokus. */
-    package let focus: Focus
+    package let focus: FocusDTO
     /** Tanggal gajian. */
-    package let payday: Payday
+    package let payday: PaydayDTO
     /** Amounts show as Rp•••••• when true. */
     package let hideBalances: Bool
     /** Persetujuan Data was given. */
@@ -48,11 +48,11 @@ package struct Profile: Hashable, Sendable {
     /** The health check was answered. */
     package let healthCheckCompleted: Bool
     /** The plan in force. */
-    package let plan: CurrentPlan
+    package let plan: CurrentPlanDTO
     /** The AI-backed inputs used this quota period. */
-    package let usage: Usage
+    package let usage: UsageDTO
     /** The payday period today falls in. */
-    package let period: PaydayPeriod
+    package let period: PaydayPeriodDTO
     /** The category of the last expense recorded, preselected in Catat Manual. */
     package let lastExpenseCategory: TransactionCategory?
     /** The category of the last income recorded. */
@@ -69,14 +69,14 @@ package struct Profile: Hashable, Sendable {
         email = profile.email
         displayName = profile.displayName
         focus = try bridged(profile.focus)
-        payday = Payday(day: profile.payday.day, endOfMonth: profile.payday.endOfMonth)
+        payday = PaydayDTO(day: profile.payday.day, endOfMonth: profile.payday.endOfMonth)
         hideBalances = profile.hideBalances
         consented = profile.consented
         healthCheckCompleted = profile.healthCheckCompleted
-        plan = CurrentPlan(
+        plan = CurrentPlanDTO(
             id: try bridged(profile.plan.id), source: try bridged(profile.plan.source), renewsOn: profile.plan.renewsOn)
-        usage = Usage(profile.usage)
-        period = PaydayPeriod(
+        usage = UsageDTO(profile.usage)
+        period = PaydayPeriodDTO(
             start: profile.period.start, end: profile.period.end, nextPayday: profile.period.nextPayday,
             daysUntilPayday: profile.period.daysUntilPayday)
         lastExpenseCategory = try bridged(profile.lastCategories.expense)
@@ -88,17 +88,17 @@ package struct Profile: Hashable, Sendable {
 }
 
 /** One setting to change with `updateMe(_:)`. */
-package enum MeChange: Hashable, Sendable {
+package enum MeChangeDTO: Hashable, Sendable {
     /** Pilih Fokus. */
-    case focus(Focus)
+    case focus(FocusDTO)
     /** Hide or show amounts. */
     case hideBalances(Bool)
     /** Tanggal gajian. */
-    case payday(Payday)
+    case payday(PaydayDTO)
 }
 
 /** What a person agreed their data may be used for. */
-package enum ConsentPurpose: String, CaseIterable, Sendable {
+package enum ConsentPurposeDTO: String, CaseIterable, Sendable {
     /** Running the app; always granted. */
     case core
     /** Kira AI parsing chat, receipts and voice on the device. */
@@ -108,9 +108,9 @@ package enum ConsentPurpose: String, CaseIterable, Sendable {
 }
 
 /** One consent decision in force. */
-package struct Consent: Hashable, Sendable {
+package struct ConsentDTO: Hashable, Sendable {
     /** What it is for. */
-    package let purpose: ConsentPurpose
+    package let purpose: ConsentPurposeDTO
     /** Granted or refused. */
     package let granted: Bool
     /** When it was decided; nil when never decided. */
@@ -118,16 +118,16 @@ package struct Consent: Hashable, Sendable {
 }
 
 /** The consents in force, under the privacy policy they were given for. */
-package struct Consents: Hashable, Sendable {
+package struct ConsentsDTO: Hashable, Sendable {
     /** The privacy policy's version ("2026-10-15"). */
     package let policyVersion: String
     /** One decision per purpose. */
-    package let items: [Consent]
+    package let items: [ConsentDTO]
 
     init(_ body: Components.Schemas.Consents) throws {
         policyVersion = body.policyVersion
         items = try body.items.map {
-            Consent(purpose: try bridged($0.purpose), granted: $0.granted, decidedAt: $0.decidedAt)
+            ConsentDTO(purpose: try bridged($0.purpose), granted: $0.granted, decidedAt: $0.decidedAt)
         }
     }
 }

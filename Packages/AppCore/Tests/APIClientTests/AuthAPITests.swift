@@ -20,7 +20,7 @@ struct AuthAPITests {
         let sent = try await api.requestSignInCode(email: "dinda@email.com")
         #expect(sent.expiresInSeconds == 600 && sent.resendAfterSeconds == 60)
         let request = try #require(await transport.request)
-        #expect(request.method == .post && request.operation == "requestSignInCode")
+        #expect(request.method == .post && request.path.hasSuffix("auth/code"))
         #expect(try request.decoded(EmailBody.self).email == "dinda@email.com")
     }
 
@@ -46,7 +46,7 @@ struct AuthAPITests {
     func signsOut() async throws {
         let (api, transport) = KiraAPI.canned(status: 204)
         try await api.signOut()
-        #expect(try #require(await transport.request).operation == "signOut")
+        #expect(try #require(await transport.request).path.hasSuffix("auth/sign-out"))
     }
 
     @Test("throws every problem the sign-in routes answer")
