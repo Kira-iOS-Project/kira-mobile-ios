@@ -1,6 +1,206 @@
 {
   "sourceLanguage" : "id",
   "strings" : {
+    "conversation.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Detail Transaksi"
+          }
+        }
+      }
+    },
+    "conversation.empty" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum ada pesan di sekitar transaksi ini."
+          }
+        }
+      }
+    },
+    "conversation.kira.aiMeta %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dijawab Kira AI · dari pesan %@ WIB"
+          }
+        }
+      }
+    },
+    "conversation.kira.discarded" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Draf ini tidak jadi disimpan."
+          }
+        }
+      }
+    },
+    "conversation.kira.engineMeta" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dihitung mesin"
+          }
+        }
+      }
+    },
+    "conversation.kira.noDrafts" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aku belum menemukan nominal di pesan itu."
+          }
+        }
+      }
+    },
+    "conversation.kira.pendingExpense %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aku tangkap %lld pengeluaran. Cek dulu sebelum disimpan, ya."
+          }
+        }
+      }
+    },
+    "conversation.kira.pendingIncome %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aku tangkap %lld pemasukan. Cek dulu sebelum disimpan, ya."
+          }
+        }
+      }
+    },
+    "conversation.kira.pendingMixed %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aku tangkap %lld transaksi. Cek dulu sebelum disimpan, ya."
+          }
+        }
+      }
+    },
+    "conversation.kira.remaining %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sisa uangmu periode ini %1$@, sekitar %2$@ per hari."
+          }
+        }
+      }
+    },
+    "conversation.kira.savedFive" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lima transaksi tersimpan."
+          }
+        }
+      }
+    },
+    "conversation.kira.savedFour" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Empat transaksi tersimpan."
+          }
+        }
+      }
+    },
+    "conversation.kira.savedMany %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld transaksi tersimpan."
+          }
+        }
+      }
+    },
+    "conversation.kira.savedMeta %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tersimpan · dari pesan %@ WIB"
+          }
+        }
+      }
+    },
+    "conversation.kira.savedOne" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah aku catat, ya."
+          }
+        }
+      }
+    },
+    "conversation.kira.savedThree" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiga transaksi tersimpan."
+          }
+        }
+      }
+    },
+    "conversation.kira.savedTwo" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dua transaksi tersimpan."
+          }
+        }
+      }
+    },
+    "conversation.sourceLabel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pesan Sumber Transaksi"
+          }
+        }
+      }
+    },
+    "conversation.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pesan sumber ditandai"
+          }
+        }
+      }
+    },
+    "conversation.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat Percakapan"
+          }
+        }
+      }
+    },
     "ds.accordion.closed" : {
       "localizations" : {
         "id" : {
@@ -3381,6 +3581,846 @@
         }
       }
     },
+    "history.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Catat"
+          }
+        }
+      }
+    },
+    "history.category.all" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semua Kategori"
+          }
+        }
+      }
+    },
+    "history.category.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter kategori"
+          }
+        }
+      }
+    },
+    "history.day.expenseThatDay %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keluar hari itu %@."
+          }
+        }
+      }
+    },
+    "history.day.expenseToday %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keluar hari ini %@."
+          }
+        }
+      }
+    },
+    "history.day.incomeThatDay %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masuk hari itu %@."
+          }
+        }
+      }
+    },
+    "history.day.incomeToday %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masuk hari ini %@."
+          }
+        }
+      }
+    },
+    "history.day.past %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
+    "history.day.payday %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ · Gajian"
+          }
+        }
+      }
+    },
+    "history.day.paydayFooter %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Awal periode gajian %@."
+          }
+        }
+      }
+    },
+    "history.day.today %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hari Ini · %@"
+          }
+        }
+      }
+    },
+    "history.dayTime %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@ WIB"
+          }
+        }
+      }
+    },
+    "history.empty.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaksi periode ini muncul di sini setelah kamu mencatat lewat chat, struk, atau Catat Manual."
+          }
+        }
+      }
+    },
+    "history.empty.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Ada Transaksi"
+          }
+        }
+      }
+    },
+    "history.import" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impor Mutasi"
+          }
+        }
+      }
+    },
+    "history.kind.all" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semua"
+          }
+        }
+      }
+    },
+    "history.kind.expense" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keluar"
+          }
+        }
+      }
+    },
+    "history.kind.income" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masuk"
+          }
+        }
+      }
+    },
+    "history.kind.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jenis transaksi"
+          }
+        }
+      }
+    },
+    "history.noMatch" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak ada transaksi yang cocok."
+          }
+        }
+      }
+    },
+    "history.period %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Periode %@"
+          }
+        }
+      }
+    },
+    "history.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
+          }
+        }
+      }
+    },
+    "history.row.expense %@ %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@ · %3$@"
+          }
+        }
+      }
+    },
+    "history.row.income %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pemasukan · %1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "history.search" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cari transaksi"
+          }
+        }
+      }
+    },
+    "history.showOlder %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tampilkan %@"
+          }
+        }
+      }
+    },
+    "history.source.chat" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dari chat"
+          }
+        }
+      }
+    },
+    "history.source.import" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "impor"
+          }
+        }
+      }
+    },
+    "history.source.manual" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "manual"
+          }
+        }
+      }
+    },
+    "history.source.receipt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "struk"
+          }
+        }
+      }
+    },
+    "history.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat Transaksi"
+          }
+        }
+      }
+    },
+    "history.totals.expense" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keluar periode ini"
+          }
+        }
+      }
+    },
+    "history.totals.income" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masuk"
+          }
+        }
+      }
+    },
+    "history.totals.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ringkasan periode ini"
+          }
+        }
+      }
+    },
+    "import.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Riwayat Transaksi"
+          }
+        }
+      }
+    },
+    "import.continue" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lanjut Tinjau"
+          }
+        }
+      }
+    },
+    "import.error.amount %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nominal di baris %lld harus angka saja, tanpa titik atau Rp, misalnya -22000."
+          }
+        }
+      }
+    },
+    "import.error.columns %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baris %lld harus berisi 3 kolom: tanggal, keterangan, nominal. Bila keterangan memuat koma, apit dengan tanda kutip."
+          }
+        }
+      }
+    },
+    "import.error.date %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanggal di baris %lld harus ditulis tahun-bulan-tanggal, misalnya 2026-09-26."
+          }
+        }
+      }
+    },
+    "import.error.description %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keterangan di baris %lld masih kosong. Isi dulu, lalu pilih file lagi."
+          }
+        }
+      }
+    },
+    "import.error.empty" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File ini belum berisi transaksi. Tambahkan baris di bawah judul kolom, lalu pilih lagi."
+          }
+        }
+      }
+    },
+    "import.error.notText" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira hanya bisa membaca file CSV. Simpan mutasimu sebagai CSV dari aplikasi bank atau spreadsheet, lalu pilih lagi."
+          }
+        }
+      }
+    },
+    "import.error.range" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rentang tanggal di file ini lebih dari 3 bulan. Bagi menjadi beberapa file, masing-masing paling lama 3 bulan."
+          }
+        }
+      }
+    },
+    "import.error.rows" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File ini berisi terlalu banyak baris. Bagi menjadi beberapa file yang lebih kecil."
+          }
+        }
+      }
+    },
+    "import.error.tooLarge" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File ini terlalu besar. Pilih mutasi paling lama 3 bulan."
+          }
+        }
+      }
+    },
+    "import.error.wrongHeader" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baris pertama harus berisi judul kolom tanggal,keterangan,nominal, sama seperti contoh."
+          }
+        }
+      }
+    },
+    "import.format.lead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baris pertama berisi judul kolom, urutannya sama seperti contoh ini."
+          }
+        }
+      }
+    },
+    "import.format.rules" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanggal ditulis tahun-bulan-tanggal. Nominal negatif untuk pengeluaran, positif untuk pemasukan, tanpa titik atau Rp."
+          }
+        }
+      }
+    },
+    "import.format.tag" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 Kolom"
+          }
+        }
+      }
+    },
+    "import.format.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Format File CSV"
+          }
+        }
+      }
+    },
+    "import.heading" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impor Mutasi Rekening"
+          }
+        }
+      }
+    },
+    "import.invalid.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File Belum Bisa Dibaca"
+          }
+        }
+      }
+    },
+    "import.lead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Untuk yang tidak sempat mencatat harian. Cukup satu file CSV."
+          }
+        }
+      }
+    },
+    "import.pick" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih File"
+          }
+        }
+      }
+    },
+    "import.pickAnother" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih File Lain"
+          }
+        }
+      }
+    },
+    "import.picker.limit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maksimal 3 bulan per file"
+          }
+        }
+      }
+    },
+    "import.picker.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih File CSV"
+          }
+        }
+      }
+    },
+    "import.privacy" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File dibaca lalu dihapus. Nomor rekening disamarkan sebelum diproses AI. Kira tidak pernah meminta PIN atau password."
+          }
+        }
+      }
+    },
+    "import.read.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Formatnya sesuai, siap ditinjau."
+          }
+        }
+      }
+    },
+    "import.read.facts %@ %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$lld baris · %3$@"
+          }
+        }
+      }
+    },
+    "import.read.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File Berhasil Dibaca"
+          }
+        }
+      }
+    },
+    "import.replace" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ganti"
+          }
+        }
+      }
+    },
+    "import.sample" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unduh Contoh CSV"
+          }
+        }
+      }
+    },
+    "import.sample.preview" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contoh Mutasi Kira"
+          }
+        }
+      }
+    },
+    "import.step.choose" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langkah 1 dari 3 · Pilih file"
+          }
+        }
+      }
+    },
+    "import.step.chosen" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langkah 1 dari 3 · File terpilih"
+          }
+        }
+      }
+    },
+    "import.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impor Mutasi"
+          }
+        }
+      }
+    },
+    "import.upload.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Berhasil Mengirim"
+          }
+        }
+      }
+    },
+    "ledger.category.bills" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan"
+          }
+        }
+      }
+    },
+    "ledger.category.bonus" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bonus"
+          }
+        }
+      }
+    },
+    "ledger.category.business" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usaha"
+          }
+        }
+      }
+    },
+    "ledger.category.coffee" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopi"
+          }
+        }
+      }
+    },
+    "ledger.category.education" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pendidikan"
+          }
+        }
+      }
+    },
+    "ledger.category.entertainment" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hiburan"
+          }
+        }
+      }
+    },
+    "ledger.category.food" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Makan & Minum"
+          }
+        }
+      }
+    },
+    "ledger.category.health" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kesehatan"
+          }
+        }
+      }
+    },
+    "ledger.category.household" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rumah Tangga"
+          }
+        }
+      }
+    },
+    "ledger.category.insurance" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proteksi"
+          }
+        }
+      }
+    },
+    "ledger.category.other" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lainnya"
+          }
+        }
+      }
+    },
+    "ledger.category.paylaterInstalment" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paylater"
+          }
+        }
+      }
+    },
+    "ledger.category.salary" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gaji"
+          }
+        }
+      }
+    },
+    "ledger.category.savingsDeposit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabungan"
+          }
+        }
+      }
+    },
+    "ledger.category.shopping" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belanja"
+          }
+        }
+      }
+    },
+    "ledger.category.transport" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transportasi"
+          }
+        }
+      }
+    },
     "problem.HTTP_ERROR" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3469,6 +4509,296 @@
         }
       }
     },
+    "review.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Impor Mutasi"
+          }
+        }
+      }
+    },
+    "review.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "review.duplicates.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Centang bila ternyata memang transaksi yang berbeda."
+          }
+        }
+      }
+    },
+    "review.duplicates.notice %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld transaksi mirip catatan chat-mu. Tidak dicentang supaya tidak dobel."
+          }
+        }
+      }
+    },
+    "review.duplicates.title %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mungkin Dobel · %lld"
+          }
+        }
+      }
+    },
+    "review.failed.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koneksi terputus saat menyimpan. Belum ada transaksi yang tersimpan, jadi tidak akan dobel."
+          }
+        }
+      }
+    },
+    "review.failed.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup"
+          }
+        }
+      }
+    },
+    "review.failed.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
+          }
+        }
+      }
+    },
+    "review.failed.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impor Belum Berhasil"
+          }
+        }
+      }
+    },
+    "review.found %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Transaksi Ditemukan"
+          }
+        }
+      }
+    },
+    "review.more.allChecked" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semua dicentang · ketuk untuk melihat"
+          }
+        }
+      }
+    },
+    "review.more.someChecked %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld dicentang · ketuk untuk melihat"
+          }
+        }
+      }
+    },
+    "review.more.title %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Transaksi Lainnya"
+          }
+        }
+      }
+    },
+    "review.ready.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategori diisi otomatis oleh Kira AI. Ketuk baris untuk mengubah."
+          }
+        }
+      }
+    },
+    "review.ready.title %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siap Disimpan · %lld"
+          }
+        }
+      }
+    },
+    "review.row.category" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategori"
+          }
+        }
+      }
+    },
+    "review.row.details %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "review.row.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
+    "review.row.include" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikut Disimpan"
+          }
+        }
+      }
+    },
+    "review.row.subtitle %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dari mutasi %@"
+          }
+        }
+      }
+    },
+    "review.row.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah Transaksi Impor"
+          }
+        }
+      }
+    },
+    "review.save %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan %lld Transaksi"
+          }
+        }
+      }
+    },
+    "review.saved.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah masuk ke riwayat."
+          }
+        }
+      }
+    },
+    "review.saved.bodySkipped %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah masuk ke riwayat. %lld transaksi mirip tidak ikut disimpan."
+          }
+        }
+      }
+    },
+    "review.saved.history" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Riwayat"
+          }
+        }
+      }
+    },
+    "review.saved.title %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Transaksi Tersimpan"
+          }
+        }
+      }
+    },
+    "review.source %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "review.step" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langkah 3 dari 3 · Tinjau"
+          }
+        }
+      }
+    },
+    "review.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tinjau Hasil Impor"
+          }
+        }
+      }
+    },
     "root.subtitle" : {
       "localizations" : {
         "id" : {
@@ -3485,6 +4815,456 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kira"
+          }
+        }
+      }
+    },
+    "transaction.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Riwayat Transaksi"
+          }
+        }
+      }
+    },
+    "transaction.category" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategori"
+          }
+        }
+      }
+    },
+    "transaction.date" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanggal"
+          }
+        }
+      }
+    },
+    "transaction.dateTime %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@ WIB"
+          }
+        }
+      }
+    },
+    "transaction.delete" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus"
+          }
+        }
+      }
+    },
+    "transaction.delete.body %@ %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@ akan dihapus dari catatan. Sisa budget %3$@ dihitung ulang."
+          }
+        }
+      }
+    },
+    "transaction.delete.bodyPlain" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaksi ini akan dihapus dari catatan."
+          }
+        }
+      }
+    },
+    "transaction.delete.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "transaction.delete.confirm" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus"
+          }
+        }
+      }
+    },
+    "transaction.delete.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Transaksi Ini?"
+          }
+        }
+      }
+    },
+    "transaction.deleted.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Riwayat"
+          }
+        }
+      }
+    },
+    "transaction.deleted.body %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sisa budget %@ sudah dihitung ulang."
+          }
+        }
+      }
+    },
+    "transaction.deleted.bodyPlain" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catatanmu sudah diperbarui."
+          }
+        }
+      }
+    },
+    "transaction.deleted.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaksi Dihapus"
+          }
+        }
+      }
+    },
+    "transaction.edit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah"
+          }
+        }
+      }
+    },
+    "transaction.edit.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "transaction.edit.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan"
+          }
+        }
+      }
+    },
+    "transaction.edit.subtitle %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tersimpan · dari pesan %@ WIB"
+          }
+        }
+      }
+    },
+    "transaction.edit.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah Transaksi"
+          }
+        }
+      }
+    },
+    "transaction.failed.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koneksi terputus. Perubahanmu aman di perangkat, coba lagi sebentar lagi."
+          }
+        }
+      }
+    },
+    "transaction.failed.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup"
+          }
+        }
+      }
+    },
+    "transaction.failed.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
+          }
+        }
+      }
+    },
+    "transaction.failed.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Berhasil Menyimpan"
+          }
+        }
+      }
+    },
+    "transaction.field.amount" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jumlah"
+          }
+        }
+      }
+    },
+    "transaction.field.amountHint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ",00 ditambah otomatis"
+          }
+        }
+      }
+    },
+    "transaction.field.category" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategori"
+          }
+        }
+      }
+    },
+    "transaction.field.cents" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ",00"
+          }
+        }
+      }
+    },
+    "transaction.field.currency" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rp"
+          }
+        }
+      }
+    },
+    "transaction.field.date" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanggal"
+          }
+        }
+      }
+    },
+    "transaction.field.dateHint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Membuka kalender untuk mengganti tanggal dan jam"
+          }
+        }
+      }
+    },
+    "transaction.field.name" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama"
+          }
+        }
+      }
+    },
+    "transaction.field.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catatan"
+          }
+        }
+      }
+    },
+    "transaction.field.notePrompt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opsional"
+          }
+        }
+      }
+    },
+    "transaction.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catatan"
+          }
+        }
+      }
+    },
+    "transaction.note.add" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah Catatan"
+          }
+        }
+      }
+    },
+    "transaction.saved.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detail transaksi sudah diperbarui."
+          }
+        }
+      }
+    },
+    "transaction.saved.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
+    "transaction.saved.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perubahan Tersimpan"
+          }
+        }
+      }
+    },
+    "transaction.source" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sumber"
+          }
+        }
+      }
+    },
+    "transaction.source.chat" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chat"
+          }
+        }
+      }
+    },
+    "transaction.source.import" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impor Mutasi"
+          }
+        }
+      }
+    },
+    "transaction.source.manual" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catat Manual"
+          }
+        }
+      }
+    },
+    "transaction.source.open %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sumber: chat, pesan %@. Buka pesan di Catat"
+          }
+        }
+      }
+    },
+    "transaction.source.receipt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scan Struk"
+          }
+        }
+      }
+    },
+    "transaction.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detail Transaksi"
           }
         }
       }

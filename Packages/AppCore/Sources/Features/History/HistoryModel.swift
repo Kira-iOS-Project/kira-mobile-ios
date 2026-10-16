@@ -88,7 +88,7 @@ package final class HistoryModel {
         let current = generation
         appliedSearch = Self.normalized(searchText)
         do {
-            let period = try await service.currentPeriod()
+            let period = try await service.currentAccount().period
             async let summary = service.summary(from: period.start, to: period.end)
             async let page = service.transactions(query(period, cursor: nil))
             let (loadedSummary, loadedPage) = try await (summary, page)

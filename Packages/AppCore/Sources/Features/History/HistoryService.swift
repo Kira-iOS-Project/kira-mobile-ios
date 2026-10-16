@@ -7,8 +7,8 @@ import Domain
 
 /** The history and import calls. */
 package protocol HistoryService: Sendable {
-    /** The current payday period: `GET /me`'s `period`. */
-    func currentPeriod() async throws -> PayPeriod
+    /** `GET /me`: the current payday period and the person's display name. */
+    func currentAccount() async throws -> HistoryAccount
     /** `GET /transactions`: a page of transactions, newest first. */
     func transactions(_ query: TransactionQuery) async throws -> TransactionPage
     /** `GET /transactions/summary`: the engine's totals of a range and of each day. */
@@ -25,4 +25,23 @@ package protocol HistoryService: Sendable {
     func upload(_ upload: ImportUpload) async throws -> ImportPreview
     /** `POST /imports/{id}/commit`: saves the chosen rows at once; repeating it is safe. */
     func commit(importId: String, rows: [ImportCommitRow]) async throws -> ImportCommitResult
+}
+
+/** What the history screens read of `GET /me`. */
+package struct HistoryAccount: Hashable, Sendable {
+    /** The current payday period. */
+    package let period: PayPeriod
+    /** The name Kira calls the person, from their email ("dinda@…" is Dinda). */
+    package let displayName: String
+
+    /** The account's period and name. */
+    package init(period: PayPeriod, displayName: String) {
+        self.period = period
+        self.displayName = displayName
+    }
+
+    /** The initial beside the person's own chat bubbles; nil for an empty name. */
+    package var initial: String? {
+        displayName.first.map { String($0).uppercased() }
+    }
 }

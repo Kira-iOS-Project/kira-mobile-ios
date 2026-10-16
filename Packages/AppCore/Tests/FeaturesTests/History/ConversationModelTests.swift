@@ -22,6 +22,16 @@ struct ConversationModelTests {
         #expect(blocks[0].framed.count == 2 && blocks[0].trailing.isEmpty)
         #expect(blocks[1].startedAt == Sample.at(Sample.today, 12, 41))
         #expect(model.sourceBlockId == "m-1241")
+        #expect(model.personInitial == "D")
+    }
+
+    @Test("shows the log without an initial when the account cannot be read or has no name")
+    func noInitial() async {
+        await service.configure { $0.failing = [.period] }
+        let model = ConversationModel(sourceMessageId: "m-1241", service: service)
+        await model.load()
+        #expect(model.phase.value != nil && model.personInitial == nil)
+        #expect(HistoryAccount(period: Sample.period, displayName: "").initial == nil)
     }
 
     @Test("a reply before any message of the person starts its own block")

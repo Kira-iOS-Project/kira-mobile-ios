@@ -13,6 +13,7 @@ actor FakeHistoryService: HistoryService {
     static let problem = AppProblem(code: "INTERNAL_ERROR", requestId: "req-1")
 
     var period = Sample.period
+    var displayName = "dinda"
     var summary = Sample.summary
     var pages: [String?: TransactionPage] = [nil: TransactionPage(items: Sample.transactions, nextCursor: nil)]
     var detail = Sample.detail
@@ -37,9 +38,9 @@ actor FakeHistoryService: HistoryService {
         held = nil
     }
 
-    func currentPeriod() throws -> PayPeriod {
+    func currentAccount() throws -> HistoryAccount {
         try check(.period)
-        return period
+        return HistoryAccount(period: period, displayName: displayName)
     }
 
     func transactions(_ query: TransactionQuery) async throws -> TransactionPage {

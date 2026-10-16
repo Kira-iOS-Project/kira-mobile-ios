@@ -24,6 +24,7 @@ struct StatementImportModelTests {
         #expect(file.name == url.lastPathComponent)
         #expect(file.byteCount == StatementTemplate.text.utf8.count)
         #expect(file.statement.rows.count == 3)
+        #expect(model.fileName == url.lastPathComponent)
     }
 
     @Test("says why a file cannot be read")
@@ -31,6 +32,7 @@ struct StatementImportModelTests {
         let model = StatementImportModel(service: service)
         model.choose(fileAt: URL(fileURLWithPath: "/nonexistent/\(UUID().uuidString).csv"))
         #expect(model.phase == .invalid(.notText))
+        #expect(model.fileName.isEmpty)
         model.read(Data("a,b,c\n".utf8), fileName: "x.csv")
         #expect(model.phase == .invalid(.wrongHeader))
         model.pickerFailed()
@@ -95,6 +97,7 @@ struct ImportReviewModelTests {
         #expect(model.editingRow == duplicate)
         model.setCategory(.food, for: duplicate)
         #expect(model.category(of: duplicate) == .food)
+        #expect(model.categories(for: duplicate).allSatisfy { $0.type == .expense })
         await model.save()
         #expect(
             await service.commits == [

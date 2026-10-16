@@ -47,6 +47,12 @@ package final class StatementImportModel {
         self.service = service
     }
 
+    /** The read file's name, under the review's title; empty before a file is read. */
+    package var fileName: String {
+        guard case .read(let file) = phase else { return "" }
+        return file.name
+    }
+
     /** Reads the file the picker returned, inside its security scope. */
     package func choose(fileAt url: URL) {
         let isScoped = url.startAccessingSecurityScopedResource()

@@ -77,6 +77,11 @@ package final class ImportReviewModel {
         categories[row.id] ?? row.category
     }
 
+    /** The categories `row`'s sheet offers: those of its direction. */
+    package func categories(for row: ImportPreviewRow) -> [TransactionCategory] {
+        TransactionCategory.allCases.filter { $0.type == row.type }
+    }
+
     /** Checks or unchecks `row`. */
     package func toggle(_ row: ImportPreviewRow) {
         if checked.remove(row.id) == nil { checked.insert(row.id) }

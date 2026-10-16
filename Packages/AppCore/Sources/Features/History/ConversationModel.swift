@@ -32,6 +32,8 @@ package final class ConversationModel {
     package let sourceMessageId: String
     /** The log's blocks once loaded. */
     package private(set) var phase: ScreenPhase<[ConversationBlock]> = .loading
+    /** The initial beside the person's bubbles; nil until known, and the log shows without it. */
+    package private(set) var personInitial: String?
 
     private let service: any HistoryService
 
@@ -41,10 +43,12 @@ package final class ConversationModel {
         self.service = service
     }
 
-    /** Loads the messages around the source message. */
+    /** Loads the messages around the source message, and the person's initial beside them. */
     package func load() async {
+        async let account = try? service.currentAccount()
         do {
             let messages = try await service.messages(around: sourceMessageId)
+            personInitial = await account?.initial
             let blocks = Self.blocks(messages, source: sourceMessageId)
             phase = blocks.isEmpty ? .empty : .loaded(blocks)
         } catch {
