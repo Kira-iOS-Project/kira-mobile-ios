@@ -1,7 +1,7 @@
 /**
  Where each area's entry view plugs into the shell: onboarding, Beranda and every pushed route
- (RouteSlot). Catat and Riwayat (RecordSlot and the record routes) stay empty for their own
- integration. Each slot takes its services from the environment.
+ (RouteSlot). Catat (RecordSlot) and the Riwayat routes (RecordRoute) read `RecordComposition`;
+ the other slots read `AppServices`. Each slot takes its services from the environment.
  */
 import Features
 import SwiftUI
@@ -32,11 +32,18 @@ struct HomeSlot: View {
     }
 }
 
-/** CAT-01: Catat, the record section's root; its integration plugs in here. */
+/** CAT-01: Catat, the record section's root, on the record service of `RecordComposition`. */
 struct RecordSlot: View {
     let onOpen: (AppRoute) -> Void
+    @Environment(\.recordComposition) private var composition
 
-    var body: some View { EmptySlot() }
+    var body: some View {
+        if let record = (composition ?? .fallback)?.record {
+            RecordScreen(service: record, onOpen: onOpen)
+        } else {
+            EmptySlot()
+        }
+    }
 }
 
 /** The empty surface of a slot whose area is not plugged in yet. */

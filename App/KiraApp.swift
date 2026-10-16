@@ -42,6 +42,7 @@ struct KiraApp: App {
             }
         )
         .environment(\.appServices, app.services)
+        .environment(\.recordComposition, app.record)
     }
 }
 
@@ -49,6 +50,8 @@ struct KiraApp: App {
 private struct ComposedApp {
     let root: RootModel
     let services: AppServices
+    /** Catat's and Riwayat's services; nil runs them on their preview services (debug builds only). */
+    let record: RecordComposition?
 }
 
 extension KiraApp {
@@ -68,7 +71,7 @@ extension KiraApp {
         let root = RootModel(session: session, lock: lock) {
             previews ? .ready(hidesBalances: false) : await AccountStage.check(with: api)
         }
-        return ComposedApp(root: root, services: services)
+        return ComposedApp(root: root, services: services, record: previews ? nil : .live(api: api))
     }
 
     /** A debug build launched with `-KiraPreviewServices`: every screen on its sample data. */
