@@ -22,7 +22,7 @@ struct ScholarshipScreen: View {
     }
 
     var body: some View {
-        PlansScreenFrame {
+        PlansScreenFrame(leaf: .high) {
             KiraNavBar(title, subtitle: subtitle, leading: .back("scholarship.back") { dismiss() }) {
                 KiraHelpButton(.icon) { onOpen(.unavailable(.care)) }
             }

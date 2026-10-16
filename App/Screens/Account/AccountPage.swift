@@ -1,7 +1,9 @@
 /**
  The frame every Akun screen shares (canvas Profil, Keamanan, Data & Privasi, Tentang Kira): the
  twig leaf behind the top right corner, the nav bar with an icon-only back button and, on the
- main screens, the help button, then the content 16 pt apart on the surface.
+ main screens, the help button, then the content 16 pt apart on the surface. The boards' 34 pt
+ under the content is the home indicator's safe area, so nothing is added to it; the column is at
+ least the screen's height, so a Spacer pins a document's actions to the bottom.
  */
 import APIClient
 import SwiftUI
@@ -11,6 +13,7 @@ struct AccountPage<Content: View, Background: View>: View {
     private let title: LocalizedStringResource
     private let backLabel: LocalizedStringResource
     private var onHelp: (() -> Void)?
+    private var leafSize: CGFloat = 140
     private let content: Content
     private let background: Background
     @Environment(\.dismiss) private var dismiss
@@ -26,25 +29,33 @@ struct AccountPage<Content: View, Background: View>: View {
     }
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: KiraSpacing.space4) {
-                KiraNavBar(title, leading: .back(backLabel) { dismiss() }) {
-                    if let onHelp { KiraHelpButton(.icon, action: onHelp) }
+        GeometryReader { screen in
+            ScrollView {
+                VStack(alignment: .leading, spacing: KiraSpacing.space4) {
+                    KiraNavBar(title, leading: .back(backLabel) { dismiss() }) {
+                        if let onHelp { KiraHelpButton(.icon, action: onHelp) }
+                    }
+                    content
                 }
-                content
+                .padding(.horizontal, KiraSpacing.screen)
+                .padding(.top, KiraSpacing.space2)
+                .background(alignment: .topTrailing) {
+                    KiraLeaf(.twig, tone: .soft, size: leafSize, isFlipped: true).offset(x: 36, y: -22)
+                }
+                .frame(maxWidth: .infinity, minHeight: screen.size.height, alignment: .top)
             }
-            .padding(.horizontal, KiraSpacing.screen)
-            .padding(.top, KiraSpacing.space2)
-            .padding(.bottom, KiraSpacing.space8)
-            .background(alignment: .topTrailing) {
-                KiraLeaf(.twig, tone: .soft, size: 140, isFlipped: true).offset(x: 36, y: -14)
-            }
-            .frame(maxWidth: .infinity, minHeight: 0, alignment: .top)
         }
         .background { background }
         .background(.surface)
         .kiraScrollEdges()
         .toolbar(.hidden, for: .navigationBar)
+    }
+
+    /** The same screen with a larger leaf (Profil's is 150 pt). */
+    func leaf(size: CGFloat) -> Self {
+        var page = self
+        page.leafSize = size
+        return page
     }
 
     /** The same screen with the help button, which opens Kira Peduli. */
@@ -79,13 +90,15 @@ struct AccountIntro: View {
                     )
                     .tracking(-0.2)
                     .accessibilityAddTraits(.isHeader)
+                    .balancedLines()
+                    .frame(maxWidth: 280)
                 if let message {
                     Text(message).font(.subheadline).kiraLineHeight(20, size: 15).foregroundStyle(.inkMuted)
+                        .balancedLines()
                         .frame(maxWidth: 300)
                 }
             }
             .multilineTextAlignment(.center)
-            .frame(maxWidth: 300)
         }
         .padding(EdgeInsets(top: 4, leading: 24, bottom: 8, trailing: 24))
         .frame(maxWidth: .infinity)

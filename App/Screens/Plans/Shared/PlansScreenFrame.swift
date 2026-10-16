@@ -1,29 +1,37 @@
 /**
  The frame the Paket, Langganan, Traktir Kira and Beasiswa Kira boards share: a scrolling 16 pt
  column with 16 pt between blocks on `surface`, the soft twig leaf behind the top right corner, the
- system bar hidden for KiraNavBar.
+ system bar hidden for KiraNavBar. The boards' 34 pt under the content is the home indicator's
+ safe area, so nothing is added to it; the column is at least the screen's height, so a Spacer
+ pins a screen's buttons to the bottom (the boards' `margin-top: auto`).
  */
 import Domain
 import SwiftUI
 
 struct PlansScreenFrame<Content: View>: View {
+    /** Where the leaf sits: 22 pt above the nav bar (most boards) or 54 pt (Beasiswa Kira's). */
+    enum Leaf {
+        case standard(size: CGFloat = 140)
+        case high
+    }
+
+    private let leaf: Leaf
     private let content: Content
 
-    init(@ViewBuilder content: () -> Content) {
+    init(leaf: Leaf = .standard(), @ViewBuilder content: () -> Content) {
+        self.leaf = leaf
         self.content = content()
     }
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: KiraSpacing.space4) { content }
-                .padding(.horizontal, KiraSpacing.screen)
-                .padding(.top, KiraSpacing.space2)
-                .padding(.bottom, 34)
-                .background(alignment: .topTrailing) {
-                    KiraLeaf(.twig, tone: .soft, size: 140, isFlipped: true)
-                        .offset(x: 36, y: -22)
-                        .accessibilityHidden(true)
-                }
+        GeometryReader { screen in
+            ScrollView {
+                VStack(alignment: .leading, spacing: KiraSpacing.space4) { content }
+                    .padding(.horizontal, KiraSpacing.screen)
+                    .padding(.top, KiraSpacing.space2)
+                    .frame(maxWidth: .infinity, minHeight: screen.size.height, alignment: .top)
+                    .background(alignment: .topTrailing) { leafView }
+            }
         }
         .background(.surface)
         .kiraScrollEdges()
@@ -31,45 +39,66 @@ struct PlansScreenFrame<Content: View>: View {
     }
 }
 
+extension PlansScreenFrame {
+    @ViewBuilder fileprivate var leafView: some View {
+        switch leaf {
+        case .standard(let size):
+            KiraLeaf(.twig, tone: .soft, size: size, isFlipped: true).offset(x: 36, y: -22).accessibilityHidden(true)
+        case .high:
+            KiraLeaf(.twig, tone: .soft, size: 140, isFlipped: true).offset(x: 46, y: -54).accessibilityHidden(true)
+        }
+    }
+}
+
 /** A board's page header: the display title and one muted line under it. */
 struct PlansHeader: View {
     private let title: LocalizedStringResource
     private let subtitle: LocalizedStringResource
-    private let size: CGFloat
+    private let lineHeight: CGFloat
 
-    /** `size` is the title's: 26 on the Bayar boards, 28 on Paket and the plan details. */
-    init(_ title: LocalizedStringResource, subtitle: LocalizedStringResource, size: CGFloat = 26) {
+    /** The title is 26 pt on 31 pt lines (the Bayar boards); Ajukan Beasiswa's lines are 32 pt. */
+    init(_ title: LocalizedStringResource, subtitle: LocalizedStringResource, lineHeight: CGFloat = 31) {
         self.title = title
         self.subtitle = subtitle
-        self.size = size
+        self.lineHeight = lineHeight
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            PlansDisplayTitle(title, size: size)
+            PlansDisplayTitle(title, size: 26, lineHeight: lineHeight)
             Text(subtitle).font(.subheadline).kiraLineHeight(20, size: 15).foregroundStyle(.inkMuted)
         }
         .padding(.horizontal, KiraSpacing.space1)
     }
 }
 
-/** A board's display title in Plus Jakarta Sans ExtraBold, tracked −0.025 em. */
+/**
+ A board's display title in Plus Jakarta Sans ExtraBold on lines 6 pt taller than its size, tracked
+ −0.025 em (Paket Kira's headline: −0.02 em).
+ */
 struct PlansDisplayTitle: View {
     private let title: LocalizedStringResource
     private let size: CGFloat
+    private let lineHeight: CGFloat
+    private let tracking: CGFloat
     private let color: Color
 
-    init(_ title: LocalizedStringResource, size: CGFloat, color: Color = .ink) {
+    init(
+        _ title: LocalizedStringResource, size: CGFloat, lineHeight: CGFloat? = nil, tracking: CGFloat = 0.025,
+        color: Color = .ink
+    ) {
         self.title = title
         self.size = size
+        self.lineHeight = lineHeight ?? size + 6
+        self.tracking = tracking
         self.color = color
     }
 
     var body: some View {
         Text(title)
             .font(KiraFont.display(size, .heavy, relativeTo: .title))
-            .kiraLineHeight(size + 6, size: size, natural: 1.26, relativeTo: .title)
-            .tracking(-size * 0.025)
+            .kiraLineHeight(lineHeight, size: size, natural: 1.26, relativeTo: .title)
+            .tracking(-size * tracking)
             .foregroundStyle(color)
             .accessibilityAddTraits(.isHeader)
     }

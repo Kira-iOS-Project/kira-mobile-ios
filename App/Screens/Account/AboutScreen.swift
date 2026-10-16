@@ -29,7 +29,6 @@ struct AboutScreen: View {
                 }
                 KiraListRow(Text("account.complaints.title"), leading: .icon(.help)) { onOpen(.complaints) }
             }
-            Color.clear.frame(height: 110)
         } background: {
             KiraScenery(hasSun: true, height: 150)
                 .frame(maxHeight: .infinity, alignment: .bottom)

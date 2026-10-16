@@ -29,6 +29,7 @@ struct CheckoutView: View {
             summary
             PaymentMethodRows(title: "checkout.method", selection: $model.paymentMethod)
             KiraNotice(.info, title: "plans.prototype", message: prototypeNote)
+            Spacer(minLength: 0)
             if case .failed(let problem) = model.phase { PlansProblemNotice(problem: problem) }
             PlansButtonRow(
                 secondary: KiraButton("checkout.cancel", variant: .secondary, size: .small) { dismiss() },

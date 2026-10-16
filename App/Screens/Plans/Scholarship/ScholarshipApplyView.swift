@@ -20,7 +20,7 @@ struct ScholarshipApplyView: View {
     }
 
     var body: some View {
-        PlansScreenFrame {
+        PlansScreenFrame(leaf: .high) {
             KiraNavBar(
                 "scholarship.apply.title", subtitle: "scholarship.title",
                 leading: .back("scholarship.apply.back") {
@@ -29,21 +29,24 @@ struct ScholarshipApplyView: View {
             ) {
                 KiraHelpButton(.icon) { onOpen(.unavailable(.care)) }
             }
-            PlansHeader("scholarship.apply.headline", subtitle: "scholarship.apply.lede", size: 26)
+            PlansHeader("scholarship.apply.headline", subtitle: "scholarship.apply.lede", lineHeight: 32)
             situations
             KiraField("scholarship.apply.story", text: $model.story)
                 .multiline(4)
                 .hint("scholarship.apply.story.hint")
                 .error(model.isStoryTooLong ? "scholarship.apply.story.tooLong" : nil)
             sentAlong
-            KiraNotice(.info, title: "plans.prototype", message: "scholarship.prototype").padding(
-                .top, KiraSpacing.space2)
-            if let problem = model.sendProblem { PlansProblemNotice(problem: problem) }
-            PlansButtonRow(
-                secondary: KiraButton("scholarship.apply.cancel", variant: .secondary) { dismiss() },
-                primary: KiraButton("scholarship.apply.send") { Task { await model.send() } }
-            )
-            .disabled(!model.canSend)
+            Spacer(minLength: 0)
+            VStack(spacing: KiraSpacing.space3) {
+                KiraNotice(.info, title: "plans.prototype", message: "scholarship.prototype")
+                if let problem = model.sendProblem { PlansProblemNotice(problem: problem) }
+                PlansButtonRow(
+                    secondary: KiraButton("scholarship.apply.cancel", variant: .secondary) { dismiss() },
+                    primary: KiraButton("scholarship.apply.send") { Task { await model.send() } }
+                )
+                .disabled(!model.canSend)
+            }
+            .padding(.top, KiraSpacing.space2)
         }
         .task { await model.load() }
         .kiraDialog(isPresented: showsSent) {

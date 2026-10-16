@@ -28,6 +28,7 @@ struct LegalDocument<Actions: View>: View {
                     LegalCard(number: index + 1, section: sections[index])
                 }
             }
+            Spacer(minLength: 0)
             actions.padding(.top, KiraSpacing.space2)
         }
     }
@@ -43,20 +44,24 @@ extension LegalDocument where Actions == EmptyView {
 private struct LegalCard: View {
     let number: Int
     let section: LegalSection
+    /** The 30 pt disc grows with its number. */
+    @ScaledMetric(relativeTo: .footnote) private var disc: CGFloat = 30
 
     var body: some View {
         HStack(alignment: .top, spacing: 14) {
             Text(number, format: .number)
                 .font(KiraFont.display(14, .heavy, relativeTo: .footnote))
                 .foregroundStyle(.pandan)
-                .frame(width: 30, height: 30)
-                .kiraCard(.pandanSoft, border: .pandanLine, cornerRadius: 15)
+                .frame(width: disc, height: disc)
+                .kiraCard(.pandanSoft, border: .pandanLine, cornerRadius: disc / 2)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: KiraSpacing.space1) {
                 Text(section.title)
                     .font(.callout.weight(.semibold)).kiraLineHeight(21, size: 16)
                     .accessibilityAddTraits(.isHeader)
-                Text(section.body).font(.subheadline).kiraLineHeight(21, size: 15).foregroundStyle(.inkMuted)
+                /** A String, so an email address stays plain text instead of a Markdown link. */
+                Text(String(localized: section.body))
+                    .font(.subheadline).kiraLineHeight(21, size: 15).foregroundStyle(.inkMuted)
             }
             .padding(.top, KiraSpacing.space1)
             .frame(maxWidth: .infinity, alignment: .leading)

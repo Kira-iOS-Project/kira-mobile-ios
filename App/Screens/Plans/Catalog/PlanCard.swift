@@ -8,6 +8,7 @@ struct PlanCard<Features: View>: View {
     private let isCurrent: Bool
     private let features: Features
     private var onDetail: (() -> Void)?
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     init(terms: PlanTerms, period: BillingPeriod, isCurrent: Bool, @ViewBuilder features: () -> Features) {
         self.terms = terms
@@ -33,9 +34,16 @@ struct PlanCard<Features: View>: View {
 
     private var card: some View {
         VStack(alignment: .leading, spacing: 14) {
-            HStack(alignment: .top, spacing: KiraSpacing.space3) {
-                heading.frame(maxWidth: .infinity, alignment: .leading)
-                tag
+            if typeSize.isAccessibilitySize {
+                VStack(alignment: .leading, spacing: KiraSpacing.space2) {
+                    tag.keepsOfferedWidth()
+                    heading
+                }
+            } else {
+                HStack(alignment: .top, spacing: KiraSpacing.space3) {
+                    heading.frame(maxWidth: .infinity, alignment: .leading)
+                    tag
+                }
             }
             VStack(alignment: .leading, spacing: 10) { features }
                 .padding(.top, 14)
@@ -55,7 +63,7 @@ struct PlanCard<Features: View>: View {
     private var heading: some View {
         VStack(alignment: .leading, spacing: KiraSpacing.space1) {
             Text(terms.id.title).kiraFont(.title).foregroundStyle(.ink)
-            HStack(alignment: .firstTextBaseline, spacing: 6) {
+            PlanPriceLine {
                 KiraAmount(Decimal(shownPrice))
                 Text(priceUnit).font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
             }
@@ -65,6 +73,7 @@ struct PlanCard<Features: View>: View {
                 KiraTag(
                     "plans.yearly.saving \(Decimal(terms.yearlySaving), format: .rupiah)", tone: .pandan, icon: .percent
                 )
+                .keepsOfferedWidth()
                 .padding(.top, KiraSpacing.space1)
             }
             if terms.id == .young {
@@ -97,5 +106,28 @@ struct PlanCard<Features: View>: View {
         .foregroundStyle(.pandan)
         .padding(.top, KiraSpacing.space3)
         .overlay(alignment: .top) { Rectangle().fill(.line).frame(height: 1) }
+    }
+}
+
+/**
+ An amount and the words after it on one baseline ("Rp29.000,00 per bulan"), the words under the
+ amount at the accessibility text sizes.
+ */
+struct PlanPriceLine<Content: View>: View {
+    private let spacing: CGFloat
+    private let content: Content
+    @Environment(\.dynamicTypeSize) private var typeSize
+
+    init(spacing: CGFloat = 6, @ViewBuilder content: () -> Content) {
+        self.spacing = spacing
+        self.content = content()
+    }
+
+    var body: some View {
+        if typeSize.isAccessibilitySize {
+            VStack(alignment: .leading, spacing: 2) { content }
+        } else {
+            HStack(alignment: .firstTextBaseline, spacing: spacing) { content }
+        }
     }
 }

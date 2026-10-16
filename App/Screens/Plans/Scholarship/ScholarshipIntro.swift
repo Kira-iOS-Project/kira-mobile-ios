@@ -6,6 +6,7 @@ struct ScholarshipIntro: View {
     let overview: ScholarshipOverview
     let onLater: () -> Void
     let onApply: () -> Void
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         header
@@ -35,6 +36,7 @@ struct ScholarshipIntro: View {
         ])
         quota
         KiraNotice(.education, title: "scholarship.privacy.title", message: "scholarship.privacy.body")
+        Spacer(minLength: 0)
         PlansButtonRow(
             secondary: KiraButton("plans.later", variant: .secondary, action: onLater),
             primary: KiraButton("scholarship.apply", action: onApply)
@@ -42,15 +44,23 @@ struct ScholarshipIntro: View {
         .padding(.top, KiraSpacing.space2)
     }
 
+    /** The words beside the art, under it at the accessibility text sizes. */
+    private var headerLayout: AnyLayout {
+        typeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: KiraSpacing.space3))
+            : AnyLayout(HStackLayout(spacing: KiraSpacing.space3))
+    }
+
     private var header: some View {
-        HStack(spacing: KiraSpacing.space3) {
+        headerLayout {
+            if typeSize.isAccessibilitySize { KiraIllustration(.care, size: 96) }
             VStack(alignment: .leading, spacing: KiraSpacing.space2) {
-                KiraTag("scholarship.tag", tone: .pandan, icon: .gift)
-                PlansDisplayTitle("scholarship.headline", size: 28)
+                KiraTag("scholarship.tag", tone: .pandan, icon: .gift).keepsOfferedWidth()
+                PlansDisplayTitle("scholarship.headline", size: 28).balancedLines()
                 Text("scholarship.lede").font(.subheadline).kiraLineHeight(21, size: 15).foregroundStyle(.inkMuted)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            KiraIllustration(.care, size: 96)
+            if !typeSize.isAccessibilitySize { KiraIllustration(.care, size: 96) }
         }
         .padding(EdgeInsets(top: 4, leading: 4, bottom: 0, trailing: 4))
     }
