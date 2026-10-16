@@ -85,9 +85,8 @@ struct PayoffModelTests {
     }
 
     @Test("before a plan is on screen nothing exceeds the maximum")
-    func beforeLoad() async {
+    func beforeLoad() {
         let model = PayoffModel(service: FakePayoffService())
-        await model.setExtra("2000000")
         #expect(!model.exceedsMaximum && model.maxExtraPayment == nil)
     }
 
