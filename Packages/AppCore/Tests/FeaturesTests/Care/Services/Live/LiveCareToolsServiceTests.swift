@@ -84,11 +84,18 @@ struct LiveCareToolsServiceTests {
         await #expect(throws: AppProblem.self) { try await service.saveSafetyPlan(.empty) }
     }
 
-    @Test("an undocumented answer is a problem without a code", arguments: ["GET /api/debts", "PUT /api/care/safety-plan"])
+    @Test(
+        "an undocumented answer is a problem without a code",
+        arguments: ["GET /api/debts", "PUT /api/care/safety-plan"])
     func undocumented(route: String) async {
-        let (service, _) = service([route: RoutedTransport.Reply(status: 500, body: "{}", contentType: "application/json")])
+        let reply = RoutedTransport.Reply(status: 500, body: "{}", contentType: "application/json")
+        let (service, _) = service([route: reply])
         await #expect(throws: AppProblem()) {
-            if route.hasPrefix("GET") { _ = try await service.debts() } else { _ = try await service.saveSafetyPlan(.empty) }
+            if route.hasPrefix("GET") {
+                _ = try await service.debts()
+            } else {
+                _ = try await service.saveSafetyPlan(.empty)
+            }
         }
         let (unauthorized, _) = self.service(["GET /api/debts": problem("AUTH_UNAUTHENTICATED", status: 401)])
         await #expect(throws: AppProblem.self) { try await unauthorized.debts() }
