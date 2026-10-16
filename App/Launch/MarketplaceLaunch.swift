@@ -28,8 +28,7 @@
         }
 
         private func product(_ kind: ProductKind) -> some View {
-            let id = ProductSummary.samples.first { $0.kind == kind }?.id ?? ""
-            return ProductScreen(id: id, service: service) { _ in }
+            ProductScreen(id: ProductSummary.sample(kind).id, service: service) { _ in }
         }
     }
 

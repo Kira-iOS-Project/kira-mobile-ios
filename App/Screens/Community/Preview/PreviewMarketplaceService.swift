@@ -9,21 +9,31 @@ import Foundation
 import SwiftUI
 
 nonisolated extension ProductSummary {
+    static let course = ProductSummary(
+        id: "budgeting-first-salary", kind: .course, title: "Kelas Budgeting Gaji Pertama",
+        sellerName: "Raka Aditya", sellerInitials: "RA", sellerBadge: "Perencana Bersertifikat", price: 149_000)
+    static let consultation = ProductSummary(
+        id: "debt-negotiation", kind: .consultation, title: "Pendampingan Negosiasi Utang",
+        sellerName: "Dewi Anggraini", sellerInitials: "D", sellerBadge: "Terverifikasi", price: nil)
+    static let ebook = ProductSummary(
+        id: "family-emergency-fund", kind: .ebook, title: "E-Book Dana Darurat Keluarga Muda",
+        sellerName: "Sari Wulandari", sellerInitials: "SW", sellerBadge: "Terverifikasi", price: 49_000)
+    static let event = ProductSummary(
+        id: "young-family-webinar", kind: .event, title: "Webinar Keuangan Keluarga Muda",
+        sellerName: "Sari Wulandari", sellerInitials: "SW", sellerBadge: "Terverifikasi", price: 35_000)
+
     /** The four products, in the team's order. */
-    static let samples = [
-        ProductSummary(
-            id: "budgeting-first-salary", kind: .course, title: "Kelas Budgeting Gaji Pertama",
-            sellerName: "Raka Aditya", sellerInitials: "RA", sellerBadge: "Perencana Bersertifikat", price: 149_000),
-        ProductSummary(
-            id: "debt-negotiation", kind: .consultation, title: "Pendampingan Negosiasi Utang",
-            sellerName: "Dewi Anggraini", sellerInitials: "D", sellerBadge: "Terverifikasi", price: nil),
-        ProductSummary(
-            id: "family-emergency-fund", kind: .ebook, title: "E-Book Dana Darurat Keluarga Muda",
-            sellerName: "Sari Wulandari", sellerInitials: "SW", sellerBadge: "Terverifikasi", price: 49_000),
-        ProductSummary(
-            id: "young-family-webinar", kind: .event, title: "Webinar Keuangan Keluarga Muda",
-            sellerName: "Sari Wulandari", sellerInitials: "SW", sellerBadge: "Terverifikasi", price: 35_000),
-    ]
+    static let samples = [course, consultation, ebook, event]
+
+    /** The board's product of `kind`, the one a chip shows. */
+    static func sample(_ kind: ProductKind) -> ProductSummary {
+        switch kind {
+        case .course: course
+        case .consultation: consultation
+        case .ebook: ebook
+        case .event: event
+        }
+    }
 }
 
 nonisolated extension Product {
@@ -32,7 +42,7 @@ nonisolated extension Product {
      (on the reserved example.com, never a real seller); the others wait for the team's check.
      */
     static func sample(_ kind: ProductKind) -> Product {
-        let summary = ProductSummary.samples.first { $0.kind == kind } ?? ProductSummary.samples[0]
+        let summary = ProductSummary.sample(kind)
         let text = PreviewProductText.of(kind)
         return Product(
             summary: summary, description: text.description, meta: text.meta, sellerRole: text.role,
@@ -43,11 +53,9 @@ nonisolated extension Product {
 }
 
 nonisolated struct PreviewMarketplaceService: MarketplaceService {
-    /** The samples of each kind, as the API answers a chip. */
-    private static let byKind = Dictionary(grouping: ProductSummary.samples, by: \.kind)
-
+    /** Every sample for "Semua", the one of its kind for a chip. */
     func products(kind: ProductKind?) -> [ProductSummary] {
-        kind.map { Self.byKind[$0] ?? [] } ?? ProductSummary.samples
+        kind.map { [ProductSummary.sample($0)] } ?? ProductSummary.samples
     }
 
     func product(id: String) throws -> Product {
