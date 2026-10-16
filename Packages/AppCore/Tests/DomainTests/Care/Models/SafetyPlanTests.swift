@@ -2,8 +2,8 @@ import Domain
 import Foundation
 import Testing
 
-@Suite("SafetyPlan")
-struct SafetyPlanTests {
+@Suite("SafetyPlan: limits, calls and lines")
+struct SafetyPlanLimitsTests {
     @Test("a text is too long past 500 characters, counted as it is saved")
     func textLimit() {
         #expect(!SafetyPlan.isTooLong(String(repeating: "a", count: 500)))
