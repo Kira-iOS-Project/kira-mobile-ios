@@ -27,6 +27,7 @@
             case .plans: PlansLaunch(screen: screen)
             case .record: RecordLaunch(screen: screen)
             case .chat: ChatLaunch(screen: screen)
+            case .care: CareLaunch(screen: screen)
             case .careTools: CareToolsLaunch(screen: screen)
             }
         }
@@ -50,12 +51,17 @@
         case history, transaction, conversation, statementImport, importReview
         /** CAT: Catat; the tests open its sheets from the composer (ChatLaunch says which account each needs). */
         case record, recordDrafts, recordManual, recordScan, recordQuota, recordVoice
+        /**
+         PED: Kira Peduli (and offline, on the shipped contacts), its sheet over the chat, the message to
+         Layanan Kira.
+         */
+        case care, careOffline, careHelp, trustedMessage
         /** PED: Naskah Pengajuan Keringanan. */
         case negotiationScript
 
         /** The area whose launcher builds the screen. */
         enum Area {
-            case onboarding, home, account, plans, record, chat, careTools
+            case onboarding, home, account, plans, record, chat, care, careTools
         }
 
         var area: Area {
@@ -72,6 +78,7 @@
                 .plans
             case .history, .transaction, .conversation, .statementImport, .importReview: .record
             case .record, .recordDrafts, .recordManual, .recordScan, .recordQuota, .recordVoice: .chat
+            case .care, .careOffline, .careHelp, .trustedMessage: .care
             case .negotiationScript: .careTools
             }
         }

@@ -59,7 +59,7 @@ private struct IndicatorContent: View {
                     "indicator.navTitle", subtitle: indicator.group.groupTitle,
                     leading: .back("indicator.back", onBack)
                 ) {
-                    KiraHelpButton(.icon) { onOpen(.unavailable(.care)) }
+                    KiraHelpButton(.icon) { onOpen(.care) }
                 }
                 header
                 KiraScenery(height: 150)

@@ -73,6 +73,18 @@ package enum AppRoute: Hashable, Sendable {
     /** AKN-08d: Layanan Pengaduan. */
     case complaints
 
+    /** PED-11: Latihan Menenangkan Diri. */
+    case breathingExercise
+    /** PED-01: Kira Peduli. */
+    case care
+    /** PED-07: Mode Darurat Utang. */
+    case debtEmergency
+    /** PED-09: Naskah Pengajuan Keringanan. */
+    case negotiationScript
+    /** PED-10: Rencana Keselamatanku. */
+    case safetyPlan
+    /** PED-04: Kirim Pesan ke Layanan Kira. */
+    case trustedMessage
     /** KOM-01: Komunitas, the Komunitas tab's root. */
     case community
     /** KOM-02: one community group's detail. */
@@ -84,17 +96,12 @@ package enum AppRoute: Hashable, Sendable {
     /** KOM-08: Kirim Produk ke Etalase. */
     case submitProduct
 
-    /** PED-09: Naskah Pengajuan Keringanan. */
-    case negotiationScript
-
     /** A link the boards show to an area not built yet: it stays visible and opens nothing. */
     case unavailable(UnavailableArea)
 }
 
-/** The areas the boards link to that are not built yet (PED, UNG, REN, KOM and the rest of SKR). */
+/** The areas the boards link to that are not built yet (UNG, REN, KOM and the rest of SKR and PED). */
 package enum UnavailableArea: String, CaseIterable, Hashable, Sendable {
-    /** PED: Kira Peduli. */
-    case care
     /** UNG: the budget. */
     case budget
     /** UNG: Dompet, the wallets. */

@@ -1681,6 +1681,246 @@
         }
       }
     },
+    "care.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup Kira Peduli"
+          }
+        }
+      }
+    },
+    "care.copyNumber" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salin Nomor"
+          }
+        }
+      }
+    },
+    "care.debt.emergency" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mode Darurat Utang"
+          }
+        }
+      }
+    },
+    "care.debt.emergency.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hak saat ditagih, aduan resmi, naskah negosiasi · gratis selamanya"
+          }
+        }
+      }
+    },
+    "care.debt.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Urusan Utang"
+          }
+        }
+      }
+    },
+    "care.disclaimer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira adalah fitur otomatis, bukan konselor."
+          }
+        }
+      }
+    },
+    "care.emergency.call %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telepon %@"
+          }
+        }
+      }
+    },
+    "care.emergency.detail %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ · ada di setiap kabupaten dan kota"
+          }
+        }
+      }
+    },
+    "care.emergency.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada Bahaya untuk Dirimu Sekarang?"
+          }
+        }
+      }
+    },
+    "care.headline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu Tidak Sendirian"
+          }
+        }
+      }
+    },
+    "care.healing119.call" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telepon Healing119"
+          }
+        }
+      }
+    },
+    "care.healing119.callDetail %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ ekstensi %2$@ · gratis · konselor tenaga kesehatan"
+          }
+        }
+      }
+    },
+    "care.healing119.chat" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chat Healing119"
+          }
+        }
+      }
+    },
+    "care.healing119.chatDetail %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "lewat %@"
+          }
+        }
+      }
+    },
+    "care.intro" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalau sedang berat, bicara dengan orang bisa membantu. Pilih yang paling nyaman buatmu."
+          }
+        }
+      }
+    },
+    "care.kira.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tim Kira Peduli · pesan sudah disiapkan"
+          }
+        }
+      }
+    },
+    "care.kira.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hubungi Layanan Kira. Pesan pembuka sudah disiapkan"
+          }
+        }
+      }
+    },
+    "care.kira.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hubungi Layanan Kira"
+          }
+        }
+      }
+    },
+    "care.later.breathing" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Latihan Menenangkan Diri"
+          }
+        }
+      }
+    },
+    "care.later.breathing.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Napas pelan, sekitar dua menit"
+          }
+        }
+      }
+    },
+    "care.later.safetyPlan" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rencana Keselamatanku"
+          }
+        }
+      }
+    },
+    "care.later.safetyPlan.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ditulis saat tenang, dibaca saat berat"
+          }
+        }
+      }
+    },
+    "care.later.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Untuk Nanti"
+          }
+        }
+      }
+    },
+    "care.notice %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira adalah fitur otomatis, bukan konselor. Kontak diverifikasi ulang tiap bulan · terakhir %@."
+          }
+        }
+      }
+    },
     "care.script.affordable" : {
       "localizations" : {
         "id" : {
@@ -2047,6 +2287,216 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Naskah Pengajuan Keringanan"
+          }
+        }
+      }
+    },
+    "care.sheet.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Chat"
+          }
+        }
+      }
+    },
+    "care.sheet.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chat tetap terbuka. Kamu bisa lanjut cerita kapan saja."
+          }
+        }
+      }
+    },
+    "care.sheet.emergency" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada bahaya untuk dirimu sekarang?"
+          }
+        }
+      }
+    },
+    "care.sheet.healing119.callDetail %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ ekstensi %2$@ · gratis"
+          }
+        }
+      }
+    },
+    "care.sheet.kira.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pesan pembuka sudah disiapkan"
+          }
+        }
+      }
+    },
+    "care.sheet.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bicara dengan Orang Sekarang"
+          }
+        }
+      }
+    },
+    "care.talk.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bicara Sekarang"
+          }
+        }
+      }
+    },
+    "care.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Peduli"
+          }
+        }
+      }
+    },
+    "care.trusted.call" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telepon Layanan Kira"
+          }
+        }
+      }
+    },
+    "care.trusted.call.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telepon Layanan Kira sekarang"
+          }
+        }
+      }
+    },
+    "care.trusted.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup, kembali ke Kira Peduli"
+          }
+        }
+      }
+    },
+    "care.trusted.message" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pesan"
+          }
+        }
+      }
+    },
+    "care.trusted.message.default" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halo, aku lagi nggak baik-baik saja. Bisa dihubungi sekarang?"
+          }
+        }
+      }
+    },
+    "care.trusted.message.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boleh diubah dengan kata-katamu sendiri."
+          }
+        }
+      }
+    },
+    "care.trusted.notice" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pesan hanya terkirim kalau kamu menekan tombol. Kira tidak menghubungi siapa pun tanpa pilihanmu."
+          }
+        }
+      }
+    },
+    "care.trusted.recipient" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Layanan Kira Peduli"
+          }
+        }
+      }
+    },
+    "care.trusted.recipient.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tim Kira · siap membantu kamu"
+          }
+        }
+      }
+    },
+    "care.trusted.sms" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirim lewat SMS"
+          }
+        }
+      }
+    },
+    "care.trusted.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirim Pesan ke Layanan Kira"
+          }
+        }
+      }
+    },
+    "care.trusted.to" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Untuk"
+          }
+        }
+      }
+    },
+    "care.trusted.whatsApp" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirim lewat WhatsApp"
           }
         }
       }

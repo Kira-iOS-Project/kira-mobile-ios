@@ -64,11 +64,8 @@ extension KiraApp {
     private static let serverURL: URL = {
         #if DEBUG
             let arguments = ProcessInfo.processInfo.arguments
-            if let index = arguments.firstIndex(of: "-KiraServer"), let value = arguments.dropFirst(index + 1).first,
-                let url = URL(string: value)
-            {
-                return url
-            }
+            let value = arguments.firstIndex(of: "-KiraServer").flatMap { arguments.dropFirst($0 + 1).first }
+            if let value, let url = URL(string: value) { return url }
         #endif
         return URL(string: "https://api-kira.serenitycode.tech") ?? URL(filePath: "/")
     }()
