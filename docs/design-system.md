@@ -174,6 +174,7 @@ Options beyond five initializer parameters are chained modifiers, such as
 | `Toggle` | `KiraToggle(_:isOn:)` | `Components/Controls/KiraToggle.swift` |
 | `Field` (prefix, suffix, hint, error, multiline) | `KiraField(_:text:prompt:)` `.prefix` `.suffix` `.hint` `.error` `.multiline` | `Components/Controls/KiraField.swift` |
 | `Checkbox` (canvas ONB-10c: a full-width row) | `KiraCheckbox(_:isOn:)` | `Components/Controls/KiraCheckbox.swift` |
+| Payday picker (ONB-10b, UNG-05d: days 1–31 or month end, applied to its screen) | `.kiraPaydayPicker(isPresented:selectedDay:onApply:)` | `Components/Controls/KiraPaydayPicker.swift` |
 | Code boxes (canvas "PIN 6 kotak (pola OTP)": the app-lock PIN, the email code; hint, error) | `KiraCodeField(_:code:kind:)` (`.pin`, `.code`) `.hint` `.error`; digits kept by `DigitCode` | `Components/Controls/KiraCodeField.swift`, `KiraCodeFieldParts.swift`, `Packages/AppCore/Sources/Domain/Code/DigitCode.swift` |
 | `.k-link` (on its own; inside a sentence) | `KiraLink(_:action:)`; `KiraLinkText(_:onOpen:)` with Markdown links in the catalog value | `Components/Controls/KiraLink.swift` |
 | `Segmented` | `KiraSegmented(_:options:selection:)` | `Components/Controls/KiraSegmented.swift` |

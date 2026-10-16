@@ -2491,6 +2491,36 @@
         }
       }
     },
+    "gallery.payday.day %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanggal Gajian: %lld"
+          }
+        }
+      }
+    },
+    "gallery.payday.endOfMonth" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gajian di Akhir Bulan"
+          }
+        }
+      }
+    },
+    "gallery.payday.open" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atur Tanggal Gajian"
+          }
+        }
+      }
+    },
     "gallery.section.accordion" : {
       "localizations" : {
         "id" : {
@@ -2827,6 +2857,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notice"
+          }
+        }
+      }
+    },
+    "gallery.section.payday" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanggal Gajian"
           }
         }
       }
@@ -3377,6 +3417,56 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lunasi Paylater A Dulu"
+          }
+        }
+      }
+    },
+    "payday.confirm" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih Tanggal"
+          }
+        }
+      }
+    },
+    "payday.day.accessibility %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanggal gajian %lld"
+          }
+        }
+      }
+    },
+    "payday.endOfMonth" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gajian di akhir bulan"
+          }
+        }
+      }
+    },
+    "payday.sheet.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih tanggal gajian setiap bulan"
+          }
+        }
+      }
+    },
+    "payday.sheet.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanggal Gajian"
           }
         }
       }
