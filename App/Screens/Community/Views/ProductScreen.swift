@@ -42,7 +42,7 @@ struct ProductScreen: View {
     private func content(_ product: Product?, onSeller: @escaping (URL) -> Void) -> some View {
         ProductContent(
             product: product ?? .sample(.course), isPlaceholder: product == nil, onBack: { dismiss() },
-            onHelp: { onOpen(.unavailable(.care)) }, onSeller: onSeller)
+            onHelp: { onOpen(.care) }, onSeller: onSeller)
     }
 
     /** The nav bar stays, so the person can go back from a product that did not load. */
@@ -72,7 +72,7 @@ struct ProductScreen: View {
 
     private var navBar: some View {
         KiraNavBar("product.title", leading: .back("product.back") { dismiss() }) {
-            KiraHelpButton(.icon) { onOpen(.unavailable(.care)) }
+            KiraHelpButton(.icon) { onOpen(.care) }
         }
         .padding(.horizontal, KiraSpacing.screen)
         .padding(.top, 62 - 59)

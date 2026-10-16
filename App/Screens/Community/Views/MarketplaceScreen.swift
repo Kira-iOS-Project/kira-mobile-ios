@@ -25,7 +25,7 @@ struct MarketplaceScreen: View {
                     "marketplace.title", subtitle: "marketplace.subtitle",
                     leading: .back("marketplace.back") { dismiss() }
                 ) {
-                    KiraHelpButton(.icon) { onOpen(.unavailable(.care)) }
+                    KiraHelpButton(.icon) { onOpen(.care) }
                 }
                 KiraNotice(.info, message: "marketplace.notice")
                 kindChips

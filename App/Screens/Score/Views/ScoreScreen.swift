@@ -81,7 +81,7 @@ private struct ScoreHeader: View {
             HStack {
                 KiraIconButton.back("score.back", action: onBack)
                 Spacer(minLength: KiraSpacing.space2)
-                KiraHelpButton { onOpen(.unavailable(.care)) }
+                KiraHelpButton { onOpen(.care) }
                     /** At accessibility sizes it wraps rather than widen the page. */
                     .fixedSize(horizontal: !typeSize.isAccessibilitySize, vertical: true)
             }

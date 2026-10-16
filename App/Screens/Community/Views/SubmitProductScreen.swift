@@ -21,7 +21,7 @@ struct SubmitProductScreen: View {
                     "submitProduct.title", subtitle: "submitProduct.subtitle",
                     leading: .back("submitProduct.back") { dismiss() }
                 ) {
-                    KiraHelpButton(.icon) { onOpen(.unavailable(.care)) }
+                    KiraHelpButton(.icon) { onOpen(.care) }
                 }
                 header
                 VStack(alignment: .leading, spacing: 10) {

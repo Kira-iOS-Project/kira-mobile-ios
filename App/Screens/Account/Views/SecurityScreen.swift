@@ -31,7 +31,7 @@ struct SecurityScreen: View {
             }
             KiraNotice(.privacy, message: "account.security.notice")
         }
-        .onHelp { onOpen(.unavailable(.care)) }
+        .onHelp { onOpen(.care) }
         .task { await model.load() }
         .kiraSheet(
             isPresented: Binding(get: { model.pinPrompt != nil }, set: { if !$0 { model.cancelPin() } }),
