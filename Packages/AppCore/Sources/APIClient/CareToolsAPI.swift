@@ -24,7 +24,7 @@ extension Operations.ListDebts.Output {
         switch self {
         case .ok(let response): return try response.body.json.debts.map(DebtDTO.init)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -35,7 +35,7 @@ extension Operations.GetSafetyPlan.Output {
         case .ok(let response): return SafetyPlanDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .notFound(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -46,7 +46,7 @@ extension Operations.SaveSafetyPlan.Output {
         case .ok(let response): return SafetyPlanDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }

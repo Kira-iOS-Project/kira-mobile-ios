@@ -1,7 +1,8 @@
 /**
  The negotiation script's fixed template (`care.script.body`), filled on the device. On screen the
  contract number shows masked and both coloured phrases are links the screen catches; the copied
- text is plain and carries the full contract number, or "[nomor kontrak]" while none is typed.
+ text is plain and carries the full contract number, or "[nomor kontrak]" while none is typed. The
+ values come from `NegotiationScript.fill(for:)`, so the screen and the clipboard read one script.
  */
 import Domain
 import Foundation
@@ -16,26 +17,24 @@ enum ScriptText {
     private static let reasonMarker = "\u{E002}"
 
     /** The script as the screen shows it, its two phrases coloured and tappable. */
-    static func shown(_ script: NegotiationScript) -> AttributedString {
-        var text = AttributedString(body(script, contract: contractMarker, reason: reasonMarker))
-        let contract = script.maskedContract ?? String(localized: "care.script.contractPlaceholder")
+    static func shown(_ fill: NegotiationScript.Fill) -> AttributedString {
+        var text = AttributedString(body(fill, contract: contractMarker, reason: reasonMarker))
+        let contract = fill.contract ?? String(localized: "care.script.contractPlaceholder")
         replace(contractMarker, in: &text, with: contract, link: contractLink)
-        replace(reasonMarker, in: &text, with: script.trimmedReason ?? script.reason, link: reasonLink)
+        replace(reasonMarker, in: &text, with: fill.reason, link: reasonLink)
         return text
     }
 
     /** The script as it is copied: plain, with the full contract number or the gap the person sees. */
-    static func copied(_ script: NegotiationScript) -> String {
-        let contract =
-            script.contractCharacters.isEmpty
-            ? String(localized: "care.script.contractGap") : script.contractNumber
-        return body(script, contract: contract, reason: script.trimmedReason ?? script.reason)
+    static func copied(_ fill: NegotiationScript.Fill) -> String {
+        body(fill, contract: fill.contract ?? String(localized: "care.script.contractGap"), reason: fill.reason)
     }
 
-    private static func body(_ script: NegotiationScript, contract: String, reason: String) -> String {
-        let instalment = RupiahFormatStyle().format(Decimal(script.currentInstalment ?? 0))
-        let affordable = RupiahFormatStyle().format(Decimal(script.affordable ?? 0))
-        return String(localized: "care.script.body \(script.name) \(contract) \(instalment) \(reason) \(affordable)")
+    private static func body(_ fill: NegotiationScript.Fill, contract: String, reason: String) -> String {
+        let name = fill.name ?? String(localized: "care.script.nameGap")
+        let instalment = RupiahFormatStyle().format(Decimal(fill.instalment))
+        let affordable = RupiahFormatStyle().format(Decimal(fill.affordable))
+        return String(localized: "care.script.body \(name) \(contract) \(instalment) \(reason) \(affordable)")
     }
 
     private static func replace(_ marker: String, in text: inout AttributedString, with phrase: String, link: URL?) {

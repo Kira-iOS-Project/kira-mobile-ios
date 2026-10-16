@@ -5,15 +5,35 @@ import Testing
 
 @Suite("NegotiationScript")
 struct NegotiationScriptTests {
-    @Test("masks the contract number to its last four characters, none while empty")
+    @Test("masks the contract number to its last four characters, half of a short one, none while empty")
     func masking() {
         var script = NegotiationScript(name: "Dinda", reason: "penghasilan berkurang")
         #expect(script.maskedContract == nil)
         script.contractNumber = "PB-0098 4821"
         #expect(script.contractCharacters == "PB00984821")
         #expect(script.maskedContract == "••••4821")
-        script.contractNumber = "12"
-        #expect(script.maskedContract == "••••12")
+        script.contractNumber = "4821"
+        #expect(script.maskedContract == "••••21")
+        script.contractNumber = "7"
+        #expect(script.maskedContract == "••••")
+    }
+
+    @Test("fills the template masked for the screen and whole for the clipboard, gaps left nil")
+    func fill() {
+        var script = NegotiationScript(
+            name: "Dinda", contractNumber: "PB-0098 4821", currentInstalment: 230_000, affordable: 150_000,
+            reason: " penghasilan berkurang ")
+        let screen = script.fill(for: .screen)
+        #expect(screen.name == "Dinda" && screen.contract == "••••4821")
+        #expect(screen.instalment == 230_000 && screen.affordable == 150_000 && screen.reason == "penghasilan berkurang")
+        #expect(script.fill(for: .clipboard).contract == "PB-0098 4821")
+        script.name = ""
+        script.contractNumber = " - "
+        script.currentInstalment = nil
+        script.affordable = nil
+        let gaps = script.fill(for: .clipboard)
+        #expect(gaps.name == nil && gaps.contract == nil && gaps.instalment == 0 && gaps.affordable == 0)
+        #expect(script.fill(for: .screen).contract == nil)
     }
 
     @Test("may be copied with both amounts and a reason; the contract number may stay a gap")

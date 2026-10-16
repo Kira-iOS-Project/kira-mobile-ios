@@ -19,7 +19,7 @@ struct NegotiationScriptScreen: View {
         _model = State(
             initialValue: NegotiationScriptModel(
                 service: service, defaultReason: String(localized: "care.script.reasonDefault"),
-                copier: { UIPasteboard.general.string = $0 }))
+                copier: { UIPasteboard.general.string = ScriptText.copied($0) }))
     }
 
     var body: some View {
@@ -94,7 +94,7 @@ struct NegotiationScriptScreen: View {
                 secondary: KiraButton("care.script.simulation", variant: .secondary, size: .small) {
                     onOpen(.unavailable(.debtPlan))
                 },
-                primary: KiraButton("care.script.copy", size: .small) { model.copy(ScriptText.copied(model.script)) }
+                primary: KiraButton("care.script.copy", size: .small) { model.copy() }
                     .icon(.copy))
             .disabled(!model.script.isComplete)
             .padding(.top, KiraSpacing.space2)

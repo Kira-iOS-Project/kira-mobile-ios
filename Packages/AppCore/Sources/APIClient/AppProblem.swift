@@ -149,10 +149,10 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case scholarshipNotEligible = "SCHOLARSHIP_NOT_ELIGIBLE"
     /** There is no open application. */
     case scholarshipApplicationNotFound = "SCHOLARSHIP_APPLICATION_NOT_FOUND"
+    /** Otherwise eligible, but Mode Darurat Utang has never been opened. */
+    case scholarshipDebtEmergencyRequired = "SCHOLARSHIP_DEBT_EMERGENCY_REQUIRED"
     /** The check-in is gone or was already handled. */
     case careCheckInNotFound = "CARE_CHECK_IN_NOT_FOUND"
     /** No safety plan was saved yet. */
     case careSafetyPlanNotFound = "CARE_SAFETY_PLAN_NOT_FOUND"
-    /** Otherwise eligible, but Mode Darurat Utang has never been opened. */
-    case scholarshipDebtEmergencyRequired = "SCHOLARSHIP_DEBT_EMERGENCY_REQUIRED"
 }

@@ -56,6 +56,8 @@
          Layanan Kira.
          */
         case care, careOffline, careHelp, trustedMessage
+        /** PED: Naskah Pengajuan Keringanan. */
+        case negotiationScript
 
         /** PED: Naskah Pengajuan Keringanan. */
         case negotiationScript

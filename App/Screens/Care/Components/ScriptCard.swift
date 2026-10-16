@@ -21,7 +21,7 @@ struct ScriptCard: View {
                         .foregroundStyle(.inkMuted)
                 }
             }
-            Text(ScriptText.shown(model.script))
+            Text(ScriptText.shown(model.shown))
                 .font(.subheadline).kiraLineHeight(23, size: 15)
                 .foregroundStyle(.ink)
                 .tint(.coping)

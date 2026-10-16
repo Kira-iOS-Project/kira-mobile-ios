@@ -37,8 +37,7 @@ extension AppServices {
             home: LiveHomeService(api: api, onHideBalances: sync),
             score: LiveScoreService(api: api),
             recovery: LivePinRecoveryService(api: api),
-            care: LiveCareService(api: api),
-            careTools: LiveCareToolsService(api: api))
+            care: LiveCareService(api: api), careTools: LiveCareToolsService(api: api))
     }
 
     /** The canvas's sample data: nothing leaves the device. */
