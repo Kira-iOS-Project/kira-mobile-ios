@@ -1,10 +1,11 @@
 /**
  The screen of each pushed route, by area: Score (score, indicator), Account (profile … deleteAccount,
- about … complaints), Plans (plans … scholarshipStatus), Kira Peduli (care, trustedMessage; the PED
- screens of other branches keep a back button until they land), Mode Darurat Utang and its guides
- (debtEmergency, debtGuide), Etalase (marketplace, product, submitProduct). "Cek Ulang" (`healthCheck`)
- covers the shell instead (MainShell); Komunitas (`community`) is the dock's own section; Catat's and
- Riwayat's routes stay empty for their own integration, and an unavailable area never gets here.
+ about … complaints), Plans (plans … scholarshipStatus), Kira Peduli (care, trustedMessage,
+ negotiationScript; the PED screens of other branches keep a back button until they land), Mode Darurat
+ Utang and its guides (debtEmergency, debtGuide), Etalase (marketplace, product, submitProduct). "Cek
+ Ulang" (`healthCheck`) covers the shell instead (MainShell); Komunitas (`community`) is the dock's own
+ section; Catat's and Riwayat's routes stay empty for their own integration, and an unavailable area
+ never gets here.
  */
 import Features
 import SwiftUI
@@ -37,7 +38,8 @@ struct RouteSlot: View {
         case .debtEmergency:
             DebtEmergencyScreen(care: services.care, service: services.debtEmergency, onOpen: onOpen)
         case .debtGuide(let guide): DebtGuideScreen(guide: guide, care: services.care, onOpen: onOpen)
-        case .breathingExercise, .negotiationScript, .safetyPlan: PendingCareSlot()
+        case .negotiationScript: NegotiationScriptScreen(service: services.careTools, onOpen: onOpen)
+        case .breathingExercise, .safetyPlan: PendingCareSlot()
         case .marketplace: MarketplaceScreen(service: services.marketplace, onOpen: onOpen)
         case .product(let id): ProductScreen(id: id, service: services.marketplace, onOpen: onOpen)
         case .submitProduct: SubmitProductScreen(onOpen: onOpen)

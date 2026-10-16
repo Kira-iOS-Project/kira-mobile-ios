@@ -19,6 +19,7 @@ struct AppServices {
     let recovery: any PinRecoveryService
     let community: any CommunityService
     let care: any CareService
+    let careTools: any CareToolsService
     let debtEmergency: any DebtEmergencyService
     let marketplace: any MarketplaceService
 }
@@ -41,6 +42,7 @@ extension AppServices {
             recovery: LivePinRecoveryService(api: api),
             community: LiveCommunityService(api: api),
             care: LiveCareService(api: api),
+            careTools: LiveCareToolsService(api: api),
             debtEmergency: LiveDebtEmergencyService(api: api),
             marketplace: LiveMarketplaceService(api: api))
     }
@@ -51,7 +53,7 @@ extension AppServices {
             onboarding: PreviewOnboardingService(), pinSetup: PreviewPinSetup(), account: PreviewAccountService(),
             security: PreviewSecuritySettings(), plans: PreviewPlansService(), home: PreviewHomeService(),
             score: PreviewScoreService(), recovery: PreviewPinRecoveryService(),
-            community: PreviewCommunityService(), care: PreviewCareService(),
+            community: PreviewCommunityService(), care: PreviewCareService(), careTools: PreviewCareToolsService(),
             debtEmergency: PreviewDebtEmergencyService(), marketplace: PreviewMarketplaceService())
     }
 }

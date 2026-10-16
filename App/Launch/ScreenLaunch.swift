@@ -31,6 +31,7 @@
             case .marketplace: MarketplaceLaunch(screen: screen)
             case .care: CareLaunch(screen: screen)
             case .debtEmergency: DebtEmergencyLaunch(screen: screen)
+            case .careTools: CareToolsLaunch(screen: screen)
             }
         }
     }
@@ -63,6 +64,8 @@
          Layanan Kira.
          */
         case care, careOffline, careHelp, trustedMessage, trustedMessageNoRecipient
+        /** PED: Naskah Pengajuan Keringanan. */
+        case negotiationScript
         /** PED: Mode Darurat Utang and its four guides. */
         case debtEmergency, harshCollection, illegalLender, unresolvedComplaint, payoffOffer
         /** KOM: Etalase (also empty and failed), Detail Produk of each kind, a product that is gone, Kirim Produk. */
@@ -71,7 +74,7 @@
 
         /** The area whose launcher builds the screen. */
         enum Area {
-            case onboarding, home, account, plans, record, chat, community, care, debtEmergency, marketplace
+            case onboarding, home, account, plans, record, chat, community, care, careTools, debtEmergency, marketplace
         }
 
         var area: Area {
@@ -94,6 +97,7 @@
                 .groupReport, .groupReportOther, .groupReportSent, .groupReportFailed:
                 .community
             case .care, .careOffline, .careHelp, .trustedMessage, .trustedMessageNoRecipient: .care
+            case .negotiationScript: .careTools
             case .debtEmergency, .harshCollection, .illegalLender, .unresolvedComplaint, .payoffOffer: .debtEmergency
             case .marketplace, .marketplaceEmpty, .marketplaceFailed, .product, .productConsultation, .productEbook,
                 .productEvent, .productGone, .submitProduct:
