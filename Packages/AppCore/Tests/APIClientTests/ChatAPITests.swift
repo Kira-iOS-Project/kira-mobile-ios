@@ -7,7 +7,7 @@ import Testing
 @testable import APIClient
 
 private let draft = DraftInputDTO(
-    type: .expense, name: "Iced Latte", amount: 25_000, category: .coffee, occurredAt: recordNow, spanStart: 0,
+    type: .expense, name: "Kopi Susu", amount: 25_000, category: .coffee, occurredAt: recordNow, spanStart: 0,
     spanEnd: 9)
 private let sentJSON = #"{"person":\#(personJSON),"reply":\#(replyJSON),"quotaExhausted":false,"usage":\#(usageJSON)}"#
 
@@ -44,7 +44,7 @@ struct ChatAPITests {
     func sendsMessage() async throws {
         let (api, transport) = KiraAPI.canned(status: 201, json: sentJSON)
         let message = ChatMessageInputDTO(
-            clientId: "c-1", text: "iced latte 25rb", inputMethod: .voice, voiceSeconds: 4, parser: .slangRules,
+            clientId: "c-1", text: "kopi susu 25rb", inputMethod: .voice, voiceSeconds: 4, parser: .slangRules,
             drafts: [draft])
 
         let result = try await api.sendChatMessage(message)
@@ -67,7 +67,7 @@ struct ChatAPITests {
         let (api, _) = KiraAPI.canned(status: 201, json: json)
 
         let result = try await api.sendChatMessage(
-            .init(clientId: "c-1", text: "latte", parser: .onDeviceModel, drafts: []))
+            .init(clientId: "c-1", text: "kopi", parser: .onDeviceModel, drafts: []))
 
         #expect(result.reply == nil)
         #expect(result.quotaExhausted)

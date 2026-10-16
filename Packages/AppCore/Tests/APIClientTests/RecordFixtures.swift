@@ -1,5 +1,5 @@
 /**
- Canned bodies of the record (Catat) responses, written from the backend's spec, and a decoder for what the
+ Canned bodies of the Catat responses, written from the backend's spec, and a decoder for what the
  client sent. Instants carry milliseconds, as the API writes them.
  */
 import Foundation
@@ -16,7 +16,7 @@ let usageJSON =
     + #""voiceSeconds":{"used":0,"limit":0},"resetsOn":"2026-11-01"}"#
 
 let draftJSON =
-    #"{"id":"d-1","type":"expense","name":"Iced Latte","amount":25000,"category":"coffee","#
+    #"{"id":"d-1","type":"expense","name":"Kopi Susu","amount":25000,"category":"coffee","#
     + #""occurredAt":"\#(recordNowJSON)","spanStart":0,"spanEnd":9}"#
 
 /** A Kira reply with every field a message can carry. */
@@ -28,7 +28,7 @@ let replyJSON =
 
 /** A person's message with only the fields its kind uses. */
 let personJSON =
-    #"{"id":"m-1","sender":"person","kind":"person_text","body":"iced latte 25rb","#
+    #"{"id":"m-1","sender":"person","kind":"person_text","body":"kopi susu 25rb","#
     + #""createdAt":"\#(recordNowJSON)","replyToId":null,"drafts":null,"draftStatus":null,"parser":null,"#
     + #""inputMethod":null,"batchId":null,"transactionIds":null,"committedAt":null,"itemCount":null,"#
     + #""remaining":null,"perDay":null}"#
