@@ -88,10 +88,25 @@ struct ScholarshipApplyView: View {
         }
     }
 
-    private var sentAlong: some View {
+    /**
+     What is sent along: the account email once loaded (a placeholder while it loads), or, when it
+     could not be loaded, the problem with Coba Lagi; the picks and the story stay as they are.
+     */
+    @ViewBuilder private var sentAlong: some View {
+        switch model.phase {
+        case .loaded(let email):
+            sentAlongList(email: email)
+        case .loading, .empty:
+            sentAlongList(email: "nama@email.com").redacted(reason: .placeholder)
+        case .failed(let problem):
+            PlansProblemView(problem: problem) { Task { await model.load() } }
+        }
+    }
+
+    private func sentAlongList(email: String) -> some View {
         KiraListGroup("scholarship.apply.sent", footer: "scholarship.apply.sent.footer") {
             KiraListRow(Text("scholarship.apply.sent.email"), leading: .icon(.send))
-                .subtitle(Text("scholarship.apply.sent.email.detail \(model.phase.value ?? "")"))
+                .subtitle(Text("scholarship.apply.sent.email.detail \(email)"))
             KiraListRow(Text("scholarship.apply.sent.mode"), leading: .icon(.check))
                 .subtitle(Text("scholarship.apply.sent.mode.detail"))
         }

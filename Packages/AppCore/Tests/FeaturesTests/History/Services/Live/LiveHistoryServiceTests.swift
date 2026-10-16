@@ -22,6 +22,16 @@ struct LiveHistoryServiceTests {
         #expect(account.period.start == CalendarDay(year: 2026, month: 9, day: 25))
         #expect(account.period.end == CalendarDay(year: 2026, month: 10, day: 24))
         #expect(account.period.daysUntilPayday == 9)
+        #expect(!account.canImport)
+    }
+
+    @Test("a plan with a voice quota imports statements too (voiceAndImport); one without does not")
+    func readsImport() async throws {
+        let plus = liveMeJSON.replacingOccurrences(
+            of: #""voiceSeconds":{"used":0,"limit":0}"#, with: #""voiceSeconds":{"used":0,"limit":10800}"#)
+        #expect(plus != liveMeJSON)
+        let (api, _) = KiraAPI.canned(json: plus)
+        #expect(try await LiveHistoryService(api: api).currentAccount().canImport)
     }
 
     @Test("sends Riwayat's filters and reads the page")

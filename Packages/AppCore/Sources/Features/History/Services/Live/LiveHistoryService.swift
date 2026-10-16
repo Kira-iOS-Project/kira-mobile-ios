@@ -10,10 +10,15 @@ package struct LiveHistoryService: HistoryService {
         self.api = api
     }
 
-    /** `GET /me`: the pay period and the name. */
+    /**
+     `GET /me`: the pay period, the name, and whether the plan imports statements: voice and import
+     come together (the plan's `voiceAndImport`), so a voice quota means the plan has both.
+     */
     package func currentAccount() async throws -> HistoryAccount {
         let account = try await api.getMe()
-        return HistoryAccount(period: try Bridge.period(account.period), displayName: account.displayName)
+        return HistoryAccount(
+            period: try Bridge.period(account.period), displayName: account.displayName,
+            canImport: account.usage.voiceSeconds.limit > 0)
     }
 
     /** `GET /transactions`. */

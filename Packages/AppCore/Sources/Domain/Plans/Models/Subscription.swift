@@ -31,6 +31,12 @@ package struct Subscription: Hashable, Sendable {
     /** The period's use of each quota. */
     package let usage: Usage
 
+    /**
+     Whether Beasiswa Kira granted it: free until `renewsOn`, with no payment method to change and
+     nothing to cancel (the API answers SUBSCRIPTION_NOT_PAID and SUBSCRIPTION_NOT_CANCELLABLE).
+     */
+    package var isGrant: Bool { source == .scholarship }
+
     /** The subscription as the API sends it. */
     package init(
         id: String, plan: PlanID, period: BillingPeriod, source: Source, price: Int,

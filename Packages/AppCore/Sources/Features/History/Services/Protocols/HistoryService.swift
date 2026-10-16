@@ -33,11 +33,14 @@ package struct HistoryAccount: Hashable, Sendable {
     package let period: PayPeriod
     /** The name Kira calls the person, from their email ("dinda@…" is Dinda). */
     package let displayName: String
+    /** Whether the plan includes Impor Mutasi (Kira Plus); the API answers 403 otherwise. */
+    package let canImport: Bool
 
-    /** The account's period and name. */
-    package init(period: PayPeriod, displayName: String) {
+    /** The account's period, name and whether its plan imports statements. */
+    package init(period: PayPeriod, displayName: String, canImport: Bool) {
         self.period = period
         self.displayName = displayName
+        self.canImport = canImport
     }
 
     /** The initial beside the person's own chat bubbles; nil for an empty name. */

@@ -34,7 +34,7 @@ struct StatementImportScreen: View {
                 KiraStepProgress(current: 1, total: 3, label: stepLabel)
                 header
                 StatementFormatCard()
-                StatementFileSection(model: model) { picksFile = true }
+                StatementFileSection(model: model, pick: { picksFile = true }, openPlans: { onOpen(.plans) })
                 KiraNotice(.privacy, message: "import.privacy")
                 primaryButton.padding(.top, KiraSpacing.space2)
             }

@@ -32,7 +32,7 @@ struct ConversationModelTests {
         let model = ConversationModel(sourceMessageId: "m-1241", service: service)
         await model.load()
         #expect(model.phase.value != nil && model.personInitial == nil)
-        #expect(HistoryAccount(period: HistorySample.period, displayName: "").initial == nil)
+        #expect(HistoryAccount(period: HistorySample.period, displayName: "", canImport: true).initial == nil)
     }
 
     @Test("a reply before any message of the person starts its own block")

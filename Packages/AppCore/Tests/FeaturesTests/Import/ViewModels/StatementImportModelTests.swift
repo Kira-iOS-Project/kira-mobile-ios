@@ -48,7 +48,13 @@ struct StatementImportModelTests {
         await service.configure { $0.failing = [.upload] }
         await model.continueToReview()
         #expect(model.uploadProblem == FakeHistoryService.problem)
+        #expect(!model.needsPlan)
         #expect(model.preview == nil && !model.isUploading)
+        let refused = AppProblem(code: "PLAN_FEATURE_UNAVAILABLE", requestId: "req-2")
+        await service.configure { $0.failure = refused }
+        await model.continueToReview()
+        #expect(model.uploadProblem == refused && model.needsPlan)
+        await service.configure { $0.failure = FakeHistoryService.problem }
         await service.configure { $0.failing = [] }
         await model.continueToReview()
         #expect(model.uploadProblem == nil)

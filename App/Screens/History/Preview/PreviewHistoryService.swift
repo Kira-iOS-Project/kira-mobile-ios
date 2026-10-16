@@ -14,7 +14,7 @@ actor PreviewHistoryService: HistoryService {
     private var pendingImport: ImportPreview?
 
     func currentAccount() -> HistoryAccount {
-        HistoryAccount(period: PreviewHistoryData.period, displayName: "Dinda")
+        HistoryAccount(period: PreviewHistoryData.period, displayName: "Dinda", canImport: true)
     }
 
     func transactions(_ query: TransactionQuery) -> TransactionPage {

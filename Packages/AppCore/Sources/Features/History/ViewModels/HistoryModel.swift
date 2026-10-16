@@ -52,6 +52,11 @@ package final class HistoryModel {
     package private(set) var kind = Kind.all
     /** The chosen category chip; nil for Semua Kategori. */
     package private(set) var category: TransactionCategory?
+    /**
+     Where the upload icon leads: Impor Mutasi, also before the account has loaded (the API still
+     refuses a plan without it, and the import step offers the plans then), or Paket Kira.
+     */
+    package private(set) var importEntry = ImportEntry.importer
 
     /** Internal, not private: `HistoryModel+List.swift` lays the list out from them. */
     let service: any HistoryService
@@ -90,7 +95,9 @@ package final class HistoryModel {
         let current = generation
         appliedSearch = Self.normalized(searchText)
         do {
-            let period = try await service.currentAccount().period
+            let account = try await service.currentAccount()
+            let period = account.period
+            importEntry = account.canImport ? .importer : .plans
             async let summary = service.summary(from: period.start, to: period.end)
             async let page = service.transactions(query(period, cursor: nil))
             let (loadedSummary, loadedPage) = try await (summary, page)

@@ -1,4 +1,7 @@
-/** Langganan's hero card: the plan, its price and the renewal and reminder dates (or the end, once cancelled). */
+/**
+ Langganan's hero card: the plan, its price and the renewal and reminder dates (or the end, once
+ cancelled); for a Beasiswa Kira grant, the day it is free until, as BeasiswaKiraDiterima draws it.
+ */
 import Domain
 import SwiftUI
 
@@ -8,19 +11,24 @@ struct SubscriptionHero: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack(spacing: KiraSpacing.space3) {
-                Text("subscription.hero.status \(String(localized: subscription.plan.title))")
-                    .kiraFont(.overline).foregroundStyle(.onHeroMuted)
+                overline.kiraFont(.overline).foregroundStyle(.onHeroMuted)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 KiraLogo(.mark, tone: .hero, size: 26)
             }
             .frame(minHeight: 24)
-            PlanPriceLine(spacing: KiraSpacing.space2) {
-                KiraAmount(Decimal(subscription.price), size: .large).inverse()
-                Text(subscription.period == .monthly ? "plans.price.perMonth" : "plans.price.perYear")
-                    .font(.subheadline).kiraLineHeight(20, size: 15).foregroundStyle(.onHeroMuted)
+            if subscription.isGrant {
+                PlansDisplayTitle("scholarship.accepted.headline", size: 26, color: .onHero)
+            } else {
+                PlanPriceLine(spacing: KiraSpacing.space2) {
+                    KiraAmount(Decimal(subscription.price), size: .large).inverse()
+                    Text(subscription.period == .monthly ? "plans.price.perMonth" : "plans.price.perYear")
+                        .font(.subheadline).kiraLineHeight(20, size: 15).foregroundStyle(.onHeroMuted)
+                }
             }
             VStack(alignment: .leading, spacing: KiraSpacing.space1) {
-                if subscription.cancelAtPeriodEnd {
+                if subscription.isGrant {
+                    line(Text("scholarship.accepted.until \(subscription.renewsOn.date, format: .plansFullDay)"))
+                } else if subscription.cancelAtPeriodEnd {
                     line(Text("subscription.hero.ends \(subscription.renewsOn.date, format: .plansFullDay)"))
                 } else {
                     line(Text("subscription.hero.renews \(subscription.renewsOn.date, format: .plansFullDay)"))
@@ -35,6 +43,13 @@ struct SubscriptionHero: View {
         .background(.hero)
         .clipShape(RoundedRectangle(cornerRadius: KiraRadius.extraLarge, style: .continuous))
         .padding(.top, KiraSpacing.space1)
+    }
+
+    /** "Kira Plus · aktif", or "Beasiswa Kira diterima" for a grant. */
+    private var overline: Text {
+        subscription.isGrant
+            ? Text("scholarship.accepted.overline")
+            : Text("subscription.hero.status \(String(localized: subscription.plan.title))")
     }
 
     private func line(_ text: Text) -> some View {

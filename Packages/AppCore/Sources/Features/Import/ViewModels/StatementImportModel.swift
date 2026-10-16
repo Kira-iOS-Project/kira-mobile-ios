@@ -37,6 +37,8 @@ package final class StatementImportModel {
     package private(set) var isUploading = false
     /** Why sending the rows failed, shown under the file until the next try. */
     package private(set) var uploadProblem: AppProblem?
+    /** Whether the plan refused the import (PLAN_FEATURE_UNAVAILABLE): the notice offers Lihat Paket. */
+    package var needsPlan: Bool { uploadProblem?.knownCode == .planFeatureUnavailable }
     /** The stored import once the rows are sent; the review screen opens on it. */
     package var preview: ImportPreview?
 

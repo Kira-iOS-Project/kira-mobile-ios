@@ -61,12 +61,32 @@ struct SubscriptionScreen: View {
             KiraButton("subscription.free.plans") { onOpen(.plans(yearly: false)) }.block()
         case .failed(let problem):
             PlansProblemView(problem: problem) { Task { await model.load() } }
+        case .loaded(let subscription) where subscription.isGrant:
+            SubscriptionHero(subscription: subscription)
+            SubscriptionQuotas(usage: subscription.usage)
+            grantRows
         case .loaded(let subscription):
             SubscriptionHero(subscription: subscription)
             SubscriptionQuotas(usage: subscription.usage)
             rows(subscription)
             cancelSection(subscription)
         }
+    }
+
+    /**
+     A Beasiswa Kira grant (BeasiswaKiraDiterima): its status and what happens after it, and who
+     funds it. No Ganti Paket, Metode Pembayaran or Batalkan Langganan: a grant has nothing to pay or
+     cancel.
+     */
+    @ViewBuilder private var grantRows: some View {
+        KiraListGroup("subscription.manage") {
+            KiraListRow(Text("scholarship.status.title"), leading: .icon(.star)) { onOpen(.scholarshipStatus) }
+            KiraListRow(Text("scholarship.next.after"), leading: .icon(.shield))
+                .subtitle(Text("scholarship.next.after.detail"))
+            KiraListRow(Text("subscription.invoices"), leading: .icon(.receipt)) { page = .invoices }
+                .subtitle(Text("subscription.invoices.detail"))
+        }
+        KiraNotice(.education, title: "scholarship.thanks.title", message: "scholarship.thanks.body")
     }
 
     @ViewBuilder private func rows(_ subscription: Subscription) -> some View {

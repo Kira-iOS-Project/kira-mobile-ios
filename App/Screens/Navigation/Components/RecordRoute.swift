@@ -40,6 +40,7 @@ struct RecordRoute: View {
     private func open(_ destination: HistoryDestination) {
         switch destination {
         case .help: onOpen(.care)
+        case .plans: onOpen(.plans(yearly: false))
         }
     }
 }
