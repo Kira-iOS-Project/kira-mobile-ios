@@ -51,10 +51,11 @@ struct KiraNotice: View {
                 .overlay { Circle().strokeBorder(.hairline, lineWidth: 1) }
             VStack(alignment: .leading, spacing: 2) {
                 if let title {
-                    Text(title).font(.subheadline.weight(.semibold)).foregroundStyle(.ink)
+                    Text(title).font(.subheadline.weight(.semibold)).kiraLineHeight(20, size: 15)
+                        .foregroundStyle(.ink)
                 }
                 if let message {
-                    Text(message).font(.footnote).foregroundStyle(.inkMuted)
+                    Text(message).font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
                 }
             }
             .padding(.top, 1)

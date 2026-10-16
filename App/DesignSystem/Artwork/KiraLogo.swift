@@ -51,9 +51,9 @@ struct KiraLogo: View {
         case .mark:
             mark
         case .wordmark:
-            HStack(spacing: size * 0.24) {
+            HStack(spacing: (size * 0.24).rounded()) {
                 mark
-                Wordmark(size: size * 0.92, color: tone == .hero ? .onHero : .ink)
+                Wordmark(size: (size * 0.92).rounded(), color: tone == .hero ? .onHero : .ink)
             }
         }
     }

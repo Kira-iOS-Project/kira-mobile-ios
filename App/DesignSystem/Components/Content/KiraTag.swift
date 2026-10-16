@@ -57,7 +57,7 @@ struct KiraTag: View {
         case .healthy: TagColors(text: .healthy, fill: .healthySoft, border: .healthyLine)
         case .vulnerable: TagColors(text: .vulnerable, fill: .vulnerableSoft, border: .vulnerableLine)
         case .emergency: TagColors(text: .emergency, fill: .emergencySoft, border: .vulnerableLine)
-        case .hero: TagColors(text: .onHero, fill: .heroTrack, border: Color.onHero.opacity(0.2))
+        case .hero: TagColors(text: .onHero, fill: .heroTrack, border: Color.white.opacity(0.2))
         }
     }
 }

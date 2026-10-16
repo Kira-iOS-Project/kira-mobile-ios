@@ -34,6 +34,8 @@ struct KiraTabBar: View {
     @Binding private var selection: KiraTab
     private let isRecordActive: Bool
     private let onRecord: () -> Void
+    /** The Catat label's 10 pt (`.k-dock__catat-label`), scaled with Dynamic Type like Caption 2. */
+    @ScaledMetric(relativeTo: .caption2) private var recordLabelSize: CGFloat = 10
 
     /** `isRecordActive` rings the Catat bubble while the Catat screen is open. */
     init(selection: Binding<KiraTab>, isRecordActive: Bool = false, onRecord: @escaping () -> Void) {
@@ -69,7 +71,8 @@ struct KiraTabBar: View {
                 KiraIcon(tab.icon, size: 22, weight: isOn ? .semibold : .medium, isFilled: isOn)
                     .foregroundStyle(isOn ? Color.pandan : Color.inkMuted)
                 if isOn {
-                    Text(tab.title).font(.subheadline.weight(.semibold)).foregroundStyle(.ink)
+                    Text(tab.title).font(.subheadline.weight(.semibold)).kiraLineHeight(20, size: 15)
+                        .tracking(-0.15).foregroundStyle(.ink)
                 }
             }
             .padding(.leading, isOn ? 13 : 10)
@@ -93,17 +96,27 @@ struct KiraTabBar: View {
         return Button(action: onRecord) {
             VStack(spacing: 1) {
                 KiraIcon(isRecordActive ? .chat : .plus, size: 22, weight: .semibold)
-                Text("ds.tab.record").font(.caption.weight(.bold))
+                Text("ds.tab.record").font(.system(size: recordLabelSize, weight: .bold)).tracking(0.2)
+                    .kiraLineHeight(12, size: 10)
             }
             .foregroundStyle(.onPandan)
             .frame(minWidth: 60, minHeight: 60)
             .background(.pandan, in: bubble)
             .overlay { bubble.strokeBorder(.hairline, lineWidth: 1) }
-            .overlay { bubble.stroke(isRecordActive ? Color.pandan : .clear, lineWidth: 2).padding(-4) }
+            .overlay {
+                /** The active ring: a 2 pt outline 3 pt outside, its corners grown by the same 4 pt. */
+                UnevenRoundedRectangle(
+                    topLeadingRadius: 28, bottomLeadingRadius: 28, bottomTrailingRadius: 12, topTrailingRadius: 28,
+                    style: .continuous
+                )
+                .stroke(isRecordActive ? Color.pandan : .clear, lineWidth: 2)
+                .padding(-4)
+            }
             .contentShape(bubble)
         }
         .buttonStyle(.plain)
         .accessibilityAddTraits(isRecordActive ? .isSelected : [])
+        .kiraSmallType()
     }
 }
 

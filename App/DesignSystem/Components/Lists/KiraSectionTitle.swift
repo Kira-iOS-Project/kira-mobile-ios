@@ -55,7 +55,7 @@ struct KiraSectionTitle: View {
     private var heading: some View {
         HStack(spacing: KiraSpacing.space2) {
             if showsLeaf { KiraLeaf(.single) }
-            Text(title).font(.headline).foregroundStyle(.ink)
+            Text(title).font(.headline).kiraLineHeight(22, size: 17).foregroundStyle(.ink)
         }
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isHeader)
@@ -70,8 +70,9 @@ struct KiraSectionTitle: View {
         case .action(let label, let action):
             Button(action: action) {
                 Text(label)
-                    .font(.subheadline.weight(.semibold))
+                    .font(.subheadline.weight(.semibold)).kiraLineHeight(20, size: 15)
                     .foregroundStyle(.pandan)
+                    .padding(.horizontal, 2)
                     .frame(minHeight: KiraSize.tap)
                     .contentShape(Rectangle())
             }
