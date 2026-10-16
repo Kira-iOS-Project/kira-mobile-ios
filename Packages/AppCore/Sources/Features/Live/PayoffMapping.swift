@@ -8,7 +8,7 @@ extension PayoffSimulation {
         self.init(
             method: try Bridge.value(dto.method), extraPayment: dto.extraPayment, maxExtraPayment: dto.maxExtraPayment,
             monthlyBudget: dto.monthlyBudget, hasUnknownRate: dto.hasUnknownRate,
-            accounts: try dto.accounts.map(PayoffAccount.init), productive: dto.productive.map(ProductiveDebt.init),
+            accounts: try dto.accounts.map(PayoffAccount.init), productive: try dto.productive.map(ProductiveDebt.init),
             totalInterest: dto.totalInterest, allPaidMonths: dto.allPaidMonths, allPaidMonth: dto.allPaidMonth,
             comparison: try dto.comparison.map(PayoffComparison.init))
     }
@@ -26,8 +26,10 @@ extension PayoffAccount {
 
 extension ProductiveDebt {
     /** One debt the plan leaves alone. */
-    init(_ dto: PayoffProductiveDebtDTO) {
-        self.init(id: dto.id, name: dto.name, remaining: dto.remaining, monthlyInstalment: dto.monthlyInstalment)
+    init(_ dto: PayoffProductiveDebtDTO) throws {
+        self.init(
+            id: dto.id, kind: try Bridge.value(dto.kind), name: dto.name, remaining: dto.remaining,
+            monthlyInstalment: dto.monthlyInstalment)
     }
 }
 

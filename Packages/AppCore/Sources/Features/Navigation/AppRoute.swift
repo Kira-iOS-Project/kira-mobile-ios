@@ -13,6 +13,8 @@ package enum AppRoute: Hashable, Sendable {
     case indicator(IndicatorKey)
     /** The health check again, from the score ("Cek Ulang"). */
     case healthCheck
+    /** SKR-03: Rencana Pelunasan, with its open formula (SKR-03b) and the Avalanche method (SKR-03c). */
+    case debtPlan
 
     /** CAT-01: Catat, the record section's root. */
     case record
@@ -89,8 +91,6 @@ package enum UnavailableArea: String, CaseIterable, Hashable, Sendable {
     case bills
     /** UNG: Ringkasan Mingguan, the weekly summary. */
     case weeklySummary
-    /** SKR: Rencana Pelunasan, the payoff plan. */
-    case debtPlan
     /** SKR: Riwayat Skor, the score history. */
     case scoreHistory
     /** SKR: SLIK, the credit report. */

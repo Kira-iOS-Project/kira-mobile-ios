@@ -13,7 +13,7 @@ struct HomeDebtPlanSections: View {
 
     var body: some View {
         if let plan = home.debtPlan {
-            HomeDebtPlanCard(plan: plan) { onOpen(.unavailable(.debtPlan)) }
+            HomeDebtPlanCard(plan: plan) { onOpen(.debtPlan) }
         }
         if let step = model.visibleStep {
             HomeStepSection(step: step, home: home, model: model, onOpen: onOpen)

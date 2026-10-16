@@ -35,7 +35,8 @@ struct LivePayoffServiceTests {
             ])
         #expect(
             simulation.productive == [
-                ProductiveDebt(id: "p-1", name: "Cicilan Motor", remaining: 13_000_000, monthlyInstalment: 850_000)
+                ProductiveDebt(
+                    id: "p-1", kind: .vehicle, name: "Cicilan Motor", remaining: 13_000_000, monthlyInstalment: 850_000)
             ])
         #expect(
             simulation.comparison

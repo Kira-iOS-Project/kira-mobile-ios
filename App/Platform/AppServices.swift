@@ -16,6 +16,7 @@ struct AppServices {
     let plans: any PlansService
     let home: any HomeService
     let score: any ScoreService
+    let payoff: any PayoffService
     let recovery: any PinRecoveryService
 }
 
@@ -34,6 +35,7 @@ extension AppServices {
             plans: LivePlansService(api: api),
             home: LiveHomeService(api: api, onHideBalances: sync),
             score: LiveScoreService(api: api),
+            payoff: LivePayoffService(api: api),
             recovery: LivePinRecoveryService(api: api))
     }
 
@@ -42,7 +44,7 @@ extension AppServices {
         AppServices(
             onboarding: PreviewOnboardingService(), pinSetup: PreviewPinSetup(), account: PreviewAccountService(),
             security: PreviewSecuritySettings(), plans: PreviewPlansService(), home: PreviewHomeService(),
-            score: PreviewScoreService(), recovery: PreviewPinRecoveryService())
+            score: PreviewScoreService(), payoff: PreviewPayoffService(), recovery: PreviewPinRecoveryService())
     }
 }
 

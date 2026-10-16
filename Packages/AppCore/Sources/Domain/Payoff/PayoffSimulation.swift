@@ -43,6 +43,8 @@ package struct PayoffAccount: Hashable, Sendable {
 package struct ProductiveDebt: Hashable, Sendable {
     /** The account's id. */
     package let id: String
+    /** Its kind. */
+    package let kind: DebtKind
     /** Its name ("Cicilan Motor"). */
     package let name: String
     /** What is left to pay. */
@@ -51,8 +53,9 @@ package struct ProductiveDebt: Hashable, Sendable {
     package let monthlyInstalment: Int
 
     /** A debt with every field given. */
-    package init(id: String, name: String, remaining: Int, monthlyInstalment: Int) {
+    package init(id: String, kind: DebtKind, name: String, remaining: Int, monthlyInstalment: Int) {
         self.id = id
+        self.kind = kind
         self.name = name
         self.remaining = remaining
         self.monthlyInstalment = monthlyInstalment
@@ -73,6 +76,46 @@ package struct PayoffComparison: Hashable, Sendable {
         self.otherMethod = otherMethod
         self.interestSaved = interestSaved
         self.firstPayoffMonthsLater = firstPayoffMonthsLater
+    }
+
+    /** What the chosen method does to the interest, in rupiah and unsigned. */
+    package enum InterestOutcome: Hashable, Sendable {
+        /** The chosen method costs this much less interest. */
+        case saves(Int)
+        /** The chosen method costs this much more interest. */
+        case costs(Int)
+        /** Both cost the same. */
+        case same
+        /** No account has a known rate, so there is nothing to compare. */
+        case unknown
+    }
+
+    /** What the chosen method does to the first payoff, in whole months and unsigned. */
+    package enum FirstPayoffOutcome: Hashable, Sendable {
+        /** The chosen method pays off its first account this many months sooner. */
+        case sooner(Int)
+        /** The chosen method pays off its first account this many months later. */
+        case later(Int)
+        /** Both pay off the first account in the same month. */
+        case same
+        /** The other method never pays off an account, or there is none. */
+        case unknown
+    }
+
+    /** The interest the chosen method saves, costs or leaves as it is. */
+    package var interest: InterestOutcome {
+        guard let saved = interestSaved else { return .unknown }
+        if saved > 0 { return .saves(saved) }
+        if saved < 0 { return .costs(-saved) }
+        return .same
+    }
+
+    /** The first payoff against the other method's; a positive `firstPayoffMonthsLater` is sooner for this one. */
+    package var firstPayoff: FirstPayoffOutcome {
+        guard let later = firstPayoffMonthsLater else { return .unknown }
+        if later > 0 { return .sooner(later) }
+        if later < 0 { return .later(-later) }
+        return .same
     }
 }
 

@@ -1,8 +1,8 @@
 /**
- The screen of each pushed route, by area: Score (score, indicator), Account (profile … deleteAccount,
- about … complaints), Plans (plans … scholarshipStatus). "Cek Ulang" (`healthCheck`) covers the
- shell instead (MainShell); Catat's and Riwayat's routes stay empty for their own integration, and
- an unavailable area never gets here.
+ The screen of each pushed route, by area: Score (score, indicator), Payoff (debtPlan), Account
+ (profile … deleteAccount, about … complaints), Plans (plans … scholarshipStatus). "Cek Ulang"
+ (`healthCheck`) covers the shell instead (MainShell); Catat's and Riwayat's routes stay empty for
+ their own integration, and an unavailable area never gets here.
  */
 import Features
 import SwiftUI
@@ -17,6 +17,7 @@ struct RouteSlot: View {
         switch route {
         case .score: ScoreScreen(service: services.score, onOpen: onOpen)
         case .indicator(let key): IndicatorScreen(key: key, service: services.score, onOpen: onOpen)
+        case .debtPlan: PayoffScreen(service: services.payoff, onOpen: onOpen)
         case .profile:
             ProfileScreen(
                 service: services.account, settings: services.security, onOpen: onOpen, onSignedOut: { endSession() })

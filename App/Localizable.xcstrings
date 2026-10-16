@@ -11277,6 +11277,436 @@
         }
       }
     },
+    "payoff.account.never" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum lunas dalam 50 tahun"
+          }
+        }
+      }
+    },
+    "payoff.account.when %@ %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lunas %1$@ · %2$lld bulan"
+          }
+        }
+      }
+    },
+    "payoff.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali"
+          }
+        }
+      }
+    },
+    "payoff.compare.costs %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bunga %@ lebih besar."
+          }
+        }
+      }
+    },
+    "payoff.compare.first.later %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akun pertama lunas %lld bulan lebih lambat."
+          }
+        }
+      }
+    },
+    "payoff.compare.first.same" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akun pertama lunas di bulan yang sama."
+          }
+        }
+      }
+    },
+    "payoff.compare.first.sooner %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akun pertama lunas %lld bulan lebih cepat."
+          }
+        }
+      }
+    },
+    "payoff.compare.same" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total bunganya sama."
+          }
+        }
+      }
+    },
+    "payoff.compare.saves %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hemat bunga %@."
+          }
+        }
+      }
+    },
+    "payoff.compare.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dibanding Metode Lain"
+          }
+        }
+      }
+    },
+    "payoff.compare.unknown" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi bunga tiap akun supaya kedua metode bisa dibandingkan."
+          }
+        }
+      }
+    },
+    "payoff.empty.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paylater, pinjol, dan kartu kredit yang kamu catat di Cek Kesehatan akan muncul di sini."
+          }
+        }
+      }
+    },
+    "payoff.empty.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Ada Utang Konsumtif"
+          }
+        }
+      }
+    },
+    "payoff.extra.hint %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maksimal %@, sisa uangmu periode ini."
+          }
+        }
+      }
+    },
+    "payoff.extra.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bayar Tambahan per Bulan (opsional)"
+          }
+        }
+      }
+    },
+    "payoff.extra.tooHigh %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terlalu besar. Sisa uangmu periode ini %@, coba angka yang lebih kecil."
+          }
+        }
+      }
+    },
+    "payoff.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rencana Belum Bisa Dimuat"
+          }
+        }
+      }
+    },
+    "payoff.how.avalanche" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avalanche melunasi akun dengan bunga tertinggi lebih dulu. Kalau bunganya sama, sisa yang lebih kecil didahulukan."
+          }
+        }
+      }
+    },
+    "payoff.how.common" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiap akun tetap dibayar cicilannya. Uang tambahan dan cicilan akun yang sudah lunas mengalir ke akun pertama di urutan. Bunga dihitung tiap bulan dari bunga tahunan dibagi 12; akun tanpa bunga dihitung 0%."
+          }
+        }
+      }
+    },
+    "payoff.how.snowball" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snowball melunasi akun dengan sisa terkecil lebih dulu. Kalau sisanya sama, bunga yang lebih tinggi didahulukan."
+          }
+        }
+      }
+    },
+    "payoff.how.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Urutan, bunga, dan sisa uang tiap bulan"
+          }
+        }
+      }
+    },
+    "payoff.how.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gimana Ngitungnya?"
+          }
+        }
+      }
+    },
+    "payoff.method.avalanche" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avalanche"
+          }
+        }
+      }
+    },
+    "payoff.method.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metode Pelunasan"
+          }
+        }
+      }
+    },
+    "payoff.method.snowball" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snowball"
+          }
+        }
+      }
+    },
+    "payoff.order.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akun pertama dapat semua sisa uang. Yang lain tetap dibayar cicilannya."
+          }
+        }
+      }
+    },
+    "payoff.order.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Urutan Pelunasan"
+          }
+        }
+      }
+    },
+    "payoff.productive.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan kendaraan, rumah, dan pinjaman keluarga tetap dibayar seperti biasa."
+          }
+        }
+      }
+    },
+    "payoff.productive.instalment %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan %@ per bulan"
+          }
+        }
+      }
+    },
+    "payoff.productive.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak Ikut Rencana"
+          }
+        }
+      }
+    },
+    "payoff.recalc.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hitungan Belum Diperbarui"
+          }
+        }
+      }
+    },
+    "payoff.simulation.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ini hitungan dari data yang kamu isi, bukan janji dari pemberi pinjaman."
+          }
+        }
+      }
+    },
+    "payoff.simulation.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hanya Simulasi"
+          }
+        }
+      }
+    },
+    "payoff.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih urutan bayar, lalu lihat kapan semua utang konsumtifmu lunas."
+          }
+        }
+      }
+    },
+    "payoff.summary.allPaid %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semua lunas pada %@"
+          }
+        }
+      }
+    },
+    "payoff.summary.budget %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dibayar %@ per bulan"
+          }
+        }
+      }
+    },
+    "payoff.summary.interest %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total bunga sampai lunas %@"
+          }
+        }
+      }
+    },
+    "payoff.summary.notAll" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Semua Lunas"
+          }
+        }
+      }
+    },
+    "payoff.tag.first" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dilunasi Dulu"
+          }
+        }
+      }
+    },
+    "payoff.tag.next" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berikutnya"
+          }
+        }
+      }
+    },
+    "payoff.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rencana Pelunasan"
+          }
+        }
+      }
+    },
+    "payoff.unknownRate.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akun tanpa bunga dihitung 0%, jadi total bunga bisa lebih kecil dari kenyataan. Lengkapi bunganya lewat Cek Ulang."
+          }
+        }
+      }
+    },
+    "payoff.unknownRate.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bunga Belum Lengkap"
+          }
+        }
+      }
+    },
     "plans.alwaysFree.body" : {
       "localizations" : {
         "id" : {
