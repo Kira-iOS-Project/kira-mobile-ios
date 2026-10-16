@@ -130,9 +130,15 @@ extension XCTestCase {
         }
     }
 
-    /** XCTest's "Audit failed to complete in time": the audit stopped before it read the whole screen. */
+    /**
+     The audit ran out of time before it read the whole screen, in either of the two ways XCTest says
+     so: the audit's own "Audit failed to complete in time" (-56), or its future timing out while it
+     runs ("Timed out while running accessibility audit", code 1000).
+     */
     private static func auditTimedOut(_ error: NSError) -> Bool {
-        error.domain == "com.apple.xcode.xctest.accessibilityAudit" && error.code == -56
+        if error.domain == "com.apple.xcode.xctest.accessibilityAudit" { return error.code == -56 }
+        return error.domain == "com.apple.dt.XCTest.XCTFuture" && error.code == 1000
+            && error.localizedDescription.contains("accessibility audit")
     }
 
     /**

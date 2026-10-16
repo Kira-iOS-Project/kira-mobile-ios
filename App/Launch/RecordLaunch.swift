@@ -6,6 +6,7 @@
  */
 #if DEBUG
     import Domain
+    import Foundation
     import Features
     import SwiftUI
 
@@ -27,11 +28,18 @@
                 default: nil
                 }
             guard let account else { return preview }
+            /**
+             The voice panel holds still for the audit: the whole sentence heard at once, and a timer
+             that stops at 7 seconds. A panel that redraws while the audit samples it reads as low
+             contrast; the app's own panel stays live.
+             */
+            let isVoice = account == .plus
             return RecordDependencies(
                 service: LaunchRecordService(account: account, preview: preview.service),
                 reader: preview.reader, receiptReader: preview.receiptReader, camera: preview.camera,
-                transcriber: preview.transcriber, receiptName: preview.receiptName,
-                categoryName: preview.categoryName)
+                transcriber: isVoice ? SettledTranscriber() : preview.transcriber,
+                clock: isVoice ? SettledClock(seconds: 7) : SystemRecordClock(),
+                receiptName: preview.receiptName, categoryName: preview.categoryName)
         }
     }
 
@@ -78,6 +86,46 @@
         func sendReceipt(_ receipt: ReceiptInput) async throws -> SendResult { try await preview.sendReceipt(receipt) }
         func saveManual(_ transaction: ManualTransactionInput) async throws -> ManualSaveResult {
             try await preview.saveManual(transaction)
+        }
+    }
+
+    /** Hears the board's sentence (InputSuara) at once, then nothing more until it is stopped. */
+    private struct SettledTranscriber: VoiceTranscribing {
+        private static let words = "tadi parkir lima ribu, terus makan bakso dua puluh ribu".split(separator: " ")
+
+        func requestAccess() -> Bool { true }
+
+        func start() -> AsyncThrowingStream<VoiceUpdate, any Error> {
+            AsyncThrowingStream { continuation in
+                for count in 1...Self.words.count {
+                    let text = Self.words.prefix(count).joined(separator: " ")
+                    continuation.yield(VoiceUpdate(transcript: text, level: Double(count % 5 + 2) / 7))
+                }
+            }
+        }
+
+        func stop() {}
+    }
+
+    /** A clock whose first `seconds` waits pass at once and whose next one lasts until cancelled. */
+    private final class SettledClock: RecordClock, @unchecked Sendable {
+        /** Touched only under `lock`. */
+        private var remaining: Int
+        private let lock = NSLock()
+
+        init(seconds: Int) {
+            remaining = seconds
+        }
+
+        var now: Date { Date() }
+
+        func sleep(seconds _: Double) async throws {
+            let passes = lock.withLock {
+                remaining -= 1
+                return remaining >= 0
+            }
+            if passes { return }
+            try await Task.sleep(for: .seconds(86_400))
         }
     }
 #endif

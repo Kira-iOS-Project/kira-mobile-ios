@@ -13,11 +13,11 @@ nonisolated final class AccessibilityAuditTests: XCTestCase {
         try auditInPlace(app)
     }
 
-    /** AKN-02 Kira Terkunci, reached through the debug-only `-KiraLocked` launch argument. */
+    /** AKN-02 Kira Terkunci, through the debug-only `-KiraLocked` on the preview services (no live API). */
     @MainActor
     func testLockScreenPassesTheAudit() throws {
         let app = XCUIApplication()
-        app.launchArguments = ["-KiraLocked"]
+        app.launchArguments = ["-KiraLocked", "-KiraPreviewServices"]
         app.launch()
         XCTAssertTrue(app.buttons["Lupa PIN?"].waitForExistence(timeout: 10))
         try auditInPlace(app) { issue in
@@ -35,7 +35,7 @@ nonisolated final class AccessibilityAuditTests: XCTestCase {
     @MainActor
     func testPinRecoveryPassesTheAudit() throws {
         let app = XCUIApplication()
-        app.launchArguments = ["-KiraLocked"]
+        app.launchArguments = ["-KiraLocked", "-KiraPreviewServices"]
         app.launch()
         let forgot = app.buttons["Lupa PIN?"]
         XCTAssertTrue(forgot.waitForExistence(timeout: 10))
