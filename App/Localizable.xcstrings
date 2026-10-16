@@ -12117,6 +12117,17 @@
         }
       }
     },
+    "problem.COMMUNITY_LINK_UNAVAILABLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tautan grup ini sedang dicek ulang tim Kira. Coba lagi nanti."
+          }
+        }
+      }
+    },
     "problem.COMMUNITY_PRODUCT_NOT_FOUND" : {
       "extractionState" : "manual",
       "localizations" : {
