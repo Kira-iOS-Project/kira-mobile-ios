@@ -42,4 +42,17 @@ struct ChatTimelineTests {
         let message = ChatMessage(id: "k", sender: .kira, kind: .drafts, createdAt: Fixtures.noon)
         #expect(ChatTimeline.rows(of: [message], undoable: []).last == .drafts(message, source: nil))
     }
+
+    @Test("Kira Peduli's lines take their place by time, after a message at the same time")
+    func careLines() {
+        let later = Fixtures.noon.addingTimeInterval(60)
+        let messages = [Fixtures.person("m1", "kopi 5rb", at: morning), Fixtures.person("m2", "parkir 2rb", at: later)]
+        let care = [
+            CareChatEntry(id: "c1", createdAt: Fixtures.noon, kind: .personText("putus asa")),
+            CareChatEntry(id: "c2", createdAt: later, kind: .crisisReply(isAnswered: false)),
+            CareChatEntry(id: "c3", createdAt: later.addingTimeInterval(1), kind: .checkInBetter),
+        ]
+        let rows = ChatTimeline.rows(of: messages, undoable: [], care: care)
+        #expect(rows.map(\.id) == ["separator-m1", "m1", "separator-c1", "c1", "m2", "c2", "c3"])
+    }
 }

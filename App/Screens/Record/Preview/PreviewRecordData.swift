@@ -45,7 +45,7 @@ nonisolated enum PreviewRecordData {
     /** Catat with the preview service and devices. */
     static var dependencies: RecordDependencies {
         RecordDependencies(
-            service: PreviewRecordService(),
+            service: PreviewRecordService(), checkIns: PreviewCheckInService(), crisis: CrisisDetector(refiner: nil),
             reader: MessageReader(fallbackName: String(localized: "record.draft.fallbackName"), refiner: nil),
             receiptReader: PreviewReceiptReader(), camera: PreviewCamera(), transcriber: PreviewTranscriber(),
             receiptName: String(localized: "record.receipt.fallbackName"),

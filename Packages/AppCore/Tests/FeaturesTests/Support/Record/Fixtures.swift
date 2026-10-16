@@ -53,11 +53,13 @@ enum Fixtures {
     static func dependencies(
         service: FakeRecordService, clock: ManualClock = ManualClock(), refiner: (any DraftRefining)? = nil,
         receiptReader: FakeReceiptReader = FakeReceiptReader(), camera: FakeCamera = FakeCamera(),
-        transcriber: FakeTranscriber = FakeTranscriber(), assistant: FakeReceiptAssistant? = nil
+        transcriber: FakeTranscriber = FakeTranscriber(), assistant: FakeReceiptAssistant? = nil,
+        checkIns: FakeCheckInService = FakeCheckInService(), crisisRefiner: FakeCrisisRefiner? = nil
     ) -> RecordDependencies {
         let ids = IdSequence()
         return RecordDependencies(
-            service: service, reader: MessageReader(fallbackName: "Transaksi", refiner: refiner),
+            service: service, checkIns: checkIns, crisis: CrisisDetector(refiner: crisisRefiner),
+            reader: MessageReader(fallbackName: "Transaksi", refiner: refiner),
             receiptReader: receiptReader, camera: camera, transcriber: transcriber, clock: clock,
             makeId: { ids.next() }, receiptName: "Struk", categoryName: { $0.rawValue }, receiptAssistant: assistant)
     }

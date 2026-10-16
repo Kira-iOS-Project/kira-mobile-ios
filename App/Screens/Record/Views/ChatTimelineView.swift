@@ -76,6 +76,8 @@ struct ChatRowView: View {
             .saved(SavedItems.of(message))
         case .noDrafts:
             KiraChatBubble(.kira) { Text("record.noDrafts") }
+        case .care(let entry):
+            CareChatRow(entry: entry, model: model?.care, initial: initial)
         }
     }
 }

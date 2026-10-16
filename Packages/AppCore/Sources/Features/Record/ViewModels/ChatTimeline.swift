@@ -19,11 +19,14 @@ package enum ChatRow: Identifiable, Equatable, Sendable {
     case manualSaved(ChatMessage)
     /** A reply to a message without an amount Kira could read. */
     case noDrafts(ChatMessage)
+    /** A line of Kira Peduli, kept on this device only (PED-02, PED-06). */
+    case care(CareChatEntry)
 
     /** The message id, or the separator's own id. */
     package var id: String {
         switch self {
         case .separator(let id, _): id
+        case .care(let entry): entry.id
         case .person(let message), .drafts(let message, _), .saved(let message, _, _), .discarded(let message),
             .remaining(let message), .manualSaved(let message), .noDrafts(let message):
             message.id
@@ -43,20 +46,44 @@ package enum ChatTimeline {
         return calendar
     }()
 
-    /** The rows of `messages` (oldest first); `undoable` holds the messages Urungkan may still undo. */
-    package static func rows(of messages: [ChatMessage], undoable: Set<String>) -> [ChatRow] {
+    /**
+     The rows of `messages` (oldest first) with Kira Peduli's `care` lines in their place by time;
+     `undoable` holds the messages Urungkan may still undo.
+     */
+    package static func rows(
+        of messages: [ChatMessage], undoable: Set<String>, care: [CareChatEntry] = []
+    ) -> [ChatRow] {
         var byId: [String: ChatMessage] = [:]
         for message in messages { byId[message.id] = message }
         var rows: [ChatRow] = []
         var previous: Date?
-        for message in messages {
-            if opensStretch(message.createdAt, after: previous) {
-                rows.append(.separator(id: "separator-\(message.id)", date: message.createdAt))
+        for (date, row) in merged(messages, care, byId: byId, undoable: undoable) {
+            if opensStretch(date, after: previous) {
+                rows.append(.separator(id: "separator-\(row.id)", date: date))
             }
-            previous = message.createdAt
-            rows.append(row(of: message, source: message.replyToId.flatMap { byId[$0] }, undoable: undoable))
+            previous = date
+            rows.append(row)
         }
         return rows
+    }
+
+    /** Both lists in one, by time; at the same time the message comes first. */
+    private static func merged(
+        _ messages: [ChatMessage], _ care: [CareChatEntry], byId: [String: ChatMessage], undoable: Set<String>
+    ) -> [(Date, ChatRow)] {
+        let chat = messages.map { message in
+            (message.createdAt, row(of: message, source: message.replyToId.flatMap { byId[$0] }, undoable: undoable))
+        }
+        var lines = care[...]
+        var result: [(Date, ChatRow)] = []
+        for item in chat {
+            while let line = lines.first, line.createdAt < item.0 {
+                result.append((line.createdAt, .care(line)))
+                lines.removeFirst()
+            }
+            result.append(item)
+        }
+        return result + lines.map { ($0.createdAt, .care($0)) }
     }
 
     private static func opensStretch(_ date: Date, after previous: Date?) -> Bool {

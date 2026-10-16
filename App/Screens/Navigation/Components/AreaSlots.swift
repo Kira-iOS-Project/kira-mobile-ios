@@ -38,8 +38,8 @@ struct RecordSlot: View {
     @Environment(\.recordComposition) private var composition
 
     var body: some View {
-        if let record = (composition ?? .fallback)?.record {
-            RecordScreen(service: record, onOpen: onOpen)
+        if let composition = composition ?? .fallback {
+            RecordScreen(service: composition.record, checkIns: composition.checkIns, onOpen: onOpen)
         } else {
             EmptySlot()
         }

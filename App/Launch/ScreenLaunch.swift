@@ -51,6 +51,8 @@
         case history, transaction, conversation, statementImport, importReview
         /** CAT: Catat; the tests open its sheets from the composer (ChatLaunch says which account each needs). */
         case record, recordDrafts, recordManual, recordScan, recordQuota, recordVoice
+        /** PED: Catat answering a crisis signal (the tests send one), and greeting a due check-in. */
+        case crisisSignal, checkInChat
         /**
          PED: Kira Peduli (and offline, on the shipped contacts), its sheet over the chat, the message to
          Layanan Kira.
@@ -77,7 +79,9 @@
                 .scholarshipApply, .scholarshipPending, .scholarshipAccepted:
                 .plans
             case .history, .transaction, .conversation, .statementImport, .importReview: .record
-            case .record, .recordDrafts, .recordManual, .recordScan, .recordQuota, .recordVoice: .chat
+            case .record, .recordDrafts, .recordManual, .recordScan, .recordQuota, .recordVoice, .crisisSignal,
+                .checkInChat:
+                .chat
             case .care, .careOffline, .careHelp, .trustedMessage, .trustedMessageNoRecipient: .care
             case .debtEmergency, .harshCollection, .illegalLender, .unresolvedComplaint, .payoffOffer: .debtEmergency
             }
