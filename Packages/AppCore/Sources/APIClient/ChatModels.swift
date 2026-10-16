@@ -134,13 +134,13 @@ package struct MessageSentDTO: Hashable, Sendable {
     /** The quota ran out: show Kuota AI; the message is kept. */
     package let quotaExhausted: Bool
     /** The usage after this send. */
-    package let usage: Usage
+    package let usage: UsageDTO
 
     init(_ sent: Components.Schemas.ChatMessageSent) throws {
         person = try ChatMessageDTO(sent.person)
         reply = try sent.reply.map { try ChatMessageDTO($0.value1) }
         quotaExhausted = sent.quotaExhausted
-        usage = Usage(sent.usage)
+        usage = UsageDTO(sent.usage)
     }
 }
 

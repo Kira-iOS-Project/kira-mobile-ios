@@ -11897,6 +11897,116 @@
         }
       }
     },
+    "problem.AUTH_CODE_ATTEMPTS_EXCEEDED" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kode ini sudah terlalu sering dicoba. Minta kode baru, ya."
+          }
+        }
+      }
+    },
+    "problem.AUTH_CODE_EXPIRED" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kodenya sudah kedaluwarsa. Minta kode baru, ya."
+          }
+        }
+      }
+    },
+    "problem.AUTH_CODE_INVALID" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kodenya belum cocok. Periksa lagi emailmu, ya."
+          }
+        }
+      }
+    },
+    "problem.AUTH_CODE_RATE_LIMITED" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kode sudah beberapa kali dikirim. Tunggu sebentar, lalu minta lagi."
+          }
+        }
+      }
+    },
+    "problem.AUTH_REFRESH_INVALID" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sesimu sudah berakhir. Masuk lagi untuk melanjutkan."
+          }
+        }
+      }
+    },
+    "problem.AUTH_UNAUTHENTICATED" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sesimu sudah berakhir. Masuk lagi untuk melanjutkan."
+          }
+        }
+      }
+    },
+    "problem.CHAT_AI_DISABLED" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira AI sedang nonaktif. Kamu tetap bisa mencatat manual."
+          }
+        }
+      }
+    },
+    "problem.CHAT_DRAFTS_NOT_PENDING" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Draf ini sudah disimpan atau dibatalkan."
+          }
+        }
+      }
+    },
+    "problem.CHAT_MESSAGE_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pesan ini sudah tidak ada."
+          }
+        }
+      }
+    },
+    "problem.EMAIL_DELIVERY_FAILED" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email belum bisa dikirim sekarang. Coba lagi sebentar lagi."
+          }
+        }
+      }
+    },
     "problem.HTTP_ERROR" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -11904,6 +12014,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Permintaanmu belum bisa diproses. Coba lagi sebentar lagi."
+          }
+        }
+      }
+    },
+    "problem.IMPORT_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impor ini sudah tidak ada. Coba unggah lagi, ya."
+          }
+        }
+      }
+    },
+    "problem.IMPORT_RANGE_TOO_LONG" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mutasi ini lebih dari 3 bulan. Pilih rentang yang lebih pendek, ya."
+          }
+        }
+      }
+    },
+    "problem.IMPORT_ROW_UNKNOWN" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada baris yang tidak dikenali. Coba unggah lagi, ya."
           }
         }
       }
@@ -11926,6 +12069,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kira sedang tidak bisa dihubungi. Coba lagi sebentar lagi."
+          }
+        }
+      }
+    },
+    "problem.PLAN_FEATURE_UNAVAILABLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fitur ini ada di paket lain. Lihat pilihan paket, ya."
+          }
+        }
+      }
+    },
+    "problem.RECEIPT_TOTAL_MISMATCH" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jumlah item belum sama dengan totalnya. Periksa lagi, ya."
           }
         }
       }
@@ -11959,6 +12124,94 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fitur ini belum tersedia di versi aplikasimu. Coba perbarui Kira."
+          }
+        }
+      }
+    },
+    "problem.SCHOLARSHIP_APPLICATION_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak ada pendaftaran yang sedang berjalan."
+          }
+        }
+      }
+    },
+    "problem.SCHOLARSHIP_NOT_ELIGIBLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu belum bisa mendaftar Beasiswa Kira saat ini."
+          }
+        }
+      }
+    },
+    "problem.SCORE_NOT_AVAILABLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Score muncul setelah kamu menjawab Cek Kesehatan."
+          }
+        }
+      }
+    },
+    "problem.SUBSCRIPTION_NOT_CANCELLABLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paket dari Beasiswa Kira berakhir sendiri, tidak perlu dibatalkan."
+          }
+        }
+      }
+    },
+    "problem.SUBSCRIPTION_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu sedang memakai Kira Gratis."
+          }
+        }
+      }
+    },
+    "problem.TRANSACTION_BATCH_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catatan ini sudah tidak ada."
+          }
+        }
+      }
+    },
+    "problem.TRANSACTION_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaksi ini sudah tidak ada."
+          }
+        }
+      }
+    },
+    "problem.TRANSACTION_UNDO_EXPIRED" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Waktu untuk mengurungkan sudah lewat. Kamu masih bisa mengubahnya di Riwayat."
           }
         }
       }
