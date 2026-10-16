@@ -45,6 +45,8 @@ package final class RecordModel {
     package var scanner: ReceiptScanModel?
     /** The voice panel, while it is open. */
     package internal(set) var voice: VoiceInputModel?
+    /** Kira Peduli in the chat: the crisis reply, the help sheet, the check-in (PED-02, PED-05, PED-06). */
+    package let care: CareChatModel
     /** Where Catat sends the person outside itself: Riwayat, Paket, Kira Peduli. */
     package var onOpen: (AppRoute) -> Void = { _ in }
     /** What Catat reaches outside itself for; the scanner's view draws the camera's preview from it. */
@@ -58,13 +60,18 @@ package final class RecordModel {
     /** Catat with what it reaches outside itself for. */
     package init(dependencies: RecordDependencies) {
         self.dependencies = dependencies
+        care = CareChatModel(
+            service: dependencies.checkIns, detector: dependencies.crisis, clock: dependencies.clock,
+            makeId: dependencies.makeId)
+        care.onOpen = { [weak self] route in self?.onOpen(route) }
+        care.onFocusComposer = { [weak self] in self?.continueChat() }
     }
 
     /** The loaded profile, or nil. */
     package var profile: RecordProfile? { phase.value }
 
     /** The chat's rows, oldest first. */
-    package var rows: [ChatRow] { ChatTimeline.rows(of: messages, undoable: undoable) }
+    package var rows: [ChatRow] { ChatTimeline.rows(of: messages, undoable: undoable, care: care.entries) }
 
     /** Whether a page before the oldest message is waiting. */
     package var hasOlder: Bool { nextCursor != nil }
@@ -82,7 +89,9 @@ package final class RecordModel {
             phase = .loaded(loadedProfile)
         } catch {
             phase = .failed(error as? AppProblem ?? AppProblem())
+            return
         }
+        await care.opened(name: profile?.displayName ?? "")
     }
 
     /** The page before the oldest message, when the person scrolls to the top. */

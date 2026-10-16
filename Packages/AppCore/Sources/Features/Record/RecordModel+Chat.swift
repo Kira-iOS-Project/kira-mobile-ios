@@ -9,18 +9,23 @@ extension RecordModel {
     }
 
     /**
-     Reads the drafts on the device, then sends the text with them. The message is kept even when
+     Answers a crisis signal on the device, or reads the drafts on the device, then sends the text with them. The message is kept even when
      the month's AI messages are used up: the quota sheet then shows instead of a reply (CAT-09).
      */
     func send(_ rawText: String, method: InputMethod, voiceSeconds: Int?) async {
         let text = rawText.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty, !isSending, let profile else { return }
+        isSending = true
+        defer { isSending = false }
+        /** A crisis signal is answered on the device: the message is never sent or read (PED-02). */
+        if await care.intercept(text, allowsModel: profile.aiEnabled) {
+            if method == .keyboard { composerText = "" }
+            return
+        }
         guard profile.aiEnabled else {
             showsAIOff = true
             return
         }
-        isSending = true
-        defer { isSending = false }
         if method == .keyboard { composerText = "" }
         let clientId = retry.flatMap { $0.text == text ? $0.clientId : nil } ?? dependencies.makeId()
         let read = await dependencies.reader.read(text, at: dependencies.clock.now)
