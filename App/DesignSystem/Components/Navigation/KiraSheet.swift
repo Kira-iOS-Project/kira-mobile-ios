@@ -25,8 +25,23 @@ extension View {
     ) -> some View {
         kiraCover(isPresented: isPresented) { onGone in
             SheetCover(
-                isPresented: isPresented, title: title, subtitle: subtitle, top: top, leaf: leaf, onGone: onGone,
-                content: content)
+                isPresented: isPresented, title: title, subtitle: subtitle, top: top, leaf: leaf, showsHeader: true,
+                onGone: onGone, content: content)
+        }
+    }
+
+    /**
+     A sheet without a header (`.k-sheet` with only a `label`, Tautan Keluar): the grabber, then the
+     content, which carries its own heading and buttons; `label` names the sheet for VoiceOver.
+     */
+    func kiraSheet<Content: View>(
+        isPresented: Binding<Bool>, label: LocalizedStringResource, top: CGFloat? = nil,
+        @ViewBuilder content: @escaping () -> Content
+    ) -> some View {
+        kiraCover(isPresented: isPresented) { onGone in
+            SheetCover(
+                isPresented: isPresented, title: label, subtitle: nil, top: top, leaf: nil, showsHeader: false,
+                onGone: onGone, content: content)
         }
     }
 }
@@ -38,6 +53,7 @@ private struct SheetCover<Content: View>: View {
     let subtitle: LocalizedStringResource?
     let top: CGFloat?
     let leaf: KiraLeaf?
+    let showsHeader: Bool
     let onGone: () -> Void
     @ViewBuilder let content: () -> Content
     @State private var isShown = false
@@ -95,7 +111,7 @@ private struct SheetCover<Content: View>: View {
         VStack(spacing: 0) {
             VStack(spacing: 0) {
                 Capsule().fill(.lineStrong).opacity(0.5).frame(width: 36, height: 5).padding(.bottom, 6)
-                header.padding(.bottom, KiraSpacing.space4)
+                if showsHeader { header.padding(.bottom, KiraSpacing.space4) }
             }
             .contentShape(Rectangle())
             .gesture(dragToClose)
@@ -118,6 +134,7 @@ private struct SheetCover<Content: View>: View {
                 .ignoresSafeArea(edges: .bottom)
         }
         .accessibilityElement(children: .contain)
+        .sheetLabel(showsHeader ? nil : title)
         .accessibilityAction(.escape) { isPresented = false }
     }
 
@@ -165,6 +182,18 @@ private struct SheetCover<Content: View>: View {
                 drag = 0
                 onGone()
             }
+        }
+    }
+}
+
+extension View {
+    /** Names a header-less sheet for VoiceOver; a sheet with a header is named by its title. */
+    @ViewBuilder
+    fileprivate func sheetLabel(_ label: LocalizedStringResource?) -> some View {
+        if let label {
+            accessibilityLabel(Text(label))
+        } else {
+            self
         }
     }
 }

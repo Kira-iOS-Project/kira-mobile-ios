@@ -1,7 +1,7 @@
 /**
  The screen of each pushed route, by area: Score (score, indicator), Account (profile … deleteAccount,
  about … complaints), Plans (plans … scholarshipStatus). "Cek Ulang" (`healthCheck`) covers the
- shell instead (MainShell); Catat's and Riwayat's routes stay empty for their own integration, and
+ shell instead (MainShell); Komunitas (`community`) is the dock's own section; Catat's and Riwayat's routes stay empty for their own integration, and
  an unavailable area never gets here.
  */
 import Features
@@ -29,7 +29,9 @@ struct RouteSlot: View {
         case .plans, .planDetail, .checkout, .subscription, .paymentMethod, .invoices, .treat, .scholarship,
             .scholarshipApply, .scholarshipStatus:
             PlansRoute(route: route, service: services.plans, onOpen: onOpen)
-        case .home, .record, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history, .transaction,
+        case .communityGroup(let id): GroupDetailScreen(groupID: id, service: services.community, onOpen: onOpen)
+        case .marketplace, .product, .submitProduct: EmptySlot()
+        case .home, .record, .community, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history, .transaction,
             .conversation, .importStatement, .unavailable:
             EmptySlot()
         }

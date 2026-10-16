@@ -3,20 +3,23 @@ import Domain
 import Observation
 
 /**
- Laporkan Grup (KOM-05, KOM-05d): one reason, a story that "Lainnya" requires, and "Kirim Laporan".
- Sent shows "Laporan Terkirim" (KOM-05b); a dropped connection shows "Laporan Belum Terkirim"
- (KOM-05c) with Coba Lagi, and what was typed stays.
+ Laporkan Grup's form (KOM-05, KOM-05d): one reason, a story that "Lainnya" requires, and the send.
+ Detail Grup owns it, so what was typed survives the sheet closing on a failure.
  */
 @MainActor @Observable
 package final class GroupReportModel {
+    /** How a send ended. */
+    package enum Outcome: Equatable, Sendable {
+        /** The report reached the moderation team. */
+        case sent
+        /** It did not; the report stays as typed. */
+        case failed(CommunityFailure)
+    }
+
     /** The report as filled in. */
     package var report = GroupReport()
     /** Whether the report is on its way. */
     package private(set) var isSending = false
-    /** Whether "Laporan Terkirim" is showing. */
-    package var showsSent = false
-    /** Why the last send failed, shown as a dialog; the report stays. */
-    package var failure: CommunityFailure?
     private var lastSendLostConnection = false
     private let groupID: String
     private let service: any CommunityService
@@ -32,29 +35,29 @@ package final class GroupReportModel {
         report.reason = reason
     }
 
-    /** "Kirim Laporan", and "Coba Lagi" on the failure dialog. */
-    package func send() async {
-        guard report.canSend, let reason = report.reason, !isSending else { return }
+    /** Sends the report; nil when it cannot be sent yet (no reason, a missing story) or one is on its way. */
+    package func send() async -> Outcome? {
+        guard report.canSend, let reason = report.reason, !isSending else { return nil }
         isSending = true
         defer { isSending = false }
         do {
             try await service.report(groupID: groupID, reason: reason, story: report.trimmedStory)
-            sent()
+            return sent()
         } catch let problem as AppProblem
             where problem.knownCode == .communityReportDuplicate && lastSendLostConnection
         {
             /** The send before landed and only its answer was lost: the report exists. */
-            sent()
+            return sent()
         } catch {
             let failure = CommunityFailure(error)
             lastSendLostConnection = failure == .connection
-            self.failure = failure
+            return .failed(failure)
         }
     }
 
-    private func sent() {
+    private func sent() -> Outcome {
         lastSendLostConnection = false
-        failure = nil
-        showsSent = true
+        report = GroupReport()
+        return .sent
     }
 }

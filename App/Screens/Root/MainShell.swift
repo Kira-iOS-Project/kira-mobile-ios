@@ -26,6 +26,12 @@ struct MainShell: View {
             }
             .tag(MainSection.record)
             .toolbar(.hidden, for: .tabBar)
+            NavigationStack(path: $navigation.communityPath) {
+                CommunitySlot(onOpen: navigation.open)
+                    .navigationDestination(for: AppRoute.self, destination: destination)
+            }
+            .tag(MainSection.community)
+            .toolbar(.hidden, for: .tabBar)
         }
         .safeAreaInset(edge: .bottom, spacing: 0) {
             if navigation.showsDock {
@@ -59,10 +65,10 @@ struct MainShell: View {
         Binding(get: { navigation.section }, set: { navigation.select($0) })
     }
 
-    /** The dock's selection: Beranda while Catat is open too, as the ring marks Catat. */
+    /** The dock's selection: Komunitas in its section, else Beranda (also while the ring marks Catat). */
     private var tabBinding: Binding<KiraTab> {
         Binding(
-            get: { .home },
+            get: { navigation.section == .community ? .community : .home },
             set: { tab in
                 switch tab {
                 case .home: navigation.select(.home)
