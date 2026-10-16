@@ -28,7 +28,7 @@ package final class ProductModel {
         do {
             phase = .loaded(try await service.product(id: id))
         } catch {
-            phase = .failed(error as? AppProblem ?? AppProblem())
+            phase = .failed(AppProblem(error))
         }
     }
 }
