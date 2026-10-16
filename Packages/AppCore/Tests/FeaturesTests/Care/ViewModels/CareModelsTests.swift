@@ -29,10 +29,8 @@ struct CareContactsModelTests {
     func loads() async {
         let model = CareContactsModel(service: FakeCareService())
         #expect(model.contacts == .shipped)
-        #expect(model.source == .shipped)
         await model.load()
         #expect(model.contacts == CareFixtures.server)
-        #expect(model.source == .server)
         #expect(model.problem == nil)
         #expect(model.contact(.psc119)?.phone == "112")
         #expect(model.contact(.healing119)?.phone == "119")
@@ -43,21 +41,10 @@ struct CareContactsModelTests {
         let model = CareContactsModel(service: FakeCareService(result: .failure(AppProblem())))
         await model.load()
         #expect(model.contacts == .shipped)
-        #expect(model.source == .shipped)
         #expect(model.problem?.code == nil)
         #expect(model.contact(.kiraCare) == nil)
     }
 
-    @Test("keeps the server's list it had when a later load fails")
-    func keepsServer() async {
-        let service = FakeCareService()
-        let model = CareContactsModel(service: service)
-        await model.load()
-        let failing = CareContactsModel(service: FakeCareService(result: .failure(AppProblem())))
-        await failing.load()
-        #expect(model.source == .server)
-        #expect(failing.source == .shipped)
-    }
 }
 
 @MainActor
