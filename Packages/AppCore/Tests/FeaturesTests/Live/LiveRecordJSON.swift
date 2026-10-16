@@ -19,7 +19,7 @@ let liveMeJSON =
     + #""debtAccountCount":0,"aiEnabled":true,"weeklySummaryEnabled":false}"#
 
 let liveDraftJSON =
-    #"{"id":"d-1","type":"expense","name":"Kopi Susu","amount":25000,"category":"coffee","#
+    #"{"id":"d-1","type":"expense","name":"Iced Latte","amount":25000,"category":"coffee","#
     + #""occurredAt":"\#(liveNowJSON)","spanStart":0,"spanEnd":9}"#
 
 /** A Kira reply with every field a message can carry. */
@@ -31,7 +31,7 @@ let liveReplyJSON =
 
 /** A person's message with only the fields its kind uses. */
 let livePersonJSON =
-    #"{"id":"m-1","sender":"person","kind":"person_text","body":"kopi susu 25rb","#
+    #"{"id":"m-1","sender":"person","kind":"person_text","body":"iced latte 25rb","#
     + #""createdAt":"\#(liveNowJSON)","replyToId":null,"drafts":null,"draftStatus":null,"parser":null,"#
     + #""inputMethod":null,"batchId":null,"transactionIds":null,"committedAt":null,"itemCount":null,"#
     + #""remaining":null,"perDay":null}"#

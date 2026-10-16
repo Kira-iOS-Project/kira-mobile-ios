@@ -52,10 +52,10 @@ struct LiveRecordServiceTests {
     func sends() async throws {
         let (api, transport) = KiraAPI.canned(status: 201, json: liveSentJSON)
         let draft = DraftInput(
-            type: .expense, name: "Kopi Susu", amount: 25_000, category: .coffee, occurredAt: liveNow, spanStart: 0,
+            type: .expense, name: "Iced Latte", amount: 25_000, category: .coffee, occurredAt: liveNow, spanStart: 0,
             spanEnd: 9)
         let message = OutgoingMessage(
-            clientId: "c-1", text: "kopi susu 25rb", inputMethod: .voice, voiceSeconds: 4, parser: .onDeviceModel,
+            clientId: "c-1", text: "iced latte 25rb", inputMethod: .voice, voiceSeconds: 4, parser: .onDeviceModel,
             drafts: [draft])
 
         let result = try await LiveRecordService(api: api).send(message)

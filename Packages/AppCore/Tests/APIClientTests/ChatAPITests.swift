@@ -7,7 +7,7 @@ import Testing
 @testable import APIClient
 
 private let draft = DraftInputDTO(
-    type: .expense, name: "Kopi Susu", amount: 25_000, category: .coffee, occurredAt: catatNow, spanStart: 0,
+    type: .expense, name: "Iced Latte", amount: 25_000, category: .coffee, occurredAt: recordNow, spanStart: 0,
     spanEnd: 9)
 private let sentJSON = #"{"person":\#(personJSON),"reply":\#(replyJSON),"quotaExhausted":false,"usage":\#(usageJSON)}"#
 
@@ -31,11 +31,11 @@ struct ChatAPITests {
         #expect(reply.parser == .slangRules)
         #expect(reply.inputMethod == .keyboard)
         #expect(reply.transactionIds == ["t-1"])
-        #expect(reply.committedAt == catatNow)
+        #expect(reply.committedAt == recordNow)
         #expect(reply.remaining == 1_840_000)
         #expect(reply.perDay == 184_000)
         #expect(reply.drafts?.first?.category == .coffee)
-        #expect(reply.drafts?.first?.occurredAt == catatNow)
+        #expect(reply.drafts?.first?.occurredAt == recordNow)
         let sent = try #require(await transport.request)
         #expect(sent.path.hasSuffix("chat/messages?before=c-0&limit=10"))
     }
@@ -44,7 +44,7 @@ struct ChatAPITests {
     func sendsMessage() async throws {
         let (api, transport) = KiraAPI.canned(status: 201, json: sentJSON)
         let message = ChatMessageInputDTO(
-            clientId: "c-1", text: "kopi susu 25rb", inputMethod: .voice, voiceSeconds: 4, parser: .slangRules,
+            clientId: "c-1", text: "iced latte 25rb", inputMethod: .voice, voiceSeconds: 4, parser: .slangRules,
             drafts: [draft])
 
         let result = try await api.sendChatMessage(message)
@@ -57,7 +57,7 @@ struct ChatAPITests {
         let body = try decodeSent(Components.Schemas.ChatMessageInput.self, from: sent)
         #expect(body.inputMethod == .voice)
         #expect(body.voiceSeconds == 4)
-        #expect(body.drafts.first?.occurredAt == catatNow)
+        #expect(body.drafts.first?.occurredAt == recordNow)
         #expect(body.drafts.first?._type == .expense)
     }
 
@@ -67,7 +67,7 @@ struct ChatAPITests {
         let (api, _) = KiraAPI.canned(status: 201, json: json)
 
         let result = try await api.sendChatMessage(
-            .init(clientId: "c-1", text: "kopi", parser: .onDeviceModel, drafts: []))
+            .init(clientId: "c-1", text: "latte", parser: .onDeviceModel, drafts: []))
 
         #expect(result.reply == nil)
         #expect(result.quotaExhausted)
@@ -79,7 +79,7 @@ struct ChatAPITests {
         let items = [ReceiptItemDTO(name: "Roti", amount: 12_000, category: .food)]
 
         _ = try await api.sendReceipt(
-            clientId: "c-2", storeName: "Indomaret", occurredAt: catatNow, total: 12_000, items: items)
+            clientId: "c-2", storeName: "Indomaret", occurredAt: recordNow, total: 12_000, items: items)
 
         let body = try decodeSent(Components.Schemas.ReceiptInput.self, from: try #require(await transport.request))
         #expect(body.storeName == "Indomaret")
@@ -92,7 +92,7 @@ struct ChatAPITests {
         let items = [ReceiptItemDTO(name: "Gaji", amount: 1, category: .salary)]
 
         await #expect(throws: AppProblem()) {
-            _ = try await api.sendReceipt(clientId: "c", storeName: "x", occurredAt: catatNow, total: 1, items: items)
+            _ = try await api.sendReceipt(clientId: "c", storeName: "x", occurredAt: recordNow, total: 1, items: items)
         }
         #expect(await transport.requests.isEmpty)
     }
@@ -101,7 +101,7 @@ struct ChatAPITests {
     func editsAndCommits() async throws {
         let (editAPI, editTransport) = KiraAPI.canned(json: replyJSON)
         let edit = DraftItemDTO(
-            id: "d-1", type: .income, name: "Bonus", amount: 1, category: .bonus, occurredAt: catatNow)
+            id: "d-1", type: .income, name: "Bonus", amount: 1, category: .bonus, occurredAt: recordNow)
 
         let edited = try await editAPI.updateChatDrafts(messageId: "m-2", drafts: [edit])
 
@@ -133,7 +133,7 @@ struct ChatAPITests {
             _ = try await $0.sendChatMessage(.init(clientId: "c", text: "t", parser: .slangRules, drafts: [draft]))
         }
         + failureCases("sendReceipt", statuses: [400, 401, 403, 422]) {
-            _ = try await $0.sendReceipt(clientId: "c", storeName: "s", occurredAt: catatNow, total: 1, items: [])
+            _ = try await $0.sendReceipt(clientId: "c", storeName: "s", occurredAt: recordNow, total: 1, items: [])
         }
         + failureCases("updateChatDrafts", statuses: [401, 404, 409, 422]) {
             _ = try await $0.updateChatDrafts(messageId: "m", drafts: [])
