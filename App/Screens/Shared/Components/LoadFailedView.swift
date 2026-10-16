@@ -22,7 +22,7 @@ struct LoadFailedView: View {
                 .multilineTextAlignment(.center)
             if problem.showsReference {
                 /** The reference is data a person quotes to support, shown as is. */
-                Text(problem.reference).kiraFont(.caption).foregroundStyle(.inkMuted)
+                Text("problem.reference \(problem.reference)").kiraFont(.caption).foregroundStyle(.inkMuted)
             }
             KiraButton("loadFailed.retry", action: retry).icon(.refresh)
         }

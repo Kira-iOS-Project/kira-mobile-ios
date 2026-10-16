@@ -17,23 +17,41 @@ struct AppProblemStatusTests {
         }
     }
 
-    @Test("a proxy's HTML 404 reads as a missing route, with no UNKNOWN reference")
+    @Test("a proxy's HTML 404 reads as Kira unreachable, with no reference")
     func htmlNotFound() async {
         let problem = await problem(status: 404, body: "<html>Not Found</html>", contentType: "text/html")
-        #expect(problem?.knownCode == .routeNotFound)
+        #expect(problem == .serviceUnavailable)
+        #expect(problem?.messageKey == "problem.serviceUnavailable")
         #expect(problem?.showsReference == false)
     }
 
-    @Test("an empty 503 and a JSON 502 read as Kira being unreachable")
+    @Test("an empty 503, a JSON 502, a 504 and a 500 page read as Kira unreachable")
     func serverDown() async {
-        #expect(await problem(status: 503)?.knownCode == .metaHealthUnhealthy)
-        #expect(await problem(status: 502, body: #"{"error":"bad gateway"}"#, contentType: "application/json")?.knownCode
-            == .metaHealthUnhealthy)
+        #expect(await problem(status: 503) == .serviceUnavailable)
+        let json = await problem(status: 502, body: #"{"error":"bad"}"#, contentType: "application/json")
+        #expect(json == .serviceUnavailable)
+        #expect(await problem(status: 504) == .serviceUnavailable)
+        #expect(await problem(status: 500, body: "oops", contentType: "text/plain") == .serviceUnavailable)
     }
 
-    @Test("a gateway timeout and any other bare status get their own code")
+    @Test("a bare 429 asks to wait, a bare 401 is the session's, anything else is generic")
     func otherStatuses() async {
-        #expect(await problem(status: 504)?.knownCode == .requestTimeout)
-        #expect(await problem(status: 401, body: "nope", contentType: "text/plain")?.knownCode == .httpError)
+        let limited = await problem(status: 429)
+        #expect(limited == .rateLimited)
+        #expect(limited?.messageKey == "problem.rateLimited")
+        #expect(await problem(status: 401, body: "nope", contentType: "text/plain")?.knownCode == .authUnauthenticated)
+        let other = await problem(status: 418, body: "<p>teapot</p>", contentType: "text/html")
+        #expect(other == AppProblem())
+        #expect(other?.messageKey == "problem.unknown")
+        #expect(other?.showsReference == false)
+    }
+
+    @Test("the reference shows only for an unknown code with a real request id")
+    func referenceOnlyWithAnId() {
+        #expect(AppProblem(code: "NEW_CODE", requestId: "0123456789").showsReference)
+        #expect(!AppProblem(code: "NEW_CODE").showsReference)
+        #expect(!AppProblem().showsReference)
+        #expect(!AppProblem(code: "INTERNAL_ERROR", requestId: "r-1").showsReference)
+        #expect(!AppProblem.connectionLost.showsReference)
     }
 }

@@ -29,9 +29,7 @@ struct IndicatorScreen: View {
             case .loaded(let detail):
                 IndicatorContent(detail: detail, onOpen: onOpen) { dismiss() }
             case .empty:
-                LoadFailedView(
-                    title: "indicator.failed", problem: AppProblem(code: ProblemCode.scoreNotAvailable.rawValue)
-                ) { reload() }
+                LoadFailedView(title: "indicator.failed", problem: AppProblem()) { reload() }
             case .failed(let problem):
                 LoadFailedView(title: "indicator.failed", problem: problem) { reload() }
             }
