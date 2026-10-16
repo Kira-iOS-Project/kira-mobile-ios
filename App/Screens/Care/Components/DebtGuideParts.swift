@@ -99,6 +99,7 @@ struct DebtGuideSteps: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(steps[index].title).font(.callout.weight(.semibold)).kiraLineHeight(21, size: 16)
                     .foregroundStyle(.ink)
+                    .fixedSize(horizontal: false, vertical: true)
                 Text(steps[index].detail).font(.subheadline).kiraLineHeight(19, size: 14).foregroundStyle(.inkMuted)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
