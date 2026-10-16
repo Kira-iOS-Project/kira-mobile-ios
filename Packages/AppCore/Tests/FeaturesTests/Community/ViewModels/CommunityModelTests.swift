@@ -1,5 +1,6 @@
 import APIClient
 import Domain
+import Foundation
 import Testing
 
 @testable import Features
@@ -33,12 +34,12 @@ struct CommunityModelTests {
         }
     }
 
-    @Test("offline shows the generic problem, and Coba Lagi loads; a refusal shows its own problem")
+    @Test("offline shows the connection's problem, and Coba Lagi loads; a refusal shows its own problem")
     func failures() async {
         let offline = CommunityModel(
-            service: FakeCommunityService(failures: ["directory": [FakeCommunityService.Offline()]]))
+            service: FakeCommunityService(failures: ["directory": [URLError(.notConnectedToInternet)]]))
         await offline.load()
-        #expect(offline.phase.problem == AppProblem())
+        #expect(offline.phase.problem == .connectionLost)
         await offline.load()
         #expect(offline.groups.count == 1)
         let refused = CommunityModel(
@@ -50,7 +51,7 @@ struct CommunityModelTests {
     @Test("a failed reload (pull to refresh) keeps the groups on screen")
     func failedReload() async {
         let model = CommunityModel(
-            service: FakeCommunityService(failures: ["directory": [nil, FakeCommunityService.Offline()]]))
+            service: FakeCommunityService(failures: ["directory": [nil, URLError(.notConnectedToInternet)]]))
         await model.load()
         await model.load()
         #expect(model.groups.count == 1)
@@ -58,8 +59,9 @@ struct CommunityModelTests {
 
     @Test("a failure stands for the connection or the API's problem")
     func failure() {
-        #expect(CommunityFailure(FakeCommunityService.Offline()) == .connection)
-        #expect(CommunityFailure.connection.screenProblem == AppProblem())
+        #expect(CommunityFailure(URLError(.notConnectedToInternet)) == .connection)
+        #expect(CommunityFailure.connection.screenProblem == .connectionLost)
+        #expect(CommunityFailure(CocoaError(.coderReadCorrupt)) == .problem(AppProblem()))
         let problem = communityProblem(.communityGroupNotFound)
         #expect(CommunityFailure(problem) == .problem(problem))
         #expect(CommunityFailure(problem).screenProblem == problem)

@@ -11,12 +11,12 @@ import Foundation
 actor FakeCommunityService: CommunityService {
     /** A call the screens made. */
     enum Call: Equatable {
-        case directory, group(String), acceptRules(String), join(String)
+        case directory
+        case group(String)
+        case acceptRules(String)
+        case join(String)
         case report(String, GroupReportReason, String?)
     }
-
-    /** An error that is not a problem: no answer came. */
-    struct Offline: Error {}
 
     static let summary = CommunityGroupSummary(
         id: "g-1", name: "Lunas Bareng Jakarta", category: .debtFree, platform: .whatsapp, memberCount: 1240,

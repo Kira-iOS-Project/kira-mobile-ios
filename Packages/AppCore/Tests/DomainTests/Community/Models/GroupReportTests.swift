@@ -27,8 +27,7 @@ struct GroupReportTests {
         let report = GroupReport(reason: .inappropriate, story: String(repeating: "a", count: 501))
         #expect(!report.canSend)
         #expect(GroupReport(reason: .inappropriate, story: String(repeating: "a", count: 500)).canSend)
-        #expect(GroupReportReason.allCases.map(\.rawValue) == [
-            "default_invite", "guaranteed_profit", "scam", "data_or_jockey", "inappropriate", "other",
-        ])
+        let values = ["default_invite", "guaranteed_profit", "scam", "data_or_jockey", "inappropriate", "other"]
+        #expect(GroupReportReason.allCases.map(\.rawValue) == values)
     }
 }

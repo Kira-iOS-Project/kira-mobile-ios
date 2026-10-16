@@ -1,5 +1,6 @@
 import APIClient
 import Domain
+import Foundation
 import Testing
 
 @testable import Features
@@ -60,7 +61,7 @@ struct GroupReportModelTests {
 
     @Test("offline fails as a connection failure; Coba Lagi sends the same report again")
     func offlineThenRetry() async {
-        await service.answer(with: FakeCommunityService.Offline())
+        await service.answer(with: URLError(.notConnectedToInternet))
         let model = model(reason: .guaranteedProfit, story: "Janji 20% sebulan.")
         #expect(await model.send() == .failed(.connection))
         #expect(model.report == GroupReport(reason: .guaranteedProfit, story: "Janji 20% sebulan."))
@@ -72,7 +73,7 @@ struct GroupReportModelTests {
 
     @Test("a duplicate right after a lost answer means the first send landed: sent")
     func duplicateAfterLostAnswer() async {
-        await service.answer(with: FakeCommunityService.Offline())
+        await service.answer(with: URLError(.notConnectedToInternet))
         let model = model(reason: .scam)
         #expect(await model.send() == .failed(.connection))
         await service.answer(with: AppProblem(code: "COMMUNITY_REPORT_DUPLICATE"))
@@ -85,7 +86,7 @@ struct GroupReportModelTests {
         let duplicate = AppProblem(code: "COMMUNITY_REPORT_DUPLICATE")
         let model = model(reason: .scam)
         #expect(await model.send() == .failed(.problem(duplicate)))
-        await service.answer(with: FakeCommunityService.Offline())
+        await service.answer(with: URLError(.notConnectedToInternet))
         #expect(await model.send() == .failed(.connection))
         await service.answer(with: AppProblem(code: "VALIDATION_FAILED"))
         #expect(await model.send() == .failed(.problem(AppProblem(code: "VALIDATION_FAILED"))))
@@ -115,8 +116,8 @@ private actor ReportOnlyService: CommunityService {
         if let error { throw error }
     }
 
-    func directory() throws -> CommunityDirectory { throw FakeCommunityService.Offline() }
-    func group(id _: String) throws -> CommunityGroup { throw FakeCommunityService.Offline() }
-    func acceptRules(version _: String) throws { throw FakeCommunityService.Offline() }
-    func join(groupID _: String) throws -> GroupInvite { throw FakeCommunityService.Offline() }
+    func directory() throws -> CommunityDirectory { throw URLError(.notConnectedToInternet) }
+    func group(id _: String) throws -> CommunityGroup { throw URLError(.notConnectedToInternet) }
+    func acceptRules(version _: String) throws { throw URLError(.notConnectedToInternet) }
+    func join(groupID _: String) throws -> GroupInvite { throw URLError(.notConnectedToInternet) }
 }

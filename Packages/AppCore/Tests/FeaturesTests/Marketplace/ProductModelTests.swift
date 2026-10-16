@@ -23,7 +23,7 @@ struct ProductModelTests {
             id: "lama", service: FakeMarketplaceService(detail: .success(MarketplaceFixtures.detail)))
         await gone.load()
         guard case .failed(let problem) = gone.phase else { return #expect(Bool(false)) }
-        #expect(problem.knownCode == nil && problem.code == "COMMUNITY_PRODUCT_NOT_FOUND")
+        #expect(problem.knownCode == .communityProductNotFound)
         let offline = ProductModel(id: "kelas-budgeting", service: OfflineMarketplaceService())
         await offline.load()
         guard case .failed(let generic) = offline.phase else { return #expect(Bool(false)) }

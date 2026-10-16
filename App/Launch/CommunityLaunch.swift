@@ -5,6 +5,7 @@
  platform's own address; a failed report runs on a preview service whose connection drops.
  */
 #if DEBUG
+    import Domain
     import Features
     import SwiftUI
 

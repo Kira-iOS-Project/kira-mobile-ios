@@ -1,5 +1,6 @@
 import APIClient
 import Domain
+import Foundation
 import Testing
 
 @testable import Features
@@ -19,12 +20,13 @@ struct GroupDetailModelTests {
         #expect(model.phase.value?.summary.name == "Lunas Bareng Jakarta")
         let gone = await loaded(FakeCommunityService(failures: ["group": [communityProblem(.communityGroupNotFound)]]))
         #expect(gone.phase.problem?.knownCode == .communityGroupNotFound)
-        let offline = await loaded(FakeCommunityService(failures: ["group": [FakeCommunityService.Offline()]]))
-        #expect(offline.phase.problem == AppProblem())
+        let offline = await loaded(FakeCommunityService(failures: ["group": [URLError(.notConnectedToInternet)]]))
+        #expect(offline.phase.problem == .connectionLost)
         await model.load()
         #expect(model.phase.value != nil)
         await model.join()
-        let reloaded = await loaded(FakeCommunityService(failures: ["group": [nil, FakeCommunityService.Offline()]]))
+        let reloaded = await loaded(
+            FakeCommunityService(failures: ["group": [nil, URLError(.notConnectedToInternet)]]))
         await reloaded.load()
         #expect(reloaded.phase.value != nil)
     }
@@ -83,7 +85,7 @@ struct GroupDetailModelTests {
     @Test("a dropped join shows the dialog; Coba Lagi asks again and opens the link")
     func joinRetry() async {
         let model = await loaded(
-            FakeCommunityService(rulesAccepted: true, failures: ["join": [FakeCommunityService.Offline()]]))
+            FakeCommunityService(rulesAccepted: true, failures: ["join": [URLError(.notConnectedToInternet)]]))
         await model.join()
         #expect(model.failure?.failure == .connection && model.canRetry)
         await model.retry()
@@ -93,7 +95,7 @@ struct GroupDetailModelTests {
 
     @Test("a failed consent closes the sheet with the tick kept; Coba Lagi reopens it and sends again")
     func rulesRetry() async {
-        let service = FakeCommunityService(failures: ["acceptRules": [FakeCommunityService.Offline()]])
+        let service = FakeCommunityService(failures: ["acceptRules": [URLError(.notConnectedToInternet)]])
         let model = await loaded(service)
         await model.join()
         model.rulesAgreed = true

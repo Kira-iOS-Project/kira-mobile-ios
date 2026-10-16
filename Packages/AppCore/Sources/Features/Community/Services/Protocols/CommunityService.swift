@@ -26,18 +26,18 @@ package enum CommunityFailure: Equatable, Sendable {
     /** The API answered with this problem. */
     case problem(AppProblem)
 
-    /** The failure `error` stands for. */
+    /**
+     The failure `error` stands for, read as `AppProblem(_:)` reads it: the API's problem (also
+     wrapped by the client), no answer for a transport failure, else the generic problem.
+     */
     package init(_ error: any Error) {
-        if let problem = error as? AppProblem {
-            self = .problem(problem)
-        } else {
-            self = .connection
-        }
+        let problem = AppProblem(error)
+        self = problem.isConnectionLoss ? .connection : .problem(problem)
     }
 
-    /** The problem to show on a screen that could not load: the API's, or the generic one. */
+    /** The problem to show on a screen that could not load: the API's, or the connection's. */
     package var screenProblem: AppProblem {
         if case .problem(let problem) = self { return problem }
-        return AppProblem()
+        return .connectionLost
     }
 }

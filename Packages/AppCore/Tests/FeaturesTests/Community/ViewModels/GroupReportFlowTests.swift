@@ -1,5 +1,6 @@
 import APIClient
 import Domain
+import Foundation
 import Testing
 
 @testable import Features
@@ -34,7 +35,7 @@ struct GroupReportFlowTests {
 
     @Test("offline closes the sheet and keeps the report; Coba Lagi reopens it and sends again")
     func offlineRetry() async {
-        let service = FakeCommunityService(failures: ["report": [FakeCommunityService.Offline()]])
+        let service = FakeCommunityService(failures: ["report": [URLError(.notConnectedToInternet)]])
         let model = await model(service)
         model.reportForm.choose(.scam)
         await model.sendReport()
@@ -46,7 +47,7 @@ struct GroupReportFlowTests {
 
     @Test("Tutup on the failure drops the report as typed")
     func closeDrops() async {
-        let model = await model(FakeCommunityService(failures: ["report": [FakeCommunityService.Offline()]]))
+        let model = await model(FakeCommunityService(failures: ["report": [URLError(.notConnectedToInternet)]]))
         model.reportForm.choose(.scam)
         await model.sendReport()
         model.dismissFailure()
@@ -57,7 +58,7 @@ struct GroupReportFlowTests {
     func duplicateAfterLostAnswer() async {
         let model = await model(
             FakeCommunityService(failures: [
-                "report": [FakeCommunityService.Offline(), communityProblem(.communityReportDuplicate)]
+                "report": [URLError(.notConnectedToInternet), communityProblem(.communityReportDuplicate)]
             ]))
         model.reportForm.choose(.scam)
         await model.sendReport()
