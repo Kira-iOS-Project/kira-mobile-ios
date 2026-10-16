@@ -1,6 +1,7 @@
 /**
  PED's help screens for `ScreenLaunch`: Kira Peduli (online and offline, where the shipped contacts
- stand in), its sheet over a chat, and Kirim Pesan ke Layanan Kira.
+ stand in), its sheet over a chat, and Kirim Pesan ke Layanan Kira, with the sample Layanan Kira Peduli, and
+ without it (`trustedMessageNoRecipient`), as production shows until its number exists.
  */
 #if DEBUG
     import Features
@@ -15,6 +16,8 @@
                 case .careOffline: CareScreen(service: PreviewCareService(isOffline: true)) { _ in }
                 case .careHelp: CareHelpLaunch()
                 case .trustedMessage: TrustedMessageScreen(service: PreviewCareService())
+                case .trustedMessageNoRecipient:
+                    TrustedMessageScreen(service: PreviewCareService(listsKiraCare: false))
                 default: CareScreen(service: PreviewCareService()) { _ in }
                 }
             }

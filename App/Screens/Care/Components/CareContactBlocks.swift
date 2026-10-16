@@ -100,8 +100,14 @@ extension View {
     /** A long press offers Salin Nomor, which copies `number`: numbers are text to copy too. */
     func copiesNumber(_ number: String) -> some View {
         contextMenu {
-            Button { UIPasteboard.general.string = number } label: {
-                Label { Text("care.copyNumber") } icon: { KiraIcon(.copy) }
+            Button {
+                UIPasteboard.general.string = number
+            } label: {
+                Label {
+                    Text("care.copyNumber")
+                } icon: {
+                    KiraIcon(.copy)
+                }
             }
         }
     }
