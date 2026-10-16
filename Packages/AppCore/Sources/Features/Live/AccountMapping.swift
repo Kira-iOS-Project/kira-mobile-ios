@@ -7,9 +7,7 @@ extension AccountProfile {
     init(_ account: MeDTO) throws {
         self.init(
             id: account.id, email: account.email, displayName: account.displayName,
-            plan: AccountPlan(
-                id: account.plan.id, source: try account.plan.source.map { try Bridge.value($0) },
-                renewsOn: try account.plan.renewsOn.map { try Bridge.day($0).date }),
+            plan: AccountPlan(id: account.plan.id),
             usage: try Usage(account.usage), period: try Bridge.period(account.period),
             debtAccountCount: account.debtAccountCount, hidesBalances: account.hideBalances,
             aiEnabled: account.aiEnabled,
@@ -18,12 +16,9 @@ extension AccountProfile {
 }
 
 extension ConsentSettings {
-    /** The consents in force under the policy version. */
+    /** The consents in force. */
     init(_ consents: ConsentsDTO) throws {
         self.init(
-            policyVersion: consents.policyVersion,
-            items: try consents.items.map {
-                ConsentItem(purpose: try Bridge.value($0.purpose), granted: $0.granted, decidedAt: $0.decidedAt)
-            })
+            items: try consents.items.map { ConsentItem(purpose: try Bridge.value($0.purpose), granted: $0.granted) })
     }
 }

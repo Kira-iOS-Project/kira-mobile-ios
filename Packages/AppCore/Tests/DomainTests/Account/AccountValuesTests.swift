@@ -10,7 +10,7 @@ struct AccountValuesTests {
         let day = Date(timeIntervalSince1970: 0)
         return AccountProfile(
             id: "u1", email: email, displayName: name,
-            plan: AccountPlan(id: .plus, source: .scholarship, renewsOn: day),
+            plan: AccountPlan(id: .plus),
             usage: Usage(aiMessages: meter, receipts: meter, voiceSeconds: meter, resetsOn: CalendarDay(day)),
             period: PayPeriod(start: CalendarDay(day), end: CalendarDay(day), daysUntilPayday: 1), debtAccountCount: 0,
             hidesBalances: false, aiEnabled: true,
@@ -26,12 +26,10 @@ struct AccountValuesTests {
 
     @Test("core is always granted; the others follow their decision")
     func consents() {
-        let settings = ConsentSettings(
-            policyVersion: "1",
-            items: [
-                ConsentItem(purpose: .aiProcessing, granted: true),
-                ConsentItem(purpose: .weeklySummary, granted: false),
-            ])
+        let settings = ConsentSettings(items: [
+            ConsentItem(purpose: .aiProcessing, granted: true),
+            ConsentItem(purpose: .weeklySummary, granted: false),
+        ])
         #expect(settings.isGranted(.core))
         #expect(settings.isGranted(.aiProcessing))
         #expect(!settings.isGranted(.weeklySummary))

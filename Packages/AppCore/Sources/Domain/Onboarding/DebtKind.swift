@@ -15,12 +15,4 @@ package enum DebtKind: String, CaseIterable, Hashable, Sendable {
     case mortgage
     /** Pinjaman Keluarga. */
     case familyLoan = "family_loan"
-
-    /** Whether the consumer-debt indicator counts it. */
-    package var isConsumer: Bool {
-        switch self {
-        case .paylater, .onlineLoan, .creditCard: true
-        case .vehicle, .mortgage, .familyLoan: false
-        }
-    }
 }

@@ -20,7 +20,7 @@ package protocol PlansService: Sendable {
     /** `GET /billing/invoices`, newest first. */
     func invoices() async throws -> [Invoice]
     /** `POST /billing/gifts`: a Traktir Kira of `months` months of Kira Plus (simulated). */
-    func treat(months: Int, paymentMethod: PaymentMethod) async throws -> TreatGift
+    func treat(months: Int, paymentMethod: PaymentMethod) async throws
     /** `GET /scholarship`. */
     func scholarship() async throws -> ScholarshipOverview
     /** `POST /scholarship/applications`. */

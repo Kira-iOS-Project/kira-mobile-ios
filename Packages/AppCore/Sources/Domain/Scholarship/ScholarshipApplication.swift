@@ -14,14 +14,10 @@ package struct ScholarshipApplication: Hashable, Sendable {
         case withdrawn
     }
 
-    /** The application's id. */
-    package let id: String
     /** Where it stands. */
     package let status: Status
     /** What the person is facing, at least one. */
     package let situations: [ScholarshipSituation]
-    /** The short story, when the person wrote one. */
-    package let story: String?
     /** When it was sent. */
     package let submittedAt: Date
     /** The last day the review takes (three working days). */
@@ -35,13 +31,11 @@ package struct ScholarshipApplication: Hashable, Sendable {
 
     /** The application as the API sends it. */
     package init(
-        id: String, status: Status, situations: [ScholarshipSituation], story: String?, submittedAt: Date,
-        decideBy: CalendarDay, decision: Decision? = nil
+        status: Status, situations: [ScholarshipSituation], submittedAt: Date, decideBy: CalendarDay,
+        decision: Decision? = nil
     ) {
-        self.id = id
         self.status = status
         self.situations = situations
-        self.story = story
         self.submittedAt = submittedAt
         self.decideBy = decideBy
         decidedAt = decision?.decidedAt

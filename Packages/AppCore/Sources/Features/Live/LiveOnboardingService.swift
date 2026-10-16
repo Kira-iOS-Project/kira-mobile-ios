@@ -21,7 +21,7 @@ package struct LiveOnboardingService: OnboardingService {
     /** `POST /auth/code`. */
     package func requestCode(email: String) async throws -> CodeDelivery {
         let sent = try await api.requestSignInCode(email: email)
-        return CodeDelivery(expiresInSeconds: sent.expiresInSeconds, resendAfterSeconds: sent.resendAfterSeconds)
+        return CodeDelivery(resendAfterSeconds: sent.resendAfterSeconds)
     }
 
     /** `POST /auth/verify`, then the session starts on this device. */

@@ -8,11 +8,11 @@ struct ScholarshipOverviewTests {
     private func overview(_ status: ScholarshipApplication.Status?) -> ScholarshipOverview {
         let application = status.map {
             ScholarshipApplication(
-                id: "app-1", status: $0, situations: [.medicalCosts], story: "Butuh waktu.",
+                status: $0, situations: [.medicalCosts],
                 submittedAt: Date(timeIntervalSince1970: 0), decideBy: CalendarDay(year: 2026, month: 10, day: 21))
         }
         return ScholarshipOverview(
-            eligible: status == nil, ineligibleReason: status == nil ? nil : .hasOpenApplication, quotaRemaining: 42,
+            quotaRemaining: 42,
             quotaTotal: 60, application: application)
     }
 

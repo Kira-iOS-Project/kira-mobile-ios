@@ -10,14 +10,11 @@ nonisolated enum PreviewPlansData {
 
     static let terms = [
         PlanTerms(
-            id: .free, monthlyPrice: 0, yearlyPrice: 0, aiMessages: 30, receipts: 10, voiceSeconds: 0,
-            voiceAndImport: false),
+            id: .free, monthlyPrice: 0, yearlyPrice: 0, aiMessages: 30, receipts: 10),
         PlanTerms(
-            id: .young, monthlyPrice: 15_000, yearlyPrice: 150_000, aiMessages: 100, receipts: 40, voiceSeconds: 0,
-            voiceAndImport: false),
+            id: .young, monthlyPrice: 15_000, yearlyPrice: 150_000, aiMessages: 100, receipts: 40),
         PlanTerms(
-            id: .plus, monthlyPrice: 29_000, yearlyPrice: 290_000, aiMessages: 300, receipts: 150,
-            voiceSeconds: 10_800, voiceAndImport: true),
+            id: .plus, monthlyPrice: 29_000, yearlyPrice: 290_000, aiMessages: 300, receipts: 150),
     ]
 
     static let subscription = Subscription(
@@ -28,7 +25,7 @@ nonisolated enum PreviewPlansData {
 
     /** BeasiswaKiraDiterima: sent 16 October 2026 at 12.10 WIB, Kira Plus 19 October to 19 January. */
     static let acceptedApplication = ScholarshipApplication(
-        id: "app-preview", status: .accepted, situations: [.instalmentsPilingUp, .chasedByLender], story: nil,
+        status: .accepted, situations: [.instalmentsPilingUp, .chasedByLender],
         submittedAt: sentAt, decideBy: CalendarDay(year: 2026, month: 10, day: 21),
         decision: .init(
             decidedAt: CalendarDay(year: 2026, month: 10, day: 19),

@@ -23,7 +23,7 @@ struct OnboardingFlowModelTests {
         email.email = "dinda@email.com"
         await email.submit()
         #expect(!flow.showsSignUpEmail)
-        let delivery = CodeDelivery(expiresInSeconds: 600, resendAfterSeconds: 60)
+        let delivery = CodeDelivery(resendAfterSeconds: 60)
         #expect(flow.path == [.signUp, .code(email: "dinda@email.com", delivery: delivery)])
         let code = flow.makeCodeModel(email: "dinda@email.com", delivery: delivery)
         code.code = "381449"
@@ -51,7 +51,7 @@ struct OnboardingFlowModelTests {
         var outcome: OnboardingOutcome?
         let flow = flow(FakeOnboardingService(needsOnboarding: false)) { outcome = $0 }
         let code = flow.makeCodeModel(
-            email: "a@b.co", delivery: CodeDelivery(expiresInSeconds: 1, resendAfterSeconds: 1))
+            email: "a@b.co", delivery: CodeDelivery(resendAfterSeconds: 1))
         code.code = "381449"
         await code.verify()
         #expect(outcome == .signedIn)

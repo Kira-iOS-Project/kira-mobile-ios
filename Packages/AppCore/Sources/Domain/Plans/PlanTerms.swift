@@ -14,23 +14,14 @@ package struct PlanTerms: Hashable, Sendable {
     package let aiMessages: Int
     /** Receipts Kira reads a month. */
     package let receipts: Int
-    /** Seconds of voice input a month (Kira Plus only). */
-    package let voiceSeconds: Int
-    /** Whether the plan has voice input and bank statement import. */
-    package let voiceAndImport: Bool
 
     /** The terms as the API sends them. */
-    package init(
-        id: PlanID, monthlyPrice: Int, yearlyPrice: Int, aiMessages: Int, receipts: Int,
-        voiceSeconds: Int, voiceAndImport: Bool
-    ) {
+    package init(id: PlanID, monthlyPrice: Int, yearlyPrice: Int, aiMessages: Int, receipts: Int) {
         self.id = id
         self.monthlyPrice = monthlyPrice
         self.yearlyPrice = yearlyPrice
         self.aiMessages = aiMessages
         self.receipts = receipts
-        self.voiceSeconds = voiceSeconds
-        self.voiceAndImport = voiceAndImport
     }
 
     /** The price of one period. */

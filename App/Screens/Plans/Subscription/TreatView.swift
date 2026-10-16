@@ -43,7 +43,7 @@ struct TreatView: View {
     }
 
     private var showsThanks: Binding<Bool> {
-        Binding(get: { model.gift != nil }, set: { if !$0 { model.gift = nil } })
+        Binding(get: { model.isSent }, set: { if !$0 { model.isSent = false } })
     }
 
     @ViewBuilder private var content: some View {

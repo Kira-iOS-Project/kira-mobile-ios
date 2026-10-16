@@ -18,9 +18,7 @@ struct OnboardingValuesTests {
     @Test("consents start on; a delivery and a sign-in result keep their fields")
     func values() {
         #expect(ConsentChoices() == ConsentChoices(aiProcessing: true, weeklySummary: true))
-        let delivery = CodeDelivery(expiresInSeconds: 600, resendAfterSeconds: 60)
-        #expect(delivery.expiresInSeconds == 600)
-        #expect(delivery.resendAfterSeconds == 60)
+        #expect(CodeDelivery(resendAfterSeconds: 60).resendAfterSeconds == 60)
         #expect(SignInResult(needsOnboarding: true).needsOnboarding)
     }
 

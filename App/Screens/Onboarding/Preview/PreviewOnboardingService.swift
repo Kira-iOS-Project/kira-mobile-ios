@@ -10,7 +10,7 @@ import Foundation
 struct PreviewOnboardingService: OnboardingService {
     func requestCode(email _: String) async throws -> CodeDelivery {
         try await pause()
-        return CodeDelivery(expiresInSeconds: 600, resendAfterSeconds: 60)
+        return CodeDelivery(resendAfterSeconds: 60)
     }
 
     func verify(email _: String, code _: String) async throws -> SignInResult {

@@ -28,10 +28,7 @@ struct LiveAccountServiceTests {
         let (service, _) = try await service(["GET /api/me": ok(meJSON())])
         let profile = try await service.profile()
         #expect(profile.email == "dinda@email.com" && profile.displayName == "Dinda" && profile.debtAccountCount == 2)
-        #expect(
-            profile.plan
-                == AccountPlan(
-                    id: .plus, source: .scholarship, renewsOn: CalendarDay(year: 2027, month: 1, day: 16).date))
+        #expect(profile.plan == AccountPlan(id: .plus))
         #expect(profile.usage.aiMessages == UsageMeter(used: 3, limit: 30))
         #expect(profile.usage.resetsOn == CalendarDay(year: 2026, month: 11, day: 1))
         #expect(profile.period.end == CalendarDay(year: 2026, month: 10, day: 24))
@@ -60,9 +57,7 @@ struct LiveAccountServiceTests {
             "GET /api/me/consents": ok(consentsJSON), "PUT /api/me/consents": ok(consentsJSON),
         ])
         let consents = try await service.consents()
-        #expect(consents.policyVersion == "2026-10-15")
         #expect(consents.items.map(\.purpose) == [.core, .weeklySummary])
-        #expect(consents.items[0].decidedAt == Date(timeIntervalSince1970: 1_792_126_800))
         #expect(consents.items[1] == ConsentItem(purpose: .weeklySummary, granted: false))
         _ = try await service.updateConsents(aiProcessing: true, weeklySummary: false)
         #expect(await transport.sent.last?.json == ["aiProcessing": .bool(true), "weeklySummary": .bool(false)])

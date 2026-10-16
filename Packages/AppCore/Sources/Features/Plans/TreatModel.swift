@@ -12,8 +12,8 @@ package final class TreatModel {
     package var months = 3
     /** Whether the request is on its way. */
     package private(set) var isSending = false
-    /** The gift once sent: the thank-you dialog shows. */
-    package var gift: TreatGift?
+    /** Whether the gift went through: the thank-you dialog shows. */
+    package var isSent = false
     /** The problem of a refused gift. */
     package private(set) var sendProblem: AppProblem?
 
@@ -46,7 +46,8 @@ package final class TreatModel {
         isSending = true
         sendProblem = nil
         do {
-            gift = try await service.treat(months: months, paymentMethod: .qris)
+            try await service.treat(months: months, paymentMethod: .qris)
+            isSent = true
         } catch {
             sendProblem = plansProblem(error)
         }

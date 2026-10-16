@@ -2,14 +2,11 @@ import Foundation
 
 /** What a person allowed Kira to do with their data: the API's `GET /me/consents`. */
 package struct ConsentSettings: Equatable, Sendable {
-    /** The privacy policy version the decisions were made under. */
-    package let policyVersion: String
     /** The latest decision per purpose. */
     package let items: [ConsentItem]
 
-    /** Decisions made under `policyVersion`. */
-    package init(policyVersion: String, items: [ConsentItem]) {
-        self.policyVersion = policyVersion
+    /** The decisions as the API sends them. */
+    package init(items: [ConsentItem]) {
         self.items = items
     }
 
@@ -19,20 +16,17 @@ package struct ConsentSettings: Equatable, Sendable {
     }
 }
 
-/** One decision: its purpose, the answer and when it was given. */
+/** One decision: its purpose and the answer. */
 package struct ConsentItem: Equatable, Sendable {
     /** What the data is used for. */
     package let purpose: ConsentPurpose
     /** Whether the person allowed it. */
     package let granted: Bool
-    /** When they decided; nil before any decision. */
-    package let decidedAt: Date?
 
     /** A decision about `purpose`. */
-    package init(purpose: ConsentPurpose, granted: Bool, decidedAt: Date? = nil) {
+    package init(purpose: ConsentPurpose, granted: Bool) {
         self.purpose = purpose
         self.granted = granted
-        self.decidedAt = decidedAt
     }
 }
 

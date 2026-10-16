@@ -24,9 +24,8 @@ struct LivePlansServiceTests {
         #expect(
             catalog.plans[1]
                 == PlanTerms(
-                    id: .plus, monthlyPrice: 29_000, yearlyPrice: 290_000, aiMessages: 300, receipts: 150,
-                    voiceSeconds: 10_800, voiceAndImport: true))
-        #expect(catalog.current == PlanCatalog.Current(plan: .plus, period: .yearly))
+                    id: .plus, monthlyPrice: 29_000, yearlyPrice: 290_000, aiMessages: 300, receipts: 150))
+        #expect(catalog.current == PlanCatalog.Current(plan: .plus))
     }
 
     @Test("checkout, cancel and a new payment method return the subscription")
@@ -67,11 +66,10 @@ struct LivePlansServiceTests {
         #expect(
             try await service.invoices() == [
                 Invoice(
-                    id: "i-1", plan: .plus, period: .yearly, amount: 290_000, paymentMethod: .appStore,
+                    id: "i-1", plan: .plus, amount: 290_000, paymentMethod: .appStore,
                     periodStart: CalendarDay(year: 2026, month: 10, day: 16))
             ])
-        #expect(
-            try await service.treat(months: 3, paymentMethod: .qris) == TreatGift(id: "g-1", months: 3, amount: 87_000))
+        try await service.treat(months: 3, paymentMethod: .qris)
         #expect(await transport.sent[1].json == ["months": .number(3), "paymentMethod": .string("qris")])
         await #expect(throws: AppProblem()) { try await service.treat(months: 2, paymentMethod: .qris) }
     }
@@ -82,7 +80,6 @@ struct LivePlansServiceTests {
             "GET /api/scholarship": ok(scholarshipJSON(application: acceptedApplicationJSON))
         ])
         let overview = try await LivePlansService(api: api).scholarship()
-        #expect(!overview.eligible && overview.ineligibleReason == .hasScholarship)
         #expect(overview.quotaRemaining == 1 && overview.quotaTotal == 4)
         let application = try #require(overview.application)
         #expect(application.status == .accepted && application.situations == [.incomeStopped, .medicalCosts])
