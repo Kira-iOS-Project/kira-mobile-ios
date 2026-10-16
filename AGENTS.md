@@ -17,12 +17,12 @@ the rules that bind), Not met (name the shape to follow until it is).
 
 | Rules | Group | Status | What that means here |
 | --- | --- | --- | --- |
-| 1–4 | Architecture | Enforced | One placeholder screen (`App/Screens/Root/RootView.swift`) with no state, so no screen model yet; Rule 4 binds from the first screen that has state. |
+| 1–4 | Architecture | Enforced | The root, the lock screen and the tab shell have their screen models in `Features` (`RootModel`, `UnlockModel`, `PinRecoveryModel`, `NavigationModel`); each area's entry view replaces its slot in `App/Screens/Slots/`. |
 | 5–9 | Text and locale | Enforced | Indonesian only: the catalogs' source language is `id`, so every key carries its `id` text (setup answered `locales=en`, the single-language option). |
-| 10–14 | Network, errors and auth | Partial | Rules 10–12 bind: the client is generated from the backend's spec, and `ProblemCode` equals its codes. No screen calls the API yet, and there is no sign-in, so Rule 13 has nothing to hold. |
+| 10–14 | Network, errors and auth | Partial | Rules 10–13 bind: the client is generated from the backend's spec, `ProblemCode` equals its codes, and `SessionStore` keeps the refresh token in the Keychain (`KeychainVault`) and the bearer token in memory, served to the client by `AuthMiddleware`. No screen calls the API yet. |
 | 15–18 | Code shape | Enforced | Applies as written. |
 | 19–21 | Build and dependencies | Enforced | Applies as written. |
-| 22–24 | Tests and coverage | Enforced | `AppProblem` at 100%; one accessibility-audit UI test for the one screen. |
+| 22–24 | Tests and coverage | Enforced | Every logic file at 100%; accessibility-audit UI tests for the root and the lock screen (`-KiraLocked`, debug only). |
 | 25–28 | Platform and release | Enforced | Releases go to Firebase App Distribution from `prod` (`docs/firebase-app-distribution.md`). |
 | 29–33 | Payload contract (only with `payload-encryption=yes`; otherwise N/A) | N/A | Setup answered `payload-encryption=no`: bodies rely on TLS. |
 
