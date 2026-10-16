@@ -34,7 +34,7 @@ struct DebtStepView: View {
         }
         .kiraSheet(
             isPresented: Bindable(model.debts).isFormPresented, title: "onboarding.debt.sheet.title",
-            subtitle: "onboarding.debt.sheet.subtitle"
+            subtitle: "onboarding.debt.sheet.subtitle", top: 250
         ) {
             DebtFormSheet(debts: model.debts)
         }

@@ -80,9 +80,7 @@ struct LockScreen: View {
     private var background: some View {
         ZStack(alignment: .topLeading) {
             Color.hero
-            /** The screen's width: the scenery at 220 pt asks for 587 pt and would push the twig off. */
-            KiraScenery(tone: .hero, height: 220)
-                .frame(minWidth: 0, maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+            KiraScenery(tone: .hero, height: 220).frame(maxHeight: .infinity, alignment: .bottom)
             KiraLeaf(.twig, tone: .hero, size: 170).offset(x: -44, y: -24)
         }
         .ignoresSafeArea()

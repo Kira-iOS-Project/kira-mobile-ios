@@ -55,8 +55,7 @@ private struct ResultHero: View {
         let report = model.report
         VStack(spacing: 14) {
             ZStack(alignment: .bottom) {
-                /** The card's width: the scenery asks for 400 pt at 150 pt tall. */
-                KiraScenery(height: 150).frame(minWidth: 0, maxWidth: .infinity)
+                KiraScenery(height: 150)
                 KiraIllustration(.plant(for: report.band), size: 164).padding(.bottom, 22)
             }
             .frame(maxWidth: .infinity, minHeight: 214, maxHeight: 214, alignment: .bottom)
