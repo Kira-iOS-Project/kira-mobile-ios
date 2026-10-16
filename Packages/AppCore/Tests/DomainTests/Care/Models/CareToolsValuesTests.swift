@@ -25,7 +25,8 @@ struct NegotiationScriptTests {
             reason: " penghasilan berkurang ")
         let screen = script.fill(for: .screen)
         #expect(screen.name == "Dinda" && screen.contract == "••••4821")
-        #expect(screen.instalment == 230_000 && screen.affordable == 150_000 && screen.reason == "penghasilan berkurang")
+        #expect(screen.instalment == 230_000 && screen.affordable == 150_000)
+        #expect(screen.reason == "penghasilan berkurang")
         #expect(script.fill(for: .clipboard).contract == "PB-0098 4821")
         script.name = ""
         script.contractNumber = " - "
@@ -123,7 +124,8 @@ struct BreathingPatternTests {
 struct CareDebtTests {
     @Test("keeps the lender and its instalment")
     func fields() {
-        let debt = CareDebt(id: "d1", name: "Paylater B", kind: .paylater, remaining: 1_200_000, monthlyInstalment: 230_000)
+        let debt = CareDebt(
+            id: "d1", name: "Paylater B", kind: .paylater, remaining: 1_200_000, monthlyInstalment: 230_000)
         #expect(debt.id == "d1" && debt.name == "Paylater B" && debt.kind == .paylater)
         #expect(debt.remaining == 1_200_000 && debt.monthlyInstalment == 230_000)
     }

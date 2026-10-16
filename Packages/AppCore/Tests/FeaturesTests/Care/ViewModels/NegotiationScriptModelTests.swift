@@ -50,7 +50,8 @@ struct NegotiationScriptModelTests {
 
     @Test("a refused or lost load shows the problem", arguments: [true, false])
     func failure(offline: Bool) async {
-        await service.configure { $0.failing[.debts] = offline ? FakeCareToolsService.Offline() : FakeCareToolsService.problem }
+        let error: any Error = offline ? FakeCareToolsService.Offline() : FakeCareToolsService.problem
+        await service.configure { $0.failing[.debts] = error }
         let model = model()
         await model.load()
         guard case .failed(let problem) = model.phase else { Issue.record("expected failed"); return }

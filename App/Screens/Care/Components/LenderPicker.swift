@@ -63,7 +63,8 @@ struct LenderPicker: View {
                     .padding(.vertical, 6)
                     .padding(.horizontal, KiraSpacing.space3)
                     .frame(minHeight: 48)
-                    .kiraCard(isOn ? .pandanSoft : .clear, border: isOn ? .pandan : .clear, cornerRadius: KiraRadius.small)
+                    .kiraCard(
+                        isOn ? .pandanSoft : .clear, border: isOn ? .pandan : .clear, cornerRadius: KiraRadius.small)
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
