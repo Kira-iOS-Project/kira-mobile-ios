@@ -43,7 +43,7 @@ struct CheckInChatTests {
     @Test(
         "a failed request closes the offer; the dialog's Coba Lagi reopens it with the choice kept",
         arguments: [
-            (OfflineError() as any Error, RecordFailure.connection),
+            (offlineError() as any Error, RecordFailure.connection),
             (problem("VALIDATION_FAILED") as any Error, RecordFailure.problem(problem("VALIDATION_FAILED"))),
         ] as [(any Error, RecordFailure)])
     func fails(error: any Error, expected: RecordFailure) async throws {
@@ -82,14 +82,14 @@ struct CheckInChatTests {
         await none.load()
         #expect(none.care.entries.isEmpty)
         let failing = FakeCheckInService()
-        failing.dueResult = .failure(OfflineError())
+        failing.dueResult = .failure(offlineError())
         let offline = model(failing)
         await offline.load()
         #expect(offline.care.entries.isEmpty && offline.phase.value != nil)
         let due = FakeCheckInService()
         due.dueResult = .success(CheckIn(id: "c-9", dueAt: Fixtures.noon))
         let broken = FakeRecordService()
-        broken.profileResult = .failure(OfflineError())
+        broken.profileResult = .failure(offlineError())
         let unloaded = model(due, service: broken)
         await unloaded.load()
         #expect(unloaded.care.entries.isEmpty && due.seen.isEmpty)

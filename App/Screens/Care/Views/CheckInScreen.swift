@@ -70,7 +70,7 @@ private struct CheckInHeading: View {
         VStack(spacing: KiraSpacing.space2) {
             KiraIllustration(.care, size: 80).accessibilityHidden(true)
             Text("care.checkIn.title")
-                .font(KiraFont.display(26, axisWeight: 800, relativeTo: .title, typeSize: typeSize))
+                .font(KiraFont.display(26, axisWeight: 800, relativeTo: .title1, typeSize: typeSize))
                 .kiraLineHeight(32, size: 26, relativeTo: .title)
                 .tracking(-0.52)
                 .padding(.top, KiraSpacing.space1)

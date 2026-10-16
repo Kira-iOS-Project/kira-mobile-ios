@@ -57,7 +57,7 @@ struct CrisisChatTests {
     @Test("a signal that could not be recorded shows nothing and is sent again later, in order")
     func signalFailureIsQuiet() async throws {
         let checkIns = FakeCheckInService()
-        checkIns.signalResult = .failure(OfflineError())
+        checkIns.signalResult = .failure(offlineError())
         let model = await loaded(checkIns: checkIns)
         model.composerText = "putus asa"
         await model.send()

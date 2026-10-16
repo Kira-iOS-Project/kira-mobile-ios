@@ -51,7 +51,7 @@ struct CareOutboxTests {
     func cancelFails() async throws {
         let checkIns = FakeCheckInService()
         let record = try await scheduled(checkIns)
-        checkIns.cancelResult = .failure(OfflineError())
+        checkIns.cancelResult = .failure(offlineError())
         try await offerAgain(record).decline()
         #expect(checkIns.cancelled == ["c-1"] && record.failure == nil && record.care.checkInFailure == nil)
         checkIns.dueResult = .success(CheckIn(id: "c-1", dueAt: Fixtures.noon))
