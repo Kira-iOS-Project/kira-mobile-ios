@@ -146,4 +146,6 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case careCheckInNotFound = "CARE_CHECK_IN_NOT_FOUND"
     /** No safety plan was saved yet. */
     case careSafetyPlanNotFound = "CARE_SAFETY_PLAN_NOT_FOUND"
+    /** Otherwise eligible, but Mode Darurat Utang has never been opened. */
+    case scholarshipDebtEmergencyRequired = "SCHOLARSHIP_DEBT_EMERGENCY_REQUIRED"
 }

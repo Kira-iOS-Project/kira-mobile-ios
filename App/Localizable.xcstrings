@@ -12721,13 +12721,24 @@
         }
       }
     },
+    "problem.SCHOLARSHIP_DEBT_EMERGENCY_REQUIRED" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beasiswa Kira untuk pengguna Mode Darurat Utang. Buka Mode Darurat Utang di Kira Peduli dulu, lalu daftar lagi."
+          }
+        }
+      }
+    },
     "problem.SCHOLARSHIP_NOT_ELIGIBLE" : {
       "extractionState" : "manual",
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kamu belum bisa mendaftar Beasiswa Kira saat ini."
+            "value" : "Beasiswa Kira untuk pengguna yang belum berlangganan paket berbayar dan belum punya pengajuan aktif."
           }
         }
       }
