@@ -11,8 +11,18 @@ extension IndicatorDetail {
      key is looked up by indicator and points (manual catalog keys `indicator.rung.<key>.<points>`).
      */
     func title(of rung: LadderRung) -> Text {
+        Text(LocalizedStringKey(rungKey(of: rung)))
+    }
+
+    /**
+     The catalog key of a rung. Four or more consumer-debt platforms, all paid on time, also score 25,
+     the points of "Ada Keterlambatan"; the rung they stand on then says so instead of a lateness
+     that never happened (`.onTime` variant of the key).
+     */
+    private func rungKey(of rung: LadderRung) -> String {
         let key = "indicator.rung.\(indicator.key.rawValue).\(rung.points)"
-        return Text(LocalizedStringKey(key))
+        guard indicator.key == .consumerDebt, rung.points == 25, rung.isCurrent else { return key }
+        return indicator.measure.payment == .onTime ? "\(key).onTime" : key
     }
 
     /** A rung's second line, from its range and amounts. */
@@ -20,7 +30,7 @@ extension IndicatorDetail {
         let isMultiple = indicator.key == .emergencyFund
         switch range(of: rung) {
         case .fixed:
-            let key = "indicator.rung.\(indicator.key.rawValue).\(rung.points).detail"
+            let key = rungKey(of: rung) + ".detail"
             return Text(LocalizedStringKey(key))
         case .atLeast(let bound) where isMultiple:
             return Text(
@@ -68,11 +78,16 @@ extension IndicatorDetail {
         }
     }
 
+    /**
+     What the next consumer-debt rung takes. Reaching 50 asks a late payer to pay on time first; four
+     or more platforms already paid on time only need paying off down to three.
+     */
     private func consumerNext(_ points: Int) -> LocalizedStringResource {
-        switch points {
-        case 100: "indicator.next.consumerDebtLast"
-        case 75: "indicator.next.consumerDebtOne"
-        case 50: "indicator.next.consumerDebtOnTime"
+        switch (points, indicator.measure.payment) {
+        case (100, _): "indicator.next.consumerDebtLast"
+        case (75, _): "indicator.next.consumerDebtOne"
+        case (50, .onTime): "indicator.next.consumerDebtMany"
+        case (50, _): "indicator.next.consumerDebtOnTime"
         default: "indicator.next.consumerDebtOverdue"
         }
     }

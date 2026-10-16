@@ -7271,6 +7271,16 @@
         }
       }
     },
+    "indicator.next.consumerDebtMany" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lunasi satu per satu, utang terkecil dulu, sampai tiga platform atau kurang."
+          }
+        }
+      }
+    },
     "indicator.next.consumerDebtOne" : {
       "localizations" : {
         "id" : {
@@ -7843,6 +7853,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pernah telat bayar"
+          }
+        }
+      }
+    },
+    "indicator.rung.consumer_debt.25.onTime" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4 Platform atau Lebih, Tepat Waktu"
+          }
+        }
+      }
+    },
+    "indicator.rung.consumer_debt.25.onTime.detail" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terlalu banyak akun"
           }
         }
       }
