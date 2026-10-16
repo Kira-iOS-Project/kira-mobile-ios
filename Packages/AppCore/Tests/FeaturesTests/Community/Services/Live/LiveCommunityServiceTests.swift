@@ -35,6 +35,16 @@ struct LiveCommunityServiceTests {
         #expect(group.adminUnchanged && !group.rulesAccepted)
     }
 
+    @Test("a group with no verified link yet has no check date, and its admin reads as not confirmed")
+    func noVerifiedLink() async throws {
+        let json = communityGroupJSON.replacingOccurrences(
+            of: #""linkCheckedOn":"2026-10-12","adminUnchanged":true"#,
+            with: #""linkCheckedOn":null,"adminUnchanged":null"#)
+        let (api, _) = KiraAPI.routed(["GET /api/\(groupRoute)": ok(json)])
+        let group = try await LiveCommunityService(api: api).group(id: groupID)
+        #expect(group.linkCheckedOn == nil && !group.adminUnchanged)
+    }
+
     @Test("a gone or suspended group is 404 COMMUNITY_GROUP_NOT_FOUND")
     func notFound() async {
         let (api, _) = KiraAPI.routed(["GET /api/\(groupRoute)": problem("COMMUNITY_GROUP_NOT_FOUND", status: 404)])

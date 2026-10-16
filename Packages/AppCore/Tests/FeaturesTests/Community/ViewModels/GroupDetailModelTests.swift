@@ -118,6 +118,15 @@ struct GroupDetailModelTests {
         #expect(!model.rulesAgreed && model.failure == nil)
     }
 
+    @Test("a consent cancelled with its task leaves the sheet open and shows nothing")
+    func consentCancelled() async {
+        let model = await loaded(FakeCommunityService(failures: ["acceptRules": [CancellationError()]]))
+        await model.join()
+        model.rulesAgreed = true
+        await model.acceptRules()
+        #expect(model.showsRules && model.failure == nil && !model.isWorking)
+    }
+
     @Test("a load or a join cancelled with its task changes nothing")
     func cancelled() async {
         let model = await loaded(
