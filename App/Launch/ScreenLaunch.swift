@@ -55,7 +55,7 @@
          PED: Kira Peduli (and offline, on the shipped contacts), its sheet over the chat, the message to
          Layanan Kira.
          */
-        case care, careOffline, careHelp, trustedMessage
+        case care, careOffline, careHelp, trustedMessage, trustedMessageNoRecipient
         /** KOM: Etalase (also empty and failed), Detail Produk of each kind, a product that is gone, Kirim Produk. */
         case marketplace, marketplaceEmpty, marketplaceFailed, product, productConsultation, productEbook, productEvent
         case productGone, submitProduct
@@ -79,7 +79,7 @@
                 .plans
             case .history, .transaction, .conversation, .statementImport, .importReview: .record
             case .record, .recordDrafts, .recordManual, .recordScan, .recordQuota, .recordVoice: .chat
-            case .care, .careOffline, .careHelp, .trustedMessage: .care
+            case .care, .careOffline, .careHelp, .trustedMessage, .trustedMessageNoRecipient: .care
             case .marketplace, .marketplaceEmpty, .marketplaceFailed, .product, .productConsultation, .productEbook,
                 .productEvent, .productGone, .submitProduct:
                 .marketplace
