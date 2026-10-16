@@ -8,9 +8,12 @@ import Testing
 /** Answers `contacts()` with `result`. */
 struct FakeCareService: CareService {
     var result: Result<CareContactList, AppProblem> = .success(CareFixtures.server)
+    /** An error other than a problem, thrown instead of `result` (a lost connection). */
+    var error: (any Error)?
 
     func contacts() throws -> CareContactList {
-        try result.get()
+        if let error { throw error }
+        return try result.get()
     }
 }
 
@@ -46,6 +49,14 @@ struct CareContactsModelTests {
         #expect(model.source == .shipped)
         #expect(model.problem?.code == nil)
         #expect(model.contact(.kiraCare) == nil)
+    }
+
+    @Test("a lost connection keeps the shipped list and is kept as connection loss")
+    func connectionLoss() async {
+        let model = CareContactsModel(service: FakeCareService(error: URLError(.notConnectedToInternet)))
+        await model.load()
+        #expect(model.source == .shipped)
+        #expect(model.problem == .connectionLost)
     }
 
     @Test("keeps the server's list it had when a later load fails")
