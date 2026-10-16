@@ -20,4 +20,6 @@ struct PreviewCheckInService: CheckInService {
     }
 
     func markSeen(id _: String) {}
+
+    func cancel(id _: String) {}
 }

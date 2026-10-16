@@ -29,6 +29,11 @@ package struct LiveCheckInService: CheckInService {
     package func markSeen(id: String) async throws {
         try await api.markCheckInSeen(id: id)
     }
+
+    /** `DELETE /care/check-ins/{id}`. */
+    package func cancel(id: String) async throws {
+        try await api.cancelCheckIn(id: id)
+    }
 }
 
 extension CheckIn {

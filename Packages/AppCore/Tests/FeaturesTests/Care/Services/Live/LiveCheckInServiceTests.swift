@@ -24,15 +24,18 @@ struct LiveCheckInServiceTests {
             "POST /api/care/check-ins": ok(checkInJSON, status: 201),
             "GET /api/care/check-ins/due": ok(#"{"checkIn":\#(checkInJSON)}"#),
             "POST /api/care/check-ins/\(id)/seen": empty(),
+            "DELETE /api/care/check-ins/\(id)": empty(),
         ])
         let service = LiveCheckInService(api: api)
         let scheduled = try await service.schedule(after: .tomorrow)
         #expect(scheduled == CheckIn(id: id, dueAt: Date(timeIntervalSince1970: 1_792_152_000)))
         #expect(try await service.due() == scheduled)
         try await service.markSeen(id: id)
+        try await service.cancel(id: id)
         let sent = await transport.sent
         #expect(sent.first?.json == ["afterHours": .number(24)])
-        #expect(sent.map(\.route).last == "POST /api/care/check-ins/\(id)/seen")
+        let routes = ["POST /api/care/check-ins/\(id)/seen", "DELETE /api/care/check-ins/\(id)"]
+        #expect(Array(sent.map(\.route).suffix(2)) == routes)
     }
 
     @Test("no due check-in is nil")
@@ -48,12 +51,14 @@ struct LiveCheckInServiceTests {
             "POST /api/care/check-ins": problem("AUTH_UNAUTHENTICATED", status: 401),
             "GET /api/care/check-ins/due": problem("AUTH_UNAUTHENTICATED", status: 401),
             "POST /api/care/check-ins/c-1/seen": problem("CARE_CHECK_IN_NOT_FOUND", status: 404),
+            "DELETE /api/care/check-ins/c-2": problem("CARE_CHECK_IN_NOT_FOUND", status: 404),
         ])
         let service = LiveCheckInService(api: api)
         #expect(await code { try await service.recordSignal(.danger, source: .chat) } == .validationFailed)
         #expect(await code { _ = try await service.schedule(after: .threeDays) } == .authUnauthenticated)
         #expect(await code { _ = try await service.due() } == .authUnauthenticated)
         #expect(await code { try await service.markSeen(id: "c-1") } == .careCheckInNotFound)
+        #expect(await code { try await service.cancel(id: "c-2") } == .careCheckInNotFound)
     }
 
     /** The code of the problem `call` throws, or nil when it throws none. */

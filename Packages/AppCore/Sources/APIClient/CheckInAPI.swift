@@ -26,6 +26,11 @@ extension KiraAPI {
     package func markCheckInSeen(id: String) async throws {
         try await client.markCheckInSeen(path: .init(id: id)).done()
     }
+
+    /** Cancels a pending check-in (`DELETE /api/care/check-ins/{id}`). */
+    package func cancelCheckIn(id: String) async throws {
+        try await client.cancelCheckIn(path: .init(id: id)).done()
+    }
 }
 
 /** A check-in as the API returns it. */
@@ -63,7 +68,7 @@ extension Operations.RecordCareSignal.Output {
         case .noContent: return
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -74,7 +79,7 @@ extension Operations.ScheduleCheckIn.Output {
         case .created(let response): return CheckInDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -84,7 +89,7 @@ extension Operations.GetDueCheckIn.Output {
         switch self {
         case .ok(let response): return try response.body.json.checkIn.map { CheckInDTO($0.value1) }
         case .unauthorized(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -96,7 +101,19 @@ extension Operations.MarkCheckInSeen.Output {
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .notFound(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
+        }
+    }
+}
+
+extension Operations.CancelCheckIn.Output {
+    func done() throws {
+        switch self {
+        case .noContent: return
+        case .unauthorized(let response): throw try response.body.applicationProblemJson
+        case .notFound(let response): throw try response.body.applicationProblemJson
+        case .unprocessableContent(let response): throw try response.body.applicationProblemJson
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }

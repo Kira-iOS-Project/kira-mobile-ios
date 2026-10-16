@@ -50,11 +50,20 @@ struct CheckInAPITests {
         #expect(request.method == .post && request.path.hasSuffix("care/check-ins/c-1/seen"))
     }
 
+    @Test("cancels a check-in")
+    func cancels() async throws {
+        let (api, transport) = KiraAPI.canned(status: 204)
+        try await api.cancelCheckIn(id: "c-1")
+        let request = try #require(await transport.request)
+        #expect(request.method == .delete && request.path.hasSuffix("care/check-ins/c-1"))
+    }
+
     @Test("throws every problem the care routes answer")
     func problems() async {
         await expectProblems([401, 422]) { try await $0.recordCareSignal(level: .concern, source: .chat) }
         await expectProblems([401, 422]) { _ = try await $0.scheduleCheckIn(afterHours: 24) }
         await expectProblems([401]) { _ = try await $0.getDueCheckIn() }
         await expectProblems([401, 404, 422]) { try await $0.markCheckInSeen(id: "c-1") }
+        await expectProblems([401, 404, 422]) { try await $0.cancelCheckIn(id: "c-1") }
     }
 }

@@ -12,7 +12,8 @@ import Observation
  did not arrive waits on the device and is sent again at the next signal, quick reply or opening
  of Catat; an ordinary message never waits for it. A check-in greeting that could not load waits
  for the next opening. Only scheduling the check-in, which the person asked for, says when it
- failed, with Coba Lagi.
+ failed, with Coba Lagi. A check-in already scheduled opens with its delay chosen, and Tidak Perlu
+ then cancels it, as quietly as a signal is recorded.
  */
 @MainActor
 @Observable
@@ -40,9 +41,9 @@ package final class CareChatModel {
     private var recorded: [CareSignalSource: CareSignalLevel] = [:]
     /** The check-in is offered once per crisis session. */
     private var hasOfferedCheckIn = false
-    /** Signals not yet recorded by the server, oldest first. */
-    private var unsent: [(level: CareSignalLevel, source: CareSignalSource)] = []
-    private var isSendingSignals = false
+    /** The check-in scheduled in this session, until it greets or is cancelled. */
+    private var scheduled: (id: String, delay: CheckInDelay)?
+    private let outbox: CareOutbox
 
     /** The chat's Kira Peduli on `service`, with `detector` reading the messages. */
     init(
@@ -50,6 +51,7 @@ package final class CareChatModel {
         makeId: @escaping @Sendable () -> String
     ) {
         self.service = service
+        outbox = CareOutbox(service: service)
         self.detector = detector
         self.clock = clock
         self.makeId = makeId
@@ -65,7 +67,7 @@ package final class CareChatModel {
         add(.personText(text))
         add(.crisisReply(isAnswered: false))
         record(level, source: .chat)
-        await sendUnsentSignals()
+        await outbox.send()
         return true
     }
 
@@ -79,7 +81,7 @@ package final class CareChatModel {
         switch choice {
         case .safe:
             hasOfferedCheckIn = true
-            presentCheckIn(delay: .tomorrow)
+            presentCheckIn(delay: scheduled?.delay ?? .tomorrow)
         case .unsafe:
             isHelpPresented = true
             record(.danger, source: .chat)
@@ -93,7 +95,7 @@ package final class CareChatModel {
         case .talkAboutDebt:
             openDebtEmergency()
         }
-        await sendUnsentSignals()
+        await outbox.send()
     }
 
     /** Lihat Bantuan on the crisis reply. */
@@ -108,7 +110,7 @@ package final class CareChatModel {
     package func helpClosed() {
         guard !hasOfferedCheckIn else { return }
         hasOfferedCheckIn = true
-        presentCheckIn(delay: .tomorrow)
+        presentCheckIn(delay: scheduled?.delay ?? .tomorrow)
     }
 
     /** Buka on the Mode Darurat Utang card, and Mau Bahas Utangnya. */
@@ -124,12 +126,13 @@ package final class CareChatModel {
     }
 
     /**
-     Catat opened: the signals that did not arrive are sent again, and the check-in whose time has
-     come greets `name` once and is marked as shown.
+     Catat opened: the signals and cancels that did not arrive are sent again, and the check-in
+     whose time has come greets `name` once and is marked as shown, unless the person cancelled it.
      */
     func opened(name: String) async {
-        await sendUnsentSignals()
-        guard let due = try? await service.due() else { return }
+        await outbox.send()
+        guard let due = try? await service.due(), !outbox.cancels(due.id) else { return }
+        if scheduled?.id == due.id { scheduled = nil }
         let id = "check-in-\(due.id)"
         if !entries.contains(where: { $0.id == id }) {
             entries.append(
@@ -141,11 +144,25 @@ package final class CareChatModel {
 
     private func presentCheckIn(delay: CheckInDelay) {
         checkIn = CheckInModel(
-            service: service, delay: delay, onFinish: { [weak self] in self?.checkIn = nil },
+            service: service, delay: delay,
+            onScheduled: { [weak self] checkIn, delay in
+                self?.scheduled = (checkIn.id, delay)
+                self?.checkIn = nil
+            },
+            onDecline: { [weak self] in await self?.declined() },
             onFailure: { [weak self] failure in
                 self?.checkIn = nil
                 self?.checkInFailure = failure
             })
+    }
+
+    /** Tidak Perlu, or the close button: a check-in scheduled before is cancelled. */
+    private func declined() async {
+        checkIn = nil
+        guard let pending = scheduled else { return }
+        scheduled = nil
+        outbox.add(.cancel(checkInId: pending.id))
+        await outbox.send()
     }
 
     private func add(_ kind: CareChatEntry.Kind) {
@@ -165,21 +182,6 @@ package final class CareChatModel {
     private func record(_ level: CareSignalLevel, source: CareSignalSource) {
         if let known = recorded[source], known >= level { return }
         recorded[source] = level
-        unsent.append((level, source))
-    }
-
-    /** Sends the unsent signals in order; one that fails stays, with those after it, for the next try. */
-    private func sendUnsentSignals() async {
-        guard !isSendingSignals else { return }
-        isSendingSignals = true
-        defer { isSendingSignals = false }
-        while let signal = unsent.first {
-            do {
-                try await service.recordSignal(signal.level, source: signal.source)
-                unsent.removeFirst()
-            } catch {
-                return
-            }
-        }
+        outbox.add(.signal(level, source))
     }
 }

@@ -12,10 +12,12 @@ final class FakeCheckInService: CheckInService, @unchecked Sendable {
     var scheduleResult: Result<CheckIn, any Error> = .success(CheckIn(id: "c-1", dueAt: Fixtures.noon))
     var dueResult: Result<CheckIn?, any Error> = .success(nil)
     var seenResult: Result<Void, any Error> = .success(())
+    var cancelResult: Result<Void, any Error> = .success(())
 
     private(set) var signals: [(level: CareSignalLevel, source: CareSignalSource)] = []
     private(set) var scheduled: [CheckInDelay] = []
     private(set) var seen: [String] = []
+    private(set) var cancelled: [String] = []
 
     func recordSignal(_ level: CareSignalLevel, source: CareSignalSource) throws {
         signals.append((level, source))
@@ -32,6 +34,11 @@ final class FakeCheckInService: CheckInService, @unchecked Sendable {
     func markSeen(id: String) throws {
         seen.append(id)
         try seenResult.get()
+    }
+
+    func cancel(id: String) throws {
+        cancelled.append(id)
+        try cancelResult.get()
     }
 }
 

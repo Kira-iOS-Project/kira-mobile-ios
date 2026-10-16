@@ -81,7 +81,7 @@ struct CrisisChatTests {
         await model.care.choose(.safe, in: reply)
         #expect(model.care.checkIn != nil)
         #expect(model.care.entries.map(\.kind).suffix(2) == [.crisisReply(isAnswered: true), .personChoice(.safe)])
-        model.care.checkIn?.decline()
+        await model.care.checkIn?.decline()
         await model.care.choose(.unsafe, in: reply)
         #expect(model.care.isHelpPresented)
         #expect(checkIns.signals.map(\.level) == [.concern, .danger])
@@ -100,7 +100,7 @@ struct CrisisChatTests {
         #expect(model.care.isHelpPresented)
         model.care.helpClosed()
         #expect(model.care.checkIn?.delay == .tomorrow)
-        model.care.checkIn?.decline()
+        await model.care.checkIn?.decline()
         await model.care.choose(.safe, in: try #require(model.care.entries.last))
         #expect(model.care.checkIn != nil)
     }

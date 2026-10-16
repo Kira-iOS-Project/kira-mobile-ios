@@ -32,12 +32,12 @@ struct CheckInChatTests {
         #expect(checkIns.scheduled == [.threeDays] && record.care.checkIn == nil)
     }
 
-    @Test("Tidak Perlu schedules nothing")
-    func declines() throws {
+    @Test("Tidak Perlu schedules nothing, and cancels nothing when nothing was scheduled")
+    func declines() async throws {
         let checkIns = FakeCheckInService()
         let (record, offer) = offered(checkIns)
-        try #require(offer).decline()
-        #expect(checkIns.scheduled.isEmpty && record.care.checkIn == nil)
+        try await #require(offer).decline()
+        #expect(checkIns.scheduled.isEmpty && checkIns.cancelled.isEmpty && record.care.checkIn == nil)
     }
 
     @Test(

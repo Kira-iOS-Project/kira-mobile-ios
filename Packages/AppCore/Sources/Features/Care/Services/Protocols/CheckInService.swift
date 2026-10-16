@@ -14,4 +14,6 @@ package protocol CheckInService: Sendable {
     func due() async throws -> CheckIn?
     /** `POST /care/check-ins/{id}/seen`: the greeting was shown. */
     func markSeen(id: String) async throws
+    /** `DELETE /care/check-ins/{id}`: the person no longer wants the greeting. */
+    func cancel(id: String) async throws
 }

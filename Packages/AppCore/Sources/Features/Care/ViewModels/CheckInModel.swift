@@ -15,20 +15,24 @@ package final class CheckInModel {
     /** Whether the request is on its way. */
     package internal(set) var isSaving = false
     private let service: any CheckInService
-    private let onFinish: () -> Void
+    private let onScheduled: (CheckIn, CheckInDelay) -> Void
+    private let onDecline: () async -> Void
     private let onFailure: (CheckInFailure) -> Void
 
     /**
-     The offer on `service` with `delay` chosen; `onFinish` closes it, `onFailure` closes it with
-     what failed and the choice to try again with.
+     The offer on `service` with `delay` chosen; `onScheduled` closes it with the check-in made,
+     `onDecline` closes it with nothing scheduled, `onFailure` closes it with what failed and the
+     choice to try again with.
      */
     init(
-        service: any CheckInService, delay: CheckInDelay, onFinish: @escaping () -> Void,
+        service: any CheckInService, delay: CheckInDelay,
+        onScheduled: @escaping (CheckIn, CheckInDelay) -> Void, onDecline: @escaping () async -> Void,
         onFailure: @escaping (CheckInFailure) -> Void
     ) {
         self.service = service
         self.delay = delay
-        self.onFinish = onFinish
+        self.onScheduled = onScheduled
+        self.onDecline = onDecline
         self.onFailure = onFailure
     }
 
@@ -38,16 +42,15 @@ package final class CheckInModel {
         isSaving = true
         defer { isSaving = false }
         do {
-            _ = try await service.schedule(after: delay)
-            onFinish()
+            onScheduled(try await service.schedule(after: delay), delay)
         } catch {
             onFailure(CheckInFailure(failure: RecordFailure(error), delay: delay))
         }
     }
 
-    /** Tidak Perlu, or the close button: nothing is scheduled. */
-    package func decline() {
-        onFinish()
+    /** Tidak Perlu, or the close button: nothing is scheduled, and a check-in made before is cancelled. */
+    package func decline() async {
+        await onDecline()
     }
 }
 

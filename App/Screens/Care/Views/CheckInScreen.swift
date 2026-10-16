@@ -1,8 +1,9 @@
 /**
  PED-05, Check-in Lanjutan (board CheckIn): after a heavy moment Kira asks to greet again in the
- Catat chat, Besok chosen first. The close button and Tidak Perlu go back to the chat with nothing
- scheduled; Ya, Sapa Aku schedules the greeting. A failed request closes this screen and the chat
- shows the failure dialog, whose Coba Lagi brings it back with the same choice.
+ Catat chat, Besok chosen first, or the delay of the check-in already scheduled. The close button
+ and Tidak Perlu go back to the chat with nothing scheduled, cancelling that check-in; Ya, Sapa
+ Aku schedules the greeting. A failed request closes this screen and the chat shows the failure
+ dialog, whose Coba Lagi brings it back with the same choice.
  */
 import Domain
 import Features
@@ -14,7 +15,9 @@ struct CheckInScreen: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                KiraIconButton(.close, label: "care.checkIn.close", variant: .outline, action: model.decline)
+                KiraIconButton(.close, label: "care.checkIn.close", variant: .outline) {
+                    Task { await model.decline() }
+                }
                 Spacer()
             }
             .frame(minHeight: KiraSize.tap)
@@ -31,7 +34,7 @@ struct CheckInScreen: View {
             }
             .kiraScrollEdges()
             KiraButtonPair(
-                secondary: KiraButton("care.checkIn.decline", variant: .secondary, action: model.decline),
+                secondary: KiraButton("care.checkIn.decline", variant: .secondary) { Task { await model.decline() } },
                 primary: KiraButton("care.checkIn.accept") { Task { await model.schedule() } }
             )
             .disabled(model.isSaving)

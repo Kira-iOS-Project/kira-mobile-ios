@@ -21,7 +21,8 @@ struct CareChatOverlays: ViewModifier {
                 isPresented: $model.isHelpPresented, service: care, onOpen: onOpen, onClose: model.helpClosed
             )
             .fullScreenCover(
-                isPresented: Binding(get: { model.checkIn != nil }, set: { if !$0 { model.checkIn?.decline() } }),
+                /** Only the screen's own buttons close it: a full-screen cover has no swipe. */
+                isPresented: Binding(get: { model.checkIn != nil }, set: { _ in }),
                 onDismiss: checkInClosed,
                 content: {
                     if let checkIn = model.checkIn { CheckInScreen(model: checkIn) }
