@@ -31,7 +31,13 @@ struct SubscriptionHero: View {
         }
         .padding(EdgeInsets(top: 20, leading: 20, bottom: 64, trailing: 20))
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(alignment: .bottom) { KiraScenery(tone: .hero, height: 92).accessibilityHidden(true) }
+        .background(alignment: .bottom) {
+            /**
+             The hills cut to the 64 pt under the dates (the board draws 92): taller, their crest ran
+             behind "Email pengingat …" and failed the contrast audit.
+             */
+            KiraScenery(tone: .hero, height: 64).accessibilityHidden(true)
+        }
         .background(.hero)
         .clipShape(RoundedRectangle(cornerRadius: KiraRadius.extraLarge, style: .continuous))
         .padding(.top, KiraSpacing.space1)

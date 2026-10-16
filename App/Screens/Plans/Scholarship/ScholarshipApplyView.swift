@@ -13,8 +13,17 @@ struct ScholarshipApplyView: View {
     private let onSent: () -> Void
     @Environment(\.dismiss) private var dismiss
 
-    init(service: any PlansService, onOpen: @escaping (AppRoute) -> Void, onSent: @escaping () -> Void) {
-        _model = State(initialValue: ScholarshipApplyModel(service: service))
+    /** `draft` fills the form in, as BeasiswaKiraForm draws it (debug launches and previews). */
+    init(
+        service: any PlansService, draft: ScholarshipDraft? = nil, onOpen: @escaping (AppRoute) -> Void,
+        onSent: @escaping () -> Void
+    ) {
+        let model = ScholarshipApplyModel(service: service)
+        if let draft {
+            draft.situations.forEach(model.toggle)
+            model.story = draft.story
+        }
+        _model = State(initialValue: model)
         self.onOpen = onOpen
         self.onSent = onSent
     }
@@ -42,9 +51,9 @@ struct ScholarshipApplyView: View {
                 if let problem = model.sendProblem { PlansProblemNotice(problem: problem) }
                 PlansButtonRow(
                     secondary: KiraButton("scholarship.apply.cancel", variant: .secondary) { dismiss() },
-                    primary: KiraButton("scholarship.apply.send") { Task { await model.send() } }
+                    primary: KiraButton("scholarship.apply.send") { Task { await model.send() } },
+                    isPrimaryDisabled: !model.canSend
                 )
-                .disabled(!model.canSend)
             }
             .padding(.top, KiraSpacing.space2)
         }
@@ -87,4 +96,10 @@ struct ScholarshipApplyView: View {
                 .subtitle(Text("scholarship.apply.sent.mode.detail"))
         }
     }
+}
+
+/** What the person has already picked and written on the form. */
+struct ScholarshipDraft {
+    let situations: [ScholarshipSituation]
+    let story: String
 }
