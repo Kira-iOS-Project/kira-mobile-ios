@@ -193,7 +193,7 @@
         ".claude/rules/ios/swiftui.md": "sha256:b69ea61446c90caf0bd1d5a700b5a86c5955a7596601d33c0d1a181786cf5e5e",
         ".claude/rules/swift/coverage.md": "sha256:cdaa9421b7cb948dd53825dc903e2a1be343f082b5e45e604dda20af7adfe326",
         ".github/workflows/deepseek-review.yml": "sha256:3161c30d3744eca05b3d8a4af67b53467c348e1bb379a2c2eab70554abf79fcf",
-        ".github/workflows/quality-gate.yml": "sha256:b26e364124083ab581db1f937ef96f83848f668d6677997b320b872595e5633d",
+        ".github/workflows/quality-gate.yml": "sha256:2ef752ef1e9a83456afc7a2962eb9d83e1f07ad2663db3ed6260f2dcdde150bd",
         "scripts/check/coverage-per-file.mjs": "sha256:3632cc88be8574d0a14c1cad6d5aaf49cbf44b78f45724685a003fe4982d7e1a",
         "scripts/check/coverage-policy.mjs": "sha256:9e527c3e89316870332a2275c2aed82dc6a7f2086fc195adf1f4f97cd0f343f4",
         "scripts/check/coverage.sh": "sha256:33d7de9a886c9ac161cae5c02c9ccae5125afd4cb8336a00c343de413c955eef",
@@ -287,7 +287,7 @@
         ]
       },
       "stack": "ios-swiftui",
-      "version": "0.1.3"
+      "version": "0.1.4"
     }
   }
 }
