@@ -40,8 +40,10 @@ package final class CodeVerificationModel {
         self.onVerified = onVerified
     }
 
-    /** Whether all six digits are in. */
-    package var isComplete: Bool { DigitCode.digits(in: code, length: PinRule.length).count == PinRule.length }
+    /** Whether the boxes hold six digits and nothing else (a paste is trimmed to its digits first). */
+    package var isComplete: Bool {
+        code.count == PinRule.length && DigitCode.digits(in: code, length: PinRule.length) == code
+    }
 
     /** Counts down to 0 a second at a time; stops early when its task is cancelled. */
     package func runCountdown() async {

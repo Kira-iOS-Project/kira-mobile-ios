@@ -61,7 +61,9 @@ struct OnboardingFlowModelTests {
         let flow = flow()
         flow.back()
         flow.open(.signIn)
+        #expect(flow.signsIn)
         flow.back()
+        #expect(!flow.signsIn)
         #expect(flow.path.isEmpty)
     }
 }

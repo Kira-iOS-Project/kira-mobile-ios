@@ -41,6 +41,8 @@ struct CodeVerificationModelTests {
         let model = model(service) { result = $0 }
         model.code = "38144"
         await model.verifyIfComplete()
+        model.code = "Kode: 381 449"
+        await model.verifyIfComplete()
         #expect(await service.calls.isEmpty)
         model.code = "381449"
         await model.verifyIfComplete()

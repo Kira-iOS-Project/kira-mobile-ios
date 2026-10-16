@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C0DE5EE5A1B2000000000018 /* APIClient in Frameworks */ = {isa = PBXBuildFile; productRef = C0DE5EE5A1B2000000000017 /* APIClient */; };
 		C0DE5EE5A1B2000000000023 /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = C0DE5EE5A1B2000000000022 /* Domain */; };
+		C0DE5EE5A1B2000000000031 /* Features in Frameworks */ = {isa = PBXBuildFile; productRef = C0DE5EE5A1B2000000000030 /* Features */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 			files = (
 				C0DE5EE5A1B2000000000018 /* APIClient in Frameworks */,
 				C0DE5EE5A1B2000000000023 /* Domain in Frameworks */,
+				C0DE5EE5A1B2000000000031 /* Features in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +129,7 @@
 			packageProductDependencies = (
 				C0DE5EE5A1B2000000000017 /* APIClient */,
 				C0DE5EE5A1B2000000000022 /* Domain */,
+				C0DE5EE5A1B2000000000030 /* Features */,
 			);
 			productName = Kira;
 			productReference = C0DE5EE5A1B200000000000A /* Kira.app */;
@@ -375,6 +378,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C0DE5EE5A1B2000000000016 /* XCLocalSwiftPackageReference "Packages/AppCore" */;
 			productName = Domain;
+		};
+		C0DE5EE5A1B2000000000030 /* Features */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0DE5EE5A1B2000000000016 /* XCLocalSwiftPackageReference "Packages/AppCore" */;
+			productName = Features;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

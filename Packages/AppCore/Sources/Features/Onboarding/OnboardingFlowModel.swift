@@ -34,6 +34,9 @@ package final class OnboardingFlowModel {
         path.append(screen)
     }
 
+    /** Whether the person came through Masuk: the code screen's back button names it. */
+    package var signsIn: Bool { path.contains(.signIn) }
+
     /** Back, and "Ganti Email" on the code screen. */
     package func back() {
         if !path.isEmpty { path.removeLast() }
