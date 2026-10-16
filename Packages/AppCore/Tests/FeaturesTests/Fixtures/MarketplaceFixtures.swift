@@ -14,5 +14,5 @@ enum MarketplaceFixtures {
         summary: course, description: "Belajar membagi gaji pertama ke pos yang jelas, tanpa rumus rumit.",
         meta: "6 modul video", sellerRole: "Perencana keuangan bersertifikat · 4 kelas",
         contentsTitle: "Yang Kamu Pelajari", contents: ["Menyusun budget per periode gajian"], affiliate: true,
-        investmentRisk: false, sellerURL: URL(filePath: "/"))
+        investmentRisk: false, sellerURL: URL(string: "https://penjual.example.id/kelas"))
 }

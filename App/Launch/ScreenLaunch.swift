@@ -28,6 +28,7 @@
             case .record: RecordLaunch(screen: screen)
             case .chat: ChatLaunch(screen: screen)
             case .community: CommunityLaunch(screen: screen)
+            case .marketplace: MarketplaceLaunch(screen: screen)
             case .care: CareLaunch(screen: screen)
             case .debtEmergency: DebtEmergencyLaunch(screen: screen)
             }
@@ -64,10 +65,13 @@
         case care, careOffline, careHelp, trustedMessage, trustedMessageNoRecipient
         /** PED: Mode Darurat Utang and its four guides. */
         case debtEmergency, harshCollection, illegalLender, unresolvedComplaint, payoffOffer
+        /** KOM: Etalase (also empty and failed), Detail Produk of each kind, a product that is gone, Kirim Produk. */
+        case marketplace, marketplaceEmpty, marketplaceFailed, product, productConsultation, productEbook, productEvent
+        case productGone, submitProduct
 
         /** The area whose launcher builds the screen. */
         enum Area {
-            case onboarding, home, account, plans, record, chat, community, care, debtEmergency
+            case onboarding, home, account, plans, record, chat, community, care, debtEmergency, marketplace
         }
 
         var area: Area {
@@ -91,6 +95,9 @@
                 .community
             case .care, .careOffline, .careHelp, .trustedMessage, .trustedMessageNoRecipient: .care
             case .debtEmergency, .harshCollection, .illegalLender, .unresolvedComplaint, .payoffOffer: .debtEmergency
+            case .marketplace, .marketplaceEmpty, .marketplaceFailed, .product, .productConsultation, .productEbook,
+                .productEvent, .productGone, .submitProduct:
+                .marketplace
             }
         }
     }
