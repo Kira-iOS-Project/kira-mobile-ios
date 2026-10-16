@@ -13,15 +13,20 @@ struct OnboardingLeaf {
     let top: CGFloat
     /** Whether it hangs from the right edge (flipped) rather than the left. */
     let isRight: Bool
+    /** How far it reaches past its edge. */
+    var overhang: CGFloat = 44
 
     /** The pandan leaf, 120 pt, 40 pt down and 44 pt past the left edge (Onboarding, Masuk). */
     static let pandan = Self(name: .pandan, size: 120, top: 40, isRight: false)
-    /** The twig, flipped, 140 pt, 44 pt down past the right edge (Daftar, Kode Verifikasi). */
-    static let twig = Self(name: .twig, size: 140, top: 44, isRight: true)
+    /** The twig, flipped, 140 pt, 44 pt down, 40 pt past the right edge (Daftar, Kode Verifikasi). */
+    static let twig = Self(name: .twig, size: 140, top: 44, isRight: true, overhang: 40)
 
-    /** The twig at `size`, `top` down the right edge (Pilih Fokus 130 at 8, Utang 130 at 150). */
-    static func twig(size: CGFloat, top: CGFloat) -> Self {
-        Self(name: .twig, size: size, top: top, isRight: true)
+    /**
+     The twig at `size`, `top` down and `overhang` past the right edge (Onboarding 2: 140 at 40,
+     40 past; Pilih Fokus 130 at 8 and Utang 130 at 150, both 46 past).
+     */
+    static func twig(size: CGFloat, top: CGFloat, overhang: CGFloat = 46) -> Self {
+        Self(name: .twig, size: size, top: top, isRight: true, overhang: overhang)
     }
 }
 
@@ -48,7 +53,7 @@ extension View {
                 if let leaf {
                     KiraLeaf(leaf.name, tone: .soft, size: leaf.size, isFlipped: leaf.isRight)
                         .frame(maxWidth: .infinity, alignment: leaf.isRight ? .trailing : .leading)
-                        .offset(x: leaf.isRight ? 40 : -44, y: leaf.top)
+                        .offset(x: leaf.isRight ? leaf.overhang : -leaf.overhang, y: leaf.top)
                 }
             }
             .ignoresSafeArea()

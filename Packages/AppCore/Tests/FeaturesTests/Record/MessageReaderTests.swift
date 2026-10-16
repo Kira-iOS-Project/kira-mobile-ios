@@ -31,6 +31,16 @@ struct MessageReaderTests {
         #expect(read.drafts.map(\.amount) == [25_000, 18_000])
     }
 
+    @Test("a model without Indonesian is never asked: the rules' drafts go as they are")
+    func noIndonesian() async {
+        let refiner = FakeRefiner(
+            refinements: [DraftRefinement(index: 0, name: "Makan Siang di Kantor", category: .food)],
+            knowsIndonesian: false)
+        let read = await MessageReader(fallbackName: "Transaksi", refiner: refiner).read(text, at: Fixtures.noon)
+        #expect(read.parser == .slangRules)
+        #expect(read.drafts.map(\.name) == ["Makan Siang", "Grab ke Kantor"])
+    }
+
     @Test("a model with nothing usable, no answer, or no drafts leaves the rules")
     func unused() async {
         let useless = FakeRefiner(refinements: [DraftRefinement(index: 0, name: "", category: .food)])

@@ -10,6 +10,7 @@ import SwiftUI
 struct HealthCheckResultView: View {
     let flow: OnboardingFlowModel
     @State private var model: HealthCheckResultModel
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     init(flow: OnboardingFlowModel, report: ScoreReport) {
         self.flow = flow
@@ -20,7 +21,12 @@ struct HealthCheckResultView: View {
         OnboardingPage(spacing: KiraSpacing.space5) {
             KiraNavBar("onboarding.result.title", leading: .back("onboarding.back") { flow.back() })
             ResultHero(model: model)
-            HStack(alignment: .top, spacing: KiraSpacing.space2) {
+            /** Three columns as on the board; one under another at accessibility sizes. */
+            let groups =
+                typeSize.isAccessibilitySize
+                ? AnyLayout(VStackLayout(spacing: KiraSpacing.space2))
+                : AnyLayout(HStackLayout(alignment: .top, spacing: KiraSpacing.space2))
+            groups {
                 ForEach(model.groups, id: \.group) { GroupCard(score: $0) }
             }
             if !model.steps.isEmpty { ResultSteps(model: model) }
@@ -29,9 +35,13 @@ struct HealthCheckResultView: View {
             FormulaAccordion(model: model)
             Spacer(minLength: 0)
             VStack(spacing: 10) {
-                KiraButton("onboarding.result.secure") { model.continueToLock() }.block()
+                KiraButton(flow.isRecheck ? "onboarding.result.done" : "onboarding.result.secure") {
+                    model.continueToLock()
+                }
+                .block()
                 Text("onboarding.result.recheck").onboardingNote().multilineTextAlignment(.center)
             }
+            .onboardingFoot(spacing: KiraSpacing.space5)
         }
         .background(.surface)
     }
@@ -54,10 +64,11 @@ private struct ResultHero: View {
             KiraHandNote("onboarding.result.note", tone: noteTone)
             Text("onboarding.result.overline").kiraFont(.overline).foregroundStyle(.inkMuted).padding(.top, 4)
             HStack(alignment: .firstTextBaseline, spacing: 4) {
-                Text(report.score, format: .number).font(
-                    KiraFont.display(72, .heavy, relativeTo: .largeTitle).monospacedDigit())
-                Text("onboarding.result.outOf").font(KiraFont.display(17, .bold, relativeTo: .headline))
-                    .foregroundStyle(.inkMuted)
+                Text(report.score, format: .number)
+                    .font(KiraFont.display(72, .heavy, relativeTo: .largeTitle).monospacedDigit())
+                    .kiraLineHeight(76, size: 72, natural: 1.26, relativeTo: .largeTitle)
+                    .tracking(-0.03 * 72)
+                Text("onboarding.result.outOf").font(.headline.weight(.bold)).foregroundStyle(.inkMuted)
             }
             .foregroundStyle(.ink)
             .padding(.top, -6)

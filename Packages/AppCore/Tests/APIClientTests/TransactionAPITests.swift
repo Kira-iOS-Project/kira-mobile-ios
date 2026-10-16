@@ -8,7 +8,7 @@ import Testing
 
 private let entry = ManualTransactionInputDTO(
     clientId: "c-1", type: .expense, amount: 18_000, category: .transport, name: "Grab ke Kantor",
-    occurredAt: catatNow, note: "pagi")
+    occurredAt: recordNow, note: "pagi")
 
 @Suite("TransactionAPI")
 struct TransactionAPITests {
@@ -26,7 +26,7 @@ struct TransactionAPITests {
             Components.Schemas.ManualTransactionInput.self, from: try #require(await transport.request))
         #expect(body.note == "pagi")
         #expect(body.category == .transport)
-        #expect(body.occurredAt == catatNow)
+        #expect(body.occurredAt == recordNow)
     }
 
     @Test("lists with every filter in the query")
@@ -61,12 +61,13 @@ struct TransactionAPITests {
     @Test("reads a detail with and without its source message")
     func readsDetail() async throws {
         let quote =
-            #""sourceMessage":{"id":"m-1","body":"grab 18rb","createdAt":"\#(catatNowJSON)","spanStart":0,"spanEnd":4}"#
+            #""sourceMessage":{"id":"m-1","body":"grab 18rb","createdAt":"\#(recordNowJSON)","#
+            + #""spanStart":0,"spanEnd":4}"#
         let withSource = String(transactionJSON.dropLast()) + "," + quote + "}"
         let (api, _) = KiraAPI.canned(json: withSource)
         let detail = try await api.getTransaction(id: "t-1")
         #expect(detail.sourceMessage?.spanEnd == 4)
-        #expect(detail.sourceMessage?.createdAt == catatNow)
+        #expect(detail.sourceMessage?.createdAt == recordNow)
         #expect(detail.transaction.name == "Grab ke Kantor")
 
         let (plainAPI, _) = KiraAPI.canned(json: String(transactionJSON.dropLast()) + #","sourceMessage":null}"#)

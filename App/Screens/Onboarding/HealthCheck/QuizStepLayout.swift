@@ -14,6 +14,7 @@ struct QuizStepLayout<Content: View, Actions: View>: View {
     var leaf: OnboardingLeaf?
     @ViewBuilder let content: () -> Content
     @ViewBuilder let actions: () -> Actions
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         OnboardingPage(spacing: KiraSpacing.space5) {
@@ -23,15 +24,21 @@ struct QuizStepLayout<Content: View, Actions: View>: View {
                 label: "onboarding.quiz.progress \(step.number) \(HealthCheckStep.total)"
             )
             .overlay(alignment: .bottomTrailing) {
-                if step == .income {
-                    KiraHandNote("onboarding.quiz.note", size: .small, tilt: -3).padding(.trailing, 2).offset(y: 3)
-                }
+                if step == .income, !typeSize.isAccessibilitySize { note.offset(y: 3) }
+            }
+            /** At accessibility sizes the note would cover the label, so it goes under it. */
+            if step == .income, typeSize.isAccessibilitySize {
+                note.frame(maxWidth: .infinity, alignment: .trailing)
             }
             content()
             Spacer(minLength: 0)
-            actions()
+            VStack(spacing: KiraSpacing.space5) { actions() }.onboardingFoot(spacing: KiraSpacing.space5)
         }
         .onboardingBackdrop(leaf: leaf, showsMascot: showsMascot)
+    }
+
+    private var note: some View {
+        KiraHandNote("onboarding.quiz.note", size: .small, tilt: -3).padding(.trailing, 2)
     }
 }
 

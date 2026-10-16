@@ -15,6 +15,6 @@ extension RecordDependencies {
                 fallbackName: String(localized: "record.draft.fallbackName"), refiner: FoundationModelsRefiner()),
             receiptReader: VisionReceiptReader(), camera: AVReceiptCamera(), transcriber: DeviceVoiceTranscriber(),
             receiptName: String(localized: "record.receipt.fallbackName"),
-            categoryName: { String(localized: $0.title) })
+            categoryName: { String(localized: $0.title) }, receiptAssistant: FoundationModelsReceiptAssistant())
     }
 }

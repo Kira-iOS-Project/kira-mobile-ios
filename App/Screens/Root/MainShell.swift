@@ -8,6 +8,7 @@ import SwiftUI
 
 struct MainShell: View {
     @Bindable var navigation: NavigationModel
+    @Environment(\.appServices) private var services
 
     var body: some View {
         TabView(selection: sectionBinding) {
@@ -31,6 +32,11 @@ struct MainShell: View {
                 }
                 .padding(.horizontal, KiraSpacing.screen)
                 .padding(.bottom, KiraSpacing.space2)
+            }
+        }
+        .fullScreenCover(isPresented: $navigation.showsHealthCheck) {
+            OnboardingFlow(service: services.onboarding, pinSetup: services.pinSetup, start: .healthCheck) { _ in
+                navigation.showsHealthCheck = false
             }
         }
     }

@@ -14,13 +14,14 @@ struct ProtectionStepView: View {
     var body: some View {
         QuizStepLayout(step: .protection, title: "onboarding.protection.title", flow: flow, showsMascot: false) {
             ProtectionChoices(answers: model.protection)
+        } actions: {
+            /** The umbrella sits at the bottom, 20 pt above "Lihat Hasilku", as on the board. */
             VStack(spacing: KiraSpacing.space1) {
                 KiraIllustration(.umbrella, size: 120)
                 KiraHandNote("onboarding.protection.note")
             }
             .frame(maxWidth: .infinity)
-            .padding(.top, KiraSpacing.space2)
-        } actions: {
+            .padding(.bottom, KiraSpacing.space1)
             VStack(spacing: KiraSpacing.space2) {
                 if let problem = model.phase.problem { ProblemMessage(problem: problem) }
                 KiraButton("onboarding.protection.submit") { Task { await model.submit() } }

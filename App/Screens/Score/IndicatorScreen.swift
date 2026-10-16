@@ -48,6 +48,7 @@ private struct IndicatorContent: View {
     let detail: IndicatorDetail
     let onOpen: (AppRoute) -> Void
     let onBack: () -> Void
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     private var indicator: ScoreIndicator { detail.indicator }
 
@@ -74,9 +75,11 @@ private struct IndicatorContent: View {
                 KiraNotice(.simulation, title: "indicator.simulation.title", message: "indicator.simulation.body")
             }
             .padding(.horizontal, KiraSpacing.screen)
+            /** The board's 62 pt from the top of the screen, and its twig at 34 pt. */
+            .padding(.top, 62 - 59)
             .padding(.bottom, KiraSpacing.space8)
             .background(alignment: .topTrailing) {
-                KiraLeaf(.twig, tone: .soft, size: 130, isFlipped: true).offset(x: 38, y: -28)
+                KiraLeaf(.twig, tone: .soft, size: 130, isFlipped: true).offset(x: 38, y: 34 - 59)
                     .accessibilityHidden(true)
             }
         }
@@ -106,7 +109,12 @@ private struct IndicatorContent: View {
                         .tracking(-0.56)
                         .foregroundStyle(.ink)
                         .accessibilityAddTraits(.isHeader)
-                    HStack(spacing: KiraSpacing.space2) {
+                    /** The band beside the points; under them at accessibility sizes. */
+                    let row =
+                        typeSize.isAccessibilitySize
+                        ? AnyLayout(VStackLayout(alignment: .leading, spacing: KiraSpacing.space1))
+                        : AnyLayout(HStackLayout(spacing: KiraSpacing.space2))
+                    row {
                         Text("indicator.points \(indicator.points)")
                             .font(KiraFont.display(17, .heavy, relativeTo: .headline).monospacedDigit())
                             .kiraLineHeight(22, size: 17, natural: 1.26, relativeTo: .headline)

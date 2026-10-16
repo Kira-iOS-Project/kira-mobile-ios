@@ -50,6 +50,15 @@ function swiftCode(src) {
         else if (src.startsWith('*/', i)) { depth -= 1; i += 2; if (depth === 0) break; }
         else i += 1;
       }
+    } else if (/^#+"/.test(src.slice(i, i + 16))) {
+      /** A raw string, #"…"# or #"""…"""#: it ends only at its quotes followed by as many #s, and
+          a backslash is plain text inside it, so JSON test data stays a string. */
+      const hashes = /^#+/.exec(src.slice(i))[0];
+      const quotes = src.startsWith('"""', i + hashes.length) ? '"""' : '"';
+      const close = quotes + hashes;
+      const end = src.indexOf(close, i + hashes.length + quotes.length);
+      i = end === -1 ? src.length : end + close.length;
+      out += ' ';
     } else if (src[i] === '"') {
       const close = src.startsWith('"""', i) ? '"""' : '"';
       i += close.length;

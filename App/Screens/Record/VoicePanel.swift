@@ -49,7 +49,7 @@ struct VoicePanel: View {
                 .frame(width: 28, height: 28)
                 .kiraCard(.pandanSoft, border: .pandanLine, cornerRadius: 14)
                 .accessibilityHidden(true)
-            Text("record.voice.listening")
+            Text(model.state == .starting ? "record.voice.preparing" : "record.voice.listening")
                 .font(.footnote.weight(.semibold)).kiraLineHeight(18, size: 13)
                 .foregroundStyle(.pandan)
                 .accessibilityAddTraits(.updatesFrequently)

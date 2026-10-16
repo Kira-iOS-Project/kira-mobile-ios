@@ -13,7 +13,7 @@ struct ScoreStepCopy {
         switch step.kind {
         case .payOffDebt: Text("onboarding.result.step.payOff \(step.debtName ?? "")")
         case .seekRelief: Text("onboarding.result.step.relief \(step.debtName ?? "")")
-        case .buildEmergencyFund: Text("onboarding.result.step.fund \(step.targetMultiple ?? 0)")
+        case .buildEmergencyFund: Text("onboarding.result.step.fund \(step.targetMultiple ?? 0, format: .kiraMultiple)")
         case .addProtection: Text("onboarding.result.step.protection")
         case .raiseSavings: Text("onboarding.result.step.savings \(step.targetPercent ?? 0)")
         case .lowerInstalments: Text("onboarding.result.step.instalments \(step.targetPercent ?? 0)")

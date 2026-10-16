@@ -118,3 +118,27 @@ struct ReceiptScanModelTests {
         #expect(scan.input(for: undated).occurredAt == clock.now)
     }
 }
+
+extension ReceiptScanModelTests {
+    @Test("a receipt without a printed store takes the model's name when the text holds it")
+    func assisted() async throws {
+        let service = FakeRecordService()
+        service.receiptResult = .success(
+            SendResult(
+                person: Fixtures.person("m1", "Toko Sejahtera", kind: .personReceipt), reply: nil,
+                quotaExhausted: false,
+                usage: Fixtures.usage()))
+        let lines = ["Kasir 2", "Sabun Cuci 15.500,00", "TOTAL 15.500,00", "Toko Sejahtera Jakarta"]
+        let assistant = FakeReceiptAssistant(ReceiptGlance(storeName: "Toko Sejahtera", kind: .receipt))
+        let scan = ReceiptScanModel(
+            quota: UsageMeter(used: 0, limit: 10),
+            dependencies: Fixtures.dependencies(
+                service: service, receiptReader: FakeReceiptReader(result: .success(lines)), assistant: assistant),
+            onRead: { _ in }, onManual: {})
+        scan.picked(Data([1]), fileName: nil)
+        await scan.read()
+        let receipt = try #require(service.receipts.first)
+        #expect(receipt.storeName == "Toko Sejahtera")
+        #expect(service.receipts.first?.total == 15_500)
+    }
+}
