@@ -22,7 +22,7 @@ struct DebtGuideModelTests {
 
     @Test("the server's numbers replace the shipped ones once loaded")
     func serverLinks() async {
-        let ojk = CareContact(key: .ojk157, name: "OJK", phone: "1500157", note: "n")
+        let ojk = CareContact(key: .ojk157, name: "OJK", phone: "1500157")
         let list = CareContactList(verifiedOn: CalendarDay(year: 2026, month: 11, day: 1), contacts: [ojk])
         let model = DebtGuideModel(guide: .illegalLender, care: FakeCareService(result: .success(list)))
         await model.load()

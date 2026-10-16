@@ -50,7 +50,9 @@ struct ConnectionLossTests {
     private static var recordDependencies: RecordDependencies {
         let ids = IdSequence()
         return RecordDependencies(
-            service: LiveRecordService(api: .down), reader: MessageReader(fallbackName: "Transaksi", refiner: nil),
+            service: LiveRecordService(api: .down), checkIns: FakeCheckInService(),
+            crisis: CrisisDetector(refiner: nil),
+            reader: MessageReader(fallbackName: "Transaksi", refiner: nil),
             receiptReader: FakeReceiptReader(), camera: FakeCamera(), transcriber: FakeTranscriber(),
             clock: ManualClock(), makeId: { ids.next() }, receiptName: "Struk", categoryName: { $0.rawValue },
             receiptAssistant: nil)

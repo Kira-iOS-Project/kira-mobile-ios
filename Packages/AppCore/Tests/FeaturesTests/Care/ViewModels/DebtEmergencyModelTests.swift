@@ -87,7 +87,7 @@ struct DebtEmergencyModelTests {
 
     @Test("the contacts and their links come from the server's list")
     func serverContacts() async {
-        let ojk = CareContact(key: .ojk157, name: "OJK", phone: "157", whatsApp: "08111", note: "n")
+        let ojk = CareContact(key: .ojk157, name: "OJK", phone: "157", whatsApp: "08111")
         let list = CareContactList(verifiedOn: CalendarDay(year: 2026, month: 11, day: 1), contacts: [ojk])
         let model = model(FakeDebtEmergencyService(), care: FakeCareService(result: .success(list)))
         #expect(model.phase.value == nil)
