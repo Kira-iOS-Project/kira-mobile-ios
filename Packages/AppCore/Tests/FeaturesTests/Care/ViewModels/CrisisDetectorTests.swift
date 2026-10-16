@@ -28,8 +28,8 @@ struct CrisisDetectorTests {
         let finding = FakeCrisisRefiner(.signal(.concern))
         #expect(await CrisisDetector(refiner: finding).level(of: "sedih bgt hari ini", allowsModel: true) == .concern)
         let calm = FakeCrisisRefiner(CrisisAssessment.none)
-        let kopi = "capek banget hari ini beli kopi 25rb"
-        #expect(await CrisisDetector(refiner: calm).level(of: kopi, allowsModel: true) == nil)
+        let expense = "capek banget hari ini beli kopi 25rb"
+        #expect(await CrisisDetector(refiner: calm).level(of: expense, allowsModel: true) == nil)
         #expect(calm.asked == 1)
     }
 

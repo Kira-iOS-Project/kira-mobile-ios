@@ -50,10 +50,8 @@ struct CheckInScreen: View {
     private var delays: some View {
         KiraListGroup {
             ForEach(CheckInDelay.allCases, id: \.self) { delay in
-                KiraListRow(Text(delay.title), trailing: .check(model.delay == delay)) { model.delay = delay } extra: {
-                    EmptyView()
-                }
-                .subtitle(Text(delay.subtitle))
+                KiraListRow(Text(delay.title), trailing: .check(model.delay == delay), action: { model.delay = delay })
+                    .subtitle(Text(delay.subtitle))
             }
         }
         .accessibilityElement(children: .contain)

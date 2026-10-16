@@ -25,7 +25,8 @@ struct CareChatOverlays: ViewModifier {
                 onDismiss: checkInClosed,
                 content: {
                     if let checkIn = model.checkIn { CheckInScreen(model: checkIn) }
-                })
+                }
+            )
             .kiraDialog(isPresented: $showsFailure, onDismiss: closeFailure) { failureDialog }
     }
 
