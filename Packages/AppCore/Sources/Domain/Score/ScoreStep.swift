@@ -38,6 +38,11 @@ package struct ScoreStep: Hashable, Sendable {
     /** The percent aimed for. */
     package var targetPercent: Int?
 
+    /** What is still missing from the target ("Tambah Rp840.000,00"), never below 0. */
+    package var shortfall: Int {
+        max((targetAmount ?? 0) - (currentAmount ?? 0), 0)
+    }
+
     /** A step of `kind` adding `estimatedGain` points; set the other fields as the kind needs. */
     package init(kind: ScoreStepKind, estimatedGain: Int) {
         self.kind = kind
