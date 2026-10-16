@@ -3,7 +3,8 @@
  words; `CrisisText` reads the phrase and the message the same way (lower case, no accents,
  repeated letters once, slang spellings to one word: "ga", "gk", "nggak" and "tidak" are all
  "gak"), so one entry covers its spellings. A phrase ending in " $" matches only at the end of a
- clause: "udah gak kuat $" is despair, "udah gak kuat bayar cicilan" is about money.
+ clause, words of `trailing` aside: "udah gak kuat $" is despair, and so is "udah gak kuat banget
+ aku", while "udah gak kuat bayar cicilan" is about money.
 
  The threshold (recorded so a review can change it on purpose): tiredness, stress or a headache
  alone is not a signal. "capek banget hari ini beli kopi 25rb" is an ordinary expense and is
@@ -16,7 +17,8 @@ enum CrisisPhrases {
     /** Words about ending one's life or self-harm. */
     static let danger = [
         "bunuh diri", "bundir", "ngebundir", "pengen mati", "aku mau mati", "mending mati", "lebih baik mati",
-        "aku mati aja", "mending aku mati", "mending gak ada aja", "mending aku gak ada", "lebih baik aku gak ada",
+        "aku mati aja", "mau mati aja", "mending aku mati", "mending gak ada aja", "mending aku gak ada",
+        "lebih baik aku gak ada",
         "mending aku gak usah ada", "gak mau hidup lagi", "gak pengen hidup lagi", "gak mau hidup $",
         "gak pengen hidup $", "capek hidup", "capek sama hidup", "capek banget sama hidup", "lelah hidup",
         "bosan hidup", "bosen hidup", "males hidup", "muak hidup", "udah gak kuat hidup", "gak sanggup hidup",
@@ -30,8 +32,10 @@ enum CrisisPhrases {
     /** Despair without words about ending one's life. */
     static let concern = [
         "putus asa", "gak ada harapan", "udah gak kuat $", "aku gak kuat $", "gak kuat lagi $",
-        "udah gak sanggup $", "gak sanggup lagi $", "pengen nyerah", "nyerah aja", "aku nyerah", "hidupku hancur",
-        "hidup aku hancur", "hancur banget", "depresi", "stres berat", "aku gak berguna", "aku cuma beban",
+        "aku gak kuat lagi", "udah gak sanggup $", "gak sanggup lagi $", "pengen nyerah", "nyerah aja", "aku nyerah",
+        "hidupku hancur",
+        "hidup aku hancur", "aku hancur", "hatiku hancur", "hati aku hancur", "rasanya hancur",
+        "depresi", "aku stres berat", "lagi stres berat", "aku gak berguna", "aku cuma beban",
         "jadi beban keluarga", "gak tahu harus gimana lagi", "buntu banget", "pengen ngilang",
         "pengen kabur dari semuanya", "nangis terus", "tiap malam nangis", "akhiri semuanya", "akhirin semuanya",
         "gak ada gunanya lagi", "hidup gak ada artinya", "kesepian banget",
@@ -45,6 +49,11 @@ enum CrisisPhrases {
     static let cues: Set<String> = [
         "capek", "lelah", "pusing", "stres", "sedih", "nangis", "takut", "hancur", "sendirian", "kesepian",
         "berat", "frustasi", "galau", "cemas", "panik", "putus", "nyerah", "kalut", "mati", "hopeless",
+    ]
+
+    /** Words that may follow a phrase ending in " $" without ending its clause's meaning. */
+    static let trailing: Set<String> = [
+        "aku", "lagi", "banget", "aja", "ya", "deh", "sih", "nih", "kok", "rasanya", "beneran", "sekarang",
     ]
 
     /** One spelling per slang word, keyed by its spellings. */
@@ -63,6 +72,8 @@ enum CrisisPhrases {
         "hidup": ["idup"],
         "capek": ["cape", "cpk", "capk"],
         "nyerah": ["menyerah"],
+        "akhiri": ["mengakhiri"],
+        "akhirin": ["ngakhirin", "mengakhirin"],
         "ngilang": ["menghilang"],
         "nyakitin": ["menyakiti", "nyakiti", "melukai", "ngelukain", "lukai"],
         "stres": ["stress", "setres"],

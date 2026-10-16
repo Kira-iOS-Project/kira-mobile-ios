@@ -21,6 +21,13 @@
 
         private var dependencies: RecordDependencies {
             let preview = PreviewRecordData.dependencies
+            if screen == .checkInChat {
+                return RecordDependencies(
+                    service: preview.service, checkIns: PreviewCheckInService(isDue: true), crisis: preview.crisis,
+                    reader: preview.reader, receiptReader: preview.receiptReader, camera: preview.camera,
+                    transcriber: preview.transcriber, receiptName: preview.receiptName,
+                    categoryName: preview.categoryName)
+            }
             let account: LaunchRecordService.Account? =
                 switch screen {
                 case .recordVoice: .plus
@@ -36,7 +43,8 @@
             let isVoice = account == .plus
             return RecordDependencies(
                 service: LaunchRecordService(account: account, preview: preview.service),
-                reader: preview.reader, receiptReader: preview.receiptReader, camera: preview.camera,
+                checkIns: preview.checkIns, crisis: preview.crisis, reader: preview.reader,
+                receiptReader: preview.receiptReader, camera: preview.camera,
                 transcriber: isVoice ? SettledTranscriber() : preview.transcriber,
                 clock: isVoice ? SettledClock(seconds: 7) : SystemRecordClock(),
                 receiptName: preview.receiptName, categoryName: preview.categoryName)

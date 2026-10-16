@@ -35,8 +35,9 @@ package struct RecordDependencies: Sendable {
 
     /** Everything Catat needs; the clock and the ids default to the system's. */
     package init(
-        service: any RecordService, checkIns: any CheckInService, crisis: CrisisDetector, reader: MessageReader, receiptReader: any ReceiptTextReading,
-        camera: any ReceiptCapturing, transcriber: any VoiceTranscribing, clock: any RecordClock = SystemRecordClock(),
+        service: any RecordService, checkIns: any CheckInService, crisis: CrisisDetector, reader: MessageReader,
+        receiptReader: any ReceiptTextReading, camera: any ReceiptCapturing, transcriber: any VoiceTranscribing,
+        clock: any RecordClock = SystemRecordClock(),
         makeId: @escaping @Sendable () -> String = { UUID().uuidString }, receiptName: String,
         categoryName: @escaping @Sendable (TransactionCategory) -> String,
         receiptAssistant: (any ReceiptAssisting)? = nil

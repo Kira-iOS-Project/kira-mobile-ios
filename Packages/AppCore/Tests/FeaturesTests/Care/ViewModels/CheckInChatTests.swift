@@ -9,7 +9,9 @@ import Testing
 @MainActor
 @Suite("Catat check-in")
 struct CheckInChatTests {
-    private func model(_ checkIns: FakeCheckInService, service: FakeRecordService = FakeRecordService()) -> RecordModel {
+    private func model(
+        _ checkIns: FakeCheckInService, service: FakeRecordService = FakeRecordService()
+    ) -> RecordModel {
         RecordModel(dependencies: Fixtures.dependencies(service: service, checkIns: checkIns))
     }
 
@@ -113,7 +115,7 @@ struct CheckInChatTests {
         await record.load()
         let greeting = try #require(record.care.entries.first)
         await record.care.choose(.talkAboutDebt, in: greeting)
-        #expect(opened == [.unavailable(.debtEmergency)] && record.care.entries.count == 1)
+        #expect(opened == [.debtEmergency] && record.care.entries.count == 1)
         await record.care.choose(.better, in: greeting)
         #expect(
             record.care.entries.map(\.kind) == [

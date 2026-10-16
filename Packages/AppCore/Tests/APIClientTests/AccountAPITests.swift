@@ -13,7 +13,7 @@ private let accountUsageJSON = #"""
 
 private let meJSON = #"""
     {"id":"u-1","email":"dinda@email.com","displayName":"Dinda","focus":"track_spending",\#
-    "payday":{"day":25,"endOfMonth":false},"hideBalances":false,"debtEmergencyActive":false,"consented":true,\#
+    "payday":{"day":25,"endOfMonth":false},"hideBalances":false,"consented":true,\#
     "healthCheckCompleted":true,"plan":{"id":"plus","source":"scholarship","renewsOn":"2027-01-16"},\#
     "usage":\#(accountUsageJSON),"period":{"start":"2026-09-25","end":"2026-10-24",\#
     "nextPayday":"2026-10-25","daysUntilPayday":9},\#

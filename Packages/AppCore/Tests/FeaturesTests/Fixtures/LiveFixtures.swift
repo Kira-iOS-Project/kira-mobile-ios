@@ -14,7 +14,7 @@ func meJSON(consented: Bool = true, healthCheck: Bool = true, hideBalances: Bool
     let planJSON = plan ?? #"{"id":"plus","source":"scholarship","renewsOn":"2027-01-16"}"#
     return #"""
         {"id":"u-1","email":"dinda@email.com","displayName":"Dinda","focus":"track_spending",\#
-        "payday":{"day":25,"endOfMonth":false},"hideBalances":\#(hideBalances),"debtEmergencyActive":false,"consented":\#(consented),\#
+        "payday":{"day":25,"endOfMonth":false},"hideBalances":\#(hideBalances),"consented":\#(consented),\#
         "healthCheckCompleted":\#(healthCheck),"plan":\#(planJSON),"usage":\#(usageJSON),"period":\#(periodJSON),\#
         "lastCategories":{"expense":"coffee","income":null},"debtAccountCount":2,\#
         "aiEnabled":true,"weeklySummaryEnabled":false,"debtEmergencyActive":false}

@@ -13,6 +13,7 @@ struct CrisisPhraseDetectorTests {
             "pengeeen matiii ajaaa", "gw udh ga kuat hidup", "rasanya pgn bundir", "MENDINGAN AKU GA ADA",
             "self-harm lagi semalam", "capek hidup kayak gini", "aku gak mau hidup", "kadang kepikiran akhiri hidupku",
             "aku gak mau bunuh diri kok", "i want to die", "udah gak pengen hidup lagi",
+            "mau mati aja", "ingin mengakhiri hidup",
         ])
     func danger(message: String) {
         #expect(detector.level(of: message) == .danger)
@@ -23,6 +24,7 @@ struct CrisisPhraseDetectorTests {
         arguments: [
             "Putus asa banget sama utang", "aku udah gak kuat.", "gak tau harus gimana lagi", "pengen nyerah aja",
             "utang 5jt, aku udah ga sanggup", "hidupku hancur gara-gara pinjol", "tiap malam nangis terus",
+            "aku gak kuat lagi aku", "udah gak kuat banget", "aku stres berat",
         ])
     func concern(message: String) {
         #expect(detector.level(of: message) == .concern)
@@ -35,6 +37,7 @@ struct CrisisPhraseDetectorTests {
             "hp mau mati, beli charger 50rb", "udah gak kuat bayar cicilan 2jt", "lampu mati, beli token 100rb",
             "mati lampu", "pusing tagihan listrik 300rb", "beli racun tikus 15rb", "lelah lembur, gofood 40rb",
             "gak mau hidup boros lagi", "asuransi jiwa 500rb", "aku aman", "", "   ",
+            "hp hancur banget, servis 300rb", "stres berat kerjaan, kopi 30rb", "udah gak kuat banget bayar cicilan",
         ])
     func none(message: String) {
         #expect(detector.level(of: message) == nil)

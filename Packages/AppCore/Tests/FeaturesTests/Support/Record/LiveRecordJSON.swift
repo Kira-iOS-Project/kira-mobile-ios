@@ -12,7 +12,7 @@ let liveUsageJSON =
 /** `GET /me` for Dinda on Kira Gratis, period 25 September – 24 Oktober. */
 let liveMeJSON =
     #"{"id":"u-1","email":"dinda@email.com","displayName":"Dinda","focus":"track_spending","#
-    + #""payday":{"day":25,"endOfMonth":false},"hideBalances":false,"debtEmergencyActive":false,"consented":true,"#
+    + #""payday":{"day":25,"endOfMonth":false},"hideBalances":false,"consented":true,"#
     + #""healthCheckCompleted":true,"plan":{"id":"free","source":null,"renewsOn":null},"#
     + #""usage":\#(liveUsageJSON),"period":{"start":"2026-09-25","end":"2026-10-24","#
     + #""nextPayday":"2026-10-25","daysUntilPayday":9},"lastCategories":{"expense":"food","income":null},"#

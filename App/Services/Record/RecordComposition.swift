@@ -13,16 +13,21 @@ struct RecordComposition {
     let record: any RecordService
     /** Riwayat's, Detail Transaksi's, Riwayat Percakapan's and Impor Mutasi's calls. */
     let history: any HistoryService
+    /** Kira Peduli's crisis signal and check-in in the chat (PED-02, PED-05, PED-06). */
+    let checkIns: any CheckInService
 
     /** Both services over the API client `api`. */
     static func live(api: KiraAPI) -> RecordComposition {
-        RecordComposition(record: LiveRecordService(api: api), history: LiveHistoryService(api: api))
+        RecordComposition(
+            record: LiveRecordService(api: api), history: LiveHistoryService(api: api),
+            checkIns: LiveCheckInService(api: api))
     }
 
     /** What the slots use when the root set nothing: the preview services in a debug build only. */
     static var fallback: RecordComposition? {
         #if DEBUG
-            RecordComposition(record: PreviewRecordService(), history: PreviewHistoryService())
+            RecordComposition(
+                record: PreviewRecordService(), history: PreviewHistoryService(), checkIns: PreviewCheckInService())
         #else
             nil
         #endif

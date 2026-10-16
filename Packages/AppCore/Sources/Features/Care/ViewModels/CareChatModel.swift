@@ -18,7 +18,7 @@ import Observation
 @Observable
 package final class CareChatModel {
     /** The route of Mode Darurat Utang (PED-07). */
-    static let debtEmergency = AppRoute.unavailable(.debtEmergency)
+    static let debtEmergency = AppRoute.debtEmergency
 
     /** The lines Kira Peduli added to the chat, oldest first. */
     package internal(set) var entries: [CareChatEntry] = []

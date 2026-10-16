@@ -12,7 +12,10 @@ package struct CrisisPhraseDetector: Sendable {
     }
 
     private static let phrases: [Phrase] =
-        CrisisPhrases.danger.map { phrase($0, level: .danger) } + CrisisPhrases.concern.map { phrase($0, level: .concern) }
+        CrisisPhrases.danger.map { phrase($0, level: .danger) }
+        + CrisisPhrases.concern.map { phrase($0, level: .concern) }
+
+    private static let trailing = Set(CrisisPhrases.trailing.map(CrisisText.word))
 
     private static let cues = Set(CrisisPhrases.cues.map(CrisisText.word))
 
@@ -44,8 +47,17 @@ package struct CrisisPhraseDetector: Sendable {
     private static func contains(_ clause: [String], _ phrase: Phrase) -> Bool {
         let count = phrase.words.count
         guard count > 0, clause.count >= count else { return false }
-        let starts = phrase.endsClause ? [clause.count - count] : Array(0...(clause.count - count))
-        return starts.contains { Array(clause[$0..<$0 + count]) == phrase.words }
+        guard phrase.endsClause else {
+            return (0...(clause.count - count)).contains { Array(clause[$0..<$0 + count]) == phrase.words }
+        }
+        /** The clause's end, then each end left once a trailing word ("aku", "banget") is set aside. */
+        var end = clause.count
+        while end >= count {
+            if Array(clause[(end - count)..<end]) == phrase.words { return true }
+            guard trailing.contains(clause[end - 1]) else { return false }
+            end -= 1
+        }
+        return false
     }
 }
 

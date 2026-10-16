@@ -17,7 +17,8 @@ struct RecordDevicesTests {
     @Test("default ids are unique UUIDs")
     func defaultIds() {
         let dependencies = RecordDependencies(
-            service: FakeRecordService(), checkIns: FakeCheckInService(), crisis: CrisisDetector(refiner: nil), reader: MessageReader(fallbackName: "T", refiner: nil),
+            service: FakeRecordService(), checkIns: FakeCheckInService(), crisis: CrisisDetector(refiner: nil),
+            reader: MessageReader(fallbackName: "T", refiner: nil),
             receiptReader: FakeReceiptReader(), camera: FakeCamera(), transcriber: FakeTranscriber(),
             receiptName: "Struk", categoryName: { $0.rawValue })
         let first = dependencies.makeId()

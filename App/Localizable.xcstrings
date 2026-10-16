@@ -1691,6 +1691,236 @@
         }
       }
     },
+    "care.checkIn.accept" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ya, Sapa Aku"
+          }
+        }
+      }
+    },
+    "care.checkIn.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aku akan menyapamu di chat saat kamu membuka Kira lagi."
+          }
+        }
+      }
+    },
+    "care.checkIn.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup, kembali ke chat"
+          }
+        }
+      }
+    },
+    "care.checkIn.dayAfterTomorrow" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lusa"
+          }
+        }
+      }
+    },
+    "care.checkIn.decline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak Perlu"
+          }
+        }
+      }
+    },
+    "care.checkIn.failedTitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Berhasil"
+          }
+        }
+      }
+    },
+    "care.checkIn.notice" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disimpan terpisah dari data keuanganmu, tidak dipakai untuk iklan atau penilaian kredit. Bisa dibatalkan kapan saja."
+          }
+        }
+      }
+    },
+    "care.checkIn.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
+          }
+        }
+      }
+    },
+    "care.checkIn.sample" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hai, gimana kabarmu hari ini?"
+          }
+        }
+      }
+    },
+    "care.checkIn.sampleLabel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Begini sapaannya di chat"
+          }
+        }
+      }
+    },
+    "care.checkIn.threeDays" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiga Hari Lagi"
+          }
+        }
+      }
+    },
+    "care.checkIn.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boleh Aku Menyapamu Lagi?"
+          }
+        }
+      }
+    },
+    "care.checkIn.tomorrow" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Besok"
+          }
+        }
+      }
+    },
+    "care.checkIn.when" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapan Kira menyapa"
+          }
+        }
+      }
+    },
+    "care.checkIn.withinHours %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dalam %lld jam"
+          }
+        }
+      }
+    },
+    "care.checkInChat.better" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senang dengarnya kamu sedikit lebih baik. Soal tagihan, kita bisa urus satu per satu. Mau lihat pilihannya?"
+          }
+        }
+      }
+    },
+    "care.checkInChat.greeting %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hai %@, kemarin kamu bilang lagi berat. Gimana kabarmu hari ini?"
+          }
+        }
+      }
+    },
+    "care.choice.better" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sedikit Lebih Baik"
+          }
+        }
+      }
+    },
+    "care.choice.safe" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aku Aman"
+          }
+        }
+      }
+    },
+    "care.choice.stillHeavy" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masih Berat"
+          }
+        }
+      }
+    },
+    "care.choice.talkAboutDebt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mau Bahas Utangnya"
+          }
+        }
+      }
+    },
+    "care.choice.talkFirst" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mau Cerita Dulu"
+          }
+        }
+      }
+    },
+    "care.choice.unsafe" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aku Tidak Aman"
+          }
+        }
+      }
+    },
     "care.close" : {
       "localizations" : {
         "id" : {
@@ -1707,6 +1937,56 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Salin Nomor"
+          }
+        }
+      }
+    },
+    "care.counsellor.help" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Bantuan"
+          }
+        }
+      }
+    },
+    "care.counsellor.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bantuan dari orang"
+          }
+        }
+      }
+    },
+    "care.counsellor.message" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu bisa bicara dengan konselor sekarang, gratis."
+          }
+        }
+      }
+    },
+    "care.crisis.question" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aku mau tanya langsung, ya. Apakah kamu aman sekarang?"
+          }
+        }
+      }
+    },
+    "care.crisis.reply" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Makasih sudah cerita ke aku. Kedengarannya kamu capek sekali, apalagi dengan tagihan yang numpuk."
           }
         }
       }
@@ -1737,6 +2017,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Urusan Utang"
+          }
+        }
+      }
+    },
+    "care.debtCard.open" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka"
+          }
+        }
+      }
+    },
+    "care.debtCard.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hakmu saat ditagih, aduan resmi, naskah negosiasi"
+          }
+        }
+      }
+    },
+    "care.debtCard.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mode Darurat Utang"
           }
         }
       }
@@ -1921,12 +2231,42 @@
         }
       }
     },
+    "care.meta.automatic" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira · respons otomatis"
+          }
+        }
+      }
+    },
+    "care.meta.checkIn" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira · check-in yang kamu minta"
+          }
+        }
+      }
+    },
     "care.notice %@" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kira adalah fitur otomatis, bukan konselor. Kontak diverifikasi ulang tiap bulan · terakhir %@."
+          }
+        }
+      }
+    },
+    "care.quickReplies.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Balasan cepat"
           }
         }
       }

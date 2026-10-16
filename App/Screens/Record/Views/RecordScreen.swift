@@ -17,10 +17,11 @@ struct RecordScreen: View {
 
     @State private var model: RecordModel
     private let onOpen: (AppRoute) -> Void
+    @Environment(\.appServices) private var services
 
-    /** Catat on `service`, with the device's own readers, camera and microphone. */
-    init(service: any RecordService, onOpen: @escaping (AppRoute) -> Void) {
-        self.init(dependencies: .system(service: service), onOpen: onOpen)
+    /** Catat on `service` and `checkIns`, with the device's own readers, camera and microphone. */
+    init(service: any RecordService, checkIns: any CheckInService, onOpen: @escaping (AppRoute) -> Void) {
+        self.init(dependencies: .system(service: service, checkIns: checkIns), onOpen: onOpen)
     }
 
     /** Catat on given dependencies: previews pass their own devices. */
@@ -38,6 +39,7 @@ struct RecordScreen: View {
         .background(.surface)
         .toolbar(.hidden, for: .navigationBar)
         .modifier(RecordOverlays(model: model))
+        .modifier(CareChatOverlays(model: model.care, care: services.care, onOpen: onOpen))
         .task {
             model.onOpen = onOpen
             await model.load()

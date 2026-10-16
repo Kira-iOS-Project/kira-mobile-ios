@@ -7,10 +7,13 @@ import Features
 import Foundation
 
 extension RecordDependencies {
-    /** Catat on `service` with the device's own readers, camera and microphone. */
-    static func system(service: any RecordService) -> RecordDependencies {
+    /**
+     Catat on `service` and Kira Peduli's `checkIns`, with the device's own readers, camera and
+     microphone; a crisis signal is found by the phrase list and Apple's on-device model.
+     */
+    static func system(service: any RecordService, checkIns: any CheckInService) -> RecordDependencies {
         RecordDependencies(
-            service: service,
+            service: service, checkIns: checkIns, crisis: CrisisDetector(refiner: FoundationModelsCrisisRefiner()),
             reader: MessageReader(
                 fallbackName: String(localized: "record.draft.fallbackName"), refiner: FoundationModelsRefiner()),
             receiptReader: VisionReceiptReader(), camera: AVReceiptCamera(), transcriber: DeviceVoiceTranscriber(),

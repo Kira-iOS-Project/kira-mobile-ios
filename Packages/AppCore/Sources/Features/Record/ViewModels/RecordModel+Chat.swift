@@ -9,8 +9,9 @@ extension RecordModel {
     }
 
     /**
-     Answers a crisis signal on the device, or reads the drafts on the device, then sends the text with them. The message is kept even when
-     the month's AI messages are used up: the quota sheet then shows instead of a reply (CAT-09).
+     Answers a crisis signal on the device, or reads the drafts on the device, then sends the text
+     with them. The message is kept even when the month's AI messages are used up: the quota sheet
+     then shows instead of a reply (CAT-09).
      */
     func send(_ rawText: String, method: InputMethod, voiceSeconds: Int?) async {
         let text = rawText.trimmingCharacters(in: .whitespacesAndNewlines)

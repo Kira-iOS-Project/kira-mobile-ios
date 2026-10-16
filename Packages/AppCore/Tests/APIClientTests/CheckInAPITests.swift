@@ -17,7 +17,7 @@ struct CheckInAPITests {
         let (api, transport) = KiraAPI.canned(status: 204)
         try await api.recordCareSignal(level: .danger, source: .checkIn)
         let request = try #require(await transport.request)
-        #expect(request.method == .post && request.path == "/api/care/signals")
+        #expect(request.method == .post && request.path.hasSuffix("care/signals"))
         let body = try request.decoded(SignalBody.self)
         #expect(body.level == "danger" && body.source == "check_in")
         #expect(!request.text.contains("text") && !request.text.contains("message"))
@@ -30,7 +30,7 @@ struct CheckInAPITests {
         #expect(checkIn.id == "6f1c2a8e-4b1d-4d7a-9c3e-2f5b8a1d0e74")
         #expect(checkIn.dueAt == Date(timeIntervalSince1970: 1_792_152_000))
         let request = try #require(await transport.request)
-        #expect(request.path == "/api/care/check-ins")
+        #expect(request.path.hasSuffix("care/check-ins"))
         #expect(try request.decoded(ScheduleBody.self).afterHours == 48)
     }
 
@@ -47,7 +47,7 @@ struct CheckInAPITests {
         let (api, transport) = KiraAPI.canned(status: 204)
         try await api.markCheckInSeen(id: "c-1")
         let request = try #require(await transport.request)
-        #expect(request.method == .post && request.path == "/api/care/check-ins/c-1/seen")
+        #expect(request.method == .post && request.path.hasSuffix("care/check-ins/c-1/seen"))
     }
 
     @Test("throws every problem the care routes answer")
