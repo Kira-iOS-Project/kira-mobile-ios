@@ -31,8 +31,7 @@ package protocol PlansService: Sendable {
     func accountEmail() async throws -> String
 }
 
-/** The problem an error stands for: the API's own, or the generic one for anything else. */
+/** The problem an error stands for: the API's own, connection loss, or the generic one. */
 func plansProblem(_ error: any Error) -> AppProblem {
-    if let problem = error as? AppProblem { return problem }
-    return AppProblem()
+    AppProblem(error)
 }

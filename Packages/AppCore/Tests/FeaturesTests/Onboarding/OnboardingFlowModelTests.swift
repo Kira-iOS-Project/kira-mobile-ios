@@ -82,6 +82,18 @@ struct OnboardingFlowModelTests {
         #expect(flow.isRecheck == (start == .healthCheck))
     }
 
+    @Test("after a session ended the flow opens on Masuk over the intro, and back reaches the intro")
+    func startsAtSignIn() {
+        let flow = OnboardingFlowModel(
+            service: FakeOnboardingService(), pinSetup: FakePinSetup(), start: .signIn
+        ) { _ in }
+        #expect(flow.start.rootScreen == nil)
+        #expect(flow.path == [.signIn])
+        #expect(flow.signsIn)
+        flow.back()
+        #expect(flow.path.isEmpty)
+    }
+
     @Test("a recheck ends at its result with new answers, and back from its first step closes it")
     func recheck() async {
         var outcomes: [OnboardingOutcome] = []

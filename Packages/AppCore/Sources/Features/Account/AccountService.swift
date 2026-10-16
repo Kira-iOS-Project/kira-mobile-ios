@@ -46,7 +46,7 @@ package protocol SecuritySettings: Sendable {
     func clearLocalData() async
 }
 
-/** The thrown error as the API's problem, or the generic one when it is anything else. */
+/** The thrown error as the API's problem, connection loss, or the generic one. */
 func accountProblem(_ error: any Error) -> AppProblem {
-    (error as? AppProblem) ?? AppProblem()
+    AppProblem(error)
 }

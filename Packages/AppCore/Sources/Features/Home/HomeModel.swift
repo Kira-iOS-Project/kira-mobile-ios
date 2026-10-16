@@ -40,7 +40,7 @@ package final class HomeModel {
             isStepDismissed = false
             phase = .loaded(overview)
         } catch {
-            phase = .failed(error as? AppProblem ?? AppProblem())
+            phase = .failed(AppProblem(error))
         }
     }
 

@@ -28,6 +28,7 @@ package final class OnboardingFlowModel {
         onFinished: @escaping (OnboardingOutcome) -> Void
     ) {
         self.start = start
+        if start == .signIn { path = [.signIn] }
         self.service = service
         self.pinSetup = pinSetup
         self.onFinished = onFinished

@@ -13,13 +13,14 @@ struct PinRecoveryFlow: View {
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        Group {
+        /** One container, so the task runs once and not again when the step changes. */
+        ZStack {
             switch model.phase {
             case .sending, .enteringCode, .verifying: codeStep
             case .choosingPin, .finished: RecoveryNewPinView(model: model)
             }
         }
-        .task { await model.sendCode() }
+        .task { await model.start() }
     }
 
     private var codeStep: some View {

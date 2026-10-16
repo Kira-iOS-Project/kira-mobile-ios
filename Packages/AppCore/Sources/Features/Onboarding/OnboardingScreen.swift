@@ -42,11 +42,13 @@ package enum OnboardingStart: Hashable, Sendable {
     case focus
     /** "Cek Ulang" from the score: the six steps and the result, without Kunci Kira. */
     case healthCheck
+    /** The session ended (a refresh the API refused): Masuk, over the intro pages, so Back reaches them. */
+    case signIn
 
     /** The screen at the bottom of the stack, nil for the intro pages. */
     package var rootScreen: OnboardingScreen? {
         switch self {
-        case .intro: nil
+        case .intro, .signIn: nil
         case .consent: .consent
         case .focus: .focus
         case .healthCheck: .healthCheck(.income)

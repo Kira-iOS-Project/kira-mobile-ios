@@ -21,7 +21,7 @@ package final class ScoreModel {
         do {
             phase = try await service.score().map { .loaded($0) } ?? .empty
         } catch {
-            phase = .failed(error as? AppProblem ?? AppProblem())
+            phase = .failed(AppProblem(error))
         }
     }
 }

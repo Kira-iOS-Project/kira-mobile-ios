@@ -24,7 +24,7 @@ package final class IndicatorModel {
         do {
             phase = .loaded(try await service.indicator(key))
         } catch {
-            phase = .failed(error as? AppProblem ?? AppProblem())
+            phase = .failed(AppProblem(error))
         }
     }
 }
