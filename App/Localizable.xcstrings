@@ -1,6 +1,3006 @@
 {
   "sourceLanguage" : "id",
   "strings" : {
+    "ds.accordion.closed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tertutup"
+          }
+        }
+      }
+    },
+    "ds.accordion.open" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terbuka"
+          }
+        }
+      }
+    },
+    "ds.amount.hidden" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nominal disembunyikan"
+          }
+        }
+      }
+    },
+    "ds.amount.spoken %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ rupiah"
+          }
+        }
+      }
+    },
+    "ds.band.bertahan" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bertahan"
+          }
+        }
+      }
+    },
+    "ds.band.bertahan.scale" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bertahan 40–79"
+          }
+        }
+      }
+    },
+    "ds.band.rentan" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rentan"
+          }
+        }
+      }
+    },
+    "ds.band.rentan.scale" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rentan 0–39"
+          }
+        }
+      }
+    },
+    "ds.band.sehat" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sehat"
+          }
+        }
+      }
+    },
+    "ds.band.sehat.scale" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sehat 80+"
+          }
+        }
+      }
+    },
+    "ds.category.bank" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bank"
+          }
+        }
+      }
+    },
+    "ds.category.barang" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Barang"
+          }
+        }
+      }
+    },
+    "ds.category.belanja" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belanja"
+          }
+        }
+      }
+    },
+    "ds.category.darurat" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dana Darurat"
+          }
+        }
+      }
+    },
+    "ds.category.emas" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emas"
+          }
+        }
+      }
+    },
+    "ds.category.ewallet" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "E-Wallet"
+          }
+        }
+      }
+    },
+    "ds.category.gaji" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gaji"
+          }
+        }
+      }
+    },
+    "ds.category.hiburan" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hiburan"
+          }
+        }
+      }
+    },
+    "ds.category.kartu" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kartu Kredit"
+          }
+        }
+      }
+    },
+    "ds.category.kesehatan" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kesehatan"
+          }
+        }
+      }
+    },
+    "ds.category.kopi" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopi"
+          }
+        }
+      }
+    },
+    "ds.category.kripto" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kripto"
+          }
+        }
+      }
+    },
+    "ds.category.lainnya" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lainnya"
+          }
+        }
+      }
+    },
+    "ds.category.makan" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Makan"
+          }
+        }
+      }
+    },
+    "ds.category.menikah" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menikah"
+          }
+        }
+      }
+    },
+    "ds.category.paylater" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paylater"
+          }
+        }
+      }
+    },
+    "ds.category.pendidikan" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pendidikan"
+          }
+        }
+      }
+    },
+    "ds.category.pensiun" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pensiun"
+          }
+        }
+      }
+    },
+    "ds.category.pinjol" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pinjol"
+          }
+        }
+      }
+    },
+    "ds.category.proteksi" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proteksi"
+          }
+        }
+      }
+    },
+    "ds.category.reksadana" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reksa Dana"
+          }
+        }
+      }
+    },
+    "ds.category.rumah" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rumah"
+          }
+        }
+      }
+    },
+    "ds.category.saham" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saham"
+          }
+        }
+      }
+    },
+    "ds.category.sbn" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SBN"
+          }
+        }
+      }
+    },
+    "ds.category.tabungan" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabungan"
+          }
+        }
+      }
+    },
+    "ds.category.tagihan" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan"
+          }
+        }
+      }
+    },
+    "ds.category.transportasi" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transportasi"
+          }
+        }
+      }
+    },
+    "ds.category.tunai" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tunai"
+          }
+        }
+      }
+    },
+    "ds.checkbox.checked" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dicentang"
+          }
+        }
+      }
+    },
+    "ds.checkbox.unchecked" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum dicentang"
+          }
+        }
+      }
+    },
+    "ds.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup"
+          }
+        }
+      }
+    },
+    "ds.code.count %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld dari %2$lld angka terisi"
+          }
+        }
+      }
+    },
+    "ds.code.hold" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tahan untuk Lihat"
+          }
+        }
+      }
+    },
+    "ds.code.release" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lepas untuk Sembunyikan"
+          }
+        }
+      }
+    },
+    "ds.code.spoken %@ %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$lld dari %3$lld angka terisi"
+          }
+        }
+      }
+    },
+    "ds.draft.count %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total %lld pengeluaran"
+          }
+        }
+      }
+    },
+    "ds.draft.edit %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah %@"
+          }
+        }
+      }
+    },
+    "ds.draft.eyebrow" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Draf · belum disimpan"
+          }
+        }
+      }
+    },
+    "ds.draft.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Draf transaksi, belum disimpan"
+          }
+        }
+      }
+    },
+    "ds.draft.save %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan %lld Transaksi"
+          }
+        }
+      }
+    },
+    "ds.help.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Butuh Bantuan Sekarang"
+          }
+        }
+      }
+    },
+    "ds.indicator.value %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "ds.later" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nanti Saja"
+          }
+        }
+      }
+    },
+    "ds.logo.name" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira"
+          }
+        }
+      }
+    },
+    "ds.mascot.bangga" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuku si kukang, bangga"
+          }
+        }
+      }
+    },
+    "ds.mascot.senang" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuku si kukang, senang"
+          }
+        }
+      }
+    },
+    "ds.mascot.tenang" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuku si kukang, tenang"
+          }
+        }
+      }
+    },
+    "ds.meter.delta %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ dari bulan lalu"
+          }
+        }
+      }
+    },
+    "ds.meter.label %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Score %1$lld dari 100, pita %2$@"
+          }
+        }
+      }
+    },
+    "ds.meter.outOf" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "/100"
+          }
+        }
+      }
+    },
+    "ds.pita.head %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "ds.pita.progress" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Progres"
+          }
+        }
+      }
+    },
+    "ds.step.eyebrow" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langkah berikutnya"
+          }
+        }
+      }
+    },
+    "ds.steps.label %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langkah %1$lld dari %2$lld"
+          }
+        }
+      }
+    },
+    "ds.tab.beranda" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beranda"
+          }
+        }
+      }
+    },
+    "ds.tab.catat" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catat"
+          }
+        }
+      }
+    },
+    "ds.tab.komunitas" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komunitas"
+          }
+        }
+      }
+    },
+    "ds.tab.navigation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Navigasi utama"
+          }
+        }
+      }
+    },
+    "ds.tab.rencana" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rencana"
+          }
+        }
+      }
+    },
+    "ds.toggle.off" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nonaktif"
+          }
+        }
+      }
+    },
+    "ds.toggle.on" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktif"
+          }
+        }
+      }
+    },
+    "gallery.accordion.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dana darurat dibagi pengeluaran pokok sebulan. Targetnya paling sedikit 3× pengeluaran pokok."
+          }
+        }
+      }
+    },
+    "gallery.accordion.legal" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catatan Hukum"
+          }
+        }
+      }
+    },
+    "gallery.accordion.legal.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Score adalah simulasi edukatif, bukan penilaian kredit dan bukan rekomendasi produk keuangan."
+          }
+        }
+      }
+    },
+    "gallery.accordion.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rumus dana darurat dan sumber angkanya"
+          }
+        }
+      }
+    },
+    "gallery.action.call119" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telepon 119"
+          }
+        }
+      }
+    },
+    "gallery.action.continueChat" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lanjut Chat"
+          }
+        }
+      }
+    },
+    "gallery.action.deleteAccount" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Akun dan Data"
+          }
+        }
+      }
+    },
+    "gallery.action.hideBalance" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sembunyikan Saldo"
+          }
+        }
+      }
+    },
+    "gallery.action.howCalculated" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gimana Ngitungnya?"
+          }
+        }
+      }
+    },
+    "gallery.action.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan"
+          }
+        }
+      }
+    },
+    "gallery.action.seePlan" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Rencana"
+          }
+        }
+      }
+    },
+    "gallery.action.share" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bagikan"
+          }
+        }
+      }
+    },
+    "gallery.action.start" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mulai"
+          }
+        }
+      }
+    },
+    "gallery.avatar.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inisial pengguna"
+          }
+        }
+      }
+    },
+    "gallery.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Daftar Komponen"
+          }
+        }
+      }
+    },
+    "gallery.back.home" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Beranda"
+          }
+        }
+      }
+    },
+    "gallery.bars.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengeluaran per pekan bulan ini, pekan keempat disorot"
+          }
+        }
+      }
+    },
+    "gallery.bars.now" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pekan Ini"
+          }
+        }
+      }
+    },
+    "gallery.bars.w1" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pekan 1"
+          }
+        }
+      }
+    },
+    "gallery.bars.w2" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pekan 2"
+          }
+        }
+      }
+    },
+    "gallery.bars.w3" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pekan 3"
+          }
+        }
+      }
+    },
+    "gallery.bars.w4" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pekan 4"
+          }
+        }
+      }
+    },
+    "gallery.chat.kira" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cek dulu sebelum disimpan, ya."
+          }
+        }
+      }
+    },
+    "gallery.chat.me" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "makan siang 25rb, grab 18rb, kopi goceng"
+          }
+        }
+      }
+    },
+    "gallery.chat.meta" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dijawab Kira AI · dari pesan 12.41 WIB"
+          }
+        }
+      }
+    },
+    "gallery.chat.receipt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Struk · belum disimpan"
+          }
+        }
+      }
+    },
+    "gallery.chat.saved" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tersimpan. Pengeluaranmu hari ini Rp25.000,00."
+          }
+        }
+      }
+    },
+    "gallery.chat.savedMeta" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dijawab Kira AI · dari pesan 12.43 WIB"
+          }
+        }
+      }
+    },
+    "gallery.chat.separator" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "15 Oktober 2026 · 12.41 WIB"
+          }
+        }
+      }
+    },
+    "gallery.checkbox.payday" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gajian di akhir bulan"
+          }
+        }
+      }
+    },
+    "gallery.checkbox.terms" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saya setuju data keuangan saya diolah untuk menghitung Kira Score."
+          }
+        }
+      }
+    },
+    "gallery.code.email" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kode verifikasi dari email"
+          }
+        }
+      }
+    },
+    "gallery.code.email.error" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kodenya belum cocok. Cek email terbaru, atau kirim ulang kode."
+          }
+        }
+      }
+    },
+    "gallery.code.pin" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buat PIN 6 Angka"
+          }
+        }
+      }
+    },
+    "gallery.code.pin.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jangan pakai PIN bank atau tanggal lahir."
+          }
+        }
+      }
+    },
+    "gallery.dialog.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "gallery.dialog.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup"
+          }
+        }
+      }
+    },
+    "gallery.dialog.delete" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus"
+          }
+        }
+      }
+    },
+    "gallery.dialog.delete.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaksi ini hilang dari riwayat, dan Kira Score dihitung ulang."
+          }
+        }
+      }
+    },
+    "gallery.dialog.delete.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Transaksi Ini?"
+          }
+        }
+      }
+    },
+    "gallery.dialog.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
+    "gallery.dialog.download" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unduh"
+          }
+        }
+      }
+    },
+    "gallery.dialog.download.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira menyiapkan berkas berisi transaksi dan rencanamu. Simpan di tempat yang aman."
+          }
+        }
+      }
+    },
+    "gallery.dialog.download.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unduh Datamu?"
+          }
+        }
+      }
+    },
+    "gallery.dialog.failed.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koneksi terputus saat menyimpan. Isianmu masih ada, coba lagi sebentar."
+          }
+        }
+      }
+    },
+    "gallery.dialog.failed.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Tersimpan"
+          }
+        }
+      }
+    },
+    "gallery.dialog.keep" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tetap Berlangganan"
+          }
+        }
+      }
+    },
+    "gallery.dialog.linked.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kode masuk berikutnya dikirim ke email ini."
+          }
+        }
+      }
+    },
+    "gallery.dialog.linked.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email Terverifikasi"
+          }
+        }
+      }
+    },
+    "gallery.dialog.offline.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sambungkan internet, lalu coba lagi. Yang sudah kamu isi tidak hilang."
+          }
+        }
+      }
+    },
+    "gallery.dialog.offline.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak Ada Koneksi"
+          }
+        }
+      }
+    },
+    "gallery.dialog.open" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka Dialog"
+          }
+        }
+      }
+    },
+    "gallery.dialog.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
+          }
+        }
+      }
+    },
+    "gallery.dialog.saved.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengeluaran Rp45.000,00 masuk ke kategori Makan."
+          }
+        }
+      }
+    },
+    "gallery.dialog.saved.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaksi Tersimpan"
+          }
+        }
+      }
+    },
+    "gallery.dialog.unsubscribe" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batalkan Langganan"
+          }
+        }
+      }
+    },
+    "gallery.dialog.unsubscribe.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langganan ini tidak dihitung lagi di rencana bulan depan. Riwayat pembayarannya tetap tersimpan."
+          }
+        }
+      }
+    },
+    "gallery.dialog.unsubscribe.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batalkan Langganan?"
+          }
+        }
+      }
+    },
+    "gallery.draft.coffee" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kopi"
+          }
+        }
+      }
+    },
+    "gallery.draft.coffee.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“goceng” dibaca Rp5.000,00"
+          }
+        }
+      }
+    },
+    "gallery.draft.lunch" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Makan Siang"
+          }
+        }
+      }
+    },
+    "gallery.draft.ride" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ojek ke Kantor"
+          }
+        }
+      }
+    },
+    "gallery.eyebrow" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Galeri komponen · token versi 6"
+          }
+        }
+      }
+    },
+    "gallery.field.amount" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nominal"
+          }
+        }
+      }
+    },
+    "gallery.field.amount.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketik angka saja; ,00 ditambahkan saat disimpan."
+          }
+        }
+      }
+    },
+    "gallery.field.amount.prompt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0"
+          }
+        }
+      }
+    },
+    "gallery.field.nickname" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama Panggilan"
+          }
+        }
+      }
+    },
+    "gallery.field.nickname.error" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama panggilan masih kosong. Isi dulu, ya."
+          }
+        }
+      }
+    },
+    "gallery.field.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catatan"
+          }
+        }
+      }
+    },
+    "gallery.field.note.prompt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contoh: makan siang bareng tim"
+          }
+        }
+      }
+    },
+    "gallery.field.percent" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "persen"
+          }
+        }
+      }
+    },
+    "gallery.field.rupiah" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rp"
+          }
+        }
+      }
+    },
+    "gallery.field.share" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Porsi untuk Tabungan"
+          }
+        }
+      }
+    },
+    "gallery.hand.growing" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "lagi tumbuh, pelan-pelan"
+          }
+        }
+      }
+    },
+    "gallery.hand.slow" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pelan-pelan, uangmu tumbuh"
+          }
+        }
+      }
+    },
+    "gallery.hand.start" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "mulai dari yang kecil dulu"
+          }
+        }
+      }
+    },
+    "gallery.hero.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sisa uangmu bulan ini"
+          }
+        }
+      }
+    },
+    "gallery.hero.period" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Periode gajian 25 September – 24 Oktober 2026"
+          }
+        }
+      }
+    },
+    "gallery.hero.used" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah terpakai"
+          }
+        }
+      }
+    },
+    "gallery.illustration.mekar" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanaman mekar, pita Sehat"
+          }
+        }
+      }
+    },
+    "gallery.indicator.debt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utang Konsumtif"
+          }
+        }
+      }
+    },
+    "gallery.indicator.debt.value" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada cicilan konsumtif yang lewat jatuh tempo"
+          }
+        }
+      }
+    },
+    "gallery.indicator.fund" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dana Darurat"
+          }
+        }
+      }
+    },
+    "gallery.indicator.fund.target" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "target 3×"
+          }
+        }
+      }
+    },
+    "gallery.indicator.fund.value" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1,1× pengeluaran pokok"
+          }
+        }
+      }
+    },
+    "gallery.indicator.saving" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rasio Menabung"
+          }
+        }
+      }
+    },
+    "gallery.indicator.saving.value" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "22% dari gaji"
+          }
+        }
+      }
+    },
+    "gallery.link.resend" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirim Ulang Kode"
+          }
+        }
+      }
+    },
+    "gallery.link.terms" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dengan lanjut, kamu setuju dengan [Syarat Layanan](kira://syarat) dan [Kebijakan Privasi](kira://privasi)."
+          }
+        }
+      }
+    },
+    "gallery.list.admin" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dimas"
+          }
+        }
+      }
+    },
+    "gallery.list.admin.sub" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Admin komunitas"
+          }
+        }
+      }
+    },
+    "gallery.list.bank" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rekening Gaji"
+          }
+        }
+      }
+    },
+    "gallery.list.bills" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan Bulan Ini"
+          }
+        }
+      }
+    },
+    "gallery.list.ewallet" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dompet Digital"
+          }
+        }
+      }
+    },
+    "gallery.list.ewallet.sub" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saldo disembunyikan"
+          }
+        }
+      }
+    },
+    "gallery.list.ojk" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cek Legalitas di OJK"
+          }
+        }
+      }
+    },
+    "gallery.list.paylater" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paylater A"
+          }
+        }
+      }
+    },
+    "gallery.list.pin" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunci PIN"
+          }
+        }
+      }
+    },
+    "gallery.list.plain" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat Transaksi"
+          }
+        }
+      }
+    },
+    "gallery.list.priority" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiga Langkah Prioritas"
+          }
+        }
+      }
+    },
+    "gallery.list.seeAll" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Semua"
+          }
+        }
+      }
+    },
+    "gallery.list.settings" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keamanan"
+          }
+        }
+      }
+    },
+    "gallery.list.wallets" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dompet"
+          }
+        }
+      }
+    },
+    "gallery.list.wallets.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saldo hanya bisa kamu lihat di perangkat ini."
+          }
+        }
+      }
+    },
+    "gallery.list.weekly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ringkasan Mingguan"
+          }
+        }
+      }
+    },
+    "gallery.list.weekly.value" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setiap Senin pagi"
+          }
+        }
+      }
+    },
+    "gallery.nav.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rincian Utang"
+          }
+        }
+      }
+    },
+    "gallery.nav.detail.sub" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paylater A"
+          }
+        }
+      }
+    },
+    "gallery.nav.eyebrow" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamis, 15 Oktober 2026"
+          }
+        }
+      }
+    },
+    "gallery.nav.large" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beranda"
+          }
+        }
+      }
+    },
+    "gallery.nav.modal" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catat Manual"
+          }
+        }
+      }
+    },
+    "gallery.notice.ai.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jawaban ini ditulis AI. Cek lagi sebelum kamu memutuskan."
+          }
+        }
+      }
+    },
+    "gallery.notice.ai.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dijawab Kira AI"
+          }
+        }
+      }
+    },
+    "gallery.notice.aman.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datamu Terkunci di Perangkat Ini"
+          }
+        }
+      }
+    },
+    "gallery.notice.edukasi.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira tidak menyarankan produk atau kode saham tertentu."
+          }
+        }
+      }
+    },
+    "gallery.notice.edukasi.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edukasi, Bukan Rekomendasi"
+          }
+        }
+      }
+    },
+    "gallery.notice.info.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan berikutnya jatuh tempo 25 Oktober 2026."
+          }
+        }
+      }
+    },
+    "gallery.notice.peringatan.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira tidak pernah meminta PIN, password, atau OTP rekeningmu."
+          }
+        }
+      }
+    },
+    "gallery.notice.peringatan.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hati-Hati dengan Tautan Luar"
+          }
+        }
+      }
+    },
+    "gallery.notice.privasi.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jawaban kuis hanya dipakai untuk menghitung Kira Score."
+          }
+        }
+      }
+    },
+    "gallery.notice.privasi.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rahasiamu Aman"
+          }
+        }
+      }
+    },
+    "gallery.notice.simulasi.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dihitung mesin, bukan AI. Angkanya berubah saat datamu berubah."
+          }
+        }
+      }
+    },
+    "gallery.notice.simulasi.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hanya Simulasi"
+          }
+        }
+      }
+    },
+    "gallery.page.amounts" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nominal"
+          }
+        }
+      }
+    },
+    "gallery.page.brand" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logo dan Maskot"
+          }
+        }
+      }
+    },
+    "gallery.page.buttons" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tombol"
+          }
+        }
+      }
+    },
+    "gallery.page.categories" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategori"
+          }
+        }
+      }
+    },
+    "gallery.page.chat" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chat"
+          }
+        }
+      }
+    },
+    "gallery.page.colors" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warna"
+          }
+        }
+      }
+    },
+    "gallery.page.dialogs" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dialog"
+          }
+        }
+      }
+    },
+    "gallery.page.entry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Centang, Kode, dan Tautan"
+          }
+        }
+      }
+    },
+    "gallery.page.forms" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isian dan Pilihan"
+          }
+        }
+      }
+    },
+    "gallery.page.icons" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikon"
+          }
+        }
+      }
+    },
+    "gallery.page.illustrations" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ilustrasi"
+          }
+        }
+      }
+    },
+    "gallery.page.labels" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Label dan Notice"
+          }
+        }
+      }
+    },
+    "gallery.page.lists" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daftar"
+          }
+        }
+      }
+    },
+    "gallery.page.nature" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alam dan Tulisan Tangan"
+          }
+        }
+      }
+    },
+    "gallery.page.navigation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Navigasi"
+          }
+        }
+      }
+    },
+    "gallery.page.progress" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Progres"
+          }
+        }
+      }
+    },
+    "gallery.page.score" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Score"
+          }
+        }
+      }
+    },
+    "gallery.page.type" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipografi"
+          }
+        }
+      }
+    },
+    "gallery.pages" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komponen"
+          }
+        }
+      }
+    },
+    "gallery.pita.caption" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Target 3× pengeluaran pokok: Rp4.200.000,00"
+          }
+        }
+      }
+    },
+    "gallery.pita.goal" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 Bulan"
+          }
+        }
+      }
+    },
+    "gallery.pita.month" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 Bulan"
+          }
+        }
+      }
+    },
+    "gallery.pita.plan" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rencana Pelunasan"
+          }
+        }
+      }
+    },
+    "gallery.pita.planValue" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4 dari 6 bulan"
+          }
+        }
+      }
+    },
+    "gallery.pita.week" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 Minggu"
+          }
+        }
+      }
+    },
+    "gallery.section.accordion" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Accordion"
+          }
+        }
+      }
+    },
+    "gallery.section.amount" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amount"
+          }
+        }
+      }
+    },
+    "gallery.section.avatar" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avatar"
+          }
+        }
+      }
+    },
+    "gallery.section.band" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BandPill"
+          }
+        }
+      }
+    },
+    "gallery.section.bars" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bars"
+          }
+        }
+      }
+    },
+    "gallery.section.button" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Button"
+          }
+        }
+      }
+    },
+    "gallery.section.categories" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CategoryIcon"
+          }
+        }
+      }
+    },
+    "gallery.section.checkbox" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Checkbox"
+          }
+        }
+      }
+    },
+    "gallery.section.chip" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chip"
+          }
+        }
+      }
+    },
+    "gallery.section.code" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CodeField Email"
+          }
+        }
+      }
+    },
+    "gallery.section.colors" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Token Warna"
+          }
+        }
+      }
+    },
+    "gallery.section.dialogConfirm" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dialog Konfirmasi"
+          }
+        }
+      }
+    },
+    "gallery.section.dialogFailure" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dialog Gagal"
+          }
+        }
+      }
+    },
+    "gallery.section.dialogIcon" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dialog Ikon"
+          }
+        }
+      }
+    },
+    "gallery.section.dialogPresented" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dialog Tampil"
+          }
+        }
+      }
+    },
+    "gallery.section.dialogSuccess" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dialog Berhasil"
+          }
+        }
+      }
+    },
+    "gallery.section.field" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Field"
+          }
+        }
+      }
+    },
+    "gallery.section.hand" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HandNote"
+          }
+        }
+      }
+    },
+    "gallery.section.help" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HelpButton"
+          }
+        }
+      }
+    },
+    "gallery.section.hero" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kartu Hero"
+          }
+        }
+      }
+    },
+    "gallery.section.iconButton" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IconButton"
+          }
+        }
+      }
+    },
+    "gallery.section.icons" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Icon"
+          }
+        }
+      }
+    },
+    "gallery.section.illustrations" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Illustration"
+          }
+        }
+      }
+    },
+    "gallery.section.indicator" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IndicatorRow"
+          }
+        }
+      }
+    },
+    "gallery.section.leaves" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leaf"
+          }
+        }
+      }
+    },
+    "gallery.section.link" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Link"
+          }
+        }
+      }
+    },
+    "gallery.section.logo" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logo"
+          }
+        }
+      }
+    },
+    "gallery.section.mascot" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mascot"
+          }
+        }
+      }
+    },
+    "gallery.section.meter" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ScoreMeter"
+          }
+        }
+      }
+    },
+    "gallery.section.navbar" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NavBar"
+          }
+        }
+      }
+    },
+    "gallery.section.nextStep" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NextStepCard"
+          }
+        }
+      }
+    },
+    "gallery.section.notice" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notice"
+          }
+        }
+      }
+    },
+    "gallery.section.pair" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pasangan Tombol"
+          }
+        }
+      }
+    },
+    "gallery.section.pin" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CodeField PIN"
+          }
+        }
+      }
+    },
+    "gallery.section.pita" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ProgressPita"
+          }
+        }
+      }
+    },
+    "gallery.section.radius" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Radius"
+          }
+        }
+      }
+    },
+    "gallery.section.scenery" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scenery"
+          }
+        }
+      }
+    },
+    "gallery.section.segmented" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Segmented"
+          }
+        }
+      }
+    },
+    "gallery.section.sheet" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sheet"
+          }
+        }
+      }
+    },
+    "gallery.section.spacing" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jarak dan Ukuran"
+          }
+        }
+      }
+    },
+    "gallery.section.steps" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "StepProgress"
+          }
+        }
+      }
+    },
+    "gallery.section.tabbar" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TabBar"
+          }
+        }
+      }
+    },
+    "gallery.section.tag" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tag"
+          }
+        }
+      }
+    },
+    "gallery.section.toggle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toggle"
+          }
+        }
+      }
+    },
+    "gallery.section.type" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gaya Teks"
+          }
+        }
+      }
+    },
+    "gallery.segmented.avalanche" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avalanche"
+          }
+        }
+      }
+    },
+    "gallery.segmented.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metode Pelunasan"
+          }
+        }
+      }
+    },
+    "gallery.segmented.snowball" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snowball"
+          }
+        }
+      }
+    },
+    "gallery.sheet.open" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka Sheet"
+          }
+        }
+      }
+    },
+    "gallery.sheet.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Makan Siang"
+          }
+        }
+      }
+    },
+    "gallery.sheet.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah Kategori"
+          }
+        }
+      }
+    },
+    "gallery.step.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bunganya paling mahal di antara utangmu. Lunasi yang ini dulu, sisanya jadi lebih ringan."
+          }
+        }
+      }
+    },
+    "gallery.step.eyebrow" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prioritas"
+          }
+        }
+      }
+    },
+    "gallery.step.impact" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perkiraan Kira Score 66 → 71"
+          }
+        }
+      }
+    },
+    "gallery.step.meta" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 dari 3"
+          }
+        }
+      }
+    },
+    "gallery.step.primary" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Rencana"
+          }
+        }
+      }
+    },
+    "gallery.step.secondary" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lewati"
+          }
+        }
+      }
+    },
+    "gallery.step.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lunasi Paylater A Bulan Ini"
+          }
+        }
+      }
+    },
+    "gallery.tag.emergency" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Peduli"
+          }
+        }
+      }
+    },
+    "gallery.tag.fromGallery" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gambar dari Galeri"
+          }
+        }
+      }
+    },
+    "gallery.tag.overdue" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lewat Jatuh Tempo"
+          }
+        }
+      }
+    },
+    "gallery.tag.paid" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lunas"
+          }
+        }
+      }
+    },
+    "gallery.tag.soon" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sebentar Lagi"
+          }
+        }
+      }
+    },
+    "gallery.tag.thisMonth" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bulan Ini"
+          }
+        }
+      }
+    },
+    "gallery.tag.verified" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terverifikasi"
+          }
+        }
+      }
+    },
+    "gallery.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sistem Desain Kira"
+          }
+        }
+      }
+    },
+    "gallery.toggle.hideBalance" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sembunyikan Saldo"
+          }
+        }
+      }
+    },
+    "gallery.type.amount" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rp48.000,00"
+          }
+        }
+      }
+    },
+    "gallery.type.amountXL" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rp1.840.000,00"
+          }
+        }
+      }
+    },
+    "gallery.type.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "makan siang 25rb, grab 18rb, kopi goceng"
+          }
+        }
+      }
+    },
+    "gallery.type.callout" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu di pita Bertahan. Ini titik awal, bukan nilai rapor."
+          }
+        }
+      }
+    },
+    "gallery.type.caption" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hanya simulasi · dihitung mesin, bukan AI"
+          }
+        }
+      }
+    },
+    "gallery.type.footnote" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Periode gajian 25 September – 24 Oktober 2026"
+          }
+        }
+      }
+    },
+    "gallery.type.formula" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4.800.000 ÷ 4.200.000 = 1,1×"
+          }
+        }
+      }
+    },
+    "gallery.type.hand" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pelan-pelan, uangmu tumbuh"
+          }
+        }
+      }
+    },
+    "gallery.type.handSmall" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "lagi tumbuh, nih"
+          }
+        }
+      }
+    },
+    "gallery.type.headline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dana Darurat"
+          }
+        }
+      }
+    },
+    "gallery.type.largeTitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Score"
+          }
+        }
+      }
+    },
+    "gallery.type.overline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langkah berikutnya"
+          }
+        }
+      }
+    },
+    "gallery.type.score" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "66"
+          }
+        }
+      }
+    },
+    "gallery.type.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lunasi Paylater A Dulu"
+          }
+        }
+      }
+    },
     "problem.HTTP_ERROR" : {
       "extractionState" : "manual",
       "localizations" : {

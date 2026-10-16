@@ -47,7 +47,7 @@
     "NeverUseImplicitlyUnwrappedOptionals" : false,
     "NoAccessLevelOnExtensionDeclaration" : true,
     "NoAssignmentInExpressions" : true,
-    "NoBlockComments" : true,
+    "NoBlockComments" : false,
     "NoCasesWithOnlyFallthrough" : true,
     "NoEmptyLinesOpeningClosingBraces" : false,
     "NoEmptyTrailingClosureParentheses" : true,
@@ -70,7 +70,7 @@
     "UseShorthandTypeNames" : true,
     "UseSingleLinePropertyGetter" : true,
     "UseSynthesizedInitializer" : true,
-    "UseTripleSlashForDocumentationComments" : true,
+    "UseTripleSlashForDocumentationComments" : false,
     "UseWhereClausesInForLoops" : false,
     "ValidateDocumentationComments" : false
   },
