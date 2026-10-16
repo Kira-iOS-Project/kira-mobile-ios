@@ -11,9 +11,11 @@ struct ProductTests {
             sellerInitials: "D", sellerBadge: "Terverifikasi", price: price)
     }
 
-    @Test("a product with no price or a zero price is free; any price is not", arguments: [
-        (Int?.none, true), (0, true), (35_000, false),
-    ])
+    @Test(
+        "a product with no price or a zero price is free; any price is not",
+        arguments: [
+            (Int?.none, true), (0, true), (35_000, false),
+        ])
     func free(price: Int?, isFree: Bool) {
         #expect(summary(price: price).isFree == isFree)
     }

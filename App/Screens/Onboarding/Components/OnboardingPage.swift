@@ -43,7 +43,7 @@ struct ProblemMessage: View {
     var body: some View {
         VStack(spacing: 2) {
             Text(problem.message)
-            if problem.knownCode == nil {
+            if problem.showsReference {
                 Text(problem.reference).font(.caption.monospaced())
             }
         }

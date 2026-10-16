@@ -14,11 +14,8 @@ struct PrivacyScreen: View {
     @State private var model: PrivacyModel
     @State private var confirmsExport = false
     @State private var objects = false
-    @State private var deletes = false
-    private let service: any AccountService
-    private let settings: any SecuritySettings
+    @State private var deletion: DeleteAccountModel
     private let onOpen: (AppRoute) -> Void
-    private let onSignedOut: @MainActor () -> Void
     @Environment(\.openURL) private var openURL
 
     init(
@@ -26,10 +23,8 @@ struct PrivacyScreen: View {
         onSignedOut: @escaping @MainActor () -> Void
     ) {
         model = PrivacyModel(service: service)
-        self.service = service
-        self.settings = settings
+        deletion = DeleteAccountModel(service: service, settings: settings, onDeleted: onSignedOut)
         self.onOpen = onOpen
-        self.onSignedOut = onSignedOut
     }
 
     var body: some View {
@@ -48,7 +43,7 @@ struct PrivacyScreen: View {
             PrivacyRights(onExport: { confirmsExport = true }, onObject: { objects = true })
             PrivacyProcessing()
             KiraListGroup(footer: "account.privacy.delete.footer") {
-                KiraListRow(Text("account.privacy.delete"), leading: .icon(.trash)) { deletes = true }.danger()
+                KiraListRow(Text("account.privacy.delete"), leading: .icon(.trash)) { deletion.open() }.danger()
             }
         }
         .onHelp { onOpen(.care) }
@@ -78,13 +73,17 @@ struct PrivacyScreen: View {
             model.finishExport()
         }
         .kiraSheet(
-            isPresented: $deletes, title: "account.delete.title", subtitle: "account.delete.subtitle", top: 124
+            $deletion.sheet, title: "account.delete.title", subtitle: "account.delete.subtitle", top: 124,
+            failureTitle: exportFailed ? "account.delete.export.failedTitle" : "account.delete.failed.title",
+            connectionMessage: exportFailed ? "problem.connection" : "account.delete.failed.message",
+            onRetry: { Task { await deletion.retry() } }
         ) {
-            DeleteAccountSheet(
-                service: service, settings: settings, email: model.phase.value?.email ?? "",
-                onDeleted: onSignedOut, onClose: { deletes = false })
+            DeleteAccountSheet(model: deletion, email: model.phase.value?.email ?? "")
         }
     }
+
+    /** Whether Unduh Datamu Dulu, not Hapus Permanen, is what the failure dialog reports. */
+    private var exportFailed: Bool { deletion.lastAction == .emailData }
 
     private func openObjectionEmail() {
         if let url = URL(string: "mailto:privasi@kira.id?subject=Keberatan%20atas%20Keputusan%20Otomatis") {

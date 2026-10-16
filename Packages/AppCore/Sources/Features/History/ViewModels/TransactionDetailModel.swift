@@ -4,9 +4,10 @@ import Observation
 
 /**
  Detail Transaksi (CAT-08) and its dialogs: delete asks first (08b) and reports success (08c);
- an edit saves from the "Ubah Transaksi" sheet and reports success (08d); a failed save or
- delete keeps what the person entered and offers Coba Lagi (08e). The edit's dialogs show over the
- sheet, the delete's over the screen. Every change calls `onChange`, so Riwayat reloads.
+ an edit saves from the "Ubah Transaksi" sheet and reports success (08d) over it; a failed save
+ closes the sheet for its failure dialog (08e), whose Coba Lagi opens it again on the same fields
+ and saves. A failed delete shows the API's problem over the screen with Coba Lagi. Every change
+ calls `onChange`, so Riwayat reloads.
  */
 @MainActor
 @Observable
@@ -17,36 +18,28 @@ package final class TransactionDetailModel {
         case confirmDelete
         /** "Transaksi Dihapus" */
         case deleted
-        /** "Belum Berhasil Menyimpan", after a failed delete */
-        case failed
-    }
-
-    /** A dialog over the edit sheet. */
-    package enum EditResult: Hashable, Sendable {
-        /** "Perubahan Tersimpan" */
-        case saved
-        /** "Belum Berhasil Menyimpan" */
-        case failed
+        /** "Belum Berhasil Menyimpan", after a failed delete, with the API's problem */
+        case failed(AppProblem)
     }
 
     /** The transaction's id. */
     package let id: String
     /** The transaction and its source message once loaded. */
     package private(set) var phase: ScreenPhase<TransactionDetail> = .loading
-    /** The open edit sheet's fields; nil while it is closed. */
+    /** The edit sheet's fields; nil once the sheet is closed with no failure dialog left. */
     package var editor: TransactionEditor?
+    /** The edit sheet, and the failure of its last save. */
+    package var editSheet = SheetSubmission() {
+        didSet { if !editSheet.isOpen && editSheet.failure == nil { editor = nil } }
+    }
     /** The dialog over the screen; nil when none is open. */
     package private(set) var dialog: Dialog? {
         didSet { if let dialog { shownDialog = dialog } }
     }
     /** The dialog to draw, kept while a closing dialog fades out. */
     package private(set) var shownDialog = Dialog.confirmDelete
-    /** The dialog over the edit sheet; nil when none is open. */
-    package private(set) var editResult: EditResult? {
-        didSet { if let editResult { shownEditResult = editResult } }
-    }
-    /** The edit dialog to draw, kept while a closing dialog fades out. */
-    package private(set) var shownEditResult = EditResult.saved
+    /** "Perubahan Tersimpan" is up over the edit sheet. */
+    package private(set) var showsSaved = false
     /** Whether a save or a delete is under way. */
     package private(set) var isWorking = false
     /** True once the person leaves after deleting; the screen then goes back to Riwayat. */
@@ -75,14 +68,15 @@ package final class TransactionDetailModel {
     package func startEditing() {
         guard let detail = phase.value else { return }
         editor = TransactionEditor(detail.transaction)
+        editSheet.open()
     }
 
-    /** Sends what changed; nothing changed closes the sheet. A failure keeps the sheet's fields. */
+    /** Sends what changed; nothing changed closes the sheet. A failure closes it and keeps its fields. */
     package func save() async {
         guard let editor, let detail = phase.value, editor.isValid, !isWorking else { return }
         let change = editor.change(from: detail.transaction)
         guard !change.isEmpty else {
-            self.editor = nil
+            editSheet.close()
             return
         }
         isWorking = true
@@ -90,17 +84,23 @@ package final class TransactionDetailModel {
         do {
             let updated = try await service.update(id: id, change: change)
             phase = .loaded(detail.replacing(updated))
-            editResult = .saved
+            showsSaved = true
             onChange()
         } catch {
-            editResult = .failed
+            editSheet.fail(error)
         }
     }
 
-    /** The edit dialog closed: after a save the sheet closes too; after a failure it stays. */
-    package func editResultClosed() {
-        if editResult == .saved { editor = nil }
-        editResult = nil
+    /** Coba Lagi on the save's failure dialog: the sheet opens again on its fields and saves. */
+    package func retryEdit() async {
+        editSheet.open()
+        await save()
+    }
+
+    /** "Perubahan Tersimpan" closed: the sheet closes with it. */
+    package func savedClosed() {
+        showsSaved = false
+        editSheet.close()
     }
 
     /** Asks before deleting. */
@@ -119,7 +119,7 @@ package final class TransactionDetailModel {
             dialog = .deleted
             onChange()
         } catch {
-            dialog = .failed
+            dialog = .failed(historyProblem(error))
         }
     }
 

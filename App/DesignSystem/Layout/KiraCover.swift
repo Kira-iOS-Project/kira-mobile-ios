@@ -9,18 +9,21 @@ import SwiftUI
 extension View {
     /**
      Shows `cover` over the window while `isPresented` is true. The cover animates its own content
-     out when `isPresented` turns false, then calls the closure it is given to take the layer down.
+     out when `isPresented` turns false, then calls the closure it is given to take the layer down;
+     `onDismiss` runs once the layer is down, when another cover may come up.
      */
     func kiraCover<Cover: View>(
-        isPresented: Binding<Bool>, @ViewBuilder cover: @escaping (_ onGone: @escaping () -> Void) -> Cover
+        isPresented: Binding<Bool>, onDismiss: (() -> Void)? = nil,
+        @ViewBuilder cover: @escaping (_ onGone: @escaping () -> Void) -> Cover
     ) -> some View {
-        modifier(CoverPresenter(isPresented: isPresented, cover: cover))
+        modifier(CoverPresenter(isPresented: isPresented, onDismiss: onDismiss, cover: cover))
     }
 }
 
 /** Puts the layer up as soon as it is asked for, and down once its content has gone. */
 private struct CoverPresenter<Cover: View>: ViewModifier {
     @Binding var isPresented: Bool
+    let onDismiss: (() -> Void)?
     let cover: (_ onGone: @escaping () -> Void) -> Cover
     @State private var isCovering = false
 
@@ -29,7 +32,7 @@ private struct CoverPresenter<Cover: View>: ViewModifier {
             .onChange(of: isPresented, initial: true) { _, presented in
                 if presented { setCovering(true) }
             }
-            .fullScreenCover(isPresented: $isCovering) {
+            .fullScreenCover(isPresented: $isCovering, onDismiss: onDismiss) {
                 cover { setCovering(false) }
                     .presentationBackground(.clear)
                     /** Taken down another way (a `dismiss()` inside it): the flag follows. */

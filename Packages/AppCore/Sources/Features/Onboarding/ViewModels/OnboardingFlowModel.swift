@@ -11,13 +11,14 @@ import Observation
 package final class OnboardingFlowModel {
     /** The screens pushed over the intro pages. */
     package var path: [OnboardingScreen] = []
-    /** Whether the email sheet of Buat Akun is open. */
-    package var showsSignUpEmail = false
+    /** The email sheet of Buat Akun: open, or closed on a failed request with its dialog. */
+    package var signUpEmail = SheetSubmission()
     /** Where the flow started. */
     package let start: OnboardingStart
     /** The focus saved on Pilih Fokus. */
     package private(set) var focus = Focus.trackSpending
     @ObservationIgnored private var quiz: HealthCheckModel?
+    @ObservationIgnored private var signUpEntry: EmailEntryModel?
     private let service: any OnboardingService
     private let pinSetup: any PinSetup
     private let onFinished: (OnboardingOutcome) -> Void
@@ -28,6 +29,7 @@ package final class OnboardingFlowModel {
         onFinished: @escaping (OnboardingOutcome) -> Void
     ) {
         self.start = start
+        if start == .signIn { path = [.signIn] }
         self.service = service
         self.pinSetup = pinSetup
         self.onFinished = onFinished
@@ -56,6 +58,27 @@ package final class OnboardingFlowModel {
     /** The model of Masuk, and of the email sheet of Buat Akun. */
     package func makeEmailModel() -> EmailEntryModel {
         EmailEntryModel(service: service) { [weak self] in self?.codeSent(to: $0, delivery: $1) }
+    }
+
+    /** The model of the Buat Akun email sheet, kept while the sheet closes so its address stays. */
+    package func signUpEmailModel() -> EmailEntryModel {
+        if let signUpEntry { return signUpEntry }
+        let model = EmailEntryModel(
+            service: service, onFailed: { [weak self] in self?.signUpEmail.fail($0) },
+            onSent: { [weak self] in self?.codeSent(to: $0, delivery: $1) })
+        signUpEntry = model
+        return model
+    }
+
+    /** "Daftar dengan Email": opens the sheet. */
+    package func openSignUpEmail() {
+        signUpEmail.open()
+    }
+
+    /** Coba Lagi on the sheet's failure: the sheet opens again on the same address and sends again. */
+    package func retrySignUpEmail() async {
+        signUpEmail.open()
+        await signUpEmailModel().submit()
     }
 
     /** The model of Kode Verifikasi for the code sent to `email`. */
@@ -99,7 +122,7 @@ package final class OnboardingFlowModel {
     }
 
     private func codeSent(to email: String, delivery: CodeDelivery) {
-        showsSignUpEmail = false
+        signUpEmail.close()
         open(.code(email: email, delivery: delivery))
     }
 

@@ -7,16 +7,22 @@ import Testing
 @MainActor
 @Suite("DeleteAccountModel")
 struct DeleteAccountModelTests {
-    @Test("Unduh Datamu Dulu emails the CSV, or says it could not")
+    @Test("Unduh Datamu Dulu emails the CSV; a failure closes the sheet and Coba Lagi sends again")
     func emailData() async {
         let service = FakeAccountService()
         let model = DeleteAccountModel(service: service, settings: FakeSecuritySettings(), onDeleted: {})
-        #expect(model.emailExport == .idle)
-        await model.emailData()
-        #expect(model.emailExport == .sent)
+        model.open()
+        model.confirmation = "HAP"
+        #expect(model.emailExport == .idle && model.sheet.isOpen)
         await service.set(fails: true)
         await model.emailData()
-        #expect(model.emailExport == .failed(Sample.problem))
+        #expect(model.emailExport == .idle && model.lastAction == .emailData)
+        #expect(!model.sheet.isOpen && model.sheet.failure == Sample.problem)
+        await service.set(fails: false)
+        await model.retry()
+        #expect(model.sheet.isOpen && model.sheet.failure == nil)
+        #expect(model.emailExport == .sent && model.confirmation == "HAP")
+        #expect(await service.calls == ["emailExport", "emailExport"])
     }
 
     @Test("Hapus Permanen waits for HAPUS in any case")
@@ -39,7 +45,7 @@ struct DeleteAccountModelTests {
         let model = DeleteAccountModel(service: service, settings: settings, onDeleted: counter.call)
         model.confirmation = "Hapus"
         await model.delete()
-        #expect(model.outcome == .deleted)
+        #expect(model.showsDeleted)
         #expect(!model.isDeleting)
         #expect(await service.calls == ["deleteAccount Hapus"])
         #expect(await settings.cleared)
@@ -47,19 +53,20 @@ struct DeleteAccountModelTests {
         #expect(counter.count == 1)
     }
 
-    @Test("a failed deletion keeps the typing and can be tried again")
+    @Test("a failed deletion closes the sheet, keeps the typing, and Coba Lagi deletes again")
     func retry() async {
         let service = FakeAccountService()
         await service.set(fails: true)
         let settings = FakeSecuritySettings()
         let model = DeleteAccountModel(service: service, settings: settings, onDeleted: {})
+        model.open()
         model.confirmation = "HAPUS"
         await model.delete()
-        #expect(model.outcome == .failed(Sample.problem))
-        #expect(model.confirmation == "HAPUS")
+        #expect(!model.sheet.isOpen && model.sheet.failure == Sample.problem)
+        #expect(model.confirmation == "HAPUS" && !model.showsDeleted)
         #expect(!(await settings.cleared))
         await service.set(fails: false)
-        await model.delete()
-        #expect(model.outcome == .deleted)
+        await model.retry()
+        #expect(model.sheet.isOpen && model.showsDeleted)
     }
 }

@@ -63,7 +63,7 @@ private struct CodeEntry: View {
         VStack(spacing: 14) {
             KiraCodeField("onboarding.code.field", code: $model.code, kind: .code)
                 .error(model.phase.problem.map(\.message))
-            if let problem = model.phase.problem, problem.knownCode == nil {
+            if let problem = model.phase.problem, problem.showsReference {
                 Text(problem.reference).font(.caption.monospaced()).foregroundStyle(.inkMuted)
             }
             if model.secondsUntilResend > 0 {

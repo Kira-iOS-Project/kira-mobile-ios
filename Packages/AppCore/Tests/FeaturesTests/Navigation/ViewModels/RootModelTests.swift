@@ -4,13 +4,13 @@ import Testing
 
 @testable import Features
 
-private let tokens = SessionTokens(accessToken: "a", refreshToken: "r", accessExpiresInSeconds: 900)
+let rootTokens = SessionTokens(accessToken: "a", refreshToken: "r", accessExpiresInSeconds: 900)
 
 @MainActor
-private func root(signedIn: Bool, pin: Bool, stage: AccountStage? = nil) async throws -> RootModel {
+func root(signedIn: Bool, pin: Bool, stage: AccountStage? = nil) async throws -> RootModel {
     let vault = InMemoryVault()
     let session = SessionStore(vault: vault) { _ in .rejected }
-    if signedIn { try await session.signIn(tokens, email: "dinda@email.com") }
+    if signedIn { try await session.signIn(rootTokens, email: "dinda@email.com") }
     let pins = PinStore(vault: vault)
     if pin { try pins.setPin("381449") }
     return RootModel(
@@ -27,6 +27,7 @@ struct RootModelTests {
         await model.start()
         #expect(model.stage == .onboarding)
         #expect(model.onboardingStart == .intro)
+        try await model.session.signIn(rootTokens, email: "dinda@email.com")
         await model.finishOnboarding(.completed(.debtFree))
         #expect(model.stage == .main)
     }
@@ -73,6 +74,7 @@ struct RootModelTests {
     func signedInReady() async throws {
         let model = try await root(signedIn: false, pin: false, stage: .ready(hidesBalances: false))
         await model.start()
+        try await model.session.signIn(rootTokens, email: "dinda@email.com")
         await model.finishOnboarding(.signedIn)
         #expect(model.stage == .main)
     }
@@ -105,7 +107,7 @@ struct RootModelTests {
     func refusedRefresh() async throws {
         let vault = InMemoryVault()
         let session = SessionStore(vault: vault) { _ in .rejected }
-        try await session.signIn(tokens, email: "dinda@email.com")
+        try await session.signIn(rootTokens, email: "dinda@email.com")
         let model = RootModel(
             session: session, lock: AppLockModel(pins: PinStore(vault: vault), vault: vault), sleep: { _ in })
         await model.start()

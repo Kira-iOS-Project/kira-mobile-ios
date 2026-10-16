@@ -35,7 +35,7 @@ struct RecordModelTests {
             return
         }
         #expect(shown == problem)
-        service.profileResult = .failure(OfflineError())
+        service.profileResult = .failure(offlineError())
         await model.load()
         guard case .failed(let generic) = model.phase else {
             Issue.record("expected a failure")

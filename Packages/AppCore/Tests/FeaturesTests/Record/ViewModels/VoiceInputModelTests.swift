@@ -79,7 +79,7 @@ struct VoiceInputModelTests {
         await settle()
         #expect(voice.levels.last == 0)
         clock.wake(throwing: CancellationError())
-        continuation.finish(throwing: OfflineError())
+        continuation.finish(throwing: offlineError())
         await listening.value
         #expect(voice.transcript == "kopi")
         await voice.cancel()
@@ -98,7 +98,7 @@ struct VoiceInputModelTests {
         await first.start()
         #expect(first.state == .denied)
         let broken = FakeTranscriber()
-        broken.startError = OfflineError()
+        broken.startError = offlineError()
         let second = model(broken, clock: ManualClock(), recorder: recorder)
         await second.start()
         #expect(second.state == .unavailable)

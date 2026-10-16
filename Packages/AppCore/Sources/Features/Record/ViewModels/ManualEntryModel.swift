@@ -5,8 +5,9 @@ import Observation
 /**
  Catat Manual (CAT-04): a form without chat and without AI quota. The type switches the category
  grid (CAT-04d), the category starts at the last one used, the date at today. Simpan shows
- "Transaksi Tersimpan" (CAT-04b); a lost connection shows "Belum Berhasil Menyimpan" (CAT-04c),
- keeps every field, and Coba Lagi resends with the same `clientId`, so it never saves twice.
+ "Transaksi Tersimpan" (CAT-04b); a failed save closes the sheet for "Belum Berhasil Menyimpan"
+ (CAT-04c), keeps every field, and Coba Lagi opens the sheet again and resends with the same
+ `clientId`, so it never saves twice.
  */
 @MainActor
 @Observable
@@ -34,8 +35,8 @@ package final class ManualEntryModel {
     package internal(set) var isSaving = false
     /** "Transaksi Tersimpan" is up. */
     package var showsSaved = false
-    /** Why the last save did not go through: CAT-04c for the connection. */
-    package var failure: RecordFailure?
+    /** The sheet, open from the start, and the failure of the last save. */
+    package var sheet = SheetSubmission(isOpen: true)
     /** The form has done its work and closes. */
     package internal(set) var isClosed = false
     private var amountDigits = ""
@@ -85,10 +86,9 @@ package final class ManualEntryModel {
         self.category = category
     }
 
-    /** Simpan, and Coba Lagi after a failure. */
+    /** Simpan. */
     package func save() async {
         guard canSave else { return }
-        failure = nil
         isSaving = true
         defer { isSaving = false }
         let trimmedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -101,8 +101,14 @@ package final class ManualEntryModel {
             onSaved(try await dependencies.service.saveManual(input))
             showsSaved = true
         } catch {
-            failure = RecordFailure(error)
+            sheet.fail(error)
         }
+    }
+
+    /** Coba Lagi on "Belum Berhasil Menyimpan": the sheet opens again on every field and saves. */
+    package func retry() async {
+        sheet.open()
+        await save()
     }
 
     /** "Selesai" on "Transaksi Tersimpan" closes the form. */

@@ -1,3 +1,4 @@
+import APIClient
 import Domain
 import Observation
 
@@ -14,8 +15,8 @@ package final class ImportReviewModel {
     package enum Dialog: Hashable, Sendable {
         /** "39 Transaksi Tersimpan" */
         case saved(ImportCommitResult)
-        /** "Impor Belum Berhasil" */
-        case failed
+        /** "Impor Belum Berhasil", with the API's problem */
+        case failed(AppProblem)
     }
 
     /** How many "Siap Disimpan" rows show before the "Transaksi Lainnya" row. */
@@ -36,7 +37,7 @@ package final class ImportReviewModel {
         didSet { if let dialog { shownDialog = dialog } }
     }
     /** The dialog to draw, kept while a closing dialog fades out. */
-    package private(set) var shownDialog = Dialog.failed
+    package private(set) var shownDialog = Dialog.failed(.connectionLost)
     /** Whether the rows are being saved. */
     package private(set) var isSaving = false
     /** True once the person leaves after saving; the flow then returns to Riwayat. */
@@ -106,7 +107,7 @@ package final class ImportReviewModel {
         do {
             dialog = .saved(try await service.commit(importId: preview.id, rows: rows))
         } catch {
-            dialog = .failed
+            dialog = .failed(AppProblem(error))
         }
     }
 

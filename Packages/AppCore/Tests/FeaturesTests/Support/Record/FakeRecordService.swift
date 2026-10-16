@@ -4,8 +4,8 @@ import Foundation
 
 @testable import Features
 
-/** A failure that is not an `AppProblem`: the request never got an answer. */
-struct OfflineError: Error {}
+/** A request that got no answer: the transport reports no connection. */
+func offlineError() -> URLError { URLError(.notConnectedToInternet) }
 
 /**
  A `RecordService` whose answers each test sets, and which records what it was asked. Each test
@@ -14,12 +14,12 @@ struct OfflineError: Error {}
 final class FakeRecordService: RecordService, @unchecked Sendable {
     var profileResult: Result<RecordProfile, any Error> = .success(Fixtures.profile())
     var pages: [String?: Result<ChatPage, any Error>] = [nil: .success(ChatPage(items: [], nextCursor: nil))]
-    var sendResult: Result<SendResult, any Error> = .failure(OfflineError())
-    var updateResult: Result<ChatMessage, any Error> = .failure(OfflineError())
-    var commitResult: Result<CommitResult, any Error> = .failure(OfflineError())
-    var undoResult: Result<ChatMessage, any Error> = .failure(OfflineError())
-    var receiptResult: Result<SendResult, any Error> = .failure(OfflineError())
-    var manualResult: Result<ManualSaveResult, any Error> = .failure(OfflineError())
+    var sendResult: Result<SendResult, any Error> = .failure(offlineError())
+    var updateResult: Result<ChatMessage, any Error> = .failure(offlineError())
+    var commitResult: Result<CommitResult, any Error> = .failure(offlineError())
+    var undoResult: Result<ChatMessage, any Error> = .failure(offlineError())
+    var receiptResult: Result<SendResult, any Error> = .failure(offlineError())
+    var manualResult: Result<ManualSaveResult, any Error> = .failure(offlineError())
 
     private(set) var sent: [OutgoingMessage] = []
     private(set) var updates: [(messageId: String, drafts: [DraftItem])] = []
@@ -31,7 +31,7 @@ final class FakeRecordService: RecordService, @unchecked Sendable {
     func profile() throws -> RecordProfile { try profileResult.get() }
 
     func messages(before cursor: String?) throws -> ChatPage {
-        try (pages[cursor] ?? .failure(OfflineError())).get()
+        try (pages[cursor] ?? .failure(offlineError())).get()
     }
 
     func send(_ message: OutgoingMessage) throws -> SendResult {
