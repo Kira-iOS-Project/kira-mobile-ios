@@ -33,7 +33,7 @@ struct RecordRoute: View {
                 HistoryScreen(service: history, onOpen: open)
             }
         } else {
-            RouteSlot(route: route, onOpen: onOpen)
+            EmptySlot()
         }
     }
 

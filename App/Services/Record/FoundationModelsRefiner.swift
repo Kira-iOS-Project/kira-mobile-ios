@@ -1,6 +1,7 @@
 /**
  Apple's on-device Foundation Models tidying the drafts the slang rules read (CAT-01), on iOS 26 and
- later with Apple Intelligence on. The model sees the message and the rules' drafts and returns a
+ later with Apple Intelligence on, once Apple's model supports Indonesian (it does not yet, so
+ today the rules' drafts go as they are). The model sees the message and the rules' drafts and returns a
  better name and category for each; the amounts are not asked for, so the machine's stay. Without
  the model, or when it fails, the rules' drafts are sent as they are.
  */
@@ -13,6 +14,15 @@ import Foundation
 #endif
 
 nonisolated struct FoundationModelsRefiner: DraftRefining {
+    func supportsIndonesian() -> Bool {
+        #if canImport(FoundationModels)
+            if #available(iOS 26, *) {
+                return SystemLanguageModel.default.supportsLocale(Locale(identifier: "id_ID"))
+            }
+        #endif
+        return false
+    }
+
     func refine(_ text: String, drafts: [DraftCandidate]) async -> [DraftRefinement]? {
         #if canImport(FoundationModels)
             if #available(iOS 26, *) { return await OnDeviceDraftModel.refine(text, drafts: drafts) }

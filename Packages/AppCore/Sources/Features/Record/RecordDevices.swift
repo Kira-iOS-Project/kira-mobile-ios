@@ -10,6 +10,12 @@ import Foundation
 /** Renames and recategorises the drafts the slang rules read; never changes an amount. */
 package protocol DraftRefining: Sendable {
     /**
+     Whether the on-device model supports Indonesian. While it does not (Apple's model lacks id_ID
+     today), the slang rules' drafts go as they are and the model is never asked.
+     */
+    func supportsIndonesian() async -> Bool
+
+    /**
      A refinement per draft the rules read from `text`, or nil when no on-device model is
      available (before iOS 26, Apple Intelligence off, the model not downloaded) or it failed.
      */
@@ -30,6 +36,36 @@ package struct DraftRefinement: Equatable, Sendable {
         self.index = index
         self.name = name
         self.category = category
+    }
+}
+
+/**
+ Looks at a receipt photo with the on-device model (iOS 27 and later, with image input) for what the
+ text alone may miss: the store's name and whether it is a receipt or a transfer proof. Never asked
+ for a number; nil whenever the model is missing or fails.
+ */
+package protocol ReceiptAssisting: Sendable {
+    /** The model's look at `image`, or nil without a model with image input or on any error. */
+    func glance(at image: Data) async -> ReceiptGlance?
+}
+
+/** What the model saw on a receipt photo. */
+package struct ReceiptGlance: Equatable, Sendable {
+    /** A printed receipt (struk) or a transfer proof (bukti transfer). */
+    package enum Kind: Equatable, Sendable {
+        /** A shop's receipt, or a transfer proof. */
+        case receipt, transferProof
+    }
+
+    /** The store or recipient name the model read, as it wrote it. */
+    package let storeName: String?
+    /** The kind of document. */
+    package let kind: Kind
+
+    /** A glance at a photo. */
+    package init(storeName: String?, kind: Kind) {
+        self.storeName = storeName
+        self.kind = kind
     }
 }
 

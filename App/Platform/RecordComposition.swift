@@ -1,8 +1,8 @@
 /**
  Catat's and Riwayat's services (CAT-01 to CAT-12), built once by the composition root from its API
- client and read by the record slot and the record routes from the environment. The root sets it
- with `.environment(\.recordComposition, .live(api: api))`. Until it does, a debug build runs both
- flows on their preview services and a release build shows the empty slot, never sample data.
+ client and read by the record slot and the record routes from the environment. KiraApp sets
+ `.live(api:)`, or nothing under `-KiraPreviewServices`; unset, a debug build runs both flows on
+ their preview services and a release build shows the empty slot, never sample data.
  */
 import APIClient
 import Features

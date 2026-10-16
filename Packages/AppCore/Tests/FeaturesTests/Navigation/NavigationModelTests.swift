@@ -71,4 +71,13 @@ struct NavigationModelTests {
         #expect(withDock.map(\.showsDock) == [true, true, true])
         #expect(without.map(\.showsDock) == [false, false, false, false])
     }
+
+    @Test("Cek Ulang covers the shell instead of pushing, and reset closes it")
+    func healthCheck() {
+        let model = NavigationModel()
+        model.open(.healthCheck)
+        #expect(model.showsHealthCheck && model.homePath.isEmpty)
+        model.reset()
+        #expect(!model.showsHealthCheck)
+    }
 }

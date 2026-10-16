@@ -20,7 +20,7 @@ struct LockScreen: View {
             /** The dots' row is 44 pt tall for the audit; the board's 12 and 20 pt gaps stay. */
             LockDots(filled: model.filledCount)
                 .padding(.top, 12 - 16)
-            LockKeypad(onDigit: model.enter, onErase: model.deleteLast)
+            LockKeypad(filled: model.filledCount, onDigit: model.enter, onErase: model.deleteLast)
                 .padding(.top, 20 - 16)
                 .disabled(isPaused)
             footer

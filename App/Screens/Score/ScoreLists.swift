@@ -75,6 +75,7 @@ private struct ScoreStepCard: View {
             .frame(width: 20, height: 20)
             .background(number == 1 ? Color.pandan : .surfaceMuted, in: Circle())
             .overlay { Circle().strokeBorder(.surfaceRaised, lineWidth: 2) }
+            .kiraSmallType()
             .accessibilityHidden(true)
     }
 }

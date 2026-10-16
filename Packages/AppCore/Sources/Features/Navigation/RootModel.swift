@@ -29,17 +29,26 @@ package final class RootModel {
     /** The session. */
     package let session: SessionStore
 
+    /** Where onboarding starts: the intro, or where a signed-in account left it. */
+    package private(set) var onboardingStart = OnboardingStart.intro
     private var isStarting = true
     private var isSignedIn = false
     @ObservationIgnored private let sleep: @Sendable (Duration) async -> Void
+    @ObservationIgnored private let checkAccount: @Sendable () async -> AccountStage?
 
     /** A root over `session` and `lock`; `sleep` waits out the splash. */
+    /**
+     A root over `session` and `lock`; `checkAccount` reads `GET /me` (nil when the API is out of
+     reach); `sleep` waits out the splash.
+     */
     package init(
         session: SessionStore, lock: AppLockModel,
+        checkAccount: @escaping @Sendable () async -> AccountStage? = { nil },
         sleep: @escaping @Sendable (Duration) async -> Void = { try? await Task.sleep(for: $0) }
     ) {
         self.session = session
         self.lock = lock
+        self.checkAccount = checkAccount
         self.sleep = sleep
     }
 
@@ -58,15 +67,42 @@ package final class RootModel {
         guard isStarting else { return }
         await session.setSessionEndedHandler { [weak self] in await self?.endSession() }
         await sleep(Self.splashDuration)
-        isSignedIn = session.hasSession
-        if isSignedIn { lock.launch() }
+        if session.hasSession {
+            isSignedIn = apply(await checkAccount())
+            if isSignedIn { lock.launch() }
+        }
         isStarting = false
     }
 
-    /** Onboarding or sign-in finished with a session: the tabs open on Beranda. */
-    package func finishOnboarding() {
+    /**
+     Onboarding or sign-in finished with a session: the tabs open on Beranda. An account that
+     signed in without finishing onboarding on another device resumes it instead.
+     */
+    package func finishOnboarding(_ outcome: OnboardingOutcome) async {
+        if outcome == .signedIn, !apply(await checkAccount()) { return }
         isSignedIn = true
+        onboardingStart = .intro
         navigation.reset()
+    }
+
+    /**
+     Follows what `GET /me` said: where onboarding resumes, or the account's "Sembunyikan Saldo"
+     for the lock. True when the tabs may open, also when the API was out of reach.
+     */
+    private func apply(_ stage: AccountStage?) -> Bool {
+        switch stage {
+        case .needsConsent:
+            onboardingStart = .consent
+            return false
+        case .needsHealthCheck:
+            onboardingStart = .focus
+            return false
+        case .ready(let hidesBalances):
+            lock.update { $0.hidesBalancesOnOpen = hidesBalances }
+            return true
+        case nil:
+            return true
+        }
     }
 
     /** The session ended (sign-out, account deleted, refresh refused): back to onboarding. */
@@ -74,6 +110,7 @@ package final class RootModel {
         await session.signOut()
         lock.reset()
         navigation.reset()
+        onboardingStart = .intro
         isSignedIn = false
     }
 }

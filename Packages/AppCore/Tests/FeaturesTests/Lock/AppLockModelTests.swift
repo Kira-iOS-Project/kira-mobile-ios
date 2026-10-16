@@ -124,4 +124,14 @@ struct AppLockModelTests {
         #expect(lock.settings == LockSettings())
         #expect(vault.data(for: .lockSettings) == nil)
     }
+
+    @Test("forgetting the PIN turns the lock off without asking for it again")
+    func forgetPin() throws {
+        let vault = InMemoryVault()
+        let pins = PinStore(vault: vault)
+        let lock = AppLockModel(pins: pins, vault: vault)
+        try lock.setPin("481923")
+        lock.forgetPin()
+        #expect(!lock.hasPin && !pins.hasPin)
+    }
 }

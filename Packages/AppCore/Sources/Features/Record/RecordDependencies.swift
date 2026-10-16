@@ -25,13 +25,16 @@ package struct RecordDependencies: Sendable {
     package let receiptName: String
     /** A category's name, for a manual entry left without one ("Belanja"). */
     package let categoryName: @Sendable (TransactionCategory) -> String
+    /** The on-device model's look at a receipt photo, on iOS 27 and later; nil before. */
+    package let receiptAssistant: (any ReceiptAssisting)?
 
     /** Everything Catat needs; the clock and the ids default to the system's. */
     package init(
         service: any RecordService, reader: MessageReader, receiptReader: any ReceiptTextReading,
         camera: any ReceiptCapturing, transcriber: any VoiceTranscribing, clock: any RecordClock = SystemRecordClock(),
         makeId: @escaping @Sendable () -> String = { UUID().uuidString }, receiptName: String,
-        categoryName: @escaping @Sendable (TransactionCategory) -> String
+        categoryName: @escaping @Sendable (TransactionCategory) -> String,
+        receiptAssistant: (any ReceiptAssisting)? = nil
     ) {
         self.service = service
         self.reader = reader
@@ -42,5 +45,6 @@ package struct RecordDependencies: Sendable {
         self.makeId = makeId
         self.receiptName = receiptName
         self.categoryName = categoryName
+        self.receiptAssistant = receiptAssistant
     }
 }

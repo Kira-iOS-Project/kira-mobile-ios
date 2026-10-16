@@ -33,7 +33,7 @@ nonisolated struct VisionReceiptReader: ReceiptTextReading {
     }
 
     /** The photo's EXIF orientation, so a portrait shot is read upright. */
-    private static func orientation(of image: Data) -> CGImagePropertyOrientation {
+    static func orientation(of image: Data) -> CGImagePropertyOrientation {
         guard let source = CGImageSourceCreateWithData(image as CFData, nil),
             let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, nil) as? [CFString: CFTypeRef],
             let raw = properties[kCGImagePropertyOrientation] as? UInt32,
