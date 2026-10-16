@@ -32,14 +32,26 @@ extension XCTestCase {
                 scrollDown(scroll)
             }
             try XCTContext.runActivity(named: "\(screen), pass \(pass + 1)") { _ in
-                try auditRetryingTimeout(app) { issue in
-                    let isAccepted = Self.isAcceptedEverywhere(issue, window: window) || accepted(issue)
-                    Self.record(issue, isAccepted: isAccepted)
-                    return isAccepted
-                }
+                try auditInPlace(app, accepting: accepted)
             }
         }
         app.terminate()
+    }
+
+    /**
+     One audit of what `app` shows now, with the findings every screen accepts and those `accepted`
+     adds, each finding named in the result bundle.
+     */
+    @MainActor
+    func auditInPlace(
+        _ app: XCUIApplication, accepting accepted: @escaping (XCUIAccessibilityAuditIssue) -> Bool = { _ in false }
+    ) throws {
+        let window = app.windows.firstMatch.frame
+        try auditRetryingTimeout(app) { issue in
+            let isAccepted = Self.isAcceptedEverywhere(issue, window: window) || accepted(issue)
+            Self.record(issue, isAccepted: isAccepted)
+            return isAccepted
+        }
     }
 
     /**
@@ -64,7 +76,7 @@ extension XCTestCase {
      Names each finding in the result bundle (its type, element and frame), so a failure says which
      element it is about and an accepted one stays visible.
      */
-    private static func record(_ issue: XCUIAccessibilityAuditIssue, isAccepted: Bool) {
+    static func record(_ issue: XCUIAccessibilityAuditIssue, isAccepted: Bool) {
         let element = issue.element
         let name =
             "\(isAccepted ? "accepted" : "finding"): \(issue.compactDescription) on "
