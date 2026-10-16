@@ -53,6 +53,7 @@ extension Operations.ChangePaymentMethod.Output {
         case .ok(let response): return try SubscriptionDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .notFound(let response): throw try response.body.applicationProblemJson
+        case .conflict(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
         case .default(_, let response): throw try response.body.applicationProblemJson
         }

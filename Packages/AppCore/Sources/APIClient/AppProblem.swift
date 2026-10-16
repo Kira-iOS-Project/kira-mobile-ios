@@ -99,6 +99,8 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case metaHealthUnhealthy = "META_HEALTH_UNHEALTHY"
     /** Too many codes were asked for; wait before asking again. */
     case authCodeRateLimited = "AUTH_CODE_RATE_LIMITED"
+    /** Too many codes were checked for this address or network; wait a few minutes. */
+    case authVerifyRateLimited = "AUTH_VERIFY_RATE_LIMITED"
     /** The sign-in code does not match. */
     case authCodeInvalid = "AUTH_CODE_INVALID"
     /** The sign-in code is past its ten minutes. */
@@ -111,6 +113,8 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case authRefreshInvalid = "AUTH_REFRESH_INVALID"
     /** The email could not be sent right now. */
     case emailDeliveryFailed = "EMAIL_DELIVERY_FAILED"
+    /** The data export was emailed less than ten minutes ago. */
+    case accountExportRateLimited = "ACCOUNT_EXPORT_RATE_LIMITED"
     /** There is no Kira Score before the health check. */
     case scoreNotAvailable = "SCORE_NOT_AVAILABLE"
     /** Kira AI is off in the consents, so chat reading is off. */
@@ -139,8 +143,26 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case subscriptionNotFound = "SUBSCRIPTION_NOT_FOUND"
     /** A Beasiswa Kira plan cannot be cancelled. */
     case subscriptionNotCancellable = "SUBSCRIPTION_NOT_CANCELLABLE"
+    /** A Beasiswa Kira plan is free: it has no payment method to change. */
+    case subscriptionNotPaid = "SUBSCRIPTION_NOT_PAID"
     /** Applying is not possible right now. */
     case scholarshipNotEligible = "SCHOLARSHIP_NOT_ELIGIBLE"
     /** There is no open application. */
     case scholarshipApplicationNotFound = "SCHOLARSHIP_APPLICATION_NOT_FOUND"
+    /** Otherwise eligible, but Mode Darurat Utang has never been opened. */
+    case scholarshipDebtEmergencyRequired = "SCHOLARSHIP_DEBT_EMERGENCY_REQUIRED"
+    /** The community group does not exist, or the team suspended it for review. */
+    case communityGroupNotFound = "COMMUNITY_GROUP_NOT_FOUND"
+    /** The group has no checked invite link yet; the curation team is checking it. */
+    case communityLinkUnavailable = "COMMUNITY_LINK_UNAVAILABLE"
+    /** The Etalase product does not exist. */
+    case communityProductNotFound = "COMMUNITY_PRODUCT_NOT_FOUND"
+    /** The person already has an open report on this group. */
+    case communityReportDuplicate = "COMMUNITY_REPORT_DUPLICATE"
+    /** The current community rules have not been accepted yet. */
+    case communityRulesNotAccepted = "COMMUNITY_RULES_NOT_ACCEPTED"
+    /** The check-in is gone (cancelled, seen or never made). */
+    case careCheckInNotFound = "CARE_CHECK_IN_NOT_FOUND"
+    /** No Rencana Keselamatanku has been saved yet. */
+    case careSafetyPlanNotFound = "CARE_SAFETY_PLAN_NOT_FOUND"
 }
