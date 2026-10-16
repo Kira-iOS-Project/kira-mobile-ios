@@ -135,8 +135,8 @@ The sizes are the artifact's, including the ones below what Apple's accessibilit
 full Dynamic Type support: the 11 pt overline (Caption 2), the medium amount's 11 pt "Rp" and
 ",00", the dock's 10 pt "Catat" and the bars' 11 pt caption. The audit reports each as "Dynamic
 Type font sizes are partially unsupported". They carry the accessibility identifier
-`kira.small-type`, and the gallery's audit test lists these findings apart until the owner decides
-whether to keep the artifact's sizes or raise them.
+`kira.small-type`, and the gallery's audit test lists these findings apart: the owner keeps the
+artifact's sizes, an accepted deviation from the audit.
 
 ## Money and the Kira Score (Domain)
 
@@ -386,6 +386,52 @@ catalog key that holds a word of this Indonesian vocabulary.
   group; the eight earlier 07:10:52–58 uploads are older
   illustration exports no group lists.
 
+## Precision against the artifact
+
+Each component was compared with the artifact's own preview: the preview rendered in Chrome at
+393 pt and 3x from `bundle.css`, `bundle.js` and `tokens.json`, beside the matching gallery page on
+an iPhone 16 simulator (393 pt), light and dark, with the CSS values read from `bundle.css`. The
+table lists the properties that differed and what they are now; every other property of the
+components (sizes, paddings, radii, borders, colours, icon sizes) already matched and is unchanged.
+
+| Component | Property | Artifact | Before | Now |
+| --- | --- | --- | --- | --- |
+| Text styles | Line height of SF Pro text | `line-height` 22 (17 pt), 21 (16), 20 (15), 18 (13), 16 (12) | System: 20.3, 19.1, 17.9, 15.5, 14.3 for one line | The artifact's, from iOS 26 (`kiraLineHeight`) |
+| Text styles | Line box of Plus Jakarta Sans and Kalam | `t-score` 64, `t-amount-xl` 46, `t-large-title` 41, `t-hand` 22, `t-hand-sm` 19 | The fonts' own: 80.6, 50.4, 42.8, 30.3, 25.4 | The artifact's in layout; the glyphs keep their own line |
+| `t-overline` | Size, tracking | 11 pt Bold, 0.08 em | 12 pt (Caption 1), 0.96 pt | 11 pt (Caption 2), 0.88 pt |
+| Amount | "Rp" and ",00" | 0.55 em: 11 (md), 18.7 (lg), 23.1 (xl) | Never under 13 pt | 11, 18.7, 23.1 |
+| Amount | Space after "Rp", before ",00" | 0.14 em and 0.03 em of their own size | 0.14 of the amount's size; none | 0.14 and 0.03 of their own size |
+| Amount | Masked | "Rp" then "••••••", the same gap | A word space | The same gap |
+| Amount | Too wide for its line | Overflows | Each part shrank on its own | The whole amount shrinks as one |
+| ScoreMeter | "/100" | Plus Jakarta Sans 17 Bold | SF Pro 17 Bold | Plus Jakarta Sans 17 Bold |
+| ScoreMeter | Track in layout | 12 pt, the 24 pt mark overhangs | 24 pt | 12 pt, the mark overhangs |
+| ScoreMeter | Delta label | `deltaLabel` ("dari September") | "dari bulan lalu" only | `deltaLabel:` |
+| NextStepCard | Buttons | `minmax(max-content, 1fr) minmax(max-content, 1.3fr)` | Equal halves | 1 : 1.3; stacked at the accessibility sizes |
+| NextStepCard | Illustration margin | −4 top, right and bottom; 0 left | −4 all round | −4 top, right and bottom |
+| ProgressPita | Value weight | 500 | 400 | 500 (Medium) |
+| ProgressPita | Space around the "·" | 8 pt each side (`gap` and `margin-right`) | A word space | An en space (7.5 pt at 15 pt) |
+| TabBar | Active label tracking | −0.01 em | None | −0.15 pt |
+| TabBar | Catat label | 10/12 pt Bold, 0.02 em | 12 pt Bold | 10 pt Bold, 0.2 pt, 12 pt line |
+| TabBar | Catat active ring | 2 pt outline 3 pt out, corners grown with it | Corners not grown | Corners 28 and 12 |
+| Icon | Duotone (active tab, help heart) | Stroke over a 20 % fill | The solid `.fill` symbol | The outline over the `.fill` symbol at 20 % |
+| HelpButton | Heart | Duotone, 15 pt (20 in the icon button), stroke 2 | Solid heart, 11 and 15 pt | Duotone, 15 and 20 pt |
+| HelpButton | Label | `label` prop | Fixed | `label:` |
+| ChatBubble | Width | `max-width` 82 %, 76 % beside an avatar; a card 82 % | Spacers of 56 and 40 pt | 82 %, 76 %, a card 82 % (`ChatLineLayout`) |
+| DraftCard | Edit button | 44 pt with margins −6 −10 −6 −6 | 44 pt in layout | 44 pt overhanging the same margins |
+| SectionTitle | Action padding | 0 2 pt | None | 0 2 pt |
+| ListRow | External icon | 18 pt | 20 pt | 18 pt |
+| Tag | Hero border | `#ffffff33` | on-hero at 20 % | White at 20 % |
+| Avatar | Initials | `round(size × 0.4)` | `max(13, size × 0.4)` | `round(size × 0.4)` |
+| Bars | Caption | 11/14 pt, 650 | 12 pt | 11 pt (Caption 2), 14 pt line |
+| Dialog | Illustration | `margin-top: −4px` | 0 | −4 pt |
+| Chip | Height in layout | 40 pt, the 44 pt target outside it | 44 pt | 40 pt, the 44 pt target outside it |
+| NavBar | Large: eyebrow | Its own row 2 pt above the title; the buttons centred on the title | Buttons centred on eyebrow and title | Buttons centred on the title |
+| Logo | Wordmark gap and size | `round(size × 0.24)`, `round(size × 0.92)` | Not rounded | Rounded |
+| Accordion | `defaultOpen` | Supported | Closed only | `.openByDefault()` |
+| Field | `icon` | Supported | None | `.icon(_:)` |
+| StepProgress | `label` | Supported | "Langkah N dari M" only | `label:` |
+| Sheet | Whole sheet | The scrim token, a 36×5 line-strong grabber at 50 %, a hairline top border, 30 pt top corners, padding 8 16, header 44 / 1fr / 44 with 16 pt gaps, top 56 | The system sheet: system dimming and grabber, medium and large detents, no top border | The artifact's sheet in a KiraCover, closed by the grabber, the scrim, the X or the escape gesture |
+
 ## Not done yet, or done differently
 
 | Item | State | Why |
@@ -407,7 +453,9 @@ catalog key that holds a word of this Indonesian vocabulary.
 | Category chip | Two buttons | The round tile is a separate button with the same action, hidden from VoiceOver, so the labelled button holds only text (the audit reads a pastel tile inside a button as low-contrast text) |
 | Line heights | iOS 26 and later | Set as in the artifact from iOS 26 (`lineHeight`); iOS 17 and 18 keep the system's leading, 1 to 2 pt shorter per line |
 | Font weights 650 and 750 | Nearest named | Semibold (600) and ExtraBold (800): SwiftUI's `Font.Weight` has no public initializer from a number |
-| Small sizes the audit reports | Artifact's sizes | The 11 pt overline, the medium amount's 11 pt "Rp" and ",00", the 10 pt "Catat" and the 11 pt bar caption: "Dynamic Type font sizes are partially unsupported", listed apart in the gallery's audit test (`kira.small-type`) for the owner's decision |
+| Small sizes the audit reports | Accepted deviation | The owner keeps the artifact's sizes: the 11 pt overline, the medium amount's 11 pt "Rp" and ",00", the 10 pt "Catat" and the 11 pt bar caption. Apple's audit reports each as "Dynamic Type font sizes are partially unsupported"; they carry `kira.small-type`, and the gallery's audit test lists them apart |
+| Text behind a dialog's scrim | Accepted in the test | The dimmed screen shows through the scrim, and the audit reads its text, which VoiceOver rightly cannot reach while the dialog is modal, as text without an element ("Potentially inaccessible text", no element named); the presented-dialog test accepts only that finding |
+| Field prompt | Drawn by the field | A single-line field draws its prompt as text that wraps at large sizes, where the system's prompt would be cut off; VoiceOver hears it as the field's hint |
 | Button pair order in the Button preview | Rule | The preview puts the primary left; Kira's rule puts the secondary left and the primary right (`KiraButtonPair`) |
 | Dark app icon and tinted icon (iOS 18) | Not done | The artifact ships the light icon only |
 
