@@ -73,9 +73,9 @@ extension RecordModel {
         onOpen(.history)
     }
 
-    /** The help button: Kira Peduli, not built yet. */
+    /** The help button: Kira Peduli. */
     package func openHelp() {
-        onOpen(.unavailable(.care))
+        onOpen(.care)
     }
 
     /** "Atur di Data & Privasi" on the AI-off notice. */

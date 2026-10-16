@@ -34,7 +34,7 @@ struct AboutScreen: View {
                 .frame(maxHeight: .infinity, alignment: .bottom)
                 .ignoresSafeArea(edges: .bottom)
         }
-        .onHelp { onOpen(.unavailable(.care)) }
+        .onHelp { onOpen(.care) }
     }
 }
 
