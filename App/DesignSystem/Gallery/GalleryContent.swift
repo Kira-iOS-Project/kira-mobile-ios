@@ -10,30 +10,32 @@
             GallerySection(title: "gallery.section.tag") {
                 KiraFlowRow {
                     KiraTag("gallery.tag.verified", tone: .pandan, icon: .check)
-                    KiraTag("gallery.tag.soon", tone: .kunyit)
-                    KiraTag("gallery.tag.paid", tone: .sehat)
-                    KiraTag("gallery.tag.overdue", tone: .rentan)
+                    KiraTag("gallery.tag.soon", tone: .turmeric)
+                    KiraTag("gallery.tag.paid", tone: .healthy)
+                    KiraTag("gallery.tag.overdue", tone: .vulnerable)
                     KiraTag("gallery.tag.fromGallery")
-                    KiraTag("gallery.tag.emergency", tone: .darurat)
+                    KiraTag("gallery.tag.emergency", tone: .emergency)
                     KiraTag("gallery.tag.thisMonth", tone: .hero).padding(KiraSpacing.space2).background(.hero)
                 }
             }
             GallerySection(title: "gallery.section.notice") {
-                KiraNotice(.simulasi, title: "gallery.notice.simulasi.title", message: "gallery.notice.simulasi.body")
-                KiraNotice(.edukasi, title: "gallery.notice.edukasi.title", message: "gallery.notice.edukasi.body")
-                KiraNotice(.aiText, title: "gallery.notice.ai.title", message: "gallery.notice.ai.body")
-                KiraNotice(.privasi, title: "gallery.notice.privasi.title", message: "gallery.notice.privasi.body")
-                KiraNotice(.aman, title: "gallery.notice.aman.title")
                 KiraNotice(
-                    .peringatan, title: "gallery.notice.peringatan.title", message: "gallery.notice.peringatan.body")
+                    .simulation, title: "gallery.notice.simulation.title", message: "gallery.notice.simulation.body")
+                KiraNotice(
+                    .education, title: "gallery.notice.education.title", message: "gallery.notice.education.body")
+                KiraNotice(.aiText, title: "gallery.notice.ai.title", message: "gallery.notice.ai.body")
+                KiraNotice(.privacy, title: "gallery.notice.privacy.title", message: "gallery.notice.privacy.body")
+                KiraNotice(.safe, title: "gallery.notice.safe.title")
+                KiraNotice(
+                    .warning, title: "gallery.notice.warning.title", message: "gallery.notice.warning.body")
                 KiraNotice(message: "gallery.notice.info.body", icon: .clock)
             }
             GallerySection(title: "gallery.section.avatar") {
                 HStack(spacing: KiraSpacing.space3) {
                     KiraAvatar("D", label: "gallery.avatar.label")
-                    KiraAvatar("AR", tone: .hijau, label: "gallery.avatar.label")
-                    KiraAvatar("S", size: 32, tone: .langit, label: "gallery.avatar.label")
-                    KiraAvatar("M", size: 52, tone: .persik, label: "gallery.avatar.label")
+                    KiraAvatar("AR", tone: .green, label: "gallery.avatar.label")
+                    KiraAvatar("S", size: 32, tone: .sky, label: "gallery.avatar.label")
+                    KiraAvatar("M", size: 52, tone: .peach, label: "gallery.avatar.label")
                 }
             }
             GallerySection(title: "gallery.section.accordion") {
@@ -69,7 +71,7 @@
             VStack(alignment: .leading, spacing: KiraSpacing.space2) {
                 Text("gallery.hero.label").font(.subheadline.weight(.semibold)).foregroundStyle(.onHeroMuted)
                 KiraAmount(1_840_000, size: .extraLarge).inverse()
-                KiraProgressPita(value: 75, target: 100, label: "gallery.hero.used").inverse()
+                KiraProgressRibbon(value: 75, target: 100, label: "gallery.hero.used").inverse()
                     .caption("gallery.hero.period")
                     .padding(.top, KiraSpacing.space3)
             }
@@ -85,16 +87,18 @@
 
     struct GalleryProgress: View {
         var body: some View {
-            GallerySection(title: "gallery.section.pita") {
-                KiraProgressPita(value: 1_200_000, target: 4_200_000, label: "ds.category.darurat")
+            GallerySection(title: "gallery.section.ribbon") {
+                KiraProgressRibbon(value: 1_200_000, target: 4_200_000, label: "ds.category.emergency")
                     .milestones([
-                        .init(position: 300_000, label: "gallery.pita.week"),
-                        .init(position: 1_400_000, label: "gallery.pita.month"),
-                        .init(position: 4_200_000, label: "gallery.pita.goal"),
+                        .init(position: 300_000, label: "gallery.ribbon.week"),
+                        .init(position: 1_400_000, label: "gallery.ribbon.month"),
+                        .init(position: 4_200_000, label: "gallery.ribbon.goal"),
                     ])
-                    .caption("gallery.pita.caption")
-                KiraProgressPita(value: 4, target: 6, label: "gallery.pita.plan", valueLabel: "gallery.pita.planValue")
-                    .tone(.sehat)
+                    .caption("gallery.ribbon.caption")
+                KiraProgressRibbon(
+                    value: 4, target: 6, label: "gallery.ribbon.plan", valueLabel: "gallery.ribbon.planValue"
+                )
+                .tone(.healthy)
             }
             GallerySection(title: "gallery.section.steps") {
                 KiraStepProgress(current: 2, total: 6)

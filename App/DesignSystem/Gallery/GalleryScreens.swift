@@ -32,7 +32,7 @@
                         name: Text("gallery.indicator.debt"), value: Text("gallery.indicator.debt.value"),
                         points: Score(0)
                     )
-                    .band(.rentan)
+                    .band(.vulnerable)
                 }
                 .padding(.horizontal, KiraSpacing.space4)
                 .kiraCard()
@@ -44,7 +44,7 @@
                 )
                 .eyebrow("gallery.step.eyebrow")
                 .meta("gallery.step.meta")
-                .illustration(.kartuLunas)
+                .illustration(.cardPaidOff)
                 .impact("gallery.step.impact")
                 .secondaryLabel("gallery.step.secondary")
             }
@@ -69,16 +69,16 @@
                 KiraListRow(
                     Text("gallery.list.paylater"), leading: .category(.paylater), action: {},
                     extra: {
-                        KiraTag("gallery.tag.soon", tone: .kunyit)
-                        KiraProgressPita(value: 2, target: 6)
+                        KiraTag("gallery.tag.soon", tone: .turmeric)
+                        KiraProgressRibbon(value: 2, target: 6)
                     })
             }
             KiraListGroup("gallery.list.settings") {
                 KiraListRow(Text("gallery.list.pin"), leading: .icon(.lock), trailing: .toggle($locks))
-                KiraListRow(Text("gallery.list.weekly"), leading: .illustration(.surat), action: {})
+                KiraListRow(Text("gallery.list.weekly"), leading: .illustration(.letter), action: {})
                     .value(Text("gallery.list.weekly.value"))
                 KiraListRow(Text("gallery.list.ojk"), leading: .icon(.shield), trailing: .external, action: {})
-                KiraListRow(Text("gallery.list.admin"), leading: .initials("D", .hijau))
+                KiraListRow(Text("gallery.list.admin"), leading: .initials("D", .green))
                     .subtitle(Text("gallery.list.admin.sub"))
                 KiraListRow(Text("gallery.action.deleteAccount"), leading: .icon(.trash), action: {}).danger()
             }

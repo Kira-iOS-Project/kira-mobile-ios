@@ -16,9 +16,9 @@ struct KiraButton: View {
         /** Pandan text without a fill: an inline action. */
         case quiet
         /** Red: only the 119 call and reporting ("Laporkan Grup", "Kirim Laporan"). */
-        case darurat
+        case emergency
         /** Terracotta: confirmations that delete ("Hapus Akun dan Data"); never red. */
-        case bahaya
+        case destructive
     }
 
     /** The button's height. */
