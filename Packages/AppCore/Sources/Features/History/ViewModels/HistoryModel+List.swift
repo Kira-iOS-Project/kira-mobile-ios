@@ -30,8 +30,9 @@ extension HistoryModel {
             text: appliedSearch.isEmpty ? nil : appliedSearch, cursor: cursor, limit: Self.pageSize)
     }
 
-    /** Takes a page in and shows the list. */
+    /** Takes a page in and shows the list; a new first page ends an older page's failure. */
     func show(_ page: TransactionPage, appending: Bool) {
+        if !appending { moreFailure = nil }
         items = appending ? items + page.items : page.items
         cursor = page.nextCursor
         publish()

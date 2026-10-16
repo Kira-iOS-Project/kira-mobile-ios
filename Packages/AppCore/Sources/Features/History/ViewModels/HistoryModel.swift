@@ -62,6 +62,8 @@ package final class HistoryModel {
     var cursor: String?
     var isExpanded = false
     private var isLoadingMore = false
+    /** Why the last older page did not load; the list's end then offers Coba Lagi instead of a spinner. */
+    package internal(set) var moreFailure: AppProblem?
     /** Counts requests, so an answer to an older one is dropped. */
     var generation = 0
     var appliedSearch = ""
@@ -127,15 +129,24 @@ package final class HistoryModel {
         publish()
     }
 
-    /** Loads the next older page; a failure leaves the list as it is, to be asked again. */
+    /**
+     Loads the next older page, and again on Coba Lagi. A failure leaves the list as it is and keeps
+     its problem in `moreFailure`, so the list's end shows it with Coba Lagi rather than a spinner
+     that nothing would ask again.
+     */
     package func loadMore() async {
         guard let context, let cursor, !isLoadingMore else { return }
         isLoadingMore = true
         defer { isLoadingMore = false }
+        moreFailure = nil
         let current = generation
-        guard let page = try? await service.transactions(query(context.period, cursor: cursor)),
-            current == generation
-        else { return }
-        show(page, appending: true)
+        do {
+            let page = try await service.transactions(query(context.period, cursor: cursor))
+            guard current == generation else { return }
+            show(page, appending: true)
+        } catch {
+            guard current == generation else { return }
+            moreFailure = historyProblem(error)
+        }
     }
 }

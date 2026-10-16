@@ -27,6 +27,24 @@ final class FakeRecordService: RecordService, @unchecked Sendable {
     private(set) var undos: [String] = []
     private(set) var receipts: [ReceiptInput] = []
     private(set) var manuals: [ManualTransactionInput] = []
+    /** The next commit or undo waits for `release()`, so a test can tap again while it is on its way. */
+    var holdsNext = false
+    private var held: CheckedContinuation<Void, Never>?
+
+    /** Whether a commit or undo is waiting for `release()`. */
+    var isHolding: Bool { held != nil }
+
+    /** Lets the held commit or undo answer. */
+    func release() {
+        held?.resume()
+        held = nil
+    }
+
+    private func hold() async {
+        guard holdsNext else { return }
+        holdsNext = false
+        await withCheckedContinuation { held = $0 }
+    }
 
     func profile() throws -> RecordProfile { try profileResult.get() }
 
@@ -44,13 +62,15 @@ final class FakeRecordService: RecordService, @unchecked Sendable {
         return try updateResult.get()
     }
 
-    func commit(messageId: String) throws -> CommitResult {
+    func commit(messageId: String) async throws -> CommitResult {
         commits.append(messageId)
+        await hold()
         return try commitResult.get()
     }
 
-    func undo(batchId: String) throws -> ChatMessage {
+    func undo(batchId: String) async throws -> ChatMessage {
         undos.append(batchId)
+        await hold()
         return try undoResult.get()
     }
 

@@ -53,6 +53,8 @@ extension RecordModel {
 
     /** Simpan N Transaksi: the drafts become transactions, the engine's remaining money follows. */
     package func save(_ message: ChatMessage) async {
+        guard committing.insert(message.id).inserted else { return }
+        defer { committing.remove(message.id) }
         do {
             let result = try await dependencies.service.commit(messageId: message.id)
             replace(result.message)
@@ -72,6 +74,8 @@ extension RecordModel {
     /** Urungkan: the transactions are deleted and the drafts wait again. */
     package func undo(_ message: ChatMessage) async {
         guard let batchId = message.batchId, undoable.contains(message.id) else { return }
+        guard committing.insert(message.id).inserted else { return }
+        defer { committing.remove(message.id) }
         do {
             replace(try await dependencies.service.undo(batchId: batchId))
             undoable.remove(message.id)
@@ -94,9 +98,12 @@ extension RecordModel {
         }
     }
 
+    /** A chat action failed: the failure dialog, or the AI-off notice when the server says Kira AI is off. */
     private func fail(_ action: ChatAction, _ error: any Error) {
+        let failure = RecordFailure(error)
+        guard !failure.turnsAIOff else { return aiTurnedOff() }
         failedAction = action
-        failure = RecordFailure(error)
+        self.failure = failure
     }
 
     /** The pencil of one draft: Ubah Transaksi (CAT-02). */

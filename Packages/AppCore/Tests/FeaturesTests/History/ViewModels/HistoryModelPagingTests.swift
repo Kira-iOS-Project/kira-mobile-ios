@@ -48,6 +48,7 @@ struct HistoryModelPagingTests {
         await service.configure { $0.failing = [.transactions] }
         await model.loadMore()
         #expect(try #require(model.phase.value).canLoadMore)
+        #expect(model.moreFailure == FakeHistoryService.problem)
         await service.configure {
             $0.failing = []
             $0.holdsNextTransactions = true
@@ -58,5 +59,34 @@ struct HistoryModelPagingTests {
         await service.release()
         await first.value
         #expect(await service.queries.count == 3)
+    }
+
+    @Test("a failed older page keeps its problem for Coba Lagi, which loads it and ends the failure")
+    func pagingRetry() async throws {
+        let older = Transaction(
+            id: "old", type: .expense, amount: 9_000, category: .coffee, name: "Kopi",
+            occurredAt: HistorySample.at(HistorySample.period.start.adding(days: 2), 9, 0), source: .receipt)
+        await service.configure {
+            $0.pages = [
+                nil: TransactionPage(items: HistorySample.transactions, nextCursor: "p2"),
+                "p2": TransactionPage(items: [older], nextCursor: nil),
+            ]
+        }
+        let model = model()
+        model.showOlderDays()
+        await model.load()
+        #expect(model.moreFailure == nil)
+        await service.configure { $0.failing = [.transactions] }
+        await model.loadMore()
+        #expect(model.moreFailure == FakeHistoryService.problem)
+        await service.configure { $0.failing = [] }
+        await model.loadMore()
+        #expect(model.moreFailure == nil)
+        #expect(try #require(model.phase.value).canLoadMore == false)
+        await service.configure { $0.failing = [.transactions] }
+        await model.select(kind: .expense)
+        await service.configure { $0.failing = [] }
+        await model.select(kind: .all)
+        #expect(model.moreFailure == nil)
     }
 }

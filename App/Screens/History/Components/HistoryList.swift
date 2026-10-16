@@ -2,6 +2,7 @@
  Riwayat's loaded list: the period's totals, the category chips, then the days, with the folded
  days as one quiet button and older pages loading as the end appears.
  */
+import APIClient
 import Domain
 import Features
 import SwiftUI
@@ -30,8 +31,28 @@ struct HistoryList: View {
             }
         }
         if content.canLoadMore {
-            ProgressView().frame(maxWidth: .infinity).task { await model.loadMore() }
+            if let failure = model.moreFailure {
+                moreFailed(failure)
+            } else {
+                ProgressView().frame(maxWidth: .infinity).task { await model.loadMore() }
+            }
         }
+    }
+
+    /** An older page that did not load: what went wrong, and Coba Lagi to ask for it again. */
+    private func moreFailed(_ problem: AppProblem) -> some View {
+        VStack(spacing: KiraSpacing.space2) {
+            Text(problem.message).kiraFont(.callout).foregroundStyle(.inkMuted)
+                .multilineTextAlignment(.center)
+            if problem.showsReference {
+                /** The reference is data a person quotes to support, shown as is. */
+                Text(problem.reference).kiraFont(.caption).foregroundStyle(.inkMuted)
+            }
+            KiraButton("loadFailed.retry", variant: .quiet, size: .small) { Task { await model.loadMore() } }
+                .icon(.refresh)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, KiraSpacing.space4)
     }
 
     /** The chips scroll sideways past the screen's right margin, as on the board. */
