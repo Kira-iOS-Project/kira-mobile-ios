@@ -1,4 +1,4 @@
-// AppProblem through its public surface: decoding, the code it resolves, and what a screen shows.
+/** AppProblem through its public surface: decoding, the code it resolves, and what a screen shows. */
 import Foundation
 import Testing
 
