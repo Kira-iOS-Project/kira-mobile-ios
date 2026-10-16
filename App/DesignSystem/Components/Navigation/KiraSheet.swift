@@ -43,8 +43,8 @@ extension View {
     ) -> some View {
         kiraCover(isPresented: isPresented) { onGone in
             SheetCover(
-                isPresented: isPresented, title: nil, subtitle: nil, top: top, leaf: nil, onGone: onGone,
-                content: content)
+                isPresented: isPresented, title: nil, subtitle: nil, top: top, leaf: nil, onShown: nil,
+                onGone: onGone, content: content)
         }
     }
 }

@@ -15,20 +15,21 @@ extension View {
     /**
      Presents `content` as a Kira sheet while `submission` is open, and its failure as a dialog
      titled `failureTitle` (`connectionMessage` when the request got no answer). Coba Lagi opens the
-     sheet again and, once it has risen, runs `onRetry`, which submits again.
+     sheet again and, once it has risen, runs `onRetry`, which submits again. `onGone` runs each time
+     the last cover is down and none follows, the moment to navigate after a submit went through.
      */
     func kiraSheet<Content: View>(
         _ submission: Binding<SheetSubmission>, title: LocalizedStringResource,
         subtitle: LocalizedStringResource? = nil, top: CGFloat? = nil, leaf: KiraLeaf? = nil,
         failureTitle: LocalizedStringResource, connectionMessage: LocalizedStringResource = "problem.connection",
-        onRetry: @escaping () -> Void, @ViewBuilder content: @escaping () -> Content
+        onRetry: @escaping () -> Void, onGone: (() -> Void)? = nil, @ViewBuilder content: @escaping () -> Content
     ) -> some View {
         modifier(
             SubmissionSheet(
                 submission: submission,
                 header: SheetHeader(title: title, subtitle: subtitle, top: top, leaf: leaf),
                 failure: SheetFailureText(title: failureTitle, connection: connectionMessage), onRetry: onRetry,
-                sheet: content))
+                onGone: onGone, sheet: content))
     }
 }
 
@@ -68,6 +69,7 @@ private struct SubmissionSheet<Sheet: View>: ViewModifier {
     let header: SheetHeader
     let failure: SheetFailureText
     let onRetry: () -> Void
+    let onGone: (() -> Void)?
     @ViewBuilder let sheet: () -> Sheet
     @State private var layer: SheetLayer?
     /**
@@ -116,7 +118,11 @@ private struct SubmissionSheet<Sheet: View>: ViewModifier {
 
     private func coverGone() {
         layer = wanted
-        if retryPending { submission.open() }
+        if retryPending {
+            submission.open()
+        } else if layer == nil {
+            onGone?()
+        }
     }
 
     private func sheetUp() {
