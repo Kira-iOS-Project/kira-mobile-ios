@@ -73,6 +73,17 @@ package enum AppRoute: Hashable, Sendable {
     /** AKN-08d: Layanan Pengaduan. */
     case complaints
 
+    /** KOM-01: Komunitas, the Komunitas tab's root. */
+    case community
+    /** KOM-02: one community group's detail. */
+    case communityGroup(id: String)
+    /** KOM-06: Etalase, the curated sellers' products. */
+    case marketplace
+    /** KOM-07, KOM-07b to KOM-07d: one product's detail, by its kind. */
+    case product(id: String)
+    /** KOM-08: Kirim Produk ke Etalase. */
+    case submitProduct
+
     /** A link the boards show to an area not built yet: it stays visible and opens nothing. */
     case unavailable(UnavailableArea)
 }
