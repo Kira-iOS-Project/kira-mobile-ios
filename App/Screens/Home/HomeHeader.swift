@@ -31,15 +31,20 @@ struct HomeHeader: View {
                 .padding(.trailing, -4)
             }
             .frame(minHeight: KiraSize.tap)
-            if typeSize.isAccessibilitySize {
+            /**
+             The board's `flex-wrap`: the greeting keeps its one line, and the help pill goes under it
+             when both do not fit.
+             */
+            ViewThatFits(in: .horizontal) {
+                if !typeSize.isAccessibilitySize {
+                    HStack(spacing: 0) {
+                        greeting.fixedSize(horizontal: true, vertical: false)
+                        Spacer(minLength: KiraSpacing.space3)
+                        help
+                    }
+                }
                 VStack(alignment: .leading, spacing: KiraSpacing.space2) {
                     greeting
-                    help
-                }
-            } else {
-                HStack(spacing: KiraSpacing.space3) {
-                    greeting
-                    Spacer(minLength: 0)
                     help
                 }
             }
@@ -56,8 +61,6 @@ struct HomeHeader: View {
             .tracking(-0.02 * size)
             .foregroundStyle(.ink)
             .accessibilityAddTraits(.isHeader)
-            /** The name keeps its line beside the help pill, as on the board; it wraps only when it must. */
-            .layoutPriority(1)
     }
 
     private var greetingText: Text {
@@ -71,6 +74,8 @@ struct HomeHeader: View {
     }
 
     private var help: some View {
-        KiraHelpButton { onOpen(.unavailable(.care)) }.fixedSize()
+        /** One line beside the greeting; at accessibility sizes it wraps rather than widen the page. */
+        KiraHelpButton { onOpen(.unavailable(.care)) }
+            .fixedSize(horizontal: !typeSize.isAccessibilitySize, vertical: true)
     }
 }

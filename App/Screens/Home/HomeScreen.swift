@@ -56,15 +56,18 @@ private struct HomeContent: View {
                 case .overview: HomeOverviewSections(home: home, model: model, onOpen: onOpen)
                 case .debtPlan: HomeDebtPlanSections(home: home, model: model, onOpen: onOpen)
                 }
-                if let score = home.score {
+                if home.variant != .overview, let score = home.score {
                     HomeScoreCard(score: score) { onOpen(.score) }
                 }
             }
             .padding(.horizontal, KiraSpacing.screen)
+            /** The boards start the header at 54 pt, the foot of the status bar, 5 pt above the safe area. */
+            .padding(.top, 54 - 59)
             .padding(.bottom, KiraSpacing.space10)
             .background(alignment: .topTrailing) {
                 KiraLeaf(.twig, tone: .soft, size: 150, isFlipped: true)
-                    .offset(x: 34, y: -24)
+                    /** 30 pt from the top of the screen, as on the boards. */
+                    .offset(x: 34, y: 30 - 59)
                     .accessibilityHidden(true)
             }
         }
@@ -73,7 +76,7 @@ private struct HomeContent: View {
     }
 }
 
-/** BRD-01's sections between the header and the score: the money left, the step, the weekly summary. */
+/** BRD-01's sections under the header: the money left, the step, the score, the weekly summary. */
 private struct HomeOverviewSections: View {
     let home: HomeOverview
     let model: HomeModel
@@ -85,6 +88,9 @@ private struct HomeOverviewSections: View {
         }
         if let step = model.visibleStep {
             HomeStepSection(step: step, home: home, model: model, onOpen: onOpen)
+        }
+        if let score = home.score {
+            HomeScoreCard(score: score) { onOpen(.score) }
         }
         if let week = home.weeklySummary {
             HomeWeeklyCard(range: week) { onOpen(.unavailable(.weeklySummary)) }

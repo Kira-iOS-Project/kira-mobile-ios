@@ -58,10 +58,11 @@ private struct ScoreContent: View {
                 Text("score.privacy").font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
             }
             .padding(.horizontal, KiraSpacing.screen)
-            .padding(.top, KiraSpacing.space2)
+            /** The board's 62 pt from the top of the screen, and its scenery at 96 pt. */
+            .padding(.top, 62 - 59)
             .padding(.bottom, KiraSpacing.space10)
             .background(alignment: .top) {
-                KiraScenery(hasSun: true, height: 150).offset(y: 34).accessibilityHidden(true)
+                KiraScenery(hasSun: true, height: 150).offset(y: 96 - 59).accessibilityHidden(true)
             }
         }
         .kiraScrollEdges()
@@ -73,13 +74,16 @@ private struct ScoreHeader: View {
     let report: ScoreReport
     let onOpen: (AppRoute) -> Void
     let onBack: () -> Void
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         VStack(alignment: .leading, spacing: KiraSpacing.space1) {
             HStack {
                 KiraIconButton.back("score.back", action: onBack)
                 Spacer(minLength: KiraSpacing.space2)
-                KiraHelpButton { onOpen(.unavailable(.care)) }.fixedSize()
+                KiraHelpButton { onOpen(.unavailable(.care)) }
+                    /** At accessibility sizes it wraps rather than widen the page. */
+                    .fixedSize(horizontal: !typeSize.isAccessibilitySize, vertical: true)
             }
             .frame(minHeight: KiraSize.tap)
             Text("score.title").kiraFont(.largeTitle).foregroundStyle(.ink).accessibilityAddTraits(.isHeader)

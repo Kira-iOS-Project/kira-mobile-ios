@@ -27,7 +27,8 @@ struct SplashView: View {
         ZStack(alignment: .bottomLeading) {
             Color.hero
             Circle().fill(.heroAccent).frame(width: 128, height: 128).offset(x: 222, y: -96)
-            KiraScenery(tone: .hero, height: 250)
+            /** Its own width, as the scenery at 250 pt asks for 655 pt and would push the sun aside. */
+            KiraScenery(tone: .hero, height: 250).frame(minWidth: 0, maxWidth: .infinity)
             KiraLeaf(.twig, tone: .hero, size: 170)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                 .offset(x: -40, y: -20)

@@ -16,7 +16,7 @@ struct IntroView: View {
         VStack(spacing: 0) {
             header
                 .padding(.horizontal, KiraSpacing.screen)
-                .padding(.top, KiraSpacing.space1)
+                .padding(.top, 62 - 59)
             TabView(selection: $page) {
                 IntroPage { IntroWelcome() }.tag(0)
                 IntroPage { IntroChat() }.tag(1)
@@ -28,9 +28,8 @@ struct IntroView: View {
                 KiraButton("onboarding.intro.haveAccount", variant: .secondary) { flow.open(.signIn) }.block()
             }
             .padding(.horizontal, KiraSpacing.screen)
-            .padding(.bottom, KiraSpacing.space2)
         }
-        .onboardingBackdrop(leaf: page == 1 ? .twig : .pandan)
+        .onboardingBackdrop(leaf: page == 1 ? .twig(size: 140, top: 40, overhang: 40) : .pandan)
         .toolbar(.hidden, for: .navigationBar)
     }
 
