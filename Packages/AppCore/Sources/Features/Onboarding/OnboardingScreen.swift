@@ -26,4 +26,30 @@ package enum OnboardingOutcome: Hashable, Sendable {
     case signedIn
     /** A new account finished onboarding with the focus it chose. */
     case completed(Focus)
+    /** The health check, opened again from the score, sent new answers. */
+    case rechecked
+    /** The health check, opened again from the score, was left without new answers. */
+    case closed
+}
+
+/** Where a flow starts: the intro, or a later screen when onboarding resumes or the quiz is redone. */
+package enum OnboardingStart: Hashable, Sendable {
+    /** The three intro pages, then Buat Akun or Masuk. */
+    case intro
+    /** Signed in without consents: Persetujuan Data. */
+    case consent
+    /** Consents given, no health check yet: Pilih Fokus. */
+    case focus
+    /** "Cek Ulang" from the score: the six steps and the result, without Kunci Kira. */
+    case healthCheck
+
+    /** The screen at the bottom of the stack, nil for the intro pages. */
+    package var rootScreen: OnboardingScreen? {
+        switch self {
+        case .intro: nil
+        case .consent: .consent
+        case .focus: .focus
+        case .healthCheck: .healthCheck(.income)
+        }
+    }
 }

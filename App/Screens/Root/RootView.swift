@@ -20,7 +20,11 @@ struct RootView: View {
             Group {
                 switch model.stage {
                 case .splash: SplashView()
-                case .onboarding: OnboardingSlot(onFinished: model.finishOnboarding)
+                case .onboarding:
+                    OnboardingSlot(start: model.onboardingStart) { outcome in
+                        Task { await model.finishOnboarding(outcome) }
+                    }
+                    .id(model.onboardingStart)
                 case .locked: LockHost(make: makeUnlock, makeRecovery: makeRecovery)
                 case .main: MainShell(navigation: model.navigation)
                 }
@@ -30,6 +34,7 @@ struct RootView: View {
         .animation(reduceMotion ? nil : .easeInOut(duration: 0.35), value: model.stage)
         .blur(radius: model.lock.isObscured ? 24 : 0)
         .overlay { if model.lock.isObscured { PrivacyCover() } }
+        .environment(\.endSession, EndSessionAction { Task { await model.endSession() } })
         .task { await model.start() }
         .onChange(of: scenePhase, initial: true) { _, phase in
             model.lock.scenePresenceChanged(to: ScenePresence(phase))

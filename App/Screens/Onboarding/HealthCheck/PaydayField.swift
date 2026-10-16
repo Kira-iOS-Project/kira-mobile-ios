@@ -41,7 +41,7 @@ struct PaydayField: View {
         }
         .kiraSheet(
             isPresented: $isPicking, title: "onboarding.payday.sheet.title",
-            subtitle: "onboarding.payday.sheet.subtitle"
+            subtitle: "onboarding.payday.sheet.subtitle", top: 300
         ) {
             PaydaySheet(payday: $payday, isPresented: $isPicking)
         }

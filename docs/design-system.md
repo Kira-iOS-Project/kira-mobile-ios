@@ -16,6 +16,7 @@ version 6, last changed 15 October 2026). When a ticket names a component (`Kira
 | `App/DesignSystem/Components/` | The components, by group: Controls, Content, Score, Lists, Navigation, Dialog, Chat |
 | `App/DesignSystem/Layout/` | Row separators, the wrapping row (chips), the weighted row, the scroll edges |
 | `App/DesignSystem/Gallery/` | The debug-only gallery of every component |
+| `App/Screens/Shared/` | Screen helpers several areas share: dates, the load-failed view, the tap card, plan and category names, problem messages ([Shared screen helpers](#shared-screen-helpers)) |
 | `Packages/AppCore/Sources/Domain/` | `RupiahFormatStyle`, `Score`, `ScoreBand`, `DigitCode`: logic, tested at 100% |
 
 ## Rules every screen keeps
@@ -195,7 +196,7 @@ Options beyond five initializer parameters are chained modifiers, such as
 | `ListRow` (category, icon, illustration, initial; chevron, external, toggle, check; danger) | `KiraListRow(_:leading:trailing:action:extra:)` `.subtitle` `.amount` `.value` `.danger()` | `Components/Lists/KiraListRow.swift`, `KiraListRowParts.swift` |
 | `NavBar` (back, close, large, eyebrow, actions) | `KiraNavBar(_:subtitle:leading:isLarge:trailing:)` `.eyebrow(_:)` | `Components/Navigation/KiraNavBar.swift` |
 | `TabBar` (the dock with Catat) | `KiraTabBar(selection:isRecordActive:onRecord:)`, `KiraTab` | `Components/Navigation/KiraTabBar.swift` |
-| `Sheet` | `.kiraSheet(isPresented:title:subtitle:content:)`: the artifact's sheet, not the system one (the scrim, a line-strong grabber, the hairline top, 30 pt corners, the close X on the right), in a KiraCover | `Components/Navigation/KiraSheet.swift`, `Layout/KiraCover.swift` |
+| `Sheet` | `.kiraSheet(isPresented:title:subtitle:top:content:)`: the artifact's sheet, not the system one (the scrim, a line-strong grabber, the hairline top, 30 pt corners, the close X on the right), in a KiraCover | `Components/Navigation/KiraSheet.swift`, `Layout/KiraCover.swift` |
 | `.k-dialog` (success, failure, confirm; illustration or round icon; one or two buttons) | `KiraDialog(_:message:art:primary:secondary:)`, presented with `.kiraDialog(isPresented:dialog:)` | `Components/Dialog/KiraDialog.swift`, `KiraDialogPresentation.swift` |
 | (screen edges) | `.kiraScrollEdges()` | `Layout/KiraScrollEdges.swift` |
 | `ChatBubble` (me, kira; meta, initial, saved) | `KiraChatBubble(_:meta:initial:content:)` `.saved(_:)` `.hidesAvatar()` (`me` is `.user`) | `Components/Chat/KiraChatBubble.swift` |
@@ -276,6 +277,26 @@ which cannot hold, turn the digits on and off with its action. A presented dialo
 covers the whole window, so nothing behind it can be reached; VoiceOver starts on its title, and
 the escape gesture runs the secondary action (or the only one) and closes it. `UITests/DesignSystemGalleryAuditTests.swift` runs Apple's
 accessibility audit over every gallery page.
+
+## Shared screen helpers
+
+What several areas show the same way lives once in `App/Screens/Shared/`. An area never declares
+its own copy (a second `extension PlanID { var title }` is a redeclaration the build refuses), and
+a helper moves here as soon as a second area needs it.
+
+| Helper | What it gives | Used by |
+| --- | --- | --- |
+| `KiraFormats.swift` | Dates as Kira writes them, in Indonesian and WIB whatever the device's region: `.kiraDate` ("15 Oktober 2026"), `.kiraWeekdayDate` ("Kamis, 15 Oktober 2026"), `.kiraDayMonth`, `.kiraMonth`, `.kiraTime` ("12.41", written before "WIB"), `.kiraGroupDate` (Riwayat's "Kamis 15 Oktober 2026"); `KiraDateFormat.dateTime(_:)` and `.dayTime(_:)` for the catalog's "… · 12.41 WIB" phrases; `DayRange`'s `firstEnd`, `lastEnd` and `.kiraDayRange` ("1–30 September 2026", "25 September – 24 Oktober 2026"); `.kiraDecimal(_:)` and `.kiraMultiple` ("1,1", "0,5"); `Int.rupiah` | Beranda, Kira Score, Catat, Riwayat, Impor Mutasi |
+| `LoadFailedView` | A screen that could not load: an optional title, the problem's catalog message, the reference for a code this app does not know, and Coba Lagi | Beranda, Kira Score, Riwayat and the screens under it |
+| `KiraTapCard` | Beranda's tappable card: a 56 pt illustration tile, two lines and a chevron, one button named by its whole sentence | Beranda (Kira Score, Ringkasan Mingguan) |
+| `PlanID+Display.swift` | `title` ("Kira Gratis", "Kira Muda", "Kira Plus") and `shortTitle` ("Muda", "Plus") on the `plans.name.*` and `plans.short.*` keys | Profil, Paket, Langganan, Beasiswa Kira |
+| `AppProblem+Message.swift` | `message`, the catalog's text for a problem (`problem.<CODE>` or `problem.unknown`), and `unknownReference`, the reference to quote only when the code is unknown | Every screen that shows a problem |
+| `TransactionCategory+Display.swift` | `tile` (the `KiraCategory` the boards draw, such as Bonus on the savings tile) and `title` (the board's name on the `ledger.category.*` keys: "Makan & Minum", "Kopi") | Catat, Riwayat, Detail Transaksi, Impor Mutasi |
+
+These styles are product rules like `RupiahFormatStyle`, so they name their locale and time zone
+instead of following the device's. Plans and Account still keep a few styles of their own
+(`plansFullDay`, `accountDay`) that follow the device's locale; they print the same in Indonesian,
+and move here when one of them is needed elsewhere.
 
 ## Icons
 
@@ -427,6 +448,9 @@ components (sizes, paddings, radii, borders, colours, icon sizes) already matche
 | Chip | Height in layout | 40 pt, the 44 pt target outside it | 44 pt | 40 pt, the 44 pt target outside it |
 | NavBar | Large: eyebrow | Its own row 2 pt above the title; the buttons centred on the title | Buttons centred on eyebrow and title | Buttons centred on the title |
 | Logo | Wordmark gap and size | `round(size × 0.24)`, `round(size × 0.92)` | Not rounded | Rounded |
+| Scenery | Width | `width: 100%`, `preserveAspectRatio="xMidYMax slice"` | The image's width at `height` (400 pt at 150, 655 at 250), widening its container | The container's width, cropped centred on the bottom edge |
+| Sheet | Panel top | `top` prop, 56 by default | Always under the status bar | `top:` from the top of the screen; under the status bar by default and at the accessibility sizes |
+| Accordion | Title at the accessibility sizes | Wraps between words | Broke inside a word beside the icon | The icon above the title, which wraps between words |
 | Accordion | `defaultOpen` | Supported | Closed only | `.openByDefault()` |
 | Field | `icon` | Supported | None | `.icon(_:)` |
 | StepProgress | `label` | Supported | "Langkah N dari M" only | `label:` |

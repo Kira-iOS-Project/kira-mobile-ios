@@ -86,6 +86,12 @@ package final class AppLockModel {
         return check
     }
 
+    /** Turns the PIN off once Keamanan has checked it (AKN-03): Kira opens without one. */
+    package func forgetPin() {
+        pins.removePin()
+        hasPin = false
+    }
+
     /** Shows or hides amounts until the next open (the eye on Beranda). */
     package func toggleBalances() { balancesHidden.toggle() }
 

@@ -1,7 +1,8 @@
 /**
- Input Suara's speech recognition, on the device only (CAT-10): SpeechAnalyzer on iOS 26 and later
- when it has Indonesian, else SFSpeechRecognizer with on-device recognition required. The audio
- goes from the microphone to the recogniser and nowhere else, and is not kept.
+ Input Suara's speech recognition, on the device only (CAT-10). `VoiceSupport` picks the engine:
+ SpeechAnalyzer with DictationTranscriber (which knows id-ID on iOS 26 and later), else with
+ SpeechTranscriber, else SFSpeechRecognizer where it recognises Indonesian on the device. Never a
+ server. The audio goes from the microphone to the recogniser and nowhere else, and is not kept.
  */
 import AVFoundation
 import Domain
@@ -23,13 +24,31 @@ nonisolated final class DeviceVoiceTranscriber: VoiceTranscribing, @unchecked Se
 
     func start() async throws -> AsyncThrowingStream<VoiceUpdate, any Error> {
         let next: any VoiceSession
-        if #available(iOS 26, *), await AnalyzerVoiceSession.supportsIndonesian() {
-            next = AnalyzerVoiceSession()
-        } else {
+        let engine = await Self.support().engine
+        switch engine {
+        case .dictation?, .transcriber?:
+            guard #available(iOS 26, *), let engine else { throw VoiceFailure.unavailable }
+            next = AnalyzerVoiceSession(engine: engine)
+        case .recognizer:
             next = RecognizerVoiceSession()
+        case nil:
+            throw VoiceFailure.unavailable
         }
         lock.withLock { session = next }
         return try await next.start()
+    }
+
+    /** What this device recognises offline in Indonesian. */
+    static func support() async -> VoiceSupport {
+        let locale = Locale(identifier: "id-ID")
+        let recognizer = SFSpeechRecognizer(locale: locale)?.supportsOnDeviceRecognition ?? false
+        guard #available(iOS 26, *) else {
+            return VoiceSupport(dictation: false, transcriber: false, onDeviceRecognizer: recognizer)
+        }
+        return VoiceSupport(
+            dictation: await DictationTranscriber.supportedLocale(equivalentTo: locale) != nil,
+            transcriber: await SpeechTranscriber.supportedLocale(equivalentTo: locale) != nil,
+            onDeviceRecognizer: recognizer)
     }
 
     func stop() async {

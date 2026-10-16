@@ -32,12 +32,12 @@ package final class PinSetupModel {
     }
 
     /** Whether all six digits are in, so "Buat PIN" can be tapped. */
-    package var isComplete: Bool { pin.count == PinRule.length }
+    package var isComplete: Bool { pin.count == PinPolicy.length }
 
     /** "Buat PIN": refuses a repeated digit, else saves the choice and the PIN, then shows the dialog. */
     package func createPin() async {
         guard isComplete, !phase.isSubmitting else { return }
-        guard PinRule.isAcceptable(pin) else {
+        guard PinPolicy.problem(with: pin) == nil else {
             showsWeakPin = true
             return
         }

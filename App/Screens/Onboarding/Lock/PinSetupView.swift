@@ -30,12 +30,15 @@ struct PinSetupView: View {
             .padding(.vertical, KiraSpacing.space2)
             PinForm(model: model)
             Spacer(minLength: 0)
-            if let problem = model.phase.problem { ProblemMessage(problem: problem) }
-            KiraButtonPair(
-                secondary: KiraButton("ds.later", variant: .secondary) { Task { await model.skip() } },
-                primary: KiraButton("onboarding.pin.create") { Task { await model.createPin() } }
-            )
-            .disabled(model.phase.isSubmitting)
+            VStack(spacing: KiraSpacing.space4) {
+                if let problem = model.phase.problem { ProblemMessage(problem: problem) }
+                KiraButtonPair(
+                    secondary: KiraButton("ds.later", variant: .secondary) { Task { await model.skip() } },
+                    primary: KiraButton("onboarding.pin.create") { Task { await model.createPin() } }
+                )
+                .disabled(model.phase.isSubmitting)
+            }
+            .onboardingFoot()
         }
         .onboardingBackdrop(leaf: .pandan)
         .kiraDialog(isPresented: $model.showsSuccess) {

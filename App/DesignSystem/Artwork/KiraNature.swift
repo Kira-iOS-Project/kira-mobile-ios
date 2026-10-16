@@ -69,11 +69,16 @@ struct KiraScenery: View {
         }
     }
 
+    /**
+     The artifact's `preserveAspectRatio="xMidYMax slice"`: the image fills the width it is given
+     and is cropped, centred and held to the bottom edge. `minWidth: 0` keeps the frame at the
+     container's width, as the image scaled to `height` alone is wider (400 pt at 150 pt tall).
+     */
     var body: some View {
         Image(decorative: asset)
             .resizable()
             .scaledToFill()
-            .frame(maxWidth: .infinity, minHeight: height, maxHeight: height, alignment: .bottom)
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: height, maxHeight: height, alignment: .bottom)
             .clipped()
             .accessibilityHidden(true)
     }

@@ -3,8 +3,9 @@ import Foundation
 
 /**
  Turns a chat message into the drafts sent with it (CAT-01): the slang rules read every amount,
- then the on-device model, when there is one, may give each draft a better name and category.
- The amounts are always the rules', so the machine validates them, not the model.
+ then the on-device model, when there is one and it supports Indonesian, may give each draft a
+ better name and category. The amounts are always the rules', so the machine validates them, not
+ the model.
  */
 package struct MessageReader: Sendable {
     private let parser: DraftTextParser
@@ -19,7 +20,9 @@ package struct MessageReader: Sendable {
     /** The drafts of `text` at `date`, and which reader produced them. */
     package func read(_ text: String, at date: Date) async -> (drafts: [DraftInput], parser: DraftParserKind) {
         var candidates = parser.parse(text)
-        guard !candidates.isEmpty, let refinements = await refiner?.refine(text, drafts: candidates) else {
+        guard !candidates.isEmpty, let refiner, await refiner.supportsIndonesian(),
+            let refinements = await refiner.refine(text, drafts: candidates)
+        else {
             return (candidates.map { DraftInput($0, occurredAt: date) }, .slangRules)
         }
         var applied = false
