@@ -1,5 +1,6 @@
 /** The payoff calls: simulating, making the plan, reading it, moving its focus, marking a payment. */
 import Foundation
+import HTTPTypes
 import Testing
 
 @testable import APIClient
