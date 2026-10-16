@@ -30,8 +30,26 @@ final class ManualClock: RecordClock, @unchecked Sendable {
 /** A refiner that answers what the test set. */
 struct FakeRefiner: DraftRefining {
     let refinements: [DraftRefinement]?
+    var knowsIndonesian = true
+
+    func supportsIndonesian() -> Bool { knowsIndonesian }
 
     func refine(_: String, drafts _: [DraftCandidate]) -> [DraftRefinement]? { refinements }
+}
+
+/** The on-device model's look at a photo, as the test set it; counts how often it was asked. */
+final class FakeReceiptAssistant: ReceiptAssisting, @unchecked Sendable {
+    var glance: ReceiptGlance?
+    private(set) var asked = 0
+
+    init(_ glance: ReceiptGlance?) {
+        self.glance = glance
+    }
+
+    func glance(at _: Data) -> ReceiptGlance? {
+        asked += 1
+        return glance
+    }
 }
 
 /** Vision's stand-in: the lines the test set, or a failure. */
