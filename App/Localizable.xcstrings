@@ -2631,6 +2631,936 @@
         }
       }
     },
+    "community.categories" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategori komunitas"
+          }
+        }
+      }
+    },
+    "community.category.all" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semua"
+          }
+        }
+      }
+    },
+    "community.category.crypto" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Web3/Kripto"
+          }
+        }
+      }
+    },
+    "community.category.debtFree" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bebas Hutang"
+          }
+        }
+      }
+    },
+    "community.category.financeTalk" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diskusi Keuangan"
+          }
+        }
+      }
+    },
+    "community.category.stocks" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saham"
+          }
+        }
+      }
+    },
+    "community.detail.about" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tentang Grup"
+          }
+        }
+      }
+    },
+    "community.detail.admin %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Admin terverifikasi sejak %@"
+          }
+        }
+      }
+    },
+    "community.detail.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Komunitas"
+          }
+        }
+      }
+    },
+    "community.detail.checked %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Link dicek %@"
+          }
+        }
+      }
+    },
+    "community.detail.checkedSameAdmin %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Link dicek %@ · admin masih sama"
+          }
+        }
+      }
+    },
+    "community.detail.join" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gabung Grup"
+          }
+        }
+      }
+    },
+    "community.detail.meta %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@ anggota"
+          }
+        }
+      }
+    },
+    "community.detail.report" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laporkan Grup"
+          }
+        }
+      }
+    },
+    "community.detail.rules" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aturan Utama"
+          }
+        }
+      }
+    },
+    "community.detail.rulesNote" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "biar tetap aman"
+          }
+        }
+      }
+    },
+    "community.detail.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detail Grup"
+          }
+        }
+      }
+    },
+    "community.eyebrow" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terkurasi dan terverifikasi"
+          }
+        }
+      }
+    },
+    "community.failure.connection" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koneksi terputus. Coba lagi sebentar lagi."
+          }
+        }
+      }
+    },
+    "community.failure.reference %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada yang tidak beres. Sebutkan kode ini saat menghubungi kami: %@"
+          }
+        }
+      }
+    },
+    "community.group.label %@ %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@, %3$@ anggota, terverifikasi"
+          }
+        }
+      }
+    },
+    "community.group.members %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ anggota"
+          }
+        }
+      }
+    },
+    "community.group.meta %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "community.group.metaEducation %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ · edukasi saja"
+          }
+        }
+      }
+    },
+    "community.groups.none" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum ada grup yang tampil. Tim Kira sedang mengecek grup baru."
+          }
+        }
+      }
+    },
+    "community.groups.noneInCategory" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum ada grup terverifikasi di kategori ini."
+          }
+        }
+      }
+    },
+    "community.groups.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dicek satu per satu"
+          }
+        }
+      }
+    },
+    "community.groups.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grup Pilihan"
+          }
+        }
+      }
+    },
+    "community.intro.overline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teman seperjalanan"
+          }
+        }
+      }
+    },
+    "community.intro.text" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belajar dan saling jaga bareng orang yang sedang berjuang hal yang sama."
+          }
+        }
+      }
+    },
+    "community.join.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Bisa Bergabung"
+          }
+        }
+      }
+    },
+    "community.loading" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Memuat komunitas"
+          }
+        }
+      }
+    },
+    "community.marketplace.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kelas, e-book, dan konsultasi dari penjual yang dicek."
+          }
+        }
+      }
+    },
+    "community.marketplace.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etalase: kelas, e-book, dan konsultasi dari penjual yang dicek"
+          }
+        }
+      }
+    },
+    "community.marketplace.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etalase"
+          }
+        }
+      }
+    },
+    "community.outbound.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "community.outbound.label %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konfirmasi membuka %@"
+          }
+        }
+      }
+    },
+    "community.outbound.meta %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · link dicek %2$@"
+          }
+        }
+      }
+    },
+    "community.outbound.open.discord" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka Discord"
+          }
+        }
+      }
+    },
+    "community.outbound.open.telegram" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka Telegram"
+          }
+        }
+      }
+    },
+    "community.outbound.open.whatsapp" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka WhatsApp"
+          }
+        }
+      }
+    },
+    "community.outbound.title %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu Akan Membuka %@"
+          }
+        }
+      }
+    },
+    "community.outbound.warning.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Admin resmi tidak pernah meminta OTP, PIN, atau transfer uang."
+          }
+        }
+      }
+    },
+    "community.outbound.warning.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hati-hati Penipuan"
+          }
+        }
+      }
+    },
+    "community.platform.discord" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Discord"
+          }
+        }
+      }
+    },
+    "community.platform.telegram" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telegram"
+          }
+        }
+      }
+    },
+    "community.platform.whatsapp" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WhatsApp"
+          }
+        }
+      }
+    },
+    "community.readRules" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baca Aturan"
+          }
+        }
+      }
+    },
+    "community.report.duplicate.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grup Ini Sudah Kamu Laporkan"
+          }
+        }
+      }
+    },
+    "community.report.failed.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koneksi terputus. Isian laporanmu masih ada, coba kirim lagi."
+          }
+        }
+      }
+    },
+    "community.report.failed.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laporan Belum Terkirim"
+          }
+        }
+      }
+    },
+    "community.report.privacy" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identitasmu tidak dibagikan ke admin grup. Tim moderasi meninjau dalam 1×24 jam."
+          }
+        }
+      }
+    },
+    "community.report.reason.dataOrJockey" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jual Data atau Joki"
+          }
+        }
+      }
+    },
+    "community.report.reason.defaultInvite" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajakan Gagal Bayar"
+          }
+        }
+      }
+    },
+    "community.report.reason.guaranteedProfit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Janji Untung Pasti"
+          }
+        }
+      }
+    },
+    "community.report.reason.inappropriate" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konten Tidak Pantas"
+          }
+        }
+      }
+    },
+    "community.report.reason.other" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lainnya"
+          }
+        }
+      }
+    },
+    "community.report.reason.scam" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Penipuan atau Minta Transfer"
+          }
+        }
+      }
+    },
+    "community.report.reasons" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apa yang Kamu Temukan?"
+          }
+        }
+      }
+    },
+    "community.report.send" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirim Laporan"
+          }
+        }
+      }
+    },
+    "community.report.sent.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tim Kira akan meninjau grup ini. Terima kasih sudah menjaga komunitas."
+          }
+        }
+      }
+    },
+    "community.report.sent.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
+    "community.report.sent.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laporan Terkirim"
+          }
+        }
+      }
+    },
+    "community.report.story" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceritakan Singkat (Opsional)"
+          }
+        }
+      }
+    },
+    "community.report.story.prompt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Misalnya: Ada Anggota yang Mengajak Berhenti Bayar"
+          }
+        }
+      }
+    },
+    "community.report.story.required" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceritakan Alasanmu"
+          }
+        }
+      }
+    },
+    "community.report.story.requiredHint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wajib diisi untuk alasan Lainnya."
+          }
+        }
+      }
+    },
+    "community.report.story.requiredPrompt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tulis Apa yang Kamu Temukan di Grup Ini"
+          }
+        }
+      }
+    },
+    "community.report.story.tooLong" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ceritanya terlalu panjang. Ringkas jadi 500 karakter, ya."
+          }
+        }
+      }
+    },
+    "community.report.subtitle %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
+    "community.report.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laporkan Grup"
+          }
+        }
+      }
+    },
+    "community.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
+          }
+        }
+      }
+    },
+    "community.rules.affiliate" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afiliasi Wajib Diungkap"
+          }
+        }
+      }
+    },
+    "community.rules.affiliate.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sebut kalau kamu dapat komisi dari tautan yang kamu bagikan."
+          }
+        }
+      }
+    },
+    "community.rules.agree" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aku sudah membaca dan setuju"
+          }
+        }
+      }
+    },
+    "community.rules.consent" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Persetujuan"
+          }
+        }
+      }
+    },
+    "community.rules.continue" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setuju dan Lanjut"
+          }
+        }
+      }
+    },
+    "community.rules.lead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lima aturan ini menjaga grup tetap aman untuk semua yang sedang berjuang."
+          }
+        }
+      }
+    },
+    "community.rules.listLabel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lima aturan komunitas"
+          }
+        }
+      }
+    },
+    "community.rules.noDataTrade" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanpa Jual-Beli Data, Joki, atau Jasa Pelunasan"
+          }
+        }
+      }
+    },
+    "community.rules.noDataTrade.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tawaran seperti ini sering berujung penipuan."
+          }
+        }
+      }
+    },
+    "community.rules.noDefault" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanpa Ajakan Gagal Bayar"
+          }
+        }
+      }
+    },
+    "community.rules.noDefault.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Galbay merusak catatan SLIK. Fokus ke negosiasi resmi."
+          }
+        }
+      }
+    },
+    "community.rules.noProfitPromise" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanpa Janji Untung Pasti"
+          }
+        }
+      }
+    },
+    "community.rules.noProfitPromise.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Termasuk pom-pom saham dan sinyal berbayar."
+          }
+        }
+      }
+    },
+    "community.rules.outdated" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aturan komunitas baru saja diperbarui. Perbarui aplikasi Kira, lalu setujui aturan yang baru."
+          }
+        }
+      }
+    },
+    "community.rules.privacy" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jaga Privasi Anggota"
+          }
+        }
+      }
+    },
+    "community.rules.privacy.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jangan sebar nama, nomor, atau tangkapan layar anggota lain."
+          }
+        }
+      }
+    },
+    "community.rules.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berlaku di semua grup"
+          }
+        }
+      }
+    },
+    "community.rules.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aturan Komunitas Kira"
+          }
+        }
+      }
+    },
+    "community.rulesLine" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aturan komunitas berlaku di semua grup."
+          }
+        }
+      }
+    },
+    "community.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komunitas"
+          }
+        }
+      }
+    },
+    "community.verified" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terverifikasi"
+          }
+        }
+      }
+    },
     "conversation.back" : {
       "localizations" : {
         "id" : {

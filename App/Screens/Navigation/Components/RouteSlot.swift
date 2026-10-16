@@ -2,9 +2,9 @@
  The screen of each pushed route, by area: Score (score, indicator), Account (profile … deleteAccount,
  about … complaints), Plans (plans … scholarshipStatus), Kira Peduli (care, trustedMessage; the PED
  screens of other branches keep a back button until they land), Mode Darurat Utang and its guides
- (debtEmergency, debtGuide), Komunitas (empty until its branches land). "Cek Ulang" (`healthCheck`)
- covers the shell instead (MainShell); Catat's and Riwayat's routes stay empty for their own
- integration, and an unavailable area never gets here.
+ (debtEmergency, debtGuide). "Cek Ulang" (`healthCheck`) covers the shell instead (MainShell);
+ Komunitas (`community`) is the dock's own section; Catat's and Riwayat's routes stay empty for
+ their own integration, and an unavailable area never gets here.
  */
 import Features
 import SwiftUI
@@ -31,14 +31,15 @@ struct RouteSlot: View {
         case .plans, .planDetail, .checkout, .subscription, .paymentMethod, .invoices, .treat, .scholarship,
             .scholarshipApply, .scholarshipStatus:
             PlansRoute(route: route, service: services.plans, onOpen: onOpen)
+        case .communityGroup(let id): GroupDetailScreen(groupID: id, service: services.community, onOpen: onOpen)
+        case .marketplace, .product, .submitProduct: EmptySlot()
         case .care: CareScreen(service: services.care, onOpen: onOpen)
         case .trustedMessage: TrustedMessageScreen(service: services.care)
         case .debtEmergency:
             DebtEmergencyScreen(care: services.care, service: services.debtEmergency, onOpen: onOpen)
         case .debtGuide(let guide): DebtGuideScreen(guide: guide, care: services.care, onOpen: onOpen)
         case .breathingExercise, .negotiationScript, .safetyPlan: PendingCareSlot()
-        case .community, .communityGroup, .marketplace, .product, .submitProduct: EmptySlot()
-        case .home, .record, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history, .transaction,
+        case .home, .record, .community, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history, .transaction,
             .conversation, .importStatement, .unavailable:
             EmptySlot()
         }

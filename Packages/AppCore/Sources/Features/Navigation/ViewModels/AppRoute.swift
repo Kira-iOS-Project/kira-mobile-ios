@@ -120,6 +120,4 @@ package enum UnavailableArea: String, CaseIterable, Hashable, Sendable {
     case creditReport
     /** REN: the Rencana tab. */
     case plan
-    /** KOM: the Komunitas tab. */
-    case community
 }

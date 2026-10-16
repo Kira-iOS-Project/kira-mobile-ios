@@ -35,16 +35,19 @@ extension View {
 
     /**
      Presents `content` as a Kira sheet with no header and no X: the content carries its own title
-     (VoiceOver starts there) and the action that closes it.
+     (VoiceOver starts there) and the action that closes it. `label` names the sheet for VoiceOver
+     (Tautan Keluar's "Konfirmasi membuka WhatsApp"); `onDismiss` runs once its layer is down.
      */
     func kiraSheet<Content: View>(
-        isPresented: Binding<Bool>, top: CGFloat? = nil,
-        @ViewBuilder content: @escaping () -> Content
+        isPresented: Binding<Bool>, label: LocalizedStringResource? = nil, top: CGFloat? = nil,
+        onDismiss: (() -> Void)? = nil, @ViewBuilder content: @escaping () -> Content
     ) -> some View {
-        kiraCover(isPresented: isPresented) { onGone in
+        kiraCover(isPresented: isPresented, onDismiss: onDismiss) { onGone in
             SheetCover(
                 isPresented: isPresented, title: nil, subtitle: nil, top: top, leaf: nil, onShown: nil,
-                onGone: onGone, content: content)
+                onGone: onGone, content: content
+            )
+            .sheetLabel(label)
         }
     }
 }
@@ -120,6 +123,7 @@ private struct SheetCover<Content: View>: View {
             .gesture(dragToClose)
             VStack(spacing: KiraSpacing.space4) { content() }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                .kiraSheetScrollEdges()
         }
         .padding(.top, KiraSpacing.space2)
         .padding(.horizontal, KiraSpacing.space4)

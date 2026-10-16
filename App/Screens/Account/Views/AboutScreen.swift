@@ -25,7 +25,7 @@ struct AboutScreen: View {
                 KiraListRow(Text("account.terms.title"), leading: .icon(.file)) { onOpen(.terms) }
                 KiraListRow(Text("account.privacyPolicy.title"), leading: .icon(.lock)) { onOpen(.privacyPolicy) }
                 KiraListRow(Text("account.about.communityRules"), leading: .icon(.users)) {
-                    onOpen(.unavailable(.community))
+                    onOpen(.community)
                 }
                 KiraListRow(Text("account.complaints.title"), leading: .icon(.help)) { onOpen(.complaints) }
             }

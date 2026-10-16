@@ -42,14 +42,27 @@ struct NavigationModelTests {
         #expect(navigation.homePath.isEmpty)
     }
 
-    @Test("Rencana, Komunitas and unavailable areas open nothing")
+    @Test("Rencana and unavailable areas open nothing")
     func unavailable() {
         let navigation = NavigationModel()
         navigation.select(.plan)
-        navigation.select(.community)
         for area in UnavailableArea.allCases { navigation.open(.unavailable(area)) }
         #expect(navigation.section == .home)
         #expect(navigation.homePath.isEmpty)
+    }
+
+    @Test("Komunitas is its own section: its routes stack there, a second tap or reset empties it")
+    func community() {
+        let navigation = NavigationModel()
+        navigation.open(.community)
+        #expect(navigation.section == .community)
+        navigation.open(.communityGroup(id: "g-1"))
+        #expect(navigation.communityPath == [.communityGroup(id: "g-1")] && navigation.homePath.isEmpty)
+        navigation.select(.community)
+        #expect(navigation.communityPath.isEmpty && navigation.section == .community)
+        navigation.open(.communityGroup(id: "g-1"))
+        navigation.reset()
+        #expect(navigation.communityPath.isEmpty && navigation.section == .home)
     }
 
     @Test("reset returns to an empty Beranda")

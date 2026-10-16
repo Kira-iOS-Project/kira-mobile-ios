@@ -27,6 +27,7 @@
             case .plans: PlansLaunch(screen: screen)
             case .record: RecordLaunch(screen: screen)
             case .chat: ChatLaunch(screen: screen)
+            case .community: CommunityLaunch(screen: screen)
             case .care: CareLaunch(screen: screen)
             case .debtEmergency: DebtEmergencyLaunch(screen: screen)
             }
@@ -53,6 +54,9 @@
         case record, recordDrafts, recordManual, recordScan, recordQuota, recordVoice
         /** PED: Catat answering a crisis signal (the tests send one), and greeting a due check-in. */
         case crisisSignal, checkInChat
+        /** KOM: Komunitas and Detail Grup; the tests open its sheets and dialogs from Detail Grup. */
+        case community, communityGroup, communityRules, communityOutbound, communityLinkUnavailable
+        case groupReport, groupReportOther, groupReportSent, groupReportFailed
         /**
          PED: Kira Peduli (and offline, on the shipped contacts), its sheet over the chat, the message to
          Layanan Kira.
@@ -63,7 +67,7 @@
 
         /** The area whose launcher builds the screen. */
         enum Area {
-            case onboarding, home, account, plans, record, chat, care, debtEmergency
+            case onboarding, home, account, plans, record, chat, community, care, debtEmergency
         }
 
         var area: Area {
@@ -82,6 +86,9 @@
             case .record, .recordDrafts, .recordManual, .recordScan, .recordQuota, .recordVoice, .crisisSignal,
                 .checkInChat:
                 .chat
+            case .community, .communityGroup, .communityRules, .communityOutbound, .communityLinkUnavailable,
+                .groupReport, .groupReportOther, .groupReportSent, .groupReportFailed:
+                .community
             case .care, .careOffline, .careHelp, .trustedMessage, .trustedMessageNoRecipient: .care
             case .debtEmergency, .harshCollection, .illegalLender, .unresolvedComplaint, .payoffOffer: .debtEmergency
             }
