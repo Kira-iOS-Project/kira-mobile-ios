@@ -15,9 +15,10 @@ struct CommunityProblemKindTests {
         let others = ProblemCode.allCases.filter { CommunityProblemKind($0) == .other }
         #expect(others.count == ProblemCode.allCases.count - 5)
         #expect(CommunityProblemKind(nil) == .other)
-        #expect([CommunityProblemKind.rulesNotAccepted, .other].allSatisfy(\.allowsRetry))
+        let retried = [CommunityProblemKind.rulesNotAccepted, .other].map(\.allowsRetry)
+        #expect(retried == [true, true])
         let final: [CommunityProblemKind] = [.groupGone, .linkUnavailable, .reportDuplicate, .refused]
-        #expect(!final.contains(where: \.allowsRetry))
+        #expect(final.map(\.allowsRetry) == [false, false, false, false])
         #expect(CommunityFailure.connection.kind == nil)
     }
 }
