@@ -55,8 +55,23 @@ private struct ComposedApp {
 }
 
 extension KiraApp {
-    /** The API's host; every route already starts with `/api`. The one place the server is named. */
-    private static let serverURL = URL(string: "https://api-kira.serenitycode.tech") ?? URL(filePath: "/")
+    /**
+     The API's host; every route already starts with `/api`. The one place the server is named. A
+     debug build launched with `-KiraServer <url>` talks to that server instead, such as a local
+     backend on `http://127.0.0.1:3452` for the live UI tests (Config/DebugLocalServer.plist allows
+     plain HTTP to local addresses in debug builds only).
+     */
+    private static let serverURL: URL = {
+        #if DEBUG
+            let arguments = ProcessInfo.processInfo.arguments
+            if let index = arguments.firstIndex(of: "-KiraServer"), let value = arguments.dropFirst(index + 1).first,
+                let url = URL(string: value)
+            {
+                return url
+            }
+        #endif
+        return URL(string: "https://api-kira.serenitycode.tech") ?? URL(filePath: "/")
+    }()
 
     private static func makeApp() -> ComposedApp {
         let vault = lockedDemoVault() ?? KeychainVault()
