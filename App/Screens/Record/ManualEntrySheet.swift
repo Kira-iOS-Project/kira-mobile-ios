@@ -69,11 +69,14 @@ private struct ManualAmountInput: View {
                     .accessibilityHidden(true)
             }
             .overlay {
-                TextField(text: $model.amountText) { Text("record.manual.amount") }
-                    .keyboardType(.numberPad)
-                    .focused($isFocused)
-                    .foregroundStyle(.clear)
-                    .tint(.clear)
+                /** A clear prompt: the label stays for VoiceOver, never drawn over the amount. */
+                TextField(text: $model.amountText, prompt: Text("record.manual.amount").foregroundStyle(.clear)) {
+                    Text("record.manual.amount")
+                }
+                .keyboardType(.numberPad)
+                .focused($isFocused)
+                .foregroundStyle(.clear)
+                .tint(.clear)
             }
             Text("record.manual.amountHint")
                 .font(.footnote).kiraLineHeight(18, size: 13)

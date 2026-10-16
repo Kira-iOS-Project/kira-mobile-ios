@@ -16,24 +16,27 @@ struct ConversationScreen: View {
     }
 
     var body: some View {
-        ScrollViewReader { reader in
-            ScrollView {
-                VStack(spacing: KiraSpacing.space2) {
-                    KiraNavBar(
-                        "conversation.title", subtitle: "conversation.subtitle",
-                        leading: .back("conversation.back") { dismiss() })
+        /** The board keeps the header in place while the log scrolls below it, as Catat does. */
+        VStack(spacing: 0) {
+            KiraNavBar(
+                "conversation.title", subtitle: "conversation.subtitle",
+                leading: .back("conversation.back") { dismiss() }
+            )
+            .padding(.horizontal, KiraSpacing.screen)
+            .padding(.vertical, KiraSpacing.space2)
+            ScrollViewReader { reader in
+                ScrollView {
                     content
+                        .padding(.horizontal, KiraSpacing.screen)
+                        .padding(.bottom, KiraSpacing.space10)
                 }
-                .padding(.horizontal, KiraSpacing.screen)
-                .padding(.top, KiraSpacing.space2)
-                .padding(.bottom, KiraSpacing.space10)
-                .background(alignment: .topTrailing) {
-                    KiraLeaf(.twig, tone: .soft, size: 140, isFlipped: true).offset(x: 56, y: -38)
+                .onChange(of: model.sourceBlockId) { _, id in
+                    if let id { reader.scrollTo(id, anchor: .center) }
                 }
             }
-            .onChange(of: model.sourceBlockId) { _, id in
-                if let id { reader.scrollTo(id, anchor: .center) }
-            }
+        }
+        .background(alignment: .topTrailing) {
+            KiraLeaf(.twig, tone: .soft, size: 140, isFlipped: true).offset(x: 56, y: -38)
         }
         .background(.surface)
         .kiraScrollEdges()

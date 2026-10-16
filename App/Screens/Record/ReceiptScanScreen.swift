@@ -22,8 +22,8 @@ struct ReceiptScanScreen: View {
             ReceiptPreview(stage: model.stage, camera: camera)
             controls
         }
+        /** The board's bottom padding is the home indicator's alone: the shutter sits on the safe area. */
         .padding(.horizontal, KiraSpacing.screen)
-        .padding(.bottom, KiraSpacing.space2)
         .background(.surface)
         .environment(\.colorScheme, .dark)
         .photosPicker(isPresented: $showsPicker, selection: $pick, matching: .images)
@@ -57,6 +57,7 @@ struct ReceiptScanScreen: View {
             }
             .foregroundStyle(.ink)
             .multilineTextAlignment(.center)
+            .fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, minHeight: KiraSize.tap)
             if isPicked {
                 Color.clear.frame(width: KiraSize.tap, height: KiraSize.tap)
@@ -77,11 +78,11 @@ struct ReceiptScanScreen: View {
                     .frame(maxWidth: .infinity, alignment: .trailing)
             }
         case .photo:
-            KiraButtonPair(
+            ScanButtonPair(
                 secondary: KiraButton("record.scan.retake", variant: .secondary, action: model.retake).icon(.refresh),
                 primary: readButton(size: .medium))
         case .picked:
-            KiraButtonPair(
+            ScanButtonPair(
                 secondary: KiraButton("record.scan.pickAnother", variant: .secondary, size: .small) {
                     showsPicker = true
                 }
@@ -128,5 +129,29 @@ private struct ShutterButton: View {
         }
         .buttonStyle(.plain)
         .accessibilityLabel(Text("record.scan.shutter"))
+    }
+}
+
+/**
+ Retake (or pick another) and Baca Struk, as KiraButtonPair lays them out. Baca Struk keeps the light
+ theme's pandan on the dark camera (canvas ScanStrukFoto: its own `data-theme="light"`).
+ */
+private struct ScanButtonPair: View {
+    let secondary: KiraButton
+    let primary: KiraButton
+    @Environment(\.dynamicTypeSize) private var typeSize
+
+    var body: some View {
+        if typeSize.isAccessibilitySize {
+            VStack(spacing: KiraSpacing.space2) {
+                primary.block().environment(\.colorScheme, .light)
+                secondary.block()
+            }
+        } else {
+            HStack(spacing: KiraSpacing.space2) {
+                secondary.block()
+                primary.block().environment(\.colorScheme, .light)
+            }
+        }
     }
 }

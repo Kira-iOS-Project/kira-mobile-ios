@@ -42,8 +42,9 @@ struct StatementFileSection: View {
             .padding(.horizontal, KiraSpacing.space4)
             .background(Color.surfaceRaised, in: RoundedRectangle(cornerRadius: KiraRadius.large, style: .continuous))
             .overlay {
+                /** CSS's 1.5 px dashed border: dashes twice the width, gaps the width. */
                 RoundedRectangle(cornerRadius: KiraRadius.large, style: .continuous)
-                    .strokeBorder(Color.lineStrong, style: StrokeStyle(lineWidth: 1.5, dash: [6, 4]))
+                    .strokeBorder(Color.lineStrong, style: StrokeStyle(lineWidth: 1.5, dash: [3, 1.5]))
             }
         }
         .buttonStyle(.plain)

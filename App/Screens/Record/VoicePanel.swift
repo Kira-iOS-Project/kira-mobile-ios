@@ -56,12 +56,21 @@ struct VoicePanel: View {
         }
     }
 
-    private var transcript: some View {
-        HStack(alignment: .lastTextBaseline, spacing: 2) {
-            Text(model.transcript).font(.body).kiraLineHeight(24, size: 17).foregroundStyle(.ink)
-            RoundedRectangle(cornerRadius: 1).fill(.pandan).frame(width: 2, height: 20).accessibilityHidden(true)
+    /** The board's caret: a 2 pt bar, 20 pt tall, 2 pt after the last letter; decorative, tinted pandan. */
+    private static let caret: Text = {
+        let bar = UIGraphicsImageRenderer(size: CGSize(width: 4, height: 20)).image { _ in
+            UIBezierPath(roundedRect: CGRect(x: 2, y: 0, width: 2, height: 20), cornerRadius: 1).fill()
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        guard let image = bar.cgImage else { return Text(String()) }
+        return Text(Image(decorative: image, scale: bar.scale).renderingMode(.template)).foregroundStyle(.pandan)
+    }()
+
+    /** The caret runs on after the last word, as the board's does, not at the trailing edge. */
+    private var transcript: some View {
+        Text("\(Text(model.transcript))\(Self.caret.baselineOffset(-4))")
+            .font(.body).kiraLineHeight(24, size: 17).foregroundStyle(.ink)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .accessibilityLabel(Text(model.transcript))
     }
 
     private var controls: some View {
@@ -94,13 +103,19 @@ struct VoicePanel: View {
 private struct VoiceWaveform: View {
     let levels: [Double]
 
+    /** The board fills from the leading edge: the heard levels first, the silence still ahead after. */
+    private var bars: [Double] {
+        let heard = levels.drop { $0 == 0 }
+        return Array(heard) + Array(repeating: 0, count: levels.count - heard.count)
+    }
+
     var body: some View {
         HStack(spacing: 0) {
-            ForEach(levels.indices, id: \.self) { index in
+            ForEach(bars.indices, id: \.self) { index in
                 if index > 0 { Spacer(minLength: 0) }
                 Capsule()
-                    .fill(levels[index] > 0 ? Color.pandan : .track)
-                    .frame(width: 5, height: levels[index] > 0 ? 8 + 36 * levels[index] : 6)
+                    .fill(bars[index] > 0 ? Color.pandan : .track)
+                    .frame(width: 5, height: bars[index] > 0 ? 8 + 36 * bars[index] : 6)
             }
         }
         .frame(height: 48)

@@ -13,7 +13,8 @@ struct RecordOverlays: ViewModifier {
     func body(content: Content) -> some View {
         content
             .kiraSheet(
-                isPresented: Self.presence($model.editor), title: "record.edit.title", subtitle: editorSubtitle
+                isPresented: Self.presence($model.editor), title: "record.edit.title", subtitle: editorSubtitle,
+                top: 150
             ) {
                 if let editor = model.editor { DraftEditSheet(model: editor) { model.editor = nil } }
             }
@@ -24,7 +25,8 @@ struct RecordOverlays: ViewModifier {
                 if let form = model.manualEntry { ManualEntrySheet(model: form) { model.manualEntry = nil } }
             }
             .kiraSheet(
-                isPresented: Self.presence($model.quotaSheet), title: "record.quota.title", subtitle: quotaSubtitle
+                isPresented: Self.presence($model.quotaSheet), title: "record.quota.title", subtitle: quotaSubtitle,
+                top: 330
             ) {
                 if let sheet = model.quotaSheet {
                     QuotaSheetContent(sheet: sheet, onPlans: model.openPlans, onManual: model.openManual)
