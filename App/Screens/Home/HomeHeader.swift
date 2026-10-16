@@ -56,6 +56,8 @@ struct HomeHeader: View {
             .tracking(-0.02 * size)
             .foregroundStyle(.ink)
             .accessibilityAddTraits(.isHeader)
+            /** The name keeps its line beside the help pill, as on the board; it wraps only when it must. */
+            .layoutPriority(1)
     }
 
     private var greetingText: Text {
