@@ -56,7 +56,8 @@ a screen built from them keeps them by default.
 - **Glass only on the dock.** A scrolling screen calls `.kiraScrollEdges()`: from iOS 26 a scroll
   view blurs its top and bottom edges, which is glass (and fades text the accessibility audit then
   reads as low contrast); the modifier hides that effect and lays a solid `surface` band behind the
-  status bar.
+  status bar. Every Kira sheet hides it too (`kiraSheetScrollEdges()`, applied by KiraSheet, with no
+  band: the panel is solid), so the text just above a sheet's main action keeps its contrast.
 
 ## Tokens
 
@@ -302,8 +303,8 @@ A screen that uses `KiraNavBar` hides the system bar. A tab root lays `KiraTabBa
 Every control is at least 44 pt, labels scale with Dynamic Type and wrap rather than truncate at the
 largest sizes, and parts that would squeeze each other stack at the accessibility sizes (a button
 pair, primary on top; a nav bar's buttons above its title; a section title's note under it; the
-dock grows taller). An amount stays on one line and shrinks to fit there, and a large title shrinks
-before it would clip. Icon-only buttons require a name,
+dock grows taller). An amount stays on one line and shrinks to fit there, and a large title wraps
+as `.k-nav__large` does. Icon-only buttons require a name,
 artwork is one named image or hidden (`artworkLabel(_:)`), selected chips, segments, tabs and
 checks carry the selected trait, the switch carries the toggle trait and says "Aktif" or
 "Nonaktif", the accordion says whether it is open, an amount reads as one value in words
