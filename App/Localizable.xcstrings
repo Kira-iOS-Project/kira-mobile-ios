@@ -12073,6 +12073,28 @@
         }
       }
     },
+    "problem.CARE_CHECK_IN_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sapaan ini sudah tidak ada. Kamu bisa minta Kira menyapa lagi kapan saja."
+          }
+        }
+      }
+    },
+    "problem.CARE_SAFETY_PLAN_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu belum punya rencana keselamatan. Kamu bisa mulai menulisnya kapan saja."
+          }
+        }
+      }
+    },
     "problem.CHAT_AI_DISABLED" : {
       "extractionState" : "manual",
       "localizations" : {
