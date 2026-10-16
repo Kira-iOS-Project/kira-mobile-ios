@@ -27,6 +27,7 @@
             case .plans: PlansLaunch(screen: screen)
             case .record: RecordLaunch(screen: screen)
             case .chat: ChatLaunch(screen: screen)
+            case .marketplace: MarketplaceLaunch(screen: screen)
             }
         }
     }
@@ -49,10 +50,12 @@
         case history, transaction, conversation, statementImport, importReview
         /** CAT: Catat; the tests open its sheets from the composer (ChatLaunch says which account each needs). */
         case record, recordDrafts, recordManual, recordScan, recordQuota, recordVoice
+        /** KOM: Etalase, Detail Produk of each kind, a product that is gone, and Kirim Produk. */
+        case marketplace, product, productConsultation, productEbook, productEvent, productGone, submitProduct
 
         /** The area whose launcher builds the screen. */
         enum Area {
-            case onboarding, home, account, plans, record, chat
+            case onboarding, home, account, plans, record, chat, marketplace
         }
 
         var area: Area {
@@ -69,6 +72,9 @@
                 .plans
             case .history, .transaction, .conversation, .statementImport, .importReview: .record
             case .record, .recordDrafts, .recordManual, .recordScan, .recordQuota, .recordVoice: .chat
+            case .marketplace, .product, .productConsultation, .productEbook, .productEvent, .productGone,
+                .submitProduct:
+                .marketplace
             }
         }
     }

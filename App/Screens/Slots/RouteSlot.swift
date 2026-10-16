@@ -1,6 +1,6 @@
 /**
  The screen of each pushed route, by area: Score (score, indicator), Account (profile … deleteAccount,
- about … complaints), Plans (plans … scholarshipStatus). "Cek Ulang" (`healthCheck`) covers the
+ about … complaints), Plans (plans … scholarshipStatus), Etalase (marketplace, product, submitProduct). "Cek Ulang" (`healthCheck`) covers the
  shell instead (MainShell); Catat's and Riwayat's routes stay empty for their own integration, and
  an unavailable area never gets here.
  */
@@ -29,8 +29,11 @@ struct RouteSlot: View {
         case .plans, .planDetail, .checkout, .subscription, .paymentMethod, .invoices, .treat, .scholarship,
             .scholarshipApply, .scholarshipStatus:
             PlansRoute(route: route, service: services.plans, onOpen: onOpen)
+        case .marketplace: MarketplaceScreen(service: services.marketplace, onOpen: onOpen)
+        case .product(let id): ProductScreen(id: id, service: services.marketplace, onOpen: onOpen)
+        case .submitProduct: SubmitProductScreen(onOpen: onOpen)
         case .home, .record, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history, .transaction,
-            .conversation, .importStatement, .unavailable:
+            .conversation, .importStatement, .community, .communityGroup, .unavailable:
             EmptySlot()
         }
     }

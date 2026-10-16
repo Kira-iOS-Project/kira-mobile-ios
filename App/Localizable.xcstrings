@@ -8887,6 +8887,226 @@
         }
       }
     },
+    "marketplace.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Komunitas"
+          }
+        }
+      }
+    },
+    "marketplace.badge %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
+    "marketplace.card.free %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ oleh %2$@, gratis"
+          }
+        }
+      }
+    },
+    "marketplace.card.paid %@ %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ oleh %2$@, %3$@"
+          }
+        }
+      }
+    },
+    "marketplace.education.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanpa janji untung. Produk investasi berisiko wajib menampilkan peringatan."
+          }
+        }
+      }
+    },
+    "marketplace.education.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edukasi, Bukan Rekomendasi"
+          }
+        }
+      }
+    },
+    "marketplace.empty" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum ada produk jenis ini di Etalase."
+          }
+        }
+      }
+    },
+    "marketplace.free" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gratis"
+          }
+        }
+      }
+    },
+    "marketplace.kind.all" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semua"
+          }
+        }
+      }
+    },
+    "marketplace.kind.consultation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konsultasi"
+          }
+        }
+      }
+    },
+    "marketplace.kind.course" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kursus"
+          }
+        }
+      }
+    },
+    "marketplace.kind.ebook" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "E-Book"
+          }
+        }
+      }
+    },
+    "marketplace.kind.event" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Event"
+          }
+        }
+      }
+    },
+    "marketplace.kinds" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jenis produk"
+          }
+        }
+      }
+    },
+    "marketplace.notice" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Produk tampil sebagai link ke halaman penjual. Penjual produk keuangan dicek izin atau sertifikasinya."
+          }
+        }
+      }
+    },
+    "marketplace.products" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Produk Terkurasi"
+          }
+        }
+      }
+    },
+    "marketplace.products.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "belajar dulu, pelan-pelan"
+          }
+        }
+      }
+    },
+    "marketplace.submit.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirim lewat email, tim Kira yang meninjau"
+          }
+        }
+      }
+    },
+    "marketplace.submit.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punya produk? Kirim lewat email untuk ditinjau tim Kira"
+          }
+        }
+      }
+    },
+    "marketplace.submit.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punya Produk?"
+          }
+        }
+      }
+    },
+    "marketplace.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kelas dan konsultasi terkurasi"
+          }
+        }
+      }
+    },
+    "marketplace.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etalase"
+          }
+        }
+      }
+    },
     "method.back" : {
       "localizations" : {
         "id" : {
@@ -12403,6 +12623,156 @@
         }
       }
     },
+    "product.affiliate.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira menerima komisi afiliasi dari pembelian lewat link ini."
+          }
+        }
+      }
+    },
+    "product.affiliate.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengungkapan"
+          }
+        }
+      }
+    },
+    "product.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Etalase"
+          }
+        }
+      }
+    },
+    "product.contents %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
+    "product.education.consultation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konsultasi ini edukasi umum, bukan rekomendasi produk investasi tertentu."
+          }
+        }
+      }
+    },
+    "product.education.course" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kelas ini edukasi umum, bukan rekomendasi produk investasi tertentu."
+          }
+        }
+      }
+    },
+    "product.education.ebook" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "E-Book ini edukasi umum, bukan rekomendasi produk investasi tertentu."
+          }
+        }
+      }
+    },
+    "product.education.event" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acara ini edukasi umum, bukan rekomendasi produk investasi tertentu."
+          }
+        }
+      }
+    },
+    "product.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Produk Belum Bisa Dibuka"
+          }
+        }
+      }
+    },
+    "product.price" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Harga"
+          }
+        }
+      }
+    },
+    "product.risk.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Produk ini membahas investasi. Nilai investasi bisa turun dan modal bisa berkurang; pelajari risikonya sebelum membeli."
+          }
+        }
+      }
+    },
+    "product.risk.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peringatan Risiko"
+          }
+        }
+      }
+    },
+    "product.seller" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka Halaman Penjual"
+          }
+        }
+      }
+    },
+    "product.seller.checking" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halaman penjual sedang dicek ulang."
+          }
+        }
+      }
+    },
+    "product.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detail Produk"
+          }
+        }
+      }
+    },
     "record.aiOff.body" : {
       "localizations" : {
         "id" : {
@@ -15479,6 +15849,186 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ajukan Keringanan Cicilan"
+          }
+        }
+      }
+    },
+    "submitProduct.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Etalase"
+          }
+        }
+      }
+    },
+    "submitProduct.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cukup kirim lewat email. Tim Kira meninjau dulu sebelum produkmu tampil."
+          }
+        }
+      }
+    },
+    "submitProduct.heading" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punya Produk untuk Etalase?"
+          }
+        }
+      }
+    },
+    "submitProduct.include" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sertakan di Emailmu"
+          }
+        }
+      }
+    },
+    "submitProduct.item.description" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deskripsi singkat dan 3 hingga 4 poin isinya"
+          }
+        }
+      }
+    },
+    "submitProduct.item.link" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tautan halaman penjual tempat pembayaran"
+          }
+        }
+      }
+    },
+    "submitProduct.item.price" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Harga, atau tulis gratis"
+          }
+        }
+      }
+    },
+    "submitProduct.item.product" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama produk dan jenisnya: kursus, konsultasi, e-book, atau event"
+          }
+        }
+      }
+    },
+    "submitProduct.item.seller" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama penjual dan izin atau sertifikasi yang dimiliki"
+          }
+        }
+      }
+    },
+    "submitProduct.mail.greeting" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halo tim Kira, aku ingin mengusulkan produk untuk Etalase."
+          }
+        }
+      }
+    },
+    "submitProduct.mail.subject" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usulan Produk Etalase Kira"
+          }
+        }
+      }
+    },
+    "submitProduct.noMail.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirim usulan produkmu ke etalase@kira.id dari aplikasi email mana pun."
+          }
+        }
+      }
+    },
+    "submitProduct.noMail.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup"
+          }
+        }
+      }
+    },
+    "submitProduct.noMail.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aplikasi Email Belum Terbuka"
+          }
+        }
+      }
+    },
+    "submitProduct.notice" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Penjual produk keuangan dicek izin atau sertifikasinya. Produk investasi wajib menampilkan peringatan risiko."
+          }
+        }
+      }
+    },
+    "submitProduct.send" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirim Lewat Email"
+          }
+        }
+      }
+    },
+    "submitProduct.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Etalase"
+          }
+        }
+      }
+    },
+    "submitProduct.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirim Produk"
           }
         }
       }
