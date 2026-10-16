@@ -102,10 +102,11 @@ package final class GroupDetailModel {
         }
     }
 
-    /** Whether Coba Lagi can help: not for a report already open or a link still being checked. */
+    /** Whether Coba Lagi can help: not for a report already open, a link still being checked or a gone group. */
     package var canRetry: Bool {
         guard case .problem(let problem) = failure?.failure else { return true }
-        return problem.knownCode != .communityReportDuplicate && problem.knownCode != .communityLinkUnavailable
+        let final: [ProblemCode?] = [.communityReportDuplicate, .communityLinkUnavailable, .communityGroupNotFound]
+        return !final.contains(problem.knownCode)
     }
 
     /** Tutup on the failure dialog. */

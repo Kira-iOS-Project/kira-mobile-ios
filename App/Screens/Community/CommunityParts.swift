@@ -95,7 +95,8 @@ struct CommunityGroupCard: View {
         .buttonStyle(.plain)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(
-            Text("community.group.label \(group.name) \(group.meta) \(group.members)"))
+            Text("community.group.label \(group.name) \(group.meta) \(group.members)")
+        )
         .accessibilityAddTraits(.isButton)
     }
 }

@@ -24,14 +24,19 @@ struct CommunityModelTests {
 
     @Test("no active group is empty")
     func empty() async {
-        let model = CommunityModel(service: FakeCommunityService(directory: CommunityDirectory(categories: [], groups: [])))
+        let model = CommunityModel(
+            service: FakeCommunityService(directory: CommunityDirectory(categories: [], groups: [])))
         await model.load()
-        guard case .empty = model.phase else { Issue.record("not empty"); return }
+        guard case .empty = model.phase else {
+            Issue.record("not empty")
+            return
+        }
     }
 
     @Test("offline shows the generic problem, and Coba Lagi loads; a refusal shows its own problem")
     func failures() async {
-        let offline = CommunityModel(service: FakeCommunityService(failures: ["directory": [FakeCommunityService.Offline()]]))
+        let offline = CommunityModel(
+            service: FakeCommunityService(failures: ["directory": [FakeCommunityService.Offline()]]))
         await offline.load()
         #expect(offline.phase.problem == AppProblem())
         await offline.load()
@@ -44,7 +49,8 @@ struct CommunityModelTests {
 
     @Test("a failed reload (pull to refresh) keeps the groups on screen")
     func failedReload() async {
-        let model = CommunityModel(service: FakeCommunityService(failures: ["directory": [nil, FakeCommunityService.Offline()]]))
+        let model = CommunityModel(
+            service: FakeCommunityService(failures: ["directory": [nil, FakeCommunityService.Offline()]]))
         await model.load()
         await model.load()
         #expect(model.groups.count == 1)

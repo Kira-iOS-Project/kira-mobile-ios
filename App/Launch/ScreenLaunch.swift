@@ -27,6 +27,7 @@
             case .plans: PlansLaunch(screen: screen)
             case .record: RecordLaunch(screen: screen)
             case .chat: ChatLaunch(screen: screen)
+            case .community: CommunityLaunch(screen: screen)
             }
         }
     }
@@ -49,10 +50,13 @@
         case history, transaction, conversation, statementImport, importReview
         /** CAT: Catat; the tests open its sheets from the composer (ChatLaunch says which account each needs). */
         case record, recordDrafts, recordManual, recordScan, recordQuota, recordVoice
+        /** KOM: Komunitas and Detail Grup; the tests open its sheets and dialogs from Detail Grup. */
+        case community, communityGroup, communityRules, communityOutbound
+        case groupReport, groupReportOther, groupReportSent, groupReportFailed
 
         /** The area whose launcher builds the screen. */
         enum Area {
-            case onboarding, home, account, plans, record, chat
+            case onboarding, home, account, plans, record, chat, community
         }
 
         var area: Area {
@@ -69,6 +73,9 @@
                 .plans
             case .history, .transaction, .conversation, .statementImport, .importReview: .record
             case .record, .recordDrafts, .recordManual, .recordScan, .recordQuota, .recordVoice: .chat
+            case .community, .communityGroup, .communityRules, .communityOutbound, .groupReport, .groupReportOther,
+                .groupReportSent, .groupReportFailed:
+                .community
             }
         }
     }

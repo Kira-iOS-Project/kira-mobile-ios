@@ -25,7 +25,8 @@ actor FakeCommunityService: CommunityService {
     static func group(rulesAccepted: Bool) -> CommunityGroup {
         CommunityGroup(
             summary: summary, about: "about",
-            admin: CommunityAdmin(name: "Rani A.", initials: "RA", verifiedSince: CalendarDay(year: 2026, month: 3, day: 1)),
+            admin: CommunityAdmin(
+                name: "Rani A.", initials: "RA", verifiedSince: CalendarDay(year: 2026, month: 3, day: 1)),
             rules: ["1", "2", "3"], linkCheckedOn: CalendarDay(year: 2026, month: 10, day: 12), adminUnchanged: true,
             rulesAccepted: rulesAccepted)
     }

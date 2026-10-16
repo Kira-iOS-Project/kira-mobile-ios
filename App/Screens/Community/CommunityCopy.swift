@@ -85,6 +85,7 @@ extension CalendarDay {
     /** "Maret 2026": a month in Indonesian words. */
     var monthYear: String {
         date.formatted(
-            Date.FormatStyle(locale: Locale(identifier: "id_ID"), timeZone: KiraDateFormat.timeZone).month(.wide).year())
+            Date.FormatStyle(locale: Locale(identifier: "id_ID"), timeZone: KiraDateFormat.timeZone).month(.wide).year()
+        )
     }
 }

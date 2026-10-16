@@ -110,13 +110,13 @@ private actor ReportOnlyService: CommunityService {
         self.error = error
     }
 
-    func report(groupID: String, reason: GroupReportReason, story: String?) async throws {
+    func report(groupID: String, reason: GroupReportReason, story: String?) throws {
         calls.append(Call(groupID: groupID, reason: reason, story: story))
         if let error { throw error }
     }
 
-    func directory() async throws -> CommunityDirectory { throw OfflineError() }
-    func group(id _: String) async throws -> CommunityGroup { throw OfflineError() }
-    func acceptRules(version _: String) async throws { throw OfflineError() }
-    func join(groupID _: String) async throws -> GroupInvite { throw OfflineError() }
+    func directory() throws -> CommunityDirectory { throw OfflineError() }
+    func group(id _: String) throws -> CommunityGroup { throw OfflineError() }
+    func acceptRules(version _: String) throws { throw OfflineError() }
+    func join(groupID _: String) throws -> GroupInvite { throw OfflineError() }
 }

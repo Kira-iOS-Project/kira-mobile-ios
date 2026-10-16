@@ -58,7 +58,8 @@ struct GroupDetailModelTests {
     @Test("a new rules version on join asks for the rules again; a group gone on join shows its problem")
     func joinRefusals() async {
         let rules = await loaded(
-            FakeCommunityService(rulesAccepted: true, failures: ["join": [communityProblem(.communityRulesNotAccepted)]]))
+            FakeCommunityService(
+                rulesAccepted: true, failures: ["join": [communityProblem(.communityRulesNotAccepted)]]))
         await rules.join()
         #expect(rules.showsRules && rules.invite == nil && rules.failure == nil)
         let gone = await loaded(
@@ -70,7 +71,8 @@ struct GroupDetailModelTests {
     @Test("a link still being checked shows its message without Coba Lagi")
     func linkUnavailable() async {
         let model = await loaded(
-            FakeCommunityService(rulesAccepted: true, failures: ["join": [communityProblem(.communityLinkUnavailable)]]))
+            FakeCommunityService(rulesAccepted: true, failures: ["join": [communityProblem(.communityLinkUnavailable)]])
+        )
         await model.join()
         #expect(model.failure?.failure == .problem(communityProblem(.communityLinkUnavailable)))
         #expect(model.failure?.attempt == .join && !model.canRetry)
@@ -80,7 +82,8 @@ struct GroupDetailModelTests {
 
     @Test("a dropped join shows the dialog; Coba Lagi asks again and opens the link")
     func joinRetry() async {
-        let model = await loaded(FakeCommunityService(rulesAccepted: true, failures: ["join": [FakeCommunityService.Offline()]]))
+        let model = await loaded(
+            FakeCommunityService(rulesAccepted: true, failures: ["join": [FakeCommunityService.Offline()]]))
         await model.join()
         #expect(model.failure?.failure == .connection && model.canRetry)
         await model.retry()

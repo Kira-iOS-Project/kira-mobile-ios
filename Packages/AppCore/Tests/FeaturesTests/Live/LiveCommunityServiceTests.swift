@@ -6,7 +6,7 @@ import Testing
 @testable import Features
 
 private let groupID = "6f1c2a9e-0000-4000-8000-000000000001"
-private let groupPath = "/api/community/groups/\(groupID)"
+private let groupRoute = "community/groups/\(groupID)"
 
 @Suite("LiveCommunityService")
 struct LiveCommunityServiceTests {
@@ -24,10 +24,12 @@ struct LiveCommunityServiceTests {
 
     @Test("one group in full: the admin's month, the rules, the day the link was checked")
     func group() async throws {
-        let (api, _) = KiraAPI.routed(["GET \(groupPath)": ok(communityGroupJSON)])
+        let (api, _) = KiraAPI.routed(["GET /api/\(groupRoute)": ok(communityGroupJSON)])
         let group = try await LiveCommunityService(api: api).group(id: groupID)
-        #expect(group.admin == CommunityAdmin(
-            name: "Rani A.", initials: "RA", verifiedSince: CalendarDay(year: 2026, month: 3, day: 1)))
+        #expect(
+            group.admin
+                == CommunityAdmin(
+                    name: "Rani A.", initials: "RA", verifiedSince: CalendarDay(year: 2026, month: 3, day: 1)))
         #expect(group.rules.count == 3 && group.about.hasPrefix("Saling dukung"))
         #expect(group.linkCheckedOn == CalendarDay(year: 2026, month: 10, day: 12))
         #expect(group.adminUnchanged && !group.rulesAccepted)
@@ -35,15 +37,17 @@ struct LiveCommunityServiceTests {
 
     @Test("a gone or suspended group is 404 COMMUNITY_GROUP_NOT_FOUND")
     func notFound() async {
-        let (api, _) = KiraAPI.routed(["GET \(groupPath)": problem("COMMUNITY_GROUP_NOT_FOUND", status: 404)])
-        await expectProblem("COMMUNITY_GROUP_NOT_FOUND") { _ = try await LiveCommunityService(api: api).group(id: groupID) }
+        let (api, _) = KiraAPI.routed(["GET /api/\(groupRoute)": problem("COMMUNITY_GROUP_NOT_FOUND", status: 404)])
+        await expectProblem("COMMUNITY_GROUP_NOT_FOUND") {
+            _ = try await LiveCommunityService(api: api).group(id: groupID)
+        }
     }
 
     @Test("accepting sends the rules' version; joining returns the invite")
     func acceptAndJoin() async throws {
         let (api, transport) = KiraAPI.routed([
             "POST /api/community/rules/consent": empty(),
-            "POST \(groupPath)/join": ok(communityJoinJSON),
+            "POST /api/\(groupRoute)/join": ok(communityJoinJSON),
         ])
         let service = LiveCommunityService(api: api)
         try await service.acceptRules(version: CommunityRules.version)
@@ -55,8 +59,12 @@ struct LiveCommunityServiceTests {
 
     @Test("an old rules version is refused here; the server's 422 is thrown too")
     func oldVersion() async {
-        let (api, transport) = KiraAPI.routed(["POST /api/community/rules/consent": problem("VALIDATION_FAILED", status: 422)])
-        await #expect(throws: AppProblem()) { try await LiveCommunityService(api: api).acceptRules(version: "community-2025") }
+        let (api, transport) = KiraAPI.routed([
+            "POST /api/community/rules/consent": problem("VALIDATION_FAILED", status: 422)
+        ])
+        await #expect(throws: AppProblem()) {
+            try await LiveCommunityService(api: api).acceptRules(version: "community-2025")
+        }
         #expect(await transport.routes.isEmpty)
     }
 
@@ -67,14 +75,15 @@ struct LiveCommunityServiceTests {
             ("COMMUNITY_GROUP_NOT_FOUND", 404), ("VALIDATION_FAILED", 422),
         ])
     func joinRefused(code: String, status: Int) async {
-        let (api, _) = KiraAPI.routed(["POST \(groupPath)/join": problem(code, status: status)])
+        let (api, _) = KiraAPI.routed(["POST /api/\(groupRoute)/join": problem(code, status: status)])
         await expectProblem(code) { _ = try await LiveCommunityService(api: api).join(groupID: groupID) }
     }
 
     @Test("an invite that is not an https link is a problem without a code")
     func badInvite() async {
         let (api, _) = KiraAPI.routed([
-            "POST \(groupPath)/join": ok(#"{"inviteUrl":"whatsapp://x","platform":"whatsapp","linkCheckedOn":"2026-10-12"}"#)
+            "POST /api/\(groupRoute)/join": ok(
+                #"{"inviteUrl":"whatsapp://x","platform":"whatsapp","linkCheckedOn":"2026-10-12"}"#)
         ])
         await #expect(throws: AppProblem()) { try await LiveCommunityService(api: api).join(groupID: groupID) }
     }

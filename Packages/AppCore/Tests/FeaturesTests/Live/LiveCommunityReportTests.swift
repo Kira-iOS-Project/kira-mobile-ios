@@ -1,8 +1,6 @@
 import APIClient
 import Domain
 import Foundation
-import HTTPTypes
-import OpenAPIRuntime
 import Testing
 
 @testable import Features
@@ -54,22 +52,12 @@ struct LiveCommunityReportTests {
 
     @Test("no connection is a connection failure, not a problem")
     func offline() async throws {
-        let api = KiraAPI(serverURL: URL(string: "https://api.test") ?? URL(filePath: "/"), transport: NoNetworkTransport())
         do {
-            try await LiveCommunityService(api: api).report(groupID: "g-lunas", reason: .scam, story: nil)
+            try await LiveCommunityService(api: .offline).report(groupID: "g-lunas", reason: .scam, story: nil)
             Issue.record("the report should not have been sent")
         } catch {
             #expect(!(error is AppProblem))
             #expect(CommunityFailure(error) == .connection)
         }
-    }
-}
-
-/** A transport with no network: every request fails before it reaches the server. */
-private struct NoNetworkTransport: ClientTransport {
-    func send(
-        _: HTTPRequest, body _: HTTPBody?, baseURL _: URL, operationID _: String
-    ) async throws -> (HTTPResponse, HTTPBody?) {
-        throw URLError(.notConnectedToInternet)
     }
 }

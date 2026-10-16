@@ -57,7 +57,9 @@ struct CommunityScreen: View {
             CommunityGroups(groups: model.groups, isEmpty: model.phase.value == nil) {
                 onOpen(.communityGroup(id: $0.id))
             }
-            KiraTapCard(.book, label: Text("community.marketplace.label")) { onOpen(.marketplace) } content: {
+            KiraTapCard(.book, label: Text("community.marketplace.label")) {
+                onOpen(.marketplace)
+            } content: {
                 Text("community.marketplace.title").kiraFont(.headline).foregroundStyle(.ink)
                 Text("community.marketplace.detail").kiraFont(.footnote).foregroundStyle(.inkMuted)
             }

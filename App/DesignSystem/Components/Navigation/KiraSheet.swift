@@ -185,15 +185,3 @@ private struct SheetCover<Content: View>: View {
         }
     }
 }
-
-extension View {
-    /** Names a header-less sheet for VoiceOver; a sheet with a header is named by its title. */
-    @ViewBuilder
-    fileprivate func sheetLabel(_ label: LocalizedStringResource?) -> some View {
-        if let label {
-            accessibilityLabel(Text(label))
-        } else {
-            self
-        }
-    }
-}

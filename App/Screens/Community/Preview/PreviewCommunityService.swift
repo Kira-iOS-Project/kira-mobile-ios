@@ -1,7 +1,8 @@
 /**
  Komunitas's service before the API answers: the four groups of the Komunitas board, Lunas Bareng
  Jakarta's detail from Detail Grup (and the same shape for the others), after a short pause.
- Joining needs the rules first, as on the server; every report is sent.
+ Joining needs the rules first, as on the server; every report is sent, or none when
+ `reportsFail` (the connection drops, for Laporan Belum Terkirim).
  */
 import Domain
 import Features
@@ -9,6 +10,11 @@ import Foundation
 
 actor PreviewCommunityService: CommunityService {
     private var rulesAccepted = false
+    private let reportsFail: Bool
+
+    init(reportsFail: Bool = false) {
+        self.reportsFail = reportsFail
+    }
 
     func directory() async throws -> CommunityDirectory {
         try await pause()
@@ -20,9 +26,11 @@ actor PreviewCommunityService: CommunityService {
         let summary = Self.groups.first { $0.id == id } ?? Self.groups[0]
         return CommunityGroup(
             summary: summary, about: Self.about[summary.id] ?? summary.summary,
-            admin: CommunityAdmin(name: "Rani A.", initials: "RA", verifiedSince: CalendarDay(year: 2026, month: 3, day: 1)),
+            admin: CommunityAdmin(
+                name: "Rani A.", initials: "RA", verifiedSince: CalendarDay(year: 2026, month: 3, day: 1)),
             rules: ["Tanpa Ajakan Gagal Bayar", "Tanpa Jual-Beli Data atau Joki", "Jaga Privasi Sesama Anggota"],
-            linkCheckedOn: CalendarDay(year: 2026, month: 10, day: 12), adminUnchanged: true, rulesAccepted: rulesAccepted)
+            linkCheckedOn: CalendarDay(year: 2026, month: 10, day: 12), adminUnchanged: true,
+            rulesAccepted: rulesAccepted)
     }
 
     func acceptRules(version _: String) async throws {
@@ -39,6 +47,7 @@ actor PreviewCommunityService: CommunityService {
 
     func report(groupID _: String, reason _: GroupReportReason, story _: String?) async throws {
         try await pause()
+        if reportsFail { throw URLError(.notConnectedToInternet) }
     }
 
     private func pause() async throws {

@@ -1,8 +1,8 @@
 /**
  The screen of each pushed route, by area: Score (score, indicator), Account (profile … deleteAccount,
  about … complaints), Plans (plans … scholarshipStatus). "Cek Ulang" (`healthCheck`) covers the
- shell instead (MainShell); Komunitas (`community`) is the dock's own section; Catat's and Riwayat's routes stay empty for their own integration, and
- an unavailable area never gets here.
+ shell instead (MainShell); Komunitas (`community`) is the dock's own section; Catat's and
+ Riwayat's routes stay empty for their own integration, and an unavailable area never gets here.
  */
 import Features
 import SwiftUI

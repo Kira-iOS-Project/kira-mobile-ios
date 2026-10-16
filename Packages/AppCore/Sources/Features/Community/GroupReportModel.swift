@@ -43,9 +43,7 @@ package final class GroupReportModel {
         do {
             try await service.report(groupID: groupID, reason: reason, story: report.trimmedStory)
             return sent()
-        } catch let problem as AppProblem
-            where problem.knownCode == .communityReportDuplicate && lastSendLostConnection
-        {
+        } catch let problem as AppProblem where landedBefore(problem) {
             /** The send before landed and only its answer was lost: the report exists. */
             return sent()
         } catch {
@@ -53,6 +51,11 @@ package final class GroupReportModel {
             lastSendLostConnection = failure == .connection
             return .failed(failure)
         }
+    }
+
+    /** Whether `problem` says the previous send, whose answer was lost, landed. */
+    private func landedBefore(_ problem: AppProblem) -> Bool {
+        problem.knownCode == .communityReportDuplicate && lastSendLostConnection
     }
 
     private func sent() -> Outcome {

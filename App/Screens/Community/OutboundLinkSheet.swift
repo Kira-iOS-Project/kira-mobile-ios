@@ -35,8 +35,9 @@ struct OutboundLinkSheet: View {
                     openURL(invite.url)
                     onClose()
                 }
-                .iconEnd(.external))
-                .padding(.bottom, KiraSpacing.space2)
+                .iconEnd(.external)
+            )
+            .padding(.bottom, KiraSpacing.space2)
         }
     }
 }

@@ -41,7 +41,7 @@ struct GroupDetailScreen: View {
         .kiraScrollEdges()
         .toolbar(.hidden, for: .navigationBar)
         .task { await model.load() }
-        .groupDetailSheets(model: model)
+        .groupDetailSheets(model: model) { dismiss() }
     }
 
     @ViewBuilder private var content: some View {
@@ -68,15 +68,25 @@ struct GroupDetailScreen: View {
 }
 
 extension View {
-    /** The sheets and the dialog over Detail Grup: rules, the outside link, the report, a failed join. */
-    fileprivate func groupDetailSheets(model: GroupDetailModel) -> some View {
+    /**
+     The sheets and the dialog over Detail Grup: rules, the outside link, the report, a failed join.
+     "Selesai" on Laporan Terkirim calls `onReported`, which goes back to Komunitas as on the board.
+     */
+    fileprivate func groupDetailSheets(model: GroupDetailModel, onReported: @escaping () -> Void) -> some View {
         @Bindable var model = model
+        let showsFailure = Binding(get: { model.failure != nil }, set: { if !$0 { model.dismissFailure() } })
         return
             self
-            .kiraSheet(isPresented: $model.showsRules, title: "community.rules.title", subtitle: "community.rules.subtitle", top: 90) {
+            .kiraSheet(
+                isPresented: $model.showsRules, title: "community.rules.title", subtitle: "community.rules.subtitle",
+                top: 90
+            ) {
                 GroupRulesSheet(model: model)
             }
-            .kiraSheet(isPresented: Binding(get: { model.invite != nil }, set: { if !$0 { model.invite = nil } }), label: "community.outbound.label", top: 472) {
+            .kiraSheet(
+                isPresented: Binding(get: { model.invite != nil }, set: { if !$0 { model.invite = nil } }),
+                label: "community.outbound.label", top: 472
+            ) {
                 OutboundLinkSheet(group: model.phase.value, invite: model.invite) { model.invite = nil }
             }
             .kiraSheet(
@@ -89,9 +99,9 @@ extension View {
             .kiraDialog(isPresented: $model.showsReportSent) {
                 KiraDialog(
                     "community.report.sent.title", message: "community.report.sent.body", art: .illustration(.bloom),
-                    primary: KiraButton("community.report.sent.done") {})
+                    primary: KiraButton("community.report.sent.done", action: onReported))
             }
-            .kiraDialog(isPresented: Binding(get: { model.failure != nil }, set: { if !$0 { model.dismissFailure() } })) {
+            .kiraDialog(isPresented: showsFailure) {
                 GroupFailureDialog.dialog(for: model)
             }
     }

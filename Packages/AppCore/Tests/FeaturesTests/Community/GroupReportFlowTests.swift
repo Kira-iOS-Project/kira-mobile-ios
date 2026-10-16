@@ -54,14 +54,14 @@ struct GroupReportFlowTests {
         #expect(model.showsReportSent)
     }
 
-    @Test("an open report already, a gone group or a refused story show their problem; duplicates offer no retry")
+    @Test("an open report already, a gone group or a refused story show their problem; only the story offers a retry")
     func refusals() async {
         for code in [ProblemCode.communityReportDuplicate, .communityGroupNotFound, .validationFailed] {
             let model = await model(FakeCommunityService(failures: ["report": [communityProblem(code)]]))
             model.reportForm.choose(.inappropriate)
             await model.sendReport()
             #expect(model.failure?.failure == .problem(communityProblem(code)))
-            #expect(model.canRetry == (code != .communityReportDuplicate))
+            #expect(model.canRetry == (code == .validationFailed))
             #expect(model.reportForm.report.reason == .inappropriate)
         }
     }

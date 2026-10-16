@@ -7,7 +7,7 @@ import OpenAPIRuntime
 struct OfflineTransport: ClientTransport {
     func send(
         _: HTTPRequest, body _: HTTPBody?, baseURL _: URL, operationID _: String
-    ) async throws -> (HTTPResponse, HTTPBody?) {
+    ) throws -> (HTTPResponse, HTTPBody?) {
         throw URLError(.notConnectedToInternet)
     }
 }

@@ -30,12 +30,20 @@ struct GroupRulesSheet: View {
 
 /** The sentence and the five rules of the community. */
 struct CommunityRulesList: View {
-    private let rules: [(KiraIconName, LocalizedStringResource, LocalizedStringResource)] = [
-        (.shield, "community.rules.noDefault", "community.rules.noDefault.detail"),
-        (.trendUp, "community.rules.noProfitPromise", "community.rules.noProfitPromise.detail"),
-        (.link, "community.rules.affiliate", "community.rules.affiliate.detail"),
-        (.lock, "community.rules.noDataTrade", "community.rules.noDataTrade.detail"),
-        (.eyeOff, "community.rules.privacy", "community.rules.privacy.detail"),
+    /** One rule: its icon, its title and its sentence. */
+    private struct Rule {
+        let icon: KiraIconName
+        let title: LocalizedStringResource
+        let detail: LocalizedStringResource
+    }
+
+    private let rules = [
+        Rule(icon: .shield, title: "community.rules.noDefault", detail: "community.rules.noDefault.detail"),
+        Rule(
+            icon: .trendUp, title: "community.rules.noProfitPromise", detail: "community.rules.noProfitPromise.detail"),
+        Rule(icon: .link, title: "community.rules.affiliate", detail: "community.rules.affiliate.detail"),
+        Rule(icon: .lock, title: "community.rules.noDataTrade", detail: "community.rules.noDataTrade.detail"),
+        Rule(icon: .eyeOff, title: "community.rules.privacy", detail: "community.rules.privacy.detail"),
     ]
 
     var body: some View {
@@ -46,8 +54,8 @@ struct CommunityRulesList: View {
                 .padding(.top, -4)
             KiraListGroup {
                 ForEach(rules.indices, id: \.self) { index in
-                    KiraListRow(Text(rules[index].1), leading: .icon(rules[index].0), trailing: .none)
-                        .subtitle(Text(rules[index].2))
+                    KiraListRow(Text(rules[index].title), leading: .icon(rules[index].icon), trailing: .none)
+                        .subtitle(Text(rules[index].detail))
                 }
             }
             .accessibilityLabel(Text("community.rules.listLabel"))
