@@ -6,11 +6,17 @@ import Foundation
  of buying (Biaya Lain), as the site computes them.
  */
 package struct Mortgage: Equatable, Sendable {
+    /** The price today. */
     package let price: Int
+    /** Pokok Pinjaman. */
     package let loan: Int
+    /** Jangka waktu KPR, in years. */
     package let tenorYears: Int
+    /** Bunga fix a year, as a fraction. */
     package let fixRate: Double
+    /** Bunga floating a year, as a fraction. */
     package let floatRate: Double
+    /** Years at the fixed rate. */
     package let fixYears: Int
     /** The monthly income the instalment is weighed against. */
     package let income: Int
