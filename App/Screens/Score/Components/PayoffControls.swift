@@ -83,9 +83,8 @@ struct PayoffHowAccordion: View {
                 Text(PayoffCopy.howRule(simulation.method))
                 if let first = simulation.firstAccount {
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(
-                            "payoff.how.sum \(PayoffCopy.rupiah(simulation.extraPayment)) \(PayoffCopy.rupiah(first.monthlyInstalment))"
-                        )
+                        let extra = PayoffCopy.rupiah(simulation.extraPayment)
+                        Text("payoff.how.sum \(extra) \(PayoffCopy.rupiah(first.monthlyInstalment))")
                         Text("payoff.how.result \(first.name) \(PayoffCopy.date(of: first) ?? "")")
                     }
                     .kiraFont(.formula).foregroundStyle(.ink)

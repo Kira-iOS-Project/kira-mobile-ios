@@ -124,7 +124,7 @@ private struct PayoffPlanEmptyView: View {
                 KiraIllustration(.cardPaidOff, size: 128)
                 Text("plan.empty.title").kiraFont(.title).foregroundStyle(.ink).accessibilityAddTraits(.isHeader)
                 Text("plan.empty.body").kiraFont(.callout).foregroundStyle(.inkMuted)
-                KiraButton("plan.empty.cta") { onOpen(.debtPlan) }.block()
+                KiraButton("plan.empty.cta") { onOpen(.payoffSimulation) }.block()
             }
             .multilineTextAlignment(.center)
             .frame(maxWidth: .infinity)
