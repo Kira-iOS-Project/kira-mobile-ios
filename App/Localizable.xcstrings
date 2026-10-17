@@ -1681,6 +1681,356 @@
         }
       }
     },
+    "asset.add.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah Aset"
+          }
+        }
+      }
+    },
+    "asset.cents" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ",00"
+          }
+        }
+      }
+    },
+    "asset.class" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kelas Aset"
+          }
+        }
+      }
+    },
+    "asset.class.crypto" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kripto"
+          }
+        }
+      }
+    },
+    "asset.class.deposit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deposito"
+          }
+        }
+      }
+    },
+    "asset.class.gold" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emas"
+          }
+        }
+      }
+    },
+    "asset.class.governmentBond" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SBN"
+          }
+        }
+      }
+    },
+    "asset.class.mutualFund" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reksa Dana"
+          }
+        }
+      }
+    },
+    "asset.class.other" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lainnya"
+          }
+        }
+      }
+    },
+    "asset.class.stock" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saham"
+          }
+        }
+      }
+    },
+    "asset.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup, kembali ke Portofolio"
+          }
+        }
+      }
+    },
+    "asset.currency" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rp"
+          }
+        }
+      }
+    },
+    "asset.day" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanggal"
+          }
+        }
+      }
+    },
+    "asset.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
+    "asset.failed.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koneksi terputus. Isianmu masih ada, coba lagi sebentar lagi."
+          }
+        }
+      }
+    },
+    "asset.failed.load" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aset Belum Bisa Dibuka"
+          }
+        }
+      }
+    },
+    "asset.failed.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Berhasil Menyimpan"
+          }
+        }
+      }
+    },
+    "asset.issue.class" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih satu kelas aset dulu."
+          }
+        }
+      }
+    },
+    "asset.issue.day" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih hari ini atau tanggal sebelumnya."
+          }
+        }
+      }
+    },
+    "asset.issue.name" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tulis nama asetnya, misalnya Emas Batangan."
+          }
+        }
+      }
+    },
+    "asset.issue.nameLong" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama paling panjang 80 huruf. Coba singkat sedikit."
+          }
+        }
+      }
+    },
+    "asset.issue.value" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tulis perkiraan nilainya hari ini."
+          }
+        }
+      }
+    },
+    "asset.issue.valueLarge" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nilai paling besar Rp999.999.999.999,00."
+          }
+        }
+      }
+    },
+    "asset.name" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama"
+          }
+        }
+      }
+    },
+    "asset.name.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama ini jadi judul aset di daftar Asetmu."
+          }
+        }
+      }
+    },
+    "asset.notice" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nilai diisi sendiri. Kira tidak menampilkan harga pasar atau saran beli dan jual."
+          }
+        }
+      }
+    },
+    "asset.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
+          }
+        }
+      }
+    },
+    "asset.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Aset"
+          }
+        }
+      }
+    },
+    "asset.saved.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nilai aset sudah masuk ke portofoliomu."
+          }
+        }
+      }
+    },
+    "asset.saved.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aset Tersimpan"
+          }
+        }
+      }
+    },
+    "asset.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diisi sendiri"
+          }
+        }
+      }
+    },
+    "asset.update.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Perubahan"
+          }
+        }
+      }
+    },
+    "asset.update.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perbarui Aset"
+          }
+        }
+      }
+    },
+    "asset.value" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nilai Sekarang"
+          }
+        }
+      }
+    },
+    "asset.value.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perkiraanmu sendiri untuk hari ini."
+          }
+        }
+      }
+    },
     "bill.delete.body.monthly %@ %@" : {
       "localizations" : {
         "id" : {
@@ -15538,6 +15888,286 @@
         }
       }
     },
+    "plan.deposit.amount" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jumlah Setoran"
+          }
+        }
+      }
+    },
+    "plan.deposit.amount.missing" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi jumlah setoran dulu, ya."
+          }
+        }
+      }
+    },
+    "plan.deposit.cents" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ",00"
+          }
+        }
+      }
+    },
+    "plan.deposit.currency" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rp"
+          }
+        }
+      }
+    },
+    "plan.deposit.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setoran Belum Tersimpan"
+          }
+        }
+      }
+    },
+    "plan.deposit.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Setoran"
+          }
+        }
+      }
+    },
+    "plan.deposit.saved.body %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah masuk ke tujuan %@."
+          }
+        }
+      }
+    },
+    "plan.deposit.saved.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
+    "plan.deposit.saved.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setoran Tersimpan"
+          }
+        }
+      }
+    },
+    "plan.deposit.subtitle %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ke tujuan %@"
+          }
+        }
+      }
+    },
+    "plan.deposit.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah Setoran"
+          }
+        }
+      }
+    },
+    "plan.detail.addDeposit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah Setoran"
+          }
+        }
+      }
+    },
+    "plan.detail.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Rencana"
+          }
+        }
+      }
+    },
+    "plan.detail.edit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah Tujuan"
+          }
+        }
+      }
+    },
+    "plan.detail.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tujuan Belum Bisa Dibuka"
+          }
+        }
+      }
+    },
+    "plan.detail.history" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat Setoran"
+          }
+        }
+      }
+    },
+    "plan.detail.history.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat setoran"
+          }
+        }
+      }
+    },
+    "plan.detail.history.row %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setoran %@"
+          }
+        }
+      }
+    },
+    "plan.detail.next %@ %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tonggak berikutnya %1$@ (%2$@), kurang %3$@. Perkiraan dari mesin."
+          }
+        }
+      }
+    },
+    "plan.detail.nextDeposit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setoran Berikutnya"
+          }
+        }
+      }
+    },
+    "plan.detail.nextDeposit.every %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiap Tanggal %lld"
+          }
+        }
+      }
+    },
+    "plan.detail.nextDeposit.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setoran berikutnya"
+          }
+        }
+      }
+    },
+    "plan.detail.note %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "sudah %@, lanjut pelan-pelan"
+          }
+        }
+      }
+    },
+    "plan.detail.saved" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terkumpul"
+          }
+        }
+      }
+    },
+    "plan.detail.target %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Target %1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "plan.detail.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detail Tujuan"
+          }
+        }
+      }
+    },
+    "plan.eyebrow" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tujuan dan belajar"
+          }
+        }
+      }
+    },
+    "plan.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rencana Belum Bisa Dibuka"
+          }
+        }
+      }
+    },
     "plan.formula.equals %@" : {
       "localizations" : {
         "id" : {
@@ -15648,6 +16278,16 @@
         }
       }
     },
+    "plan.goal.deposit %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setoran %@ tiap bulan"
+          }
+        }
+      }
+    },
     "plan.goal.dream" : {
       "localizations" : {
         "id" : {
@@ -15698,6 +16338,16 @@
         }
       }
     },
+    "plan.goal.label %@ %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, terkumpul %2$@ dari %3$@. Buka detail"
+          }
+        }
+      }
+    },
     "plan.goal.named %@" : {
       "localizations" : {
         "id" : {
@@ -15708,12 +16358,42 @@
         }
       }
     },
+    "plan.goal.of %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dari %@"
+          }
+        }
+      }
+    },
     "plan.goal.perYear" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "% per Tahun"
+          }
+        }
+      }
+    },
+    "plan.goal.reached %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tercapai %@"
+          }
+        }
+      }
+    },
+    "plan.goal.reached.multiple %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Target %1$@× · tercapai %2$@"
           }
         }
       }
@@ -15764,6 +16444,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tahun Lagi"
+          }
+        }
+      }
+    },
+    "plan.goals.add" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah"
+          }
+        }
+      }
+    },
+    "plan.goals.empty" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum ada tujuan. Mulai dari Dana Darurat lewat Tambah."
+          }
+        }
+      }
+    },
+    "plan.goals.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tujuanmu"
           }
         }
       }
@@ -15844,6 +16554,526 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Barang Impian"
+          }
+        }
+      }
+    },
+    "plan.kind.education" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pendidikan Anak"
+          }
+        }
+      }
+    },
+    "plan.kind.education.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sekolah sampai kuliah"
+          }
+        }
+      }
+    },
+    "plan.kind.emergencyFund" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dana Darurat"
+          }
+        }
+      }
+    },
+    "plan.kind.emergencyFund.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Untuk hal tak terduga"
+          }
+        }
+      }
+    },
+    "plan.kind.goods" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Barang Impian"
+          }
+        }
+      }
+    },
+    "plan.kind.goods.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gawai atau hobi"
+          }
+        }
+      }
+    },
+    "plan.kind.houseDownPayment" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DP Rumah"
+          }
+        }
+      }
+    },
+    "plan.kind.houseDownPayment.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uang muka rumah"
+          }
+        }
+      }
+    },
+    "plan.kind.other" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lainnya"
+          }
+        }
+      }
+    },
+    "plan.kind.other.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tulis tujuanmu sendiri"
+          }
+        }
+      }
+    },
+    "plan.kind.retirement" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dana Pensiun"
+          }
+        }
+      }
+    },
+    "plan.kind.retirement.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hari tua yang tenang"
+          }
+        }
+      }
+    },
+    "plan.kind.vehicle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kendaraan"
+          }
+        }
+      }
+    },
+    "plan.kind.vehicle.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motor atau mobil"
+          }
+        }
+      }
+    },
+    "plan.kind.wedding" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menikah"
+          }
+        }
+      }
+    },
+    "plan.kind.wedding.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biaya hari bahagia"
+          }
+        }
+      }
+    },
+    "plan.ladder.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naik satu anak tangga dulu, baru yang berikutnya."
+          }
+        }
+      }
+    },
+    "plan.ladder.current" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sedang Berjalan"
+          }
+        }
+      }
+    },
+    "plan.ladder.current.named %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sedang Berjalan · %@"
+          }
+        }
+      }
+    },
+    "plan.ladder.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah Aman"
+          }
+        }
+      }
+    },
+    "plan.ladder.emergencyFund" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dana Darurat"
+          }
+        }
+      }
+    },
+    "plan.ladder.emergencyFund.line %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sekarang %@× pengeluaran pokok"
+          }
+        }
+      }
+    },
+    "plan.ladder.emergencyFund.multiple %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dana Darurat %@×"
+          }
+        }
+      }
+    },
+    "plan.ladder.invest" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Investasi Bertahap"
+          }
+        }
+      }
+    },
+    "plan.ladder.invest.line" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disarankan setelah langkah 1–2. Belajar boleh mulai sekarang."
+          }
+        }
+      }
+    },
+    "plan.ladder.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ini panduan urutan, bukan aturan. Kamu tetap yang menentukan."
+          }
+        }
+      }
+    },
+    "plan.ladder.overline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langkah demi langkah"
+          }
+        }
+      }
+    },
+    "plan.ladder.payOffDebt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lunasi Utang Mahal"
+          }
+        }
+      }
+    },
+    "plan.ladder.payOffDebt.line" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mulai dari sisa yang paling kecil."
+          }
+        }
+      }
+    },
+    "plan.ladder.protection" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proteksi"
+          }
+        }
+      }
+    },
+    "plan.ladder.protection.line" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BPJS Kesehatan dan Ketenagakerjaan aktif."
+          }
+        }
+      }
+    },
+    "plan.ladder.step %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langkah %lld: "
+          }
+        }
+      }
+    },
+    "plan.ladder.step.done %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langkah %lld, selesai: "
+          }
+        }
+      }
+    },
+    "plan.ladder.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tangga Keuanganmu"
+          }
+        }
+      }
+    },
+    "plan.learn.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "belajar dulu, pelan-pelan"
+          }
+        }
+      }
+    },
+    "plan.learn.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belajar Investasi"
+          }
+        }
+      }
+    },
+    "plan.legality.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pastikan izinnya sebelum percaya"
+          }
+        }
+      }
+    },
+    "plan.legality.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cek Legalitas Entitas"
+          }
+        }
+      }
+    },
+    "plan.loading" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Memuat rencanamu"
+          }
+        }
+      }
+    },
+    "plan.milestone.multiple %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@×"
+          }
+        }
+      }
+    },
+    "plan.milestone.oneMonth" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 bulan"
+          }
+        }
+      }
+    },
+    "plan.milestone.oneMonth.line" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sebulan kebutuhan pokok aman."
+          }
+        }
+      }
+    },
+    "plan.milestone.oneMonth.reached" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tonggak 1 Bulan Tercapai"
+          }
+        }
+      }
+    },
+    "plan.milestone.oneWeek" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 minggu"
+          }
+        }
+      }
+    },
+    "plan.milestone.oneWeek.line" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seminggu kebutuhan pokok aman."
+          }
+        }
+      }
+    },
+    "plan.milestone.oneWeek.reached" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tonggak 1 Minggu Tercapai"
+          }
+        }
+      }
+    },
+    "plan.milestone.target" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Target"
+          }
+        }
+      }
+    },
+    "plan.milestone.target.line" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dana daruratmu sudah utuh."
+          }
+        }
+      }
+    },
+    "plan.milestone.target.reached" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Target Dana Darurat Tercapai"
+          }
+        }
+      }
+    },
+    "plan.milestone.threeMonths" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3×"
+          }
+        }
+      }
+    },
+    "plan.milestone.threeMonths.line" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiga bulan kebutuhan pokok aman."
+          }
+        }
+      }
+    },
+    "plan.milestone.threeMonths.reached" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tonggak 3× Tercapai"
           }
         }
       }
@@ -16058,6 +17288,26 @@
         }
       }
     },
+    "plan.portfolio.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi sendiri, tanpa sambung akun"
+          }
+        }
+      }
+    },
+    "plan.portfolio.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Portofolio Manual"
+          }
+        }
+      }
+    },
     "plan.price.automatic" : {
       "localizations" : {
         "id" : {
@@ -16124,6 +17374,56 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Total uang yang kamu butuhkan"
+          }
+        }
+      }
+    },
+    "plan.quiz.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seberapa nyaman kamu dengan nilai yang naik-turun."
+          }
+        }
+      }
+    },
+    "plan.quiz.meta" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5 pertanyaan · 3 menit"
+          }
+        }
+      }
+    },
+    "plan.quiz.overline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuis singkat"
+          }
+        }
+      }
+    },
+    "plan.quiz.start" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mulai Kuis"
+          }
+        }
+      }
+    },
+    "plan.quiz.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kenali Profil Risikomu"
           }
         }
       }
@@ -16794,6 +18094,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld tahun lagi"
+          }
+        }
+      }
+    },
+    "plan.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rencana"
+          }
+        }
+      }
+    },
+    "plan.tools.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edukasi, Bukan Rekomendasi. Kira tidak pernah menyebut produk atau kode saham tertentu."
+          }
+        }
+      }
+    },
+    "plan.tools.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alat belajar investasi"
           }
         }
       }
@@ -17684,6 +19014,246 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "untuk pelajar dan pekerja muda"
+          }
+        }
+      }
+    },
+    "portfolio.add" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah Aset"
+          }
+        }
+      }
+    },
+    "portfolio.asset.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketuk untuk memperbarui nilainya"
+          }
+        }
+      }
+    },
+    "portfolio.asset.share %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%% dari total"
+          }
+        }
+      }
+    },
+    "portfolio.assets.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Judul aset sesuai nama yang kamu isi. Ketuk aset untuk memperbarui nilainya."
+          }
+        }
+      }
+    },
+    "portfolio.assets.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asetmu"
+          }
+        }
+      }
+    },
+    "portfolio.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali"
+          }
+        }
+      }
+    },
+    "portfolio.composition %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Komposisi: %@"
+          }
+        }
+      }
+    },
+    "portfolio.composition.join %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@"
+          }
+        }
+      }
+    },
+    "portfolio.composition.part %@ %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$lld%%"
+          }
+        }
+      }
+    },
+    "portfolio.education.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira tidak menilai asetmu atau menyarankan jual dan beli."
+          }
+        }
+      }
+    },
+    "portfolio.education.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edukasi, Bukan Rekomendasi"
+          }
+        }
+      }
+    },
+    "portfolio.empty.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambahkan aset yang kamu punya. Nilainya kamu isi sendiri, Kira tidak terhubung ke akun investasimu."
+          }
+        }
+      }
+    },
+    "portfolio.empty.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Ada Aset"
+          }
+        }
+      }
+    },
+    "portfolio.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Portofolio Belum Bisa Dibuka"
+          }
+        }
+      }
+    },
+    "portfolio.impact.body %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asetmu ikut menghitung Utang terhadap Aset: %lld%%."
+          }
+        }
+      }
+    },
+    "portfolio.impact.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dampak ke Kira Score"
+          }
+        }
+      }
+    },
+    "portfolio.mask.hide" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sembunyikan nilai aset"
+          }
+        }
+      }
+    },
+    "portfolio.mask.show" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tampilkan nilai aset"
+          }
+        }
+      }
+    },
+    "portfolio.plans" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Paket"
+          }
+        }
+      }
+    },
+    "portfolio.plusOnly.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Portofolio Ada di Kira Plus"
+          }
+        }
+      }
+    },
+    "portfolio.privacy" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira tidak terhubung ke akun investasimu."
+          }
+        }
+      }
+    },
+    "portfolio.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Portofolio Manual"
+          }
+        }
+      }
+    },
+    "portfolio.total.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total aset investasi"
+          }
+        }
+      }
+    },
+    "portfolio.updated %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diperbarui manual · %@"
           }
         }
       }

@@ -177,10 +177,10 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case payoffPaymentAlreadyRecorded = "PAYOFF_PAYMENT_ALREADY_RECORDED"
     /** The portfolio asset is gone. */
     case assetNotFound = "ASSET_NOT_FOUND"
-    /** The goal is gone, or was never this person's. */
+    /** The goal does not exist, or no longer does. */
     case goalNotFound = "GOAL_NOT_FOUND"
-    /** The person already has a Dana Darurat goal; there is one per person. */
+    /** The person already has an emergency-fund goal; there is one per person. */
     case goalEmergencyExists = "GOAL_EMERGENCY_EXISTS"
-    /** A deposit with this id was already recorded with different values. */
+    /** The deposit's idempotency key was already used on another goal. */
     case goalDepositConflict = "GOAL_DEPOSIT_CONFLICT"
 }
