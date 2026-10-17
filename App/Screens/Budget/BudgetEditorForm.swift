@@ -34,6 +34,7 @@ struct BudgetEditorForm: View {
                 actions
             }
         }
+        .budgetSaveSuccessDialog(isPresented: saveSuccessPresented)
         .task { await model.loadAverages() }
     }
 
@@ -87,6 +88,18 @@ struct BudgetEditorForm: View {
 
     private func save() async {
         await model.save()
-        if case .saved = model.saveState { onSaved() }
+    }
+
+    private var saveSuccessPresented: Binding<Bool> {
+        Binding(
+            get: {
+                if case .saved = model.saveState { return true }
+                return false
+            },
+            set: { presented in
+                guard !presented else { return }
+                model.dismissResult()
+                onSaved()
+            })
     }
 }
