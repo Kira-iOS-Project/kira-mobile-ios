@@ -11,7 +11,9 @@ import SwiftUI
 
 struct GoalFormRoute: View {
     /** The kinds with a built form, in TujuanBaru's order. */
-    static let built: [GoalKind] = [.emergencyFund, .houseDownPayment, .education, .wedding, .retirement, .vehicle, .goods, .other]
+    static let built: [GoalKind] = [
+        .emergencyFund, .houseDownPayment, .education, .wedding, .retirement, .vehicle, .goods, .other,
+    ]
 
     let kind: GoalKind
     let service: any GoalService

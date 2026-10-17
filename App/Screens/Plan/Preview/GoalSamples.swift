@@ -1,4 +1,5 @@
 /** The goal forms' figures as their boards draw them (TujuanKendaraan, TujuanBarang, TujuanLainnya). */
+import Domain
 import Features
 
 enum GoalSamples {
