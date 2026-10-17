@@ -37,12 +37,10 @@ package final class BillFormModel {
     /** "Ulangi". */
     package var repeats: BillRepeat
     /** "Tanggal"; nil until one is chosen. */
-    /** "Tanggal"; nil until chosen. */
     package var dueOn: CalendarDay?
     /** "Ini Cicilan Utang". */
     package var isInstalment: Bool
     /** The debt account a cicilan pays. */
-    /** The debt account of a cicilan. */
     package var debtId: String?
     /** The debt accounts to link, from Dompet; empty until loaded or when there are none. */
     package private(set) var debts: [Wallet] = []
@@ -149,7 +147,9 @@ package struct BillFormValues: Hashable, Sendable {
     package var category = BillCategory.bills
     /** "Ulangi". */
     package var repeats = BillRepeat.monthly
+    /** "Tanggal"; nil until chosen. */
     package var dueOn: CalendarDay?
+    /** The debt account of a cicilan. */
     package var debtId: String?
 
     /** An empty Tambah Tagihan. */
