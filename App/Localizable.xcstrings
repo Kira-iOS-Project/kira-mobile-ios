@@ -10412,6 +10412,16 @@
         }
       }
     },
+    "indicator.consumerDebt.onTimeMany" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bayar tepat waktu, tapi akunnya terlalu banyak."
+          }
+        }
+      }
+    },
     "indicator.consumerDebt.overdue" : {
       "localizations" : {
         "id" : {
@@ -11012,6 +11022,16 @@
         }
       }
     },
+    "indicator.next.consumerDebtMany" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lunasi akun dengan sisa terkecil dulu, sampai tinggal tiga platform."
+          }
+        }
+      }
+    },
     "indicator.next.consumerDebtOnTime" : {
       "localizations" : {
         "id" : {
@@ -11572,7 +11592,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ada Keterlambatan"
+            "value" : "4+ Platform atau Ada Keterlambatan"
           }
         }
       }
@@ -11583,7 +11603,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pernah telat bayar"
+            "value" : "Terlalu banyak akun atau pernah telat bayar"
           }
         }
       }
@@ -13493,7 +13513,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tanggal Jatuh Tempo (opsional)"
+            "value" : "Tanggal Jatuh Tempo (Opsional)"
           }
         }
       }
@@ -13504,6 +13524,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tanggal tiap bulan kamu harus bayar, dari 1 sampai 31."
+          }
+        }
+      }
+    },
+    "onboarding.debt.sheet.dueDay.invalid" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi tanggal dari 1 sampai 31."
           }
         }
       }
@@ -13543,7 +13573,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bunga per Tahun (opsional)"
+            "value" : "Bunga per Tahun (Opsional)"
           }
         }
       }
@@ -13554,6 +13584,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Isi kalau kamu tahu, supaya rencana pelunasan bisa menghitung bunganya."
+          }
+        }
+      }
+    },
+    "onboarding.debt.sheet.interest.invalid" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bunganya belum masuk akal. Isi persen per tahun, paling besar 300%."
           }
         }
       }
@@ -17199,6 +17239,17 @@
         }
       }
     },
+    "problem.ASSET_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aset ini tidak ditemukan. Mungkin sudah dihapus."
+          }
+        }
+      }
+    },
     "problem.AUTH_CODE_ATTEMPTS_EXCEEDED" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -17492,6 +17543,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Belum ada utang konsumtif untuk dibuatkan rencana."
+          }
+        }
+      }
+    },
+    "problem.PAYOFF_PAYMENT_ALREADY_RECORDED" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pembayaran ini sudah tercatat."
           }
         }
       }

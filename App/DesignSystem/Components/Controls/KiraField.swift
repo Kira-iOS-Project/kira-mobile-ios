@@ -101,13 +101,15 @@ struct KiraField: View {
 
     /**
      Hands the typed digits to the binding grouped, then shows them grouped on the next turn of the
-     run loop: a text field being typed in does not show a value changed within the same edit.
+     run loop: a text field being typed in does not show a value changed within the same edit. A
+     digit typed before that turn wins: the grouping of an older value would write over it and lose
+     the digit ("4800000" typed fast became "48.000").
      */
     private func regroup(_ value: String) {
         let grouped = AmountInput.grouped(value)
         text = grouped
         guard grouped != value else { return }
-        Task { @MainActor in shown = grouped }
+        Task { @MainActor in if shown == value { shown = grouped } }
     }
 
     /** The prompt the system draws: a multi-line field's, which wraps already; none for a single line. */

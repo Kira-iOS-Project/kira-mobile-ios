@@ -48,9 +48,15 @@ nonisolated extension ScoreReport {
 }
 
 nonisolated struct PreviewScoreService: ScoreService {
+    /** A detail answered instead of the board's for its own indicator. */
+    var detail: IndicatorDetail?
+
     func score() throws -> ScoreReport? { .sample }
 
-    func indicator(_ key: IndicatorKey) throws -> IndicatorDetail { .sample(key) }
+    func indicator(_ key: IndicatorKey) throws -> IndicatorDetail {
+        if let detail, detail.indicator.key == key { return detail }
+        return .sample(key)
+    }
 }
 
 #if DEBUG

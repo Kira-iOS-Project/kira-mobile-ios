@@ -9,7 +9,7 @@ import Foundation
  */
 final class FakeCheckInService: CheckInService, @unchecked Sendable {
     var signalResult: Result<Void, any Error> = .success(())
-    var scheduleResult: Result<CheckIn, any Error> = .success(CheckIn(id: "c-1", dueAt: Fixtures.noon))
+    var scheduleResult: Result<CheckIn, any Error> = .success(CheckIn(id: "c-1"))
     var dueResult: Result<CheckIn?, any Error> = .success(nil)
     var seenResult: Result<Void, any Error> = .success(())
     var cancelResult: Result<Void, any Error> = .success(())

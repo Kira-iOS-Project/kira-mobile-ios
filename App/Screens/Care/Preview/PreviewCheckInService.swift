@@ -4,7 +4,6 @@
  */
 import Domain
 import Features
-import Foundation
 
 struct PreviewCheckInService: CheckInService {
     var isDue = false
@@ -12,11 +11,11 @@ struct PreviewCheckInService: CheckInService {
     func recordSignal(_: CareSignalLevel, source _: CareSignalSource) {}
 
     func schedule(after delay: CheckInDelay) -> CheckIn {
-        CheckIn(id: "preview-check-in-\(delay.hours)", dueAt: .distantFuture)
+        CheckIn(id: "preview-check-in-\(delay.hours)")
     }
 
     func due() -> CheckIn? {
-        isDue ? CheckIn(id: "preview-check-in", dueAt: .distantPast) : nil
+        isDue ? CheckIn(id: "preview-check-in") : nil
     }
 
     func markSeen(id _: String) {}

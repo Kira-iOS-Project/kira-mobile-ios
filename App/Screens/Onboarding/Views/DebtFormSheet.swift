@@ -57,19 +57,26 @@ private struct DebtFormFields: View {
                 .error(missing(form.remaining, "onboarding.debt.sheet.remaining.missing"))
             amountField("onboarding.debt.sheet.instalment", text: $form.instalment)
                 .error(missing(form.instalment, "onboarding.debt.sheet.instalment.missing"))
-            KiraField("onboarding.debt.sheet.tenor", text: $form.tenor, prompt: "onboarding.debt.sheet.zero")
-                .suffix("onboarding.debt.sheet.months")
-                .hint("onboarding.debt.sheet.tenor.hint")
-                .keyboardType(.numberPad)
-            KiraField("onboarding.debt.sheet.interest", text: $form.interest, prompt: "onboarding.debt.sheet.zero")
-                .suffix("onboarding.debt.sheet.percent")
-                .hint("onboarding.debt.sheet.interest.hint")
-                .keyboardType(.decimalPad)
-            KiraField("onboarding.debt.sheet.dueDay", text: $form.dueDay, prompt: "onboarding.debt.sheet.dueDay.prompt")
-                .hint("onboarding.debt.sheet.dueDay.hint")
-                .keyboardType(.numberPad)
+            optionalFields
         }
         .padding(.bottom, KiraSpacing.space2)
+    }
+
+    /** Sisa Tenor, Bunga per Tahun and Tanggal Jatuh Tempo, all optional. */
+    @ViewBuilder private var optionalFields: some View {
+        KiraField("onboarding.debt.sheet.tenor", text: $form.tenor, prompt: "onboarding.debt.sheet.zero")
+            .suffix("onboarding.debt.sheet.months")
+            .hint("onboarding.debt.sheet.tenor.hint")
+            .keyboardType(.numberPad)
+        KiraField("onboarding.debt.sheet.interest", text: $form.interest, prompt: "onboarding.debt.sheet.zero")
+            .suffix("onboarding.debt.sheet.percent")
+            .hint("onboarding.debt.sheet.interest.hint")
+            .error(form.isInterestInvalid ? "onboarding.debt.sheet.interest.invalid" : nil)
+            .keyboardType(.decimalPad)
+        KiraField("onboarding.debt.sheet.dueDay", text: $form.dueDay, prompt: "onboarding.debt.sheet.dueDay.prompt")
+            .hint("onboarding.debt.sheet.dueDay.hint")
+            .error(form.isDueDayInvalid ? "onboarding.debt.sheet.dueDay.invalid" : nil)
+            .keyboardType(.numberPad)
     }
 
     private func amountField(_ label: LocalizedStringResource, text: Binding<String>) -> KiraField {
