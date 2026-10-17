@@ -11612,22 +11612,22 @@
         }
       }
     },
-    "indicator.next.consumerDebtOne" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lunasi satu per satu, utang terkecil dulu, sampai tinggal satu platform."
-          }
-        }
-      }
-    },
     "indicator.next.consumerDebtOnTime" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bayar tepat waktu, lalu kurangi sampai tiga platform atau kurang."
+          }
+        }
+      }
+    },
+    "indicator.next.consumerDebtOne" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lunasi satu per satu, utang terkecil dulu, sampai tinggal satu platform."
           }
         }
       }
@@ -24733,17 +24733,6 @@
         }
       }
     },
-    "problem.connection" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Koneksi terputus. Cek internetmu, lalu coba lagi."
-          }
-        }
-      }
-    },
     "problem.EMAIL_DELIVERY_FAILED" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -24931,17 +24920,6 @@
         }
       }
     },
-    "problem.rateLimited" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Permintaanmu terlalu sering. Tunggu sebentar, lalu coba lagi."
-          }
-        }
-      }
-    },
     "problem.RECEIPT_TOTAL_MISMATCH" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -24949,17 +24927,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jumlah item belum sama dengan totalnya. Periksa lagi, ya."
-          }
-        }
-      }
-    },
-    "problem.reference %@" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kode bantuan: %@"
           }
         }
       }
@@ -25041,17 +25008,6 @@
         }
       }
     },
-    "problem.serviceUnavailable" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Layanan Kira sedang tidak bisa dihubungi. Coba lagi sebentar lagi."
-          }
-        }
-      }
-    },
     "problem.SUBSCRIPTION_NOT_CANCELLABLE" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -25118,17 +25074,6 @@
         }
       }
     },
-    "problem.unknown" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ada yang tidak beres. Coba lagi sebentar lagi."
-          }
-        }
-      }
-    },
     "problem.VALIDATION_FAILED" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -25136,6 +25081,61 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ada isian yang belum sesuai. Periksa lagi, ya."
+          }
+        }
+      }
+    },
+    "problem.connection" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koneksi terputus. Cek internetmu, lalu coba lagi."
+          }
+        }
+      }
+    },
+    "problem.rateLimited" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permintaanmu terlalu sering. Tunggu sebentar, lalu coba lagi."
+          }
+        }
+      }
+    },
+    "problem.reference %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kode bantuan: %@"
+          }
+        }
+      }
+    },
+    "problem.serviceUnavailable" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Layanan Kira sedang tidak bisa dihubungi. Coba lagi sebentar lagi."
+          }
+        }
+      }
+    },
+    "problem.unknown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada yang tidak beres. Coba lagi sebentar lagi."
           }
         }
       }
@@ -25920,6 +25920,16 @@
         }
       }
     },
+    "record.manual.saveIncome" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Pemasukan"
+          }
+        }
+      }
+    },
     "record.manual.savedBody" : {
       "localizations" : {
         "id" : {
@@ -25936,16 +25946,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transaksi Tersimpan"
-          }
-        }
-      }
-    },
-    "record.manual.saveIncome" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Simpan Pemasukan"
           }
         }
       }
