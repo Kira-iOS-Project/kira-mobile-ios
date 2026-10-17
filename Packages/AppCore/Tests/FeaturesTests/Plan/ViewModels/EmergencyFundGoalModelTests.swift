@@ -65,4 +65,12 @@ struct EmergencyFundGoalModelTests {
         form.annualReturn = ""
         #expect(form.outcome == nil)
     }
+
+    @Test("no fund yet: an empty Dana Darurat yang Sudah Ada counts as Rp0")
+    func emptyPresent() throws {
+        let form = persona()
+        form.present = ""
+        let outcome = try #require(form.outcome)
+        #expect(outcome.present == 0 && outcome.projection.principal == 650_000 * 30)
+    }
 }
