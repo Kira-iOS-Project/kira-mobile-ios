@@ -62,7 +62,7 @@ private struct BudgetGoalRow: View {
     let since: CalendarDay
 
     var body: some View {
-        KiraListRow(Text(goal.name), leading: .category(.emergency), trailing: .none) {
+        KiraListRow(Text(goal.name), leading: .category(tile), trailing: .none) {
             VStack(alignment: .leading, spacing: KiraSpacing.space2) {
                 KiraProgressRibbon(value: Double(goal.currentAmount), target: Double(goal.targetAmount))
                 KiraTag("budget.goal.tag", tone: .pandan, icon: .target)
@@ -72,4 +72,7 @@ private struct BudgetGoalRow: View {
     }
 
     private var saved: Text { Text(goal.currentAmount.rupiah, format: .rupiah) }
+
+    /** Dana Darurat's tile for the emergency fund, the savings tile for any other goal. */
+    private var tile: KiraCategory { goal.category == "emergency_fund" ? .emergency : .savings }
 }
