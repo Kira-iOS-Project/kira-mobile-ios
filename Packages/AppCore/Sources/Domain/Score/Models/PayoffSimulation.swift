@@ -12,6 +12,8 @@ package struct PayoffAccount: Hashable, Sendable {
     package let monthlyInstalment: Int
     /** The interest a year in percent; nil when the person has not said. */
     package let annualInterestRate: Double?
+    /** The day of the month its instalment is due; nil when the person has not said. */
+    package let dueDay: Int?
     /** 1 for the account the plan pays first. */
     package let position: Int
     /** Months until it is paid off, this month counted as 1; nil when it never is. */
@@ -24,7 +26,8 @@ package struct PayoffAccount: Hashable, Sendable {
     /** An account with every field given. */
     package init(
         id: String, kind: DebtKind, name: String, remaining: Int, monthlyInstalment: Int,
-        annualInterestRate: Double?, position: Int, months: Int?, payoffMonth: String?, interest: Int?
+        annualInterestRate: Double?, position: Int, months: Int?, payoffMonth: String?, interest: Int?,
+        dueDay: Int? = nil
     ) {
         self.id = id
         self.kind = kind
@@ -32,6 +35,7 @@ package struct PayoffAccount: Hashable, Sendable {
         self.remaining = remaining
         self.monthlyInstalment = monthlyInstalment
         self.annualInterestRate = annualInterestRate
+        self.dueDay = dueDay
         self.position = position
         self.months = months
         self.payoffMonth = payoffMonth

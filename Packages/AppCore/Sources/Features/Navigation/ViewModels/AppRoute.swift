@@ -13,8 +13,16 @@ package enum AppRoute: Hashable, Sendable {
     case indicator(IndicatorKey)
     /** The health check again, from the score ("Cek Ulang"). */
     case healthCheck
-    /** SKR-03: Rencana Pelunasan, with its open formula (SKR-03b) and the Avalanche method (SKR-03c). */
+    /**
+     Beranda's and the score's way into paying off: Rencanaku (SKR-04) when the person has a plan,
+     else Rencana Pelunasan (SKR-03).
+     */
     case debtPlan
+    /**
+     SKR-03: Rencana Pelunasan, with its open formula (SKR-03b) and the Avalanche method (SKR-03c),
+     always: Naskah Negosiasi's "Lihat Simulasi" and Rencanaku's "Ubah Rencana".
+     */
+    case payoffSimulation
     /** SKR-04: Rencanaku, the plan the person made; SKR-05 (Perayaan Lunas) opens over it. */
     case myPlan
 

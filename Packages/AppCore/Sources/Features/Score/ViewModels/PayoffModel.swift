@@ -32,8 +32,10 @@ package final class PayoffModel {
     private var generation = 0
 
     /** A model that simulates through `service`. */
-    package init(service: any PayoffService) {
+    package init(service: any PayoffService, method: PayoffMethod = .snowball, showsHow: Bool = false) {
         self.service = service
+        self.method = method
+        isHowOpen = showsHow
     }
 
     /** The extra payment in whole rupiah; 0 while the field is empty. */
