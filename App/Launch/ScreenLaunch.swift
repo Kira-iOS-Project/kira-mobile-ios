@@ -32,6 +32,7 @@
             case .care: CareLaunch(screen: screen)
             case .debtEmergency: DebtEmergencyLaunch(screen: screen)
             case .careTools: CareToolsLaunch(screen: screen)
+            case .planModule: PlanModuleLaunch(screen: screen)
             }
         }
     }
@@ -78,10 +79,13 @@
          its form.
          */
         case breathing, safetyPlan, safetyPlanEmpty, safetyPlanFailing, safetyPlanForm
+        /** REN-08: Modul Belajar of each asset class. */
+        case moduleMoneyMarketFund, moduleGovernmentBonds, moduleDeposits, moduleGold, moduleStocks, moduleCrypto
 
         /** The area whose launcher builds the screen. */
         enum Area {
             case onboarding, home, account, plans, record, chat, community, care, careTools, debtEmergency, marketplace
+            case planModule
         }
 
         var area: Area {
@@ -110,6 +114,9 @@
             case .marketplace, .marketplaceEmpty, .marketplaceFailed, .product, .productConsultation, .productEbook,
                 .productEvent, .productGone, .submitProduct:
                 .marketplace
+            case .moduleMoneyMarketFund, .moduleGovernmentBonds, .moduleDeposits, .moduleGold, .moduleStocks,
+                .moduleCrypto:
+                .planModule
             }
         }
     }

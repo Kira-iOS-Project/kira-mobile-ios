@@ -15438,6 +15438,1172 @@
         }
       }
     },
+    "plan.module.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke profil risiko"
+          }
+        }
+      }
+    },
+    "plan.module.checkLegality" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cek Legalitas"
+          }
+        }
+      }
+    },
+    "plan.module.class.crypto" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kripto"
+          }
+        }
+      }
+    },
+    "plan.module.class.deposits" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deposito"
+          }
+        }
+      }
+    },
+    "plan.module.class.gold" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emas"
+          }
+        }
+      }
+    },
+    "plan.module.class.governmentBonds" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SBN"
+          }
+        }
+      }
+    },
+    "plan.module.class.moneyMarketFund" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reksa Dana Pasar Uang"
+          }
+        }
+      }
+    },
+    "plan.module.class.stocks" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saham"
+          }
+        }
+      }
+    },
+    "plan.module.crypto.before1" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pedagangnya berizin dan diawasi OJK"
+          }
+        }
+      }
+    },
+    "plan.module.crypto.before2" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu siap kehilangan uang yang ditaruh"
+          }
+        }
+      }
+    },
+    "plan.module.crypto.cashOut" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diperdagangkan 24 jam, tapi harga saat kamu menjual bisa sangat berbeda dari beberapa jam sebelumnya."
+          }
+        }
+      }
+    },
+    "plan.module.crypto.check" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perdagangkan hanya lewat pedagang aset kripto yang berizin dan diawasi OJK."
+          }
+        }
+      }
+    },
+    "plan.module.crypto.fit1" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uang yang siap hilang seluruhnya"
+          }
+        }
+      }
+    },
+    "plan.module.crypto.fit2" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orang yang sudah paham risikonya"
+          }
+        }
+      }
+    },
+    "plan.module.crypto.guarantee" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak ada. Kripto tidak dijamin LPS atau negara."
+          }
+        }
+      }
+    },
+    "plan.module.crypto.horizon" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak ada jangka waktu yang membuatnya aman. Harganya bisa tetap rendah selama bertahun-tahun."
+          }
+        }
+      }
+    },
+    "plan.module.crypto.oversight" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sejak Januari 2025 perdagangan aset kripto diawasi OJK, sebelumnya oleh Bappebti. Kripto bukan alat pembayaran yang sah di Indonesia."
+          }
+        }
+      }
+    },
+    "plan.module.crypto.returns" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hanya dari kenaikan harga. Tidak ada bunga atau dividen dari penerbit."
+          }
+        }
+      }
+    },
+    "plan.module.crypto.risk" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Harganya bisa naik atau turun sangat tajam dalam hitungan jam. Nilainya bisa hilang hampir seluruhnya."
+          }
+        }
+      }
+    },
+    "plan.module.crypto.what" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aset digital yang dicatat di jaringan komputer, tanpa penerbit seperti bank atau negara."
+          }
+        }
+      }
+    },
+    "plan.module.deposits.before1" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Banknya peserta penjaminan LPS"
+          }
+        }
+      }
+    },
+    "plan.module.deposits.before2" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bunganya tidak melebihi bunga penjaminan LPS"
+          }
+        }
+      }
+    },
+    "plan.module.deposits.cashOut" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saat jatuh tempo. Mencairkan lebih awal biasanya dikenai penalti, dan sebagian bunga bisa hilang."
+          }
+        }
+      }
+    },
+    "plan.module.deposits.check" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pastikan banknya berizin OJK dan peserta penjaminan LPS, lalu bandingkan bunganya dengan bunga penjaminan LPS."
+          }
+        }
+      }
+    },
+    "plan.module.deposits.fit1" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uang yang tidak dipakai sampai jatuh tempo"
+          }
+        }
+      }
+    },
+    "plan.module.deposits.fit2" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tujuan di bawah 1 tahun"
+          }
+        }
+      }
+    },
+    "plan.module.deposits.guarantee" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ya, sampai batas tertentu per nasabah per bank, selama syarat penjaminan LPS terpenuhi."
+          }
+        }
+      }
+    },
+    "plan.module.deposits.horizon" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sesuai jangka waktu yang dipilih, mulai dari 1 bulan."
+          }
+        }
+      }
+    },
+    "plan.module.deposits.oversight" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Banknya diawasi OJK. Simpanannya dijamin Lembaga Penjamin Simpanan (LPS)."
+          }
+        }
+      }
+    },
+    "plan.module.deposits.returns" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dari bunga tetap yang dibayar bank, setelah dipotong pajak bunga."
+          }
+        }
+      }
+    },
+    "plan.module.deposits.risk" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Risikonya rendah. Simpanan dijamin LPS sampai batas tertentu, selama bunganya tidak melebihi bunga penjaminan LPS."
+          }
+        }
+      }
+    },
+    "plan.module.deposits.what" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpanan di bank dengan jangka waktu tetap, misalnya 1, 3, 6, atau 12 bulan, dengan bunga yang disepakati di awal."
+          }
+        }
+      }
+    },
+    "plan.module.finish" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
+    "plan.module.gold.before1" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Penyelenggara layanannya berizin"
+          }
+        }
+      }
+    },
+    "plan.module.gold.before2" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu tahu biaya simpan dan selisih harganya"
+          }
+        }
+      }
+    },
+    "plan.module.gold.cashOut" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bisa dijual kapan saja, tapi harga jualnya lebih rendah dari harga beli pada hari yang sama."
+          }
+        }
+      }
+    },
+    "plan.module.gold.check" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cek izin penyelenggara layanan emas sebelum menitipkan uang, dan simpan bukti beli untuk emas fisik."
+          }
+        }
+      }
+    },
+    "plan.module.gold.fit1" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tujuan jangka panjang"
+          }
+        }
+      }
+    },
+    "plan.module.gold.fit2" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sebagian tabungan untuk menjaga nilai"
+          }
+        }
+      }
+    },
+    "plan.module.gold.guarantee" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak ada. Nilainya mengikuti harga pasar, dan emas tidak dijamin LPS."
+          }
+        }
+      }
+    },
+    "plan.module.gold.horizon" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jangka panjang, umumnya 5 tahun atau lebih, agar selisih harga beli dan jual tertutup."
+          }
+        }
+      }
+    },
+    "plan.module.gold.oversight" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emas batangan yang kamu simpan sendiri tidak diawasi lembaga mana pun. Layanan emas diawasi OJK atau Bappebti, tergantung jenis layanannya."
+          }
+        }
+      }
+    },
+    "plan.module.gold.returns" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hanya dari kenaikan harga. Emas tidak memberi bunga atau dividen."
+          }
+        }
+      }
+    },
+    "plan.module.gold.risk" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Harganya naik turun mengikuti pasar dunia dan kurs. Ada selisih harga beli dan jual, jadi dalam waktu singkat nilainya bisa di bawah harga beli."
+          }
+        }
+      }
+    },
+    "plan.module.gold.what" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logam mulia yang disimpan sebagai nilai, dalam bentuk batangan fisik atau dicatat sebagai saldo di layanan emas."
+          }
+        }
+      }
+    },
+    "plan.module.governmentBonds.before1" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mitra distribusinya resmi dan terdaftar di OJK"
+          }
+        }
+      }
+    },
+    "plan.module.governmentBonds.before2" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu tahu tanggal jatuh temponya"
+          }
+        }
+      }
+    },
+    "plan.module.governmentBonds.cashOut" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sebagian seri bisa dijual ke pihak lain sebelum jatuh tempo dengan harga pasar. Seri lain hanya bisa dicairkan sebagian pada waktu tertentu, atau saat jatuh tempo."
+          }
+        }
+      }
+    },
+    "plan.module.governmentBonds.check" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beli hanya lewat mitra distribusi resmi yang ditunjuk Kementerian Keuangan dan terdaftar di OJK."
+          }
+        }
+      }
+    },
+    "plan.module.governmentBonds.fit1" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tujuan menengah dengan tanggal yang jelas"
+          }
+        }
+      }
+    },
+    "plan.module.governmentBonds.fit2" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uang yang tidak dipakai sampai jatuh tempo"
+          }
+        }
+      }
+    },
+    "plan.module.governmentBonds.guarantee" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ya. Pembayaran pokok dan imbal hasil SBN dijamin negara berdasarkan undang-undang."
+          }
+        }
+      }
+    },
+    "plan.module.governmentBonds.horizon" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sesuai tenornya. Untuk seri ritel, umumnya 2 sampai 6 tahun."
+          }
+        }
+      }
+    },
+    "plan.module.governmentBonds.oversight" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diterbitkan dan dibayar oleh Kementerian Keuangan. Mitra distribusinya, seperti bank dan perusahaan efek, diawasi OJK."
+          }
+        }
+      }
+    },
+    "plan.module.governmentBonds.returns" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dari kupon atau imbalan yang dibayar negara secara berkala, tetap atau mengambang sesuai jenisnya."
+          }
+        }
+      }
+    },
+    "plan.module.governmentBonds.risk" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pembayaran pokok dan imbal hasilnya dijamin undang-undang. Seri yang bisa diperdagangkan harganya naik turun bila dijual sebelum jatuh tempo."
+          }
+        }
+      }
+    },
+    "plan.module.governmentBonds.what" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surat utang yang diterbitkan negara lewat Kementerian Keuangan. Kamu meminjamkan uang ke negara dan menerima imbal hasil berkala."
+          }
+        }
+      }
+    },
+    "plan.module.moneyMarketFund.before1" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manajer investasi dan agen penjualnya terdaftar di OJK"
+          }
+        }
+      }
+    },
+    "plan.module.moneyMarketFund.before2" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu sudah membaca prospektusnya"
+          }
+        }
+      }
+    },
+    "plan.module.moneyMarketFund.cashOut" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bisa dijual kembali di hari kerja. Uangnya masuk ke rekeningmu paling lambat tujuh hari bursa setelah penjualan diproses."
+          }
+        }
+      }
+    },
+    "plan.module.moneyMarketFund.check" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pastikan produk dan pengelolanya terdaftar di OJK sebelum menaruh uang."
+          }
+        }
+      }
+    },
+    "plan.module.moneyMarketFund.fit1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sebagian dana darurat"
+          }
+        }
+      }
+    },
+    "plan.module.moneyMarketFund.fit2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tujuan di bawah 1 tahun"
+          }
+        }
+      }
+    },
+    "plan.module.moneyMarketFund.guarantee" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak ada. Reksa dana tidak dijamin LPS, jadi nilainya tetap bisa turun walau jarang."
+          }
+        }
+      }
+    },
+    "plan.module.moneyMarketFund.horizon" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mulai dari beberapa bulan. Biasa dipakai untuk uang yang dibutuhkan dalam setahun ke depan."
+          }
+        }
+      }
+    },
+    "plan.module.moneyMarketFund.oversight" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manajer investasi dan produk reksa dana diawasi OJK. Uangnya disimpan di bank kustodian, terpisah dari kas manajer investasi."
+          }
+        }
+      }
+    },
+    "plan.module.moneyMarketFund.returns" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dari bunga deposito dan kupon surat utang yang dipegangnya. Hasil yang lalu tidak menjamin hasil nanti."
+          }
+        }
+      }
+    },
+    "plan.module.moneyMarketFund.risk" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nilainya relatif stabil, tapi tetap bisa turun sedikit. Tidak dijamin LPS seperti tabungan, dan hasilnya tidak pasti."
+          }
+        }
+      }
+    },
+    "plan.module.moneyMarketFund.what" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dana bersama yang dikelola manajer investasi, ditaruh di deposito dan surat utang bertenor di bawah setahun."
+          }
+        }
+      }
+    },
+    "plan.module.next" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bagian Berikutnya"
+          }
+        }
+      }
+    },
+    "plan.module.notice.message" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modul ini tidak menyebut produk atau pengelola tertentu."
+          }
+        }
+      }
+    },
+    "plan.module.notice.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edukasi, Bukan Rekomendasi"
+          }
+        }
+      }
+    },
+    "plan.module.progress %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bagian %1$lld dari %2$lld"
+          }
+        }
+      }
+    },
+    "plan.module.readTime" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 menit baca"
+          }
+        }
+      }
+    },
+    "plan.module.risk.high" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Risiko Tinggi"
+          }
+        }
+      }
+    },
+    "plan.module.risk.low" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Risiko Rendah"
+          }
+        }
+      }
+    },
+    "plan.module.risk.medium" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Risiko Sedang"
+          }
+        }
+      }
+    },
+    "plan.module.risk.veryHigh" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Risiko Sangat Tinggi"
+          }
+        }
+      }
+    },
+    "plan.module.section.beforeStarting" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sebelum Mulai"
+          }
+        }
+      }
+    },
+    "plan.module.section.cashOut" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapan Bisa Dicairkan"
+          }
+        }
+      }
+    },
+    "plan.module.section.fitsFor" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cocok untuk"
+          }
+        }
+      }
+    },
+    "plan.module.section.guarantee" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada Jaminannya?"
+          }
+        }
+      }
+    },
+    "plan.module.section.horizon" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berapa Lama Sebaiknya"
+          }
+        }
+      }
+    },
+    "plan.module.section.howToCheck" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cara Mengecek"
+          }
+        }
+      }
+    },
+    "plan.module.section.oversight" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siapa yang Mengawasi"
+          }
+        }
+      }
+    },
+    "plan.module.section.returns" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hasilnya dari Mana"
+          }
+        }
+      }
+    },
+    "plan.module.section.risk" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Risikonya"
+          }
+        }
+      }
+    },
+    "plan.module.section.whatItIs" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apa Itu"
+          }
+        }
+      }
+    },
+    "plan.module.stocks.before1" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perusahaan efeknya terdaftar di OJK"
+          }
+        }
+      }
+    },
+    "plan.module.stocks.before2" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rekening dana nasabah atas namamu sendiri"
+          }
+        }
+      }
+    },
+    "plan.module.stocks.cashOut" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bisa dijual pada jam bursa. Uangnya masuk ke rekening dana nasabah dua hari bursa setelah transaksi."
+          }
+        }
+      }
+    },
+    "plan.module.stocks.check" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pastikan perusahaan efek tempatmu membuka rekening terdaftar dan diawasi OJK."
+          }
+        }
+      }
+    },
+    "plan.module.stocks.fit1" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tujuan di atas 5 tahun"
+          }
+        }
+      }
+    },
+    "plan.module.stocks.fit2" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uang yang siap naik turun nilainya"
+          }
+        }
+      }
+    },
+    "plan.module.stocks.guarantee" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak ada jaminan atas turunnya harga. Saham tidak dijamin LPS."
+          }
+        }
+      }
+    },
+    "plan.module.stocks.horizon" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jangka panjang, umumnya 5 tahun atau lebih, karena harganya bisa turun lama sebelum pulih."
+          }
+        }
+      }
+    },
+    "plan.module.stocks.oversight" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bursa, perusahaan efek, dan perusahaan tercatat diawasi OJK. Dananya ada di rekening dana nasabah atas namamu."
+          }
+        }
+      }
+    },
+    "plan.module.stocks.returns" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dari kenaikan harga saham dan dividen yang dibagikan perusahaan, keduanya tidak pasti."
+          }
+        }
+      }
+    },
+    "plan.module.stocks.risk" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Harganya bisa naik turun tajam, bahkan turun jauh dalam waktu lama. Dividen tidak pasti dibagikan."
+          }
+        }
+      }
+    },
+    "plan.module.stocks.what" : {
+      "comment" : "REN-08: content not on a board, for owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bukti kepemilikan sebagian perusahaan yang tercatat di Bursa Efek Indonesia."
+          }
+        }
+      }
+    },
+    "plan.module.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kelas aset"
+          }
+        }
+      }
+    },
+    "plan.module.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modul Belajar"
+          }
+        }
+      }
+    },
     "plans.alwaysFree.body" : {
       "localizations" : {
         "id" : {
