@@ -28,7 +28,7 @@ struct LiveCheckInServiceTests {
         ])
         let service = LiveCheckInService(api: api)
         let scheduled = try await service.schedule(after: .tomorrow)
-        #expect(scheduled == CheckIn(id: id, dueAt: Date(timeIntervalSince1970: 1_792_152_000)))
+        #expect(scheduled == CheckIn(id: id))
         #expect(try await service.due() == scheduled)
         try await service.markSeen(id: id)
         try await service.cancel(id: id)

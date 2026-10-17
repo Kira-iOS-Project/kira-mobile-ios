@@ -18,7 +18,9 @@ extension ProductModel {
             .importRangeTooLong, .importRowUnknown, .subscriptionNotFound, .subscriptionNotCancellable,
             .subscriptionNotPaid, .scholarshipNotEligible, .scholarshipApplicationNotFound,
             .scholarshipDebtEmergencyRequired, .communityGroupNotFound, .communityLinkUnavailable,
-            .communityReportDuplicate, .communityRulesNotAccepted, .careCheckInNotFound, .careSafetyPlanNotFound:
+            .communityReportDuplicate, .communityRulesNotAccepted, .careCheckInNotFound, .careSafetyPlanNotFound,
+            .payoffExtraTooHigh, .payoffNothingToPlan, .payoffPlanNotFound, .payoffDebtNotFound, .payoffPaymentTooHigh,
+            .payoffPaymentAlreadyRecorded, .assetNotFound:
             false
         }
     }

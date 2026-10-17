@@ -141,7 +141,7 @@ internal protocol APIProtocol: Sendable {
     func setPayoffFocus(_ input: Operations.SetPayoffFocus.Input) async throws -> Operations.SetPayoffFocus.Output
     /// Mark a payment (Tandai Sudah Bayar)
     ///
-    /// Records a payment against an open debt account. When it settles the account the response says so once, with the score the engine expects and the account the plan moves to next.
+    /// Records a payment against an open debt account. When it settles the account the response says so once, with the score the engine expects and the account the plan moves to next. A repeat of the same paymentId (double tap, retry) answers 409 PAYOFF_PAYMENT_ALREADY_RECORDED: the payment is already saved.
     ///
     /// - Remark: HTTP `POST /api/debts/{id}/payments`.
     /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)`.
@@ -658,7 +658,7 @@ extension APIProtocol {
     }
     /// Mark a payment (Tandai Sudah Bayar)
     ///
-    /// Records a payment against an open debt account. When it settles the account the response says so once, with the score the engine expects and the account the plan moves to next.
+    /// Records a payment against an open debt account. When it settles the account the response says so once, with the score the engine expects and the account the plan moves to next. A repeat of the same paymentId (double tap, retry) answers 409 PAYOFF_PAYMENT_ALREADY_RECORDED: the payment is already saved.
     ///
     /// - Remark: HTTP `POST /api/debts/{id}/payments`.
     /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)`.

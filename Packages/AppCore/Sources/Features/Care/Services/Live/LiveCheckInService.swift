@@ -38,6 +38,6 @@ package struct LiveCheckInService: CheckInService {
 
 extension CheckIn {
     init(_ dto: CheckInDTO) {
-        self.init(id: dto.id, dueAt: dto.dueAt)
+        self.init(id: dto.id)
     }
 }
