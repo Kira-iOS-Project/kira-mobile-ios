@@ -4,7 +4,6 @@
  the check-in's screen is down, and its Coba Lagi brings the screen back once the dialog is down,
  with the person's choice kept (the owner's rule for a failed submit).
  */
-import Domain
 import Features
 import SwiftUI
 

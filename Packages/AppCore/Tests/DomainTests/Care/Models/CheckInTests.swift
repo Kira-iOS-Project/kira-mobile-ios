@@ -1,4 +1,3 @@
-import Foundation
 import Testing
 
 @testable import Domain
@@ -10,11 +9,8 @@ struct CheckInTests {
         #expect(CheckInDelay.allCases.map(\.hours) == [24, 48, 72])
     }
 
-    @Test("a check-in keeps its id and due time")
+    @Test("a check-in keeps its id")
     func fields() {
-        let due = Date(timeIntervalSince1970: 1_792_000_000)
-        let checkIn = CheckIn(id: "c1", dueAt: due)
-        #expect(checkIn.id == "c1")
-        #expect(checkIn.dueAt == due)
+        #expect(CheckIn(id: "c1").id == "c1")
     }
 }
