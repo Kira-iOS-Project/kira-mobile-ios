@@ -40,7 +40,6 @@ package final class DebtFormModel {
         dueDay = entry?.dueDay.map(String.init) ?? ""
     }
 
-    /** The debt as filled in, or nil (with `showsMissing` set) when the name or an amount is missing. */
     /** A yearly interest typed that the plan cannot use (over 300%, or not a number). */
     package var isInterestInvalid: Bool {
         !interest.isEmpty && PercentInput.value(of: interest) == nil
@@ -51,6 +50,10 @@ package final class DebtFormModel {
         !dueDay.isEmpty && !(1...31).contains(Int(dueDay) ?? 0)
     }
 
+    /**
+     The debt as filled in, or nil when the name or an amount is missing (with `showsMissing` set)
+     or the interest or the due day is out of range (each shows its own error).
+     */
     package func entry() -> DebtEntry? {
         let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty, let left = AmountInput.value(of: remaining),
