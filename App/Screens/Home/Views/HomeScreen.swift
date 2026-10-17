@@ -84,7 +84,7 @@ private struct HomeOverviewSections: View {
 
     var body: some View {
         if let money = home.money {
-            HomeMoneyCard(money: money, period: home.period, model: model) { onOpen(.unavailable(.budget)) }
+            HomeMoneyCard(money: money, period: home.period, model: model) { onOpen(.budget) }
         }
         if let step = model.visibleStep {
             HomeStepSection(step: step, home: home, model: model, onOpen: onOpen)
@@ -93,7 +93,7 @@ private struct HomeOverviewSections: View {
             HomeScoreCard(score: score) { onOpen(.score) }
         }
         if let week = home.weeklySummary {
-            HomeWeeklyCard(range: week) { onOpen(.unavailable(.weeklySummary)) }
+            HomeWeeklyCard(range: week) { onOpen(.weeklySummary) }
         }
     }
 }
