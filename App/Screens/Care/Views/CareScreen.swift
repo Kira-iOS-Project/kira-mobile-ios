@@ -1,7 +1,7 @@
 /**
  PED-01, Kira Peduli (board KiraPeduli): the door every "Butuh Bantuan Sekarang" opens. Healing119,
  Layanan Kira, Telepon 119 for danger now, Mode Darurat Utang and the two tools for later, free on
- every plan, with no help button, no handwriting and Kuku only on the Layanan Kira card. The
+ every plan, with no help button, no handwriting and no Kuku (Layanan Kira's card shows the care illustration). The
  contacts show at once from the shipped list, then the verified one.
  */
 import Domain

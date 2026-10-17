@@ -1,6 +1,6 @@
 /**
  The blocks Kira Peduli (PED-01) and its sheet over the chat (PED-03) share: Healing119's call and
- chat rows, the Layanan Kira card with Kuku, and Telepon 119, the only red button. Numbers come
+ chat rows, the Layanan Kira card with the care illustration, and Telepon 119, the only red button. Numbers come
  from the verified list; each row opens a link the person taps, and a long press copies a number.
  */
 import Domain
@@ -42,7 +42,7 @@ struct CareHealingRows: View {
 }
 
 /**
- Hubungi Layanan Kira: Kuku in a 56 pt circle on pandan-soft, one button read as a sentence. It
+ Hubungi Layanan Kira: the care art in a 56 pt circle (Kira Peduli has no Kuku), one button read as a sentence. It
  shows only while the verified list has Layanan Kira Peduli, so it never leads to a message
  nobody can receive.
  */
@@ -58,8 +58,9 @@ struct CareKiraCard: View {
     private var card: some View {
         Button(action: action) {
             HStack(spacing: 14) {
-                KiraMascot(.happy, size: 58)
+                KiraIllustration(.care, size: 44)
                     .frame(width: 56, height: 56)
+                    .background(.surfaceRaised)
                     .clipShape(Circle())
                     .overlay(Circle().strokeBorder(.pandanLine, lineWidth: 1))
                 VStack(alignment: .leading, spacing: 2) {
