@@ -4,7 +4,6 @@
  failed save closes it into the failure dialog (`SubmissionSheet`), and a saved one into "Dompet
  Ditambahkan" (UNG-02b), after which Dompet loads again.
  */
-import Domain
 import Features
 import SwiftUI
 

@@ -14,7 +14,7 @@ struct DebtDetailTests {
                     onTime: true)
             ],
             nextStep: DebtNextStep(
-                priority: 1, priorityOf: 3, extraAmount: 210_000, payOn: nil, monthsEarlier: 1, scoreBefore: nil,
+                priority: 1, priorityOf: 3, extraAmount: 210_000, payOn: nil, scoreBefore: nil,
                 scoreAfter: nil))
     }
 

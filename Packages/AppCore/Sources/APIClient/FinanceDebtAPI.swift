@@ -35,7 +35,7 @@ extension DebtDetail {
             nextStep: try body.nextStep.map {
                 DebtNextStep(
                     priority: $0.priority, priorityOf: $0.priorityOf, extraAmount: $0.extraAmount,
-                    payOn: try $0.payOn.map(Self.day), monthsEarlier: $0.monthsEarlier, scoreBefore: $0.scoreBefore,
+                    payOn: try $0.payOn.map(Self.day), scoreBefore: $0.scoreBefore,
                     scoreAfter: $0.scoreAfter)
             })
     }

@@ -29,14 +29,4 @@ package struct BudgetOverview: Equatable, Sendable {
         self.allocations = allocations
         self.goalPosts = goalPosts
     }
-
-    /** Total amount allocated across categories. */
-    package var allocated: Int { allocations.reduce(0) { $0 + $1.amount } }
-
-    /** Spending across the categories for the active period. */
-    package var spent: Int { allocations.reduce(0) { $0 + $1.spent } }
-
-    /** Whether the plan assigns more than the monthly income; allowed but surfaced as a warning. */
-    package var isOverallocated: Bool { allocated > income }
-
 }

@@ -31,24 +31,16 @@ struct BudgetTests {
             goalPosts: [
                 BudgetGoalPost(
                     category: "emergency_fund", name: "Dana Darurat", currentAmount: 500,
-                    targetAmount: 1_000,
-                    milestones: [BudgetGoalMilestone(amount: 500, label: "Pertama", reached: true)]
-                )
+                    targetAmount: 1_000)
             ],
             period: period,
             allocations: [BudgetAllocation(category: .food, amount: 1_000, spent: 300)])
-        #expect(overview.allocated == 1_000)
-        #expect(overview.spent == 300)
         #expect(overview.remaining == 700)
         #expect(overview.isConfigured)
-        #expect(!overview.isOverallocated)
         #expect(overview.goalPosts.first?.category == "emergency_fund")
         #expect(overview.goalPosts.first?.name == "Dana Darurat")
         #expect(overview.goalPosts.first?.currentAmount == 500)
         #expect(overview.goalPosts.first?.targetAmount == 1_000)
-        #expect(overview.goalPosts.first?.milestones.first?.amount == 500)
-        #expect(overview.goalPosts.first?.milestones.first?.label == "Pertama")
-        #expect(overview.goalPosts.first?.milestones.first?.reached == true)
         let setup = BudgetOverview(
             income: 2_000, period: period, allocations: [], isConfigured: false)
         #expect(!setup.isConfigured)

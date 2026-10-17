@@ -13,7 +13,6 @@ struct LiveBudgetServiceTests {
         let budget = try await LiveBudgetService(api: api).currentBudget()
 
         #expect(budget.income == 1_000_000 && budget.remaining == 100_000)
-        #expect(budget.allocated == 1_200_000 && budget.spent == 900_000 && budget.isOverallocated)
         #expect(budget.isConfigured)
         #expect(
             budget.allocations == [

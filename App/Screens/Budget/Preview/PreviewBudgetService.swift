@@ -12,8 +12,7 @@ nonisolated struct PreviewBudgetService: BudgetService {
         income: 7_500_000, remaining: 1_840_000,
         goalPosts: [
             BudgetGoalPost(
-                category: "emergency_fund", name: "Dana Darurat", currentAmount: 650_000, targetAmount: 650_000,
-                milestones: [])
+                category: "emergency_fund", name: "Dana Darurat", currentAmount: 650_000, targetAmount: 650_000)
         ],
         period: PayPeriod(
             start: CalendarDay(year: 2026, month: 9, day: 25),

@@ -9,7 +9,6 @@ import SwiftUI
 struct BudgetOverviewContent: View {
     let budget: BudgetOverview
     let onOpen: (AppRoute) -> Void
-    @State private var isMasked = false
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {

@@ -27,5 +27,5 @@ struct PreviewDebtDetailService: DebtDetailService {
         },
         nextStep: DebtNextStep(
             priority: 1, priorityOf: 3, extraAmount: 210_000, payOn: CalendarDay(year: 2026, month: 10, day: 25),
-            monthsEarlier: 1, scoreBefore: 66, scoreAfter: 71))
+            scoreBefore: 66, scoreAfter: 71))
 }

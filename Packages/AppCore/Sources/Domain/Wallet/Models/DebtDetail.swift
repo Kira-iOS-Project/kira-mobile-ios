@@ -98,8 +98,6 @@ package struct DebtNextStep: Hashable, Sendable {
     package let extraAmount: Int
     /** The instalment to add it to; nil when its date is not known. */
     package let payOn: CalendarDay?
-    /** How many months earlier the debt is then paid off. */
-    package let monthsEarlier: Int
     /** The Kira Score now; nil before the health check. */
     package let scoreBefore: Int?
     /** The estimated Kira Score after; nil before the health check. */
@@ -107,14 +105,13 @@ package struct DebtNextStep: Hashable, Sendable {
 
     /** A next step with the given parts. */
     package init(
-        priority: Int, priorityOf: Int, extraAmount: Int, payOn: CalendarDay?, monthsEarlier: Int, scoreBefore: Int?,
+        priority: Int, priorityOf: Int, extraAmount: Int, payOn: CalendarDay?, scoreBefore: Int?,
         scoreAfter: Int?
     ) {
         self.priority = priority
         self.priorityOf = priorityOf
         self.extraAmount = extraAmount
         self.payOn = payOn
-        self.monthsEarlier = monthsEarlier
         self.scoreBefore = scoreBefore
         self.scoreAfter = scoreAfter
     }
