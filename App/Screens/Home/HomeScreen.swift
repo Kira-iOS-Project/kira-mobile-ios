@@ -96,7 +96,7 @@ private struct HomeOverviewSections: View {
             HomeScoreCard(score: score) { onOpen(.score) }
         }
         if let week = home.weeklySummary {
-            HomeWeeklyCard(range: week) { onOpen(.unavailable(.weeklySummary)) }
+            HomeWeeklyCard(range: week) { onOpen(.weeklySummary) }
         }
     }
 }

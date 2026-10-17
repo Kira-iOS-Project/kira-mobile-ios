@@ -15,6 +15,7 @@ struct AppServices {
     let security: any SecuritySettings
     let plans: any PlansService
     let home: any HomeService
+    let weeklySummary: any WeeklySummaryService
     let score: any ScoreService
     let recovery: any PinRecoveryService
     let wallets: any WalletService
@@ -36,6 +37,7 @@ extension AppServices {
             security: LiveSecuritySettings(lock: lock, pins: pins),
             plans: LivePlansService(api: api),
             home: LiveHomeService(api: api, onHideBalances: sync),
+            weeklySummary: LiveWeeklySummaryService(api: api),
             score: LiveScoreService(api: api),
             recovery: LivePinRecoveryService(api: api),
             wallets: LiveWalletService(api: api), bills: LiveBillsService(api: api),
@@ -47,6 +49,7 @@ extension AppServices {
         AppServices(
             onboarding: PreviewOnboardingService(), pinSetup: PreviewPinSetup(), account: PreviewAccountService(),
             security: PreviewSecuritySettings(), plans: PreviewPlansService(), home: PreviewHomeService(),
+            weeklySummary: PreviewWeeklySummaryService(),
             score: PreviewScoreService(), recovery: PreviewPinRecoveryService(), wallets: PreviewWalletService(),
             bills: PreviewBillsService(), billEdit: PreviewBillEditService())
     }

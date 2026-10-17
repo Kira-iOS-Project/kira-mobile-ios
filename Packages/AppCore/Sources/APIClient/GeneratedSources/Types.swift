@@ -532,6 +532,11 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `GET /api/debts/{id}`.
     /// - Remark: Generated from `#/paths//api/debts/{id}/get(getDebtDetail)`.
     func getDebtDetail(_ input: Operations.GetDebtDetail.Input) async throws -> Operations.GetDebtDetail.Output
+    /// Weekly Thursday to Wednesday spending summary
+    ///
+    /// - Remark: HTTP `GET /api/summaries/weekly`.
+    /// - Remark: Generated from `#/paths//api/summaries/weekly/get(getWeeklySummary)`.
+    func getWeeklySummary(_ input: Operations.GetWeeklySummary.Input) async throws -> Operations.GetWeeklySummary.Output
 }
 
 /// Convenience overloads for operation inputs.
@@ -1594,6 +1599,19 @@ extension APIProtocol {
     ) async throws -> Operations.GetDebtDetail.Output {
         try await getDebtDetail(Operations.GetDebtDetail.Input(
             path: path,
+            headers: headers
+        ))
+    }
+    /// Weekly Thursday to Wednesday spending summary
+    ///
+    /// - Remark: HTTP `GET /api/summaries/weekly`.
+    /// - Remark: Generated from `#/paths//api/summaries/weekly/get(getWeeklySummary)`.
+    internal func getWeeklySummary(
+        query: Operations.GetWeeklySummary.Input.Query,
+        headers: Operations.GetWeeklySummary.Input.Headers = .init()
+    ) async throws -> Operations.GetWeeklySummary.Output {
+        try await getWeeklySummary(Operations.GetWeeklySummary.Input(
+            query: query,
             headers: headers
         ))
     }

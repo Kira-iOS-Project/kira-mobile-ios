@@ -18048,6 +18048,266 @@
           }
         }
       }
+    },
+    "weekly.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Beranda"
+          }
+        }
+      }
+    },
+    "weekly.categories" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategori Terbesar"
+          }
+        }
+      }
+    },
+    "weekly.categories.empty" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum ada kategori pengeluaran."
+          }
+        }
+      }
+    },
+    "weekly.chart.accessibility" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grafik pengeluaran harian"
+          }
+        }
+      }
+    },
+    "weekly.chart.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengeluaran per Hari"
+          }
+        }
+      }
+    },
+    "weekly.comparison.less %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengeluaran turun Rp%@ dari pekan sebelumnya"
+          }
+        }
+      }
+    },
+    "weekly.comparison.more %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengeluaran naik Rp%@ dari pekan sebelumnya"
+          }
+        }
+      }
+    },
+    "weekly.comparison.same" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengeluaran sama dengan pekan sebelumnya"
+          }
+        }
+      }
+    },
+    "weekly.day.friday" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jum"
+          }
+        }
+      }
+    },
+    "weekly.day.monday" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sen"
+          }
+        }
+      }
+    },
+    "weekly.day.saturday" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sab"
+          }
+        }
+      }
+    },
+    "weekly.day.sunday" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Min"
+          }
+        }
+      }
+    },
+    "weekly.day.thursday" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kam"
+          }
+        }
+      }
+    },
+    "weekly.day.tuesday" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sel"
+          }
+        }
+      }
+    },
+    "weekly.day.wednesday" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rab"
+          }
+        }
+      }
+    },
+    "weekly.empty.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ringkasan pekan Kamis sampai Rabu akan muncul setelah ada transaksi."
+          }
+        }
+      }
+    },
+    "weekly.empty.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Ada Catatan Pekan Ini"
+          }
+        }
+      }
+    },
+    "weekly.expense" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengeluaran"
+          }
+        }
+      }
+    },
+    "weekly.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ringkasan Belum Berhasil Dibuka"
+          }
+        }
+      }
+    },
+    "weekly.history" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Riwayat"
+          }
+        }
+      }
+    },
+    "weekly.income" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pemasukan"
+          }
+        }
+      }
+    },
+    "weekly.net" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sisa"
+          }
+        }
+      }
+    },
+    "weekly.note.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catatan Kira"
+          }
+        }
+      }
+    },
+    "weekly.period %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
+    "weekly.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ringkasan Mingguan"
+          }
+        }
+      }
+    },
+    "weekly.totals" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ringkasan Pekan Ini"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

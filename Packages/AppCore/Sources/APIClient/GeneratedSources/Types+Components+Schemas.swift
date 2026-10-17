@@ -7995,5 +7995,205 @@ extension Components {
                 case linkedDebtAccountId
             }
         }
+        /// - Remark: Generated from `#/components/schemas/WeeklySummary`.
+        internal struct WeeklySummary: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/period`.
+            internal struct PeriodPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/period/from`.
+                internal var from: Swift.String
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/period/to`.
+                internal var to: Swift.String
+                /// Creates a new `PeriodPayload`.
+                ///
+                /// - Parameters:
+                ///   - from:
+                ///   - to:
+                internal init(
+                    from: Swift.String,
+                    to: Swift.String
+                ) {
+                    self.from = from
+                    self.to = to
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case from
+                    case to
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/period`.
+            internal var period: Components.Schemas.WeeklySummary.PeriodPayload
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/totals`.
+            internal struct TotalsPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/totals/expense`.
+                internal var expense: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/totals/income`.
+                internal var income: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/totals/net`.
+                internal var net: Swift.Int
+                /// Creates a new `TotalsPayload`.
+                ///
+                /// - Parameters:
+                ///   - expense:
+                ///   - income:
+                ///   - net:
+                internal init(
+                    expense: Swift.Int,
+                    income: Swift.Int,
+                    net: Swift.Int
+                ) {
+                    self.expense = expense
+                    self.income = income
+                    self.net = net
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case expense
+                    case income
+                    case net
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/totals`.
+            internal var totals: Components.Schemas.WeeklySummary.TotalsPayload
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/previous`.
+            internal struct PreviousPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/previous/expense`.
+                internal var expense: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/previous/income`.
+                internal var income: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/previous/net`.
+                internal var net: Swift.Int
+                /// Creates a new `PreviousPayload`.
+                ///
+                /// - Parameters:
+                ///   - expense:
+                ///   - income:
+                ///   - net:
+                internal init(
+                    expense: Swift.Int,
+                    income: Swift.Int,
+                    net: Swift.Int
+                ) {
+                    self.expense = expense
+                    self.income = income
+                    self.net = net
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case expense
+                    case income
+                    case net
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/previous`.
+            internal var previous: Components.Schemas.WeeklySummary.PreviousPayload
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/DaysPayload`.
+            internal struct DaysPayloadPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/DaysPayload/date`.
+                internal var date: Swift.String
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/DaysPayload/expense`.
+                internal var expense: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/DaysPayload/income`.
+                internal var income: Swift.Int
+                /// Creates a new `DaysPayloadPayload`.
+                ///
+                /// - Parameters:
+                ///   - date:
+                ///   - expense:
+                ///   - income:
+                internal init(
+                    date: Swift.String,
+                    expense: Swift.Int,
+                    income: Swift.Int
+                ) {
+                    self.date = date
+                    self.expense = expense
+                    self.income = income
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case date
+                    case expense
+                    case income
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/days`.
+            internal typealias DaysPayload = [Components.Schemas.WeeklySummary.DaysPayloadPayload]
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/days`.
+            internal var days: Components.Schemas.WeeklySummary.DaysPayload
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/TopCategoriesPayload`.
+            internal struct TopCategoriesPayloadPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/TopCategoriesPayload/category`.
+                internal enum CategoryPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                    case food = "food"
+                    case coffee = "coffee"
+                    case transport = "transport"
+                    case shopping = "shopping"
+                    case bills = "bills"
+                    case paylaterInstalment = "paylater_instalment"
+                    case savingsDeposit = "savings_deposit"
+                    case insurance = "insurance"
+                    case entertainment = "entertainment"
+                    case health = "health"
+                    case education = "education"
+                    case household = "household"
+                    case otherExpense = "other_expense"
+                }
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/TopCategoriesPayload/category`.
+                internal var category: Components.Schemas.WeeklySummary.TopCategoriesPayloadPayload.CategoryPayload
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/TopCategoriesPayload/amount`.
+                internal var amount: Swift.Int
+                /// Creates a new `TopCategoriesPayloadPayload`.
+                ///
+                /// - Parameters:
+                ///   - category:
+                ///   - amount:
+                internal init(
+                    category: Components.Schemas.WeeklySummary.TopCategoriesPayloadPayload.CategoryPayload,
+                    amount: Swift.Int
+                ) {
+                    self.category = category
+                    self.amount = amount
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case category
+                    case amount
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/topCategories`.
+            internal typealias TopCategoriesPayload = [Components.Schemas.WeeklySummary.TopCategoriesPayloadPayload]
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/topCategories`.
+            internal var topCategories: Components.Schemas.WeeklySummary.TopCategoriesPayload
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/note`.
+            internal var note: Swift.String?
+            /// Creates a new `WeeklySummary`.
+            ///
+            /// - Parameters:
+            ///   - period:
+            ///   - totals:
+            ///   - previous:
+            ///   - days:
+            ///   - topCategories:
+            ///   - note:
+            internal init(
+                period: Components.Schemas.WeeklySummary.PeriodPayload,
+                totals: Components.Schemas.WeeklySummary.TotalsPayload,
+                previous: Components.Schemas.WeeklySummary.PreviousPayload,
+                days: Components.Schemas.WeeklySummary.DaysPayload,
+                topCategories: Components.Schemas.WeeklySummary.TopCategoriesPayload,
+                note: Swift.String? = nil
+            ) {
+                self.period = period
+                self.totals = totals
+                self.previous = previous
+                self.days = days
+                self.topCategories = topCategories
+                self.note = note
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case period
+                case totals
+                case previous
+                case days
+                case topCategories
+                case note
+            }
+        }
     }
 }

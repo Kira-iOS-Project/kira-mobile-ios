@@ -38,7 +38,7 @@
         case income, expenses, debts, savings, assets, protection
         case result, pin
         /** BRD and SKR. */
-        case home, homeFirstSteps, homeDebtPlan, score
+        case home, homeFirstSteps, homeDebtPlan, score, weeklySummary
         case billList, billCreate, billEdit
         case emergencyFund, savingsRatio, instalmentRatio, consumerDebt, debtToAsset, protectionCover
         /** AKN: Profil and the screens it opens. */
@@ -62,6 +62,7 @@
                 .assets, .protection, .result, .pin:
                 .onboarding
             case .home, .homeFirstSteps, .homeDebtPlan, .billList, .billCreate, .billEdit, .score, .emergencyFund,
+                .weeklySummary,
                 .savingsRatio,
                 .instalmentRatio,
                 .consumerDebt, .debtToAsset, .protectionCover:

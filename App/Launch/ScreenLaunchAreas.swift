@@ -52,6 +52,7 @@
             NavigationStack {
                 Group {
                     switch screen {
+                    case .weeklySummary: WeeklySummaryScreen(service: PreviewWeeklySummaryService()) {}
                     case .billList:
                         BillsScreen(
                             service: PreviewBillsService(), onOpenBill: { _ in },

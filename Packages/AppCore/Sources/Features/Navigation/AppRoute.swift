@@ -19,6 +19,8 @@ package enum AppRoute: Hashable, Sendable {
     case indicator(IndicatorKey)
     /** The health check again, from the score ("Cek Ulang"). */
     case healthCheck
+    /** UNG-08: the most recently completed Thursday-to-Wednesday spending summary. */
+    case weeklySummary
 
     /** CAT-01: Catat, the record section's root. */
     case record
@@ -95,8 +97,6 @@ package enum UnavailableArea: String, CaseIterable, Hashable, Sendable {
     case budget
     /** UNG: Tagihan, the bills. */
     case bills
-    /** UNG: Ringkasan Mingguan, the weekly summary. */
-    case weeklySummary
     /** SKR: Rencana Pelunasan, the payoff plan. */
     case debtPlan
     /** SKR: Riwayat Skor, the score history. */

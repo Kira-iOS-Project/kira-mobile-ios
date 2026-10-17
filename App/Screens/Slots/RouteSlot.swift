@@ -17,6 +17,7 @@ struct RouteSlot: View {
     var body: some View {
         switch route {
         case .score: ScoreScreen(service: services.score, onOpen: onOpen)
+        case .weeklySummary: WeeklySummaryScreen(service: services.weeklySummary) { onOpen(.history) }
         case .indicator(let key): IndicatorScreen(key: key, service: services.score, onOpen: onOpen)
         case .profile:
             ProfileScreen(
