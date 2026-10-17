@@ -55,11 +55,13 @@ package enum FeePeriod: Equatable, Sendable {
 
 /** One stage of the plan at today's prices (Atur Jenjang). */
 package struct EducationLevel: Equatable, Sendable {
+    /** The school stage. */
     package let stage: EducationStage
     /** Uang Pangkal. */
     package let entryFee: Int
     /** Uang Sekolah per `feePeriod`. */
     package let fee: Int
+    /** How often the fee is paid. */
     package let feePeriod: FeePeriod
     /** Biaya Lain as a share of the entry fee and fees (0.10). */
     package let otherRate: Double
@@ -88,9 +90,11 @@ package struct EducationLevel: Equatable, Sendable {
 
 /** What one stage costs when the child starts it. */
 package struct EducationCost: Equatable, Sendable {
+    /** The school stage. */
     package let stage: EducationStage
     /** Years until the child starts it. */
     package let startsInYears: Int
+    /** Years until the goal. */
     package let years: Int
     let entryAmount: Double
     let tuitionAmount: Double
@@ -119,7 +123,10 @@ package struct EducationCost: Equatable, Sendable {
 
 /** Pilih Tipe Target: Uang Pangkal, UP + SPP, Semua. */
 package enum EducationTarget: Equatable, Sendable {
+    /** Uang Pangkal only. */
     case entryOnly
+    /** Uang Pangkal and the fees (UP + SPP). */
     case entryAndTuition
+    /** Everything, Biaya Lain included (Semua). */
     case all
 }

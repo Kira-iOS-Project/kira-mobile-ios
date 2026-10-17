@@ -43,5 +43,8 @@ struct OtherGoalModelTests {
         #expect(!model.canCalculate)
         let empty = OtherGoalModel()
         #expect(!empty.canCalculate && empty.period == .month && empty.timing == .start)
+        let nothingSetAside = board()
+        nothingSetAside.present = ""
+        #expect(nothingSetAside.outcome?.present == 0)
     }
 }

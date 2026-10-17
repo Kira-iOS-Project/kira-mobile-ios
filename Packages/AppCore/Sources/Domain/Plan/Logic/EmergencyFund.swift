@@ -6,12 +6,17 @@
 package struct EmergencyFund: Equatable, Sendable {
     /** Pengeluaran Pokok per Bulan. */
     package let monthlyEssential: Int
+    /** Sudah Menikah? */
     package let married: Bool
+    /** Jumlah Tanggungan. */
     package let dependants: Int
     /** Terkumpul dalam … Bulan Lagi. */
     package let months: Int
+    /** What is saved already (Tabungan saat ini). */
     package let present: Int
+    /** The deposit each month. */
     package let deposit: Int
+    /** The return a year, as a fraction (0.06). */
     package let annualReturn: Double
 
     /** A fund for `monthlyEssential` a month, saved over `months`. */
