@@ -6,7 +6,7 @@ import Observation
 @MainActor
 @Observable
 package final class BudgetModel {
-    /** Current budget, loading until the API answers. */
+    /** Loading, the budget, empty while it is not configured, or the problem. */
     package private(set) var phase: ScreenPhase<BudgetOverview> = .loading
     private let service: any BudgetService
 
@@ -15,12 +15,13 @@ package final class BudgetModel {
         self.service = service
     }
 
-    /** Loads the budget, including its server-adjusted pay period. */
+    /** Loads the budget, including its server-adjusted pay period; a failure shows its problem (Rule 12). */
     package func load() async {
         do {
-            phase = .loaded(try await service.currentBudget())
+            let budget = try await service.currentBudget()
+            phase = budget.isConfigured ? .loaded(budget) : .empty
         } catch {
-            phase = .failed(error as? AppProblem ?? AppProblem())
+            phase = .failed(AppProblem(error))
         }
     }
 }

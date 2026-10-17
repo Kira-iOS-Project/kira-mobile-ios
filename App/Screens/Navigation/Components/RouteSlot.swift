@@ -65,7 +65,7 @@ struct RouteSlot: View {
         case .wallets:
             WalletsScreen(
                 service: services.wallet, onOpenDebt: { onOpen(.debtDetail(id: $0)) }, onOpenHelp: { onOpen(.care) })
-        case .budget: BudgetScreen(service: services.budget)
+        case .budget: BudgetScreen(service: services.budget, onOpen: onOpen)
         case .debtDetail: EmptySlot()
         case .creditReport: EmptySlot()
         case .editBudget: EmptySlot()
