@@ -13,4 +13,10 @@ package protocol BearerTokenSource: Sendable {
      renewed meanwhile, or a new one from the refresh token. Nil when the session has ended.
      */
     func renewedBearerToken(replacing rejected: String) async -> String?
+
+    /**
+     The API answered 401 to `token` although it was just renewed: the session is over on the
+     server (revoked, or the account is gone), so it ends here too and the app goes to Masuk.
+     */
+    func sessionRefused(_ token: String) async
 }

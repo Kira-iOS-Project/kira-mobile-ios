@@ -20,7 +20,7 @@ extension ProductModel {
             .scholarshipDebtEmergencyRequired, .communityGroupNotFound, .communityLinkUnavailable,
             .communityReportDuplicate, .communityRulesNotAccepted, .careCheckInNotFound, .careSafetyPlanNotFound,
             .payoffExtraTooHigh, .payoffNothingToPlan, .payoffPlanNotFound, .payoffDebtNotFound, .payoffPaymentTooHigh,
-            .payoffPaymentAlreadyRecorded:
+            .payoffPaymentAlreadyRecorded, .assetNotFound:
             false
         }
     }

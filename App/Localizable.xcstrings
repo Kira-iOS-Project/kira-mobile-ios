@@ -10412,6 +10412,16 @@
         }
       }
     },
+    "indicator.consumerDebt.onTimeMany" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bayar tepat waktu, tapi akunnya terlalu banyak."
+          }
+        }
+      }
+    },
     "indicator.consumerDebt.overdue" : {
       "localizations" : {
         "id" : {
@@ -11012,6 +11022,16 @@
         }
       }
     },
+    "indicator.next.consumerDebtMany" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lunasi akun dengan sisa terkecil dulu, sampai tinggal tiga platform."
+          }
+        }
+      }
+    },
     "indicator.next.consumerDebtOne" : {
       "localizations" : {
         "id" : {
@@ -11572,7 +11592,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ada Keterlambatan"
+            "value" : "4+ Platform atau Ada Keterlambatan"
           }
         }
       }
@@ -11583,7 +11603,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pernah telat bayar"
+            "value" : "Terlalu banyak akun atau pernah telat bayar"
           }
         }
       }
@@ -17045,6 +17065,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Datamu baru saja dikirim ke emailmu. Cek kotak masuk dulu, atau coba lagi nanti."
+          }
+        }
+      }
+    },
+    "problem.ASSET_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aset ini tidak ditemukan. Mungkin sudah dihapus."
           }
         }
       }

@@ -1,4 +1,3 @@
-import Domain
 import Foundation
 
 /** Kira Peduli's tools: the debts a negotiation script is written to, and the safety plan. */

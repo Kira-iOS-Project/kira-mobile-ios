@@ -6,7 +6,8 @@ import OpenAPIRuntime
  Signs every request of the generated client with the bearer token, except the operations that
  need none (requesting and verifying the sign-in code, refreshing the session). When the API
  answers 401, the middleware asks for a renewed token once and sends the request once more; a
- second 401 reaches the screen as it is. A body that can be read only once is never sent twice.
+ second 401 ends the session (`BearerTokenSource.sessionRefused`) and reaches the screen as it is.
+ A body that can be read only once is never sent twice.
  */
 package struct AuthMiddleware: ClientMiddleware {
     /** The operations (operationId) that the API serves without a bearer token. */
@@ -23,7 +24,7 @@ package struct AuthMiddleware: ClientMiddleware {
         self.publicOperations = publicOperations
     }
 
-    /** Adds the bearer token, and on 401 retries once with a renewed one. */
+    /** Adds the bearer token, on 401 retries once with a renewed one, and ends the session on a second 401. */
     package func intercept(
         _ request: HTTPRequest, body: HTTPBody?, baseURL: URL, operationID: String,
         next: @concurrent @Sendable (HTTPRequest, HTTPBody?, URL) async throws -> (HTTPResponse, HTTPBody?)
@@ -35,7 +36,9 @@ package struct AuthMiddleware: ClientMiddleware {
         guard response.status == .unauthorized, body?.iterationBehavior != .single,
             let renewed = await tokens.renewedBearerToken(replacing: token)
         else { return (response, responseBody) }
-        return try await next(Self.signed(request, with: renewed), body, baseURL)
+        let retried = try await next(Self.signed(request, with: renewed), body, baseURL)
+        if retried.0.status == .unauthorized { await tokens.sessionRefused(renewed) }
+        return retried
     }
 
     /** `request` with `Authorization: Bearer <token>`, replacing any it had. */

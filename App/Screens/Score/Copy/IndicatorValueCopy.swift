@@ -99,8 +99,16 @@ extension IndicatorMeasure {
         case .nothingOwed: Text("indicator.consumerDebt.cleared")
         case .belowGoal: Text("indicator.consumerDebt.late")
         case .overLimit: Text("indicator.consumerDebt.overdue")
-        default: Text("indicator.consumerDebt.onTime")
+        default: consumerOnTimeLine
         }
+    }
+
+    /** All paid on time: four or more platforms still score 25 (KIR-126), so the line says why. */
+    private var consumerOnTimeLine: Text {
+        guard case .consumerDebt(let platforms, _, _) = self, platforms >= 4 else {
+            return Text("indicator.consumerDebt.onTime")
+        }
+        return Text("indicator.consumerDebt.onTimeMany")
     }
 
     private var protectionLine: Text {

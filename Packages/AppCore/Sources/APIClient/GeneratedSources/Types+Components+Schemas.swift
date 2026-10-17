@@ -1365,6 +1365,159 @@ extension Components {
                 case dueDay
             }
         }
+        /// - Remark: Generated from `#/components/schemas/ScoreHistory`.
+        internal struct ScoreHistory: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ScoreHistory/current`.
+            internal struct CurrentPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/current/score`.
+                internal var score: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/current/band`.
+                internal enum BandPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                    case vulnerable = "vulnerable"
+                    case coping = "coping"
+                    case healthy = "healthy"
+                }
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/current/band`.
+                internal var band: Components.Schemas.ScoreHistory.CurrentPayload.BandPayload
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/current/deltaFromPrevious`.
+                internal var deltaFromPrevious: Swift.Int?
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/current/previousMonth`.
+                internal var previousMonth: Swift.String?
+                /// Creates a new `CurrentPayload`.
+                ///
+                /// - Parameters:
+                ///   - score:
+                ///   - band:
+                ///   - deltaFromPrevious:
+                ///   - previousMonth:
+                internal init(
+                    score: Swift.Int,
+                    band: Components.Schemas.ScoreHistory.CurrentPayload.BandPayload,
+                    deltaFromPrevious: Swift.Int? = nil,
+                    previousMonth: Swift.String? = nil
+                ) {
+                    self.score = score
+                    self.band = band
+                    self.deltaFromPrevious = deltaFromPrevious
+                    self.previousMonth = previousMonth
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case score
+                    case band
+                    case deltaFromPrevious
+                    case previousMonth
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/ScoreHistory/current`.
+            internal var current: Components.Schemas.ScoreHistory.CurrentPayload
+            /// - Remark: Generated from `#/components/schemas/ScoreHistory/PointsPayload`.
+            internal struct PointsPayloadPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/PointsPayload/month`.
+                internal var month: Swift.String
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/PointsPayload/score`.
+                internal var score: Swift.Int
+                /// Creates a new `PointsPayloadPayload`.
+                ///
+                /// - Parameters:
+                ///   - month:
+                ///   - score:
+                internal init(
+                    month: Swift.String,
+                    score: Swift.Int
+                ) {
+                    self.month = month
+                    self.score = score
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case month
+                    case score
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/ScoreHistory/points`.
+            internal typealias PointsPayload = [Components.Schemas.ScoreHistory.PointsPayloadPayload]
+            /// - Remark: Generated from `#/components/schemas/ScoreHistory/points`.
+            internal var points: Components.Schemas.ScoreHistory.PointsPayload
+            /// - Remark: Generated from `#/components/schemas/ScoreHistory/ChangesPayload`.
+            internal struct ChangesPayloadPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/ChangesPayload/indicator`.
+                internal enum IndicatorPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                    case emergencyFund = "emergency_fund"
+                    case savingsRatio = "savings_ratio"
+                    case instalmentRatio = "instalment_ratio"
+                    case consumerDebt = "consumer_debt"
+                    case debtToAsset = "debt_to_asset"
+                    case protectionCover = "protection_cover"
+                }
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/ChangesPayload/indicator`.
+                internal var indicator: Components.Schemas.ScoreHistory.ChangesPayloadPayload.IndicatorPayload
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/ChangesPayload/fromLabel`.
+                internal var fromLabel: Swift.String?
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/ChangesPayload/toLabel`.
+                internal var toLabel: Swift.String
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/ChangesPayload/fromPoints`.
+                internal var fromPoints: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/ChangesPayload/toPoints`.
+                internal var toPoints: Swift.Int
+                /// Creates a new `ChangesPayloadPayload`.
+                ///
+                /// - Parameters:
+                ///   - indicator:
+                ///   - fromLabel:
+                ///   - toLabel:
+                ///   - fromPoints:
+                ///   - toPoints:
+                internal init(
+                    indicator: Components.Schemas.ScoreHistory.ChangesPayloadPayload.IndicatorPayload,
+                    fromLabel: Swift.String? = nil,
+                    toLabel: Swift.String,
+                    fromPoints: Swift.Int,
+                    toPoints: Swift.Int
+                ) {
+                    self.indicator = indicator
+                    self.fromLabel = fromLabel
+                    self.toLabel = toLabel
+                    self.fromPoints = fromPoints
+                    self.toPoints = toPoints
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case indicator
+                    case fromLabel
+                    case toLabel
+                    case fromPoints
+                    case toPoints
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/ScoreHistory/changes`.
+            internal typealias ChangesPayload = [Components.Schemas.ScoreHistory.ChangesPayloadPayload]
+            /// - Remark: Generated from `#/components/schemas/ScoreHistory/changes`.
+            internal var changes: Components.Schemas.ScoreHistory.ChangesPayload
+            /// - Remark: Generated from `#/components/schemas/ScoreHistory/unchangedCount`.
+            internal var unchangedCount: Swift.Int
+            /// Creates a new `ScoreHistory`.
+            ///
+            /// - Parameters:
+            ///   - current:
+            ///   - points:
+            ///   - changes:
+            ///   - unchangedCount:
+            internal init(
+                current: Components.Schemas.ScoreHistory.CurrentPayload,
+                points: Components.Schemas.ScoreHistory.PointsPayload,
+                changes: Components.Schemas.ScoreHistory.ChangesPayload,
+                unchangedCount: Swift.Int
+            ) {
+                self.current = current
+                self.points = points
+                self.changes = changes
+                self.unchangedCount = unchangedCount
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case current
+                case points
+                case changes
+                case unchangedCount
+            }
+        }
         /// - Remark: Generated from `#/components/schemas/IndicatorDetail`.
         internal struct IndicatorDetail: Codable, Hashable, Sendable {
             /// - Remark: Generated from `#/components/schemas/IndicatorDetail/value1`.
@@ -2225,6 +2378,217 @@ extension Components {
             internal enum CodingKeys: String, CodingKey {
                 case amount
                 case paymentId
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/Portfolio`.
+        internal struct Portfolio: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/Portfolio/assets`.
+            internal var assets: [Components.Schemas.Asset]
+            /// - Remark: Generated from `#/components/schemas/Portfolio/total`.
+            internal var total: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/Portfolio/updatedOn`.
+            internal var updatedOn: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Portfolio/debtToAsset`.
+            internal struct DebtToAssetPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/Portfolio/debtToAsset/percent`.
+                internal var percent: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/Portfolio/debtToAsset/points`.
+                internal var points: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/Portfolio/debtToAsset/band`.
+                internal enum BandPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                    case vulnerable = "vulnerable"
+                    case coping = "coping"
+                    case healthy = "healthy"
+                }
+                /// - Remark: Generated from `#/components/schemas/Portfolio/debtToAsset/band`.
+                internal var band: Components.Schemas.Portfolio.DebtToAssetPayload.BandPayload
+                /// Creates a new `DebtToAssetPayload`.
+                ///
+                /// - Parameters:
+                ///   - percent:
+                ///   - points:
+                ///   - band:
+                internal init(
+                    percent: Swift.Int,
+                    points: Swift.Int,
+                    band: Components.Schemas.Portfolio.DebtToAssetPayload.BandPayload
+                ) {
+                    self.percent = percent
+                    self.points = points
+                    self.band = band
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case percent
+                    case points
+                    case band
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/Portfolio/debtToAsset`.
+            internal var debtToAsset: Components.Schemas.Portfolio.DebtToAssetPayload?
+            /// Creates a new `Portfolio`.
+            ///
+            /// - Parameters:
+            ///   - assets:
+            ///   - total:
+            ///   - updatedOn:
+            ///   - debtToAsset:
+            internal init(
+                assets: [Components.Schemas.Asset],
+                total: Swift.Int,
+                updatedOn: Swift.String? = nil,
+                debtToAsset: Components.Schemas.Portfolio.DebtToAssetPayload? = nil
+            ) {
+                self.assets = assets
+                self.total = total
+                self.updatedOn = updatedOn
+                self.debtToAsset = debtToAsset
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case assets
+                case total
+                case updatedOn
+                case debtToAsset
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/Asset`.
+        internal struct Asset: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/Asset/id`.
+            internal var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Asset/assetClass`.
+            internal enum AssetClassPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case deposit = "deposit"
+                case mutualFund = "mutual_fund"
+                case governmentBond = "government_bond"
+                case gold = "gold"
+                case stock = "stock"
+                case crypto = "crypto"
+                case other = "other"
+            }
+            /// - Remark: Generated from `#/components/schemas/Asset/assetClass`.
+            internal var assetClass: Components.Schemas.Asset.AssetClassPayload
+            /// - Remark: Generated from `#/components/schemas/Asset/name`.
+            internal var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Asset/value`.
+            internal var value: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/Asset/valuedOn`.
+            internal var valuedOn: Swift.String
+            /// Creates a new `Asset`.
+            ///
+            /// - Parameters:
+            ///   - id:
+            ///   - assetClass:
+            ///   - name:
+            ///   - value:
+            ///   - valuedOn:
+            internal init(
+                id: Swift.String,
+                assetClass: Components.Schemas.Asset.AssetClassPayload,
+                name: Swift.String,
+                value: Swift.Int,
+                valuedOn: Swift.String
+            ) {
+                self.id = id
+                self.assetClass = assetClass
+                self.name = name
+                self.value = value
+                self.valuedOn = valuedOn
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case id
+                case assetClass
+                case name
+                case value
+                case valuedOn
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/AssetInput`.
+        internal struct AssetInput: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/AssetInput/assetClass`.
+            internal enum AssetClassPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case deposit = "deposit"
+                case mutualFund = "mutual_fund"
+                case governmentBond = "government_bond"
+                case gold = "gold"
+                case stock = "stock"
+                case crypto = "crypto"
+                case other = "other"
+            }
+            /// - Remark: Generated from `#/components/schemas/AssetInput/assetClass`.
+            internal var assetClass: Components.Schemas.AssetInput.AssetClassPayload
+            /// - Remark: Generated from `#/components/schemas/AssetInput/name`.
+            internal var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/AssetInput/value`.
+            internal var value: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/AssetInput/valuedOn`.
+            internal var valuedOn: Swift.String
+            /// Creates a new `AssetInput`.
+            ///
+            /// - Parameters:
+            ///   - assetClass:
+            ///   - name:
+            ///   - value:
+            ///   - valuedOn:
+            internal init(
+                assetClass: Components.Schemas.AssetInput.AssetClassPayload,
+                name: Swift.String,
+                value: Swift.Int,
+                valuedOn: Swift.String
+            ) {
+                self.assetClass = assetClass
+                self.name = name
+                self.value = value
+                self.valuedOn = valuedOn
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case assetClass
+                case name
+                case value
+                case valuedOn
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/AssetUpdate`.
+        internal struct AssetUpdate: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/AssetUpdate/assetClass`.
+            internal enum AssetClassPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case deposit = "deposit"
+                case mutualFund = "mutual_fund"
+                case governmentBond = "government_bond"
+                case gold = "gold"
+                case stock = "stock"
+                case crypto = "crypto"
+                case other = "other"
+            }
+            /// - Remark: Generated from `#/components/schemas/AssetUpdate/assetClass`.
+            internal var assetClass: Components.Schemas.AssetUpdate.AssetClassPayload?
+            /// - Remark: Generated from `#/components/schemas/AssetUpdate/name`.
+            internal var name: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/AssetUpdate/value`.
+            internal var value: Swift.Int?
+            /// - Remark: Generated from `#/components/schemas/AssetUpdate/valuedOn`.
+            internal var valuedOn: Swift.String?
+            /// Creates a new `AssetUpdate`.
+            ///
+            /// - Parameters:
+            ///   - assetClass:
+            ///   - name:
+            ///   - value:
+            ///   - valuedOn:
+            internal init(
+                assetClass: Components.Schemas.AssetUpdate.AssetClassPayload? = nil,
+                name: Swift.String? = nil,
+                value: Swift.Int? = nil,
+                valuedOn: Swift.String? = nil
+            ) {
+                self.assetClass = assetClass
+                self.name = name
+                self.value = value
+                self.valuedOn = valuedOn
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case assetClass
+                case name
+                case value
+                case valuedOn
             }
         }
         /// - Remark: Generated from `#/components/schemas/Home`.
