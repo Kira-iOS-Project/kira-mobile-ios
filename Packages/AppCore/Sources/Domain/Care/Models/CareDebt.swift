@@ -7,19 +7,13 @@ package struct CareDebt: Identifiable, Hashable, Sendable {
     package let id: String
     /** The lender as the person named it ("Paylater B"). */
     package let name: String
-    /** The kind of debt. */
-    package let kind: DebtKind
-    /** What is left to pay, in whole rupiah. */
-    package let remaining: Int
     /** The instalment each month, in whole rupiah. */
     package let monthlyInstalment: Int
 
     /** A debt with the given fields. */
-    package init(id: String, name: String, kind: DebtKind, remaining: Int, monthlyInstalment: Int) {
+    package init(id: String, name: String, monthlyInstalment: Int) {
         self.id = id
         self.name = name
-        self.kind = kind
-        self.remaining = remaining
         self.monthlyInstalment = monthlyInstalment
     }
 }

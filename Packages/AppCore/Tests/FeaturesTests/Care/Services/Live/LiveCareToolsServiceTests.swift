@@ -29,16 +29,8 @@ struct LiveCareToolsServiceTests {
         #expect(
             try await service.debts() == [
                 CareDebt(
-                    id: "7c1e2d3f-0000-4000-8000-000000000001", name: "Paylater B", kind: .paylater,
-                    remaining: 1_200_000, monthlyInstalment: 230_000)
+                    id: "7c1e2d3f-0000-4000-8000-000000000001", name: "Paylater B", monthlyInstalment: 230_000)
             ])
-    }
-
-    @Test("an unknown debt kind is a problem, not a crash")
-    func unknownKind() async {
-        let debts = #"{"debts":[{"id":"x","name":"X","kind":"lottery","remaining":1,"monthlyInstalment":1}]}"#
-        let (service, _) = service(["GET /api/debts": ok(debts)])
-        await #expect(throws: (any Error).self) { try await service.debts() }
     }
 
     @Test("reads the plan; 404 CARE_SAFETY_PLAN_NOT_FOUND is no plan yet")
@@ -67,13 +59,17 @@ struct LiveCareToolsServiceTests {
     func save() async throws {
         let (service, transport) = service(["PUT /api/care/safety-plan": ok(planJSON)])
         let plan = SafetyPlan(
-            warningSigns: "susah tidur", people: [SafetyContact(name: "Ibu", phone: "0812-3456")], safePlace: "rumah")
+            warningSigns: "susah tidur", people: [SafetyContact(name: "Ibu", phone: "0812-3456")],
+            professionals: [SafetyContact(name: "Healing119", phone: "119 ekstensi 8")], safePlace: "rumah")
         let stored = try await service.saveSafetyPlan(plan)
         #expect(stored.calmingThings == "jalan sore")
         let sent = try #require(await transport.sent.first?.json)
         #expect(sent["warningSigns"] == .string("susah tidur") && sent["safePlace"] == .string("rumah"))
         #expect(sent["people"] == .array([.object(["name": .string("Ibu"), "phone": .string("0812-3456")])]))
-        #expect(sent["professionals"] == .array([]) && sent["updatedAt"] == nil)
+        #expect(
+            sent["professionals"]
+                == .array([.object(["name": .string("Healing119"), "phone": .string("119 ekstensi 8")])]))
+        #expect(sent["updatedAt"] == nil)
     }
 
     @Test(

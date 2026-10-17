@@ -11,6 +11,7 @@ private actor Tokens: BearerTokenSource {
     let current: String?
     let renewed: String?
     private(set) var renewals: [String] = []
+    private(set) var refused: [String] = []
 
     init(current: String?, renewed: String? = nil) {
         self.current = current
@@ -22,6 +23,10 @@ private actor Tokens: BearerTokenSource {
     func renewedBearerToken(replacing rejected: String) -> String? {
         renewals.append(rejected)
         return renewed
+    }
+
+    func sessionRefused(_ token: String) {
+        refused.append(token)
     }
 }
 
@@ -101,14 +106,17 @@ struct AuthMiddlewareTests {
         #expect(try await run(AuthMiddleware(tokens: tokens), server: server) == .ok)
         #expect(await server.authorizations == ["Bearer a", "Bearer b"])
         #expect(await tokens.renewals == ["a"])
+        #expect(await tokens.refused.isEmpty)
     }
 
-    @Test("returns a second 401 as it is")
+    @Test("a second 401 ends the session with the renewed token, and reaches the screen as it is")
     func secondRefusal() async throws {
         let server = Server([.unauthorized, .unauthorized])
-        let status = try await run(AuthMiddleware(tokens: Tokens(current: "a", renewed: "b")), server: server)
+        let tokens = Tokens(current: "a", renewed: "b")
+        let status = try await run(AuthMiddleware(tokens: tokens), server: server)
         #expect(status == .unauthorized)
         #expect(await server.authorizations.count == 2)
+        #expect(await tokens.refused == ["b"])
     }
 
     @Test("returns the 401 when the session has ended")

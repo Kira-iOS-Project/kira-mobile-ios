@@ -74,6 +74,22 @@ nonisolated final class HomeScoreAuditTests: XCTestCase {
         try auditScreen("consumerDebt")
     }
 
+    /**
+     KIR-126: four platforms paid on time score 25 on the one ladder everyone sees, whose 25 rung
+     names both causes; Posisimu says the accounts are too many, and the next step only pays off.
+     */
+    @MainActor
+    func testConsumerDebtManyOnTimePassesTheAudit() throws {
+        try auditScreen("consumerDebtManyOnTime") { app in
+            let position = "Bayar tepat waktu, tapi akunnya terlalu banyak."
+            XCTAssertTrue(app.staticTexts[position].waitForExistence(timeout: 5))
+            XCTAssertTrue(app.staticTexts["4+ Platform atau Ada Keterlambatan"].exists)
+            XCTAssertTrue(app.staticTexts["Naik ke 50 Poin"].exists)
+            let next = "Lunasi akun dengan sisa terkecil dulu, sampai tinggal tiga platform."
+            XCTAssertTrue(app.staticTexts[next].exists)
+        }
+    }
+
     @MainActor
     func testDebtToAssetPassesTheAudit() throws {
         try auditScreen("debtToAsset")

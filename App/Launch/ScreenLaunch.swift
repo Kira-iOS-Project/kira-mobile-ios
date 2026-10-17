@@ -46,6 +46,8 @@
         /** BRD and SKR. */
         case home, homeFirstSteps, homeDebtPlan, score
         case emergencyFund, savingsRatio, instalmentRatio, consumerDebt, debtToAsset, protectionCover
+        /** SKR-02d: Utang Konsumtif with four platforms, all paid on time (KIR-126). */
+        case consumerDebtManyOnTime
         /** AKN: Profil and the screens it opens. */
         case profile, security, privacy, about, terms, privacyPolicy, complaints
         /** AKN: plans, the subscription and Beasiswa Kira. */
@@ -92,7 +94,7 @@
                 .assets, .protection, .result, .pin:
                 .onboarding
             case .home, .homeFirstSteps, .homeDebtPlan, .score, .emergencyFund, .savingsRatio, .instalmentRatio,
-                .consumerDebt, .debtToAsset, .protectionCover:
+                .consumerDebt, .consumerDebtManyOnTime, .debtToAsset, .protectionCover:
                 .home
             case .profile, .security, .privacy, .about, .terms, .privacyPolicy, .complaints: .account
             case .plans, .plansYearly, .planDetail, .checkout, .subscription, .invoices, .treat, .scholarship,
