@@ -50,6 +50,8 @@
         var body: some View {
             NavigationStack {
                 switch screen {
+                case .billList:
+                    BillsScreen(service: PreviewBillsService(), onOpenBill: { _ in })
                 case .homeFirstSteps: HomeScreen(service: PreviewHomeService(.sampleFirstSteps)) { _ in }
                 case .homeDebtPlan: HomeScreen(service: PreviewHomeService(.sampleDebtPlan)) { _ in }
                 case .score: ScoreScreen(service: PreviewScoreService()) { _ in }

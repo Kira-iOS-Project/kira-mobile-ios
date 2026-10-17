@@ -20,6 +20,11 @@ package struct LiveHomeService: HomeService {
         try HomeOverview(try await api.getHome())
     }
 
+    /** `GET /bills`; Beranda chooses the closest unpaid schedule. */
+    package func bills() async throws -> [RecurringBill] {
+        try await api.getBills()
+    }
+
     /** `PATCH /me {hideBalances}`. */
     package func setHideBalances(_ isHidden: Bool) async throws {
         _ = try await api.updateMe([.hideBalances(isHidden)])

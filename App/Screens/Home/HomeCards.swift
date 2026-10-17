@@ -5,6 +5,32 @@
 import Domain
 import SwiftUI
 
+struct HomeBillsCard: View {
+    let bill: RecurringBill
+    let isMasked: Bool
+    let onOpen: () -> Void
+
+    var body: some View {
+        KiraTapCard(
+            .calendar, label: Text("home.bills.label \(bill.name) \(bill.nextDueDate.date.formatted(.kiraDate))"),
+            action: onOpen
+        ) {
+            Text("home.bills.title").font(.headline).kiraLineHeight(22, size: 17).foregroundStyle(.ink)
+            HStack(spacing: KiraSpacing.space2) {
+                Text(bill.name).font(.subheadline).kiraLineHeight(20, size: 15).foregroundStyle(.ink)
+                Spacer(minLength: KiraSpacing.space2)
+                KiraAmount(Decimal(bill.amount), size: .small).masked(isMasked)
+            }
+            HStack {
+                Text("bills.due \(bill.nextDueDate.date.formatted(.kiraDate))")
+                    .font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
+                Spacer(minLength: KiraSpacing.space2)
+                Text("home.bills.openAll").font(.footnote.weight(.semibold)).foregroundStyle(.pandan)
+            }
+        }
+    }
+}
+
 struct HomeScoreCard: View {
     let score: ScoreSummary
     let onOpen: () -> Void

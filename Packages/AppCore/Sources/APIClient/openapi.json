@@ -4993,8 +4993,7 @@
                 "type": "string",
                 "enum": [
                   "upcoming",
-                  "dueSoon",
-                  "paid"
+                  "dueSoon"
                 ]
               }
             },
@@ -5021,6 +5020,633 @@
           "paymentStatus",
           "nextInstallment",
           "dueSoon"
+        ]
+      },
+      "BillList": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Bill"
+            }
+          }
+        },
+        "required": [
+          "items"
+        ]
+      },
+      "Bill": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "bill",
+              "debtInstallment"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "food",
+              "coffee",
+              "transport",
+              "shopping",
+              "bills",
+              "paylater_instalment",
+              "savings_deposit",
+              "insurance",
+              "entertainment",
+              "health",
+              "education",
+              "household",
+              "other_expense"
+            ]
+          },
+          "nextDueDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "repeatInterval": {
+            "type": "string",
+            "enum": [
+              "weekly",
+              "monthly",
+              "yearly"
+            ]
+          },
+          "installmentsTotal": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "installmentsRemaining": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "linkedDebtAccountId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid"
+          },
+          "linkedDebtName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "dueSoon": {
+            "type": "boolean"
+          },
+          "paidThisPeriod": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "name",
+          "amount",
+          "category",
+          "nextDueDate",
+          "repeatInterval",
+          "installmentsTotal",
+          "installmentsRemaining",
+          "linkedDebtAccountId",
+          "linkedDebtName",
+          "dueSoon",
+          "paidThisPeriod"
+        ]
+      },
+      "CurrentBudget": {
+        "type": "object",
+        "properties": {
+          "configured": {
+            "type": "boolean"
+          },
+          "income": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "remaining": {
+            "type": "integer"
+          },
+          "allocations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "food",
+                    "coffee",
+                    "transport",
+                    "shopping",
+                    "bills",
+                    "paylater_instalment",
+                    "savings_deposit",
+                    "insurance",
+                    "entertainment",
+                    "health",
+                    "education",
+                    "household",
+                    "other_expense"
+                  ]
+                },
+                "amount": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "spent": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "nearLimit": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "category",
+                "amount",
+                "spent",
+                "nearLimit"
+              ]
+            }
+          },
+          "totalAllocated": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "overAllocated": {
+            "type": "boolean"
+          },
+          "goalPosts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "emergency_fund"
+                  ]
+                },
+                "name": {
+                  "type": "string"
+                },
+                "currentAmount": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "targetAmount": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "milestones": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      "label": {
+                        "type": "string"
+                      },
+                      "reached": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "amount",
+                      "label",
+                      "reached"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "category",
+                "name",
+                "currentAmount",
+                "targetAmount",
+                "milestones"
+              ]
+            }
+          },
+          "payday": {
+            "type": "object",
+            "properties": {
+              "requested": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "day"
+                        ]
+                      },
+                      "day": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 31
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "day"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "endOfMonth"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "type"
+                    ]
+                  }
+                ]
+              },
+              "adjustedDate": {
+                "type": "string",
+                "format": "date",
+                "example": "2026-10-17"
+              },
+              "periodStart": {
+                "type": "string",
+                "format": "date",
+                "example": "2026-10-17"
+              },
+              "periodEnd": {
+                "type": "string",
+                "format": "date",
+                "example": "2026-10-17"
+              },
+              "nextPayday": {
+                "type": "string",
+                "format": "date",
+                "example": "2026-10-17"
+              },
+              "daysUntilPayday": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "requested",
+              "adjustedDate",
+              "periodStart",
+              "periodEnd",
+              "nextPayday",
+              "daysUntilPayday"
+            ]
+          }
+        },
+        "required": [
+          "configured",
+          "income",
+          "remaining",
+          "allocations",
+          "totalAllocated",
+          "overAllocated",
+          "goalPosts",
+          "payday"
+        ]
+      },
+      "BudgetEdit": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CurrentBudget"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "averagePeriods": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 3
+              },
+              "averages": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "category": {
+                      "type": "string",
+                      "enum": [
+                        "food",
+                        "coffee",
+                        "transport",
+                        "shopping",
+                        "bills",
+                        "paylater_instalment",
+                        "savings_deposit",
+                        "insurance",
+                        "entertainment",
+                        "health",
+                        "education",
+                        "household",
+                        "other_expense"
+                      ]
+                    },
+                    "amount": {
+                      "type": "integer",
+                      "minimum": 0
+                    }
+                  },
+                  "required": [
+                    "category",
+                    "amount"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "averagePeriods",
+              "averages"
+            ]
+          }
+        ]
+      },
+      "UpdateCurrentBudgetInput": {
+        "type": "object",
+        "properties": {
+          "income": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000000000000
+          },
+          "allocations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "food",
+                    "coffee",
+                    "transport",
+                    "shopping",
+                    "bills",
+                    "paylater_instalment",
+                    "savings_deposit",
+                    "insurance",
+                    "entertainment",
+                    "health",
+                    "education",
+                    "household",
+                    "other_expense"
+                  ]
+                },
+                "amount": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 10000000000000
+                }
+              },
+              "required": [
+                "category",
+                "amount"
+              ]
+            },
+            "maxItems": 30
+          },
+          "payday": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "day"
+                    ]
+                  },
+                  "day": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 31
+                  }
+                },
+                "required": [
+                  "type",
+                  "day"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "endOfMonth"
+                    ]
+                  }
+                },
+                "required": [
+                  "type"
+                ]
+              }
+            ]
+          }
+        },
+        "required": [
+          "income",
+          "allocations",
+          "payday"
+        ]
+      },
+      "BankImport": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "rowCount": {
+            "type": "integer"
+          },
+          "dateFrom": {
+            "type": "string",
+            "format": "date"
+          },
+          "dateTo": {
+            "type": "string",
+            "format": "date"
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BankImportRow"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "rowCount",
+          "dateFrom",
+          "dateTo",
+          "rows"
+        ]
+      },
+      "BankImportRow": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "description": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "integer"
+          },
+          "type": {
+            "$ref": "#/components/schemas/TransactionType"
+          },
+          "category": {
+            "$ref": "#/components/schemas/TransactionCategory"
+          },
+          "isDuplicate": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "date",
+          "description",
+          "amount",
+          "type",
+          "category",
+          "isDuplicate"
+        ]
+      },
+      "BankImportInput": {
+        "type": "object",
+        "properties": {
+          "fileName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "fileSize": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10000000
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255
+                },
+                "amount": {
+                  "type": "integer",
+                  "minimum": -10000000000000,
+                  "maximum": 10000000000000
+                },
+                "category": {
+                  "$ref": "#/components/schemas/TransactionCategory"
+                }
+              },
+              "required": [
+                "date",
+                "description",
+                "amount",
+                "category"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 3000
+          }
+        },
+        "required": [
+          "fileName",
+          "fileSize",
+          "rows"
+        ]
+      },
+      "BankImportResult": {
+        "type": "object",
+        "properties": {
+          "savedCount": {
+            "type": "integer"
+          },
+          "skippedCount": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "savedCount",
+          "skippedCount"
+        ]
+      },
+      "BankImportCommit": {
+        "type": "object",
+        "properties": {
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "category": {
+                  "$ref": "#/components/schemas/TransactionCategory"
+                }
+              },
+              "required": [
+                "id",
+                "category"
+              ]
+            },
+            "maxItems": 3000
+          }
+        },
+        "required": [
+          "rows"
         ]
       },
       "CreateWalletInput": {
@@ -5349,172 +5975,6 @@
           "nextStep",
           "installmentSchedule",
           "paymentHistory"
-        ]
-      },
-      "BankImport": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "rowCount": {
-            "type": "integer"
-          },
-          "dateFrom": {
-            "type": "string",
-            "format": "date"
-          },
-          "dateTo": {
-            "type": "string",
-            "format": "date"
-          },
-          "rows": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BankImportRow"
-            }
-          }
-        },
-        "required": [
-          "id",
-          "rowCount",
-          "dateFrom",
-          "dateTo",
-          "rows"
-        ]
-      },
-      "BankImportRow": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "date": {
-            "type": "string",
-            "format": "date"
-          },
-          "description": {
-            "type": "string"
-          },
-          "amount": {
-            "type": "integer"
-          },
-          "type": {
-            "$ref": "#/components/schemas/TransactionType"
-          },
-          "category": {
-            "$ref": "#/components/schemas/TransactionCategory"
-          },
-          "isDuplicate": {
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "id",
-          "date",
-          "description",
-          "amount",
-          "type",
-          "category",
-          "isDuplicate"
-        ]
-      },
-      "BankImportInput": {
-        "type": "object",
-        "properties": {
-          "fileName": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 255
-          },
-          "fileSize": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 10000000
-          },
-          "rows": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "date": {
-                  "type": "string",
-                  "format": "date"
-                },
-                "description": {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 255
-                },
-                "amount": {
-                  "type": "integer",
-                  "minimum": -10000000000000,
-                  "maximum": 10000000000000
-                },
-                "category": {
-                  "$ref": "#/components/schemas/TransactionCategory"
-                }
-              },
-              "required": [
-                "date",
-                "description",
-                "amount",
-                "category"
-              ]
-            },
-            "minItems": 1,
-            "maxItems": 3000
-          }
-        },
-        "required": [
-          "fileName",
-          "fileSize",
-          "rows"
-        ]
-      },
-      "BankImportResult": {
-        "type": "object",
-        "properties": {
-          "savedCount": {
-            "type": "integer"
-          },
-          "skippedCount": {
-            "type": "integer"
-          }
-        },
-        "required": [
-          "savedCount",
-          "skippedCount"
-        ]
-      },
-      "BankImportCommit": {
-        "type": "object",
-        "properties": {
-          "rows": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string",
-                  "format": "uuid"
-                },
-                "category": {
-                  "$ref": "#/components/schemas/TransactionCategory"
-                }
-              },
-              "required": [
-                "id",
-                "category"
-              ]
-            },
-            "maxItems": 3000
-          }
-        },
-        "required": [
-          "rows"
         ]
       }
     },
@@ -10701,7 +11161,7 @@
         }
       }
     },
-    "/api/debts/{id}": {
+    "/api/bills": {
       "get": {
         "tags": [
           "Finance"
@@ -10711,26 +11171,15 @@
             "bearerAuth": []
           }
         ],
-        "operationId": "getDebtDetail",
-        "summary": "Debt account detail and installment history",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            },
-            "required": true,
-            "name": "id",
-            "in": "path"
-          }
-        ],
+        "operationId": "listBills",
+        "summary": "Recurring bills and debt installments by due date",
         "responses": {
           "200": {
-            "description": "Owned debt account detail",
+            "description": "Owner bills and debt installments with due and payment status",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DebtDetail"
+                  "$ref": "#/components/schemas/BillList"
                 }
               }
             }
@@ -10745,8 +11194,154 @@
               }
             }
           },
-          "404": {
-            "description": "Resource not found",
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/budgets/current": {
+      "get": {
+        "tags": [
+          "Finance"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "operationId": "getCurrentBudget",
+        "summary": "Current budget and adjusted payday",
+        "responses": {
+          "200": {
+            "description": "Current budget, spending, goal posts and adjusted payday period",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentBudget"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Finance"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "operationId": "updateCurrentBudget",
+        "summary": "Save budget allocations and payday",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCurrentBudgetInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Saved current budget with spending and adjusted payday period",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentBudget"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/budgets/current/edit": {
+      "get": {
+        "tags": [
+          "Finance"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "operationId": "getCurrentBudgetEdit",
+        "summary": "Budget editor with up to three prior-period averages",
+        "responses": {
+          "200": {
+            "description": "Current budget and averages from completed periods",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BudgetEdit"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid session",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -10932,6 +11527,73 @@
           },
           "422": {
             "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/debts/{id}": {
+      "get": {
+        "tags": [
+          "Finance"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "operationId": "getDebtDetail",
+        "summary": "Debt account detail and installment history",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Owned debt account detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DebtDetail"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No valid session",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found",
             "content": {
               "application/problem+json": {
                 "schema": {

@@ -1,3 +1,4 @@
+import Domain
 /**
  The screen of each pushed route, by area: Score (score, indicator), Account (profile … deleteAccount,
  about … complaints), Plans (plans … scholarshipStatus). "Cek Ulang" (`healthCheck`) covers the
@@ -28,6 +29,12 @@ struct RouteSlot: View {
             DebtDetailScreen(
                 id: id, service: services.wallets, onOpenHelp: { onOpen(.unavailable(.care)) },
                 onOpenSLIK: { onOpen(.unavailable(.creditReport)) })
+        case .bills:
+            BillsScreen(
+                service: services.bills,
+                onOpenBill: { bill in
+                    if let id = bill.linkedDebtAccountID { onOpen(.debtDetail(id: id)) }
+                })
         case .security, .changePin:
             SecurityScreen(service: services.account, settings: services.security, onOpen: onOpen)
         case .privacy, .deleteAccount:

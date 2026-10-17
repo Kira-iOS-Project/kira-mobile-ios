@@ -469,11 +469,26 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `POST /api/wallets`.
     /// - Remark: Generated from `#/paths//api/wallets/post(createWallet)`.
     func createWallet(_ input: Operations.CreateWallet.Input) async throws -> Operations.CreateWallet.Output
-    /// Debt account detail and installment history
+    /// Recurring bills and debt installments by due date
     ///
-    /// - Remark: HTTP `GET /api/debts/{id}`.
-    /// - Remark: Generated from `#/paths//api/debts/{id}/get(getDebtDetail)`.
-    func getDebtDetail(_ input: Operations.GetDebtDetail.Input) async throws -> Operations.GetDebtDetail.Output
+    /// - Remark: HTTP `GET /api/bills`.
+    /// - Remark: Generated from `#/paths//api/bills/get(listBills)`.
+    func listBills(_ input: Operations.ListBills.Input) async throws -> Operations.ListBills.Output
+    /// Current budget and adjusted payday
+    ///
+    /// - Remark: HTTP `GET /api/budgets/current`.
+    /// - Remark: Generated from `#/paths//api/budgets/current/get(getCurrentBudget)`.
+    func getCurrentBudget(_ input: Operations.GetCurrentBudget.Input) async throws -> Operations.GetCurrentBudget.Output
+    /// Save budget allocations and payday
+    ///
+    /// - Remark: HTTP `PUT /api/budgets/current`.
+    /// - Remark: Generated from `#/paths//api/budgets/current/put(updateCurrentBudget)`.
+    func updateCurrentBudget(_ input: Operations.UpdateCurrentBudget.Input) async throws -> Operations.UpdateCurrentBudget.Output
+    /// Budget editor with up to three prior-period averages
+    ///
+    /// - Remark: HTTP `GET /api/budgets/current/edit`.
+    /// - Remark: Generated from `#/paths//api/budgets/current/edit/get(getCurrentBudgetEdit)`.
+    func getCurrentBudgetEdit(_ input: Operations.GetCurrentBudgetEdit.Input) async throws -> Operations.GetCurrentBudgetEdit.Output
     /// Keep a parsed bank statement for review (Kira Plus)
     ///
     /// At most three months per file; rows already recorded are flagged `isDuplicate`.
@@ -488,6 +503,11 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `POST /api/imports/{id}/commit`.
     /// - Remark: Generated from `#/paths//api/imports/{id}/commit/post(commitBankImport)`.
     func commitBankImport(_ input: Operations.CommitBankImport.Input) async throws -> Operations.CommitBankImport.Output
+    /// Debt account detail and installment history
+    ///
+    /// - Remark: HTTP `GET /api/debts/{id}`.
+    /// - Remark: Generated from `#/paths//api/debts/{id}/get(getDebtDetail)`.
+    func getDebtDetail(_ input: Operations.GetDebtDetail.Input) async throws -> Operations.GetDebtDetail.Output
 }
 
 /// Convenience overloads for operation inputs.
@@ -1416,18 +1436,39 @@ extension APIProtocol {
             body: body
         ))
     }
-    /// Debt account detail and installment history
+    /// Recurring bills and debt installments by due date
     ///
-    /// - Remark: HTTP `GET /api/debts/{id}`.
-    /// - Remark: Generated from `#/paths//api/debts/{id}/get(getDebtDetail)`.
-    internal func getDebtDetail(
-        path: Operations.GetDebtDetail.Input.Path,
-        headers: Operations.GetDebtDetail.Input.Headers = .init()
-    ) async throws -> Operations.GetDebtDetail.Output {
-        try await getDebtDetail(Operations.GetDebtDetail.Input(
-            path: path,
-            headers: headers
+    /// - Remark: HTTP `GET /api/bills`.
+    /// - Remark: Generated from `#/paths//api/bills/get(listBills)`.
+    internal func listBills(headers: Operations.ListBills.Input.Headers = .init()) async throws -> Operations.ListBills.Output {
+        try await listBills(Operations.ListBills.Input(headers: headers))
+    }
+    /// Current budget and adjusted payday
+    ///
+    /// - Remark: HTTP `GET /api/budgets/current`.
+    /// - Remark: Generated from `#/paths//api/budgets/current/get(getCurrentBudget)`.
+    internal func getCurrentBudget(headers: Operations.GetCurrentBudget.Input.Headers = .init()) async throws -> Operations.GetCurrentBudget.Output {
+        try await getCurrentBudget(Operations.GetCurrentBudget.Input(headers: headers))
+    }
+    /// Save budget allocations and payday
+    ///
+    /// - Remark: HTTP `PUT /api/budgets/current`.
+    /// - Remark: Generated from `#/paths//api/budgets/current/put(updateCurrentBudget)`.
+    internal func updateCurrentBudget(
+        headers: Operations.UpdateCurrentBudget.Input.Headers = .init(),
+        body: Operations.UpdateCurrentBudget.Input.Body
+    ) async throws -> Operations.UpdateCurrentBudget.Output {
+        try await updateCurrentBudget(Operations.UpdateCurrentBudget.Input(
+            headers: headers,
+            body: body
         ))
+    }
+    /// Budget editor with up to three prior-period averages
+    ///
+    /// - Remark: HTTP `GET /api/budgets/current/edit`.
+    /// - Remark: Generated from `#/paths//api/budgets/current/edit/get(getCurrentBudgetEdit)`.
+    internal func getCurrentBudgetEdit(headers: Operations.GetCurrentBudgetEdit.Input.Headers = .init()) async throws -> Operations.GetCurrentBudgetEdit.Output {
+        try await getCurrentBudgetEdit(Operations.GetCurrentBudgetEdit.Input(headers: headers))
     }
     /// Keep a parsed bank statement for review (Kira Plus)
     ///
@@ -1459,6 +1500,19 @@ extension APIProtocol {
             path: path,
             headers: headers,
             body: body
+        ))
+    }
+    /// Debt account detail and installment history
+    ///
+    /// - Remark: HTTP `GET /api/debts/{id}`.
+    /// - Remark: Generated from `#/paths//api/debts/{id}/get(getDebtDetail)`.
+    internal func getDebtDetail(
+        path: Operations.GetDebtDetail.Input.Path,
+        headers: Operations.GetDebtDetail.Input.Headers = .init()
+    ) async throws -> Operations.GetDebtDetail.Output {
+        try await getDebtDetail(Operations.GetDebtDetail.Input(
+            path: path,
+            headers: headers
         ))
     }
 }

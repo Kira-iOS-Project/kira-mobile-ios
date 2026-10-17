@@ -7,6 +7,8 @@ import Domain
 package enum AppRoute: Hashable, Sendable {
     /** BRD-01: Beranda, the home tab's root. */
     case home
+    /** UNG-06: recurring bills and debt installments. */
+    case bills
     /** SKR-01: Kira Score. */
     case score
     /** SKR-02: one indicator's detail. */

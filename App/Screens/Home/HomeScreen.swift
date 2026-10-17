@@ -59,6 +59,9 @@ private struct HomeContent: View {
                 if home.variant != .overview, let score = home.score {
                     HomeScoreCard(score: score) { onOpen(.score) }
                 }
+                if let bill = model.nearestBill {
+                    HomeBillsCard(bill: bill, isMasked: model.isMasked) { onOpen(.bills) }
+                }
             }
             .padding(.horizontal, KiraSpacing.screen)
             /** The boards start the header at 54 pt, the foot of the status bar, 5 pt above the safe area. */

@@ -44,6 +44,18 @@ struct LiveHomeServiceTests {
         #expect(home.money == nil && home.step == nil && home.score == nil && home.weeklySummary == nil)
     }
 
+    @Test("loads bills for Beranda from the generated bill-list operation")
+    func bills() async throws {
+        let json =
+            #"{"items":[{"id":"bill-1","kind":"bill","name":"Internet Rumah","amount":350000,"category":"bills","nextDueDate":"2026-10-22","repeatInterval":"monthly","installmentsTotal":null,"installmentsRemaining":null,"linkedDebtAccountId":null,"linkedDebtName":null,"dueSoon":true,"paidThisPeriod":false}]}"#
+        let (api, transport) = KiraAPI.routed(["GET /api/bills": ok(json)])
+
+        let bills = try await LiveHomeService(api: api, onHideBalances: HideBalancesRecorder().sync).bills()
+
+        #expect(bills.map(\.id) == ["bill-1"])
+        #expect(await transport.routes == ["GET /api/bills"])
+    }
+
     @Test("the eye saves hideBalances to the account and hands it to the lock")
     func hideBalances() async throws {
         let recorder = HideBalancesRecorder()

@@ -17,6 +17,8 @@ package final class HomeModel {
     package private(set) var isMasked = false
     /** Whether "Nanti Saja" put the step card away. */
     package private(set) var isStepDismissed = false
+    /** The nearest unpaid schedule, if the bill list can be loaded. */
+    package private(set) var nearestBill: RecurringBill?
 
     private let service: any HomeService
     private let now: @Sendable () -> Date
@@ -34,11 +36,17 @@ package final class HomeModel {
 
     /** Loads Beranda; a failure keeps nothing of an earlier load. */
     package func load() async {
+        nearestBill = nil
         do {
             let overview = try await service.home()
             if !hasChosenMask { isMasked = overview.hideBalances }
             isStepDismissed = false
             phase = .loaded(overview)
+            do {
+                nearestBill = try await service.bills().filter { !$0.isPaidThisPeriod }.min {
+                    $0.nextDueDate == $1.nextDueDate ? $0.name < $1.name : $0.nextDueDate < $1.nextDueDate
+                }
+            } catch {}
         } catch {
             phase = .failed(error as? AppProblem ?? AppProblem())
         }

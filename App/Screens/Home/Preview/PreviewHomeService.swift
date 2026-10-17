@@ -15,6 +15,8 @@ nonisolated struct PreviewHomeService: HomeService {
 
     func home() throws -> HomeOverview { overview }
 
+    func bills() async throws -> [RecurringBill] { PreviewBillsService.samples }
+
     func setHideBalances(_: Bool) throws {}
 }
 

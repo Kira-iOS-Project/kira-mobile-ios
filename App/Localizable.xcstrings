@@ -1681,6 +1681,136 @@
         }
       }
     },
+    "bills.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Beranda"
+          }
+        }
+      }
+    },
+    "bills.due %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jatuh tempo %@"
+          }
+        }
+      }
+    },
+    "bills.dueSoon" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Segera Jatuh Tempo"
+          }
+        }
+      }
+    },
+    "bills.empty.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan berulang dan cicilan yang akan datang muncul di sini."
+          }
+        }
+      }
+    },
+    "bills.empty.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Ada Tagihan"
+          }
+        }
+      }
+    },
+    "bills.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan Belum Berhasil Dibuka"
+          }
+        }
+      }
+    },
+    "bills.loading" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Memuat tagihan"
+          }
+        }
+      }
+    },
+    "bills.paid" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah Dibayar"
+          }
+        }
+      }
+    },
+    "bills.section.later" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berikutnya"
+          }
+        }
+      }
+    },
+    "bills.section.nextMonth" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bulan Depan"
+          }
+        }
+      }
+    },
+    "bills.section.nextSevenDays" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7 Hari ke Depan"
+          }
+        }
+      }
+    },
+    "bills.section.thisMonth" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bulan Ini"
+          }
+        }
+      }
+    },
+    "bills.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan & Cicilan"
+          }
+        }
+      }
+    },
     "checkout.back" : {
       "localizations" : {
         "id" : {
@@ -5587,6 +5717,46 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ringkasan periode ini"
+          }
+        }
+      }
+    },
+    "home.bills.due %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · jatuh tempo %2$@"
+          }
+        }
+      }
+    },
+    "home.bills.label %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan terdekat: %1$@, jatuh tempo %2$@. Buka semua tagihan"
+          }
+        }
+      }
+    },
+    "home.bills.openAll" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Semua"
+          }
+        }
+      }
+    },
+    "home.bills.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan Terdekat"
           }
         }
       }
