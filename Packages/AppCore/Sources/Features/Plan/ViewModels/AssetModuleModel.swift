@@ -10,12 +10,12 @@ import Observation
 @Observable
 package final class AssetModuleModel {
     /** The class the module teaches. */
-    package let assetClass: AssetClass
+    package let assetClass: RiskAssetClass
     /** The part on screen. */
     package private(set) var part: AssetModulePart = .basics
 
     /** The module of `assetClass`, on its first drawn part. */
-    package init(assetClass: AssetClass) {
+    package init(assetClass: RiskAssetClass) {
         self.assetClass = assetClass
     }
 

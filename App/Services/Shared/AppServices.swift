@@ -16,12 +16,20 @@ struct AppServices {
     let plans: any PlansService
     let home: any HomeService
     let score: any ScoreService
+    let payoff: any PayoffService
+    let payoffPlan: any PayoffPlanService
     let recovery: any PinRecoveryService
     let community: any CommunityService
     let care: any CareService
     let careTools: any CareToolsService
     let debtEmergency: any DebtEmergencyService
     let marketplace: any MarketplaceService
+    let portfolio: any PortfolioService
+    let goals: any GoalService
+    /** REN-06 and REN-07: the risk profile (`GET`/`PUT /risk-profile`). */
+    let riskProfile: any RiskProfileService
+    /** The quiz's answers for the app's session (`RiskQuizDraft`). */
+    let riskDraft: RiskQuizDraft
 }
 
 extension AppServices {
@@ -39,12 +47,16 @@ extension AppServices {
             plans: LivePlansService(api: api),
             home: LiveHomeService(api: api, onHideBalances: sync),
             score: LiveScoreService(api: api),
+            payoff: LivePayoffService(api: api),
+            payoffPlan: LivePayoffPlanService(api: api),
             recovery: LivePinRecoveryService(api: api),
             community: LiveCommunityService(api: api),
             care: LiveCareService(api: api),
             careTools: LiveCareToolsService(api: api),
             debtEmergency: LiveDebtEmergencyService(api: api),
-            marketplace: LiveMarketplaceService(api: api))
+            marketplace: LiveMarketplaceService(api: api),
+            portfolio: LivePortfolioService(api: api), goals: PendingGoalService(),
+            riskProfile: LiveRiskProfileService(api: api), riskDraft: RiskQuizDraft())
     }
 
     /** The canvas's sample data: nothing leaves the device. */
@@ -52,9 +64,12 @@ extension AppServices {
         AppServices(
             onboarding: PreviewOnboardingService(), pinSetup: PreviewPinSetup(), account: PreviewAccountService(),
             security: PreviewSecuritySettings(), plans: PreviewPlansService(), home: PreviewHomeService(),
-            score: PreviewScoreService(), recovery: PreviewPinRecoveryService(),
+            score: PreviewScoreService(), payoff: PreviewPayoffService(), payoffPlan: PreviewPayoffPlanService(),
+            recovery: PreviewPinRecoveryService(),
             community: PreviewCommunityService(), care: PreviewCareService(), careTools: PreviewCareToolsService(),
-            debtEmergency: PreviewDebtEmergencyService(), marketplace: PreviewMarketplaceService())
+            debtEmergency: PreviewDebtEmergencyService(), marketplace: PreviewMarketplaceService(),
+            portfolio: PreviewPortfolioService(), goals: PreviewGoalService(),
+            riskProfile: PreviewRiskProfileService(), riskDraft: RiskQuizDraft())
     }
 }
 

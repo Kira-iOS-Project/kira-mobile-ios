@@ -11,8 +11,22 @@ package enum AppRoute: Hashable, Sendable {
     case score
     /** SKR-02: one indicator's detail. */
     case indicator(IndicatorKey)
+    /** SKR-07, SKR-07b: Riwayat Kira Score. */
+    case scoreHistory
     /** The health check again, from the score ("Cek Ulang"). */
     case healthCheck
+    /**
+     Beranda's and the score's way into paying off: Rencanaku (SKR-04) when the person has a plan,
+     else Rencana Pelunasan (SKR-03).
+     */
+    case debtPlan
+    /**
+     SKR-03: Rencana Pelunasan, with its open formula (SKR-03b) and the Avalanche method (SKR-03c),
+     always: Naskah Negosiasi's "Lihat Simulasi" and Rencanaku's "Ubah Rencana".
+     */
+    case payoffSimulation
+    /** SKR-04: Rencanaku, the plan the person made; SKR-05 (Perayaan Lunas) opens over it. */
+    case myPlan
 
     /** CAT-01: Catat, the record section's root. */
     case record
@@ -97,15 +111,29 @@ package enum AppRoute: Hashable, Sendable {
     case product(id: String)
     /** KOM-08: Kirim Produk ke Etalase. */
     case submitProduct
-
-    /** REN-06: Kenali Profil Risikomu */
+    /** REN-01: Rencana, the Rencana tab's root. */
+    case plan
+    /** REN-02: Tujuan Baru, the goal kinds. */
+    case newGoal
+    /** REN-05: one goal's detail. */
+    case goal(id: String)
+    /** REN-03 and the other goals' forms, opened from Detail Tujuan's "Ubah Tujuan" on that goal's values. */
+    case editGoal(id: String)
+    /** REN-06: Kenali Profil Risikomu, the risk-profile quiz. */
     case riskQuiz
-    /** REN-09: Cek Legalitas */
+    /** REN-09: Cek Legalitas Entitas. */
     case legalityCheck
+    /** REN-10: Portofolio Manual. */
+    case portfolio
+    /** REN-11: Tambah Aset. */
+    case addAsset
+    /** REN-11 on an asset Portofolio lists: the form updating it. */
+    case editAsset(id: String)
+
     /** REN-07: Hasil Risiko */
     case riskResult
     /** REN-08: Modul Kelas Aset; its screen belongs to work/r4b-modules */
-    case assetModule(AssetClass)
+    case assetModule(RiskAssetClass)
 
     /** A link the boards show to an area not built yet: it stays visible and opens nothing. */
     case unavailable(UnavailableArea)
@@ -121,12 +149,8 @@ package enum UnavailableArea: String, CaseIterable, Hashable, Sendable {
     case bills
     /** UNG: Ringkasan Mingguan, the weekly summary. */
     case weeklySummary
-    /** SKR: Rencana Pelunasan, the payoff plan. */
-    case debtPlan
-    /** SKR: Riwayat Skor, the score history. */
-    case scoreHistory
     /** SKR: SLIK, the credit report. */
     case creditReport
-    /** REN: the Rencana tab. */
-    case plan
+    /** SKR: Detail Utang, one debt account's detail (Rencanaku's account rows). */
+    case debtDetail
 }

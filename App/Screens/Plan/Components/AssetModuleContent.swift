@@ -18,31 +18,7 @@ struct AssetModuleSection: Identifiable {
     var id: String { title.key }
 }
 
-extension AssetClass {
-    /** The module's heading, the name Hasil Risiko's row shows. */
-    var moduleTitle: LocalizedStringResource {
-        switch self {
-        case .moneyMarketFund: "plan.module.class.moneyMarketFund"
-        case .governmentBonds: "plan.module.class.governmentBonds"
-        case .deposits: "plan.module.class.deposits"
-        case .gold: "plan.module.class.gold"
-        case .stocks: "plan.module.class.stocks"
-        case .crypto: "plan.module.class.crypto"
-        }
-    }
-
-    /** The class's illustrated tile; deposits use the bank tile. */
-    var moduleCategory: KiraCategory {
-        switch self {
-        case .moneyMarketFund: .mutualFunds
-        case .governmentBonds: .governmentBonds
-        case .deposits: .bank
-        case .gold: .gold
-        case .stocks: .stocks
-        case .crypto: .crypto
-        }
-    }
-
+extension RiskAssetClass {
     /** The sections of `part`, in the board's order. */
     func moduleSections(_ part: AssetModulePart) -> [AssetModuleSection] {
         switch part {
@@ -71,17 +47,5 @@ extension AssetClass {
     /** `plan.module.<class>.<field>`, the class's own sentence for a section. */
     private func text(_ field: String) -> LocalizedStringResource {
         LocalizedStringResource(String.LocalizationValue("plan.module.\(rawValue).\(field)"))
-    }
-}
-
-extension AssetRisk {
-    /** The risk Tag: Rendah green, Sedang turmeric, Tinggi and Sangat Tinggi red, as Hasil Risiko draws them. */
-    var moduleTag: (title: LocalizedStringResource, tone: KiraTag.Tone) {
-        switch self {
-        case .low: ("plan.module.risk.low", .healthy)
-        case .medium: ("plan.module.risk.medium", .turmeric)
-        case .high: ("plan.module.risk.high", .vulnerable)
-        case .veryHigh: ("plan.module.risk.veryHigh", .vulnerable)
-        }
     }
 }

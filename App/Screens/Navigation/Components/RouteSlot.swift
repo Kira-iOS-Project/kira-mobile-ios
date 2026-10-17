@@ -1,10 +1,13 @@
 /**
- The screen of each pushed route, by area: Score (score, indicator), Account (profile … deleteAccount,
- about … complaints), Plans (plans … scholarshipStatus), Kira Peduli (care, trustedMessage,
- negotiationScript, breathingExercise, safetyPlan), Mode Darurat Utang and its guides (debtEmergency,
- debtGuide), Etalase (marketplace, product, submitProduct). "Cek Ulang" (`healthCheck`) covers the shell
- instead (MainShell); Komunitas (`community`) is the dock's own section; Catat's and Riwayat's routes
- stay empty for their own integration, and an unavailable area never gets here.
+ The screen of each pushed route, by area: Score (score, indicator, scoreHistory, debtPlan,
+ payoffSimulation, myPlan), Account (profile … deleteAccount, about … complaints), Plans (plans …
+ scholarshipStatus), Kira Peduli (care, trustedMessage, negotiationScript, breathingExercise,
+ safetyPlan), Mode Darurat Utang and its guides (debtEmergency, debtGuide), Etalase (marketplace,
+ product, submitProduct), Rencana's Detail Tujuan (goal), Portofolio Manual (portfolio, addAsset,
+ editAsset); the other REN screens stay empty until their branches land. "Cek Ulang" (`healthCheck`)
+ covers the shell instead (MainShell); Rencana (`plan`) and Komunitas (`community`) are the dock's own
+ sections; Catat's and Riwayat's routes stay empty for their own integration, and an unavailable area
+ never gets here.
  */
 import Features
 import SwiftUI
@@ -19,6 +22,11 @@ struct RouteSlot: View {
         switch route {
         case .score: ScoreScreen(service: services.score, onOpen: onOpen)
         case .indicator(let key): IndicatorScreen(key: key, service: services.score, onOpen: onOpen)
+        case .scoreHistory: ScoreHistoryScreen(service: services.score, onOpen: onOpen)
+        case .debtPlan:
+            PayoffEntryScreen(service: services.payoff, plans: services.payoffPlan, onOpen: onOpen)
+        case .payoffSimulation: PayoffScreen(service: services.payoff, plans: services.payoffPlan, onOpen: onOpen)
+        case .myPlan: PayoffPlanScreen(service: services.payoffPlan, onOpen: onOpen)
         case .profile:
             ProfileScreen(
                 service: services.account, settings: services.security, onOpen: onOpen, onSignedOut: { endSession() })
@@ -43,11 +51,25 @@ struct RouteSlot: View {
         case .marketplace: MarketplaceScreen(service: services.marketplace, onOpen: onOpen)
         case .product(let id): ProductScreen(id: id, service: services.marketplace, onOpen: onOpen)
         case .submitProduct: SubmitProductScreen(onOpen: onOpen)
-        case .riskQuiz, .legalityCheck, .riskResult: EmptySlot()
+        case .portfolio: PortfolioScreen(service: services.portfolio, onOpen: onOpen)
+        case .addAsset: AssetFormScreen(service: services.portfolio, onOpen: onOpen)
+        case .editAsset(let id): AssetFormScreen(service: services.portfolio, assetId: id, onOpen: onOpen)
+        case .goal(let id): GoalDetailScreen(id: id, service: services.goals, onOpen: onOpen)
+        case .newGoal, .editGoal: EmptySlot()
+        case .riskQuiz, .riskResult: riskQuiz(start: route == .riskResult ? .savedResult : .quiz())
+        case .legalityCheck: LegalityCheckScreen(onOpen: onOpen)
         case .assetModule(let assetClass): AssetModuleScreen(assetClass: assetClass, onOpen: onOpen)
-        case .home, .record, .community, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history, .transaction,
-            .conversation, .importStatement, .unavailable:
+        case .home, .record, .plan, .community, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history,
+            .transaction, .conversation, .importStatement, .unavailable:
             EmptySlot()
         }
+    }
+
+    /** Kenali Profil Risikomu or Hasil Kuis; without the plan's service the quiz shows no ladder notice. */
+    private func riskQuiz(start: RiskQuizModel.Start) -> some View {
+        RiskQuizScreen(
+            model: RiskQuizModel(
+                service: services.riskProfile, draft: services.riskDraft, plans: services.goals, start: start),
+            onOpen: onOpen)
     }
 }

@@ -12,7 +12,7 @@
             NavigationStack { AssetModuleScreen(assetClass: assetClass) { _ in } }
         }
 
-        private var assetClass: AssetClass {
+        private var assetClass: RiskAssetClass {
             switch screen {
             case .moduleGovernmentBonds: .governmentBonds
             case .moduleDeposits: .deposits

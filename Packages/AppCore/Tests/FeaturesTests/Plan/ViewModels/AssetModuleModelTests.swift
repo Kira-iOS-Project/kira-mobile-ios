@@ -6,8 +6,8 @@ import Testing
 @Suite("AssetModuleModel")
 @MainActor
 struct AssetModuleModelTests {
-    @Test("a module opens on the drawn part 2", arguments: AssetClass.allCases)
-    func opensOnBasics(assetClass: AssetClass) {
+    @Test("a module opens on the drawn part 2", arguments: RiskAssetClass.allCases)
+    func opensOnBasics(assetClass: RiskAssetClass) {
         let model = AssetModuleModel(assetClass: assetClass)
         #expect(model.assetClass == assetClass)
         #expect(model.part == .basics)

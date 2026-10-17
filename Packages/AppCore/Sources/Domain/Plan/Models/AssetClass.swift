@@ -1,34 +1,20 @@
 /**
- The asset classes Pelajari Dulu lists (REN-07), lowest risk first, each with its own module
- (REN-08). Kira teaches classes only: never a product, a ticker, a coin or an issuer.
+ The asset classes of Portofolio Manual (REN-10, REN-11): the backend's `assetClass` values, in the
+ order of Tambah Aset's grid (Deposito, Reksa Dana, SBN, Emas, Saham, Kripto, Lainnya).
  */
-package enum AssetClass: String, CaseIterable, Hashable, Sendable {
-    /** Reksa Dana Pasar Uang. */
-    case moneyMarketFund
-    /** SBN, the government's securities. */
-    case governmentBonds
+package enum AssetClass: String, CaseIterable, Codable, Sendable {
     /** Deposito. */
-    case deposits
+    case deposit
+    /** Reksa Dana. */
+    case mutualFund = "mutual_fund"
+    /** SBN, the government's retail bonds. */
+    case governmentBond = "government_bond"
     /** Emas. */
     case gold
     /** Saham. */
-    case stocks
+    case stock
     /** Kripto. */
     case crypto
-
-    /** The risk label its row and module show. */
-    package var risk: AssetRisk {
-        switch self {
-        case .moneyMarketFund, .governmentBonds, .deposits: .low
-        case .gold: .medium
-        case .stocks: .high
-        case .crypto: .veryHigh
-        }
-    }
+    /** Lainnya. */
+    case other
 }
-
-/** A risk label: Rendah, Sedang, Tinggi, Sangat Tinggi. */
-package enum AssetRisk: Int, CaseIterable, Hashable, Sendable {
-    case low, medium, high, veryHigh
-}
-

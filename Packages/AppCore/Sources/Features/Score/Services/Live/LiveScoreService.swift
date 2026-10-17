@@ -23,4 +23,19 @@ package struct LiveScoreService: ScoreService {
     package func indicator(_ key: IndicatorKey) async throws -> IndicatorDetail {
         try IndicatorDetail(try await api.getScoreIndicator(key))
     }
+
+    /** `GET /me`: whether the plan is Kira Plus; an unreadable answer leaves it to the feature's own. */
+    package func includesPlus() async -> Bool {
+        guard let account = try? await api.getMe() else { return true }
+        return account.plan.id == .plus
+    }
+
+    /** `GET /score/history`; nil before the health check (`SCORE_NOT_AVAILABLE`). */
+    package func history(_ range: ScoreHistoryRange) async throws -> ScoreHistory? {
+        do {
+            return try ScoreHistory(try await api.getScoreHistory(range))
+        } catch let problem as AppProblem where problem.knownCode == .scoreNotAvailable {
+            return nil
+        }
+    }
 }

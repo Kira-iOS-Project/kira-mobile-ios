@@ -557,6 +557,12 @@ components (sizes, paddings, radii, borders, colours, icon sizes) already matche
   the end leaves the accessibility frames where the content was, and the audit then reports
   contrast failures on text it measures in the wrong place. Text left under the status bar or at
   the home indicator is the one contrast finding the gallery's test accepts, with its reason.
+  `auditScreen` (`UITests/ScreenAudit.swift`) also accepts contrast on text the scroll view's own
+  edge cuts (a sheet's last note half under its scroll edge, above the main action), and only on
+  condition: it scrolls until the last element is whole, notes every element seen whole after each
+  pass (`UITests/ScrollEdgeCuts.swift`), and fails the test if a text it accepted as cut was never
+  audited whole. A drag loses about 10 pt to the touch slop before the content moves; the audit's
+  scroll adds it back.
 - **iOS 17 and 18 (found while testing, not caused by this work).** A debug build does not launch on
   the iOS 17.5 simulator: dyld cannot find `libswiftCompatibilitySpan.dylib`, which the
   swift-collections code under the API client's `swift-openapi-urlsession` needs with the Swift 6.4

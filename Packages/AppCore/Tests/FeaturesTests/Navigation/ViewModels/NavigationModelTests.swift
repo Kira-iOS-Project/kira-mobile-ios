@@ -42,13 +42,26 @@ struct NavigationModelTests {
         #expect(navigation.homePath.isEmpty)
     }
 
-    @Test("Rencana and unavailable areas open nothing")
+    @Test("unavailable areas open nothing")
     func unavailable() {
         let navigation = NavigationModel()
-        navigation.select(.plan)
         for area in UnavailableArea.allCases { navigation.open(.unavailable(area)) }
         #expect(navigation.section == .home)
         #expect(navigation.homePath.isEmpty)
+    }
+
+    @Test("Rencana is its own section: its routes stack there, a second tap or reset empties it")
+    func plan() {
+        let navigation = NavigationModel()
+        navigation.open(.plan)
+        #expect(navigation.section == .plan && navigation.showsDock)
+        navigation.open(.goal(id: "g-1"))
+        #expect(navigation.planPath == [.goal(id: "g-1")] && navigation.homePath.isEmpty)
+        navigation.select(.plan)
+        #expect(navigation.planPath.isEmpty && navigation.section == .plan)
+        navigation.open(.goal(id: "g-1"))
+        navigation.reset()
+        #expect(navigation.planPath.isEmpty && navigation.section == .home)
     }
 
     @Test("Komunitas is its own section: its routes stack there, a second tap or reset empties it")
@@ -63,6 +76,19 @@ struct NavigationModelTests {
         navigation.open(.communityGroup(id: "g-1"))
         navigation.reset()
         #expect(navigation.communityPath.isEmpty && navigation.section == .home)
+    }
+
+    @Test("Rencanaku made from Rencana Pelunasan takes its place; opened elsewhere it is pushed")
+    func myPlanReplacesSimulation() {
+        let navigation = NavigationModel()
+        navigation.open(.debtPlan)
+        navigation.open(.myPlan)
+        #expect(navigation.homePath == [.myPlan])
+        navigation.open(.payoffSimulation)
+        navigation.open(.myPlan)
+        #expect(navigation.homePath == [.myPlan, .myPlan])
+        navigation.open(.myPlan)
+        #expect(navigation.homePath == [.myPlan, .myPlan, .myPlan])
     }
 
     @Test("reset returns to an empty Beranda")

@@ -13,7 +13,7 @@ struct AssetModuleScreen: View {
     private let onOpen: (AppRoute) -> Void
     @Environment(\.dismiss) private var dismiss
 
-    init(assetClass: AssetClass, onOpen: @escaping (AppRoute) -> Void) {
+    init(assetClass: RiskAssetClass, onOpen: @escaping (AppRoute) -> Void) {
         _model = State(initialValue: AssetModuleModel(assetClass: assetClass))
         self.onOpen = onOpen
     }
@@ -50,17 +50,16 @@ struct AssetModuleScreen: View {
     }
 
     private var header: some View {
-        let tag = model.assetClass.risk.moduleTag
-        return VStack(alignment: .leading, spacing: 10) {
-            KiraCategoryIcon(model.assetClass.moduleCategory, size: 52)
-            Text(model.assetClass.moduleTitle)
+        VStack(alignment: .leading, spacing: 10) {
+            KiraCategoryIcon(model.assetClass.tile, size: 52)
+            Text(model.assetClass.title)
                 .font(KiraFont.display(28, .heavy, relativeTo: .largeTitle))
                 .kiraLineHeight(34, size: 28, natural: 1.26, relativeTo: .largeTitle)
                 .tracking(-0.7)
                 .foregroundStyle(.ink)
                 .accessibilityAddTraits(.isHeader)
             KiraFlowRow(spacing: KiraSpacing.space2) {
-                KiraTag(tag.title, tone: tag.tone)
+                KiraTag(model.assetClass.risk.title, tone: model.assetClass.risk.tone)
                 Label {
                     Text("plan.module.readTime")
                 } icon: {
