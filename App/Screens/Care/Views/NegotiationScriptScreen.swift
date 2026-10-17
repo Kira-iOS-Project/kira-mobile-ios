@@ -101,7 +101,7 @@ struct NegotiationScriptScreen: View {
                 primary: KiraButton("care.script.copy", size: .small) { model.copy() }
                     .icon(.copy)
             )
-            .disabled(!model.script.isComplete)
+            /** Both stay enabled, as the board draws them; Salin Naskah copies nothing until the script is complete. */
             .padding(.top, KiraSpacing.space2)
         }
     }
