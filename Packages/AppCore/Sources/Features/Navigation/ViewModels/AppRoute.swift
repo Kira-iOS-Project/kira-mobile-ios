@@ -162,8 +162,4 @@ package enum AppRoute: Hashable, Sendable {
 
 /** The areas the boards link to that are not built yet (UNG, REN, KOM and the rest of SKR and PED). */
 package enum UnavailableArea: String, CaseIterable, Hashable, Sendable {
-    /** SKR: SLIK, the credit report. */
-    case creditReport
-    /** SKR: Detail Utang, one debt account's detail (Rencanaku's account rows). */
-    case debtDetail
 }

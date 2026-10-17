@@ -6017,6 +6017,339 @@
         }
       }
     },
+    "debt.detail.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Dompet"
+          }
+        }
+      }
+    },
+    "debt.detail.due" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jatuh Tempo"
+          }
+        }
+      }
+    },
+    "debt.detail.due.days %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Hari Lagi"
+          }
+        }
+      }
+    },
+    "debt.detail.facts" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rincian"
+          }
+        }
+      }
+    },
+    "debt.detail.history" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat Pembayaran"
+          }
+        }
+      }
+    },
+    "debt.detail.history.label %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat pembayaran %@"
+          }
+        }
+      }
+    },
+    "debt.detail.history.number %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan ke-%lld"
+          }
+        }
+      }
+    },
+    "debt.detail.history.onTime" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tepat Waktu"
+          }
+        }
+      }
+    },
+    "debt.detail.history.paidOn %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dibayar %@"
+          }
+        }
+      }
+    },
+    "debt.detail.loading" : {
+      "comment" : "Not on the board: for owner review.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detail Utang"
+          }
+        }
+      }
+    },
+    "debt.detail.monthly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan per Bulan"
+          }
+        }
+      }
+    },
+    "debt.detail.next" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langkah Berikutnya"
+          }
+        }
+      }
+    },
+    "debt.detail.next.body %@ %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah %1$@ di cicilan %2$@, %3$@ langsung lunas sebulan lebih awal."
+          }
+        }
+      }
+    },
+    "debt.detail.next.body.undated %@ %@" : {
+      "comment" : "Not on the board: for owner review.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah %1$@ di cicilan berikutnya, %2$@ langsung lunas sebulan lebih awal."
+          }
+        }
+      }
+    },
+    "debt.detail.next.eyebrow" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prioritas"
+          }
+        }
+      }
+    },
+    "debt.detail.next.impact %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perkiraan Kira Score %1$lld → %2$lld"
+          }
+        }
+      }
+    },
+    "debt.detail.next.left %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "tinggal %lld cicilan lagi"
+          }
+        }
+      }
+    },
+    "debt.detail.next.meta %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld dari %2$lld"
+          }
+        }
+      }
+    },
+    "debt.detail.next.plan" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Rencana Pelunasan"
+          }
+        }
+      }
+    },
+    "debt.detail.next.record" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catat Pembayaran"
+          }
+        }
+      }
+    },
+    "debt.detail.next.simulation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hanya simulasi · dihitung mesin"
+          }
+        }
+      }
+    },
+    "debt.detail.next.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lunasi Bulan Ini"
+          }
+        }
+      }
+    },
+    "debt.detail.paid" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah dibayar"
+          }
+        }
+      }
+    },
+    "debt.detail.paid.caption %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ dari total %2$@"
+          }
+        }
+      }
+    },
+    "debt.detail.paid.count %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld dari %2$lld cicilan"
+          }
+        }
+      }
+    },
+    "debt.detail.remaining" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sisa utang"
+          }
+        }
+      }
+    },
+    "debt.detail.slik.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cara cek catatan kreditmu dari OJK, tanpa biaya."
+          }
+        }
+      }
+    },
+    "debt.detail.slik.eyebrow" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gratis"
+          }
+        }
+      }
+    },
+    "debt.detail.slik.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Panduan SLIK. Cara cek catatan kredit gratis dari OJK"
+          }
+        }
+      }
+    },
+    "debt.detail.slik.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Panduan SLIK"
+          }
+        }
+      }
+    },
+    "debt.detail.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akun utang"
+          }
+        }
+      }
+    },
+    "debt.detail.summary %@" : {
+      "comment" : "Not on the board: for owner review.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sisa utang %@"
+          }
+        }
+      }
+    },
+    "debt.detail.title %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
     "debtEmergency.back" : {
       "localizations" : {
         "id" : {
@@ -30057,6 +30390,207 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Coba Lagi"
+          }
+        }
+      }
+    },
+    "slik.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Detail Utang"
+          }
+        }
+      }
+    },
+    "slik.headline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cek Catatan Kreditmu, Gratis"
+          }
+        }
+      }
+    },
+    "slik.lead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SLIK adalah catatan kredit resmi dari OJK yang dilihat bank saat kamu mengajukan pinjaman."
+          }
+        }
+      }
+    },
+    "slik.open" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka iDebKu OJK"
+          }
+        }
+      }
+    },
+    "slik.open.hint" : {
+      "comment" : "Not on the board: for owner review.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Membuka situs resmi OJK di browser."
+          }
+        }
+      }
+    },
+    "slik.privacy" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira tidak mengakses data SLIK-mu. Kami hanya mengarahkan ke layanan resmi OJK."
+          }
+        }
+      }
+    },
+    "slik.step1" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka idebku.ojk.go.id"
+          }
+        }
+      }
+    },
+    "slik.step1.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Layanan resmi OJK, bisa lewat browser HP."
+          }
+        }
+      }
+    },
+    "slik.step2" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daftar dengan e-KTP dan Email"
+          }
+        }
+      }
+    },
+    "slik.step2.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pakai data sesuai e-KTP milikmu sendiri."
+          }
+        }
+      }
+    },
+    "slik.step3" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajukan Permintaan iDeb"
+          }
+        }
+      }
+    },
+    "slik.step3.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iDeb adalah hasil cetak SLIK atas namamu."
+          }
+        }
+      }
+    },
+    "slik.step4" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unduh Hasilnya"
+          }
+        }
+      }
+    },
+    "slik.step4.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gratis, tanpa biaya apa pun."
+          }
+        }
+      }
+    },
+    "slik.steps" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cara Ceknya"
+          }
+        }
+      }
+    },
+    "slik.steps.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "cuma empat langkah"
+          }
+        }
+      }
+    },
+    "slik.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catatan kredit dari OJK"
+          }
+        }
+      }
+    },
+    "slik.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cek SLIK"
+          }
+        }
+      }
+    },
+    "slik.warning" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hindari jasa cek SLIK berbayar atau yang meminta data loginmu."
+          }
+        }
+      }
+    },
+    "slik.warning.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hati-hati Jasa Cek SLIK"
           }
         }
       }

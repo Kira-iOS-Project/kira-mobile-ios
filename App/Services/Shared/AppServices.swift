@@ -42,6 +42,8 @@ struct AppServices {
     let weeklySummary: any WeeklySummaryService
     /** Atur Budget's setup and save (UNG-05). */
     let budgetSettings: any BudgetSettingsService
+    /** One debt account in full (UNG-03 Detail Utang). */
+    let debtDetail: any DebtDetailService
 }
 
 extension AppServices {
@@ -72,7 +74,7 @@ extension AppServices {
             wallet: LiveWalletService(api: api), budget: LiveBudgetService(api: api),
             bills: LiveBillService(api: api), billEditor: LiveBillEditorService(api: api),
             weeklySummary: LiveWeeklySummaryService(api: api),
-            budgetSettings: LiveBudgetSettingsService(api: api))
+            budgetSettings: LiveBudgetSettingsService(api: api), debtDetail: LiveDebtDetailService(api: api))
     }
 
     /** The canvas's sample data: nothing leaves the device. */
@@ -88,7 +90,7 @@ extension AppServices {
             riskProfile: PreviewRiskProfileService(), riskDraft: RiskQuizDraft(),
             wallet: PreviewWalletService(), budget: PreviewBudgetService(), bills: PreviewBillService(),
             billEditor: PreviewBillEditorService(), weeklySummary: PreviewWeeklySummaryService(),
-            budgetSettings: PreviewBudgetSettingsService())
+            budgetSettings: PreviewBudgetSettingsService(), debtDetail: PreviewDebtDetailService())
     }
 }
 
