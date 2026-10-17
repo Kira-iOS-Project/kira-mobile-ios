@@ -4,9 +4,8 @@
  error uses `vulnerable` and a sentence that offers a way out, never blame. Kira never asks for a bank
  PIN, a password or a bank OTP; its own app-lock PIN and email code use KiraCodeField. Set the
  keyboard on the field as on any view: `.keyboardType(.numberPad)`. `.amount()` groups a rupiah
- field's digits with dots as they are typed ("10.000.000").
+ field's digits with dots within each keystroke ("10.000.000", AmountTextField), on the number pad.
  */
-import Domain
 import SwiftUI
 
 /** A labelled text input. */
@@ -21,9 +20,9 @@ struct KiraField: View {
     private var iconName: KiraIconName?
     private var minimumLines = 1
     private var groupsDigits = false
-    /** What an `.amount()` field shows while it is typed in; the binding gets the grouped digits. */
-    @State private var shown = ""
     @FocusState private var isFocused: Bool
+    /** Whether an `.amount()` field's UIKit text field is being typed in. */
+    @State private var isEditingAmount = false
     /**
      An empty prompt: without one, a text field shows its label in the box, and Kira's label
      already sits above it.
@@ -66,22 +65,11 @@ struct KiraField: View {
                 if isSingleLine, text.isEmpty, let prompt {
                     Text(prompt).font(.body).foregroundStyle(.inkMuted).accessibilityHidden(true)
                 }
-                TextField(
-                    text: groupsDigits ? $shown : $text, prompt: systemPrompt,
-                    axis: isSingleLine ? .horizontal : .vertical
-                ) {
-                    Text(label)
+                if groupsDigits {
+                    AmountTextField(text: $text, isEditing: $isEditingAmount, label: label, hint: prompt)
+                } else {
+                    textField
                 }
-                .lineLimit(minimumLines...max(minimumLines, 6))
-                .onChange(of: shown) { _, value in regroup(value) }
-                .onChange(of: text, initial: true) { _, value in
-                    if groupsDigits, value != AmountInput.grouped(shown) { shown = value }
-                }
-                .font(.body)
-                .foregroundStyle(.ink)
-                .focused($isFocused)
-                .accessibilityLabel(Text(label))
-                .accessibilityHint(prompt.map { Text($0) } ?? Text(Self.noPrompt))
             }
             .padding(.vertical, 14)
             if let suffixText { affix(suffixText) }
@@ -92,25 +80,27 @@ struct KiraField: View {
         .kiraCard(border: borderColor, cornerRadius: KiraRadius.medium)
         .overlay {
             RoundedRectangle(cornerRadius: KiraRadius.medium + 3, style: .continuous)
-                .strokeBorder(isFocused ? Color.pandanLine : .clear, lineWidth: 3)
+                .strokeBorder(isActive ? Color.pandanLine : .clear, lineWidth: 3)
                 .padding(-3)
         }
     }
 
+    private var textField: some View {
+        TextField(text: $text, prompt: systemPrompt, axis: isSingleLine ? .horizontal : .vertical) {
+            Text(label)
+        }
+        .lineLimit(minimumLines...max(minimumLines, 6))
+        .font(.body)
+        .foregroundStyle(.ink)
+        .focused($isFocused)
+        .accessibilityLabel(Text(label))
+        .accessibilityHint(prompt.map { Text($0) } ?? Text(Self.noPrompt))
+    }
+
     private var isSingleLine: Bool { minimumLines == 1 }
 
-    /**
-     Hands the typed digits to the binding grouped, then shows them grouped on the next turn of the
-     run loop: a text field being typed in does not show a value changed within the same edit. A
-     digit typed before that turn wins: the grouping of an older value would write over it and lose
-     the digit ("4800000" typed fast became "48.000").
-     */
-    private func regroup(_ value: String) {
-        let grouped = AmountInput.grouped(value)
-        text = grouped
-        guard grouped != value else { return }
-        Task { @MainActor in if shown == value { shown = grouped } }
-    }
+    /** Whether the field is being typed in: the SwiftUI field's focus, or the amount field's editing. */
+    private var isActive: Bool { isFocused || isEditingAmount }
 
     /** The prompt the system draws: a multi-line field's, which wraps already; none for a single line. */
     private var systemPrompt: Text {
@@ -120,7 +110,7 @@ struct KiraField: View {
 
     private var borderColor: Color {
         if errorText != nil { return .vulnerable }
-        return isFocused ? .pandan : .hairline
+        return isActive ? .pandan : .hairline
     }
 
     private func affix(_ text: LocalizedStringResource) -> some View {
@@ -142,7 +132,7 @@ struct KiraField: View {
     /** The same field with an icon at the end of the box, such as `.search`. */
     func icon(_ name: KiraIconName) -> Self { copy { $0.iconName = name } }
 
-    /** The same field holding whole rupiah: its digits grouped with dots as they are typed. */
+    /** The same field holding whole rupiah: digits only, on the number pad, grouped with dots as they are typed. */
     func amount() -> Self { copy { $0.groupsDigits = true } }
 
     /** The same field, growing to show at least `lines` lines. */
