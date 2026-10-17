@@ -74,6 +74,15 @@ nonisolated final class HomeScoreAuditTests: XCTestCase {
         try auditScreen("consumerDebt")
     }
 
+    /** KIR-126: four platforms paid on time stand on their own 25 rung, never on "Ada Keterlambatan". */
+    @MainActor
+    func testConsumerDebtManyOnTimePassesTheAudit() throws {
+        try auditScreen("consumerDebtManyOnTime") { app in
+            XCTAssertTrue(app.staticTexts["4 Platform atau Lebih, Tepat Waktu"].waitForExistence(timeout: 5))
+            XCTAssertFalse(app.staticTexts["Ada Keterlambatan"].exists)
+        }
+    }
+
     @MainActor
     func testDebtToAssetPassesTheAudit() throws {
         try auditScreen("debtToAsset")

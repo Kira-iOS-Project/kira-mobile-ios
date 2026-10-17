@@ -57,6 +57,10 @@
                 case .savingsRatio: indicator(.savingsRatio)
                 case .instalmentRatio: indicator(.instalmentRatio)
                 case .consumerDebt: indicator(.consumerDebt)
+                case .consumerDebtManyOnTime:
+                    IndicatorScreen(
+                        key: .consumerDebt, service: PreviewScoreService(detail: .consumerDebtManyOnTime)
+                    ) { _ in }
                 case .debtToAsset: indicator(.debtToAsset)
                 case .protectionCover: indicator(.protection)
                 default: HomeScreen(service: PreviewHomeService()) { _ in }
