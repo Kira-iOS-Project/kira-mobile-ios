@@ -84,11 +84,11 @@ private let summaryJSON =
 private let goalJSON =
     #"{"id":"e","kind":"emergency_fund","name":"Dana Darurat","targetAmount":25200000,"targetDate":"2029-04-25","#
     + #""monthlyDeposit":650000,"savedAmount":4800000,"inputs":{"essentialExpense":4200000},"initialAmount":0,"#
-    + #""inBudget":true,"createdAt":"2026-10-01T00:00:00Z","updatedAt":"2026-10-01T00:00:00Z"}"#
+    + #""inBudget":true,"createdAt":"2026-10-01T00:00:00.000Z","updatedAt":"2026-10-01T00:00:00.000Z"}"#
 private let goalDetailJSON =
     #"{"id":"e","kind":"emergency_fund","name":"Dana Darurat","targetAmount":25200000,"targetDate":"2029-04-25","#
     + #""monthlyDeposit":650000,"savedAmount":4800000,"inputs":{"essentialExpense":4200000},"initialAmount":0,"#
-    + #""inBudget":true,"createdAt":"2026-10-01T00:00:00Z","updatedAt":"2026-10-01T00:00:00Z","#
+    + #""inBudget":true,"createdAt":"2026-10-01T00:00:00.000Z","updatedAt":"2026-10-01T00:00:00.000Z","#
     + #""deposits":[{"id":"d1","amount":600000,"depositedOn":"2026-09-25"}],"#
     + #""milestones":[{"key":"one_week","amount":980000,"reachedOn":"2026-03-25"},"#
     + #"{"key":"target","amount":25200000,"reachedOn":null}]}"#
