@@ -21,7 +21,7 @@ extension ProductModel {
             .communityReportDuplicate, .communityRulesNotAccepted, .careCheckInNotFound, .careSafetyPlanNotFound,
             .payoffExtraTooHigh, .payoffNothingToPlan, .payoffPlanNotFound, .payoffDebtNotFound, .payoffPaymentTooHigh,
             .payoffPaymentAlreadyRecorded, .assetNotFound, .goalNotFound,
-            .goalEmergencyExists, .goalDepositConflict:
+            .goalEmergencyExists, .goalDepositConflict, .billNotFound, .billDebtNotFound:
             false
         }
     }

@@ -6,11 +6,6 @@
 import Domain
 import SwiftUI
 
-/** How often a bill repeats, as the confirmation says it. */
-enum BillRepeat {
-    case once, monthly, yearly
-}
-
 extension View {
     /** The confirmation while `isPresented` is true; Hapus runs `onDelete`. */
     func billDeleteDialog(

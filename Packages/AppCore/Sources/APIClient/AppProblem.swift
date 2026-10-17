@@ -183,4 +183,8 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case goalEmergencyExists = "GOAL_EMERGENCY_EXISTS"
     /** The deposit's idempotency key was already used on another goal. */
     case goalDepositConflict = "GOAL_DEPOSIT_CONFLICT"
+    /** The bill does not exist, or is someone else's. */
+    case billNotFound = "BILL_NOT_FOUND"
+    /** The debt account a cicilan bill links to does not exist, or is someone else's. */
+    case billDebtNotFound = "BILL_DEBT_NOT_FOUND"
 }
