@@ -2,7 +2,7 @@
  The canvas's contacts behind CareService, so Kira Peduli runs in previews and in the app before
  the API client implements the protocol. By default it lists a sample Layanan Kira Peduli (a
  placeholder number, debug only, never in the shipped list), so previews and audits draw its card,
- the Kuku card in the help sheet and PED-04's buttons. `listsKiraCare = false` shows the shipped
+ the Layanan Kira card in the help sheet and PED-04's buttons. `listsKiraCare = false` shows the shipped
  list as production does until the number exists; `isOffline` answers like a lost connection.
  */
 import APIClient

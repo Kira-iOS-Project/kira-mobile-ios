@@ -3,16 +3,6 @@
     {
       "filename": "mascot-happy-face.svg",
       "idiom": "universal"
-    },
-    {
-      "appearances": [
-        {
-          "appearance": "luminosity",
-          "value": "dark"
-        }
-      ],
-      "filename": "mascot-happy-face-dark.svg",
-      "idiom": "universal"
     }
   ],
   "info": {

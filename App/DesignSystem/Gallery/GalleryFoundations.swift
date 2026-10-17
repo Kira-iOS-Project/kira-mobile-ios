@@ -33,6 +33,7 @@
         Swatch(name: "on-emergency", color: .onEmergency), Swatch(name: "glass", color: .glass),
         Swatch(name: "scrim", color: .scrim), Swatch(name: "art-green", color: .artGreen),
         Swatch(name: "art-green-dark", color: .artGreenDark), Swatch(name: "art-green-light", color: .artGreenLight),
+        Swatch(name: "art-mascot-ground", color: .artMascotGround),
         Swatch(name: "art-green-soft", color: .artGreenSoft), Swatch(name: "art-turmeric", color: .artTurmeric),
         Swatch(name: "art-turmeric-dark", color: .artTurmericDark),
         Swatch(name: "art-turmeric-light", color: .artTurmericLight),
