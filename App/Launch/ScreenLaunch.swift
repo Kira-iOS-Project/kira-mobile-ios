@@ -44,6 +44,7 @@
             case .payoff: PayoffLaunch(screen: screen)
             case .payoffPlan: PayoffPlanLaunch(screen: screen)
             case .planModule: PlanModuleLaunch(screen: screen)
+            case .budgetEdit: BudgetEditLaunch(screen: screen)
             }
         }
     }
@@ -129,6 +130,9 @@
         /** REN: Tujuan Baru · Pendidikan Anak, Atur Jenjang, and Hasil Simulasi on the board's Raka. */
         case educationGoal, educationGoalResult, educationGoalStage
 
+        /** UNG-05: Atur Budget on its board; the tests save (Budget Tersimpan) or fail (Belum Berhasil Menyimpan). */
+        case budgetEdit, budgetEditFailing
+
         /** The area whose launcher builds the screen. */
         enum Area {
             case onboarding, home, account, plans, record, chat, community, care, careTools, debtEmergency, marketplace
@@ -141,6 +145,7 @@
             case payoff
             case payoffPlan
             case planModule
+            case budgetEdit
         }
 
         var area: Area {
@@ -168,6 +173,7 @@
             case .debtEmergency, .harshCollection, .illegalLender, .unresolvedComplaint, .payoffOffer: .debtEmergency
             case .payoff, .payoffHow, .payoffAvalanche: .payoff
             case .educationGoal, .educationGoalResult, .educationGoalStage: .educationGoal
+            case .budgetEdit, .budgetEditFailing: .budgetEdit
             case .marketplace, .marketplaceEmpty, .marketplaceFailed, .product, .productConsultation, .productEbook,
                 .productEvent, .productGone, .submitProduct:
                 .marketplace
