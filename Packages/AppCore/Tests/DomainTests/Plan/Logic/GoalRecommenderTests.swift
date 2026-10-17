@@ -8,7 +8,8 @@ struct GoalRecommenderTests {
     func wedding() {
         let found = GoalRecommender.recommendations(
             cost: 175_000_000, inflation: 0.05, years: 2, present: 15_000_000, deposit: 6_500_000, annualReturn: 0.05)
-        #expect(found == [.raiseDeposit(to: 7_000_000), .raiseReturn(to: 0.11), .extendYears(to: 3, target: 202_584_375)])
+        #expect(
+            found == [.raiseDeposit(to: 7_000_000), .raiseReturn(to: 0.11), .extendYears(to: 3, target: 202_584_375)])
         let plan = GoalMath.project(
             target: GoalMath.inflatedAmount(175_000_000, rate: 0.05, years: 2), present: 15_000_000, deposit: 6_500_000,
             annualReturn: 0.05, months: 24)
@@ -27,12 +28,15 @@ struct GoalRecommenderTests {
     func fits() {
         #expect(
             GoalRecommender.recommendations(
-                cost: 90_000_000, inflation: 0.05, years: 5, present: 10_000_000, deposit: 1_500_000, annualReturn: 0.06)
-                .isEmpty)
+                cost: 90_000_000, inflation: 0.05, years: 5, present: 10_000_000, deposit: 1_500_000, annualReturn: 0.06
+            )
+            .isEmpty)
         #expect(
             GoalRecommender.recommendations(
-                cost: 15_000_000, inflation: 0.05, months: 12, present: 2_000_000, deposit: 1_150_000, annualReturn: 0.05)
-                .isEmpty)
+                cost: 15_000_000, inflation: 0.05, months: 12, present: 2_000_000, deposit: 1_150_000,
+                annualReturn: 0.05
+            )
+            .isEmpty)
     }
 
     @Test("no return is offered when even the cap falls short; no years when the plan never gets there")

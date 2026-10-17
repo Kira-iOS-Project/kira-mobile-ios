@@ -16,10 +16,12 @@ struct GoalMathTests {
     @Test("Kendaraan and Barang inflate their DP; Barang by months ÷ 12")
     func vehicleAndGoods() {
         let vehicle = GoalMath.inflatedAmount(30_000_000 * 0.25, rate: 0.05, years: 2)
-        let car = GoalMath.project(target: vehicle, present: 2_000_000, deposit: 300_000, annualReturn: 0.05, months: 24)
+        let car = GoalMath.project(
+            target: vehicle, present: 2_000_000, deposit: 300_000, annualReturn: 0.05, months: 24)
         #expect(car.target == 8_268_750 && car.result == 9_797_141 && car.principal == 9_200_000 && car.fit == .fits)
         let goods = GoalMath.inflatedAmount(15_000_000, rate: 0.05, years: 12.0 / 12)
-        let laptop = GoalMath.project(target: goods, present: 2_000_000, deposit: 1_150_000, annualReturn: 0.05, months: 12)
+        let laptop = GoalMath.project(
+            target: goods, present: 2_000_000, deposit: 1_150_000, annualReturn: 0.05, months: 12)
         #expect(laptop.target == 15_750_000 && laptop.result == 16_281_844 && laptop.growth == 481_844)
         #expect(GoalMath.inflated(90_000_000, rate: 0.05, years: 5) == 114_865_341)
     }

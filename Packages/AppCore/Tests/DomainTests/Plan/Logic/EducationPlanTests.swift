@@ -13,7 +13,8 @@ struct EducationPlanTests {
     ]
 
     private func plan(
-        levels: [EducationLevel]? = nil, income: Int = 15_000_000, deposit: Int = 2_000_000, annualReturn: Double? = 0.08
+        levels: [EducationLevel]? = nil, income: Int = 15_000_000, deposit: Int = 2_000_000,
+        annualReturn: Double? = 0.08
     ) -> EducationPlan {
         EducationPlan(
             childAge: 3, levels: levels ?? self.levels, inflation: 0.15, income: income, present: 20_000_000,
