@@ -48,11 +48,11 @@ struct MortgageSummary: View {
     private var costs: some View {
         let costs = mortgage.costs
         return KiraListGroup("plan.kpr.costs", footer: "plan.kpr.costs.footer") {
-            row("plan.kpr.bphtb", "plan.kpr.bphtb.detail", costs.bphtb)
-            row("plan.kpr.deed", "plan.kpr.ofPrice \(1)", costs.deed)
-            row("plan.kpr.transfer", "plan.kpr.ofPrice \(1)", costs.transfer)
-            row("plan.kpr.notary", "plan.kpr.ofPrice.decimal \(notaryText)", costs.notary)
-            row("plan.kpr.provision", "plan.kpr.ofLoan", costs.provision)
+            row("plan.kpr.bphtb", Text("plan.kpr.bphtb.detail"), costs.bphtb)
+            row("plan.kpr.deed", Text("plan.kpr.ofPrice \(1)"), costs.deed)
+            row("plan.kpr.transfer", Text("plan.kpr.ofPrice \(1)"), costs.transfer)
+            row("plan.kpr.notary", Text("plan.kpr.ofPrice.decimal \(notaryText)"), costs.notary)
+            row("plan.kpr.provision", Text("plan.kpr.ofLoan"), costs.provision)
             row("plan.kpr.appraisal", nil, costs.appraisal)
             row("plan.kpr.admin", nil, costs.admin)
             row("plan.kpr.costs.total", nil, costs.total)
@@ -71,9 +71,9 @@ struct MortgageSummary: View {
         mortgage.price < 100_000_000 ? 2.5 : mortgage.price > 1_000_000_000 ? 1 : 1.5
     }
 
-    private func row(_ title: LocalizedStringResource, _ detail: LocalizedStringResource?, _ amount: Int) -> some View {
+    private func row(_ title: LocalizedStringResource, _ detail: Text?, _ amount: Int) -> some View {
         var row = KiraListRow(Text(title)).amount(KiraAmount(amount.rupiah))
-        if let detail { row = row.subtitle(Text(detail)) }
+        if let detail { row = row.subtitle(detail) }
         return row
     }
 }
