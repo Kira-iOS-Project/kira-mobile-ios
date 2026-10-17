@@ -3,6 +3,7 @@
  repeats, says it leaves Beranda and the bill list while the transactions already recorded stay.
  Hapus (destructive) on top deletes the schedule; Batal under it closes without a change.
  */
+import Domain
 import SwiftUI
 
 /** How often a bill repeats, as the confirmation says it. */
