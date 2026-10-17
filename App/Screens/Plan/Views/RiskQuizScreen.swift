@@ -35,7 +35,9 @@ struct RiskQuizScreen: View {
             }
         case .failed(let problem):
             PlanScreenFrame {
-                LoadFailedView(problem: problem) { Task { await model.load() } }
+                LoadFailedView(leading: .close("plan.risk.close") { dismiss() }, problem: problem) {
+                    Task { await model.load() }
+                }
             }
         case .loaded(let context):
             switch model.stage {

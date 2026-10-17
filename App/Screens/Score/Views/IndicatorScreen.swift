@@ -29,15 +29,18 @@ struct IndicatorScreen: View {
             case .loaded(let detail):
                 IndicatorContent(detail: detail, onOpen: onOpen) { dismiss() }
             case .empty:
-                LoadFailedView(title: "indicator.failed", problem: AppProblem()) { reload() }
+                LoadFailedView(title: "indicator.failed", leading: back, problem: AppProblem()) { reload() }
             case .failed(let problem):
-                LoadFailedView(title: "indicator.failed", problem: problem) { reload() }
+                LoadFailedView(title: "indicator.failed", leading: back, problem: problem) { reload() }
             }
         }
         .background(.surface)
         .toolbar(.hidden, for: .navigationBar)
         .task { await model.load() }
     }
+
+    /** Kembali ke Kira Score, as the loaded screen's bar: a failed load still has its way back. */
+    private var back: LoadFailedView.Leading { .back("indicator.back") { dismiss() } }
 
     private func reload() {
         Task { await model.load() }

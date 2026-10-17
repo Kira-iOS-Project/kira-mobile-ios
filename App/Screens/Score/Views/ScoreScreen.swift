@@ -30,7 +30,9 @@ struct ScoreScreen: View {
             case .empty:
                 ScoreEmptyView(onOpen: onOpen) { dismiss() }
             case .failed(let problem):
-                LoadFailedView(title: "score.failed", problem: problem) { Task { await model.load() } }
+                LoadFailedView(title: "score.failed", leading: .back("score.back") { dismiss() }, problem: problem) {
+                    Task { await model.load() }
+                }
             }
         }
         .background(.surface)

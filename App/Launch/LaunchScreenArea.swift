@@ -71,7 +71,7 @@
                 .planModule
             case .debtDetail, .debtDetailGone, .creditReportGuide: .debtDetail
             case .wallets: .wallets
-            case .budget: .budget
+            case .budget, .budgetFailed: .budget
             case .walletAdd, .walletAddFailing: .walletAdd
             case .billAdd, .billAddSaved, .billAddFailing, .billEdit: .billForm
             case .weeklySummary, .weeklySummaryEmpty, .weeklySummaryFailed: .weeklySummary

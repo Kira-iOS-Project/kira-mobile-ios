@@ -1,11 +1,21 @@
 /** Budget values for previews and the debug screen audit, with no network requests. */
+import APIClient
 import Domain
 import Features
 
 nonisolated struct PreviewBudgetService: BudgetService {
     private let budget = Self.sample
+    private let isFailing: Bool
 
-    func currentBudget() throws -> BudgetOverview { budget }
+    /** The board's budget, or a lost connection when `isFailing` (the failed state's audit). */
+    init(isFailing: Bool = false) {
+        self.isFailing = isFailing
+    }
+
+    func currentBudget() throws -> BudgetOverview {
+        if isFailing { throw AppProblem.connectionLost }
+        return budget
+    }
 
     /** Board Budget: Rp1.840.000,00 left of Rp7.500.000,00, ten days to payday, Dana Darurat set aside. */
     private static let sample = BudgetOverview(
