@@ -42,4 +42,10 @@ struct ReceiptStoreAssistTests {
         #expect(await ReceiptStoreAssist(assistant: assistant).named(named, lines: lines, image: Data()) == named)
         #expect(assistant.asked == 0)
     }
+
+    @Test("a model slower than the timeout leaves the reading as it is, without waiting for it")
+    func timesOut() async {
+        let assist = ReceiptStoreAssist(assistant: HangingReceiptAssistant(), timeout: .milliseconds(20))
+        #expect(await assist.named(unnamed, lines: lines, image: Data()) == unnamed)
+    }
 }
