@@ -9,8 +9,6 @@ package struct BudgetOverview: Equatable, Sendable {
     package let remaining: Int
     /** Whether category allocations have been configured for this account. */
     package let isConfigured: Bool
-    /** The payday preference saved by the person. */
-    package let payday: Payday
     /** The period the server resolved from the adjusted payday. */
     package let period: PayPeriod
     /** Planned and spent amounts, in the API's stable category order. */
@@ -20,14 +18,13 @@ package struct BudgetOverview: Equatable, Sendable {
 
     /** The current budget and its period. */
     package init(
-        income: Int, remaining: Int? = nil, goalPosts: [BudgetGoalPost] = [], payday: Payday,
+        income: Int, remaining: Int? = nil, goalPosts: [BudgetGoalPost] = [],
         period: PayPeriod, allocations: [BudgetAllocation], isConfigured: Bool = true
     ) {
         let normalizedIncome = max(0, income)
         self.income = normalizedIncome
         self.remaining = remaining ?? (normalizedIncome - allocations.reduce(0) { $0 + $1.spent })
         self.isConfigured = isConfigured
-        self.payday = payday
         self.period = period
         self.allocations = allocations
         self.goalPosts = goalPosts

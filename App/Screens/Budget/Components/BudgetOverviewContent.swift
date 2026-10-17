@@ -50,7 +50,7 @@ struct BudgetOverviewContent: View {
 extension BudgetOverview {
     /** The shape the screen shows while the budget loads, redacted. */
     static let placeholder = BudgetOverview(
-        income: 0, payday: Payday(day: Payday.defaultDay),
+        income: 0,
         period: PayPeriod(
             start: CalendarDay(year: 2026, month: 10, day: 25),
             end: CalendarDay(year: 2026, month: 11, day: 24), daysUntilPayday: 0),

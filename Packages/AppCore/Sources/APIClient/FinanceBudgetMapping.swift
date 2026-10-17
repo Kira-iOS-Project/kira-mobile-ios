@@ -11,11 +11,6 @@ extension Operations.GetCurrentBudget.Output {
 }
 
 func budgetOverview(_ row: Components.Schemas.CurrentBudget) throws -> BudgetOverview {
-    let payday: Payday
-    switch row.payday.requested {
-    case .case1(let day): payday = Payday(day: day.day)
-    case .case2: payday = .endOfMonth
-    }
     guard let start = CalendarDay(iso: row.payday.periodStart),
         let end = CalendarDay(iso: row.payday.periodEnd)
     else { throw AppProblem() }
@@ -32,7 +27,7 @@ func budgetOverview(_ row: Components.Schemas.CurrentBudget) throws -> BudgetOve
             })
     }
     return BudgetOverview(
-        income: row.income, remaining: row.remaining, goalPosts: goals, payday: payday,
+        income: row.income, remaining: row.remaining, goalPosts: goals,
         period: PayPeriod(start: start, end: end, daysUntilPayday: row.payday.daysUntilPayday),
         allocations: allocations, isConfigured: row.configured)
 }

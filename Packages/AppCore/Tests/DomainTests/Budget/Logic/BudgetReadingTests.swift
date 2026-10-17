@@ -7,7 +7,7 @@ struct BudgetReadingTests {
         income: Int = 7_500_000, remaining: Int = 1_840_000, days: Int = 10, allocations: [BudgetAllocation] = []
     ) -> BudgetOverview {
         BudgetOverview(
-            income: income, remaining: remaining, payday: Payday(day: 25),
+            income: income, remaining: remaining,
             period: PayPeriod(
                 start: CalendarDay(year: 2026, month: 9, day: 25), end: CalendarDay(year: 2026, month: 10, day: 24),
                 daysUntilPayday: days),
