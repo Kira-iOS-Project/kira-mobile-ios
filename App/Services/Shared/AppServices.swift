@@ -34,6 +34,8 @@ struct AppServices {
     let wallet: any WalletService
     /** The current pay period's budget (UNG-04). */
     let budget: any BudgetService
+    /** Ringkasan Mingguan's week (UNG-08). */
+    let weeklySummary: any WeeklySummaryService
 }
 
 extension AppServices {
@@ -61,7 +63,8 @@ extension AppServices {
             marketplace: LiveMarketplaceService(api: api),
             portfolio: LivePortfolioService(api: api), goals: LiveGoalService(api: api),
             riskProfile: LiveRiskProfileService(api: api), riskDraft: RiskQuizDraft(),
-            wallet: LiveWalletService(api: api), budget: LiveBudgetService(api: api))
+            wallet: LiveWalletService(api: api), budget: LiveBudgetService(api: api),
+            weeklySummary: LiveWeeklySummaryService(api: api))
     }
 
     /** The canvas's sample data: nothing leaves the device. */
@@ -75,7 +78,8 @@ extension AppServices {
             debtEmergency: PreviewDebtEmergencyService(), marketplace: PreviewMarketplaceService(),
             portfolio: PreviewPortfolioService(), goals: PreviewGoalService(),
             riskProfile: PreviewRiskProfileService(), riskDraft: RiskQuizDraft(),
-            wallet: PreviewWalletService(), budget: PreviewBudgetService())
+            wallet: PreviewWalletService(), budget: PreviewBudgetService(),
+            weeklySummary: PreviewWeeklySummaryService())
     }
 }
 
