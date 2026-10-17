@@ -41,6 +41,16 @@ package struct AmountEdit: Equatable, Sendable {
         return AmountEdit(text: grouped, caret: offset(afterDigits: digitsBefore, in: grouped))
     }
 
+    /**
+     What the field shows when its binding changes: while it is typed in, its own text, which
+     already holds every keystroke, so a binding that arrives late with an older value ("4.800"
+     after "48.000" is on screen) can never take digits away; otherwise the binding's value, grouped
+     (a form filled in, a reset).
+     */
+    package static func shown(current: String, binding: String, isEditing: Bool) -> String {
+        isEditing ? current : AmountInput.grouped(binding)
+    }
+
     private static let zero = "0".utf16.first ?? 48
 
     private static func isDigit(_ unit: UTF16.CodeUnit) -> Bool {

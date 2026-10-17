@@ -61,4 +61,12 @@ struct AmountEditTests {
             AmountEdit.apply(to: "500", location: -2, length: -1, replacement: "1")
                 == AmountEdit(text: "1.500", caret: 1))
     }
+
+    @Test("a late echo of an older value never takes digits from a field being typed in")
+    func staleEcho() {
+        #expect(AmountEdit.shown(current: "48.000", binding: "4.800", isEditing: true) == "48.000")
+        #expect(AmountEdit.shown(current: "7.500.000", binding: "750000", isEditing: true) == "7.500.000")
+        #expect(AmountEdit.shown(current: "48.000", binding: "4800000", isEditing: false) == "4.800.000")
+        #expect(AmountEdit.shown(current: "48.000", binding: "", isEditing: false) == "")
+    }
 }

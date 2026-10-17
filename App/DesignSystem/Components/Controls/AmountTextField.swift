@@ -36,8 +36,8 @@ struct AmountTextField: UIViewRepresentable {
         context.coordinator.parent = self
         field.accessibilityLabel = String(localized: label)
         field.accessibilityHint = hint.map { String(localized: $0) }
-        /** Only a value set from outside (a form filled in, a reset) reaches the field here. */
-        let shown = AmountInput.grouped(text)
+        /** A late echo of an older value never reaches a field being typed in (AmountEdit.shown). */
+        let shown = AmountEdit.shown(current: field.text ?? "", binding: text, isEditing: field.isFirstResponder)
         if field.text != shown { field.text = shown }
     }
 
@@ -64,6 +64,10 @@ struct AmountTextField: UIViewRepresentable {
 
         func textFieldDidBeginEditing(_: UITextField) { parent.isEditing = true }
 
-        func textFieldDidEndEditing(_: UITextField) { parent.isEditing = false }
+        /** Hands the final text to the binding once more, so it ends on what the field shows. */
+        func textFieldDidEndEditing(_ field: UITextField) {
+            parent.isEditing = false
+            if parent.text != field.text ?? "" { parent.text = field.text ?? "" }
+        }
     }
 }
