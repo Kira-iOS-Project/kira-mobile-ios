@@ -97,8 +97,25 @@ extension Components.Schemas.GoalInputs {
 extension Components.Schemas.CreateGoal {
     init(_ draft: GoalDraft) {
         self.init(
-            kind: Components.Schemas.CreateGoal.KindPayload(rawValue: draft.kind.rawValue) ?? .other, name: draft.name,
+            kind: .init(draft.kind), name: draft.name,
             inputs: .init(draft.inputs), initialAmount: draft.initialAmount, monthlyDeposit: draft.monthlyDeposit,
             targetAmount: draft.targetAmount, targetDate: draft.targetDate.iso, inBudget: draft.inBudget)
+    }
+}
+
+extension Components.Schemas.CreateGoal.KindPayload {
+    /** The API's name of `kind`. Every Domain kind has one, so a new kind fails the build here. */
+    init(_ kind: GoalKind) {
+        self =
+            switch kind {
+            case .emergencyFund: .emergencyFund
+            case .houseDownPayment: .houseDp
+            case .education: .education
+            case .wedding: .wedding
+            case .retirement: .retirement
+            case .vehicle: .vehicle
+            case .goods: .goods
+            case .other: .other
+            }
     }
 }
