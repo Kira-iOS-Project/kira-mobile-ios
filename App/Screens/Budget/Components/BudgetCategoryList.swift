@@ -12,7 +12,7 @@ struct BudgetCategoryList: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: KiraSpacing.space3) {
-            KiraSectionTitle("budget.categories", trailing: budget.isWithinPlan ? .note("budget.categories.note") : .none)
+            KiraSectionTitle("budget.categories", trailing: note)
             KiraListGroup {
                 ForEach(budget.allocations, id: \.category) { allocation in
                     BudgetCategoryRow(allocation: allocation)
@@ -24,6 +24,10 @@ struct BudgetCategoryList: View {
             .accessibilityElement(children: .contain)
             .accessibilityLabel(Text("budget.categories.label"))
         }
+    }
+
+    private var note: KiraSectionTitle.Trailing {
+        budget.isWithinPlan ? .note("budget.categories.note") : .none
     }
 }
 
@@ -45,10 +49,12 @@ private struct BudgetCategoryRow: View {
                 }
             }
         }
-        .subtitle(
-            Text("budget.category.of \(allocation.spent.rupiah, format: .rupiah) \(allocation.amount.rupiah, format: .rupiah)")
-        )
+        .subtitle(Text("budget.category.of \(spent) \(planned)"))
     }
+
+    private var spent: Text { Text(allocation.spent.rupiah, format: .rupiah) }
+
+    private var planned: Text { Text(allocation.amount.rupiah, format: .rupiah) }
 }
 
 private struct BudgetGoalRow: View {
@@ -62,8 +68,8 @@ private struct BudgetGoalRow: View {
                 KiraTag("budget.goal.tag", tone: .pandan, icon: .target)
             }
         }
-        .subtitle(
-            Text("budget.goal.setAside \(goal.currentAmount.rupiah, format: .rupiah) \(since.date.formatted(.kiraDate))")
-        )
+        .subtitle(Text("budget.goal.setAside \(saved) \(since.date.formatted(.kiraDate))"))
     }
+
+    private var saved: Text { Text(goal.currentAmount.rupiah, format: .rupiah) }
 }

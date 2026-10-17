@@ -5,7 +5,7 @@ import Features
 nonisolated struct PreviewBudgetService: BudgetService {
     private let budget = Self.sample
 
-    func currentBudget() async throws -> BudgetOverview { budget }
+    func currentBudget() throws -> BudgetOverview { budget }
 
     /** Board Budget: Rp1.840.000,00 left of Rp7.500.000,00, ten days to payday, Dana Darurat set aside. */
     private static let sample = BudgetOverview(

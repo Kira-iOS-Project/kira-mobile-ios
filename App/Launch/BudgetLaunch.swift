@@ -5,7 +5,7 @@
     struct BudgetLaunch: View {
         var body: some View {
             NavigationStack {
-                BudgetScreen(service: PreviewBudgetService()) { _ in } { _ in }
+                BudgetScreen(service: PreviewBudgetService()) { _ in }
             }
         }
     }
