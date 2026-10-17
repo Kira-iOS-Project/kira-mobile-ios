@@ -1,5 +1,6 @@
 import Domain
 import Foundation
+import HTTPTypes
 import Testing
 
 @testable import APIClient
