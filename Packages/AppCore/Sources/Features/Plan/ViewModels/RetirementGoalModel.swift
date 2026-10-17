@@ -56,7 +56,6 @@ package final class RetirementGoalModel {
     /** Hitung: the projection and what goes with it; nil while something is missing. */
     package var outcome: RetirementGoalOutcome? {
         guard let expense = RetirementGoalModel.rupiah(expense), expense > 0, let years,
-            let age = RetirementGoalModel.count(age),
             let inflation = RetirementGoalModel.percent(inflation), let deposit = RetirementGoalModel.rupiah(deposit),
             let annualReturn = RetirementGoalModel.percent(annualReturn)
         else { return nil }
@@ -74,7 +73,7 @@ package final class RetirementGoalModel {
             cost: .init(expense * 12 * 25), inflation: inflation, years: years, present: present, deposit: deposit,
             annualReturn: annualReturn, offersYears: false)
         return RetirementGoalOutcome(
-            monthlyExpense: expense, age: age, years: years, inflation: inflation, annualExpense: need.annualExpense,
+            monthlyExpense: expense, years: years, inflation: inflation, annualExpense: need.annualExpense,
             present: present, deposit: deposit, annualReturn: annualReturn, projection: projection,
             recommendations: recommendations, assetClasses: GoalMath.assetClasses(years: Double(years)))
     }
@@ -123,8 +122,6 @@ package struct RetirementGoalValues: Equatable, Sendable {
 package struct RetirementGoalOutcome: Equatable, Sendable {
     /** "Pengeluaran per Bulan". */
     package let monthlyExpense: Int
-    /** "Usiamu Sekarang"; retirement comes at `age + years` (for the goal POST /goals stores). */
-    package let age: Int
     /** Years until retirement. */
     package let years: Int
     /** "Asumsi Inflasi Tahunan", as a fraction. */
