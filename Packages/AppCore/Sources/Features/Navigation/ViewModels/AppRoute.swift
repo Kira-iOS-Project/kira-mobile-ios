@@ -132,6 +132,11 @@ package enum AppRoute: Hashable, Sendable {
     /** REN-11 on an asset Portofolio lists: the form updating it. */
     case editAsset(id: String)
 
+    /** REN-07: Hasil Risiko */
+    case riskResult
+    /** REN-08: Modul Kelas Aset; its screen belongs to work/r4b-modules */
+    case assetModule(RiskAssetClass)
+
     /** A link the boards show to an area not built yet: it stays visible and opens nothing. */
     case unavailable(UnavailableArea)
 }

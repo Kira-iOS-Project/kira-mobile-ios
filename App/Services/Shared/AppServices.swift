@@ -26,6 +26,10 @@ struct AppServices {
     let marketplace: any MarketplaceService
     let portfolio: any PortfolioService
     let goals: any GoalService
+    /** REN-06 and REN-07: the risk profile (`GET`/`PUT /risk-profile`). */
+    let riskProfile: any RiskProfileService
+    /** The quiz's answers for the app's session (`RiskQuizDraft`). */
+    let riskDraft: RiskQuizDraft
 }
 
 extension AppServices {
@@ -51,7 +55,8 @@ extension AppServices {
             careTools: LiveCareToolsService(api: api),
             debtEmergency: LiveDebtEmergencyService(api: api),
             marketplace: LiveMarketplaceService(api: api),
-            portfolio: LivePortfolioService(api: api), goals: LiveGoalService(api: api))
+            portfolio: LivePortfolioService(api: api), goals: LiveGoalService(api: api),
+            riskProfile: LiveRiskProfileService(api: api), riskDraft: RiskQuizDraft())
     }
 
     /** The canvas's sample data: nothing leaves the device. */
@@ -63,7 +68,8 @@ extension AppServices {
             recovery: PreviewPinRecoveryService(),
             community: PreviewCommunityService(), care: PreviewCareService(), careTools: PreviewCareToolsService(),
             debtEmergency: PreviewDebtEmergencyService(), marketplace: PreviewMarketplaceService(),
-            portfolio: PreviewPortfolioService(), goals: PreviewGoalService())
+            portfolio: PreviewPortfolioService(), goals: PreviewGoalService(),
+            riskProfile: PreviewRiskProfileService(), riskDraft: RiskQuizDraft())
     }
 }
 

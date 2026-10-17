@@ -58,10 +58,20 @@ struct RouteSlot: View {
         case .newGoal: NewGoalScreen(onOpen: onOpen)
         case .goalForm(let kind): GoalFormRoute(kind: kind, service: services.goals, onOpen: onOpen)
         case .editGoal: EmptySlot()
-        case .riskQuiz, .legalityCheck: EmptySlot()
+        case .riskQuiz, .riskResult: riskQuiz(start: route == .riskResult ? .savedResult : .quiz())
+        case .legalityCheck: LegalityCheckScreen(onOpen: onOpen)
+        case .assetModule: EmptySlot()
         case .home, .record, .plan, .community, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history,
             .transaction, .conversation, .importStatement, .unavailable:
             EmptySlot()
         }
+    }
+
+    /** Kenali Profil Risikomu or Hasil Kuis; without the plan's service the quiz shows no ladder notice. */
+    private func riskQuiz(start: RiskQuizModel.Start) -> some View {
+        RiskQuizScreen(
+            model: RiskQuizModel(
+                service: services.riskProfile, draft: services.riskDraft, plans: services.goals, start: start),
+            onOpen: onOpen)
     }
 }
