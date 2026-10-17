@@ -5,6 +5,7 @@ import SwiftUI
 
 struct BudgetEditorForm: View {
     @State private var model: BudgetEditorModel
+    @State private var isRetrying = false
     private let onSaved: () -> Void
     private let onCancel: () -> Void
 
@@ -35,6 +36,10 @@ struct BudgetEditorForm: View {
             }
         }
         .budgetSaveSuccessDialog(isPresented: saveSuccessPresented)
+        .budgetSaveFailureDialog(isPresented: saveFailurePresented) {
+            isRetrying = true
+            Task { await retry() }
+        }
         .task { await model.loadAverages() }
     }
 
@@ -101,5 +106,22 @@ struct BudgetEditorForm: View {
                 model.dismissResult()
                 onSaved()
             })
+    }
+
+    private var saveFailurePresented: Binding<Bool> {
+        Binding(
+            get: {
+                if case .failed = model.saveState { return true }
+                return false
+            },
+            set: { presented in
+                guard !presented && !isRetrying else { return }
+                model.dismissResult()
+            })
+    }
+
+    private func retry() async {
+        await model.retry()
+        isRetrying = false
     }
 }
