@@ -56,6 +56,32 @@ nonisolated final class OnboardingAuditTests: XCTestCase {
         try auditScreen("debts")
     }
 
+    /** A rupiah field opens the number pad, never the letter keyboard, and groups digits as typed. */
+    @MainActor
+    func testDebtSheetAmountOpensTheNumberPad() {
+        let app = XCUIApplication()
+        app.launchArguments = ["-KiraScreen", "debts"]
+        app.launch()
+        Self.openDebtSheet(app)
+        let remaining = app.textFields["Sisa Utang"]
+        XCTAssertTrue(remaining.waitForExistence(timeout: 5))
+        remaining.tap()
+        XCTAssertTrue(app.keyboards.keys["1"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.keyboards.keys["q"].exists)
+        remaining.typeText("4200000")
+        XCTAssertEqual(remaining.value as? String, "4.200.000")
+        app.terminate()
+    }
+
+    /** Tambah Rincian Utang, from Tambah Utang Lain. */
+    @MainActor
+    private static func openDebtSheet(_ app: XCUIApplication) {
+        let add = app.buttons["Tambah Utang Lain"]
+        XCTAssertTrue(add.waitForExistence(timeout: 10))
+        add.tap()
+        XCTAssertTrue(app.staticTexts["Tambah Rincian Utang"].waitForExistence(timeout: 5))
+    }
+
     @MainActor
     func testSavingsPassesTheAudit() throws {
         try auditScreen("savings")
