@@ -11,8 +11,18 @@ extension IndicatorDetail {
      key is looked up by indicator and points (manual catalog keys `indicator.rung.<key>.<points>`).
      */
     func title(of rung: LadderRung) -> Text {
+        Text(LocalizedStringKey(rungKey(of: rung)))
+    }
+
+    /**
+     The catalog key of a rung. Four or more consumer-debt platforms, all paid on time, also score 25,
+     the points of "Ada Keterlambatan"; the rung they stand on then says so instead of a lateness
+     that never happened (`.onTime` variant of the key).
+     */
+    private func rungKey(of rung: LadderRung) -> String {
         let key = "indicator.rung.\(indicator.key.rawValue).\(rung.points)"
-        return Text(LocalizedStringKey(key))
+        guard indicator.key == .consumerDebt, rung.points == 25, rung.isCurrent else { return key }
+        return indicator.measure.payment == .onTime ? "\(key).onTime" : key
     }
 
     /** A rung's second line, from its range and amounts. */
@@ -20,8 +30,7 @@ extension IndicatorDetail {
         let isMultiple = indicator.key == .emergencyFund
         switch range(of: rung) {
         case .fixed:
-            let key = "indicator.rung.\(indicator.key.rawValue).\(rung.points).detail"
-            return Text(LocalizedStringKey(key))
+            return Text(LocalizedStringKey(rungKey(of: rung) + ".detail"))
         case .atLeast(let bound) where isMultiple:
             return Text(
                 "indicator.range.multipleAtLeast \(multiple(bound.multiple)) \(bound.amount.rupiah, format: .rupiah)")

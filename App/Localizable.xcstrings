@@ -23201,6 +23201,28 @@
         }
       }
     },
+    "indicator.rung.consumer_debt.25.onTime" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4 Platform atau Lebih, Tepat Waktu"
+          }
+        }
+      }
+    },
+    "indicator.rung.consumer_debt.25.onTime.detail" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terlalu banyak akun"
+          }
+        }
+      }
+    },
     "portfolio.add" : {
       "localizations" : {
         "id" : {
