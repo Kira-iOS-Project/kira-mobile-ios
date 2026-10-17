@@ -1,6 +1,7 @@
 /** The current budget, including the server-adjusted pay period and this period's spending. */
 import Foundation
 
+/** Budget Bulanan's figures: income, what remains, the period and each category's allocation. */
 package struct BudgetOverview: Equatable, Sendable {
     /** The monthly income used to size the plan. */
     package let income: Int
