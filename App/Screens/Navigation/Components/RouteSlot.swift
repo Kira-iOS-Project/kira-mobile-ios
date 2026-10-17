@@ -52,14 +52,11 @@ struct RouteSlot: View {
         }
     }
 
-    /** Kenali Profil Risikomu or Hasil Kuis, once the live risk-profile and plan services exist. */
-    @ViewBuilder private func riskQuiz(start: RiskQuizModel.Start) -> some View {
-        if let service = services.riskProfile, let plans = services.goals {
-            RiskQuizScreen(
-                model: RiskQuizModel(service: service, draft: services.riskDraft, plans: plans, start: start),
-                onOpen: onOpen)
-        } else {
-            EmptySlot()
-        }
+    /** Kenali Profil Risikomu or Hasil Kuis; without the plan's service the quiz shows no ladder notice. */
+    private func riskQuiz(start: RiskQuizModel.Start) -> some View {
+        RiskQuizScreen(
+            model: RiskQuizModel(
+                service: services.riskProfile, draft: services.riskDraft, plans: services.goals, start: start),
+            onOpen: onOpen)
     }
 }

@@ -22,10 +22,10 @@ struct AppServices {
     let careTools: any CareToolsService
     let debtEmergency: any DebtEmergencyService
     let marketplace: any MarketplaceService
-    /** Rencana's plan and goals (`GET /plan`); nil until the live service lands with the plan's client. */
+    /** Rencana's plan and goals (`GET /plan`); nil until its live service lands (the quiz then shows no ladder notice). */
     let goals: (any GoalService)?
-    /** REN-06 and REN-07; nil until the live service lands with the risk profile's client (B4). */
-    let riskProfile: (any RiskProfileService)?
+    /** REN-06 and REN-07: the risk profile (`GET`/`PUT /risk-profile`). */
+    let riskProfile: any RiskProfileService
     /** The quiz's answers for the app's session (`RiskQuizDraft`). */
     let riskDraft: RiskQuizDraft
 }
@@ -51,7 +51,7 @@ extension AppServices {
             careTools: LiveCareToolsService(api: api),
             debtEmergency: LiveDebtEmergencyService(api: api),
             marketplace: LiveMarketplaceService(api: api),
-            goals: nil, riskProfile: nil, riskDraft: RiskQuizDraft())
+            goals: nil, riskProfile: LiveRiskProfileService(api: api), riskDraft: RiskQuizDraft())
     }
 
     /** The canvas's sample data: nothing leaves the device. */

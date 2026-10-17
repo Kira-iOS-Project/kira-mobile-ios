@@ -44,11 +44,11 @@ package final class RiskQuizModel {
     private let start: Start
     private let draft: RiskQuizDraft
     private let service: any RiskProfileService
-    private let plans: any GoalService
+    private let plans: (any GoalService)?
 
-    /** A quiz on `service`, keeping its answers in `draft`, with the plan's numbers from `plans` (`GET /plan`). */
+    /** A quiz on `service`, keeping its answers in `draft`, with the plan's numbers from `plans` (`GET /plan`; none: unknown). */
     package init(
-        service: any RiskProfileService, draft: RiskQuizDraft, plans: any GoalService, start: Start = .quiz()
+        service: any RiskProfileService, draft: RiskQuizDraft, plans: (any GoalService)?, start: Start = .quiz()
     ) {
         self.service = service
         self.draft = draft
@@ -59,7 +59,7 @@ package final class RiskQuizModel {
 
     /** Reads the plan's numbers and, for Hasil Kuis, the saved profile. */
     package func load() async {
-        let numbers = (try? await plans.plan()).map(RiskQuizContext.init(plan:)) ?? .unknown
+        let numbers = (try? await plans?.plan()).map(RiskQuizContext.init(plan:)) ?? .unknown
         do {
             let saved = try await service.savedProfile()
             if draft.answers.indexes == nil, let saved { draft.answers = saved.answers }
