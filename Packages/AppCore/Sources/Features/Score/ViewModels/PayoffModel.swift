@@ -96,7 +96,8 @@ package final class PayoffModel {
         do {
             let simulation = try await service.simulate(method: method, extraPayment: extraPayment)
             guard mine == generation else { return }
-            phase = .loaded(simulation)
+            /** No consumer account left (the API answers 200 with none): nothing to plan. */
+            phase = simulation.accounts.isEmpty ? .empty : .loaded(simulation)
             recalculationProblem = nil
         } catch {
             guard mine == generation else { return }

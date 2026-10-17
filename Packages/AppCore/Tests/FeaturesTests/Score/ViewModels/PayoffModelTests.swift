@@ -67,6 +67,17 @@ struct PayoffModelTests {
         let model = PayoffModel(service: service)
         await model.load()
         guard case .empty = model.phase else { return #expect(Bool(false)) }
+        let none = FakePayoffService()
+        await none.answers { call in
+            let full = payoffSimulation(for: call)
+            return PayoffSimulation(
+                method: full.method, extraPayment: full.extraPayment, maxExtraPayment: full.maxExtraPayment,
+                monthlyBudget: 0, hasUnknownRate: false, accounts: [], productive: full.productive,
+                totalInterest: nil, allPaidMonths: nil, allPaidMonth: nil, comparison: nil)
+        }
+        let answered = PayoffModel(service: none)
+        await answered.load()
+        guard case .empty = answered.phase else { return #expect(Bool(false), "200 with no account is empty too") }
     }
 
     @Test("a first load that fails shows the problem, or the generic one")

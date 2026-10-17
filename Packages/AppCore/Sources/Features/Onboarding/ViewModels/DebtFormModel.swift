@@ -5,7 +5,7 @@ import Observation
 /**
  Tambah Rincian Utang (ONB-11b): the sheet that adds a debt, or changes one when opened from its
  row. Amounts are digits only (",00" beside the box); the tenor, the yearly interest and the due day
- are optional. A rate above 300 percent or a day outside 1 to 31 is left out rather than sent.
+ are optional. A rate above 300 percent or a day outside 1 to 31 shows its error and is not saved.
  */
 @MainActor @Observable
 package final class DebtFormModel {
@@ -19,9 +19,9 @@ package final class DebtFormModel {
     package var instalment: String { didSet { regroup(\.instalment, oldValue) } }
     /** "Sisa Tenor (Opsional)", in months. */
     package var tenor: String { didSet { regroup(\.tenor, oldValue) } }
-    /** "Bunga per Tahun (opsional)", in percent with a decimal comma. */
+    /** "Bunga per Tahun (Opsional)", in percent with a decimal comma. */
     package var interest: String { didSet { regroup(\.interest, oldValue) } }
-    /** "Tanggal Jatuh Tempo (opsional)", the day of the month. */
+    /** "Tanggal Jatuh Tempo (Opsional)", the day of the month. */
     package var dueDay: String { didSet { regroup(\.dueDay, oldValue) } }
     /** Whether the last save was refused for a missing name or amount. */
     package private(set) var showsMissing = false
