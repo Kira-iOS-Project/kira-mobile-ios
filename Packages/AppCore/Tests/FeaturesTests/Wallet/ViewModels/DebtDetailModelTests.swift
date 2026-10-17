@@ -44,7 +44,10 @@ struct DebtDetailModelTests {
         await service.fail(with: error)
         let model = DebtDetailModel(id: "gone", service: service)
         await model.load()
-        guard case .failed(let problem) = model.phase else { Issue.record("expected failed"); return }
+        guard case .failed(let problem) = model.phase else {
+            Issue.record("expected failed")
+            return
+        }
         #expect(problem == AppProblem(error))
         await service.fail(with: nil)
         await model.load()
