@@ -20,7 +20,6 @@ struct LiveGoalServiceTests {
         #expect(plan.riskProfile == .moderate && plan.prefill.maritalStatus == .married)
         #expect(plan.prefill.essentialExpense == 4_200_000 && plan.prefill.monthlyIncome == 7_500_000)
         #expect(plan.goals.first?.targetDate == CalendarDay(year: 2029, month: 4, day: 25))
-        #expect(try await service.goals().map(\.kind) == [.emergencyFund])
     }
 
     @Test("GET /goals/{id} maps deposits and milestones; POST deposits sends its key and the day")
@@ -40,10 +39,10 @@ struct LiveGoalServiceTests {
         #expect(sent[1].json["depositId"] == .string("k-1") && sent[1].json["depositedOn"] == .string("2026-10-17"))
     }
 
-    @Test("POST and PATCH /goals send the draft with its inputs")
+    @Test("POST /goals sends the draft with its inputs")
     func createAndUpdate() async throws {
         let (api, transport) = KiraAPI.routed([
-            "POST /api/goals": ok(goalJSON, status: 201), "PATCH /api/goals/e": ok(goalJSON),
+            "POST /api/goals": ok(goalJSON, status: 201)
         ])
         let service = LiveGoalService(api: api)
         let draft = GoalDraft(
@@ -54,11 +53,10 @@ struct LiveGoalServiceTests {
             initialAmount: 4_800_000, monthlyDeposit: 650_000, targetAmount: 25_200_000,
             targetDate: CalendarDay(year: 2029, month: 4, day: 25), inBudget: true)
         #expect(try await service.createGoal(draft).id == "e")
-        #expect(try await service.updateGoal(id: "e", draft).summary.name == "Dana Darurat")
         let sent = await transport.sent
         #expect(
             sent[0].json["kind"] == .string("emergency_fund") && sent[0].json["targetDate"] == .string("2029-04-25"))
-        #expect(sent[1].json["monthlyDeposit"] == .number(650_000))
+        #expect(sent[0].json["monthlyDeposit"] == .number(650_000))
     }
 
     @Test("a gone goal, a second emergency fund and a reused deposit key are thrown as their problems")

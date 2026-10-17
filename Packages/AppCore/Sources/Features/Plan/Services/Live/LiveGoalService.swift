@@ -15,11 +15,6 @@ package struct LiveGoalService: GoalService {
         try await api.getPlan()
     }
 
-    /** `GET /goals`. */
-    package func goals() async throws -> [GoalSummary] {
-        try await api.listGoals()
-    }
-
     /** `GET /goals/{id}`. */
     package func goal(id: String) async throws -> GoalDetail {
         try await api.getGoal(id: id)
@@ -28,11 +23,6 @@ package struct LiveGoalService: GoalService {
     /** `POST /goals`. */
     package func createGoal(_ draft: GoalDraft) async throws -> GoalDetail {
         try await api.createGoal(draft)
-    }
-
-    /** `PATCH /goals/{id}`. */
-    package func updateGoal(id: String, _ draft: GoalDraft) async throws -> GoalDetail {
-        try await api.updateGoal(id: id, draft)
     }
 
     /** `POST /goals/{id}/deposits`. */

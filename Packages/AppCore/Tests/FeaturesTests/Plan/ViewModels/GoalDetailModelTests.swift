@@ -30,13 +30,11 @@ private actor DetailStub: GoalService {
     func configure(_ change: @Sendable (isolated DetailStub) -> Void) { change(self) }
 
     func plan() throws -> PlanOverview { throw AppProblem() }
-    func goals() throws -> [GoalSummary] { throw AppProblem() }
     func goal(id _: String) throws -> GoalDetail {
         goalCalls += 1
         return try goalAnswer.get()
     }
     func createGoal(_: GoalDraft) throws -> GoalDetail { throw AppProblem() }
-    func updateGoal(id _: String, _: GoalDraft) throws -> GoalDetail { throw AppProblem() }
     func addDeposit(goalId _: String, amount: Int, depositedOn: CalendarDay, depositId: String) throws -> GoalDeposit {
         sent.append(GoalDeposit(id: depositId, amount: amount, depositedOn: depositedOn))
         if !depositFailures.isEmpty { throw depositFailures.removeFirst() }
