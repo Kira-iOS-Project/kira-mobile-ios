@@ -331,6 +331,12 @@ def vein_outline(d, width):
 
 
 def build():
+    # Kuku comes from the owner's guide ("Kira.Mascot · Kuku — Identitas & panduan"), not the
+    # artifact's KUKU_* tables: the Mascot folder is kept across the rebuild, untouched.
+    kept = OUT.parent / ".mascot-kept"
+    if (OUT / "Mascot").exists():
+        shutil.rmtree(kept, ignore_errors=True)
+        shutil.move(str(OUT / "Mascot"), str(kept))
     if OUT.exists():
         shutil.rmtree(OUT)
     write_json(OUT / "Contents.json", {"info": INFO})
@@ -358,13 +364,8 @@ def build():
         image_set(cat, f"category-{english(CATEGORY_NAMES, name)}", *themed(
             lambda th: svg("0 0 40 40", (40, 40), "".join(part_svg(p, th) for p in c["parts"]))))
 
-    kuku = folder("Mascot")
-    for expr, face in ENV["KUKU_FACE"].items():
-        parts = ENV["KUKU_BODY"] + face + ENV["KUKU_FRONT"]
-        image_set(kuku, f"mascot-{english(EXPRESSION_NAMES, expr)}", *themed(
-            lambda th: svg("0 0 240 240", (240, 240), "".join(part_svg(p, th) for p in parts))))
-        image_set(kuku, f"mascot-{english(EXPRESSION_NAMES, expr)}-face", *themed(
-            lambda th: svg("66 42 108 108", (108, 108), "".join(part_svg(p, th) for p in parts))))
+    if kept.exists():
+        shutil.move(str(kept), str(OUT / "Mascot"))
 
     alam = folder("Nature")
     for name, art in ENV["LEAF_ART"].items():

@@ -145,22 +145,13 @@ private struct ChatLineLayout: Layout {
     }
 }
 
-/** Kuku's calm face in a 32 pt circle with the pandan AI sparkle: Kira's avatar. */
+/**
+ Kira's avatar: the guide's calm Kuku on its round ground with the pandan sparkle that marks an AI
+ reply, the circle 32 pt across (the image adds the badge's overhang).
+ */
 private struct KiraAvatarFace: View {
     var body: some View {
-        KiraMascot(.calm, size: 32, crop: .face)
-            .background(.artGreenLight)
-            .clipShape(Circle())
-            .overlay { Circle().strokeBorder(.hairline, lineWidth: 1) }
-            .overlay(alignment: .bottomTrailing) {
-                Image(systemName: "sparkle")
-                    .font(.system(size: 8, weight: .bold))
-                    .foregroundStyle(.onPandan)
-                    .frame(width: 16, height: 16)
-                    .background(.pandan, in: Circle())
-                    .overlay { Circle().strokeBorder(.surface, lineWidth: 2) }
-                    .offset(x: 4, y: 3)
-            }
+        KiraMascot(.calm, size: 32 * 124 / 114, crop: .face)
             .accessibilityHidden(true)
     }
 }

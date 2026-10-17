@@ -3,16 +3,6 @@
     {
       "filename": "mascot-calm-face.svg",
       "idiom": "universal"
-    },
-    {
-      "appearances": [
-        {
-          "appearance": "luminosity",
-          "value": "dark"
-        }
-      ],
-      "filename": "mascot-calm-face-dark.svg",
-      "idiom": "universal"
     }
   ],
   "info": {

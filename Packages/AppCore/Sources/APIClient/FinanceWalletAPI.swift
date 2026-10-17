@@ -2,7 +2,7 @@ import Domain
 
 /** Read the signed-in person's held-money and debt accounts, and add one. */
 extension KiraAPI {
-    /** The held-money and debt accounts in one owner-scoped response (`GET /api/wallets`). */
+    /** `GET /api/wallets`: the accounts and the server's held and debt totals. */
     package func getWalletOverview() async throws -> WalletOverview {
         try await client.listWallets().walletOverview()
     }

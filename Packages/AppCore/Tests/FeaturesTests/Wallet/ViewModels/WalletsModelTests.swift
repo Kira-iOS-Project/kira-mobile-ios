@@ -42,8 +42,6 @@ struct WalletsModelTests {
             return
         }
         #expect(problem.code == "ROUTE_NOT_FOUND")
-        #expect(walletProblem(problem) == problem)
-        #expect(walletProblem(WalletTestError()) == AppProblem())
 
         let bank = Wallet(id: "bank", name: "Bank", type: .bank, balance: 100)
         let service = FakeWalletService(wallets: [bank])
@@ -66,9 +64,7 @@ struct WalletsModelTests {
         #expect(model.isDueSoon(wallet("eleven", due: now.addingTimeInterval(11 * 86_400))) == false)
         #expect(model.isDueSoon(wallet("none", due: nil)) == false)
         #expect(model.isDueSoon(wallet("today", due: now), within: -1) == false)
-        #expect(model.isDueSoon(wallet("server-false", due: now, dueSoon: false)) == false)
-        #expect(model.isDueSoon(wallet("server-true", due: nil, dueSoon: true)))
-        #expect(model.isDueSoon(Wallet(id: "cash", name: "Cash", type: .cash, balance: 1, dueSoon: true)) == false)
+        #expect(model.isDueSoon(Wallet(id: "cash", name: "Cash", type: .cash, balance: 1, nextDueAt: now)) == false)
     }
 
     @Test("uses the Jakarta calendar and device clock by default")
@@ -77,9 +73,7 @@ struct WalletsModelTests {
         #expect(model.isDueSoon(wallet("tomorrow", due: Date().addingTimeInterval(86_400))))
     }
 
-    private func wallet(_ id: String, due: Date?, dueSoon: Bool? = nil) -> Wallet {
-        Wallet(id: id, name: id, type: .paylater, balance: 1, nextDueAt: due, dueSoon: dueSoon)
+    private func wallet(_ id: String, due: Date?) -> Wallet {
+        Wallet(id: id, name: id, type: .paylater, balance: 1, nextDueAt: due)
     }
 }
-
-private struct WalletTestError: Error {}
