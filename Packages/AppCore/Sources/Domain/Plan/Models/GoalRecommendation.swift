@@ -1,3 +1,4 @@
+// swiftlint:disable identifier_name - "to" reads as the board's "Jadi …"
 /**
  What Hasil Simulasi suggests when a plan falls short (Rekomendasi), the asset classes it names
  for the goal's horizon (never products), and how a plan deposits.
@@ -12,6 +13,7 @@ package enum GoalRecommendation: Equatable, Sendable {
     /** Perpanjang Waktu for Dana Darurat: this many months. */
     case extendMonths(to: Int)
 }
+// swiftlint:enable identifier_name
 
 /** The asset classes the site lists by horizon (Kelas Aset untuk Jangka Ini). */
 package enum GoalAssetClass: CaseIterable, Equatable, Sendable {
