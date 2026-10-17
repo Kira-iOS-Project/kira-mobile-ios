@@ -46,6 +46,22 @@ nonisolated final class OnboardingAuditTests: XCTestCase {
         try auditScreen("income")
     }
 
+    /** Pilih Tanggal Gajian (ONB-10b) over the income step: the shared payday sheet Atur Budget uses too. */
+    @MainActor
+    func testPaydaySheetPassesTheAudit() throws {
+        let app = XCUIApplication()
+        app.launchArguments = ["-KiraScreen", "income"]
+        app.launch()
+        let field = app.buttons["Tanggal Gajian"]
+        XCTAssertTrue(field.waitForExistence(timeout: 10))
+        field.tap()
+        XCTAssertTrue(app.staticTexts["Pilih Tanggal Gajian"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["Pilih Tanggal 25"].exists)
+        Thread.sleep(forTimeInterval: 1)
+        try auditInPlace(app) { issue in issue.auditType == .elementDetection && issue.element == nil }
+        app.terminate()
+    }
+
     @MainActor
     func testExpensesPassesTheAudit() throws {
         try auditScreen("expenses")
