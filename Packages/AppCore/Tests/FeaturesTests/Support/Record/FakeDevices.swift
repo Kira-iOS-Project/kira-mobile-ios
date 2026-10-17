@@ -52,6 +52,14 @@ final class FakeReceiptAssistant: ReceiptAssisting, @unchecked Sendable {
     }
 }
 
+/** A model that never answers in time: it looks for a minute unless its task is cancelled first. */
+struct HangingReceiptAssistant: ReceiptAssisting {
+    func glance(at _: Data) async -> ReceiptGlance? {
+        try? await Task.sleep(for: .seconds(60))
+        return ReceiptGlance(storeName: "Toko Sejahtera")
+    }
+}
+
 /** Vision's stand-in: the lines the test set, or a failure. */
 struct FakeReceiptReader: ReceiptTextReading {
     var result: Result<[String], any Error> = .success([])

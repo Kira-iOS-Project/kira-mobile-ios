@@ -27,7 +27,7 @@ package struct ReceiptStoreAssist: Sendable {
                 try? await Task.sleep(for: timeout)
                 return nil
             }
-            let first = await group.next() ?? nil
+            let first = await group.next().flatMap { $0 }
             group.cancelAll()
             return first
         }

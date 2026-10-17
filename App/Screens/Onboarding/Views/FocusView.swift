@@ -29,7 +29,6 @@ struct FocusView: View {
                 .padding(.horizontal, KiraSpacing.space1)
             Spacer(minLength: 0)
             VStack(spacing: KiraSpacing.space2) {
-                if let problem = model.phase.problem { ProblemMessage(problem: problem) }
                 KiraButton("onboarding.next") { Task { await model.submit() } }
                     .block()
                     .disabled(model.phase.isSubmitting)
@@ -38,6 +37,7 @@ struct FocusView: View {
             .onboardingFoot()
         }
         .onboardingBackdrop(leaf: .twig(size: 130, top: 8))
+        .problemDialog(model.phase.problem)
     }
 
     /** "Satu pertanyaan dulu" with its note, and the question. */

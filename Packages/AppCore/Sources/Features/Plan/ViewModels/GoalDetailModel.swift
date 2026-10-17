@@ -7,11 +7,22 @@ import Observation
  Detail Tujuan (REN-05): one goal's progress against its milestones (for the emergency fund: one
  week, one month, 3× and the target), the card for the milestone last reached, the next deposit
  and the deposits so far. "Tambah Setoran" opens a sheet whose submit goes to the server with an
- idempotency key, kept across Coba Lagi so a retry never deposits twice.
+ idempotency key, kept across Coba Lagi so a retry never deposits twice. "Hapus Tujuan" asks first,
+ deletes the goal with its deposits, and closing "Tujuan Dihapus" goes back to Rencana.
  */
 @MainActor
 @Observable
 package final class GoalDetailModel {
+    /** A dialog of Hapus Tujuan. */
+    package enum DeleteDialog: Hashable, Sendable {
+        /** "Hapus Tujuan Ini?" */
+        case confirm
+        /** "Tujuan Dihapus" */
+        case deleted
+        /** "Belum Berhasil Menghapus", with the API's problem */
+        case failed(AppProblem)
+    }
+
     /** The goal the screen was opened for. */
     package let id: String
     /** The goal, loading until the API answers; empty when it no longer exists (GOAL_NOT_FOUND). */
@@ -24,6 +35,15 @@ package final class GoalDetailModel {
     package private(set) var isDepositAmountMissing = false
     /** Whether "Setoran Tersimpan" shows, after the server took the deposit. */
     package var showsDepositSaved = false
+    /** Hapus Tujuan's dialog over the screen; nil when none is open. */
+    package private(set) var deleteDialog: DeleteDialog? {
+        didSet { if let deleteDialog { shownDeleteDialog = deleteDialog } }
+    }
+    /** The delete dialog to draw, kept while a closing dialog fades out. */
+    package private(set) var shownDeleteDialog = DeleteDialog.confirm
+    /** Set once "Tujuan Dihapus" is closed: the screen leaves for Rencana. */
+    package private(set) var isClosed = false
+    @ObservationIgnored private var isDeleting = false
 
     @ObservationIgnored private let service: any GoalService
     @ObservationIgnored private let now: @Sendable () -> Date
@@ -131,5 +151,33 @@ package final class GoalDetailModel {
             if AppProblem(error).knownCode == .goalDepositConflict { depositId = makeId() }
             deposit.fail(error)
         }
+    }
+
+    /** "Hapus Tujuan": asks before deleting. */
+    package func requestDelete() {
+        deleteDialog = .confirm
+    }
+
+    /** Deletes after the confirmation, or again on Coba Lagi; one delete at a time. */
+    package func confirmDelete() async {
+        deleteDialog = nil
+        guard !isDeleting else { return }
+        isDeleting = true
+        defer { isDeleting = false }
+        do {
+            try await service.deleteGoal(id: id)
+            deleteDialog = .deleted
+        } catch let problem as AppProblem where problem.knownCode == .goalNotFound {
+            /** Gone already (deleted on another device): the outcome the person asked for. */
+            deleteDialog = .deleted
+        } catch {
+            deleteDialog = .failed(AppProblem(error))
+        }
+    }
+
+    /** A delete dialog closed; closing "Tujuan Dihapus" leaves the screen. */
+    package func deleteDialogClosed() {
+        if deleteDialog == .deleted { isClosed = true }
+        deleteDialog = nil
     }
 }

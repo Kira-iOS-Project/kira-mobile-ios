@@ -5444,6 +5444,93 @@ extension Components {
                 case answers
             }
         }
+        /// - Remark: Generated from `#/components/schemas/LegalitySearch`.
+        internal struct LegalitySearch: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/LegalitySearch/asOf`.
+            internal var asOf: Swift.String
+            /// - Remark: Generated from `#/components/schemas/LegalitySearch/source`.
+            internal var source: Swift.String
+            /// - Remark: Generated from `#/components/schemas/LegalitySearch/listed`.
+            internal var listed: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/LegalitySearch/results`.
+            internal var results: [Components.Schemas.LicensedLender]
+            /// Creates a new `LegalitySearch`.
+            ///
+            /// - Parameters:
+            ///   - asOf:
+            ///   - source:
+            ///   - listed:
+            ///   - results:
+            internal init(
+                asOf: Swift.String,
+                source: Swift.String,
+                listed: Swift.Int,
+                results: [Components.Schemas.LicensedLender]
+            ) {
+                self.asOf = asOf
+                self.source = source
+                self.listed = listed
+                self.results = results
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case asOf
+                case source
+                case listed
+                case results
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/LicensedLender`.
+        internal struct LicensedLender: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/LicensedLender/company`.
+            internal var company: Swift.String
+            /// - Remark: Generated from `#/components/schemas/LicensedLender/app`.
+            internal var app: Swift.String
+            /// - Remark: Generated from `#/components/schemas/LicensedLender/license`.
+            internal var license: Swift.String
+            /// - Remark: Generated from `#/components/schemas/LicensedLender/licensedOn`.
+            internal var licensedOn: Swift.String
+            /// - Remark: Generated from `#/components/schemas/LicensedLender/type`.
+            internal enum _TypePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case conventional = "conventional"
+                case sharia = "sharia"
+            }
+            /// - Remark: Generated from `#/components/schemas/LicensedLender/type`.
+            internal var _type: Components.Schemas.LicensedLender._TypePayload
+            /// - Remark: Generated from `#/components/schemas/LicensedLender/website`.
+            internal var website: Swift.String
+            /// Creates a new `LicensedLender`.
+            ///
+            /// - Parameters:
+            ///   - company:
+            ///   - app:
+            ///   - license:
+            ///   - licensedOn:
+            ///   - _type:
+            ///   - website:
+            internal init(
+                company: Swift.String,
+                app: Swift.String,
+                license: Swift.String,
+                licensedOn: Swift.String,
+                _type: Components.Schemas.LicensedLender._TypePayload,
+                website: Swift.String
+            ) {
+                self.company = company
+                self.app = app
+                self.license = license
+                self.licensedOn = licensedOn
+                self._type = _type
+                self.website = website
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case company
+                case app
+                case license
+                case licensedOn
+                case _type = "type"
+                case website
+            }
+        }
         /// - Remark: Generated from `#/components/schemas/ChatMessagePage`.
         internal struct ChatMessagePage: Codable, Hashable, Sendable {
             /// - Remark: Generated from `#/components/schemas/ChatMessagePage/items`.

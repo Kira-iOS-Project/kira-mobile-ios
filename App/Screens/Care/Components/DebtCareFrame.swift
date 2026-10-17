@@ -18,7 +18,7 @@ struct DebtCareFrame<Content: View>: View {
             VStack(alignment: .leading, spacing: KiraSpacing.space6) { content }
                 .padding(.horizontal, KiraSpacing.screen)
                 .padding(.top, KiraSpacing.space2)
-                .padding(.bottom, KiraSpacing.space6)
+                .padding(.bottom, KiraSpacing.screenBottom)
                 .frame(maxWidth: .infinity, alignment: .top)
                 .background(alignment: .topTrailing) {
                     KiraLeaf(.twig, tone: .soft, size: 150, isFlipped: true)

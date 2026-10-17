@@ -28,16 +28,22 @@ struct RecoveryNewPinView: View {
                 .multilineTextAlignment(.center)
                 KiraCodeField("lock.recovery.pin.field", code: $model.newPin, kind: .pin)
                     .hint("lock.recovery.pin.hint")
-                    .error(pinError)
                 KiraButton("lock.recovery.pin.save", action: model.savePin)
                     .block()
                     .disabled(model.newPin.count < PinPolicy.length)
             }
             .padding(.horizontal, KiraSpacing.screen)
-            .padding(.bottom, KiraSpacing.space8)
+            .padding(.bottom, KiraSpacing.screenBottom)
         }
         .background { RecoveryBackground() }
         .kiraScrollEdges()
+        .kiraDialog(
+            isPresented: Binding(get: { model.pinProblem != nil }, set: { if !$0 { model.pinProblemClosed() } })
+        ) {
+            KiraDialog(
+                "lock.recovery.pin.error.title", message: pinError ?? "lock.recovery.pin.error.simple",
+                art: .illustration(.padlock), primary: KiraButton("lock.recovery.pin.error.retry") {})
+        }
     }
 
     private var pinError: LocalizedStringResource? {

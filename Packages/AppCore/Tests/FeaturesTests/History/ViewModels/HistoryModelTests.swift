@@ -92,6 +92,20 @@ struct HistoryModelTests {
         #expect(queries.map(\.text) == [nil, "grab"])
     }
 
+    @Test("Hapus Filter clears the search, the segment and the category in one reload")
+    func clearFilters() async throws {
+        let model = model()
+        await model.load()
+        model.searchText = "grab"
+        await model.searchChanged()
+        await model.select(kind: .expense)
+        await model.select(category: .food)
+        await model.clearFilters()
+        #expect(model.searchText.isEmpty && model.kind == .all && model.category == nil)
+        let last = try #require(await service.queries.last)
+        #expect(last.text == nil && last.type == nil && last.category == nil)
+    }
+
     @Test("by default reads the device clock and really pauses before searching")
     func defaults() async throws {
         let model = HistoryModel(service: service)

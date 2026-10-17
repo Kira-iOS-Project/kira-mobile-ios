@@ -103,6 +103,16 @@ extension Components.Schemas.CreateGoal {
     }
 }
 
+extension Components.Schemas.UpdateGoal {
+    /** Every field of `draft` but its kind, which a goal keeps. */
+    init(_ draft: GoalDraft) {
+        self.init(
+            name: draft.name, inputs: .init(draft.inputs), initialAmount: draft.initialAmount,
+            monthlyDeposit: draft.monthlyDeposit, targetAmount: draft.targetAmount, targetDate: draft.targetDate.iso,
+            inBudget: draft.inBudget)
+    }
+}
+
 extension Components.Schemas.CreateGoal.KindPayload {
     /** The API's name of `kind`. Every Domain kind has one, so a new kind fails the build here. */
     init(_ kind: GoalKind) {

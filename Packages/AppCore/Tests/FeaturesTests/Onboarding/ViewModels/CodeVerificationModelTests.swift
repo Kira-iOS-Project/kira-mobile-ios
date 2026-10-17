@@ -58,6 +58,7 @@ struct CodeVerificationModelTests {
         await model.verify()
         #expect(model.code.isEmpty)
         #expect(model.phase == .failed(FakeOnboardingService.problem))
+        #expect(model.failedRequest == .verify)
         model.code = "1"
         #expect(model.phase == .editing)
     }
@@ -75,6 +76,7 @@ struct CodeVerificationModelTests {
         #expect(model.code.isEmpty)
         #expect(model.secondsUntilResend == 60)
         #expect(model.countdownRun == 1)
+        #expect(model.showsCodeResent)
     }
 
     @Test("a refused resend keeps the countdown at 0 and shows the problem")
@@ -83,5 +85,6 @@ struct CodeVerificationModelTests {
         await model.resend()
         #expect(model.phase == .failed(FakeOnboardingService.problem))
         #expect(model.secondsUntilResend == 0)
+        #expect(model.failedRequest == .resend && !model.showsCodeResent)
     }
 }

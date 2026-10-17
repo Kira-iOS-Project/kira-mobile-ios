@@ -21,6 +21,10 @@ struct PinSetupModelTests {
         #expect(model.showsWeakPin)
         model.pin = "48192"
         #expect(!model.showsWeakPin)
+        model.pin = "123456"
+        await model.createPin()
+        model.weakPinClosed()
+        #expect(!model.showsWeakPin && model.pin.isEmpty)
     }
 
     @Test("Buat PIN saves the balance choice and the PIN, shows the dialog, and Mulai finishes")

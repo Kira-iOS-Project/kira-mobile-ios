@@ -14,7 +14,7 @@ package final class PinSetupModel {
     }
     /** "Sembunyikan Saldo saat Membuka Kira". */
     package var hidesBalances = false
-    /** Whether the last try was one digit repeated. */
+    /** Whether the last try was too easy to guess: the dialog shows until "Ganti PIN". */
     package private(set) var showsWeakPin = false
     /** Whether "PIN Berhasil Dibuat" is showing. */
     package var showsSuccess = false
@@ -49,6 +49,12 @@ package final class PinSetupModel {
     package func skip() async {
         guard await save(nil) else { return }
         onFinished()
+    }
+
+    /** "Ganti PIN" on the weak-PIN dialog: the boxes empty for another PIN. */
+    package func weakPinClosed() {
+        showsWeakPin = false
+        pin = ""
     }
 
     /** "Mulai" on the dialog. */

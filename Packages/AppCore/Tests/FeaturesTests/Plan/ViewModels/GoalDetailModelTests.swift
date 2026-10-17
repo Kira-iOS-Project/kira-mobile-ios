@@ -36,6 +36,8 @@ actor DetailStub: GoalService {
         return try goalAnswer.get()
     }
     func createGoal(_: GoalDraft) throws -> GoalDetail { throw AppProblem() }
+    func updateGoal(id _: String, _: GoalDraft) throws -> GoalDetail { throw AppProblem() }
+    func deleteGoal(id _: String) throws { throw AppProblem() }
     func addDeposit(goalId _: String, amount: Int, depositedOn: CalendarDay, depositId: String) throws -> GoalDeposit {
         sent.append(GoalDeposit(id: depositId, amount: amount, depositedOn: depositedOn))
         if !depositFailures.isEmpty { throw depositFailures.removeFirst() }

@@ -18,6 +18,7 @@ struct EducationGoalResultScreen: View {
     @State private var targetKind = EducationTarget.all
     @State private var chosen: GoalRecommendation?
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.goalSaveLabel) private var saveLabel
 
     var body: some View {
         let content = EducationResultCopy(outcome: outcome, targetKind: targetKind).content
@@ -61,7 +62,7 @@ struct EducationGoalResultScreen: View {
                 dismiss()
             }
             .block()
-            KiraButton("plan.result.budget", size: .small, action: onBudget).block()
+            KiraButton(saveLabel, size: .small, action: onBudget).block()
         }
     }
 }

@@ -123,6 +123,14 @@ package final class HistoryModel {
         await reloadList()
     }
 
+    /** Hapus Filter, when nothing matches: the search, the segment and the category back to all. */
+    package func clearFilters() async {
+        searchText = ""
+        kind = .all
+        category = nil
+        await reloadList()
+    }
+
     /** Runs the search once typing pauses; a newer keystroke cancels the wait. */
     package func searchChanged() async {
         do { try await pause(Self.searchDelay) } catch { return }

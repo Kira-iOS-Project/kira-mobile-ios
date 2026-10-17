@@ -36,20 +36,33 @@ extension View {
     }
 }
 
-/** The API's problem as a sentence, with the reference to quote when the app does not know the code. */
-struct ProblemMessage: View {
-    let problem: AppProblem
+extension View {
+    /**
+     The API's problem in a dialog, never as a line under the form (the owner's choice, 2026-10-17):
+     its sentence, or the generic one with the reference to quote when the app does not know the
+     code, and Tutup. Each new failure shows it again; Tutup leaves the form as it is.
+     */
+    func problemDialog(_ problem: AppProblem?, title: LocalizedStringResource = "problem.dialog.title") -> some View {
+        modifier(ProblemDialog(problem: problem, title: title))
+    }
+}
 
-    var body: some View {
-        VStack(spacing: 2) {
-            Text(problem.message)
-            if problem.showsReference {
-                Text("problem.reference \(problem.reference)").font(.caption.monospaced())
+private struct ProblemDialog: ViewModifier {
+    let problem: AppProblem?
+    let title: LocalizedStringResource
+    @State private var shown: AppProblem?
+    @State private var isPresented = false
+
+    func body(content: Content) -> some View {
+        content
+            .onChange(of: problem, initial: true) { _, problem in
+                if let problem { shown = problem }
+                isPresented = problem != nil
             }
-        }
-        .font(.footnote).kiraLineHeight(18, size: 13)
-        .foregroundStyle(.vulnerable)
-        .multilineTextAlignment(.center)
-        .frame(maxWidth: .infinity)
+            .kiraDialog(isPresented: $isPresented) {
+                KiraDialog(
+                    title, message: (shown ?? AppProblem()).failureMessage, art: .illustration(.umbrella),
+                    primary: KiraButton("ds.close") {})
+            }
     }
 }

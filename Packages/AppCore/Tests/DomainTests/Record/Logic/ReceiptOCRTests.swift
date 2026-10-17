@@ -55,9 +55,10 @@ struct ReceiptOCRTests {
         let date = ReceiptDate(day: 1, month: 10, year: 2026)
         let short = ReceiptReading(
             storeName: "A", printedAt: date, items: [ReceiptLine(name: "Roti", amount: 8_000)], total: 10_000)
-        #expect(short.balanced(otherName: "Belanja").items == [
-            ReceiptLine(name: "Roti", amount: 8_000), ReceiptLine(name: "Belanja", amount: 2_000),
-        ])
+        #expect(
+            short.balanced(otherName: "Belanja").items == [
+                ReceiptLine(name: "Roti", amount: 8_000), ReceiptLine(name: "Belanja", amount: 2_000),
+            ])
         let over = ReceiptReading(
             storeName: nil, printedAt: nil, items: [ReceiptLine(name: "Roti", amount: 12_000)], total: 10_000)
         #expect(over.balanced(otherName: "Belanja").items == [ReceiptLine(name: "Belanja", amount: 10_000)])

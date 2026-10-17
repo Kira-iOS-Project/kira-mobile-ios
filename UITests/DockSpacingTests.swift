@@ -6,7 +6,7 @@ import XCTest
 
 nonisolated final class DockSpacingTests: XCTestCase {
     @MainActor
-    func testBerandaEndsAboveTheDock() {
+    func testHomeEndsAboveTheDock() {
         let app = openMain()
         let dock = app.otherElements["Navigasi utama"]
         XCTAssertTrue(dock.waitForExistence(timeout: 15))
@@ -20,7 +20,7 @@ nonisolated final class DockSpacingTests: XCTestCase {
     }
 
     @MainActor
-    func testCatatComposerSitsAboveTheDock() {
+    func testRecordComposerSitsAboveTheDock() {
         let app = openMain()
         let dock = app.otherElements["Navigasi utama"]
         XCTAssertTrue(dock.waitForExistence(timeout: 15))

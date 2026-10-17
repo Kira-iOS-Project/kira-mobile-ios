@@ -1,7 +1,8 @@
 /**
  REN-09, Cek Legalitas (board CekLegalitas): "Cek Dulu Sebelum Percaya" with the shield, a search
- field whose words stay in this screen's memory and are never stored or sent (Kira decides nothing,
- so it filters nothing), the notice that Kira does not judge, Daftar Resmi's four official places,
+ field that looks the name up in OJK's list of licensed fintech lenders when submitted (the words
+ are sent for the search only, never stored), its answer (`LegalitySearchResults`), the notice
+ that Kira does not judge, Daftar Resmi's four official places,
  Tanda Bahaya's four signs and IASC's sentence. The official sites open in the browser; Kontak OJK
  157 offers the call and the WhatsApp chat, each number copied with a long press.
  */
@@ -11,11 +12,15 @@ import SwiftUI
 
 struct LegalityCheckScreen: View {
     let onOpen: (AppRoute) -> Void
-    // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
-    @State private var search = ""
+    @State private var model: LegalityCheckModel
     @State private var showsContact = false
     @Environment(\.dismiss) private var dismiss
     @Environment(\.openURL) private var openURL
+
+    init(service: any LegalityService, onOpen: @escaping (AppRoute) -> Void) {
+        _model = State(initialValue: LegalityCheckModel(service: service))
+        self.onOpen = onOpen
+    }
 
     var body: some View {
         PlanScreenFrame(
@@ -25,10 +30,13 @@ struct LegalityCheckScreen: View {
                     KiraHelpButton(.icon) { onOpen(.care) }
                 }
                 header
-                KiraField("plan.risk.legality.search", text: $search).icon(.search).hint(
+                KiraField("plan.risk.legality.search", text: $model.query).icon(.search).hint(
                     "plan.risk.legality.search.hint"
                 )
                 .textInputAutocapitalization(.never).autocorrectionDisabled()
+                .submitLabel(.search)
+                .onSubmit { Task { await model.search() } }
+                LegalitySearchResults(model: model)
                 VStack(alignment: .leading, spacing: 10) {
                     KiraNotice(
                         .info, title: "plan.risk.legality.notice.title", message: "plan.risk.legality.notice.body")
@@ -38,6 +46,7 @@ struct LegalityCheckScreen: View {
                 LegalityWarnings().padding(.top, KiraSpacing.space2)
             }
         )
+        .legalityResultDialog(model) { showsContact = true }
         .kiraSheet(isPresented: $showsContact, title: "plan.risk.legality.ojk157") { LegalityContactSheet() }
     }
 
@@ -108,6 +117,6 @@ private struct LegalityContactSheet: View {
 
 #if DEBUG
     #Preview {
-        NavigationStack { LegalityCheckScreen { _ in } }
+        NavigationStack { LegalityCheckScreen(service: PreviewLegalityService()) { _ in } }
     }
 #endif

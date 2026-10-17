@@ -55,12 +55,13 @@ struct RouteSlot: View {
         case .portfolio: PortfolioScreen(service: services.portfolio, onOpen: onOpen)
         case .addAsset: AssetFormScreen(service: services.portfolio, onOpen: onOpen)
         case .editAsset(let id): AssetFormScreen(service: services.portfolio, assetId: id, onOpen: onOpen)
+        case .goals: AllGoalsScreen(service: services.goals, onOpen: onOpen)
         case .goal(let id): GoalDetailScreen(id: id, service: services.goals, onOpen: onOpen)
         case .newGoal: NewGoalScreen(onOpen: onOpen)
         case .goalForm(let kind): GoalFormRoute(kind: kind, service: services.goals, onOpen: onOpen)
-        case .editGoal: EmptySlot()
+        case .editGoal(let id): EditGoalRoute(id: id, service: services.goals, onOpen: onOpen)
         case .riskQuiz, .riskResult: riskQuiz(start: route == .riskResult ? .savedResult : .quiz())
-        case .legalityCheck: LegalityCheckScreen(onOpen: onOpen)
+        case .legalityCheck: LegalityCheckScreen(service: services.legality, onOpen: onOpen)
         case .assetModule(let assetClass): AssetModuleScreen(assetClass: assetClass, onOpen: onOpen)
         case .wallets:
             WalletsScreen(
