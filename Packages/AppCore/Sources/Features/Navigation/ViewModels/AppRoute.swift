@@ -97,6 +97,12 @@ package enum AppRoute: Hashable, Sendable {
     case product(id: String)
     /** KOM-08: Kirim Produk ke Etalase. */
     case submitProduct
+    /** REN-10: Portofolio Manual. */
+    case portfolio
+    /** REN-11: Tambah Aset. */
+    case addAsset
+    /** REN-11 on an asset Portofolio lists: the form updating it. */
+    case editAsset(id: String)
 
     /** A link the boards show to an area not built yet: it stays visible and opens nothing. */
     case unavailable(UnavailableArea)

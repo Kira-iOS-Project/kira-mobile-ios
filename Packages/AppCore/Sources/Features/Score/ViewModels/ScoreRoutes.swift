@@ -22,12 +22,15 @@ extension ScoreStep {
 extension IndicatorKey {
     /**
      The primary button of the next-rung card: "Atur Setoran" opens a savings goal (Rencana, not
-     built yet), "Lihat Rencana" the payoff plan, and protection asks for the health check again.
+     built yet), "Lihat Rencana" the payoff plan (Portofolio Manual for Utang terhadap Aset, whose figure
+     the assets are), and protection asks for the health check again.
      */
     package var nextRungRoute: AppRoute {
         switch self {
         case .emergencyFund, .savingsRatio: .unavailable(.plan)
-        case .instalmentRatio, .consumerDebt, .debtToAsset: .unavailable(.debtPlan)
+        case .instalmentRatio, .consumerDebt: .unavailable(.debtPlan)
+        /** Until Rencana (REN-01) is built; then its "Portofolio Manual" row opens Portofolio instead. */
+        case .debtToAsset: .portfolio
         case .protection: .healthCheck
         }
     }

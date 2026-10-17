@@ -57,6 +57,8 @@ nonisolated struct PreviewScoreService: ScoreService {
         if let detail, detail.indicator.key == key { return detail }
         return .sample(key)
     }
+
+    func includesPlus() -> Bool { true }
 }
 
 #if DEBUG

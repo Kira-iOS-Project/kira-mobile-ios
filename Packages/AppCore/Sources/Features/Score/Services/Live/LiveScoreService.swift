@@ -23,4 +23,10 @@ package struct LiveScoreService: ScoreService {
     package func indicator(_ key: IndicatorKey) async throws -> IndicatorDetail {
         try IndicatorDetail(try await api.getScoreIndicator(key))
     }
+
+    /** `GET /me`: whether the plan is Kira Plus; an unreadable answer leaves it to the feature's own. */
+    package func includesPlus() async -> Bool {
+        guard let account = try? await api.getMe() else { return true }
+        return account.plan.id == .plus
+    }
 }
