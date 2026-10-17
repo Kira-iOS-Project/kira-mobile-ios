@@ -10640,7 +10640,7 @@
           }
         ],
         "operationId": "updateCurrentBudget",
-        "summary": "Set budget allocations and payday",
+        "summary": "Save budget allocations and payday",
         "requestBody": {
           "required": true,
           "content": {
@@ -10653,7 +10653,7 @@
         },
         "responses": {
           "200": {
-            "description": "Saved budget and adjusted payday",
+            "description": "Saved current budget with spending and adjusted payday period",
             "content": {
               "application/json": {
                 "schema": {
@@ -10894,7 +10894,7 @@
         "summary": "Budget editor with up to three prior-period averages",
         "responses": {
           "200": {
-            "description": "Budget, goal posts and spending averages",
+            "description": "Current budget and averages from completed periods",
             "content": {
               "application/json": {
                 "schema": {

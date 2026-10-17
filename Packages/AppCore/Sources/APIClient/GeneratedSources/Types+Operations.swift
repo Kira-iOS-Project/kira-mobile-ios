@@ -21996,7 +21996,7 @@ internal enum Operations {
             }
         }
     }
-    /// Set budget allocations and payday
+    /// Save budget allocations and payday
     ///
     /// - Remark: HTTP `PUT /api/budgets/current`.
     /// - Remark: Generated from `#/paths//api/budgets/current/put(updateCurrentBudget)`.
@@ -22063,7 +22063,7 @@ internal enum Operations {
                     self.body = body
                 }
             }
-            /// Saved budget and adjusted payday
+            /// Saved current budget with spending and adjusted payday period
             ///
             /// - Remark: Generated from `#/paths//api/budgets/current/put(updateCurrentBudget)/responses/200`.
             ///
@@ -23104,7 +23104,7 @@ internal enum Operations {
                     self.body = body
                 }
             }
-            /// Budget, goal posts and spending averages
+            /// Current budget and averages from completed periods
             ///
             /// - Remark: Generated from `#/paths//api/budgets/current/edit/get(getCurrentBudgetEdit)/responses/200`.
             ///

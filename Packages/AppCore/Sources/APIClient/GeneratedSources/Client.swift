@@ -10024,7 +10024,7 @@ internal struct Client: APIProtocol {
             }
         )
     }
-    /// Set budget allocations and payday
+    /// Save budget allocations and payday
     ///
     /// - Remark: HTTP `PUT /api/budgets/current`.
     /// - Remark: Generated from `#/paths//api/budgets/current/put(updateCurrentBudget)`.

@@ -464,7 +464,7 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `GET /api/budgets/current`.
     /// - Remark: Generated from `#/paths//api/budgets/current/get(getCurrentBudget)`.
     func getCurrentBudget(_ input: Operations.GetCurrentBudget.Input) async throws -> Operations.GetCurrentBudget.Output
-    /// Set budget allocations and payday
+    /// Save budget allocations and payday
     ///
     /// - Remark: HTTP `PUT /api/budgets/current`.
     /// - Remark: Generated from `#/paths//api/budgets/current/put(updateCurrentBudget)`.
@@ -1397,7 +1397,7 @@ extension APIProtocol {
     internal func getCurrentBudget(headers: Operations.GetCurrentBudget.Input.Headers = .init()) async throws -> Operations.GetCurrentBudget.Output {
         try await getCurrentBudget(Operations.GetCurrentBudget.Input(headers: headers))
     }
-    /// Set budget allocations and payday
+    /// Save budget allocations and payday
     ///
     /// - Remark: HTTP `PUT /api/budgets/current`.
     /// - Remark: Generated from `#/paths//api/budgets/current/put(updateCurrentBudget)`.
