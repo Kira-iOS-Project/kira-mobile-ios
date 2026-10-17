@@ -15,7 +15,8 @@ nonisolated final class EmergencyFundAuditTests: XCTestCase {
     func testEmergencyFundResultWorkingOpenPassesTheAudit() throws {
         try auditScreen("goalEmergency") { app in
             calculate(in: app)
-            let working = app.buttons["Gimana Ngitungnya?"].firstMatch
+            /** The accordion's button reads its title and subtitle together. */
+            let working = app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Gimana Ngitungnya?'")).firstMatch
             XCTAssertTrue(working.waitForExistence(timeout: 5), "no Gimana Ngitungnya?")
             working.tap()
         }
