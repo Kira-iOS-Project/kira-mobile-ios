@@ -1,8 +1,9 @@
 /**
  Latihan Menenangkan Diri's circle (board LatihanTenang): three 260 pt rings of pandan that grow
  while the person breathes in, hold, and shrink while they breathe out, one second at a time, so a
- pause stops it where it is. With Reduce Motion the circle keeps one size and the words lead. No
- mascot in its centre: Kira Peduli shows no Kuku.
+ pause stops it where it is. With Reduce Motion the circle keeps one size and the words lead. Kuku,
+ calm, breathes in its centre at the board's 170 pt, clipped by the inner circle: the owner's call
+ for this exercise alone, the rest of Kira Peduli showing no Kuku.
  */
 import Domain
 import SwiftUI
@@ -20,6 +21,8 @@ struct BreathingCircle: View {
                 .overlay { Circle().strokeBorder(.pandanLine, lineWidth: 1) }
                 .padding(30)
             Circle().fill(.surfaceRaised)
+                .overlay { KiraMascot(.calm, size: 170, isFramed: false) }
+                .clipShape(Circle())
                 .overlay { Circle().strokeBorder(.pandanLine, lineWidth: 1) }
                 .padding(50)
         }
