@@ -43,10 +43,22 @@ struct RouteSlot: View {
         case .marketplace: MarketplaceScreen(service: services.marketplace, onOpen: onOpen)
         case .product(let id): ProductScreen(id: id, service: services.marketplace, onOpen: onOpen)
         case .submitProduct: SubmitProductScreen(onOpen: onOpen)
-        case .riskQuiz, .legalityCheck, .riskResult: EmptySlot()
+        case .riskQuiz, .riskResult: riskQuiz(start: route == .riskResult ? .savedResult : .quiz())
+        case .legalityCheck: LegalityCheckScreen(onOpen: onOpen)
         case .assetModule: EmptySlot()
         case .home, .record, .community, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history, .transaction,
             .conversation, .importStatement, .unavailable:
+            EmptySlot()
+        }
+    }
+
+    /** Kenali Profil Risikomu or Hasil Kuis, once the live risk-profile and plan services exist. */
+    @ViewBuilder private func riskQuiz(start: RiskQuizModel.Start) -> some View {
+        if let service = services.riskProfile, let plans = services.goals {
+            RiskQuizScreen(
+                model: RiskQuizModel(service: service, draft: services.riskDraft, plans: plans, start: start),
+                onOpen: onOpen)
+        } else {
             EmptySlot()
         }
     }

@@ -12,9 +12,3 @@ package protocol RiskProfileService: Sendable {
     func saveRiskProfile(answers: [Int]) async throws -> RiskProfile
 }
 
-/**
- The quiz's numbers from the plan (`GET /plan`: the ladder's emergency-fund multiples and the
- prefill's income). The app composes it from `GoalService.plan()` when the plan's client lands;
- a failure never blocks the quiz, which then reads `RiskQuizContext.unknown`.
- */
-package typealias RiskContextProvider = @Sendable () async throws -> RiskQuizContext

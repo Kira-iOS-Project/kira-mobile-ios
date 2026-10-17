@@ -32,6 +32,7 @@
             case .care: CareLaunch(screen: screen)
             case .debtEmergency: DebtEmergencyLaunch(screen: screen)
             case .careTools: CareToolsLaunch(screen: screen)
+            case .planRisk: PlanRiskLaunch(screen: screen)
             }
         }
     }
@@ -78,10 +79,17 @@
          its form.
          */
         case breathing, safetyPlan, safetyPlanEmpty, safetyPlanFailing, safetyPlanForm
+        /**
+         REN: Kenali Profil Risikomu fresh (and with the plan unreadable), each later question, a Lihat
+         Hasil that fails once, Hasil Kuis for each profile, and Cek Legalitas.
+         */
+        case riskQuiz, riskQuizUnreadablePlan, riskDrawdown, riskHorizon, riskExperience, riskDeposit, riskSaveFailing
+        case riskResult, riskResultConservative, riskResultAggressive, legalityCheck
 
         /** The area whose launcher builds the screen. */
         enum Area {
             case onboarding, home, account, plans, record, chat, community, care, careTools, debtEmergency, marketplace
+            case planRisk
         }
 
         var area: Area {
@@ -110,6 +118,9 @@
             case .marketplace, .marketplaceEmpty, .marketplaceFailed, .product, .productConsultation, .productEbook,
                 .productEvent, .productGone, .submitProduct:
                 .marketplace
+            case .riskQuiz, .riskQuizUnreadablePlan, .riskDrawdown, .riskHorizon, .riskExperience, .riskDeposit,
+                .riskSaveFailing, .riskResult, .riskResultConservative, .riskResultAggressive, .legalityCheck:
+                .planRisk
             }
         }
     }

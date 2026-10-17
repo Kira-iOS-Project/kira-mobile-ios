@@ -22,6 +22,12 @@ struct AppServices {
     let careTools: any CareToolsService
     let debtEmergency: any DebtEmergencyService
     let marketplace: any MarketplaceService
+    /** Rencana's plan and goals (`GET /plan`); nil until the live service lands with the plan's client. */
+    let goals: (any GoalService)?
+    /** REN-06 and REN-07; nil until the live service lands with the risk profile's client (B4). */
+    let riskProfile: (any RiskProfileService)?
+    /** The quiz's answers for the app's session (`RiskQuizDraft`). */
+    let riskDraft: RiskQuizDraft
 }
 
 extension AppServices {
@@ -44,7 +50,8 @@ extension AppServices {
             care: LiveCareService(api: api),
             careTools: LiveCareToolsService(api: api),
             debtEmergency: LiveDebtEmergencyService(api: api),
-            marketplace: LiveMarketplaceService(api: api))
+            marketplace: LiveMarketplaceService(api: api),
+            goals: nil, riskProfile: nil, riskDraft: RiskQuizDraft())
     }
 
     /** The canvas's sample data: nothing leaves the device. */
@@ -54,7 +61,8 @@ extension AppServices {
             security: PreviewSecuritySettings(), plans: PreviewPlansService(), home: PreviewHomeService(),
             score: PreviewScoreService(), recovery: PreviewPinRecoveryService(),
             community: PreviewCommunityService(), care: PreviewCareService(), careTools: PreviewCareToolsService(),
-            debtEmergency: PreviewDebtEmergencyService(), marketplace: PreviewMarketplaceService())
+            debtEmergency: PreviewDebtEmergencyService(), marketplace: PreviewMarketplaceService(),
+            goals: PreviewGoalService(), riskProfile: PreviewRiskProfileService(), riskDraft: RiskQuizDraft())
     }
 }
 

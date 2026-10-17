@@ -25,6 +25,14 @@ package struct RiskQuizContext: Hashable, Sendable {
         self.monthlyIncome = monthlyIncome
     }
 
+    /** The context of `plan`: its emergency-fund step's multiples and the prefill's income. */
+    package init(plan: PlanOverview) {
+        let detail = plan.ladder.first { $0.key == .emergencyFund }?.detail
+        self.init(
+            emergencyMultiple: detail?.multiple, emergencyTarget: detail?.targetMultiple,
+            monthlyIncome: plan.prefill.monthlyIncome)
+    }
+
     /** The two multiples while the fund is still below its target, which is when the ladder notice shows. */
     package var ladder: (multiple: Double, target: Int)? {
         guard let multiple = emergencyMultiple, let target = emergencyTarget, multiple < Double(target) else {
