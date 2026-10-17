@@ -17,13 +17,16 @@ package enum PortfolioShares {
      */
     package static func byClass(_ assets: [Asset]) -> [ClassShare] {
         var order: [AssetClass] = []
-        var totals: [AssetClass: Int] = [:]
+        var totals: [Int] = []
         for asset in assets where asset.value > 0 {
-            if totals[asset.assetClass] == nil { order.append(asset.assetClass) }
-            totals[asset.assetClass, default: 0] += asset.value
+            if let index = order.firstIndex(of: asset.assetClass) {
+                totals[index] += asset.value
+            } else {
+                order.append(asset.assetClass)
+                totals.append(asset.value)
+            }
         }
-        let percents = wholePercents(order.map { totals[$0] ?? 0 })
-        return zip(order, percents).map { ClassShare(assetClass: $0, percent: $1) }
+        return zip(order, wholePercents(totals)).map { ClassShare(assetClass: $0, percent: $1) }
     }
 
     /** Whole percentages of `values` adding up to 100 (all zeros when the values add up to nothing). */
