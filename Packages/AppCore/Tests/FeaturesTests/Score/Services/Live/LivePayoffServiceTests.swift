@@ -30,7 +30,9 @@ struct LivePayoffServiceTests {
         #expect(simulation.allPaidMonth == "2026-11")
         #expect(
             simulation.accounts == [
-                PayoffAccount(id: "a-1", kind: .paylater, name: "Paylater A", remaining: 420_000, monthlyInstalment: 210_000, position: 1, payoffMonth: "2026-11")
+                PayoffAccount(
+                    id: "a-1", kind: .paylater, name: "Paylater A", remaining: 420_000, monthlyInstalment: 210_000,
+                    position: 1, payoffMonth: "2026-11")
             ])
         #expect(
             simulation.productive == [

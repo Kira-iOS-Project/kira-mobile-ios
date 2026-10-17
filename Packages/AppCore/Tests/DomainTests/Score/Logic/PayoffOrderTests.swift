@@ -5,11 +5,15 @@ import Testing
 @Suite("PayoffOrder")
 struct PayoffOrderTests {
     private func account(_ position: Int, month: String?, instalment: Int = 210_000) -> PayoffAccount {
-        PayoffAccount(id: "a-\(position)", kind: .paylater, name: "Akun \(position)", remaining: 420_000, monthlyInstalment: instalment, position: position, payoffMonth: month)
+        PayoffAccount(
+            id: "a-\(position)", kind: .paylater, name: "Akun \(position)", remaining: 420_000,
+            monthlyInstalment: instalment, position: position, payoffMonth: month)
     }
 
     private func plan(_ accounts: [PayoffAccount], allPaid: String?) -> PayoffSimulation {
-        PayoffSimulation(method: .snowball, extraPayment: 210_000, maxExtraPayment: 600_000, hasUnknownRate: false, accounts: accounts, productive: [], allPaidMonth: allPaid, comparison: nil)
+        PayoffSimulation(
+            method: .snowball, extraPayment: 210_000, maxExtraPayment: 600_000, hasUnknownRate: false,
+            accounts: accounts, productive: [], allPaidMonth: allPaid, comparison: nil)
     }
 
     @Test("the first account, the minimum and when each next account starts")
