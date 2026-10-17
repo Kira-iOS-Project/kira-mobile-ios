@@ -25,11 +25,12 @@ struct WeddingResultScreen: View {
         let draft = goal.draft(today: CalendarDay(.now), preset: preset)
         GoalResultFrame(
             content: content, isSaving: budget.isSaving, onEdit: { _ in dismiss() },
-            onBudget: { Task { await budget.save(draft) } }, onHelp: { onOpen(.care) })
-            .goalBudgetDialog(budget, draft: draft)
-            .onChange(of: budget.saved) { _, saved in
-                if saved != nil { onOpen(.plan) }
-            }
+            onBudget: { Task { await budget.save(draft) } }, onHelp: { onOpen(.care) }
+        )
+        .goalBudgetDialog(budget, draft: draft)
+        .onChange(of: budget.saved) { _, saved in
+            if saved != nil { onOpen(.plan) }
+        }
     }
 
     private var content: GoalResultContent {

@@ -34,7 +34,8 @@ struct WeddingFormScreen: View {
                 KiraField("plan.wedding.present", text: $model.present)
                     .prefix("plan.goal.currency").suffix("plan.goal.cents").amount().keyboardType(.numberPad)
                 GoalStrategyFields(deposit: $model.deposit, annualReturn: $model.annualReturn)
-            })
+            }
+        )
         .navigationDestination(isPresented: showsResult) {
             if let result {
                 WeddingResultScreen(goal: result, preset: model.preset, service: service, onOpen: onOpen)

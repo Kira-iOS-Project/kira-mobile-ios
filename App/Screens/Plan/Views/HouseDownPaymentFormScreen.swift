@@ -28,22 +28,23 @@ struct HouseDownPaymentFormScreen: View {
             goal: "plan.dp.goal", lead: "plan.dp.lead", category: .home, canCalculate: model.canCalculate,
             onCalculate: { result = model.result }, onHelp: { onOpen(.care) },
             content: {
-            KiraSectionTitle("plan.goal.dream").padding(.top, KiraSpacing.space2)
-            KiraField("plan.dp.years", text: $model.years).suffix("plan.goal.yearsAhead").keyboardType(.numberPad)
-            KiraField("plan.dp.price", text: $model.price)
-                .prefix("plan.goal.currency").suffix("plan.goal.cents").amount().keyboardType(.numberPad)
-            HStack(alignment: .top, spacing: 10) {
-                KiraField("plan.dp.rate", text: $model.downPaymentRate).suffix("plan.dp.percent")
-                    .hint("plan.dp.rate.hint").keyboardType(.decimalPad)
-                KiraField("plan.dp.inflation", text: $model.inflation).suffix("plan.goal.perYear")
-                    .keyboardType(.decimalPad)
+                KiraSectionTitle("plan.goal.dream").padding(.top, KiraSpacing.space2)
+                KiraField("plan.dp.years", text: $model.years).suffix("plan.goal.yearsAhead").keyboardType(.numberPad)
+                KiraField("plan.dp.price", text: $model.price)
+                    .prefix("plan.goal.currency").suffix("plan.goal.cents").amount().keyboardType(.numberPad)
+                HStack(alignment: .top, spacing: 10) {
+                    KiraField("plan.dp.rate", text: $model.downPaymentRate).suffix("plan.dp.percent")
+                        .hint("plan.dp.rate.hint").keyboardType(.decimalPad)
+                    KiraField("plan.dp.inflation", text: $model.inflation).suffix("plan.goal.perYear")
+                        .keyboardType(.decimalPad)
+                }
+                automatic
+                KiraField("plan.dp.present", text: $model.present)
+                    .prefix("plan.goal.currency").suffix("plan.goal.cents").amount().keyboardType(.numberPad)
+                GoalStrategyFields(deposit: $model.deposit, annualReturn: $model.annualReturn)
+                MortgageFields(model: model)
             }
-            automatic
-            KiraField("plan.dp.present", text: $model.present)
-                .prefix("plan.goal.currency").suffix("plan.goal.cents").amount().keyboardType(.numberPad)
-            GoalStrategyFields(deposit: $model.deposit, annualReturn: $model.annualReturn)
-            MortgageFields(model: model)
-        })
+        )
         .navigationDestination(isPresented: showsResult) {
             if let result { HouseDownPaymentResultScreen(result: result, service: service, onOpen: onOpen) }
         }

@@ -25,7 +25,8 @@ struct HouseDownPaymentResultScreen: View {
             content: content, isSaving: budget.isSaving, onEdit: { _ in dismiss() },
             onBudget: { Task { await budget.save(result.draft(today: CalendarDay(.now))) } },
             onHelp: { onOpen(.care) },
-            extra: { MortgageSummary(mortgage: result.mortgage) })
+            extra: { MortgageSummary(mortgage: result.mortgage) }
+        )
         .goalBudgetDialog(budget, draft: result.draft(today: CalendarDay(.now)))
         .onChange(of: budget.saved) { _, saved in
             if saved != nil { onOpen(.plan) }
