@@ -18,7 +18,7 @@ nonisolated final class CareSafetyAuditTests: XCTestCase {
 
     @MainActor
     func testSafetyPlanFormPassesTheAudit() throws {
-        try auditScreen("safetyPlanForm")
+        try auditScreen("safetyPlanForm", accepting: Self.contactHeaderContrast)
     }
 
     /** RencanaKeselamatanDialogBerhasil: Simpan Rencana under the plan. */
@@ -49,6 +49,19 @@ nonisolated final class CareSafetyAuditTests: XCTestCase {
     @MainActor
     func testBreathingPassesTheAudit() throws {
         try auditScreen("breathing")
+    }
+
+    /**
+     Accepted, the owner's call: contrast on Isi Rencana Keselamatanku's contact part title "Orang
+     yang Bisa Kuhubungi" and its Tambah Kontak button, and nothing else. Both are ink on the
+     surface, their element screenshots show clean ink on cream, their styles pass everywhere else,
+     and CI before the audit's scroll changed (fece597) never flagged them; the audit reads them as
+     low contrast at fixed frames, the title before any scroll, for a cause not yet found.
+     */
+    @MainActor
+    private static func contactHeaderContrast(_ issue: XCUIAccessibilityAuditIssue) -> Bool {
+        guard issue.auditType == .contrast, let label = issue.element?.label else { return false }
+        return ["Orang yang Bisa Kuhubungi", "Tambah Kontak"].contains(label)
     }
 
     /** Accepted, as for every presented dialog (docs/design-system.md): text behind its scrim. */

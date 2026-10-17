@@ -18,9 +18,7 @@ struct RecordComposer: View {
             KiraIconButton(.pencil, label: "record.composer.manual", action: model.openManual)
             field
             KiraIconButton(.mic, label: "record.composer.voice", action: model.openVoice)
-            Button {
-                Task { await model.send() }
-            } label: {
+            Button(action: submit) {
                 KiraIcon(.arrowUp, size: 20, weight: .semibold)
                     .foregroundStyle(.onPandan)
                     .frame(width: KiraSize.tap, height: KiraSize.tap)
@@ -36,6 +34,15 @@ struct RecordComposer: View {
             Capsule().strokeBorder(isActive ? Color.pandan : .hairline, lineWidth: isActive ? 1.5 : 1)
         }
         .onChange(of: model.composerFocusRequests) { isFocused = true }
+    }
+
+    /**
+     Sends, and lets the keyboard down: each send gets a reply the person should read, and a crisis
+     reply's counsellor card and Lihat Bantuan must never sit under the keyboard.
+     */
+    private func submit() {
+        isFocused = false
+        Task { await model.send() }
     }
 
     private var field: some View {
@@ -54,7 +61,7 @@ struct RecordComposer: View {
             .onChange(of: model.composerText) { _, text in
                 guard text.contains("\n") else { return }
                 model.composerText = text.replacingOccurrences(of: "\n", with: "")
-                Task { await model.send() }
+                submit()
             }
             .foregroundStyle(.ink)
             .accessibilityLabel(Text("record.composer.label"))
