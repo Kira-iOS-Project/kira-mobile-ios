@@ -46,8 +46,13 @@ extension RiskAssetClass {
         }
     }
 
-    /** `plan.module.<class>.<field>`, the class's own sentence for a section. */
+    /**
+     `plan.module.<class>.<field>`, the class's own sentence for a section. The key is built as a String
+     first: interpolating inside a LocalizationValue literal would make the key the format
+     "plan.module.%@.%@", which matches nothing.
+     */
     private func text(_ field: String) -> LocalizedStringResource {
-        LocalizedStringResource(String.LocalizationValue("plan.module.\(rawValue).\(field)"))
+        let key = "plan.module.\(rawValue).\(field)"
+        return LocalizedStringResource(String.LocalizationValue(key))
     }
 }
