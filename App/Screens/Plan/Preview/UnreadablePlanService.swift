@@ -9,13 +9,9 @@ import Features
 struct UnreadablePlanService: GoalService {
     func plan() throws -> PlanOverview { throw AppProblem.connectionLost }
 
-    func goals() throws -> [GoalSummary] { throw AppProblem.connectionLost }
-
     func goal(id _: String) throws -> GoalDetail { throw AppProblem.connectionLost }
 
     func createGoal(_: GoalDraft) throws -> GoalDetail { throw AppProblem.connectionLost }
-
-    func updateGoal(id _: String, _: GoalDraft) throws -> GoalDetail { throw AppProblem.connectionLost }
 
     func addDeposit(goalId _: String, amount _: Int, depositedOn _: CalendarDay, depositId _: String) throws
         -> GoalDeposit

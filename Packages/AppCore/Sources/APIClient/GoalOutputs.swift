@@ -12,16 +12,6 @@ extension Operations.GetPlan.Output {
     }
 }
 
-extension Operations.ListGoals.Output {
-    func goals() throws -> [GoalSummary] {
-        switch self {
-        case .ok(let response): return try response.body.json.goals.map(GoalSummary.init)
-        case .unauthorized(let response): throw try response.body.applicationProblemJson
-        case .default(_, let response): throw try response.body.applicationProblemJson
-        }
-    }
-}
-
 extension Operations.GetGoal.Output {
     func goal() throws -> GoalDetail {
         switch self {
@@ -40,18 +30,6 @@ extension Operations.CreateGoal.Output {
         case .created(let response): return try GoalDetail(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .conflict(let response): throw try response.body.applicationProblemJson
-        case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .default(_, let response): throw try response.body.applicationProblemJson
-        }
-    }
-}
-
-extension Operations.UpdateGoal.Output {
-    func goal() throws -> GoalDetail {
-        switch self {
-        case .ok(let response): return try GoalDetail(try response.body.json)
-        case .unauthorized(let response): throw try response.body.applicationProblemJson
-        case .notFound(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
         case .default(_, let response): throw try response.body.applicationProblemJson
         }

@@ -4,7 +4,6 @@
  Simulasi KPR (income, tenor, fixed and floating rates, the fixed period, NJOP-TKP). Hitung opens
  the result (REN-04c).
  */
-import Domain
 import Features
 import SwiftUI
 

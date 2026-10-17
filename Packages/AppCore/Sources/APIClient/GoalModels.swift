@@ -102,12 +102,3 @@ extension Components.Schemas.CreateGoal {
             targetAmount: draft.targetAmount, targetDate: draft.targetDate.iso, inBudget: draft.inBudget)
     }
 }
-
-extension Components.Schemas.UpdateGoal {
-    init(_ draft: GoalDraft) {
-        self.init(
-            name: draft.name, inputs: .init(draft.inputs), initialAmount: draft.initialAmount,
-            monthlyDeposit: draft.monthlyDeposit, targetAmount: draft.targetAmount, targetDate: draft.targetDate.iso,
-            inBudget: draft.inBudget)
-    }
-}
