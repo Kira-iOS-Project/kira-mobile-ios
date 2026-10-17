@@ -27,7 +27,7 @@ struct AllGoalsScreen: View {
             }
             .padding(.horizontal, KiraSpacing.screen)
             .padding(.top, 62 - 59)
-            .padding(.bottom, KiraSpacing.space8)
+            .padding(.bottom, KiraSpacing.screenBottom)
         }
         .background(.surface)
         .kiraScrollEdges()

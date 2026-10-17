@@ -89,6 +89,7 @@ the cursor and system selections carry the accent. The groups: surfaces (`surfac
 | Design system | Swift |
 | --- | --- |
 | `space-1` … `space-10` (4, 8, 12, 16, 20, 24, 32, 40) | `KiraSpacing.space1` … `KiraSpacing.space10`; the screen margin is `KiraSpacing.screen` (16) |
+| The end of a scrolling screen without the dock | `KiraSpacing.screenBottom` (8 above the home indicator), on every such screen; a dock screen ends on `space10 + dockReserve` |
 | `radius-xs`, `-sm`, `-md`, `-lg`, `-xl`, `-full` (6, 12, 18, 24, 30, capsule) | `KiraRadius.extraSmall`, `.small`, `.medium`, `.large`, `.extraLarge`, `.full` |
 | `size-tap`, `size-icon`, `size-tile` (44, 24, 40) | `KiraSize.tap`, `.icon`, `.tile` |
 

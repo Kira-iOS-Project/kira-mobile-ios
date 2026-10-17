@@ -36,7 +36,7 @@ struct PinRecoveryFlow: View {
                     .disabled(model.code.count < 6 || model.phase != .enteringCode)
             }
             .padding(.horizontal, KiraSpacing.screen)
-            .padding(.bottom, KiraSpacing.space2)
+            .padding(.bottom, KiraSpacing.screenBottom)
         }
         .background { RecoveryBackground() }
         .kiraScrollEdges()

@@ -41,6 +41,13 @@ struct PinSetupView: View {
         }
         .onboardingBackdrop(leaf: .pandan)
         .problemDialog(model.phase.problem)
+        .kiraDialog(
+            isPresented: Binding(get: { model.showsWeakPin }, set: { if !$0 { model.weakPinClosed() } })
+        ) {
+            KiraDialog(
+                "onboarding.pin.weak.title", message: "onboarding.pin.weak", art: .illustration(.padlock),
+                primary: KiraButton("onboarding.pin.weak.retry") {})
+        }
         .kiraDialog(isPresented: $model.showsSuccess) {
             KiraDialog(
                 "onboarding.pin.success.title", message: "onboarding.pin.success.body", art: .illustration(.shield),
@@ -57,7 +64,7 @@ private struct PinForm: View {
         VStack(spacing: KiraSpacing.space4) {
             KiraCodeField("onboarding.pin.field", code: $model.pin, kind: .pin)
                 .hint("onboarding.pin.hint")
-                .error(model.showsWeakPin ? "onboarding.pin.weak" : nil)
+
             KiraListGroup {
                 KiraListRow(
                     Text("onboarding.pin.hideBalances"), leading: .icon(.eyeOff),

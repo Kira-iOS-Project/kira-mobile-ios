@@ -14527,12 +14527,32 @@
         }
       }
     },
+    "lock.recovery.pin.error.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ganti PIN"
+          }
+        }
+      }
+    },
     "lock.recovery.pin.error.simple" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "PIN ini mudah ditebak. Hindari angka yang berulang atau berurutan."
+          }
+        }
+      }
+    },
+    "lock.recovery.pin.error.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih PIN Lain"
           }
         }
       }
@@ -15057,12 +15077,52 @@
         }
       }
     },
+    "onboarding.code.resendFailed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Bisa Mengirim Kode"
+          }
+        }
+      }
+    },
     "onboarding.code.resendIn %@" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kirim ulang kode dalam %@"
+          }
+        }
+      }
+    },
+    "onboarding.code.resent.body %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cek emailmu. Kode baru sudah dikirim ke %@, dan kode sebelumnya tidak berlaku lagi."
+          }
+        }
+      }
+    },
+    "onboarding.code.resent.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masukkan Kode"
+          }
+        }
+      }
+    },
+    "onboarding.code.resent.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kode Baru Terkirim"
           }
         }
       }
@@ -16343,6 +16403,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "PIN ini terlalu mudah ditebak. Hindari pola seperti 111111, 121212, atau 123456."
+          }
+        }
+      }
+    },
+    "onboarding.pin.weak.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ganti PIN"
+          }
+        }
+      }
+    },
+    "onboarding.pin.weak.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PIN Terlalu Mudah Ditebak"
           }
         }
       }

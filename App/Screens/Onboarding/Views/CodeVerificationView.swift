@@ -46,7 +46,10 @@ struct CodeVerificationView: View {
             }
         }
         .onboardingBackdrop(leaf: .twig)
-        .problemDialog(model.phase.problem, title: "onboarding.code.failed")
+        .problemDialog(
+            model.phase.problem,
+            title: model.failedRequest == .resend ? "onboarding.code.resendFailed" : "onboarding.code.failed"
+        )
         .task(id: model.countdownRun) { await model.runCountdown() }
         .task(id: model.code) { await model.verifyIfComplete() }
     }
@@ -63,6 +66,12 @@ private struct CodeEntry: View {
     var body: some View {
         VStack(spacing: 14) {
             KiraCodeField("onboarding.code.field", code: $model.code, kind: .code)
+                /** Its own layer: the screen's problem dialog sits on the page. */
+                .kiraDialog(isPresented: $model.showsCodeResent) {
+                    KiraDialog(
+                        "onboarding.code.resent.title", message: "onboarding.code.resent.body \(model.email)",
+                        art: .illustration(.letter), primary: KiraButton("onboarding.code.resent.done") {})
+                }
             if model.secondsUntilResend > 0 {
                 Text("onboarding.code.resendIn \(countdown)")
                     .font(.subheadline.monospacedDigit()).kiraLineHeight(20, size: 15)

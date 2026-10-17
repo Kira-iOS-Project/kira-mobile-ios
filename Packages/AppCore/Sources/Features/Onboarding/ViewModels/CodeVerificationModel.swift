@@ -8,6 +8,14 @@ import Observation
  */
 @MainActor @Observable
 package final class CodeVerificationModel {
+    /** What the last request was, so its failure dialog names it. */
+    package enum Request: Sendable {
+        /** Verifikasi, or the sixth digit. */
+        case verify
+        /** Kirim Ulang Kode. */
+        case resend
+    }
+
     /** Waits one tick of the countdown; tests pass one that returns at once. */
     package typealias Sleep = @Sendable (Duration) async throws -> Void
 
@@ -26,6 +34,10 @@ package final class CodeVerificationModel {
     package private(set) var countdownRun = 0
     /** Editing, verifying or failed. */
     package private(set) var phase = SubmitPhase.editing
+    /** The request a failure belongs to: Verifikasi or Kirim Ulang Kode. */
+    package private(set) var failedRequest = Request.verify
+    /** Whether "Kode Baru Terkirim" shows, after a new code went out. */
+    package var showsCodeResent = false
     private let service: any OnboardingService
     private let sleep: Sleep
     private let onVerified: (SignInResult) -> Void
@@ -71,11 +83,15 @@ package final class CodeVerificationModel {
             onVerified(result)
         } catch {
             code = ""
+            failedRequest = .verify
             phase = .failure(error)
         }
     }
 
-    /** Asks for a new code once the countdown is over, and starts the countdown again. */
+    /**
+     Asks for a new code once the countdown is over, starts the countdown again and says so ("Kode
+     Baru Terkirim"); a refusal shows its own dialog ("Belum Bisa Mengirim Kode").
+     */
     package func resend() async {
         guard secondsUntilResend == 0, !phase.isSubmitting else { return }
         phase = .submitting
@@ -85,7 +101,9 @@ package final class CodeVerificationModel {
             phase = .editing
             secondsUntilResend = max(delivery.resendAfterSeconds, 0)
             countdownRun += 1
+            showsCodeResent = true
         } catch {
+            failedRequest = .resend
             phase = .failure(error)
         }
     }

@@ -30,7 +30,7 @@ struct CheckInScreen: View {
                     KiraNotice(.privacy, message: "care.checkIn.notice")
                 }
                 .padding(.horizontal, KiraSpacing.screen)
-                .padding(.bottom, KiraSpacing.space5)
+                .padding(.bottom, KiraSpacing.screenBottom)
             }
             .kiraScrollEdges()
             KiraButtonPair(

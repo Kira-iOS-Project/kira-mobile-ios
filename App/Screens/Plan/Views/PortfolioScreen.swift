@@ -29,7 +29,7 @@ struct PortfolioScreen: View {
             }
             .padding(.horizontal, KiraSpacing.screen)
             .padding(.top, KiraSpacing.space1)
-            .padding(.bottom, KiraSpacing.space8)
+            .padding(.bottom, KiraSpacing.screenBottom)
             .background(alignment: .topTrailing) {
                 KiraLeaf(.twig, tone: .soft, size: 136, isFlipped: true)
                     .offset(x: 40, y: -36)

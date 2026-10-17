@@ -107,7 +107,7 @@ private struct ProductContent: View {
             }
             .padding(.horizontal, KiraSpacing.screen)
             .padding(.top, 62 - 59)
-            .padding(.bottom, KiraSpacing.space8)
+            .padding(.bottom, KiraSpacing.screenBottom)
             .background(alignment: .topTrailing) {
                 KiraLeaf(.twig, tone: .soft, size: 130, isFlipped: true).offset(x: 38, y: 34 - 59)
                     .accessibilityHidden(true)

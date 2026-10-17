@@ -32,7 +32,7 @@ struct GoalDetailScreen: View {
             .goalDeleteDialog(model)
             .padding(.horizontal, KiraSpacing.screen)
             .padding(.top, 62 - 59)
-            .padding(.bottom, KiraSpacing.space8)
+            .padding(.bottom, KiraSpacing.screenBottom)
             /**
              The twig in the scrolled content's background, as PlanScreenFrame draws it: on the scroll
              view's own background VoiceOver still found it ("Element has no description").

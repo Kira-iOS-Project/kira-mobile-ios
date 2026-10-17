@@ -104,6 +104,8 @@ struct PinRecoveryModelTests {
         model.savePin()
         #expect(model.pinProblem == .tooSimple)
         #expect(model.newPin.isEmpty)
+        model.pinProblemClosed()
+        #expect(model.pinProblem == nil)
         model.newPin = "902716"
         model.savePin()
         #expect(model.phase == .finished)

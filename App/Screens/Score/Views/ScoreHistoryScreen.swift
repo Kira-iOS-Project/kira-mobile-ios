@@ -34,7 +34,7 @@ struct ScoreHistoryScreen: View {
             .padding(.horizontal, KiraSpacing.screen)
             /** The board's 62 pt from the top of the screen. */
             .padding(.top, 62 - 59)
-            .padding(.bottom, KiraSpacing.space8)
+            .padding(.bottom, KiraSpacing.screenBottom)
         }
         .kiraScrollEdges()
         .background(alignment: .topTrailing) {

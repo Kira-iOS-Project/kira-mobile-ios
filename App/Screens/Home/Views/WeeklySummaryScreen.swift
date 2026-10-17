@@ -29,7 +29,7 @@ struct WeeklySummaryScreen: View {
                 content
             }
             .padding(.horizontal, KiraSpacing.screen)
-            .padding(.bottom, KiraSpacing.space8)
+            .padding(.bottom, KiraSpacing.screenBottom)
         }
         .kiraScrollEdges()
         .background(alignment: .top) { WeeklySummaryLeaves() }

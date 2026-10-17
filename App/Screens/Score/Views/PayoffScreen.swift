@@ -36,7 +36,7 @@ struct PayoffScreen: View {
             }
             .padding(.horizontal, KiraSpacing.screen)
             .padding(.top, KiraSpacing.space1)
-            .padding(.bottom, KiraSpacing.space10)
+            .padding(.bottom, KiraSpacing.screenBottom)
         }
         .background(alignment: .topTrailing) {
             KiraLeaf(.twig, tone: .soft, size: 130, isFlipped: true).offset(x: 38, y: 34).ignoresSafeArea()

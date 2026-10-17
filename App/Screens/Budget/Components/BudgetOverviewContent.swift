@@ -31,7 +31,7 @@ struct BudgetOverviewContent: View {
             }
             .padding(.horizontal, KiraSpacing.screen)
             .padding(.top, KiraSpacing.space2)
-            .padding(.bottom, KiraSpacing.space2)
+            .padding(.bottom, KiraSpacing.screenBottom)
             .background(alignment: .topTrailing) {
                 KiraLeaf(.twig, tone: .soft, size: 150, isFlipped: true).offset(x: 54, y: -28)
             }

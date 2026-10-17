@@ -110,6 +110,11 @@ package final class PinRecoveryModel: Identifiable {
         }
     }
 
+    /** "Ganti PIN" on the refused PIN's dialog. */
+    package func pinProblemClosed() {
+        pinProblem = nil
+    }
+
     /** Simpan PIN: sets the new PIN, which opens Kira. */
     package func savePin() {
         guard phase == .choosingPin else { return }
