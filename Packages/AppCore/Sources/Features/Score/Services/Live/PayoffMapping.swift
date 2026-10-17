@@ -20,7 +20,8 @@ extension PayoffAccount {
         self.init(
             id: dto.id, kind: try Bridge.value(dto.kind), name: dto.name, remaining: dto.remaining,
             monthlyInstalment: dto.monthlyInstalment, annualInterestRate: dto.annualInterestRate,
-            position: dto.position, months: dto.months, payoffMonth: dto.payoffMonth, interest: dto.interest)
+            position: dto.position, months: dto.months, payoffMonth: dto.payoffMonth, interest: dto.interest,
+            dueDay: dto.dueDay)
     }
 }
 
