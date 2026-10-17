@@ -61,10 +61,3 @@ enum BillCopy {
         CalendarDay(year: 2026, month: month, day: 1).date.formatted(.kiraMonth)
     }
 }
-
-extension FormatStyle where Self == Date.FormatStyle {
-    /** "Oktober", in WIB. */
-    fileprivate static var kiraMonth: Date.FormatStyle {
-        Date.FormatStyle(locale: Locale(identifier: "id_ID"), timeZone: KiraDateFormat.timeZone).month(.wide)
-    }
-}

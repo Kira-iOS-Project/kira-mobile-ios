@@ -1,7 +1,7 @@
 /** The board's six bills (Tagihan): what previews, the launcher and the loading placeholder show. */
 import Domain
 
-enum BillsPreviewData {
+nonisolated enum BillsPreviewData {
     /** Rp2.150.000,00 a month in three groups, as on the board. */
     static let board = BillOverview(
         count: 6, monthlyTotal: 2_150_000,
