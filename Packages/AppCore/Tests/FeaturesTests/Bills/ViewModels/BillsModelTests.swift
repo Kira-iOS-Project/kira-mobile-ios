@@ -52,6 +52,15 @@ struct BillsModelTests {
         #expect(model.tag(for: paidYearly, in: .nextMonth) == .paid(month: 12))
     }
 
+    @Test("without a clock of its own, it counts from today: a bill due in 3 days shows 3")
+    func countsFromToday() {
+        let today = CalendarDay(Date())
+        let soon = Bill(
+            id: "soon", name: "Air", kind: .bill, category: "bills", amount: 90_000, dueOn: today, dueDay: 1,
+            nextDueOn: today.adding(days: 3))
+        #expect(BillsModel(service: FakeBillService()).tag(for: soon, in: .thisMonth) == .daysLeft(3, urgent: true))
+    }
+
     @Test("no bills is empty")
     func empty() async {
         let model = model(FakeBillService(overview: BillOverview(count: 0, monthlyTotal: 0, sections: [])))

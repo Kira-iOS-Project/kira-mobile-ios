@@ -10,17 +10,17 @@ struct FinanceAPIBillsTests {
         await expectProblems([401]) { _ = try await $0.listBills() }
     }
 
-    @Test("every group maps, and a paid one-off without a next due day is left out")
+    @Test("every group maps; a paid one-off without a next due day is left out, a dated one is kept")
     func groupsAndOneOff() async throws {
         let json = """
             {"count":0,"monthlyTotal":0,"sections":[\
             {"group":"next7Days","bills":[]},{"group":"thisMonth","bills":[]},\
-            {"group":"nextMonth","bills":[\(bill(next: "null"))]},{"group":"later","bills":[]}]}
+            {"group":"nextMonth","bills":[\(bill(next: "null")),\(bill(next: #""2026-11-01""#))]},{"group":"later","bills":[]}]}
             """
         let (api, _) = KiraAPI.canned(json: json)
         let overview = try await api.listBills()
         #expect(overview.sections.map(\.group) == [.nextSevenDays, .thisMonth, .nextMonth, .later])
-        #expect(overview.sections[2].bills.isEmpty)
+        #expect(overview.sections[2].bills.map(\.repeats) == [.once])
     }
 
     @Test("a bill with a date the app cannot read is refused")
