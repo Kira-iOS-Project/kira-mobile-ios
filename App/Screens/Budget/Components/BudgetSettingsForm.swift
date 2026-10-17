@@ -103,9 +103,9 @@ private struct BudgetAllocationSummary: View {
     }
 
     private var caption: LocalizedStringResource {
-        let left = Text(unallocated.rupiah, format: .rupiah)
+        let left = unallocated.rupiah.formatted(.rupiah)
         return instalments > 0
-            ? "budget.set.unallocated.instalments \(left) \(Text(instalments.rupiah, format: .rupiah))"
+            ? "budget.set.unallocated.instalments \(left) \(instalments.rupiah.formatted(.rupiah))"
             : "budget.set.unallocated \(left)"
     }
 }
@@ -121,7 +121,7 @@ private struct BudgetCategoryField: View {
             KiraCategoryIcon(category.tile, size: 40).padding(.top, 26).accessibilityHidden(true)
             KiraField(category.title, text: $amount)
                 .prefix("budget.set.currency").suffix("budget.set.cents").amount()
-                .hint("budget.set.average \(Text(average.rupiah, format: .rupiah))")
+                .hint("budget.set.average \(average.rupiah.formatted(.rupiah))")
                 .keyboardType(.numberPad)
         }
     }
