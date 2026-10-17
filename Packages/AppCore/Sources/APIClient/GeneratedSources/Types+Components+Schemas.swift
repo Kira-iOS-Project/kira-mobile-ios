@@ -7926,5 +7926,74 @@ extension Components {
                 case clientId
             }
         }
+        /// - Remark: Generated from `#/components/schemas/UpdateBillInput`.
+        internal struct UpdateBillInput: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/UpdateBillInput/name`.
+            internal var name: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/UpdateBillInput/amount`.
+            internal var amount: Swift.Int?
+            /// - Remark: Generated from `#/components/schemas/UpdateBillInput/category`.
+            internal enum CategoryPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case food = "food"
+                case coffee = "coffee"
+                case transport = "transport"
+                case shopping = "shopping"
+                case bills = "bills"
+                case paylaterInstalment = "paylater_instalment"
+                case savingsDeposit = "savings_deposit"
+                case insurance = "insurance"
+                case entertainment = "entertainment"
+                case health = "health"
+                case education = "education"
+                case household = "household"
+                case otherExpense = "other_expense"
+            }
+            /// - Remark: Generated from `#/components/schemas/UpdateBillInput/category`.
+            internal var category: Components.Schemas.UpdateBillInput.CategoryPayload?
+            /// - Remark: Generated from `#/components/schemas/UpdateBillInput/nextDueDate`.
+            internal var nextDueDate: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/UpdateBillInput/repeatInterval`.
+            internal enum RepeatIntervalPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case weekly = "weekly"
+                case monthly = "monthly"
+                case yearly = "yearly"
+            }
+            /// - Remark: Generated from `#/components/schemas/UpdateBillInput/repeatInterval`.
+            internal var repeatInterval: Components.Schemas.UpdateBillInput.RepeatIntervalPayload?
+            /// - Remark: Generated from `#/components/schemas/UpdateBillInput/linkedDebtAccountId`.
+            internal var linkedDebtAccountId: Swift.String?
+            /// Creates a new `UpdateBillInput`.
+            ///
+            /// - Parameters:
+            ///   - name:
+            ///   - amount:
+            ///   - category:
+            ///   - nextDueDate:
+            ///   - repeatInterval:
+            ///   - linkedDebtAccountId:
+            internal init(
+                name: Swift.String? = nil,
+                amount: Swift.Int? = nil,
+                category: Components.Schemas.UpdateBillInput.CategoryPayload? = nil,
+                nextDueDate: Swift.String? = nil,
+                repeatInterval: Components.Schemas.UpdateBillInput.RepeatIntervalPayload? = nil,
+                linkedDebtAccountId: Swift.String? = nil
+            ) {
+                self.name = name
+                self.amount = amount
+                self.category = category
+                self.nextDueDate = nextDueDate
+                self.repeatInterval = repeatInterval
+                self.linkedDebtAccountId = linkedDebtAccountId
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case name
+                case amount
+                case category
+                case nextDueDate
+                case repeatInterval
+                case linkedDebtAccountId
+            }
+        }
     }
 }

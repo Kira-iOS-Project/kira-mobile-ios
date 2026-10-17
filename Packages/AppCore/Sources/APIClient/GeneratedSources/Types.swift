@@ -479,6 +479,18 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `POST /api/bills`.
     /// - Remark: Generated from `#/paths//api/bills/post(createBill)`.
     func createBill(_ input: Operations.CreateBill.Input) async throws -> Operations.CreateBill.Output
+    /// Recurring bill details
+    ///
+    /// - Remark: HTTP `GET /api/bills/{id}`.
+    /// - Remark: Generated from `#/paths//api/bills/{id}/get(getBill)`.
+    func getBill(_ input: Operations.GetBill.Input) async throws -> Operations.GetBill.Output
+    /// Update future bill schedule
+    ///
+    /// Only the future schedule changes; saved payment transactions remain intact.
+    ///
+    /// - Remark: HTTP `PATCH /api/bills/{id}`.
+    /// - Remark: Generated from `#/paths//api/bills/{id}/patch(updateBill)`.
+    func updateBill(_ input: Operations.UpdateBill.Input) async throws -> Operations.UpdateBill.Output
     /// Current budget and adjusted payday
     ///
     /// - Remark: HTTP `GET /api/budgets/current`.
@@ -1457,6 +1469,36 @@ extension APIProtocol {
         body: Operations.CreateBill.Input.Body
     ) async throws -> Operations.CreateBill.Output {
         try await createBill(Operations.CreateBill.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Recurring bill details
+    ///
+    /// - Remark: HTTP `GET /api/bills/{id}`.
+    /// - Remark: Generated from `#/paths//api/bills/{id}/get(getBill)`.
+    internal func getBill(
+        path: Operations.GetBill.Input.Path,
+        headers: Operations.GetBill.Input.Headers = .init()
+    ) async throws -> Operations.GetBill.Output {
+        try await getBill(Operations.GetBill.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Update future bill schedule
+    ///
+    /// Only the future schedule changes; saved payment transactions remain intact.
+    ///
+    /// - Remark: HTTP `PATCH /api/bills/{id}`.
+    /// - Remark: Generated from `#/paths//api/bills/{id}/patch(updateBill)`.
+    internal func updateBill(
+        path: Operations.UpdateBill.Input.Path,
+        headers: Operations.UpdateBill.Input.Headers = .init(),
+        body: Operations.UpdateBill.Input.Body
+    ) async throws -> Operations.UpdateBill.Output {
+        try await updateBill(Operations.UpdateBill.Input(
+            path: path,
             headers: headers,
             body: body
         ))
