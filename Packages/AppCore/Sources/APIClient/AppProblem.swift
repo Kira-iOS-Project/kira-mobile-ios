@@ -142,4 +142,30 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case scholarshipNotEligible = "SCHOLARSHIP_NOT_ELIGIBLE"
     /** There is no open application. */
     case scholarshipApplicationNotFound = "SCHOLARSHIP_APPLICATION_NOT_FOUND"
+    /** A requested account data export is temporarily rate limited. */
+    case accountExportRateLimited = "ACCOUNT_EXPORT_RATE_LIMITED"
+    /** Too many account verification attempts were made. */
+    case authVerifyRateLimited = "AUTH_VERIFY_RATE_LIMITED"
+    /** The requested care check-in does not exist. */
+    case careCheckInNotFound = "CARE_CHECK_IN_NOT_FOUND"
+    /** The requested safety plan does not exist. */
+    case careSafetyPlanNotFound = "CARE_SAFETY_PLAN_NOT_FOUND"
+    /** The requested community group does not exist. */
+    case communityGroupNotFound = "COMMUNITY_GROUP_NOT_FOUND"
+    /** The requested community link is currently unavailable. */
+    case communityLinkUnavailable = "COMMUNITY_LINK_UNAVAILABLE"
+    /** The requested community product does not exist. */
+    case communityProductNotFound = "COMMUNITY_PRODUCT_NOT_FOUND"
+    /** The same community report has already been submitted. */
+    case communityReportDuplicate = "COMMUNITY_REPORT_DUPLICATE"
+    /** Community rules must be accepted before continuing. */
+    case communityRulesNotAccepted = "COMMUNITY_RULES_NOT_ACCEPTED"
+    /** The requested finance item does not exist. */
+    case financeItemNotFound = "FINANCE_ITEM_NOT_FOUND"
+    /** The payment is larger than the remaining balance. */
+    case financePaymentExceedsBalance = "FINANCE_PAYMENT_EXCEEDS_BALANCE"
+    /** Emergency debt information is required for this scholarship application. */
+    case scholarshipDebtEmergencyRequired = "SCHOLARSHIP_DEBT_EMERGENCY_REQUIRED"
+    /** The subscription payment has not been recorded. */
+    case subscriptionNotPaid = "SUBSCRIPTION_NOT_PAID"
 }

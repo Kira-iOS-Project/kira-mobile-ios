@@ -16,6 +16,7 @@ let liveMeJSON =
     + #""healthCheckCompleted":true,"plan":{"id":"free","source":null,"renewsOn":null},"#
     + #""usage":\#(liveUsageJSON),"period":{"start":"2026-09-25","end":"2026-10-24","#
     + #""nextPayday":"2026-10-25","daysUntilPayday":9},"lastCategories":{"expense":"food","income":null},"#
+    + #""debtEmergencyActive":false,"#
     + #""debtAccountCount":0,"aiEnabled":true,"weeklySummaryEnabled":false}"#
 
 let liveDraftJSON =

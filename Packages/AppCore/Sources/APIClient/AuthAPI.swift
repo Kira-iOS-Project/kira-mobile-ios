@@ -28,7 +28,7 @@ extension Operations.RequestSignInCode.Output {
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
         case .tooManyRequests(let response): throw try response.body.applicationProblemJson
         case .serviceUnavailable(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default: throw AppProblem()
         }
     }
 }
@@ -40,7 +40,7 @@ extension Operations.VerifySignInCode.Output {
         case .badRequest(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
         case .tooManyRequests(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default: throw AppProblem()
         }
     }
 }
@@ -51,7 +51,7 @@ extension Operations.RefreshSession.Output {
         case .ok(let response): return SessionTokensDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default: throw AppProblem()
         }
     }
 }
@@ -61,7 +61,7 @@ extension Operations.SignOut.Output {
         switch self {
         case .noContent: return
         case .unauthorized(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default: throw AppProblem()
         }
     }
 }

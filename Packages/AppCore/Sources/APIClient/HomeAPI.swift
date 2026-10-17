@@ -11,7 +11,7 @@ extension Operations.GetHome.Output {
         switch self {
         case .ok(let response): return try HomeDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default: throw AppProblem()
         }
     }
 }

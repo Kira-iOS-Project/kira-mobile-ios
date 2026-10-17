@@ -18,7 +18,7 @@ private let meJSON = #"""
     "usage":\#(accountUsageJSON),"period":{"start":"2026-09-25","end":"2026-10-24",\#
     "nextPayday":"2026-10-25","daysUntilPayday":9},\#
     "lastCategories":{"expense":"coffee","income":null},"debtAccountCount":2,\#
-    "aiEnabled":true,"weeklySummaryEnabled":false}
+    "aiEnabled":true,"weeklySummaryEnabled":false,"debtEmergencyActive":false}
     """#
 
 private let consentsJSON = #"""

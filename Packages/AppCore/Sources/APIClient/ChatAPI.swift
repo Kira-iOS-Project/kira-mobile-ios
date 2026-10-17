@@ -50,7 +50,7 @@ extension Operations.ListChatMessages.Output {
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .notFound(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default: throw AppProblem()
         }
     }
 }
@@ -62,7 +62,7 @@ extension Operations.SendChatMessage.Output {
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .forbidden(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default: throw AppProblem()
         }
     }
 }
@@ -75,7 +75,7 @@ extension Operations.SendReceipt.Output {
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .forbidden(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default: throw AppProblem()
         }
     }
 }
@@ -88,7 +88,7 @@ extension Operations.UpdateChatDrafts.Output {
         case .notFound(let response): throw try response.body.applicationProblemJson
         case .conflict(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default: throw AppProblem()
         }
     }
 }
@@ -101,7 +101,7 @@ extension Operations.CommitChatDrafts.Output {
         case .notFound(let response): throw try response.body.applicationProblemJson
         case .conflict(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default: throw AppProblem()
         }
     }
 }
