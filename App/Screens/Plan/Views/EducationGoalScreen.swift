@@ -12,10 +12,16 @@ struct EducationGoalScreen: View {
     @State private var result: EducationGoalOutcome?
     @State private var editing: EducationStage?
     let onOpen: (AppRoute) -> Void
+    /** Jadikan Pos Budget on the result: the caller creates the goal. */
+    var onBudget: (EducationGoalOutcome) -> Void = { _ in }
 
-    init(model: EducationGoalModel = EducationGoalModel(), onOpen: @escaping (AppRoute) -> Void) {
+    init(
+        model: EducationGoalModel = EducationGoalModel(), onOpen: @escaping (AppRoute) -> Void,
+        onBudget: @escaping (EducationGoalOutcome) -> Void = { _ in }
+    ) {
         _model = State(initialValue: model)
         self.onOpen = onOpen
+        self.onBudget = onBudget
     }
 
     var body: some View {
@@ -29,7 +35,7 @@ struct EducationGoalScreen: View {
             EducationStrategyFields(model: model)
         }
         .navigationDestination(isPresented: Binding(get: { result != nil }, set: { if !$0 { result = nil } })) {
-            if let result { EducationGoalResultScreen(outcome: result, onOpen: onOpen) }
+            if let result { EducationGoalResultScreen(outcome: result, onOpen: onOpen) { onBudget(result) } }
         }
         .navigationDestination(isPresented: Binding(get: { editing != nil }, set: { if !$0 { editing = nil } })) {
             if let editing {

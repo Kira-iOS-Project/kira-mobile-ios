@@ -49,3 +49,74 @@ extension RetirementGoalOutcome {
             targetDate: today.adding(years: years), inBudget: true)
     }
 }
+
+extension EducationGoalOutcome {
+    /**
+     Pendidikan Anak, due when the last stage ends; each stage's figures as "level.<stage>.<field>"
+     (the API keeps inputs flat).
+     */
+    package func draft(today: CalendarDay) -> GoalDraft {
+        var inputs: [String: GoalInput] = [
+            "childName": .text(childName), "childAge": .number(Double(plan.childAge)),
+            "inflation": .number(plan.inflation), "income": .number(Double(plan.income)),
+            "annualReturn": plan.annualReturn.map { .number($0) } ?? .empty,
+        ]
+        for (level, values) in zip(plan.levels, details) {
+            let prefix = "level.\(level.stage.key)."
+            inputs[prefix + "entryFee"] = .number(Double(level.entryFee))
+            inputs[prefix + "fee"] = .number(Double(level.fee))
+            inputs[prefix + "feePeriod"] = .text(level.feePeriod.key)
+            inputs[prefix + "otherRate"] = .number(level.otherRate)
+            inputs[prefix + "region"] = .text(values.region.key)
+            inputs[prefix + "school"] = .text(values.school.key)
+        }
+        return GoalDraft(
+            kind: .education, name: "Pendidikan \(childName)", inputs: inputs, initialAmount: plan.present,
+            monthlyDeposit: plan.deposit, targetAmount: plan.target(), targetDate: today.adding(years: plan.yearsInvesting),
+            inBudget: true)
+    }
+}
+
+extension EducationStage {
+    /** Its key in a goal's inputs. */
+    fileprivate var key: String {
+        switch self {
+        case .primary: "primary"
+        case .juniorHigh: "juniorHigh"
+        case .seniorHigh: "seniorHigh"
+        case .bachelor: "bachelor"
+        }
+    }
+}
+
+extension FeePeriod {
+    fileprivate var key: String {
+        switch self {
+        case .month: "month"
+        case .semester: "semester"
+        case .year: "year"
+        }
+    }
+}
+
+extension EducationRegion {
+    fileprivate var key: String {
+        switch self {
+        case .jakarta: "jakarta"
+        case .java: "java"
+        case .outsideJava: "outsideJava"
+        case .abroad: "abroad"
+        }
+    }
+}
+
+extension EducationSchool {
+    fileprivate var key: String {
+        switch self {
+        case .public: "public"
+        case .private: "private"
+        case .nationalPlus: "nationalPlus"
+        case .international: "international"
+        }
+    }
+}

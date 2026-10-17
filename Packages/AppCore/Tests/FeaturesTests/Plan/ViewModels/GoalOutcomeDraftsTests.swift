@@ -72,4 +72,26 @@ struct GoalOutcomeDraftsTests {
         #expect(draft.targetAmount == outcome.projection.target && draft.monthlyDeposit == 2_000_000)
         #expect(draft.targetDate == CalendarDay(year: 2053, month: 10, day: 17))
     }
+
+    @Test("Pendidikan: Raka's target, due when S1 / D4 ends, each stage's figures keyed flat")
+    func education() throws {
+        let model = EducationGoalModel()
+        model.childName = "Raka"
+        model.childAge = "3"
+        model.income = "15.000.000"
+        model.present = "20.000.000"
+        model.deposit = "2.000.000"
+        model.annualReturn = "8"
+        let draft = try #require(model.outcome).draft(today: today)
+        #expect(draft.kind == .education && draft.name == "Pendidikan Raka" && draft.inBudget)
+        #expect(draft.targetAmount == 1_849_307_708 && draft.monthlyDeposit == 2_000_000)
+        #expect(draft.initialAmount == 20_000_000)
+        #expect(draft.targetDate == CalendarDay(year: 2045, month: 10, day: 17))
+        #expect(draft.inputs["level.bachelor.feePeriod"] == .text("semester"))
+        #expect(draft.inputs["level.primary.entryFee"] == .number(23_000_000))
+        #expect(draft.inputs["level.bachelor.school"] == .text("public"))
+        model.knowsWhere = false
+        #expect(try #require(model.outcome).draft(today: today).inputs["annualReturn"] == .empty)
+    }
 }
+
