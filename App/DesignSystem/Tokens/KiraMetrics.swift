@@ -24,6 +24,12 @@ nonisolated enum KiraSpacing {
     static let space8: CGFloat = 32
     /** space-10, 40: room above the floating dock at the end of a scroll. */
     static let space10: CGFloat = 40
+    /**
+     The floating dock's room past the safe area, for a screen that shows it: its 60 pt, 24 pt from the
+     screen's edge, less the home indicator's 34 pt. A dock screen ends its content on
+     `space10 + dockReserve`, so its last block sits 40 pt above the dock.
+     */
+    static let dockReserve: CGFloat = 60 + 24 - 34
     /** The screen margin: space-4. */
     static let screen = space4
 }

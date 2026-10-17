@@ -29,7 +29,7 @@ struct CommunityScreen: View {
             }
             .padding(.horizontal, KiraSpacing.screen)
             .padding(.top, KiraSpacing.space1)
-            .padding(.bottom, KiraSpacing.space10)
+            .padding(.bottom, KiraSpacing.space10 + KiraSpacing.dockReserve)
         }
         .background(alignment: .topTrailing) {
             KiraLeaf(.twig, tone: .soft, size: 150, isFlipped: true).offset(x: 34, y: 30).ignoresSafeArea()
