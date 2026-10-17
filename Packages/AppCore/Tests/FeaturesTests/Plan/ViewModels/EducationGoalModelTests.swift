@@ -101,4 +101,27 @@ struct EducationGoalModelTests {
         emptyStage.save(values, for: .seniorHigh)
         #expect(emptyStage.outcome == nil)
     }
+
+    @Test("Ubah Angka types the chosen deposit or return into the form; Perpanjang Waktu or none leaves it")
+    func applyRecommendation() throws {
+        let model = raka()
+        model.apply(.raiseDeposit(to: 3_300_000))
+        #expect(model.deposit == "3.300.000")
+        #expect(try #require(model.outcome).plan.projection().fit == .fits)
+        model.knowsWhere = false
+        model.apply(.raiseReturn(to: 0.12))
+        #expect(model.knowsWhere && model.annualReturn == "12")
+        model.apply(.extendYears(to: 25, target: 1))
+        model.apply(nil)
+        #expect(model.deposit == "3.300.000" && model.annualReturn == "12")
+    }
+
+    @Test("each stage keeps its own place and values, from SD / MI to S1 / D4")
+    func stageOrder() {
+        let model = EducationGoalModel()
+        #expect(EducationStage.allCases.map(\.order) == [0, 1, 2, 3])
+        #expect(model.values(for: .juniorHigh).entryFee == "30.000.000")
+        #expect(model.values(for: .seniorHigh).fee == "1.800.000")
+        #expect(EducationRegion.allCases.count == 4 && EducationSchool.allCases.count == 4)
+    }
 }

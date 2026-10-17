@@ -24,7 +24,7 @@ package final class EducationGoalModel {
         didSet { if lastStage.order < firstStage.order { firstStage = lastStage } }
     }
     /** Every stage's costs, chosen or not, so a stage keeps its numbers when it comes back. */
-    package private(set) var stageValues: [EducationStage: EducationStageValues]
+    private var stageValues: [EducationStageValues]
     /** "Penghasilan Orang Tua Saat Ini". */
     package var income: String
     /** "Dana Pendidikan yang Sudah Terkumpul". */
@@ -44,7 +44,7 @@ package final class EducationGoalModel {
         childAge = ""
         firstStage = .primary
         lastStage = .bachelor
-        stageValues = Dictionary(uniqueKeysWithValues: EducationStage.allCases.map { ($0, .average(for: $0)) })
+        stageValues = EducationStage.allCases.map { .average(for: $0) }
         income = ""
         present = ""
         inflation = "15"
@@ -60,12 +60,26 @@ package final class EducationGoalModel {
 
     /** One stage's costs, as Atur Jenjang shows them. */
     package func values(for stage: EducationStage) -> EducationStageValues {
-        stageValues[stage] ?? .average(for: stage)
+        stageValues[stage.order]
     }
 
     /** Simpan Jenjang. */
     package func save(_ values: EducationStageValues, for stage: EducationStage) {
-        stageValues[stage] = values
+        stageValues[stage.order] = values
+    }
+
+    /**
+     Ubah Angka with a recommendation chosen under Supaya Tercapai: Naikkan Investasi types its
+     deposit, Pilih Return Lebih Tinggi its return (investing, then); none leaves the form as it is.
+     */
+    package func apply(_ recommendation: GoalRecommendation?) {
+        switch recommendation {
+        case .raiseDeposit(let amount): deposit = AmountInput.text(for: amount)
+        case .raiseReturn(let rate):
+            knowsWhere = true
+            annualReturn = String(Int((rate * 100).rounded()))
+        case .extendYears, .extendMonths, nil: break
+        }
     }
 
     /** Whether everything Hitung needs is filled in. */
@@ -99,97 +113,8 @@ package final class EducationGoalModel {
     }
 }
 
-/** Atur Jenjang: where and what kind of school, and its costs at today's prices. */
-package struct EducationStageValues: Equatable, Sendable {
-    /** "Daerah Sekolah". */
-    package var region: EducationRegion
-    /** "Jenis Sekolah". */
-    package var school: EducationSchool
-    /** "Perkiraan Uang Pangkal". */
-    package var entryFee: String
-    /** "Perkiraan Uang Sekolah". */
-    package var fee: String
-    /** "Uang Sekolah Dibayar per". */
-    package var feePeriod: FeePeriod
-    /** "Perkiraan Biaya Lain-lain", in percent of the total. */
-    package var otherRate: String
-
-    /** A stage's values as typed. */
-    package init(
-        region: EducationRegion, school: EducationSchool, entryFee: String, fee: String, feePeriod: FeePeriod,
-        otherRate: String
-    ) {
-        self.region = region
-        self.school = school
-        self.entryFee = entryFee
-        self.fee = fee
-        self.feePeriod = feePeriod
-        self.otherRate = otherRate
-    }
-
-    /** The board's averages (TujuanPendidikan's Biaya per jenjang), Jakarta. */
-    package static func average(for stage: EducationStage) -> EducationStageValues {
-        switch stage {
-        case .primary:
-            EducationStageValues(
-                region: .jakarta, school: .private, entryFee: "23.000.000", fee: "2.000.000", feePeriod: .month,
-                otherRate: "10")
-        case .juniorHigh:
-            EducationStageValues(
-                region: .jakarta, school: .private, entryFee: "30.000.000", fee: "2.400.000", feePeriod: .month,
-                otherRate: "10")
-        case .seniorHigh:
-            EducationStageValues(
-                region: .jakarta, school: .private, entryFee: "22.000.000", fee: "1.800.000", feePeriod: .month,
-                otherRate: "10")
-        case .bachelor:
-            EducationStageValues(
-                region: .jakarta, school: .public, entryFee: "12.000.000", fee: "7.000.000", feePeriod: .semester,
-                otherRate: "10")
-        }
-    }
-
-    /** Whether Simpan Jenjang may keep it. */
-    package var isValid: Bool { level(.primary) != nil }
-
-    /** The engine's stage; nil while a figure is missing or out of range. */
-    package func level(_ stage: EducationStage) -> EducationLevel? {
-        guard let entry = EducationInput.rupiah(entryFee), let fee = EducationInput.rupiah(fee),
-            let other = EducationInput.percent(otherRate)
-        else { return nil }
-        return EducationLevel(stage: stage, entryFee: entry, fee: fee, feePeriod: feePeriod, otherRate: other)
-    }
-}
-
-/** "Daerah Sekolah". */
-package enum EducationRegion: CaseIterable, Equatable, Sendable {
-    /** Jakarta, Pulau Jawa, Luar Pulau Jawa, Luar Negeri. */
-    case jakarta, java, outsideJava, abroad
-}
-
-/** "Jenis Sekolah". */
-package enum EducationSchool: CaseIterable, Equatable, Sendable {
-    /** Negeri, Swasta, Nasional Plus, Internasional. */
-    case `public`, `private`, nationalPlus, international
-}
-
-/** Hasil Simulasi · Pendidikan Anak: the child, the plan, and each chosen stage's school. */
-package struct EducationGoalOutcome: Equatable, Sendable {
-    /** "Nama Anak". */
-    package let childName: String
-    /** The engine's plan of the chosen stages. */
-    package let plan: EducationPlan
-    /** The chosen stages' values, in the plan's order. */
-    package let details: [EducationStageValues]
-}
-
-extension EducationStage {
-    /** Its place from SD / MI (0) to S1 / D4 (3). */
-    package var order: Int { Self.allCases.firstIndex(of: self) ?? 0 }
-}
-
 /** Reads the form's text: whole rupiah (grouped while typing) and a percent with a comma or a dot. */
-private enum EducationInput {
+enum EducationInput {
     /** Whole rupiah; nil when nothing is typed. */
     static func rupiah(_ text: String) -> Int? {
         AmountInput.value(of: text)

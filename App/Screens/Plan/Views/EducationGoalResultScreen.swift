@@ -13,6 +13,8 @@ struct EducationGoalResultScreen: View {
     let onOpen: (AppRoute) -> Void
     /** Jadikan Pos Budget: the caller saves the goal (POST /goals) and goes back to Rencana. */
     var onBudget: () -> Void = {}
+    /** Ubah Angka, with the recommendation chosen under Supaya Tercapai, if any; then back to the form. */
+    var onEdit: (GoalRecommendation?) -> Void = { _ in }
     @State private var targetKind = EducationTarget.all
     @State private var chosen: GoalRecommendation?
     @Environment(\.dismiss) private var dismiss
@@ -54,7 +56,11 @@ struct EducationGoalResultScreen: View {
     /** Ubah Angka at 1 beside Jadikan Pos Budget at 1.3. */
     private var buttons: some View {
         WeightedRow(weights: [1, 1.3], spacing: 10) {
-            KiraButton("plan.result.edit", variant: .secondary, size: .small) { dismiss() }.block()
+            KiraButton("plan.result.edit", variant: .secondary, size: .small) {
+                onEdit(chosen)
+                dismiss()
+            }
+            .block()
             KiraButton("plan.result.budget", size: .small, action: onBudget).block()
         }
     }
