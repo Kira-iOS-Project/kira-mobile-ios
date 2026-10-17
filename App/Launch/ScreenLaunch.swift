@@ -47,6 +47,7 @@
             case .wallets: WalletsLaunch()
             case .budget: BudgetLaunch()
             case .walletAdd: WalletAddLaunch(screen: screen)
+            case .bills: BillsLaunch(screen: screen)
             }
         }
     }
@@ -136,6 +137,8 @@
         case wallets, budget
         /** UNG: Tambah Dompet over Dompet, and with a save that fails, for its failure dialog. */
         case walletAdd, walletAddFailing
+        /** UNG-06: Tagihan & Cicilan with the board's bills, none, and a load that fails. */
+        case bills, billsEmpty, billsFailed
 
         /** The area whose launcher builds the screen. */
         enum Area {
@@ -151,6 +154,7 @@
             case planModule
             case wallets, budget
             case walletAdd
+            case bills
         }
 
         var area: Area {
@@ -178,6 +182,7 @@
             case .debtEmergency, .harshCollection, .illegalLender, .unresolvedComplaint, .payoffOffer: .debtEmergency
             case .payoff, .payoffHow, .payoffAvalanche: .payoff
             case .educationGoal, .educationGoalResult, .educationGoalStage: .educationGoal
+            case .bills, .billsEmpty, .billsFailed: .bills
             case .marketplace, .marketplaceEmpty, .marketplaceFailed, .product, .productConsultation, .productEbook,
                 .productEvent, .productGone, .submitProduct:
                 .marketplace

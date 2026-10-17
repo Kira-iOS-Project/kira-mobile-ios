@@ -2091,6 +2091,196 @@
         }
       }
     },
+    "bills.add" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah Tagihan"
+          }
+        }
+      }
+    },
+    "bills.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Beranda"
+          }
+        }
+      }
+    },
+    "bills.count %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld tagihan berulang"
+          }
+        }
+      }
+    },
+    "bills.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan Belum Bisa Dibuka"
+          }
+        }
+      }
+    },
+    "bills.group.later" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nanti"
+          }
+        }
+      }
+    },
+    "bills.group.nextMonth" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bulan Depan"
+          }
+        }
+      }
+    },
+    "bills.group.nextSevenDays" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7 Hari ke Depan"
+          }
+        }
+      }
+    },
+    "bills.group.thisMonth" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bulan Ini"
+          }
+        }
+      }
+    },
+    "bills.homeNote" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yang paling dekat tampil di Beranda"
+          }
+        }
+      }
+    },
+    "bills.instalment.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan tersambung ke Akun Utang di Dompet, jadi sisa utangnya ikut berkurang."
+          }
+        }
+      }
+    },
+    "bills.perMonth" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "per bulan"
+          }
+        }
+      }
+    },
+    "bills.schedule.bill %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiap Tanggal %lld"
+          }
+        }
+      }
+    },
+    "bills.schedule.instalment %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan Tiap Tanggal %lld"
+          }
+        }
+      }
+    },
+    "bills.schedule.instalment.left %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan Tiap Tanggal %1$lld · %2$lld Bulan Lagi"
+          }
+        }
+      }
+    },
+    "bills.tag.date %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
+    "bills.tag.days %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Hari Lagi"
+          }
+        }
+      }
+    },
+    "bills.tag.estimate" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perkiraan"
+          }
+        }
+      }
+    },
+    "bills.tag.paid %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Sudah Dibayar"
+          }
+        }
+      }
+    },
+    "bills.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan & Cicilan"
+          }
+        }
+      }
+    },
     "budget.back" : {
       "localizations" : {
         "id" : {
