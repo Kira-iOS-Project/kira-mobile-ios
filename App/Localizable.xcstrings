@@ -16818,6 +16818,66 @@
         }
       }
     },
+    "plan.newGoal.budgetNote" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setoran bulanan tujuanmu otomatis jadi pos di budget."
+          }
+        }
+      }
+    },
+    "plan.newGoal.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup, kembali ke Rencana"
+          }
+        }
+      }
+    },
+    "plan.newGoal.kinds" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jenis tujuan"
+          }
+        }
+      }
+    },
+    "plan.newGoal.next" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lanjut"
+          }
+        }
+      }
+    },
+    "plan.newGoal.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "mulai dari satu"
+          }
+        }
+      }
+    },
+    "plan.newGoal.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apa Mimpimu?"
+          }
+        }
+      }
+    },
     "plan.next.dated %@ %@" : {
       "localizations" : {
         "id" : {
