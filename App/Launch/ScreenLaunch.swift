@@ -32,6 +32,7 @@
             case .care: CareLaunch(screen: screen)
             case .debtEmergency: DebtEmergencyLaunch(screen: screen)
             case .careTools: CareToolsLaunch(screen: screen)
+            case .payoff: PayoffLaunch(screen: screen)
             }
         }
     }
@@ -76,10 +77,13 @@
          its form.
          */
         case breathing, safetyPlan, safetyPlanEmpty, safetyPlanFailing, safetyPlanForm
+        /** SKR: Rencana Pelunasan (03), with Gimana Ngitungnya? open (03b), on Avalanche (03c). */
+        case payoff, payoffHow, payoffAvalanche
 
         /** The area whose launcher builds the screen. */
         enum Area {
             case onboarding, home, account, plans, record, chat, community, care, careTools, debtEmergency, marketplace
+            case payoff
         }
 
         var area: Area {
@@ -105,6 +109,7 @@
             case .breathing, .negotiationScript, .safetyPlan, .safetyPlanEmpty, .safetyPlanFailing, .safetyPlanForm:
                 .careTools
             case .debtEmergency, .harshCollection, .illegalLender, .unresolvedComplaint, .payoffOffer: .debtEmergency
+            case .payoff, .payoffHow, .payoffAvalanche: .payoff
             case .marketplace, .marketplaceEmpty, .marketplaceFailed, .product, .productConsultation, .productEbook,
                 .productEvent, .productGone, .submitProduct:
                 .marketplace
