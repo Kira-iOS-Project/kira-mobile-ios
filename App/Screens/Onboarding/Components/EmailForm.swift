@@ -21,10 +21,10 @@ struct EmailForm: View {
                 .autocorrectionDisabled()
                 .submitLabel(.send)
                 .onSubmit { Task { await model.submit() } }
-            if let problem = model.phase.problem { ProblemMessage(problem: problem) }
             KiraButton(submitLabel) { Task { await model.submit() } }
                 .block()
                 .disabled(model.phase.isSubmitting)
         }
+        .problemDialog(model.phase.problem)
     }
 }

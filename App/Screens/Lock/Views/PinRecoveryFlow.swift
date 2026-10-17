@@ -21,6 +21,7 @@ struct PinRecoveryFlow: View {
             }
         }
         .task { await model.start() }
+        .problemDialog(model.problem)
     }
 
     private var codeStep: some View {
@@ -35,7 +36,7 @@ struct PinRecoveryFlow: View {
                     .disabled(model.code.count < 6 || model.phase != .enteringCode)
             }
             .padding(.horizontal, KiraSpacing.screen)
-            .padding(.bottom, KiraSpacing.space8)
+            .padding(.bottom, KiraSpacing.space2)
         }
         .background { RecoveryBackground() }
         .kiraScrollEdges()
@@ -65,10 +66,6 @@ struct PinRecoveryFlow: View {
     private var codeEntry: some View {
         VStack(spacing: 14) {
             KiraCodeField("lock.recovery.code.field", code: $model.code, kind: .code)
-                .error(model.problem.map(\.message))
-            if let reference = model.problem?.unknownReference {
-                Text(reference).font(.footnote).foregroundStyle(.inkMuted)
-            }
             TimelineView(.periodic(from: .now, by: 1)) { context in
                 let left = model.secondsUntilResend(at: context.date)
                 if left > 0 {

@@ -14997,6 +14997,16 @@
         }
       }
     },
+    "onboarding.code.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Bisa Masuk"
+          }
+        }
+      }
+    },
     "onboarding.code.field" : {
       "localizations" : {
         "id" : {
@@ -26876,6 +26886,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Koneksi terputus. Cek internetmu, lalu coba lagi."
+          }
+        }
+      }
+    },
+    "problem.dialog.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Berhasil"
           }
         }
       }

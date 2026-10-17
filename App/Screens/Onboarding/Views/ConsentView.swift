@@ -40,7 +40,6 @@ struct ConsentView: View {
             }
             Spacer(minLength: 0)
             VStack(spacing: KiraSpacing.space2) {
-                if let problem = model.phase.problem { ProblemMessage(problem: problem) }
                 KiraButton("onboarding.consent.agree") { Task { await model.submit() } }
                     .block()
                     .disabled(model.phase.isSubmitting)
@@ -49,6 +48,7 @@ struct ConsentView: View {
             .onboardingFoot()
         }
         .onboardingBackdrop(leaf: .pandan)
+        .problemDialog(model.phase.problem)
     }
 }
 

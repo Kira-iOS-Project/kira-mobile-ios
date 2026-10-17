@@ -31,7 +31,6 @@ struct PinSetupView: View {
             PinForm(model: model)
             Spacer(minLength: 0)
             VStack(spacing: KiraSpacing.space4) {
-                if let problem = model.phase.problem { ProblemMessage(problem: problem) }
                 KiraButtonPair(
                     secondary: KiraButton("ds.later", variant: .secondary) { Task { await model.skip() } },
                     primary: KiraButton("onboarding.pin.create") { Task { await model.createPin() } }
@@ -41,6 +40,7 @@ struct PinSetupView: View {
             .onboardingFoot()
         }
         .onboardingBackdrop(leaf: .pandan)
+        .problemDialog(model.phase.problem)
         .kiraDialog(isPresented: $model.showsSuccess) {
             KiraDialog(
                 "onboarding.pin.success.title", message: "onboarding.pin.success.body", art: .illustration(.shield),
