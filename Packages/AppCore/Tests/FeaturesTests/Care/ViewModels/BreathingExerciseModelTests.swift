@@ -19,7 +19,8 @@ struct BreathingExerciseModelTests {
 
     private func model(taps: Taps = Taps(), pattern: BreathingPattern? = nil) -> BreathingExerciseModel {
         BreathingExerciseModel(
-            pattern: pattern ?? short, settings: settings, tick: {}, haptic: { taps.steps.append($0) })
+            pattern: pattern ?? short, settings: settings, tick: { await Task.yield() },
+            haptic: { taps.steps.append($0) })
     }
 
     @Test("counts every second to the end, tapping at each new step")
