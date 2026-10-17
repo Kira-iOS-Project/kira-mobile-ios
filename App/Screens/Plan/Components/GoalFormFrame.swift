@@ -57,6 +57,8 @@ struct GoalFormFrame<Content: View>: View {
                     .foregroundStyle(.ink)
                     .accessibilityAddTraits(.isHeader)
                 Text(lead).font(.subheadline).kiraLineHeight(20, size: 15).foregroundStyle(.inkMuted)
+                    /** As tall as its lines, never squeezed beside the category icon. */
+                    .fixedSize(horizontal: false, vertical: true)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             KiraCategoryIcon(category, size: 52).accessibilityHidden(true)
