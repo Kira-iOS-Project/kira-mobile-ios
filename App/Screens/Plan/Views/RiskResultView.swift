@@ -28,7 +28,7 @@ struct RiskResultView: View {
             VStack(alignment: .leading, spacing: 10) {
                 KiraSectionTitle("plan.risk.result.learn", trailing: .note("plan.risk.result.learn.note"))
                 KiraListGroup(footer: "plan.risk.result.learn.footer") {
-                    ForEach(AssetClass.allCases, id: \.self) { asset in
+                    ForEach(RiskAssetClass.allCases, id: \.self) { asset in
                         KiraListRow(Text(asset.title), leading: .category(asset.tile), trailing: .chevron) {
                             onOpen(.assetModule(asset))
                         } extra: {

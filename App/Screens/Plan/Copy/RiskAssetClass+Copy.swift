@@ -6,7 +6,7 @@
 import Domain
 import Foundation
 
-extension AssetClass {
+extension RiskAssetClass {
     /** The class's name. */
     var title: LocalizedStringResource {
         switch self {

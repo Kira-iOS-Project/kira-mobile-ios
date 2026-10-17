@@ -1,7 +1,8 @@
 import Domain
 
 /**
- What the Kira Score screens need from the API: `GET /score` and `GET /score/indicators/{key}`.
+ What the Kira Score screens need from the API: `GET /score`, `GET /score/indicators/{key}` and
+ `GET /score/history`.
  The integrator implements it with the generated client; each call throws an `AppProblem`.
  */
 package protocol ScoreService: Sendable {
@@ -10,4 +11,17 @@ package protocol ScoreService: Sendable {
 
     /** One indicator in full. */
     func indicator(_ key: IndicatorKey) async throws -> IndicatorDetail
+
+    /**
+     Riwayat Kira Score over `range`, or nil before the health check (`SCORE_NOT_AVAILABLE`); a plan
+     without it throws `PLAN_FEATURE_UNAVAILABLE`.
+     */
+    func history(_ range: ScoreHistoryRange) async throws -> ScoreHistory?
+
+    /**
+     Whether the plan is Kira Plus, from `GET /me`: Riwayat Kira Score ("Kira Score Otomatis tiap
+     Bulan") and Portofolio need it. True when that cannot be read, so the feature's own answer
+     (403 PLAN_FEATURE_UNAVAILABLE) decides.
+     */
+    func includesPlus() async -> Bool
 }

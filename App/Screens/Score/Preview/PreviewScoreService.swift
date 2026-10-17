@@ -57,6 +57,10 @@ nonisolated struct PreviewScoreService: ScoreService {
         if let detail, detail.indicator.key == key { return detail }
         return .sample(key)
     }
+
+    func history(_ range: ScoreHistoryRange) throws -> ScoreHistory? { .sample(range) }
+
+    func includesPlus() -> Bool { true }
 }
 
 #if DEBUG
@@ -66,6 +70,10 @@ nonisolated struct PreviewScoreService: ScoreService {
 
     #Preview("Dana Darurat") {
         NavigationStack { IndicatorScreen(key: .emergencyFund, service: PreviewScoreService()) { _ in } }
+    }
+
+    #Preview("Riwayat Kira Score") {
+        NavigationStack { ScoreHistoryScreen(service: PreviewScoreService()) { _ in } }
     }
 
     #Preview("Utang terhadap Aset") {
