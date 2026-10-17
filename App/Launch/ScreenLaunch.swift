@@ -33,6 +33,8 @@
             case .debtEmergency: DebtEmergencyLaunch(screen: screen)
             case .careTools: CareToolsLaunch(screen: screen)
             case .planRisk: PlanRiskLaunch(screen: screen)
+            case .goals: GoalsLaunch(screen: screen)
+            case .retirementGoal: RetirementGoalLaunch(screen: screen)
             }
         }
     }
@@ -85,11 +87,17 @@
          */
         case riskQuiz, riskQuizUnreadablePlan, riskDrawdown, riskHorizon, riskExperience, riskDeposit, riskSaveFailing
         case riskResult, riskResultConservative, riskResultAggressive, legalityCheck
+        /** REN: Tujuan Baru · Kendaraan, Barang Impian and Lainnya on their boards; Hitung opens each result. */
+        case goalVehicle, goalGoods, goalOther
+        /** REN: Tujuan Baru · Dana Pensiun and its Hasil Simulasi, on the board's persona. */
+        case goalRetirement, goalRetirementResult
 
         /** The area whose launcher builds the screen. */
         enum Area {
             case onboarding, home, account, plans, record, chat, community, care, careTools, debtEmergency, marketplace
             case planRisk
+            case goals
+            case retirementGoal
         }
 
         var area: Area {
@@ -121,6 +129,8 @@
             case .riskQuiz, .riskQuizUnreadablePlan, .riskDrawdown, .riskHorizon, .riskExperience, .riskDeposit,
                 .riskSaveFailing, .riskResult, .riskResultConservative, .riskResultAggressive, .legalityCheck:
                 .planRisk
+            case .goalVehicle, .goalGoods, .goalOther: .goals
+            case .goalRetirement, .goalRetirementResult: .retirementGoal
             }
         }
     }

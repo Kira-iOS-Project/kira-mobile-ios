@@ -15438,6 +15438,186 @@
         }
       }
     },
+    "plan.asset.balanced" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reksa Dana Campuran"
+          }
+        }
+      }
+    },
+    "plan.asset.crypto" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kripto"
+          }
+        }
+      }
+    },
+    "plan.asset.deposit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deposito"
+          }
+        }
+      }
+    },
+    "plan.asset.etf" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ETF"
+          }
+        }
+      }
+    },
+    "plan.asset.fixedIncome" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reksa Dana Pendapatan Tetap"
+          }
+        }
+      }
+    },
+    "plan.asset.gold" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Emas"
+          }
+        }
+      }
+    },
+    "plan.asset.governmentBond" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obligasi Negara"
+          }
+        }
+      }
+    },
+    "plan.asset.indexFund" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reksa Dana Indeks"
+          }
+        }
+      }
+    },
+    "plan.asset.moneyMarket" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reksa Dana Pasar Uang"
+          }
+        }
+      }
+    },
+    "plan.asset.stocks" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saham"
+          }
+        }
+      }
+    },
+    "plan.formula.equals %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "= %@"
+          }
+        }
+      }
+    },
+    "plan.formula.fv.args %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@)"
+          }
+        }
+      }
+    },
+    "plan.formula.fv.head %@ %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FV(%1$@%% ÷ 12, %2$lld bulan,"
+          }
+        }
+      }
+    },
+    "plan.formula.inflate.months %@ %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× (1 + %1$@%%)^(%2$lld ÷ 12)"
+          }
+        }
+      }
+    },
+    "plan.formula.inflate.years %@ %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× (1 + %1$@%%)^%2$lld"
+          }
+        }
+      }
+    },
+    "plan.formula.result" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hasil investasi"
+          }
+        }
+      }
+    },
+    "plan.formula.share %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ × %2$@%%"
+          }
+        }
+      }
+    },
+    "plan.formula.target" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Target"
+          }
+        }
+      }
+    },
     "plan.goal.cents" : {
       "localizations" : {
         "id" : {
@@ -15518,6 +15698,16 @@
         }
       }
     },
+    "plan.goal.named %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
     "plan.goal.perYear" : {
       "localizations" : {
         "id" : {
@@ -15574,6 +15764,1036 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tahun Lagi"
+          }
+        }
+      }
+    },
+    "plan.goods.caption.cash %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beli tunai %1$lld bulan lagi, sudah termasuk inflasi harga %2$@%% per tahun"
+          }
+        }
+      }
+    },
+    "plan.goods.caption.dp %@ %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DP %1$@%% barang %2$lld bulan lagi, sudah termasuk inflasi harga %3$@%% per tahun"
+          }
+        }
+      }
+    },
+    "plan.goods.downPayment.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "100% berarti beli tunai"
+          }
+        }
+      }
+    },
+    "plan.goods.lead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gawai atau hobi."
+          }
+        }
+      }
+    },
+    "plan.goods.name" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Barang yang Mau Kamu Beli"
+          }
+        }
+      }
+    },
+    "plan.goods.present" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uang yang Sudah Ada untuk Barang Ini"
+          }
+        }
+      }
+    },
+    "plan.goods.price" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Harga Barang Impian Saat Ini"
+          }
+        }
+      }
+    },
+    "plan.goods.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Barang Impian"
+          }
+        }
+      }
+    },
+    "plan.other.amount" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jumlah Uang yang Ingin Dicapai"
+          }
+        }
+      }
+    },
+    "plan.other.caption %@ %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$lld tahun lagi"
+          }
+        }
+      }
+    },
+    "plan.other.deposit.year" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Target Investasi per Tahun"
+          }
+        }
+      }
+    },
+    "plan.other.footnote.monthEnd" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Investasi disetor di akhir tiap bulan dan imbal hasilnya berbunga majemuk bulanan. Belum memperhitungkan pajak dan biaya produk investasi."
+          }
+        }
+      }
+    },
+    "plan.other.footnote.yearEnd" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Investasi disetor di akhir tiap tahun dan imbal hasilnya berbunga majemuk tahunan. Belum memperhitungkan pajak dan biaya produk investasi."
+          }
+        }
+      }
+    },
+    "plan.other.footnote.yearStart" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Investasi disetor di awal tiap tahun dan imbal hasilnya berbunga majemuk tahunan. Belum memperhitungkan pajak dan biaya produk investasi."
+          }
+        }
+      }
+    },
+    "plan.other.formula.fv.end %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@, akhir periode)"
+          }
+        }
+      }
+    },
+    "plan.other.formula.fv.start %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@, awal periode)"
+          }
+        }
+      }
+    },
+    "plan.other.formula.fv.yearly %@ %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FV(%1$@%%, %2$lld tahun,"
+          }
+        }
+      }
+    },
+    "plan.other.formula.noInflation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanpa inflasi, sesuai angka yang kamu isi"
+          }
+        }
+      }
+    },
+    "plan.other.lead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tulis tujuanmu sendiri."
+          }
+        }
+      }
+    },
+    "plan.other.name" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama Tujuan"
+          }
+        }
+      }
+    },
+    "plan.other.period" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menabung Setiap"
+          }
+        }
+      }
+    },
+    "plan.other.period.month" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bulan"
+          }
+        }
+      }
+    },
+    "plan.other.period.year" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tahun"
+          }
+        }
+      }
+    },
+    "plan.other.present" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uang yang Sudah Ada"
+          }
+        }
+      }
+    },
+    "plan.other.result.overline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jumlah uang yang ingin kamu capai"
+          }
+        }
+      }
+    },
+    "plan.other.timing" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah Dana di"
+          }
+        }
+      }
+    },
+    "plan.other.timing.end" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akhir"
+          }
+        }
+      }
+    },
+    "plan.other.timing.start" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Awal"
+          }
+        }
+      }
+    },
+    "plan.other.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lainnya"
+          }
+        }
+      }
+    },
+    "plan.price.automatic" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hitungan otomatis"
+          }
+        }
+      }
+    },
+    "plan.price.downPayment" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DP"
+          }
+        }
+      }
+    },
+    "plan.price.duration" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tercapai dalam"
+          }
+        }
+      }
+    },
+    "plan.price.inflation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inflasi Harga"
+          }
+        }
+      }
+    },
+    "plan.price.monthsAhead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bulan Lagi"
+          }
+        }
+      }
+    },
+    "plan.price.percent" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%"
+          }
+        }
+      }
+    },
+    "plan.price.result.overline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total uang yang kamu butuhkan"
+          }
+        }
+      }
+    },
+    "plan.result.advice" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supaya Tercapai"
+          }
+        }
+      }
+    },
+    "plan.result.advice.deposit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naikkan Investasi"
+          }
+        }
+      }
+    },
+    "plan.result.advice.deposit.month %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jadi %@ per bulan"
+          }
+        }
+      }
+    },
+    "plan.result.advice.deposit.year %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jadi %@ per tahun"
+          }
+        }
+      }
+    },
+    "plan.result.advice.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih salah satu, lalu ketuk Ubah Angka."
+          }
+        }
+      }
+    },
+    "plan.result.advice.group" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rekomendasi"
+          }
+        }
+      }
+    },
+    "plan.result.advice.months %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jadi %lld bulan"
+          }
+        }
+      }
+    },
+    "plan.result.advice.return" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih Return Lebih Tinggi"
+          }
+        }
+      }
+    },
+    "plan.result.advice.return.detail %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@%% per tahun, risikonya juga lebih tinggi"
+          }
+        }
+      }
+    },
+    "plan.result.advice.time" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perpanjang Waktu"
+          }
+        }
+      }
+    },
+    "plan.result.advice.years %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jadi %1$lld tahun, target menjadi %2$@"
+          }
+        }
+      }
+    },
+    "plan.result.assets" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kelas Aset untuk Jangka Ini"
+          }
+        }
+      }
+    },
+    "plan.result.assets.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mendekati waktunya, pindahkan uangmu ke yang lebih rendah risiko, seperti reksa dana pasar uang."
+          }
+        }
+      }
+    },
+    "plan.result.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke form tujuan"
+          }
+        }
+      }
+    },
+    "plan.result.budget" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jadikan Pos Budget"
+          }
+        }
+      }
+    },
+    "plan.result.composition" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dari Mana Hasilnya?"
+          }
+        }
+      }
+    },
+    "plan.result.deposit.month" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Investasi per Bulan"
+          }
+        }
+      }
+    },
+    "plan.result.deposit.year" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Investasi per Tahun"
+          }
+        }
+      }
+    },
+    "plan.result.details" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rinciannya"
+          }
+        }
+      }
+    },
+    "plan.result.details.group" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rincian simulasi"
+          }
+        }
+      }
+    },
+    "plan.result.details.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "sedikit-sedikit jadi bukit"
+          }
+        }
+      }
+    },
+    "plan.result.edit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah Angka"
+          }
+        }
+      }
+    },
+    "plan.result.education" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira tidak menyebut produk tertentu. Sesuaikan dengan profil risikomu dan cek izin OJK."
+          }
+        }
+      }
+    },
+    "plan.result.education.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edukasi, Bukan Rekomendasi"
+          }
+        }
+      }
+    },
+    "plan.result.fit.fits" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strategimu Cocok"
+          }
+        }
+      }
+    },
+    "plan.result.fit.fits.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strategimu cocok untuk mencapai mimpimu."
+          }
+        }
+      }
+    },
+    "plan.result.fit.nearly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hampir Cocok"
+          }
+        }
+      }
+    },
+    "plan.result.fit.nearly.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strategimu hampir bisa mencapai mimpimu. Sedikit lagi."
+          }
+        }
+      }
+    },
+    "plan.result.fit.short" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Cocok"
+          }
+        }
+      }
+    },
+    "plan.result.fit.short.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strategimu belum cukup. Coba salah satu rekomendasi di bawah."
+          }
+        }
+      }
+    },
+    "plan.result.footnote" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Investasi disetor di awal tiap bulan dan imbal hasilnya berbunga majemuk bulanan. Belum memperhitungkan pajak dan biaya produk investasi."
+          }
+        }
+      }
+    },
+    "plan.result.formula.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rumus target dan hasil investasi"
+          }
+        }
+      }
+    },
+    "plan.result.formula.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gimana Ngitungnya?"
+          }
+        }
+      }
+    },
+    "plan.result.growth %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imbal Hasil · %lld%%"
+          }
+        }
+      }
+    },
+    "plan.result.horizon" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lama Investasi"
+          }
+        }
+      }
+    },
+    "plan.result.horizon.months %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld bulan"
+          }
+        }
+      }
+    },
+    "plan.result.horizon.years %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld tahun"
+          }
+        }
+      }
+    },
+    "plan.result.outcome" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hasil Investasi"
+          }
+        }
+      }
+    },
+    "plan.result.outcome.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokok ditambah imbal hasil"
+          }
+        }
+      }
+    },
+    "plan.result.present" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uangmu Saat Ini"
+          }
+        }
+      }
+    },
+    "plan.result.principal %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokok · %lld%%"
+          }
+        }
+      }
+    },
+    "plan.result.rate.yearly %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@%% per tahun"
+          }
+        }
+      }
+    },
+    "plan.result.return" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Return Investasi"
+          }
+        }
+      }
+    },
+    "plan.result.ribbon" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hasil investasi"
+          }
+        }
+      }
+    },
+    "plan.result.ribbon.share %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ dari target"
+          }
+        }
+      }
+    },
+    "plan.result.shortfall" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kurang"
+          }
+        }
+      }
+    },
+    "plan.result.shortfall.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Target dikurangi hasil investasi"
+          }
+        }
+      }
+    },
+    "plan.result.simulation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dihitung mesin dari angkamu. Hasil nyata bisa berbeda."
+          }
+        }
+      }
+    },
+    "plan.result.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hasil Simulasi"
+          }
+        }
+      }
+    },
+    "plan.retirement.age" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usiamu Sekarang"
+          }
+        }
+      }
+    },
+    "plan.retirement.ageUnit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tahun"
+          }
+        }
+      }
+    },
+    "plan.retirement.caption %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "25× pengeluaran tahunan saat pensiun %1$lld tahun lagi (aturan 4%%), sudah termasuk inflasi %2$@%% per tahun"
+          }
+        }
+      }
+    },
+    "plan.retirement.expense" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengeluaran per Bulan"
+          }
+        }
+      }
+    },
+    "plan.retirement.expense.hint %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setara %@ per tahun"
+          }
+        }
+      }
+    },
+    "plan.retirement.footnote" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Investasi disetor di awal tiap bulan dan imbal hasilnya berbunga majemuk bulanan. Aturan 4% berarti dana ini cukup diambil 4% per tahun selama masa pensiun."
+          }
+        }
+      }
+    },
+    "plan.retirement.formula.expense" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengeluaran tahunan saat pensiun"
+          }
+        }
+      }
+    },
+    "plan.retirement.formula.target" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Target (aturan 4%)"
+          }
+        }
+      }
+    },
+    "plan.retirement.formula.withdrawal %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ ÷ 4%%"
+          }
+        }
+      }
+    },
+    "plan.retirement.inflation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asumsi Inflasi Tahunan"
+          }
+        }
+      }
+    },
+    "plan.retirement.lead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bekal hari tua yang tenang."
+          }
+        }
+      }
+    },
+    "plan.retirement.present" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dana Pensiun yang Sudah Ada"
+          }
+        }
+      }
+    },
+    "plan.retirement.result.overline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dana pensiun yang kamu butuhkan"
+          }
+        }
+      }
+    },
+    "plan.retirement.retireAt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pensiun di Usia"
+          }
+        }
+      }
+    },
+    "plan.retirement.return.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Untuk jangka panjang, return bisa lebih tinggi dengan risiko lebih tinggi."
+          }
+        }
+      }
+    },
+    "plan.retirement.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dana Pensiun"
+          }
+        }
+      }
+    },
+    "plan.retirement.years" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu Pensiun dalam"
+          }
+        }
+      }
+    },
+    "plan.retirement.years.value %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld tahun lagi"
           }
         }
       }
@@ -16608,6 +17828,106 @@
         }
       }
     },
+    "plan.vehicle.caption.cash %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beli tunai %1$lld tahun lagi, sudah termasuk inflasi harga %2$@%% per tahun"
+          }
+        }
+      }
+    },
+    "plan.vehicle.caption.dp %@ %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DP %1$@%% kendaraan %2$lld tahun lagi, sudah termasuk inflasi harga %3$@%% per tahun"
+          }
+        }
+      }
+    },
+    "plan.vehicle.downPayment.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi 100% kalau beli tunai"
+          }
+        }
+      }
+    },
+    "plan.vehicle.downPaymentAmount" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DP Kamu Setara"
+          }
+        }
+      }
+    },
+    "plan.vehicle.lead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Motor atau mobil impianmu."
+          }
+        }
+      }
+    },
+    "plan.vehicle.loan %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokok KKB · %@%%"
+          }
+        }
+      }
+    },
+    "plan.vehicle.loan.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kredit Kendaraan Bermotor"
+          }
+        }
+      }
+    },
+    "plan.vehicle.present" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uang yang Sudah Ada untuk Kendaraan"
+          }
+        }
+      }
+    },
+    "plan.vehicle.price" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Harga Kendaraan Impian Saat Ini"
+          }
+        }
+      }
+    },
+    "plan.vehicle.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kendaraan"
+          }
+        }
+      }
+    },
     "plans.alwaysFree.body" : {
       "localizations" : {
         "id" : {
@@ -17614,6 +18934,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Email belum bisa dikirim sekarang. Coba lagi sebentar lagi."
+          }
+        }
+      }
+    },
+    "problem.GOAL_DEPOSIT_CONFLICT" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setoran ini sudah tercatat."
+          }
+        }
+      }
+    },
+    "problem.GOAL_EMERGENCY_EXISTS" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu sudah punya tujuan Dana Darurat. Lanjutkan yang sudah ada, ya."
+          }
+        }
+      }
+    },
+    "problem.GOAL_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tujuan ini tidak ditemukan. Mungkin sudah dihapus."
           }
         }
       }
