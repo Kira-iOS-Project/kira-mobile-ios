@@ -56,7 +56,8 @@ struct PayoffOrderList: View {
                 ForEach(Array(simulation.productive.enumerated()), id: \.element.id) { index, debt in
                     PayoffOrderRow(
                         rank: simulation.accounts.count + index + 1, category: debt.kind.category, name: debt.name,
-                        remaining: debt.remaining, when: nil, tag: "payoff.tag.productive", isFirst: false)
+                        remaining: debt.remaining, when: PayoffCopy.when(debt), tag: "payoff.tag.productive",
+                        isFirst: false)
                 }
             }
         }

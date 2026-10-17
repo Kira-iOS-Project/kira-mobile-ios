@@ -16,6 +16,8 @@ package enum PayoffAccountStatusDTO: String, CaseIterable, Sendable {
     case next
     /** Jalan terus. */
     case ongoing
+    /** Lunas: a paid account stays in the plan. */
+    case paidOff = "paid_off"
 }
 
 /** One consumer account in a simulated plan's order. */
@@ -42,6 +44,8 @@ package struct PayoffAccountDTO: Hashable, Sendable {
     package let payoffMonth: String?
     /** The interest it costs until then; nil when it is never paid off. */
     package let interest: Int?
+    /** The day it is paid off, on its due day (`YYYY-MM-DD`); nil when it never is or the day is unknown. */
+    package let payoffDate: String?
 
     init(_ account: Components.Schemas.PayoffAccount) throws {
         id = account.id
@@ -55,6 +59,7 @@ package struct PayoffAccountDTO: Hashable, Sendable {
         months = account.months
         payoffMonth = account.payoffMonth
         interest = account.interest
+        payoffDate = account.payoffDate
     }
 }
 
@@ -70,6 +75,10 @@ package struct PayoffProductiveDebtDTO: Hashable, Sendable {
     package let remaining: Int
     /** The monthly instalment. */
     package let monthlyInstalment: Int
+    /** The month it is paid off at its instalment (`YYYY-MM`); nil when unknown. */
+    package let payoffMonth: String?
+    /** The day it is paid off (`YYYY-MM-DD`); nil when unknown. */
+    package let payoffDate: String?
 
     init(_ debt: Components.Schemas.PayoffProductiveDebt) throws {
         id = debt.id
@@ -77,6 +86,8 @@ package struct PayoffProductiveDebtDTO: Hashable, Sendable {
         name = debt.name
         remaining = debt.remaining
         monthlyInstalment = debt.monthlyInstalment
+        payoffMonth = debt.payoffMonth
+        payoffDate = debt.payoffDate
     }
 }
 
@@ -118,6 +129,8 @@ package struct PayoffPlanDTO: Hashable, Sendable {
     package let allPaidMonths: Int?
     /** The month the last account is paid off (`YYYY-MM`); nil unless all are. */
     package let allPaidMonth: String?
+    /** The day the last account is paid off (`YYYY-MM-DD`); nil unless all are, or the day is unknown. */
+    package let allPaidDate: String?
     /** Against the other method; nil without a consumer debt. */
     package let comparison: PayoffComparisonDTO?
 
@@ -132,6 +145,7 @@ package struct PayoffPlanDTO: Hashable, Sendable {
         totalInterest = plan.totalInterest
         allPaidMonths = plan.allPaidMonths
         allPaidMonth = plan.allPaidMonth
+        allPaidDate = plan.allPaidDate
         comparison = try plan.comparison.map(PayoffComparisonDTO.init)
     }
 }

@@ -12,8 +12,8 @@ package struct PayoffAccount: Hashable, Sendable {
     package let monthlyInstalment: Int
     /** The interest a year in percent; nil when the person has not said. */
     package let annualInterestRate: Double?
-    /** The day of the month its instalment is due; nil when the person has not said. */
-    package let dueDay: Int?
+    /** The day it is paid off, on its due day; nil when it never is or the due day is unknown. */
+    package let payoffDate: CalendarDay?
     /** 1 for the account the plan pays first. */
     package let position: Int
     /** Months until it is paid off, this month counted as 1; nil when it never is. */
@@ -27,7 +27,7 @@ package struct PayoffAccount: Hashable, Sendable {
     package init(
         id: String, kind: DebtKind, name: String, remaining: Int, monthlyInstalment: Int,
         annualInterestRate: Double?, position: Int, months: Int?, payoffMonth: String?, interest: Int?,
-        dueDay: Int? = nil
+        payoffDate: CalendarDay? = nil
     ) {
         self.id = id
         self.kind = kind
@@ -35,7 +35,7 @@ package struct PayoffAccount: Hashable, Sendable {
         self.remaining = remaining
         self.monthlyInstalment = monthlyInstalment
         self.annualInterestRate = annualInterestRate
-        self.dueDay = dueDay
+        self.payoffDate = payoffDate
         self.position = position
         self.months = months
         self.payoffMonth = payoffMonth
@@ -55,14 +55,23 @@ package struct ProductiveDebt: Hashable, Sendable {
     package let remaining: Int
     /** The monthly instalment. */
     package let monthlyInstalment: Int
+    /** The month it is paid off at its instalment, as `YYYY-MM`; nil when unknown. */
+    package let payoffMonth: String?
+    /** The day it is paid off; nil when unknown. */
+    package let payoffDate: CalendarDay?
 
     /** A debt with every field given. */
-    package init(id: String, kind: DebtKind, name: String, remaining: Int, monthlyInstalment: Int) {
+    package init(
+        id: String, kind: DebtKind, name: String, remaining: Int, monthlyInstalment: Int, payoffMonth: String? = nil,
+        payoffDate: CalendarDay? = nil
+    ) {
         self.id = id
         self.kind = kind
         self.name = name
         self.remaining = remaining
         self.monthlyInstalment = monthlyInstalment
+        self.payoffMonth = payoffMonth
+        self.payoffDate = payoffDate
     }
 }
 
@@ -145,6 +154,8 @@ package struct PayoffSimulation: Hashable, Sendable {
     package let allPaidMonths: Int?
     /** The month the last account is paid off, as `YYYY-MM`; nil unless all are. */
     package let allPaidMonth: String?
+    /** The day the last account is paid off; nil unless all are, or when its due day is unknown. */
+    package let allPaidDate: CalendarDay?
     /** Against the other method; nil without a consumer debt. */
     package let comparison: PayoffComparison?
 
@@ -152,7 +163,7 @@ package struct PayoffSimulation: Hashable, Sendable {
     package init(
         method: PayoffMethod, extraPayment: Int, maxExtraPayment: Int, monthlyBudget: Int, hasUnknownRate: Bool,
         accounts: [PayoffAccount], productive: [ProductiveDebt], totalInterest: Int?, allPaidMonths: Int?,
-        allPaidMonth: String?, comparison: PayoffComparison?
+        allPaidMonth: String?, comparison: PayoffComparison?, allPaidDate: CalendarDay? = nil
     ) {
         self.method = method
         self.extraPayment = extraPayment
@@ -165,5 +176,6 @@ package struct PayoffSimulation: Hashable, Sendable {
         self.allPaidMonths = allPaidMonths
         self.allPaidMonth = allPaidMonth
         self.comparison = comparison
+        self.allPaidDate = allPaidDate
     }
 }

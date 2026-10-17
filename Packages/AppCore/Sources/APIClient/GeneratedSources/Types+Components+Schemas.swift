@@ -1557,6 +1557,8 @@ extension Components {
             internal var allPaidMonths: Swift.Int?
             /// - Remark: Generated from `#/components/schemas/PayoffPlan/allPaidMonth`.
             internal var allPaidMonth: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/PayoffPlan/allPaidDate`.
+            internal var allPaidDate: Swift.String?
             /// - Remark: Generated from `#/components/schemas/PayoffPlan/comparison`.
             internal var comparison: Components.Schemas.PayoffComparison?
             /// Creates a new `PayoffPlan`.
@@ -1572,6 +1574,7 @@ extension Components {
             ///   - totalInterest:
             ///   - allPaidMonths:
             ///   - allPaidMonth:
+            ///   - allPaidDate:
             ///   - comparison:
             internal init(
                 method: Components.Schemas.PayoffPlan.MethodPayload,
@@ -1584,6 +1587,7 @@ extension Components {
                 totalInterest: Swift.Int? = nil,
                 allPaidMonths: Swift.Int? = nil,
                 allPaidMonth: Swift.String? = nil,
+                allPaidDate: Swift.String? = nil,
                 comparison: Components.Schemas.PayoffComparison? = nil
             ) {
                 self.method = method
@@ -1596,6 +1600,7 @@ extension Components {
                 self.totalInterest = totalInterest
                 self.allPaidMonths = allPaidMonths
                 self.allPaidMonth = allPaidMonth
+                self.allPaidDate = allPaidDate
                 self.comparison = comparison
             }
             internal enum CodingKeys: String, CodingKey {
@@ -1609,6 +1614,7 @@ extension Components {
                 case totalInterest
                 case allPaidMonths
                 case allPaidMonth
+                case allPaidDate
                 case comparison
             }
         }
@@ -1643,6 +1649,8 @@ extension Components {
             internal var months: Swift.Int?
             /// - Remark: Generated from `#/components/schemas/PayoffAccount/payoffMonth`.
             internal var payoffMonth: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/PayoffAccount/payoffDate`.
+            internal var payoffDate: Swift.String?
             /// - Remark: Generated from `#/components/schemas/PayoffAccount/interest`.
             internal var interest: Swift.Int?
             /// Creates a new `PayoffAccount`.
@@ -1658,6 +1666,7 @@ extension Components {
             ///   - position:
             ///   - months:
             ///   - payoffMonth:
+            ///   - payoffDate:
             ///   - interest:
             internal init(
                 id: Swift.String,
@@ -1670,6 +1679,7 @@ extension Components {
                 position: Swift.Int,
                 months: Swift.Int? = nil,
                 payoffMonth: Swift.String? = nil,
+                payoffDate: Swift.String? = nil,
                 interest: Swift.Int? = nil
             ) {
                 self.id = id
@@ -1682,6 +1692,7 @@ extension Components {
                 self.position = position
                 self.months = months
                 self.payoffMonth = payoffMonth
+                self.payoffDate = payoffDate
                 self.interest = interest
             }
             internal enum CodingKeys: String, CodingKey {
@@ -1695,6 +1706,7 @@ extension Components {
                 case position
                 case months
                 case payoffMonth
+                case payoffDate
                 case interest
             }
         }
@@ -1719,6 +1731,10 @@ extension Components {
             internal var remaining: Swift.Int
             /// - Remark: Generated from `#/components/schemas/PayoffProductiveDebt/monthlyInstalment`.
             internal var monthlyInstalment: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/PayoffProductiveDebt/payoffMonth`.
+            internal var payoffMonth: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/PayoffProductiveDebt/payoffDate`.
+            internal var payoffDate: Swift.String?
             /// Creates a new `PayoffProductiveDebt`.
             ///
             /// - Parameters:
@@ -1727,18 +1743,24 @@ extension Components {
             ///   - name:
             ///   - remaining:
             ///   - monthlyInstalment:
+            ///   - payoffMonth:
+            ///   - payoffDate:
             internal init(
                 id: Swift.String,
                 kind: Components.Schemas.PayoffProductiveDebt.KindPayload,
                 name: Swift.String,
                 remaining: Swift.Int,
-                monthlyInstalment: Swift.Int
+                monthlyInstalment: Swift.Int,
+                payoffMonth: Swift.String? = nil,
+                payoffDate: Swift.String? = nil
             ) {
                 self.id = id
                 self.kind = kind
                 self.name = name
                 self.remaining = remaining
                 self.monthlyInstalment = monthlyInstalment
+                self.payoffMonth = payoffMonth
+                self.payoffDate = payoffDate
             }
             internal enum CodingKeys: String, CodingKey {
                 case id
@@ -1746,6 +1768,8 @@ extension Components {
                 case name
                 case remaining
                 case monthlyInstalment
+                case payoffMonth
+                case payoffDate
             }
         }
         /// - Remark: Generated from `#/components/schemas/PayoffComparison`.
@@ -1893,12 +1917,19 @@ extension Components {
             internal var dueDay: Swift.Int?
             /// - Remark: Generated from `#/components/schemas/PayoffPlanAccount/status`.
             internal enum StatusPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case paidOff = "paid_off"
                 case inProgress = "in_progress"
                 case next = "next"
                 case ongoing = "ongoing"
             }
             /// - Remark: Generated from `#/components/schemas/PayoffPlanAccount/status`.
             internal var status: Components.Schemas.PayoffPlanAccount.StatusPayload
+            /// - Remark: Generated from `#/components/schemas/PayoffPlanAccount/payoffMonth`.
+            internal var payoffMonth: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/PayoffPlanAccount/payoffDate`.
+            internal var payoffDate: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/PayoffPlanAccount/startMonth`.
+            internal var startMonth: Swift.String?
             /// Creates a new `PayoffPlanAccount`.
             ///
             /// - Parameters:
@@ -1912,6 +1943,9 @@ extension Components {
             ///   - annualInterestRate:
             ///   - dueDay:
             ///   - status:
+            ///   - payoffMonth:
+            ///   - payoffDate:
+            ///   - startMonth:
             internal init(
                 id: Swift.String,
                 kind: Components.Schemas.PayoffPlanAccount.KindPayload,
@@ -1922,7 +1956,10 @@ extension Components {
                 monthlyInstalment: Swift.Int,
                 annualInterestRate: Swift.Double? = nil,
                 dueDay: Swift.Int? = nil,
-                status: Components.Schemas.PayoffPlanAccount.StatusPayload
+                status: Components.Schemas.PayoffPlanAccount.StatusPayload,
+                payoffMonth: Swift.String? = nil,
+                payoffDate: Swift.String? = nil,
+                startMonth: Swift.String? = nil
             ) {
                 self.id = id
                 self.kind = kind
@@ -1934,6 +1971,9 @@ extension Components {
                 self.annualInterestRate = annualInterestRate
                 self.dueDay = dueDay
                 self.status = status
+                self.payoffMonth = payoffMonth
+                self.payoffDate = payoffDate
+                self.startMonth = startMonth
             }
             internal enum CodingKeys: String, CodingKey {
                 case id
@@ -1946,6 +1986,9 @@ extension Components {
                 case annualInterestRate
                 case dueDay
                 case status
+                case payoffMonth
+                case payoffDate
+                case startMonth
             }
         }
         /// - Remark: Generated from `#/components/schemas/PayoffNextPayment`.
@@ -1956,6 +1999,10 @@ extension Components {
             internal var name: Swift.String
             /// - Remark: Generated from `#/components/schemas/PayoffNextPayment/amount`.
             internal var amount: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/PayoffNextPayment/instalment`.
+            internal var instalment: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/PayoffNextPayment/extra`.
+            internal var extra: Swift.Int
             /// - Remark: Generated from `#/components/schemas/PayoffNextPayment/dueDate`.
             internal var dueDate: Swift.String?
             /// - Remark: Generated from `#/components/schemas/PayoffNextPayment/daysLeft`.
@@ -1966,18 +2013,24 @@ extension Components {
             ///   - debtId:
             ///   - name:
             ///   - amount:
+            ///   - instalment:
+            ///   - extra:
             ///   - dueDate:
             ///   - daysLeft:
             internal init(
                 debtId: Swift.String,
                 name: Swift.String,
                 amount: Swift.Int,
+                instalment: Swift.Int,
+                extra: Swift.Int,
                 dueDate: Swift.String? = nil,
                 daysLeft: Swift.Int? = nil
             ) {
                 self.debtId = debtId
                 self.name = name
                 self.amount = amount
+                self.instalment = instalment
+                self.extra = extra
                 self.dueDate = dueDate
                 self.daysLeft = daysLeft
             }
@@ -1985,6 +2038,8 @@ extension Components {
                 case debtId
                 case name
                 case amount
+                case instalment
+                case extra
                 case dueDate
                 case daysLeft
             }
@@ -2036,6 +2091,8 @@ extension Components {
         internal struct DebtPaymentResult: Codable, Hashable, Sendable {
             /// - Remark: Generated from `#/components/schemas/DebtPaymentResult/debtId`.
             internal var debtId: Swift.String
+            /// - Remark: Generated from `#/components/schemas/DebtPaymentResult/monthlyInstalment`.
+            internal var monthlyInstalment: Swift.Int
             /// - Remark: Generated from `#/components/schemas/DebtPaymentResult/paid`.
             internal var paid: Swift.Int
             /// - Remark: Generated from `#/components/schemas/DebtPaymentResult/remaining`.
@@ -2075,6 +2132,7 @@ extension Components {
             ///
             /// - Parameters:
             ///   - debtId:
+            ///   - monthlyInstalment:
             ///   - paid:
             ///   - remaining:
             ///   - progressPercent:
@@ -2083,6 +2141,7 @@ extension Components {
             ///   - scoreEstimate:
             internal init(
                 debtId: Swift.String,
+                monthlyInstalment: Swift.Int,
                 paid: Swift.Int,
                 remaining: Swift.Int,
                 progressPercent: Swift.Int,
@@ -2091,6 +2150,7 @@ extension Components {
                 scoreEstimate: Components.Schemas.PayoffScoreEstimate? = nil
             ) {
                 self.debtId = debtId
+                self.monthlyInstalment = monthlyInstalment
                 self.paid = paid
                 self.remaining = remaining
                 self.progressPercent = progressPercent
@@ -2100,6 +2160,7 @@ extension Components {
             }
             internal enum CodingKeys: String, CodingKey {
                 case debtId
+                case monthlyInstalment
                 case paid
                 case remaining
                 case progressPercent
@@ -2147,15 +2208,23 @@ extension Components {
         internal struct RecordDebtPayment: Codable, Hashable, Sendable {
             /// - Remark: Generated from `#/components/schemas/RecordDebtPayment/amount`.
             internal var amount: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/RecordDebtPayment/paymentId`.
+            internal var paymentId: Swift.String
             /// Creates a new `RecordDebtPayment`.
             ///
             /// - Parameters:
             ///   - amount:
-            internal init(amount: Swift.Int) {
+            ///   - paymentId:
+            internal init(
+                amount: Swift.Int,
+                paymentId: Swift.String
+            ) {
                 self.amount = amount
+                self.paymentId = paymentId
             }
             internal enum CodingKeys: String, CodingKey {
                 case amount
+                case paymentId
             }
         }
         /// - Remark: Generated from `#/components/schemas/Home`.

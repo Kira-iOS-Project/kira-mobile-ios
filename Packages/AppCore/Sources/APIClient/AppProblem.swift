@@ -125,6 +125,8 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case payoffDebtNotFound = "PAYOFF_DEBT_NOT_FOUND"
     /** The payment is more than what is left on the account. */
     case payoffPaymentTooHigh = "PAYOFF_PAYMENT_TOO_HIGH"
+    /** This payment (its `paymentId`) is already recorded: a retry after a lost answer. */
+    case payoffPaymentAlreadyRecorded = "PAYOFF_PAYMENT_ALREADY_RECORDED"
     /** Kira AI is off in the consents, so chat reading is off. */
     case chatAIDisabled = "CHAT_AI_DISABLED"
     /** The chat message is gone. */

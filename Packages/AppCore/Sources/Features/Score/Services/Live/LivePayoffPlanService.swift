@@ -1,5 +1,6 @@
 import APIClient
 import Domain
+import Foundation
 
 /** Rencanaku's calls over the API client. */
 package struct LivePayoffPlanService: PayoffPlanService {
@@ -28,6 +29,7 @@ package struct LivePayoffPlanService: PayoffPlanService {
 
     /** `POST /debts/{id}/payments`. */
     package func recordPayment(debtId: String, amount: Int) async throws -> DebtPayment {
-        DebtPayment(try await api.recordDebtPayment(debtId: debtId, amount: amount))
+        /** Interim until Rencanaku keeps one id per Tandai Sudah Bayar (work/t2b-rencanaku): a fresh id per call. */
+        DebtPayment(try await api.recordDebtPayment(debtId: debtId, amount: amount, paymentId: UUID().uuidString))
     }
 }

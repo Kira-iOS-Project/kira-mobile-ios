@@ -16,7 +16,12 @@ enum PayoffCopy {
 
     /** "25 Oktober 2026" on its due day, "Oktober 2026" without one; nil when it is never paid off. */
     static func date(of account: PayoffAccount) -> String? {
-        account.payoffDay?.date.formatted(.kiraDate) ?? month(account.payoffMonth)
+        account.payoffDate?.date.formatted(.kiraDate) ?? month(account.payoffMonth)
+    }
+
+    /** "Lunas 28 Desember 2027" for a debt the plan leaves alone; nil when the API does not know. */
+    static func when(_ debt: ProductiveDebt) -> LocalizedStringResource? {
+        (debt.payoffDate?.date.formatted(.kiraDate) ?? month(debt.payoffMonth)).map { "payoff.row.when \($0)" }
     }
 
     /** "Lunas 25 Oktober 2026", or "Belum lunas dalam 50 tahun". */
@@ -31,7 +36,7 @@ enum PayoffCopy {
 
     /** "Semua utang konsumtif lunas 5 Januari 2027", or that the plan does not get there. */
     static func allPaid(_ simulation: PayoffSimulation) -> LocalizedStringResource {
-        let day = simulation.allPaidDay?.date.formatted(.kiraDate) ?? month(simulation.allPaidMonth)
+        let day = simulation.allPaidDate?.date.formatted(.kiraDate) ?? month(simulation.allPaidMonth)
         return day.map { "payoff.hero.allPaid \($0)" } ?? "payoff.hero.notAll"
     }
 

@@ -17357,6 +17357,17 @@
         }
       }
     },
+    "problem.PAYOFF_PAYMENT_ALREADY_RECORDED" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pembayaran ini sudah tercatat."
+          }
+        }
+      }
+    },
     "problem.PAYOFF_PAYMENT_TOO_HIGH" : {
       "extractionState" : "manual",
       "localizations" : {

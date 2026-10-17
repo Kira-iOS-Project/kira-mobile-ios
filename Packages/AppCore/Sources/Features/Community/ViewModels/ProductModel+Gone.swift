@@ -19,7 +19,8 @@ extension ProductModel {
             .subscriptionNotPaid, .scholarshipNotEligible, .scholarshipApplicationNotFound,
             .scholarshipDebtEmergencyRequired, .communityGroupNotFound, .communityLinkUnavailable,
             .communityReportDuplicate, .communityRulesNotAccepted, .careCheckInNotFound, .careSafetyPlanNotFound,
-            .payoffExtraTooHigh, .payoffNothingToPlan, .payoffPlanNotFound, .payoffDebtNotFound, .payoffPaymentTooHigh:
+            .payoffExtraTooHigh, .payoffNothingToPlan, .payoffPlanNotFound, .payoffDebtNotFound, .payoffPaymentTooHigh,
+            .payoffPaymentAlreadyRecorded:
             false
         }
     }

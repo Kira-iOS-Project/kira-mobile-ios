@@ -29,7 +29,8 @@ struct PayoffEntryModelTests {
         #expect(model.phase.problem == .connectionLost)
         await service.answersActive(.success(PayoffPlanFixtures.plan()))
         await model.load()
-        #expect(model.phase.value != nil && await service.calls == ["active", "active"])
+        let calls = await service.calls
+        #expect(model.phase.value != nil && calls == ["active", "active"])
         await service.answersActive(.failure(CancellationError()))
         let cancelled = PayoffEntryModel(plans: service)
         await cancelled.load()

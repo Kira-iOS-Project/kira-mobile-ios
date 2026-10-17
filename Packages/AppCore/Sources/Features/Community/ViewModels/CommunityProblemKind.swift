@@ -35,7 +35,8 @@ package enum CommunityProblemKind: Equatable, Sendable {
             .importRowUnknown, .subscriptionNotFound, .subscriptionNotCancellable, .subscriptionNotPaid,
             .scholarshipNotEligible, .scholarshipApplicationNotFound, .scholarshipDebtEmergencyRequired,
             .communityProductNotFound, .careCheckInNotFound, .careSafetyPlanNotFound,
-            .payoffExtraTooHigh, .payoffNothingToPlan, .payoffPlanNotFound, .payoffDebtNotFound, .payoffPaymentTooHigh:
+            .payoffExtraTooHigh, .payoffNothingToPlan, .payoffPlanNotFound, .payoffDebtNotFound, .payoffPaymentTooHigh,
+            .payoffPaymentAlreadyRecorded:
             self = .other
         }
     }
