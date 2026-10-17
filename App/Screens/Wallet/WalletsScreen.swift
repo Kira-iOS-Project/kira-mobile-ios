@@ -7,6 +7,8 @@ struct WalletsScreen: View {
     @State private var model: WalletsModel
     @State private var createModel: WalletCreateModel
     @State private var isAddingWallet = false
+    @State private var pendingSavedWallet: Wallet?
+    @State private var savedWallet: Wallet?
     private let onOpenDebt: (String) -> Void
     private let onOpenHelp: () -> Void
 
@@ -38,16 +40,38 @@ struct WalletsScreen: View {
             .onChange(of: createModel.phase.value?.id) { _, _ in
                 guard isAddingWallet, let wallet = createModel.phase.value else { return }
                 model.walletAdded(wallet)
+                pendingSavedWallet = wallet
                 isAddingWallet = false
                 withAnimation { proxy.scrollTo(wallet.id, anchor: .center) }
             }
             .onChange(of: isAddingWallet) { _, isPresented in
-                if isPresented { createModel.resetDraft() }
+                if isPresented {
+                    createModel.resetDraft()
+                } else if let wallet = pendingSavedWallet {
+                    pendingSavedWallet = nil
+                    Task { @MainActor in
+                        try? await Task.sleep(for: .milliseconds(400))
+                        guard !isAddingWallet else { return }
+                        savedWallet = wallet
+                    }
+                }
             }
             .kiraSheet(isPresented: $isAddingWallet, title: "wallet.create.title") {
                 WalletCreateSheet(model: createModel) { isAddingWallet = false }
             }
+            .kiraDialog(isPresented: savedWalletPresented) {
+                KiraDialog(
+                    "wallet.create.saved.title", message: "wallet.create.saved.body", art: .illustration(.bloom),
+                    primary: KiraButton("wallet.create.done") {})
+            }
         }
+    }
+
+    private var savedWalletPresented: Binding<Bool> {
+        Binding(
+            get: { savedWallet != nil },
+            set: { if !$0 { savedWallet = nil } }
+        )
     }
 
     private var header: some View {

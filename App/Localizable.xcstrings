@@ -16574,6 +16574,16 @@
         }
       }
     },
+    "wallet.create.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
     "wallet.create.failed.title" : {
       "localizations" : {
         "id" : {
@@ -16660,6 +16670,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Simpan Dompet"
+          }
+        }
+      }
+    },
+    "wallet.create.saved.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dompetmu sekarang sudah muncul di daftar."
+          }
+        }
+      }
+    },
+    "wallet.create.saved.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dompet Ditambahkan"
           }
         }
       }

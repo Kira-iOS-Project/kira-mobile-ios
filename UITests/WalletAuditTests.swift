@@ -21,4 +21,20 @@ nonisolated final class WalletAuditTests: XCTestCase {
         }
     }
 
+    @MainActor
+    func testWalletSaveSuccessDialogPassesTheAudit() throws {
+        try auditScreen("wallets") { app in
+            app.buttons["Tambah Dompet"].firstMatch.tap()
+            let name = app.textFields["Nama Dompet"]
+            XCTAssertTrue(name.waitForExistence(timeout: 5))
+            name.tap()
+            name.typeText("Uji")
+            let amount = app.textFields["Saldo Sekarang"]
+            amount.tap()
+            amount.typeText("25000")
+            app.buttons["Simpan Dompet"].tap()
+            XCTAssertTrue(app.staticTexts["Dompet Ditambahkan"].waitForExistence(timeout: 5))
+        }
+    }
+
 }
