@@ -1,17 +1,15 @@
-/** A simple payday selector; KIR-119 replaces this menu with the dedicated picker sheet. */
+/** The budget editor's button and selection binding for Kira's payday sheet. */
 import Domain
 import SwiftUI
 
-struct BudgetPaydayMenu: View {
+struct BudgetPaydayPicker: View {
     let payday: Payday
     let onSelect: (Payday) -> Void
+    @State private var isPresented = false
 
     var body: some View {
-        Menu {
-            ForEach(Payday.days, id: \.self) { day in
-                Button("budget.payday.day \(day)") { onSelect(Payday(day: day)) }
-            }
-            Button("budget.payday.endOfMonth") { onSelect(.endOfMonth) }
+        Button {
+            isPresented = true
         } label: {
             HStack {
                 Text("budget.payday.label").font(.footnote.weight(.semibold)).foregroundStyle(.inkMuted)
@@ -22,7 +20,12 @@ struct BudgetPaydayMenu: View {
             .padding(KiraSpacing.space3)
             .kiraCard(border: .hairline, cornerRadius: KiraRadius.medium)
         }
+        .buttonStyle(.plain)
+        .accessibilityLabel(Text("budget.payday.label"))
         .accessibilityValue(Text(title))
+        .kiraPaydayPicker(isPresented: $isPresented, selectedDay: payday.day) { day in
+            onSelect(day.map { Payday(day: $0) } ?? .endOfMonth)
+        }
     }
 
     private var title: LocalizedStringResource {

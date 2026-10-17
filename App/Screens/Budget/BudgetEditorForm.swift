@@ -24,7 +24,7 @@ struct BudgetEditorForm: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: KiraSpacing.space4) {
                         incomeField
-                        BudgetPaydayMenu(payday: model.payday) { model.setPayday($0) }
+                        BudgetPaydayPicker(payday: model.payday) { model.setPayday($0) }
                         if model.isOverallocated { BudgetOverallocationNotice() }
                         KiraSectionTitle("budget.categories")
                         ForEach(expenseCategories, id: \.self) { category in categoryField(category) }
