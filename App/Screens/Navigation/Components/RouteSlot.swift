@@ -2,7 +2,8 @@
  The screen of each pushed route, by area: Score (score, indicator), Account (profile … deleteAccount,
  about … complaints), Plans (plans … scholarshipStatus), Kira Peduli (care, trustedMessage,
  negotiationScript, breathingExercise, safetyPlan), Mode Darurat Utang and its guides (debtEmergency,
- debtGuide), Etalase (marketplace, product, submitProduct). "Cek Ulang" (`healthCheck`) covers the shell
+ debtGuide), Etalase (marketplace, product, submitProduct), Portofolio Manual (portfolio, addAsset,
+ editAsset). "Cek Ulang" (`healthCheck`) covers the shell
  instead (MainShell); Komunitas (`community`) is the dock's own section; Catat's and Riwayat's routes
  stay empty for their own integration, and an unavailable area never gets here.
  */
@@ -43,6 +44,9 @@ struct RouteSlot: View {
         case .marketplace: MarketplaceScreen(service: services.marketplace, onOpen: onOpen)
         case .product(let id): ProductScreen(id: id, service: services.marketplace, onOpen: onOpen)
         case .submitProduct: SubmitProductScreen(onOpen: onOpen)
+        case .portfolio: PortfolioScreen(service: services.portfolio, onOpen: onOpen)
+        case .addAsset: AssetFormScreen(service: services.portfolio)
+        case .editAsset(let id): AssetFormScreen(service: services.portfolio, assetId: id)
         case .home, .record, .community, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history, .transaction,
             .conversation, .importStatement, .unavailable:
             EmptySlot()
