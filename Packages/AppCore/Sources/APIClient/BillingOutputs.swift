@@ -9,7 +9,7 @@ extension Operations.ListPlans.Output {
                 plans: try body.plans.map(PlanTermsDTO.init), current: try bridged(body.current.plan),
                 currentPeriod: try bridged(body.current.period))
         case .unauthorized(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -20,7 +20,7 @@ extension Operations.Checkout.Output {
         case .ok(let response): return try SubscriptionDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -31,7 +31,7 @@ extension Operations.GetSubscription.Output {
         case .ok(let response): return try SubscriptionDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .notFound(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -43,7 +43,7 @@ extension Operations.CancelSubscription.Output {
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .notFound(let response): throw try response.body.applicationProblemJson
         case .conflict(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -54,8 +54,9 @@ extension Operations.ChangePaymentMethod.Output {
         case .ok(let response): return try SubscriptionDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .notFound(let response): throw try response.body.applicationProblemJson
+        case .conflict(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -71,7 +72,7 @@ extension Operations.ListInvoices.Output {
                     createdAt: $0.createdAt)
             }
         case .unauthorized(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -84,7 +85,7 @@ extension Operations.GiftMonths.Output {
             return GiftDTO(id: body.id, months: body.months, amount: body.amount)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }

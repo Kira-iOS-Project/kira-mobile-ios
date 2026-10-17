@@ -36,7 +36,7 @@ nonisolated struct PreviewPayoffPlanService: PayoffPlanService {
 
     func setFocus(debtId _: String) throws -> ActivePayoffPlan { .sample }
 
-    func recordPayment(debtId: String, amount: Int) throws -> DebtPayment {
+    func recordPayment(debtId: String, amount: Int, paymentId _: String) throws -> DebtPayment {
         DebtPayment(
             debtId: debtId, paid: amount, remaining: 210_000, progressPercent: 65, paidOff: false, nextAccount: nil,
             scoreEstimate: nil)

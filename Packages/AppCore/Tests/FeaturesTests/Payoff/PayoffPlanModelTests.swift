@@ -68,18 +68,20 @@ struct PayoffPlanModelTests {
 
     @Test("Tandai Sudah Bayar pays the next payment and reloads the plan, with no celebration for a part payment")
     func markPaid() async {
+        let ids = PaymentIds()
         let service = FakePayoffPlanService()
-        let model = PayoffPlanModel(service: service)
+        let model = PayoffPlanModel(service: service, makePaymentId: ids.next)
         await model.load()
         await model.markPaid()
-        #expect(await service.calls == ["active", "pay a-1 210000", "active"])
+        #expect(await service.calls == ["active", "pay a-1 210000 id-1", "active"])
         #expect(model.celebration == nil && model.actionProblem == nil && !model.isWorking)
     }
 
     @Test("the payment that settles an account opens the celebration once, until it is closed")
     func celebrate() async {
+        let ids = PaymentIds()
         let service = FakePayoffPlanService()
-        let model = PayoffPlanModel(service: service)
+        let model = PayoffPlanModel(service: service, makePaymentId: ids.next)
         await model.load()
         await service.answersPayment(.success(PayoffPlanFixtures.settledPayment))
         await service.answersActive(.success(PayoffPlanFixtures.plan(focusIsFirst: false)))
@@ -95,13 +97,14 @@ struct PayoffPlanModelTests {
 
     @Test("a payment that fails names the problem and does not reload the plan")
     func markPaidFails() async {
+        let ids = PaymentIds()
         let service = FakePayoffPlanService()
-        let model = PayoffPlanModel(service: service)
+        let model = PayoffPlanModel(service: service, makePaymentId: ids.next)
         await model.load()
         await service.answersPayment(.failure(AppProblem(code: "PAYOFF_PAYMENT_TOO_HIGH")))
         await model.markPaid()
         #expect(model.actionProblem?.knownCode == .payoffPaymentTooHigh && model.celebration == nil)
-        #expect(await service.calls == ["active", "pay a-1 210000"])
+        #expect(await service.calls == ["active", "pay a-1 210000 id-1"])
         await service.answersPayment(.failure(PayoffOtherError()))
         await model.markPaid()
         #expect(model.actionProblem != nil && model.actionProblem?.code == nil)

@@ -6,6 +6,7 @@ enum PayoffPlanCopy {
     /** The tag of an account. */
     static func tag(_ status: PlanAccountStatus) -> LocalizedStringResource {
         switch status {
+        case .paidOff: "plan.tag.paidOff"
         case .inProgress: "plan.tag.inProgress"
         case .next: "plan.tag.next"
         case .ongoing: "plan.tag.ongoing"

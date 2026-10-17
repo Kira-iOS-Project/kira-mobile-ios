@@ -17,7 +17,7 @@ private let meJSON = #"""
     "healthCheckCompleted":true,"plan":{"id":"plus","source":"scholarship","renewsOn":"2027-01-16"},\#
     "usage":\#(accountUsageJSON),"period":{"start":"2026-09-25","end":"2026-10-24",\#
     "nextPayday":"2026-10-25","daysUntilPayday":9},\#
-    "lastCategories":{"expense":"coffee","income":null},"debtAccountCount":2,\#
+    "lastCategories":{"expense":"coffee","income":null},"debtAccountCount":2,"debtEmergencyActive":false,\#
     "aiEnabled":true,"weeklySummaryEnabled":false}
     """#
 

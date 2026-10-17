@@ -19,6 +19,7 @@ struct ActivePayoffPlanTests {
     @Test("the API's spelling of a tag is its raw value")
     func rawValues() {
         #expect(PlanAccountStatus(rawValue: "in_progress") == .inProgress)
+        #expect(PlanAccountStatus(rawValue: "paid_off") == .paidOff)
         #expect(PlanAccountStatus(rawValue: "next") == .next && PlanAccountStatus(rawValue: "ongoing") == .ongoing)
     }
 

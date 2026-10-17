@@ -1,5 +1,6 @@
 import APIClient
 import Domain
+import Foundation
 import Observation
 
 /**
@@ -22,10 +23,16 @@ package final class PayoffPlanModel {
     package private(set) var celebratedName: String?
 
     private let service: any PayoffPlanService
+    private let makePaymentId: @Sendable () -> String
+    /** The payment sent and not yet answered, kept so a retry names the same payment. */
+    private var pending: PendingPayment?
 
-    /** A model that reads and changes the plan through `service`. */
-    package init(service: any PayoffPlanService) {
+    /** A model that reads and changes the plan through `service`, naming each payment with `makePaymentId`. */
+    package init(
+        service: any PayoffPlanService, makePaymentId: @escaping @Sendable () -> String = { UUID().uuidString }
+    ) {
         self.service = service
+        self.makePaymentId = makePaymentId
     }
 
     /** Loads the person's plan. */
@@ -51,15 +58,18 @@ package final class PayoffPlanModel {
         isWorking = false
     }
 
-    /** Marks the next payment as paid, opens the celebration when it settles the account and reloads the plan. */
+    /**
+     Marks the next payment as paid, opens the celebration when it settles the account and reloads the plan.
+     A payment that failed is retried under the same id, and `PAYOFF_PAYMENT_ALREADY_RECORDED` counts as saved.
+     */
     package func markPaid() async {
         guard !isWorking, let next = phase.value?.nextPayment else { return }
         isWorking = true
         actionProblem = nil
         do {
-            let payment = try await service.recordPayment(debtId: next.debtId, amount: next.amount)
-            celebration = payment.paidOff ? payment : nil
-            celebratedName = payment.paidOff ? next.name : nil
+            let payment = try await record(next)
+            celebration = payment?.paidOff == true ? payment : nil
+            celebratedName = celebration == nil ? nil : next.name
             phase = .loaded(try await service.active())
         } catch {
             actionProblem = error as? AppProblem ?? AppProblem()
@@ -67,9 +77,35 @@ package final class PayoffPlanModel {
         isWorking = false
     }
 
+    /** Sends the payment; nil when the API had already saved it under the same id. */
+    private func record(_ next: NextPayment) async throws -> DebtPayment? {
+        let sent = pending?.matches(next) == true ? pending : nil
+        let attempt = sent ?? PendingPayment(debtId: next.debtId, amount: next.amount, id: makePaymentId())
+        pending = attempt
+        do {
+            let payment = try await service.recordPayment(
+                debtId: attempt.debtId, amount: attempt.amount, paymentId: attempt.id)
+            pending = nil
+            return payment
+        } catch let problem as AppProblem where problem.knownCode == .payoffPaymentAlreadyRecorded {
+            pending = nil
+            return nil
+        }
+    }
+
     /** Closes the celebration. */
     package func dismissCelebration() {
         celebration = nil
         celebratedName = nil
     }
+}
+
+/** A payment on its way to the API: what it pays and the id that names it. */
+private struct PendingPayment {
+    let debtId: String
+    let amount: Int
+    let id: String
+
+    /** True when `next` asks for the same payment again. */
+    func matches(_ next: NextPayment) -> Bool { debtId == next.debtId && amount == next.amount }
 }

@@ -152,4 +152,30 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case scholarshipNotEligible = "SCHOLARSHIP_NOT_ELIGIBLE"
     /** There is no open application. */
     case scholarshipApplicationNotFound = "SCHOLARSHIP_APPLICATION_NOT_FOUND"
+    /** The data export was asked for too often. */
+    case accountExportRateLimited = "ACCOUNT_EXPORT_RATE_LIMITED"
+    /** The asset is gone. */
+    case assetNotFound = "ASSET_NOT_FOUND"
+    /** Too many tries to verify a sign-in code. */
+    case authVerifyRateLimited = "AUTH_VERIFY_RATE_LIMITED"
+    /** The check-in is gone. */
+    case careCheckInNotFound = "CARE_CHECK_IN_NOT_FOUND"
+    /** There is no safety plan yet. */
+    case careSafetyPlanNotFound = "CARE_SAFETY_PLAN_NOT_FOUND"
+    /** The community group is gone. */
+    case communityGroupNotFound = "COMMUNITY_GROUP_NOT_FOUND"
+    /** The group's invite link is still being checked. */
+    case communityLinkUnavailable = "COMMUNITY_LINK_UNAVAILABLE"
+    /** The community product is gone. */
+    case communityProductNotFound = "COMMUNITY_PRODUCT_NOT_FOUND"
+    /** The group was already reported. */
+    case communityReportDuplicate = "COMMUNITY_REPORT_DUPLICATE"
+    /** The current community rules are not accepted yet. */
+    case communityRulesNotAccepted = "COMMUNITY_RULES_NOT_ACCEPTED"
+    /** The same payment was sent twice: it is already saved. */
+    case payoffPaymentAlreadyRecorded = "PAYOFF_PAYMENT_ALREADY_RECORDED"
+    /** The application needs an active debt emergency. */
+    case scholarshipDebtEmergencyRequired = "SCHOLARSHIP_DEBT_EMERGENCY_REQUIRED"
+    /** The subscription is not paid. */
+    case subscriptionNotPaid = "SUBSCRIPTION_NOT_PAID"
 }

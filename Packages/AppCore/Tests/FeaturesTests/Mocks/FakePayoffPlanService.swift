@@ -32,8 +32,8 @@ actor FakePayoffPlanService: PayoffPlanService {
         return try focusResult.get()
     }
 
-    func recordPayment(debtId: String, amount: Int) throws -> DebtPayment {
-        calls.append("pay \(debtId) \(amount)")
+    func recordPayment(debtId: String, amount: Int, paymentId: String) throws -> DebtPayment {
+        calls.append("pay \(debtId) \(amount) \(paymentId)")
         return try paymentResult.get()
     }
 }

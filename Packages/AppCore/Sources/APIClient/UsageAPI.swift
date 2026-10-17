@@ -11,7 +11,7 @@ extension Operations.GetUsage.Output {
         switch self {
         case .ok(let response): return UsageDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }

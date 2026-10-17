@@ -14,18 +14,19 @@ struct LivePayoffPlanServiceTests {
         "progressPercent":30,"monthlyInstalment":210000,"annualInterestRate":24,"dueDay":5,"status":"in_progress"},\#
         {"id":"m-1","kind":"vehicle","name":"Cicilan Motor","remaining":13000000,"original":15000000,\#
         "progressPercent":13,"monthlyInstalment":850000,"status":"ongoing"}],\#
-        "nextPayment":{"debtId":"a-1","name":"Paylater A","amount":210000,"dueDate":"2026-11-05","daysLeft":20}}
+        "nextPayment":{"debtId":"a-1","name":"Paylater A","amount":210000,"instalment":210000,"extra":0,\#
+        "dueDate":"2026-11-05","daysLeft":20}}
         """#
 
     private let settledJSON = #"""
-        {"debtId":"a-1","paid":420000,"remaining":0,"progressPercent":100,"paidOff":true,\#
+        {"debtId":"a-1","monthlyInstalment":210000,"paid":420000,"remaining":0,"progressPercent":100,"paidOff":true,\#
         "nextAccount":{"id":"a-2","name":"Pinjol B"},\#
         "scoreEstimate":{"before":66,"after":72,"consumerDebtBefore":50,"consumerDebtAfter":80}}
         """#
 
     private let partJSON = #"""
-        {"debtId":"a-1","paid":210000,"remaining":210000,"progressPercent":65,"paidOff":false,\#
-        "nextAccount":null,"scoreEstimate":null}
+        {"debtId":"a-1","monthlyInstalment":210000,"paid":210000,"remaining":210000,"progressPercent":65,\#
+        "paidOff":false,"nextAccount":null,"scoreEstimate":null}
         """#
 
     private func expectedPlan() -> [PlanAccount] {
@@ -78,8 +79,8 @@ struct LivePayoffPlanServiceTests {
     @Test("a payment that settles the account carries the next account and the score estimate")
     func settled() async throws {
         let (api, transport) = KiraAPI.routed(["POST /api/debts/a-1/payments": ok(settledJSON)])
-        let payment = try await LivePayoffPlanService(api: api).recordPayment(debtId: "a-1", amount: 420_000)
-        #expect(await transport.sent.first?.json == ["amount": .number(420_000)])
+        let payment = try await LivePayoffPlanService(api: api).recordPayment(debtId: "a-1", amount: 420_000, paymentId: "p-1")
+        #expect(await transport.sent.first?.json == ["amount": .number(420_000), "paymentId": .string("p-1")])
         #expect(payment.paidOff && payment.remaining == 0 && payment.progressPercent == 100)
         #expect(payment.nextAccount == NextAccount(id: "a-2", name: "Pinjol B"))
         #expect(
@@ -90,7 +91,7 @@ struct LivePayoffPlanServiceTests {
     @Test("a part payment has no next account and no estimate")
     func part() async throws {
         let (api, _) = KiraAPI.routed(["POST /api/debts/a-1/payments": ok(partJSON)])
-        let payment = try await LivePayoffPlanService(api: api).recordPayment(debtId: "a-1", amount: 210_000)
+        let payment = try await LivePayoffPlanService(api: api).recordPayment(debtId: "a-1", amount: 210_000, paymentId: "p-2")
         #expect(!payment.paidOff && payment.paid == 210_000 && payment.remaining == 210_000)
         #expect(payment.nextAccount == nil && payment.scoreEstimate == nil)
     }

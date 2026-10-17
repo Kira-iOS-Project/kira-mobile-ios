@@ -22,9 +22,13 @@ extension KiraAPI {
         try await client.setPayoffFocus(body: .json(.init(focusDebtId: debtId))).plan()
     }
 
-    /** Marks a payment on an account (`POST /api/debts/{id}/payments`, Tandai Sudah Bayar). */
-    package func recordDebtPayment(debtId: String, amount: Int) async throws -> PaymentResultDTO {
-        try await client.recordDebtPayment(path: .init(id: debtId), body: .json(.init(amount: amount))).result()
+    /**
+     Marks a payment on an account (`POST /api/debts/{id}/payments`, Tandai Sudah Bayar). The same
+     `paymentId` sent again answers 409 `PAYOFF_PAYMENT_ALREADY_RECORDED`: the payment is saved.
+     */
+    package func recordDebtPayment(debtId: String, amount: Int, paymentId: String) async throws -> PaymentResultDTO {
+        let body = Components.Schemas.RecordDebtPayment(amount: amount, paymentId: paymentId)
+        return try await client.recordDebtPayment(path: .init(id: debtId), body: .json(body)).result()
     }
 }
 
@@ -35,7 +39,7 @@ extension Operations.SimulatePayoff.Output {
         case .badRequest(let response): throw try response.body.applicationProblemJson
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -47,7 +51,7 @@ extension Operations.CreatePayoffPlan.Output {
         case .badRequest(let response): throw try response.body.applicationProblemJson
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -58,7 +62,7 @@ extension Operations.GetActivePayoffPlan.Output {
         case .ok(let response): return try ActivePlanDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .notFound(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -70,7 +74,7 @@ extension Operations.SetPayoffFocus.Output {
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .notFound(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -82,8 +86,9 @@ extension Operations.RecordDebtPayment.Output {
         case .badRequest(let response): throw try response.body.applicationProblemJson
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .notFound(let response): throw try response.body.applicationProblemJson
+        case .conflict(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }

@@ -2,6 +2,8 @@ import Foundation
 
 /** The tag of an account on Rencanaku (SKR-04). */
 package enum PlanAccountStatus: String, CaseIterable, Hashable, Sendable {
+    /** Lunas: the plan has paid the account off. */
+    case paidOff = "paid_off"
     /** Sedang dilunasi: the account the plan pays first now. */
     case inProgress = "in_progress"
     /** Berikutnya: an account the plan reaches after the one in progress. */

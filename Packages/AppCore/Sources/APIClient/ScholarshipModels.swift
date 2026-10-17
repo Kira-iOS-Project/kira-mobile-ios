@@ -24,6 +24,8 @@ package enum ScholarshipIneligibilityDTO: String, CaseIterable, Sendable {
     case hasScholarship = "has_scholarship"
     /** An application is open. */
     case hasOpenApplication = "has_open_application"
+    /** The debt emergency was not used. */
+    case debtEmergencyNotUsed = "debt_emergency_not_used"
 }
 
 /** Where an application stands. */

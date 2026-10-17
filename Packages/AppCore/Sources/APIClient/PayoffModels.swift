@@ -8,8 +8,10 @@ package enum PayoffMethodDTO: String, CaseIterable, Sendable {
     case avalanche
 }
 
-/** The tag of an account on Rencanaku: Sedang dilunasi, Berikutnya, Jalan terus. */
+/** The tag of an account on Rencanaku: Lunas, Sedang dilunasi, Berikutnya, Jalan terus. */
 package enum PayoffAccountStatusDTO: String, CaseIterable, Sendable {
+    /** Lunas. */
+    case paidOff = "paid_off"
     /** Sedang dilunasi. */
     case inProgress = "in_progress"
     /** Berikutnya. */

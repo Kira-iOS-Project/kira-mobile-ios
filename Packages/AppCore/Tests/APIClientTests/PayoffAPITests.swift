@@ -12,7 +12,10 @@ private struct PlanBody: Decodable {
 
 private struct FocusBody: Decodable { let focusDebtId: String }
 
-private struct PaymentBody: Decodable { let amount: Int }
+private struct PaymentBody: Decodable {
+    let amount: Int
+    let paymentId: String
+}
 
 @Suite("PayoffAPI")
 struct PayoffAPITests {
@@ -86,7 +89,7 @@ struct PayoffAPITests {
     @Test("marks a payment, and announces the account it settled with the score estimate")
     func records() async throws {
         let (api, transport) = KiraAPI.canned(json: settledPaymentJSON)
-        let settled = try await api.recordDebtPayment(debtId: "debt-1", amount: 420_000)
+        let settled = try await api.recordDebtPayment(debtId: "debt-1", amount: 420_000, paymentId: "pay-1")
         #expect(settled.paidOff && settled.remaining == 0 && settled.progressPercent == 100)
         #expect(settled.paid == 420_000 && settled.debtId == "00000000-0000-4000-8000-000000000001")
         #expect(settled.nextAccount == NextAccountDTO(id: "00000000-0000-4000-8000-000000000002", name: "Pinjol B"))
@@ -95,10 +98,11 @@ struct PayoffAPITests {
         #expect(estimate.consumerDebtBefore == 50 && estimate.consumerDebtAfter == 80)
         let sent = try #require(await transport.request)
         #expect(sent.path.hasSuffix("debt-1/payments") && sent.method == .post)
-        #expect(try sent.decoded(PaymentBody.self).amount == 420_000)
+        let body = try sent.decoded(PaymentBody.self)
+        #expect(body.amount == 420_000 && body.paymentId == "pay-1")
 
         let (partial, _) = KiraAPI.canned(json: partPaymentJSON)
-        let part = try await partial.recordDebtPayment(debtId: "debt-1", amount: 210_000)
+        let part = try await partial.recordDebtPayment(debtId: "debt-1", amount: 210_000, paymentId: "pay-2")
         #expect(!part.paidOff && part.remaining == 210_000 && part.progressPercent == 65)
         #expect(part.nextAccount == nil && part.scoreEstimate == nil)
     }
@@ -109,6 +113,8 @@ struct PayoffAPITests {
         await expectProblems([400, 401, 422]) { _ = try await $0.createPayoffPlan(method: .snowball, extraPayment: 0) }
         await expectProblems([401, 404]) { _ = try await $0.getActivePayoffPlan() }
         await expectProblems([401, 404, 422]) { _ = try await $0.setPayoffFocus(debtId: "debt-2") }
-        await expectProblems([400, 401, 404, 422]) { _ = try await $0.recordDebtPayment(debtId: "d", amount: 1) }
+        await expectProblems([400, 401, 404, 409, 422]) {
+            _ = try await $0.recordDebtPayment(debtId: "d", amount: 1, paymentId: "p")
+        }
     }
 }
