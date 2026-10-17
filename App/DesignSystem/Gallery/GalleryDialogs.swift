@@ -34,7 +34,7 @@
                     primary: KiraButton("budget.save.success.done") {}
                 )
                 .onScrim()
-                KiraButton("gallery.dialog.open", variant: .secondary) {
+                KiraButton("budget.save.success.preview.open", variant: .secondary) {
                     isBudgetSaveSuccessPresented = true
                 }
                 .budgetSaveSuccessDialog(isPresented: $isBudgetSaveSuccessPresented)

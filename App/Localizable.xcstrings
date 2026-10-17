@@ -1981,6 +1981,16 @@
         }
       }
     },
+    "budget.save.success.preview.open" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Dialog Tersimpan"
+          }
+        }
+      }
+    },
     "budget.save.success.title" : {
       "localizations" : {
         "id" : {
