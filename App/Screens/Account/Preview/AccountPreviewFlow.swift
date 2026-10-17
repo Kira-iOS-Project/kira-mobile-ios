@@ -31,6 +31,8 @@
 
         @ViewBuilder private func destination(_ route: AppRoute) -> some View {
             switch route {
+            case .wallets:
+                WalletsScreen(service: PreviewWalletService(), onOpenDebt: { _ in }, onOpenHelp: {})
             case .security: SecurityScreen(service: service, settings: settings, onOpen: open)
             case .privacy:
                 PrivacyScreen(service: service, settings: settings, onOpen: open, onSignedOut: { path = [] })
