@@ -46,7 +46,9 @@ extension XCTestCase {
                 guard scrollDown(scroll, by: remaining) else { break }
             }
             try XCTContext.runActivity(named: "\(screen), pass \(pass + 1)") { _ in
-                try auditInPlace(app) { cuts.accepts($0) || accepted($0) }
+                try auditInPlace(app) { issue in
+                    cuts.accepts(issue) || (pass > 0 && Self.isScrolledOffSliver(issue)) || accepted(issue)
+                }
             }
             cuts.noteWhole(in: scroll, of: app)
         }
@@ -54,6 +56,17 @@ extension XCTestCase {
         for reason in cuts.neverWhole {
             XCTFail("\(screen): contrast passed as cut by the scroll edge, never audited whole: \(reason)")
         }
+    }
+
+    /**
+     Accepted, on a pass after a scroll only: "Potentially inaccessible text" with no element. A drag
+     leaves the sliver of a scrolled-off title (its descenders) under the status bar, which the audit
+     reads as text it cannot reach (Naskah Pengajuan Keringanan); that title was audited whole on the
+     first pass, before any scroll, where this is not accepted.
+     */
+    @MainActor
+    private static func isScrolledOffSliver(_ issue: XCUIAccessibilityAuditIssue) -> Bool {
+        issue.auditType == .elementDetection && issue.element == nil
     }
 
     /**
@@ -186,15 +199,28 @@ extension XCTestCase {
      */
     @MainActor
     private func scrollDown(_ scroll: XCUIElement, by distance: CGFloat) -> Bool {
-        let anchor = scroll.staticTexts.firstMatch
-        let top = anchor.exists ? anchor.frame.minY : nil
+        let anchor = onScreenText(in: scroll)
+        let top = anchor?.frame.minY
         let height = scroll.frame.height
         let travel = min(distance + Self.touchSlop, height * 0.65) / max(height, 1)
         let start = scroll.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.85))
         let end = scroll.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.85 - travel))
         start.press(forDuration: 0.05, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.5)
         Thread.sleep(forTimeInterval: 1)
-        guard let top, anchor.exists else { return true }
+        guard let anchor, let top, anchor.exists else { return true }
         return abs(anchor.frame.minY - top) >= 1
+    }
+
+    /**
+     A text the scroll view shows whole now, below its top 100 pt, to tell whether a drag moved the
+     content: a text already scrolled off keeps its frame whatever the drag does. Nil when none is.
+     */
+    @MainActor
+    private func onScreenText(in scroll: XCUIElement) -> XCUIElement? {
+        let visible = scroll.frame
+        return scroll.staticTexts.allElementsBoundByIndex.prefix(60).first { text in
+            let frame = text.frame
+            return frame.minY >= visible.minY + 100 && frame.maxY <= visible.maxY && frame.height > 0
+        }
     }
 }
