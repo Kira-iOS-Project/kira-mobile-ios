@@ -36,7 +36,10 @@ struct EducationGoalScreen: View {
             }
         )
         .navigationDestination(isPresented: showsResult) {
-            if let result { EducationGoalResultScreen(outcome: result, onOpen: onOpen) { onBudget(result) } }
+            if let result {
+                EducationGoalResultScreen(
+                    outcome: result, onOpen: onOpen, onBudget: { onBudget(result) }, onEdit: { model.apply($0) })
+            }
         }
         .navigationDestination(isPresented: showsStage) {
             if let editing {
