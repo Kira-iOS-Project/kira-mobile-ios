@@ -63,6 +63,6 @@ struct GoalMathTests {
         #expect(GoalMath.assetClasses(years: 5) == [.fixedIncomeFund, .governmentBond])
         #expect(GoalMath.assetClasses(years: 10) == [.stocks, .indexFund, .balancedFund, .etf, .gold])
         #expect(GoalMath.assetClasses(years: 19) == [.stocks, .crypto, .indexFund, .etf])
-        #expect(GoalAssetClass.allCases.count == 10)
+        #expect(GoalAssetClass.allCases.count == 11)
     }
 }
