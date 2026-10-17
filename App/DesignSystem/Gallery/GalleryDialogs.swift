@@ -1,6 +1,7 @@
 /**
- Gallery page for dialogs: success, failure, the Atur Budget save failure, confirmations, and round
- icon art, shown inline on the scrim or presented over the whole window.
+ Gallery page for dialogs: success, failure, the Atur Budget save failure and success, a
+ confirmation that deletes and one that does not, and round-icon art, shown inline on the scrim or
+ presented over the whole window.
  */
 #if DEBUG
     import SwiftUI
@@ -13,6 +14,7 @@
         @State private var budgetAmount = "350000"
         // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
         @State private var didRetryBudgetSave = false
+        @State private var isBudgetSaveSuccessPresented = false
 
         var body: some View {
             GallerySection(title: "gallery.section.dialogPresented") {
@@ -31,6 +33,17 @@
                     primary: KiraButton("gallery.dialog.done") {}
                 )
                 .onScrim()
+                KiraDialog(
+                    "budget.save.success.title",
+                    message: "budget.save.success.message",
+                    art: .success,
+                    primary: KiraButton("budget.save.success.done") {}
+                )
+                .onScrim()
+                KiraButton("gallery.dialog.open", variant: .secondary) {
+                    isBudgetSaveSuccessPresented = true
+                }
+                .budgetSaveSuccessDialog(isPresented: $isBudgetSaveSuccessPresented)
             }
             GallerySection(title: "gallery.section.dialogFailure") {
                 KiraDialog(
