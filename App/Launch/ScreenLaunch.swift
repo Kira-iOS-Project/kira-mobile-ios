@@ -32,6 +32,7 @@
             case .care: CareLaunch(screen: screen)
             case .debtEmergency: DebtEmergencyLaunch(screen: screen)
             case .careTools: CareToolsLaunch(screen: screen)
+            case .scoreHistory: ScoreHistoryLaunch(screen: screen)
             }
         }
     }
@@ -76,10 +77,13 @@
          its form.
          */
         case breathing, safetyPlan, safetyPlanEmpty, safetyPlanFailing, safetyPlanForm
+        /** SKR: Riwayat Kira Score (the tests tap 1 Tahun), under a month of data, before the check, failed. */
+        case scoreHistory, scoreHistoryShort, scoreHistoryEmpty, scoreHistoryFailed
 
         /** The area whose launcher builds the screen. */
         enum Area {
             case onboarding, home, account, plans, record, chat, community, care, careTools, debtEmergency, marketplace
+            case scoreHistory
         }
 
         var area: Area {
@@ -108,6 +112,7 @@
             case .marketplace, .marketplaceEmpty, .marketplaceFailed, .product, .productConsultation, .productEbook,
                 .productEvent, .productGone, .submitProduct:
                 .marketplace
+            case .scoreHistory, .scoreHistoryShort, .scoreHistoryEmpty, .scoreHistoryFailed: .scoreHistory
             }
         }
     }
