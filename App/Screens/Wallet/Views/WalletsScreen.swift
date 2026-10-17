@@ -8,8 +8,14 @@ struct WalletsScreen: View {
     @State private var adding: AddWalletModel
     private let onOpenDebt: (String) -> Void
     private let onOpenHelp: () -> Void
+    /** Whether Tambah Dompet opens as the screen appears (the debug launcher's audits). */
+    private let startsAdding: Bool
 
-    init(service: any WalletService, onOpenDebt: @escaping (String) -> Void, onOpenHelp: @escaping () -> Void) {
+    init(
+        service: any WalletService, onOpenDebt: @escaping (String) -> Void, onOpenHelp: @escaping () -> Void,
+        startsAdding: Bool = false
+    ) {
+        self.startsAdding = startsAdding
         self.onOpenDebt = onOpenDebt
         self.onOpenHelp = onOpenHelp
         _model = State(initialValue: WalletsModel(service: service))
@@ -34,7 +40,10 @@ struct WalletsScreen: View {
         .background(.surface)
         .kiraScrollEdges()
         .toolbar(.hidden, for: .navigationBar)
-        .onAppear { Task { await model.load() } }
+        .onAppear {
+            Task { await model.load() }
+            if startsAdding { adding.open() }
+        }
         .addWalletSheet(adding) { Task { await model.load() } }
     }
 
