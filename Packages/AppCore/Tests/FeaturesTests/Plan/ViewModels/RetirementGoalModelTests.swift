@@ -36,6 +36,7 @@ struct RetirementGoalModelTests {
     @Test("matches the board: target, result, pokok, status and asset classes")
     func board() throws {
         let outcome = try #require(persona().outcome)
+        #expect(outcome.age == 28)
         #expect(outcome.years == 27)
         #expect(outcome.annualExpense == 207_602_537)
         #expect(outcome.projection.target == 5_190_063_437)
