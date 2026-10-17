@@ -22,7 +22,7 @@ struct AppServices {
     let careTools: any CareToolsService
     let debtEmergency: any DebtEmergencyService
     let marketplace: any MarketplaceService
-    /** Rencana's plan and goals (`GET /plan`); nil until its live service lands (the quiz then shows no ladder notice). */
+    /** Rencana's plan (`GET /plan`); nil until its live service lands, so the quiz shows no ladder notice. */
     let goals: (any GoalService)?
     /** REN-06 and REN-07: the risk profile (`GET`/`PUT /risk-profile`). */
     let riskProfile: any RiskProfileService

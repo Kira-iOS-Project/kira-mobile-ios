@@ -46,7 +46,7 @@ package final class RiskQuizModel {
     private let service: any RiskProfileService
     private let plans: (any GoalService)?
 
-    /** A quiz on `service`, keeping its answers in `draft`, with the plan's numbers from `plans` (`GET /plan`; none: unknown). */
+    /** A quiz on `service`, its answers in `draft`, the plan's numbers from `plans` (`GET /plan`) when there is one. */
     package init(
         service: any RiskProfileService, draft: RiskQuizDraft, plans: (any GoalService)?, start: Start = .quiz()
     ) {

@@ -51,7 +51,9 @@ struct LiveRiskProfileServiceTests {
         }
     }
 
-    @Test("every refusal of GET reaches the screen as its problem", arguments: [("AUTH_UNAUTHENTICATED", 401), ("INTERNAL_ERROR", 500)])
+    @Test(
+        "every refusal of GET reaches the screen as its problem",
+        arguments: [("AUTH_UNAUTHENTICATED", 401), ("INTERNAL_ERROR", 500)])
     func readProblems(code: String, status: Int) async {
         let (service, _) = service(["GET /api/risk-profile": problem(code, status: status)])
         await #expect(throws: AppProblem(type: AppProblem.typeBase + code, code: code, requestId: "r-1")) {

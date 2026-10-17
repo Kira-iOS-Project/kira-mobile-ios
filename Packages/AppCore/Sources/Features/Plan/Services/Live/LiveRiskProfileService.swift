@@ -10,7 +10,7 @@ package struct LiveRiskProfileService: RiskProfileService {
         self.api = api
     }
 
-    /** `GET /risk-profile`: nil while every field is null (before the first quiz) or the profile is one this app does not know. */
+    /** `GET /risk-profile`: nil while every field is null (before the first quiz) or the profile is unknown. */
     package func savedProfile() async throws -> SavedRiskProfile? {
         let saved = try await api.getRiskProfile()
         guard let profile = saved.profile.flatMap(RiskProfile.init(rawValue:)) else { return nil }
