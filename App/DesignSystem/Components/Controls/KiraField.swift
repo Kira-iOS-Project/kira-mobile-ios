@@ -42,6 +42,8 @@ struct KiraField: View {
                 .font(.footnote.weight(.semibold)).kiraLineHeight(18, size: 13)
                 .foregroundStyle(.inkMuted)
                 .padding(.horizontal, 4)
+                /** A long label ("Harga Properti Impian Saat Ini") wraps, never squeezed by the field's container. */
+                .fixedSize(horizontal: false, vertical: true)
                 .accessibilityHidden(true)
             box
             if let message = errorText ?? hintText {
@@ -118,8 +120,11 @@ struct KiraField: View {
         return isActive ? .pandan : .hairline
     }
 
+    /** "Rp", ",00", "Tahun", "% per Tahun": always whole, the input takes what width is left. */
     private func affix(_ text: LocalizedStringResource) -> some View {
         Text(text).font(.body.weight(.semibold)).kiraLineHeight(22, size: 17).foregroundStyle(.inkMuted)
+            .fixedSize()
+            .layoutPriority(1)
     }
 
     /** The same field with a hint under it. */
