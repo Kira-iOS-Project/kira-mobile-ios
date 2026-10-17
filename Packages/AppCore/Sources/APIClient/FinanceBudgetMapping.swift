@@ -10,6 +10,10 @@ extension Operations.GetCurrentBudget.Output {
     }
 }
 
+/**
+ The current budget as Budget reads it. The spec's single goal post carries no name or
+ category, so no goal-post row is shown until it does.
+ */
 func budgetOverview(_ row: Components.Schemas.CurrentBudget) throws -> BudgetOverview {
     guard let start = CalendarDay(iso: row.payday.periodStart),
         let end = CalendarDay(iso: row.payday.periodEnd)
@@ -18,16 +22,8 @@ func budgetOverview(_ row: Components.Schemas.CurrentBudget) throws -> BudgetOve
         BudgetAllocation(
             category: try bridged($0.category), amount: $0.amount, spent: $0.spent, nearLimit: $0.nearLimit)
     }
-    let goals = row.goalPosts.map { goal in
-        BudgetGoalPost(
-            category: goal.category.rawValue, name: goal.name, currentAmount: goal.currentAmount,
-            targetAmount: goal.targetAmount,
-            milestones: goal.milestones.map {
-                BudgetGoalMilestone(amount: $0.amount, label: $0.label, reached: $0.reached)
-            })
-    }
     return BudgetOverview(
-        income: row.income, remaining: row.remaining, goalPosts: goals,
+        income: row.income, remaining: row.remaining,
         period: PayPeriod(start: start, end: end, daysUntilPayday: row.payday.daysUntilPayday),
         allocations: allocations, isConfigured: row.configured)
 }
