@@ -29,6 +29,11 @@ private struct CoverPresenter<Cover: View>: ViewModifier {
 
     func body(content: Content) -> some View {
         content
+            /**
+             A clear cover leaves the screen behind in the window, and in reach of VoiceOver and the
+             accessibility audit (the Utang step's chips above Tambah Rincian Utang): hidden while it is up.
+             */
+            .accessibilityHidden(isCovering)
             .onChange(of: isPresented, initial: true) { _, presented in
                 if presented { setCovering(true) }
             }
