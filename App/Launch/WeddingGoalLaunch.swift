@@ -4,6 +4,7 @@
  recommendations.
  */
 #if DEBUG
+    import Domain
     import Features
     import SwiftUI
 
