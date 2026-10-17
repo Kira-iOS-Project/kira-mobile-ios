@@ -106,4 +106,26 @@ struct PayoffModelTests {
         await model.choose(.snowball)
         #expect(model.recalculationProblem == nil && model.phase.value?.method == .snowball)
     }
+
+    @Test("the slider keeps a range one step wide and its value inside it, and is off with no room left")
+    func sliderBounds() async {
+        let service = FakePayoffService()
+        let model = PayoffModel(service: service)
+        #expect(model.sliderRange == 0...10_000 && !model.canSlide && model.sliderValue == 0)
+        await model.load()
+        #expect(model.sliderRange == 0...1_840_000 && model.canSlide)
+        await model.setExtra("2.000.000")
+        #expect(model.sliderValue == 1_840_000)
+        for maximum in [0, -250_000] {
+            await service.answers { call in
+                let full = payoffSimulation(for: call)
+                return PayoffSimulation(
+                    method: full.method, extraPayment: full.extraPayment, maxExtraPayment: maximum,
+                    hasUnknownRate: false, accounts: full.accounts, productive: [], allPaidMonth: nil, comparison: nil)
+            }
+            let tight = PayoffModel(service: service)
+            await tight.load()
+            #expect(tight.sliderRange == 0...10_000 && !tight.canSlide && tight.sliderValue == 0)
+        }
+    }
 }

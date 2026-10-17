@@ -41,6 +41,25 @@ package final class PayoffModel {
     /** The extra payment in whole rupiah; 0 while the field is empty. */
     package var extraPayment: Int { AmountInput.value(of: extraText) ?? 0 }
 
+    /** The slider's step: Rp10.000,00. */
+    package static let sliderStep = 10_000
+
+    /** Whether the budget leaves room for one step of extra payment; the slider is off otherwise. */
+    package var canSlide: Bool { (maxExtraPayment ?? 0) >= Self.sliderStep }
+
+    /**
+     The slider's range, at least one step wide: SwiftUI's Slider traps on a range narrower than its
+     step, which a budget with no room left (a maximum of 0, or below) used to give it.
+     */
+    package var sliderRange: ClosedRange<Double> {
+        0...Double(max(maxExtraPayment ?? 0, Self.sliderStep))
+    }
+
+    /** The slider's value: the extra payment, inside its range. */
+    package var sliderValue: Double {
+        min(max(Double(extraPayment), sliderRange.lowerBound), sliderRange.upperBound)
+    }
+
     /** The most the extra payment may be, once a plan is on screen. */
     package var maxExtraPayment: Int? { phase.value?.maxExtraPayment }
 

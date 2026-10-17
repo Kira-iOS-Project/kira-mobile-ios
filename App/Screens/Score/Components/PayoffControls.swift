@@ -33,10 +33,11 @@ struct PayoffControls: View {
                     .amount()
                     .error(errorText)
                     .keyboardType(.numberPad)
-                Slider(value: slider, in: 0...Double(max(simulation.maxExtraPayment, 1)), step: 10_000) {
+                Slider(value: slider, in: model.sliderRange, step: Double(PayoffModel.sliderStep)) {
                     Text("payoff.extra.slider")
                 }
                 .tint(.pandan)
+                .disabled(!model.canSlide)
                 .padding(.horizontal, KiraSpacing.space1)
                 .accessibilityValue(Text(PayoffCopy.rupiah(model.extraPayment)))
                 note("payoff.extra.hint \(PayoffCopy.rupiah(simulation.minimumInstalments))")
@@ -60,7 +61,7 @@ struct PayoffControls: View {
     /** The slider moves the same amount the field holds, in steps of Rp10.000,00. */
     private var slider: Binding<Double> {
         Binding(
-            get: { Double(min(model.extraPayment, simulation.maxExtraPayment)) },
+            get: { model.sliderValue },
             set: { value in Task { await model.setExtra(String(Int(value))) } })
     }
 
