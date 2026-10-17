@@ -317,6 +317,62 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `PUT /api/care/safety-plan`.
     /// - Remark: Generated from `#/paths//api/care/safety-plan/put(saveSafetyPlan)`.
     func saveSafetyPlan(_ input: Operations.SaveSafetyPlan.Input) async throws -> Operations.SaveSafetyPlan.Output
+    /// Rencana
+    ///
+    /// Tangga Keuanganmu from the Kira Score engine, the goals, the risk profile and what the calculators start from.
+    ///
+    /// - Remark: HTTP `GET /api/plan`.
+    /// - Remark: Generated from `#/paths//api/plan/get(getPlan)`.
+    func getPlan(_ input: Operations.GetPlan.Input) async throws -> Operations.GetPlan.Output
+    /// The goals
+    ///
+    /// Every goal, the emergency fund first, then the newest.
+    ///
+    /// - Remark: HTTP `GET /api/goals`.
+    /// - Remark: Generated from `#/paths//api/goals/get(listGoals)`.
+    func listGoals(_ input: Operations.ListGoals.Input) async throws -> Operations.ListGoals.Output
+    /// Simpan Tujuan
+    ///
+    /// Stores the goal as the app's calculator computed it, after checking its ranges; one emergency fund per person.
+    ///
+    /// - Remark: HTTP `POST /api/goals`.
+    /// - Remark: Generated from `#/paths//api/goals/post(createGoal)`.
+    func createGoal(_ input: Operations.CreateGoal.Input) async throws -> Operations.CreateGoal.Output
+    /// Detail Tujuan
+    ///
+    /// The goal, its deposits newest first and, for the emergency fund, its milestones.
+    ///
+    /// - Remark: HTTP `GET /api/goals/{id}`.
+    /// - Remark: Generated from `#/paths//api/goals/{id}/get(getGoal)`.
+    func getGoal(_ input: Operations.GetGoal.Input) async throws -> Operations.GetGoal.Output
+    /// Ubah Tujuan
+    ///
+    /// Changes any of the goal's figures; an emergency fund's inputs must keep a positive essentialExpense (422).
+    ///
+    /// - Remark: HTTP `PATCH /api/goals/{id}`.
+    /// - Remark: Generated from `#/paths//api/goals/{id}/patch(updateGoal)`.
+    func updateGoal(_ input: Operations.UpdateGoal.Input) async throws -> Operations.UpdateGoal.Output
+    /// Tambah Setoran
+    ///
+    /// Records a deposit. The same depositId again on this goal answers the stored deposit as it was first recorded (whatever amount the retry carries) and adds nothing; one used on another goal is refused, and a day before the goal was made answers 422.
+    ///
+    /// - Remark: HTTP `POST /api/goals/{id}/deposits`.
+    /// - Remark: Generated from `#/paths//api/goals/{id}/deposits/post(addGoalDeposit)`.
+    func addGoalDeposit(_ input: Operations.AddGoalDeposit.Input) async throws -> Operations.AddGoalDeposit.Output
+    /// Hasil Risiko
+    ///
+    /// The saved profile and answers; every field null before the quiz.
+    ///
+    /// - Remark: HTTP `GET /api/risk-profile`.
+    /// - Remark: Generated from `#/paths//api/risk-profile/get(getRiskProfile)`.
+    func getRiskProfile(_ input: Operations.GetRiskProfile.Input) async throws -> Operations.GetRiskProfile.Output
+    /// Kenali Profil Risikomu
+    ///
+    /// The five answers and the profile the server's fixed table gives them.
+    ///
+    /// - Remark: HTTP `PUT /api/risk-profile`.
+    /// - Remark: Generated from `#/paths//api/risk-profile/put(saveRiskProfile)`.
+    func saveRiskProfile(_ input: Operations.SaveRiskProfile.Input) async throws -> Operations.SaveRiskProfile.Output
     /// This period’s quota usage
     ///
     /// AI messages, receipts and voice seconds used against the plan, and the date they reset.
@@ -1014,6 +1070,112 @@ extension APIProtocol {
         body: Operations.SaveSafetyPlan.Input.Body
     ) async throws -> Operations.SaveSafetyPlan.Output {
         try await saveSafetyPlan(Operations.SaveSafetyPlan.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Rencana
+    ///
+    /// Tangga Keuanganmu from the Kira Score engine, the goals, the risk profile and what the calculators start from.
+    ///
+    /// - Remark: HTTP `GET /api/plan`.
+    /// - Remark: Generated from `#/paths//api/plan/get(getPlan)`.
+    internal func getPlan(headers: Operations.GetPlan.Input.Headers = .init()) async throws -> Operations.GetPlan.Output {
+        try await getPlan(Operations.GetPlan.Input(headers: headers))
+    }
+    /// The goals
+    ///
+    /// Every goal, the emergency fund first, then the newest.
+    ///
+    /// - Remark: HTTP `GET /api/goals`.
+    /// - Remark: Generated from `#/paths//api/goals/get(listGoals)`.
+    internal func listGoals(headers: Operations.ListGoals.Input.Headers = .init()) async throws -> Operations.ListGoals.Output {
+        try await listGoals(Operations.ListGoals.Input(headers: headers))
+    }
+    /// Simpan Tujuan
+    ///
+    /// Stores the goal as the app's calculator computed it, after checking its ranges; one emergency fund per person.
+    ///
+    /// - Remark: HTTP `POST /api/goals`.
+    /// - Remark: Generated from `#/paths//api/goals/post(createGoal)`.
+    internal func createGoal(
+        headers: Operations.CreateGoal.Input.Headers = .init(),
+        body: Operations.CreateGoal.Input.Body
+    ) async throws -> Operations.CreateGoal.Output {
+        try await createGoal(Operations.CreateGoal.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Detail Tujuan
+    ///
+    /// The goal, its deposits newest first and, for the emergency fund, its milestones.
+    ///
+    /// - Remark: HTTP `GET /api/goals/{id}`.
+    /// - Remark: Generated from `#/paths//api/goals/{id}/get(getGoal)`.
+    internal func getGoal(
+        path: Operations.GetGoal.Input.Path,
+        headers: Operations.GetGoal.Input.Headers = .init()
+    ) async throws -> Operations.GetGoal.Output {
+        try await getGoal(Operations.GetGoal.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Ubah Tujuan
+    ///
+    /// Changes any of the goal's figures; an emergency fund's inputs must keep a positive essentialExpense (422).
+    ///
+    /// - Remark: HTTP `PATCH /api/goals/{id}`.
+    /// - Remark: Generated from `#/paths//api/goals/{id}/patch(updateGoal)`.
+    internal func updateGoal(
+        path: Operations.UpdateGoal.Input.Path,
+        headers: Operations.UpdateGoal.Input.Headers = .init(),
+        body: Operations.UpdateGoal.Input.Body
+    ) async throws -> Operations.UpdateGoal.Output {
+        try await updateGoal(Operations.UpdateGoal.Input(
+            path: path,
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Tambah Setoran
+    ///
+    /// Records a deposit. The same depositId again on this goal answers the stored deposit as it was first recorded (whatever amount the retry carries) and adds nothing; one used on another goal is refused, and a day before the goal was made answers 422.
+    ///
+    /// - Remark: HTTP `POST /api/goals/{id}/deposits`.
+    /// - Remark: Generated from `#/paths//api/goals/{id}/deposits/post(addGoalDeposit)`.
+    internal func addGoalDeposit(
+        path: Operations.AddGoalDeposit.Input.Path,
+        headers: Operations.AddGoalDeposit.Input.Headers = .init(),
+        body: Operations.AddGoalDeposit.Input.Body
+    ) async throws -> Operations.AddGoalDeposit.Output {
+        try await addGoalDeposit(Operations.AddGoalDeposit.Input(
+            path: path,
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Hasil Risiko
+    ///
+    /// The saved profile and answers; every field null before the quiz.
+    ///
+    /// - Remark: HTTP `GET /api/risk-profile`.
+    /// - Remark: Generated from `#/paths//api/risk-profile/get(getRiskProfile)`.
+    internal func getRiskProfile(headers: Operations.GetRiskProfile.Input.Headers = .init()) async throws -> Operations.GetRiskProfile.Output {
+        try await getRiskProfile(Operations.GetRiskProfile.Input(headers: headers))
+    }
+    /// Kenali Profil Risikomu
+    ///
+    /// The five answers and the profile the server's fixed table gives them.
+    ///
+    /// - Remark: HTTP `PUT /api/risk-profile`.
+    /// - Remark: Generated from `#/paths//api/risk-profile/put(saveRiskProfile)`.
+    internal func saveRiskProfile(
+        headers: Operations.SaveRiskProfile.Input.Headers = .init(),
+        body: Operations.SaveRiskProfile.Input.Body
+    ) async throws -> Operations.SaveRiskProfile.Output {
+        try await saveRiskProfile(Operations.SaveRiskProfile.Input(
             headers: headers,
             body: body
         ))
