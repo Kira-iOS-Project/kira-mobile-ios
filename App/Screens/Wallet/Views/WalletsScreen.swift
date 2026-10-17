@@ -25,6 +25,10 @@ struct WalletsScreen: View {
             .padding(.bottom, KiraSpacing.space10)
             .background(alignment: .topTrailing) {
                 KiraLeaf(.twig, tone: .soft, size: 150, isFlipped: true).offset(x: 52, y: -22)
+                    .accessibilityHidden(true)
+            }
+            .background(alignment: .bottomLeading) {
+                KiraLeaf(.pandan, tone: .soft, size: 120).offset(x: -44, y: 18).accessibilityHidden(true)
             }
         }
         .background(.surface)
@@ -34,12 +38,18 @@ struct WalletsScreen: View {
     }
 
     private var header: some View {
-        KiraNavBar("wallet.title", leading: .back("wallet.back") { dismiss() }) {
+        KiraNavBar("wallet.title", subtitle: subtitle, leading: .back("wallet.back") { dismiss() }) {
             KiraHelpButton(.icon, action: onOpenHelp)
         }
     }
 
     @Environment(\.dismiss) private var dismiss
+
+    /** "4 dompet · 3 akun utang", once the accounts are loaded. */
+    private var subtitle: LocalizedStringResource? {
+        guard case .loaded(let overview) = model.phase else { return nil }
+        return "wallet.subtitle \(overview.wallets.count) \(overview.debts.count)"
+    }
 
     @ViewBuilder private var content: some View {
         switch model.phase {
