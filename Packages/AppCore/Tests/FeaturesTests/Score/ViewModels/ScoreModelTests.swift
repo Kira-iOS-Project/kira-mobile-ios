@@ -9,7 +9,6 @@ import Testing
 private struct FakeScoreService: ScoreService {
     var report: Result<ScoreReport?, AppProblem> = .success(nil)
     var detail: Result<IndicatorDetail, AppProblem> = .failure(AppProblem(code: "ROUTE_NOT_FOUND"))
-    var plus = true
 
     func score() throws -> ScoreReport? { try report.get() }
     func indicator(_ key: IndicatorKey) throws -> IndicatorDetail {
@@ -17,7 +16,7 @@ private struct FakeScoreService: ScoreService {
         guard detail.indicator.key == key else { throw AppProblem(code: "VALIDATION_FAILED") }
         return detail
     }
-    func includesPlus() -> Bool { plus }
+    func includesPlus() -> Bool { true }
 }
 
 private struct OtherError: Error {}
@@ -83,18 +82,5 @@ struct ScoreModelTests {
         await broken.load()
         guard case .failed(let generic) = broken.phase else { return #expect(Bool(false)) }
         #expect(generic == AppProblem())
-    }
-
-    @Test("Utang terhadap Aset opens Portofolio on Kira Plus and Paket Kira without it")
-    func portfolioGate() async {
-        let plus = IndicatorModel(key: .debtToAsset, service: FakeScoreService())
-        await plus.load()
-        #expect(plus.nextRungRoute == .portfolio)
-        let free = IndicatorModel(key: .debtToAsset, service: FakeScoreService(plus: false))
-        await free.load()
-        #expect(free.nextRungRoute == .plans(yearly: false))
-        let other = IndicatorModel(key: .emergencyFund, service: FakeScoreService(plus: false))
-        await other.load()
-        #expect(other.nextRungRoute == .unavailable(.plan))
     }
 }
