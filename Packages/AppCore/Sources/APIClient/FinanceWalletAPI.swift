@@ -7,7 +7,7 @@ extension KiraAPI {
         try await client.listWallets().walletOverview()
     }
 
-    /** A wallet, or a debt account for a credit card, paylater or pinjol (`POST /api/wallets`). */
+    /** A wallet, or a debt account for a credit card, paylater or online loan (`POST /api/wallets`). */
     package func createWallet(_ draft: WalletDraft) async throws {
         try await client.createWallet(body: .json(Components.Schemas.CreateWalletInput(draft))).done()
     }

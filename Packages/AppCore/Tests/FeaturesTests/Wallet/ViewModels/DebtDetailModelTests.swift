@@ -30,7 +30,8 @@ struct DebtDetailModelTests {
         let service = FakeDebtDetailService()
         let model = DebtDetailModel(id: "paylater-a", service: service)
         await model.load()
-        #expect(model.phase.value?.remaining == 420_000 && (await service.asked) == ["paylater-a"])
+        let asked = await service.asked
+        #expect(model.phase.value?.remaining == 420_000 && asked == ["paylater-a"])
     }
 
     @Test(

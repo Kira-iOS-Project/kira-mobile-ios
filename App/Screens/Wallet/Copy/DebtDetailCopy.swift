@@ -1,20 +1,6 @@
-/** Detail Utang's words for Domain values: each debt kind's icon, and rupiah inside sentences. */
+/** Detail Utang's words for Domain values: rupiah inside sentences (the kind's icon is DebtKind+Display's). */
 import Domain
 import Foundation
-
-extension DebtKind {
-    /** The category icon of the debt's kind (DetailUtang's "paylater"). */
-    var category: KiraCategory {
-        switch self {
-        case .paylater: .paylater
-        case .onlineLoan: .onlineLoan
-        case .creditCard: .card
-        case .vehicle: .transport
-        case .mortgage: .home
-        case .familyLoan: .other
-        }
-    }
-}
 
 /** Figures Detail Utang writes inside sentences. */
 enum DebtCopy {
