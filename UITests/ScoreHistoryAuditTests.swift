@@ -1,7 +1,7 @@
 /**
  Rule 24 for Riwayat Kira Score (SKR-07): the board's six months, the year (SKR-07b, after a tap on
- 1 Tahun), a single month of data, the empty state before the health check, and a failed load. Each
- opens through `-KiraScreen <name>` (ScreenAudit.swift).
+ 1 Tahun), a single month of data, the empty state before the health check, a failed load, and the
+ history outside Kira Plus. Each opens through `-KiraScreen <name>` (ScreenAudit.swift).
  */
 import XCTest
 
@@ -29,6 +29,14 @@ nonisolated final class ScoreHistoryAuditTests: XCTestCase {
     @MainActor
     func testBeforeTheHealthCheckPassesTheAudit() throws {
         try auditScreen("scoreHistoryEmpty")
+    }
+
+    /** Outside Kira Plus: the plan's notice and Lihat Paket. */
+    @MainActor
+    func testOutsideKiraPlusPassesTheAudit() throws {
+        try auditScreen("scoreHistoryLocked") { app in
+            XCTAssertTrue(app.buttons["Lihat Paket"].waitForExistence(timeout: 10))
+        }
     }
 
     @MainActor

@@ -77,8 +77,11 @@
          its form.
          */
         case breathing, safetyPlan, safetyPlanEmpty, safetyPlanFailing, safetyPlanForm
-        /** SKR: Riwayat Kira Score (the tests tap 1 Tahun), under a month of data, before the check, failed. */
-        case scoreHistory, scoreHistoryShort, scoreHistoryEmpty, scoreHistoryFailed
+        /**
+         SKR: Riwayat Kira Score (the tests tap 1 Tahun), under a month of data, before the check, failed,
+         and outside Kira Plus.
+         */
+        case scoreHistory, scoreHistoryShort, scoreHistoryEmpty, scoreHistoryFailed, scoreHistoryLocked
 
         /** The area whose launcher builds the screen. */
         enum Area {
@@ -112,7 +115,8 @@
             case .marketplace, .marketplaceEmpty, .marketplaceFailed, .product, .productConsultation, .productEbook,
                 .productEvent, .productGone, .submitProduct:
                 .marketplace
-            case .scoreHistory, .scoreHistoryShort, .scoreHistoryEmpty, .scoreHistoryFailed: .scoreHistory
+            case .scoreHistory, .scoreHistoryShort, .scoreHistoryEmpty, .scoreHistoryFailed, .scoreHistoryLocked:
+                .scoreHistory
             }
         }
     }
