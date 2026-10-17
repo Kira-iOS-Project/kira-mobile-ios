@@ -12,6 +12,8 @@ package protocol GoalService: Sendable {
     func goal(id: String) async throws -> GoalDetail
     /** `POST /goals` (`createGoal`): Jadikan Pos Budget. */
     func createGoal(_ draft: GoalDraft) async throws -> GoalDetail
+    /** `PATCH /goals/{id}` (`updateGoal`): Ubah Tujuan saves the calculator's new figures. */
+    func updateGoal(id: String, _ draft: GoalDraft) async throws -> GoalDetail
     /**
      `POST /goals/{id}/deposits` (`addGoalDeposit`): `depositId` makes a retry after a lost answer
      land once (an id used on another goal: 409 `GOAL_DEPOSIT_CONFLICT`). Returns the deposit stored.

@@ -150,7 +150,7 @@ private struct GoalDepositHistory: View {
 }
 
 /** GOAL_NOT_FOUND: the goal is gone; no Coba Lagi, the way back instead. */
-private struct GoalGone: View {
+struct GoalGone: View {
     let onBack: () -> Void
 
     var body: some View {

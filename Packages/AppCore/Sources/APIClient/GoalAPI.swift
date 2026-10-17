@@ -2,8 +2,8 @@ import Domain
 import Foundation
 
 /**
- Rencana's plan and goals (tag Rencana): the ladder with the goals, one goal in full, a new goal, and
- a deposit, idempotent by its id.
+ Rencana's plan and goals (tag Rencana): the ladder with the goals, one goal in full, a new goal, a
+ goal changed, and a deposit, idempotent by its id.
  */
 extension KiraAPI {
     /** The ladder, the goals, the risk profile and the prefill (`GET /api/plan`). */
@@ -19,6 +19,11 @@ extension KiraAPI {
     /** A new goal; 409 `GOAL_EMERGENCY_EXISTS` for a second emergency fund (`POST /api/goals`). */
     package func createGoal(_ draft: GoalDraft) async throws -> GoalDetail {
         try await client.createGoal(body: .json(.init(draft))).goal()
+    }
+
+    /** A goal changed to `draft`'s figures (Ubah Tujuan); 404 `GOAL_NOT_FOUND` (`PATCH /api/goals/{id}`). */
+    package func updateGoal(id: String, _ draft: GoalDraft) async throws -> GoalDetail {
+        try await client.updateGoal(path: .init(id: id), body: .json(.init(draft))).goal()
     }
 
     /** A deposit; the same id lands once, an id another goal used is 409 `GOAL_DEPOSIT_CONFLICT`. */

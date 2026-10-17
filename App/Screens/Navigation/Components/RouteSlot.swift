@@ -58,7 +58,7 @@ struct RouteSlot: View {
         case .goal(let id): GoalDetailScreen(id: id, service: services.goals, onOpen: onOpen)
         case .newGoal: NewGoalScreen(onOpen: onOpen)
         case .goalForm(let kind): GoalFormRoute(kind: kind, service: services.goals, onOpen: onOpen)
-        case .editGoal: EmptySlot()
+        case .editGoal(let id): EditGoalRoute(id: id, service: services.goals, onOpen: onOpen)
         case .riskQuiz, .riskResult: riskQuiz(start: route == .riskResult ? .savedResult : .quiz())
         case .legalityCheck: LegalityCheckScreen(onOpen: onOpen)
         case .assetModule(let assetClass): AssetModuleScreen(assetClass: assetClass, onOpen: onOpen)

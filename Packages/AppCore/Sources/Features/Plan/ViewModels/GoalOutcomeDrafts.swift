@@ -79,7 +79,7 @@ extension EducationGoalOutcome {
 
 extension EducationStage {
     /** Its key in a goal's inputs. */
-    fileprivate var key: String {
+    var key: String {
         switch self {
         case .primary: "primary"
         case .juniorHigh: "juniorHigh"
@@ -90,7 +90,7 @@ extension EducationStage {
 }
 
 extension FeePeriod {
-    fileprivate var key: String {
+    var key: String {
         switch self {
         case .month: "month"
         case .semester: "semester"
@@ -100,7 +100,7 @@ extension FeePeriod {
 }
 
 extension EducationRegion {
-    fileprivate var key: String {
+    var key: String {
         switch self {
         case .jakarta: "jakarta"
         case .java: "java"
@@ -111,7 +111,7 @@ extension EducationRegion {
 }
 
 extension EducationSchool {
-    fileprivate var key: String {
+    var key: String {
         switch self {
         case .public: "public"
         case .private: "private"

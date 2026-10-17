@@ -48,6 +48,18 @@ actor PreviewGoalService: GoalService {
         return goal
     }
 
+    func updateGoal(id: String, _ draft: GoalDraft) -> GoalDetail {
+        var goal = goal(id: id)
+        goal.summary.name = draft.name
+        goal.summary.targetAmount = draft.targetAmount
+        goal.summary.targetDate = draft.targetDate
+        goal.summary.monthlyDeposit = draft.monthlyDeposit
+        goal.inputs = draft.inputs
+        goal.initialAmount = draft.initialAmount
+        replace(goal)
+        return goal
+    }
+
     func addDeposit(goalId: String, amount: Int, depositedOn: CalendarDay, depositId: String) -> GoalDeposit {
         var goal = goal(id: goalId)
         let deposit = GoalDeposit(id: depositId, amount: amount, depositedOn: depositedOn)

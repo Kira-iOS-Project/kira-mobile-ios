@@ -74,10 +74,11 @@ private struct GoalResultButtons: View {
     let onEdit: () -> Void
     let onBudget: () -> Void
     @Environment(\.dynamicTypeSize) private var typeSize
+    @Environment(\.goalSaveLabel) private var saveLabel
 
     var body: some View {
         let edit = KiraButton("plan.result.edit", variant: .secondary, size: .small, action: onEdit).block()
-        let budget = KiraButton("plan.result.budget", size: .small, action: onBudget).block().disabled(isSaving)
+        let budget = KiraButton(saveLabel, size: .small, action: onBudget).block().disabled(isSaving)
         if typeSize.isAccessibilitySize {
             VStack(spacing: KiraSpacing.space2) {
                 budget

@@ -46,6 +46,8 @@
 
         func createGoal(_ draft: GoalDraft) async -> GoalDetail { await preview.createGoal(draft) }
 
+        func updateGoal(id: String, _ draft: GoalDraft) async -> GoalDetail { await preview.updateGoal(id: id, draft) }
+
         func addDeposit(goalId _: String, amount _: Int, depositedOn _: CalendarDay, depositId _: String) throws
             -> GoalDeposit
         {

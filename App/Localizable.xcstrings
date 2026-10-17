@@ -23426,6 +23426,16 @@
         }
       }
     },
+    "plan.result.saveChanges" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Perubahan"
+          }
+        }
+      }
+    },
     "plan.result.shortfall" : {
       "localizations" : {
         "id" : {
