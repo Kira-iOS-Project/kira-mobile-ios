@@ -23,14 +23,15 @@ package struct LivePinRecoveryService: PinRecoveryService {
 /** `POST /auth/refresh` as `SessionStore` asks for it. */
 package enum SessionRefresh {
     /**
-     Renews with `refreshToken`: new tokens, or `.rejected` when the API refuses the token
-     (`AUTH_REFRESH_INVALID`), which ends the session. Any other failure is thrown, so an
-     unreachable API keeps the session for the next try.
+     Renews with `refreshToken`: new tokens, or `.rejected` when the API refuses the token, which
+     ends the session: `AUTH_REFRESH_INVALID` or `AUTH_UNAUTHENTICATED`, or a 401 without a problem
+     body (a proxy's page). Any other failure is thrown, so an unreachable API keeps the session
+     for the next try.
      */
     package static func refresh(_ refreshToken: String, with api: KiraAPI) async throws -> RefreshOutcome {
         do {
             return .renewed(SessionTokens(try await api.refreshSession(refreshToken: refreshToken)))
-        } catch let problem as AppProblem where problem.knownCode == .authRefreshInvalid {
+        } catch where AppProblem.isSessionRefusal(error) {
             return .rejected
         }
     }
