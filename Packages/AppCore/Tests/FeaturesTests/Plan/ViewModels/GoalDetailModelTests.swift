@@ -6,7 +6,8 @@ import Testing
 @testable import Features
 
 /** The board's Dana Darurat, with its deposits and milestones; deposits are recorded or fail as set. */
-private actor DetailStub: GoalService {
+/** Shared with GoalDetailModelDefaultsTests. */
+actor DetailStub: GoalService {
     static let goal = GoalDetail(
         summary: GoalSummary(
             id: "emergency", kind: .emergencyFund, name: "Dana Darurat", targetAmount: 25_200_000,
