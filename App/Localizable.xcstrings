@@ -2801,6 +2801,16 @@
         }
       }
     },
+    "care.quickReplies.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Balasan cepat"
+          }
+        }
+      }
+    },
     "care.script.affordable" : {
       "localizations" : {
         "id" : {
@@ -3167,16 +3177,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Naskah Pengajuan Keringanan"
-          }
-        }
-      }
-    },
-    "care.quickReplies.label" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Balasan cepat"
           }
         }
       }
@@ -10412,6 +10412,16 @@
         }
       }
     },
+    "indicator.consumerDebt.onTimeMany" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bayar tepat waktu, tapi akunnya terlalu banyak."
+          }
+        }
+      }
+    },
     "indicator.consumerDebt.overdue" : {
       "localizations" : {
         "id" : {
@@ -11017,7 +11027,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lunasi satu per satu, utang terkecil dulu, sampai tiga platform atau kurang."
+            "value" : "Lunasi akun dengan sisa terkecil dulu, sampai tinggal tiga platform."
           }
         }
       }
@@ -11582,7 +11592,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ada Keterlambatan"
+            "value" : "4+ Platform atau Ada Keterlambatan"
           }
         }
       }
@@ -11593,29 +11603,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pernah telat bayar"
-          }
-        }
-      }
-    },
-    "indicator.rung.consumer_debt.25.onTime" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "4 Platform atau Lebih, Tepat Waktu"
-          }
-        }
-      }
-    },
-    "indicator.rung.consumer_debt.25.onTime.detail" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Terlalu banyak akun"
+            "value" : "Terlalu banyak akun atau pernah telat bayar"
           }
         }
       }

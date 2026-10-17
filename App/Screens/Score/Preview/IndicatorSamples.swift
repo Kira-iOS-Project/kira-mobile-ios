@@ -39,8 +39,8 @@ nonisolated extension ScoreIndicator {
 
 nonisolated extension IndicatorDetail {
     /**
-     Utang Konsumtif with four platforms, all paid on time (KIR-126): 25 points, like a late payer, on
-     the rung that says "4 Platform atau Lebih, Tepat Waktu"; the next step asks only to pay off.
+     Utang Konsumtif with four platforms, all paid on time (KIR-126): 25 points, the rung of "4+
+     Platform atau Ada Keterlambatan"; the next step asks only to pay off down to three.
      */
     static let consumerDebtManyOnTime: IndicatorDetail = {
         let indicator = ScoreIndicator(
