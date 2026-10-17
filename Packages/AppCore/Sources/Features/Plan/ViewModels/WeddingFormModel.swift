@@ -78,10 +78,11 @@ package final class WeddingFormModel {
 
     /** Opens the price sheet on `kind`'s row. */
     package func edit(_ kind: WeddingItemKind) {
-        guard let item = items.first(where: { $0.kind == kind }) else { return }
         editing = kind
-        editPrice = AmountInput.text(for: item.price)
-        editGuests = String(item.guests)
+        for item in items where item.kind == kind {
+            editPrice = AmountInput.text(for: item.price)
+            editGuests = String(item.guests)
+        }
     }
 
     /** Simpan in the price sheet: the row takes the typed price (and guests), and the example is left. */
