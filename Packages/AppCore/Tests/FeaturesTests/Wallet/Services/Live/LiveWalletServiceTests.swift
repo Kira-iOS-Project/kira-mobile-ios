@@ -5,10 +5,16 @@ import Testing
 @testable import Features
 
 private let walletListJSON =
-    #"{"items":[{"id":"wallet-1","name":"BCA","type":"bank","balance":7000000,"createdAt":"2026-10-16T05:00:00.000Z"}],"debts":[\#(debtSummaryJSON)],"heldTotal":7000000,"totalDebt":4800000}"#
+    #"{"items":[{"id":"wallet-1","name":"BCA","type":"bank","balance":7000000,"#
+    + #""createdAt":"2026-10-16T05:00:00.000Z"}],"debts":[\#(debtSummaryJSON)],"heldTotal":7000000,"#
+    + #""totalDebt":4800000}"#
 
 private let debtSummaryJSON =
-    #"{"id":"debt-1","name":"Paylater A","kind":"paylater","originalAmount":6000000,"remainingAmount":4800000,"monthlyInstallment":400000,"remainingTenorMonths":12,"installmentsTotal":18,"installmentsRemaining":12,"paymentStatus":"on_time","nextInstallment":{"dueDate":"2026-10-21","amount":400000,"status":"dueSoon"},"dueSoon":true,"totalPaid":1200000,"scoreEstimate":{"value":66,"isSimulated":true},"nextStep":"Bayar lebih awal"}"#
+    #"{"id":"debt-1","name":"Paylater A","kind":"paylater","originalAmount":6000000,"remainingAmount":4800000,"#
+    + #""monthlyInstallment":400000,"remainingTenorMonths":12,"installmentsTotal":18,"installmentsRemaining":12,"#
+    + #""paymentStatus":"on_time","nextInstallment":{"dueDate":"2026-10-21","amount":400000,"status":"dueSoon"},"#
+    + #""dueSoon":true,"totalPaid":1200000,"scoreEstimate":{"value":66,"isSimulated":true},"#
+    + #""nextStep":"Bayar lebih awal"}"#
 
 @Suite("LiveWalletService")
 struct LiveWalletServiceTests {
@@ -28,5 +34,31 @@ struct LiveWalletServiceTests {
         #expect(overview.heldTotal == 7_000_000)
         #expect(overview.runningDebt == 4_800_000)
         #expect(await transport.routes == ["GET /api/wallets"])
+    }
+
+    @Test("POST /wallets sends a balance for money held and the debt left for a debt account")
+    func adds() async throws {
+        let created =
+            #"{"id":"w2","name":"Dompet Digital 2","type":"ewallet","balance":0,"#
+            + #""createdAt":"2026-10-17T05:00:00.000Z"}"#
+        let (api, transport) = KiraAPI.routed(["POST /api/wallets": ok(created, status: 201)])
+        let service = LiveWalletService(api: api)
+        let types: [WalletType] = [.ewallet, .bank, .cash, .creditCard, .paylater, .onlineLoan, .other]
+        for (amount, type) in types.enumerated() {
+            try await service.addWallet(WalletDraft(type: type, name: "Dompet", amount: amount))
+        }
+        let sent = await transport.sent
+        let sentTypes = ["ewallet", "bank", "cash", "credit_card", "paylater", "pinjol", "other"]
+        #expect(sent.map { $0.json["type"] } == sentTypes.map(JSONValue.string))
+        #expect(sent[0].json["balance"] == .number(0) && sent[3].json["remainingDebt"] == .number(3))
+    }
+
+    @Test("a refused wallet is thrown as its problem")
+    func addRefused() async {
+        let (api, _) = KiraAPI.routed(["POST /api/wallets": problem("VALIDATION_FAILED", status: 422)])
+        let error = await #expect(throws: AppProblem.self) {
+            try await LiveWalletService(api: api).addWallet(WalletDraft(type: .bank, name: "", amount: 0))
+        }
+        #expect(error?.code == "VALIDATION_FAILED")
     }
 }

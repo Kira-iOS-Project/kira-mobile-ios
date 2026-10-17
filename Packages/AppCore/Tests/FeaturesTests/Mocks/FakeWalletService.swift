@@ -4,12 +4,14 @@ import Features
 import Foundation
 
 actor FakeWalletService: WalletService {
-    enum Failure: Hashable, Sendable { case overview }
+    enum Failure: Hashable, Sendable { case overview, add }
 
     private var walletRows: [Wallet]
     private var debtRows: [Wallet]
     private var failures: Set<Failure> = []
     private var delay: Duration = .zero
+    /** The drafts `addWallet` was sent. */
+    private(set) var added: [WalletDraft] = []
 
     init(wallets: [Wallet] = [], debts: [Wallet] = []) {
         walletRows = wallets
@@ -24,6 +26,11 @@ actor FakeWalletService: WalletService {
     func overview() async throws -> WalletOverview {
         try await waitAndFail(.overview)
         return WalletOverview(accounts: walletRows + debtRows)
+    }
+
+    func addWallet(_ draft: WalletDraft) async throws {
+        added.append(draft)
+        try await waitAndFail(.add)
     }
 
     private func waitAndFail(_ operation: Failure) async throws {

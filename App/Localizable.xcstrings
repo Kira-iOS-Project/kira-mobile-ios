@@ -30563,6 +30563,196 @@
         }
       }
     },
+    "wallet.add.added.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dompet baru sudah muncul di daftar dompetmu."
+          }
+        }
+      }
+    },
+    "wallet.add.added.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
+    "wallet.add.added.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dompet Ditambahkan"
+          }
+        }
+      }
+    },
+    "wallet.add.amount" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saldo Sekarang"
+          }
+        }
+      }
+    },
+    "wallet.add.amount.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketik angkanya saja. Bisa diubah kapan pun."
+          }
+        }
+      }
+    },
+    "wallet.add.amount.prompt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0"
+          }
+        }
+      }
+    },
+    "wallet.add.button" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah Dompet"
+          }
+        }
+      }
+    },
+    "wallet.add.cents" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ",00"
+          }
+        }
+      }
+    },
+    "wallet.add.currency" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rp"
+          }
+        }
+      }
+    },
+    "wallet.add.debt.missing" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi sisa utangnya dulu, ya."
+          }
+        }
+      }
+    },
+    "wallet.add.debtNote" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kartu kredit, paylater, dan pinjol otomatis masuk Akun Utang."
+          }
+        }
+      }
+    },
+    "wallet.add.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dompet Belum Tersimpan"
+          }
+        }
+      }
+    },
+    "wallet.add.name" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama"
+          }
+        }
+      }
+    },
+    "wallet.add.name.missing" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi nama dompetnya dulu, ya."
+          }
+        }
+      }
+    },
+    "wallet.add.privacy" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira tidak pernah meminta PIN, password, atau OTP rekeningmu."
+          }
+        }
+      }
+    },
+    "wallet.add.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Dompet"
+          }
+        }
+      }
+    },
+    "wallet.add.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi sendiri, tanpa sambung rekening"
+          }
+        }
+      }
+    },
+    "wallet.add.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah Dompet"
+          }
+        }
+      }
+    },
+    "wallet.add.type" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jenis"
+          }
+        }
+      }
+    },
     "wallet.amount.hide" : {
       "localizations" : {
         "id" : {
