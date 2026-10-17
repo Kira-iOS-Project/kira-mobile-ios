@@ -8,7 +8,8 @@ import SwiftUI
 
 struct BudgetHero: View {
     let budget: BudgetOverview
-    @Binding var isMasked: Bool
+    /** The hero's eye: it masks the amounts here only, as the board draws it. */
+    @State private var isMasked = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {

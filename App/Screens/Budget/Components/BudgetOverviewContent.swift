@@ -17,7 +17,7 @@ struct BudgetOverviewContent: View {
                 KiraNavBar("budget.title", subtitle: period, leading: .back("budget.back") { dismiss() }) {
                     KiraHelpButton(.icon) { onOpen(.care) }
                 }
-                BudgetHero(budget: budget, isMasked: $isMasked)
+                BudgetHero(budget: budget)
                 if budget.isConfigured {
                     BudgetCategoryList(budget: budget)
                 } else {
