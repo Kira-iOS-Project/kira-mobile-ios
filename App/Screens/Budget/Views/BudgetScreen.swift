@@ -6,6 +6,7 @@ import SwiftUI
 struct BudgetScreen: View {
     @State private var model: BudgetModel
     private let onOpen: (AppRoute) -> Void
+    @Environment(\.dismiss) private var dismiss
 
     init(service: any BudgetService, onOpen: @escaping (AppRoute) -> Void) {
         _model = State(initialValue: BudgetModel(service: service))
@@ -23,7 +24,9 @@ struct BudgetScreen: View {
             case .loaded(let budget):
                 BudgetOverviewContent(budget: budget, onOpen: onOpen)
             case .failed(let problem):
-                LoadFailedView(title: "budget.failed", problem: problem, retry: reload)
+                LoadFailedView(
+                    title: "budget.failed", leading: .back("budget.back") { dismiss() }, problem: problem, retry: reload
+                )
             }
         }
         .background(.surface)

@@ -11,6 +11,7 @@ struct PayoffEntryScreen: View {
     private let service: any PayoffService
     private let plans: any PayoffPlanService
     private let onOpen: (AppRoute) -> Void
+    @Environment(\.dismiss) private var dismiss
 
     init(service: any PayoffService, plans: any PayoffPlanService, onOpen: @escaping (AppRoute) -> Void) {
         _model = State(initialValue: PayoffEntryModel(plans: plans))
@@ -28,7 +29,9 @@ struct PayoffEntryScreen: View {
             case .loaded: PayoffPlanScreen(service: plans, onOpen: onOpen)
             case .empty: PayoffScreen(service: service, plans: plans, onOpen: onOpen)
             case .failed(let problem):
-                LoadFailedView(title: "payoff.failed", problem: problem) { Task { await model.load() } }
+                LoadFailedView(title: "payoff.failed", leading: .back("payoff.back") { dismiss() }, problem: problem) {
+                    Task { await model.load() }
+                }
             }
         }
         .background(.surface)
