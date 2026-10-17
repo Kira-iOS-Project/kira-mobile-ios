@@ -22,7 +22,7 @@ struct ReceiptTextParserTests {
         #expect(reading.isBalanced)
     }
 
-    @Test("capitals, quantity lines, a discount, a subtotal and a card payment")
+    @Test("capitals, quantity lines, a discount, a subtotal, PPN (never an item) and a card payment")
     func busyReceipt() throws {
         let lines = [
             "Jl. Kenanga 3", "INDOMARET CABANG KEMANG", "15/10/26", "AQUA 600ML", "2 x 3.500 7.000",
@@ -32,10 +32,11 @@ struct ReceiptTextParserTests {
         let reading = try #require(ReceiptTextParser.read(lines))
         #expect(reading.storeName == "Indomaret Cabang Kemang")
         #expect(reading.printedAt == ReceiptDate(day: 15, month: 10, year: 2026))
-        #expect(reading.items.map(\.name) == ["Aqua 600ml", "Roti Tawar", "Ppn"])
-        #expect(reading.items.map(\.amount) == [7_000, 13_000, 2_000])
+        #expect(reading.items.map(\.name) == ["Aqua 600ml", "Roti Tawar"])
+        #expect(reading.items.map(\.amount) == [7_000, 13_000])
         #expect(reading.total == 22_000)
-        #expect(reading.isBalanced)
+        #expect(!reading.isBalanced)
+        #expect(reading.balanced(otherName: "Belanja").items.map(\.amount) == [7_000, 13_000, 2_000])
     }
 
     @Test("no total printed: the sum; unbalanced; nothing readable")

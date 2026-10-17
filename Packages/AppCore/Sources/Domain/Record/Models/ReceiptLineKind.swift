@@ -8,6 +8,8 @@ enum ReceiptLineKind: Equatable {
     case quantity(amount: Int)
     /** Text without an amount: the store, the address, or an item's name before its quantity line. */
     case text(String)
+    /** An amount alone on its line: OCR often puts "TOTAL" and "72.000" on two lines. */
+    case amount(Int)
     /** Nothing to read: a rule, a time, a number on its own. */
     case blank
 
@@ -16,28 +18,30 @@ enum ReceiptLineKind: Equatable {
 
     /** Reads one line, already trimmed. */
     static func of(_ line: String) -> ReceiptLineKind {
-        /** The trailing amount of a line, with an optional "Rp" and an optional minus before it. */
-        let pricedLine =
-            #/
-            ^ (?<label> .*?) [\s:=]* (?<minus> -)? \s* (?: [Rr][Pp] \.? \s*)?
-            (?<amount> \d{1,3} (?: [.,]\d{3})+ (?: [.,]\d{2})? | \d+ (?: [.,]\d{2})?) $
-            /#
-        guard let match = line.wholeMatch(of: pricedLine), let value = NumberText.value(of: String(match.amount))
-        else {
+        let line = ReceiptAmountText.repaired(line)
+        guard let trailing = ReceiptAmountText.trailingAmount(of: line) else {
             return line.contains(where: \.isLetter) ? .text(line) : .blank
         }
-        let label = String(match.label).trimmingCharacters(in: .whitespaces)
         /** Below Rp100 a trailing number is a street number, a quantity or a clock's minutes. */
+        let (label, value, minus) = (trailing.label, trailing.value, trailing.minus)
         guard value >= 100 else { return line.contains(where: \.isLetter) ? .text(line) : .blank }
-        let amount = Int(value.rounded()) * (match.minus == nil ? 1 : -1)
+        let amount = Int(value.rounded()) * (minus ? -1 : 1)
         if label.firstMatch(of: quantityLabel) != nil { return .quantity(amount: abs(amount)) }
-        return label.contains(where: \.isLetter) ? .priced(label: label, amount: amount) : .blank
+        if label.contains(where: \.isLetter) { return .priced(label: label, amount: amount) }
+        return label.isEmpty && !minus ? .amount(amount) : .blank
     }
 }
 
 /** The words that tell a receipt's totals, payments and discounts from its items. */
 enum ReceiptWords {
-    static let totals: Set<String> = ["total", "jumlah", "grand total", "total belanja", "total bayar"]
+    static let totals: Set<String> = [
+        "total", "jumlah", "grand total", "total belanja", "total bayar", "total harga", "total tagihan",
+        "jumlah bayar",
+    ]
+    /** Charges already in the total, never items: tax, service. */
+    static let charges: Set<String> = [
+        "ppn", "pajak", "tax", "pb1", "service", "svc", "layanan", "rounding", "pembulatan",
+    ]
     static let subtotals: Set<String> = ["subtotal", "sub total", "total item", "total qty", "jumlah item"]
     static let payments: Set<String> = [
         "tunai", "cash", "kembali", "kembalian", "change", "debit", "kredit", "credit", "kartu", "card",
@@ -51,6 +55,18 @@ enum ReceiptWords {
     /** The label in lower case with single spaces, as the sets compare it. */
     static func normalized(_ label: String) -> String {
         label.lowercased().split(whereSeparator: { !$0.isLetter }).joined(separator: " ")
+    }
+
+    /**
+     Whether `label` names the total: a total phrase ("GRAND TOTAL", "TOTAL BAYAR"), or the word
+     "total" or "jumlah" without a subtotal or a payment's change ("TOTAL ITEM", "KEMBALI").
+     */
+    static func isTotal(_ text: String) -> Bool {
+        let normal = normalized(text)
+        if totals.contains(normal) { return true }
+        let words = normal.split(separator: " ").map(String.init)
+        guard words.contains("total") || words.contains("jumlah") else { return false }
+        return !label(text, isIn: subtotals) && !words.contains { ["kembali", "kembalian", "change"].contains($0) }
     }
 
     /** Whether any word of `label` is in `words`, or the whole label is. */
