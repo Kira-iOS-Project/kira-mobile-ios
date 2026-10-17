@@ -1,4 +1,4 @@
-/** Rule 24 for the Dompet overview. */
+/** Rule 24 for the Dompet overview and Tambah Dompet sheet. */
 import XCTest
 
 nonisolated final class WalletAuditTests: XCTestCase {
@@ -11,6 +11,13 @@ nonisolated final class WalletAuditTests: XCTestCase {
             XCTAssertTrue(walletEntry.waitForExistence(timeout: 5))
             walletEntry.tap()
             XCTAssertTrue(app.staticTexts["Dompet"].waitForExistence(timeout: 5))
+        }
+    }
+
+    @MainActor
+    func testWalletCreateSheetPassesTheAudit() throws {
+        try auditScreen("wallets") { app in
+            app.buttons["Tambah Dompet"].firstMatch.tap()
         }
     }
 

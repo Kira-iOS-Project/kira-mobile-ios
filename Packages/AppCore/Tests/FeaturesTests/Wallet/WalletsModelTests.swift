@@ -77,6 +77,25 @@ struct WalletsModelTests {
         #expect(model.isDueSoon(wallet("tomorrow", due: Date().addingTimeInterval(86_400))))
     }
 
+    @Test("a newly saved account is added, highlights its row, and updates held totals")
+    func addedWallet() async {
+        let existing = Wallet(id: "bank", name: "Bank", type: .bank, balance: 100)
+        let model = WalletsModel(service: FakeWalletService(wallets: [existing]))
+        await model.load()
+        let added = Wallet(id: "cash", name: "Tunai", type: .cash, balance: 50)
+        model.walletAdded(added)
+        #expect(model.highlightedWalletID == "cash")
+        #expect(model.phase.value?.wallets == [existing, added])
+        #expect(model.phase.value?.heldTotal == 150)
+
+        model.walletAdded(existing)
+        #expect(model.phase.value?.wallets == [added, existing])
+
+        let empty = WalletsModel(service: FakeWalletService())
+        empty.walletAdded(added)
+        #expect(empty.phase.value?.accounts == [added])
+    }
+
     private func wallet(_ id: String, due: Date?, dueSoon: Bool = false) -> Wallet {
         Wallet(id: id, name: id, type: .paylater, balance: 1, nextDueAt: due, dueSoon: dueSoon)
     }

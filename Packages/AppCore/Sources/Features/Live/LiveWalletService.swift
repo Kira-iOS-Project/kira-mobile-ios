@@ -14,4 +14,9 @@ package struct LiveWalletService: WalletService {
     package func overview() async throws -> WalletOverview {
         try await api.getWalletOverview()
     }
+
+    /** Adds an account; debt types use the remaining-debt field on the shared wallet endpoint. */
+    package func createWallet(type: WalletType, name: String, balance: Int) async throws -> Wallet {
+        try await api.createWallet(type: type, name: name, balance: balance)
+    }
 }

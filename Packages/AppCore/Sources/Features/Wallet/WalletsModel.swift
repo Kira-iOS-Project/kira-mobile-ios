@@ -9,6 +9,7 @@ import Observation
 package final class WalletsModel {
     package private(set) var phase: ScreenPhase<WalletOverview> = .loading
     package private(set) var hidesBalances = false
+    package private(set) var highlightedWalletID: String?
 
     private let service: any WalletService
     private let now: @Sendable () -> Date
@@ -35,6 +36,17 @@ package final class WalletsModel {
     /** Masks every balance together, including liabilities. */
     package func toggleBalances() {
         hidesBalances.toggle()
+    }
+
+    /** Adds a successfully saved account to the visible list and highlights its row. */
+    package func walletAdded(_ wallet: Wallet) {
+        highlightedWalletID = wallet.id
+        guard let current = phase.value else {
+            phase = .loaded(WalletOverview(accounts: [wallet]))
+            return
+        }
+        let accounts = current.accounts.filter { $0.id != wallet.id } + [wallet]
+        phase = .loaded(WalletOverview(accounts: accounts))
     }
 
     /** Whether this account's next due date is today through `days` days away in the chosen calendar. */

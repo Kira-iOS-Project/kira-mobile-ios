@@ -16534,6 +16534,166 @@
         }
       }
     },
+    "wallet.create.amount.prompt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0"
+          }
+        }
+      }
+    },
+    "wallet.create.amount.required" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi saldo dengan angka, termasuk 0 bila belum ada saldo."
+          }
+        }
+      }
+    },
+    "wallet.create.balance" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saldo Sekarang"
+          }
+        }
+      }
+    },
+    "wallet.create.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "wallet.create.failed.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dompet Belum Tersimpan"
+          }
+        }
+      }
+    },
+    "wallet.create.name" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama Dompet"
+          }
+        }
+      }
+    },
+    "wallet.create.name.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gunakan nama yang belum dipakai di akunmu."
+          }
+        }
+      }
+    },
+    "wallet.create.name.prompt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contoh: Tabungan Utama"
+          }
+        }
+      }
+    },
+    "wallet.create.name.required" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi nama dompet terlebih dahulu."
+          }
+        }
+      }
+    },
+    "wallet.create.open" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah Dompet"
+          }
+        }
+      }
+    },
+    "wallet.create.privacy" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanpa sinkronisasi bank. Jangan masukkan PIN, kata sandi, atau OTP bank."
+          }
+        }
+      }
+    },
+    "wallet.create.remaining" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sisa Utang"
+          }
+        }
+      }
+    },
+    "wallet.create.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Dompet"
+          }
+        }
+      }
+    },
+    "wallet.create.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah Dompet"
+          }
+        }
+      }
+    },
+    "wallet.create.type" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jenis Akun"
+          }
+        }
+      }
+    },
+    "wallet.new" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baru"
+          }
+        }
+      }
+    },
     "wallet.debt.total" : {
       "localizations" : {
         "id" : {

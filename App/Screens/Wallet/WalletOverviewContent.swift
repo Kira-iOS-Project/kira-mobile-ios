@@ -5,6 +5,7 @@ import SwiftUI
 struct WalletOverviewContent: View {
     let overview: WalletOverview
     let model: WalletsModel
+    let add: () -> Void
     let openDebt: (String) -> Void
 
     var body: some View {
@@ -13,6 +14,7 @@ struct WalletOverviewContent: View {
             KiraNotice(.privacy, message: "wallet.privacy")
             if !overview.wallets.isEmpty { walletGroup }
             if !overview.debts.isEmpty { debtGroup }
+            KiraButton("wallet.create.open", action: add).icon(.plus).block()
         }
     }
 
@@ -61,6 +63,9 @@ private struct WalletRow: View {
     var body: some View {
         KiraListRow(Text(wallet.name), leading: .category(wallet.type.category), action: openDebt) {
             HStack(spacing: KiraSpacing.space2) {
+                if model.highlightedWalletID == wallet.id {
+                    KiraTag("wallet.new", tone: .pandan, icon: .check)
+                }
                 if model.isDueSoon(wallet) { KiraTag("wallet.dueSoon", tone: .turmeric, icon: .calendar) }
             }
         }
