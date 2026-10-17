@@ -93,7 +93,7 @@ struct NegotiationScriptModelTests {
         #expect(model.editing == nil)
     }
 
-    @Test("Salin Naskah copies only a complete script, then shows Naskah Disalin (09c)")
+    @Test("an early Salin Naskah copies nothing and shows no Naskah Disalin; a complete script is copied, then 09c")
     func copy() async {
         let clipboard = Clipboard()
         let model = model(clipboard)

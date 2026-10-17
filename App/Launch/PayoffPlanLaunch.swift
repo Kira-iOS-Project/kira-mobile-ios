@@ -34,8 +34,8 @@
 
         /** The board's payment with no account left in the plan: Lihat Kira Score. */
         private static let lastPayment = DebtPayment(
-            debtId: "paylater-a", paid: 420_000, remaining: 0, monthlyInstalment: 210_000, progressPercent: 100,
-            paidOff: true, nextAccount: nil,
-            scoreEstimate: ScoreEstimate(before: 66, after: 71, consumerDebtBefore: 50, consumerDebtAfter: 80))
+            debtId: "paylater-a", monthlyInstalment: 210_000, paidOff: true, nextAccount: nil,
+            scoreEstimate: ScoreEstimate(before: 66, after: 71)
+        )
     }
 #endif

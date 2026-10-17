@@ -58,8 +58,7 @@ struct LenderPicker: View {
                     HStack(spacing: KiraSpacing.space3) {
                         VStack(alignment: .leading, spacing: 1) {
                             Text(debt.name).font(.body.weight(isOn ? .semibold : .medium)).foregroundStyle(.ink)
-                            Text("care.script.lenderInfo \(Decimal(debt.monthlyInstalment).formatted(.rupiah))")
-                                .font(.footnote).foregroundStyle(.inkMuted)
+                            info(debt).font(.footnote).foregroundStyle(.inkMuted)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         if isOn { KiraIcon(.check, size: 20, weight: .bold).foregroundStyle(.pandan) }
@@ -73,10 +72,19 @@ struct LenderPicker: View {
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel(Text(debt.name))
+                .accessibilityValue(info(debt))
                 .accessibilityAddTraits(isOn ? .isSelected : [])
             }
         }
         .padding(6)
         .kiraCard(border: .lineStrong, cornerRadius: KiraRadius.medium)
+        /** An overlay is offered only the picker's own height; the list takes the height its rows need. */
+        .fixedSize(horizontal: false, vertical: true)
+    }
+
+    /** "Cicilan Rp230.000,00 per bulan": a lender's instalment, on its row and as its VoiceOver value. */
+    private func info(_ debt: CareDebt) -> Text {
+        Text("care.script.lenderInfo \(Decimal(debt.monthlyInstalment).formatted(.rupiah))")
     }
 }

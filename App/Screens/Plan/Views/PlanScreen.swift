@@ -19,7 +19,7 @@ struct PlanScreen: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: KiraSpacing.space4) {
-                KiraNavBar("plan.title", isLarge: true) {
+                KiraNavBar("plan.home.title", isLarge: true) {
                     KiraHelpButton(.pill) { onOpen(.care) }
                 }
                 .eyebrow("plan.eyebrow")
@@ -46,7 +46,7 @@ struct PlanScreen: View {
             ProgressView().frame(maxWidth: .infinity, minHeight: 200)
                 .accessibilityLabel(Text("plan.loading"))
         case .failed(let problem):
-            LoadFailedView(title: "plan.failed", problem: problem) { Task { await model.load() } }
+            LoadFailedView(title: "plan.home.failed", problem: problem) { Task { await model.load() } }
         case .empty:
             PlanLearning(onOpen: onOpen)
         case .loaded(let plan):

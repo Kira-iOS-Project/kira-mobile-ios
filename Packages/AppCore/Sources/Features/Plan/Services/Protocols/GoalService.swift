@@ -8,14 +8,10 @@ import Domain
 package protocol GoalService: Sendable {
     /** `GET /plan` (`getPlan`). */
     func plan() async throws -> PlanOverview
-    /** `GET /goals` (`listGoals`). */
-    func goals() async throws -> [GoalSummary]
     /** `GET /goals/{id}` (`getGoal`): one goal with its deposits and milestones. */
     func goal(id: String) async throws -> GoalDetail
     /** `POST /goals` (`createGoal`): Jadikan Pos Budget. */
     func createGoal(_ draft: GoalDraft) async throws -> GoalDetail
-    /** `PATCH /goals/{id}` (`updateGoal`). */
-    func updateGoal(id: String, _ draft: GoalDraft) async throws -> GoalDetail
     /**
      `POST /goals/{id}/deposits` (`addGoalDeposit`): `depositId` makes a retry after a lost answer
      land once (an id used on another goal: 409 `GOAL_DEPOSIT_CONFLICT`). Returns the deposit stored.

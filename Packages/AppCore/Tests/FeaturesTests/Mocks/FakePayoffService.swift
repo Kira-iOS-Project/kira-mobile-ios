@@ -25,14 +25,12 @@ struct PayoffCall: Equatable, Sendable {
 
 func payoffSimulation(for call: PayoffCall) -> PayoffSimulation {
     PayoffSimulation(
-        method: call.method, extraPayment: call.extraPayment, maxExtraPayment: 1_840_000, monthlyBudget: 700_000,
-        hasUnknownRate: false,
+        method: call.method, extraPayment: call.extraPayment, maxExtraPayment: 1_840_000, hasUnknownRate: false,
         accounts: [
             PayoffAccount(
                 id: "a-1", kind: .paylater, name: "Paylater A", remaining: 420_000, monthlyInstalment: 210_000,
-                annualInterestRate: 24, position: 1, months: 2, payoffMonth: "2026-11", interest: 6_400)
-        ], productive: [], totalInterest: nil, allPaidMonths: nil,
-        allPaidMonth: nil, comparison: nil)
+                position: 1, payoffMonth: "2026-11")
+        ], productive: [], allPaidMonth: nil, comparison: nil)
 }
 
 /** Holds the Avalanche call with no extra payment until released, so a newer request can overtake it. */

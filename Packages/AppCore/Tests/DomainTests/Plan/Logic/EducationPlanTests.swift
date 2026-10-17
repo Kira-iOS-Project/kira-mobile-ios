@@ -45,11 +45,14 @@ struct EducationPlanTests {
 
     @Test("capped by income, still short: the return rises too; no return yet counts as 0%")
     func capped() {
-        let found = plan(income: 3_000_000, annualReturn: nil).recommendations()
+        let found = plan(income: 3_000_000, deposit: 200_000, annualReturn: nil).recommendations()
         #expect(found.first == .raiseDeposit(to: 600_000))
         guard case .raiseReturn(let rate) = found.last else { return #expect(Bool(false)) }
         #expect(rate > 0 && rate <= 0.30)
         #expect(plan(deposit: 10_000_000).recommendations().isEmpty)
+        /** Already above the income share: the deposit stays, and only the return rises, as on the site. */
+        let above = plan(income: 3_000_000, annualReturn: nil).recommendations()
+        #expect(above.first == .raiseDeposit(to: 2_000_000) && above.count == 2)
     }
 
     @Test("income brackets 20/30/50/60%; no stages, no years; no income, no share")

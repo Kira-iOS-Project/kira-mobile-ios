@@ -34,7 +34,8 @@ struct RetirementGoalScreen: View {
                 GoalStrategyFields(
                     deposit: $model.deposit, annualReturn: $model.annualReturn,
                     returnHint: "plan.retirement.return.hint")
-            })
+            }
+        )
         .navigationDestination(isPresented: Binding(get: { result != nil }, set: { if !$0 { result = nil } })) {
             if let result {
                 RetirementGoalResultScreen(outcome: result, onOpen: onOpen) { onBudget(result) }

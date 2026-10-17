@@ -153,6 +153,8 @@ private struct SheetCover<Content: View>: View {
                     .foregroundStyle(.ink)
                     .accessibilityAddTraits(.isHeader)
                     .accessibilityFocused($titleFocused)
+                    /** Wraps at large sizes instead of being cut to one line. */
+                    .fixedSize(horizontal: false, vertical: true)
                 if let subtitle {
                     /** `.k-sheet__sub`'s `text-wrap: balance`. */
                     Text(subtitle).font(.caption).kiraLineHeight(16, size: 12).foregroundStyle(.inkMuted)

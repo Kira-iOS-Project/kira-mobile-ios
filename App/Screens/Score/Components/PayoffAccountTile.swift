@@ -4,7 +4,6 @@
  the first, muted for the rest), the name, the lines under it, the tag, and a chevron when it opens
  something.
  */
-import Domain
 import SwiftUI
 
 struct PayoffAccountTile: View {
