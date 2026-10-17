@@ -1,6 +1,7 @@
 /**
- Rencana (REN-01), the Rencana tab's root: the four-step ladder from the engine, Tujuanmu with each
- goal's card (opening Detail Tujuan) and "Tambah" to Tujuan Baru, and Belajar Investasi with the risk
+ Rencana (REN-01), the Rencana tab's root: the four-step ladder from the engine, Tujuanmu with the
+ first five goals' cards (opening Detail Tujuan), "Lihat Semua" to Semua Tujuan once there are more,
+ and "Tambah" to Tujuan Baru, and Belajar Investasi with the risk
  quiz, Cek Legalitas and Portofolio Manual. The help button opens Kira Peduli; the dock stays.
  */
 import Domain
@@ -57,8 +58,11 @@ struct PlanScreen: View {
     }
 }
 
-/** Tujuanmu: "Tambah" opens Tujuan Baru, each card its goal. */
+/** Tujuanmu: "Tambah" opens Tujuan Baru, each card its goal; past five, "Lihat Semua" opens the rest. */
 private struct PlanGoals: View {
+    /** The most cards Tujuanmu shows. */
+    static let shown = 5
+
     let goals: [GoalSummary]
     /** The emergency fund's target in months of essential spending, from the ladder ("Target 6×"). */
     let emergencyMultiple: Double?
@@ -73,13 +77,28 @@ private struct PlanGoals: View {
                     .padding(KiraSpacing.space4)
                     .kiraCard()
             }
-            ForEach(goals, id: \.id) { goal in
-                PlanGoalCard(goal: goal, targetMultiple: goal.kind == .emergencyFund ? emergencyMultiple : nil) {
-                    onOpen(.goal(id: goal.id))
-                }
+            GoalCards(goals: Array(goals.prefix(Self.shown)), emergencyMultiple: emergencyMultiple, onOpen: onOpen)
+            if goals.count > Self.shown {
+                KiraButton("plan.goals.seeAll \(goals.count)", variant: .secondary) { onOpen(.goals) }
+                    .iconEnd(.arrowRight).block()
             }
         }
         .padding(.top, KiraSpacing.space2)
+    }
+}
+
+/** Goal cards, each opening its Detail Tujuan; the emergency fund's names its target ("Target 6×"). */
+struct GoalCards: View {
+    let goals: [GoalSummary]
+    let emergencyMultiple: Double?
+    let onOpen: (AppRoute) -> Void
+
+    var body: some View {
+        ForEach(goals, id: \.id) { goal in
+            PlanGoalCard(goal: goal, targetMultiple: goal.kind == .emergencyFund ? emergencyMultiple : nil) {
+                onOpen(.goal(id: goal.id))
+            }
+        }
     }
 }
 

@@ -3,7 +3,7 @@ import Foundation
 
 /**
  Rencana's plan and goals (tag Rencana): the ladder with the goals, one goal in full, a new goal, a
- goal changed, and a deposit, idempotent by its id.
+ goal changed or deleted, and a deposit, idempotent by its id.
  */
 extension KiraAPI {
     /** The ladder, the goals, the risk profile and the prefill (`GET /api/plan`). */
@@ -24,6 +24,11 @@ extension KiraAPI {
     /** A goal changed to `draft`'s figures (Ubah Tujuan); 404 `GOAL_NOT_FOUND` (`PATCH /api/goals/{id}`). */
     package func updateGoal(id: String, _ draft: GoalDraft) async throws -> GoalDetail {
         try await client.updateGoal(path: .init(id: id), body: .json(.init(draft))).goal()
+    }
+
+    /** Hapus Tujuan: the goal and its deposits go; 404 `GOAL_NOT_FOUND` (`DELETE /api/goals/{id}`). */
+    package func deleteGoal(id: String) async throws {
+        try await client.deleteGoal(path: .init(id: id)).deleted()
     }
 
     /** A deposit; the same id lands once, an id another goal used is 409 `GOAL_DEPOSIT_CONFLICT`. */

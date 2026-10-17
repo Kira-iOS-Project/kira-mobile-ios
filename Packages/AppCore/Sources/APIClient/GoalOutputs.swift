@@ -48,6 +48,18 @@ extension Operations.UpdateGoal.Output {
     }
 }
 
+extension Operations.DeleteGoal.Output {
+    func deleted() throws {
+        switch self {
+        case .noContent: return
+        case .unauthorized(let response): throw try response.body.applicationProblemJson
+        case .notFound(let response): throw try response.body.applicationProblemJson
+        case .unprocessableContent(let response): throw try response.body.applicationProblemJson
+        case .default(_, let response): throw try response.body.applicationProblemJson
+        }
+    }
+}
+
 extension Operations.AddGoalDeposit.Output {
     func deposit() throws -> GoalDeposit {
         switch self {

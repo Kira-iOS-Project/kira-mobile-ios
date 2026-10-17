@@ -3,6 +3,8 @@
  card for the milestone last reached, with Kuku; Setoran Berikutnya; Riwayat Setoran, newest first;
  and "Ubah Tujuan" (the calculator on the goal's values) beside "Tambah Setoran", whose sheet saves a
  deposit and closes into "Setoran Tersimpan", or into the failure dialog when the save fails.
+ "Hapus Tujuan" asks first, then deletes the goal with its deposits; closing "Tujuan Dihapus" goes
+ back to Rencana, and a failed delete offers Coba Lagi.
  */
 import Domain
 import Features
@@ -26,6 +28,8 @@ struct GoalDetailScreen: View {
                 }
                 content
             }
+            /** Its own layer: the screen's other dialog (Setoran Tersimpan) sits on the scroll view. */
+            .goalDeleteDialog(model)
             .padding(.horizontal, KiraSpacing.screen)
             .padding(.top, 62 - 59)
             .padding(.bottom, KiraSpacing.space8)
@@ -43,6 +47,9 @@ struct GoalDetailScreen: View {
         .kiraScrollEdges()
         .toolbar(.hidden, for: .navigationBar)
         .task { await model.load() }
+        .onChange(of: model.isClosed) { _, closed in
+            if closed { dismiss() }
+        }
         .kiraSheet(
             $model.deposit, title: "plan.deposit.title", subtitle: depositSubtitle, failureTitle: "plan.deposit.failed",
             onRetry: { Task { await model.submitDeposit() } }, content: { GoalDepositSheet(model: model) }
@@ -114,6 +121,7 @@ private struct GoalDetailContent: View {
             KiraButton("plan.detail.addDeposit") { model.openDeposit() }.block()
         }
         .padding(.top, KiraSpacing.space1)
+        KiraButton("plan.detail.delete", variant: .destructive) { model.requestDelete() }.icon(.trash).block()
     }
 }
 
@@ -122,30 +130,6 @@ extension GoalDetailContent {
     fileprivate var target: LocalizedStringResource {
         let amount = goal.summary.targetAmount.rupiah
         return "plan.detail.target \(amount, format: .rupiah) \(goal.summary.targetDate.date, format: .kiraMonthYear)"
-    }
-}
-
-/** Riwayat Setoran: each deposit by its month, newest first. */
-private struct GoalDepositHistory: View {
-    let deposits: [GoalDeposit]
-
-    var body: some View {
-        if !deposits.isEmpty {
-            VStack(alignment: .leading, spacing: 10) {
-                KiraSectionTitle("plan.detail.history")
-                KiraListGroup("plan.detail.history.label") {
-                    ForEach(deposits, id: \.id) { deposit in
-                        KiraListRow(
-                            Text("plan.detail.history.row \(deposit.depositedOn.date, format: .kiraMonth)"),
-                            leading: .category(.savings), trailing: .none
-                        )
-                        .subtitle(Text(deposit.depositedOn.date, format: .kiraDate))
-                        .amount(KiraAmount(Decimal(deposit.amount), size: .small))
-                    }
-                }
-            }
-            .padding(.top, 6)
-        }
     }
 }
 

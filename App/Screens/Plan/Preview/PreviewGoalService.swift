@@ -60,6 +60,10 @@ actor PreviewGoalService: GoalService {
         return goal
     }
 
+    func deleteGoal(id: String) {
+        stored.removeAll { $0.id == id }
+    }
+
     func addDeposit(goalId: String, amount: Int, depositedOn: CalendarDay, depositId: String) -> GoalDeposit {
         var goal = goal(id: goalId)
         let deposit = GoalDeposit(id: depositId, amount: amount, depositedOn: depositedOn)

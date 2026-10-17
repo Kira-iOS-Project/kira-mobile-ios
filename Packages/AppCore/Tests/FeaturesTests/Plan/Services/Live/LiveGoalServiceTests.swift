@@ -39,10 +39,11 @@ struct LiveGoalServiceTests {
         #expect(sent[1].json["depositId"] == .string("k-1") && sent[1].json["depositedOn"] == .string("2026-10-17"))
     }
 
-    @Test("POST /goals sends the draft with its inputs; PATCH /goals/{id} sends it without the kind")
+    @Test("POST /goals sends the draft with its inputs; PATCH /goals/{id} sends it without the kind; DELETE")
     func createAndUpdate() async throws {
         let (api, transport) = KiraAPI.routed([
             "POST /api/goals": ok(goalJSON, status: 201), "PATCH /api/goals/e": ok(goalJSON),
+            "DELETE /api/goals/e": ok("", status: 204),
         ])
         let service = LiveGoalService(api: api)
         let draft = GoalDraft(
@@ -61,6 +62,8 @@ struct LiveGoalServiceTests {
         let patched = await transport.sent[1].json
         #expect(patched["kind"] == nil && patched["name"] == .string("Dana Darurat"))
         #expect(patched["targetAmount"] == .number(25_200_000) && patched["inBudget"] == .bool(true))
+        try await service.deleteGoal(id: "e")
+        #expect(await transport.sent.count == 3)
     }
 
     @Test("a gone goal, a second emergency fund and a reused deposit key are thrown as their problems")
@@ -70,6 +73,7 @@ struct LiveGoalServiceTests {
             "POST /api/goals/e/deposits": problem("GOAL_DEPOSIT_CONFLICT", status: 409),
             "GET /api/plan": problem("AUTH_UNAUTHENTICATED", status: 401),
             "PATCH /api/goals/gone": problem("GOAL_NOT_FOUND", status: 404),
+            "DELETE /api/goals/gone": problem("GOAL_NOT_FOUND", status: 404),
         ])
         let service = LiveGoalService(api: api)
         let gone = await #expect(throws: AppProblem.self) { try await service.goal(id: "gone") }
@@ -85,6 +89,8 @@ struct LiveGoalServiceTests {
             targetDate: CalendarDay(year: 2027, month: 1, day: 1), inBudget: true)
         let goneEdit = await #expect(throws: AppProblem.self) { try await service.updateGoal(id: "gone", draft) }
         #expect(goneEdit?.knownCode == .goalNotFound)
+        let goneDelete = await #expect(throws: AppProblem.self) { try await service.deleteGoal(id: "gone") }
+        #expect(goneDelete?.knownCode == .goalNotFound)
     }
 }
 

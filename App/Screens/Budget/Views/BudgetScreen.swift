@@ -20,7 +20,7 @@ struct BudgetScreen: View {
                 BudgetOverviewContent(budget: .placeholder) { _ in }
                     .redacted(reason: .placeholder).disabled(true)
             case .empty:
-                BudgetEmptyContent(retry: reload) { dismiss() }
+                BudgetEmptyContent(onSetUp: { onOpen(.editBudget) }, onBack: { dismiss() })
             case .loaded(let budget):
                 BudgetOverviewContent(budget: budget, onOpen: onOpen)
             case .failed(let problem):
@@ -31,28 +31,40 @@ struct BudgetScreen: View {
         }
         .background(.surface)
         .toolbar(.hidden, for: .navigationBar)
+        /** Again on each return, so a budget just set in Atur Budget shows at once. */
         .task { await model.load() }
     }
 
     private func reload() { Task { await model.load() } }
 }
 
-/** No budget yet: Coba Lagi, and the way back the loaded screen shows (Kembali ke Beranda). */
+/**
+ No budget yet: what a budget does here and "Atur Budget" (UNG-05), which sets the income, the
+ payday and each category's share; the way back the loaded screen shows (Kembali ke Beranda).
+ */
 private struct BudgetEmptyContent: View {
-    let retry: () -> Void
+    let onSetUp: () -> Void
     let onBack: () -> Void
 
     var body: some View {
-        VStack(spacing: KiraSpacing.space4) {
-            KiraIllustration(.care, size: 112)
-            Text("budget.empty").font(.headline).foregroundStyle(.ink)
-            KiraButton("budget.retry", action: retry)
+        VStack(spacing: 0) {
+            KiraNavBar("budget.title", leading: .back("budget.back") { onBack() })
+            Spacer(minLength: KiraSpacing.space4)
+            VStack(spacing: KiraSpacing.space2) {
+                KiraIllustration(.piggyBank, size: 120).padding(.bottom, KiraSpacing.space2)
+                Text("budget.empty")
+                    .font(KiraFont.display(24, .heavy, relativeTo: .title2)).tracking(-0.4)
+                    .foregroundStyle(.ink).accessibilityAddTraits(.isHeader)
+                Text("budget.empty.body")
+                    .font(.subheadline).kiraLineHeight(21, size: 15).foregroundStyle(.inkMuted)
+                    .frame(maxWidth: 300)
+            }
+            .multilineTextAlignment(.center)
+            Spacer(minLength: KiraSpacing.space4)
+            KiraButton("budget.empty.setUp", action: onSetUp).icon(.settings).block()
+                .padding(.bottom, KiraSpacing.space2)
         }
-        .padding(KiraSpacing.screen)
+        .padding(.horizontal, KiraSpacing.screen)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .overlay(alignment: .topLeading) {
-            KiraIconButton.back("budget.back", action: onBack)
-                .padding(.horizontal, KiraSpacing.screen).padding(.top, KiraSpacing.space2)
-        }
     }
 }

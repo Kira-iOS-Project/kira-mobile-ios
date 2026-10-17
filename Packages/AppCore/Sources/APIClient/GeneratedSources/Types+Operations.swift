@@ -16924,6 +16924,320 @@ internal enum Operations {
             }
         }
     }
+    /// Hapus Tujuan
+    ///
+    /// Deletes the goal with its deposits. An unknown goal, or one another person owns, is 404.
+    ///
+    /// - Remark: HTTP `DELETE /api/goals/{id}`.
+    /// - Remark: Generated from `#/paths//api/goals/{id}/delete(deleteGoal)`.
+    internal enum DeleteGoal {
+        internal static let id: Swift.String = "deleteGoal"
+        internal struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/api/goals/{id}/DELETE/path`.
+            internal struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/DELETE/path/id`.
+                internal var id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - id:
+                internal init(id: Swift.String) {
+                    self.id = id
+                }
+            }
+            internal var path: Operations.DeleteGoal.Input.Path
+            /// - Remark: Generated from `#/paths/api/goals/{id}/DELETE/header`.
+            internal struct Headers: Sendable, Hashable {
+                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.DeleteGoal.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.DeleteGoal.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            internal var headers: Operations.DeleteGoal.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            internal init(
+                path: Operations.DeleteGoal.Input.Path,
+                headers: Operations.DeleteGoal.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        internal enum Output: Sendable, Hashable {
+            internal struct NoContent: Sendable, Hashable {
+                /// Creates a new `NoContent`.
+                internal init() {}
+            }
+            /// Deleted
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/delete(deleteGoal)/responses/204`.
+            ///
+            /// HTTP response code: `204 noContent`.
+            case noContent(Operations.DeleteGoal.Output.NoContent)
+            /// Deleted
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/delete(deleteGoal)/responses/204`.
+            ///
+            /// HTTP response code: `204 noContent`.
+            internal static var noContent: Self {
+                .noContent(.init())
+            }
+            /// The associated value of the enum case if `self` is `.noContent`.
+            ///
+            /// - Throws: An error if `self` is not `.noContent`.
+            /// - SeeAlso: `.noContent`.
+            internal var noContent: Operations.DeleteGoal.Output.NoContent {
+                get throws {
+                    switch self {
+                    case let .noContent(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "noContent",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Unauthorized: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/DELETE/responses/401/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/{id}/DELETE/responses/401/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.DeleteGoal.Output.Unauthorized.Body
+                /// Creates a new `Unauthorized`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.DeleteGoal.Output.Unauthorized.Body) {
+                    self.body = body
+                }
+            }
+            /// No valid session
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/delete(deleteGoal)/responses/401`.
+            ///
+            /// HTTP response code: `401 unauthorized`.
+            case unauthorized(Operations.DeleteGoal.Output.Unauthorized)
+            /// The associated value of the enum case if `self` is `.unauthorized`.
+            ///
+            /// - Throws: An error if `self` is not `.unauthorized`.
+            /// - SeeAlso: `.unauthorized`.
+            internal var unauthorized: Operations.DeleteGoal.Output.Unauthorized {
+                get throws {
+                    switch self {
+                    case let .unauthorized(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unauthorized",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct NotFound: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/DELETE/responses/404/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/{id}/DELETE/responses/404/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.DeleteGoal.Output.NotFound.Body
+                /// Creates a new `NotFound`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.DeleteGoal.Output.NotFound.Body) {
+                    self.body = body
+                }
+            }
+            /// Resource not found
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/delete(deleteGoal)/responses/404`.
+            ///
+            /// HTTP response code: `404 notFound`.
+            case notFound(Operations.DeleteGoal.Output.NotFound)
+            /// The associated value of the enum case if `self` is `.notFound`.
+            ///
+            /// - Throws: An error if `self` is not `.notFound`.
+            /// - SeeAlso: `.notFound`.
+            internal var notFound: Operations.DeleteGoal.Output.NotFound {
+                get throws {
+                    switch self {
+                    case let .notFound(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "notFound",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct UnprocessableContent: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/DELETE/responses/422/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/{id}/DELETE/responses/422/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.DeleteGoal.Output.UnprocessableContent.Body
+                /// Creates a new `UnprocessableContent`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.DeleteGoal.Output.UnprocessableContent.Body) {
+                    self.body = body
+                }
+            }
+            /// Request schema validation failed
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/delete(deleteGoal)/responses/422`.
+            ///
+            /// HTTP response code: `422 unprocessableContent`.
+            case unprocessableContent(Operations.DeleteGoal.Output.UnprocessableContent)
+            /// The associated value of the enum case if `self` is `.unprocessableContent`.
+            ///
+            /// - Throws: An error if `self` is not `.unprocessableContent`.
+            /// - SeeAlso: `.unprocessableContent`.
+            internal var unprocessableContent: Operations.DeleteGoal.Output.UnprocessableContent {
+                get throws {
+                    switch self {
+                    case let .unprocessableContent(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unprocessableContent",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/DELETE/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/{id}/DELETE/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.DeleteGoal.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.DeleteGoal.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/delete(deleteGoal)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.DeleteGoal.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.DeleteGoal.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
+        }
+        internal enum AcceptableContentType: AcceptableProtocol {
+            case applicationProblemJson
+            case other(Swift.String)
+            internal init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/problem+json":
+                    self = .applicationProblemJson
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            internal var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .applicationProblemJson:
+                    return "application/problem+json"
+                }
+            }
+            internal static var allCases: [Self] {
+                [
+                    .applicationProblemJson
+                ]
+            }
+        }
+    }
     /// Tambah Setoran
     ///
     /// Records a deposit. The same depositId again on this goal answers the stored deposit as it was first recorded (whatever amount the retry carries) and adds nothing; one used on another goal is refused, and a day before the goal was made answers 422.
@@ -17769,6 +18083,291 @@ internal enum Operations {
             /// - Throws: An error if `self` is not `.`default``.
             /// - SeeAlso: `.`default``.
             internal var `default`: Operations.SaveRiskProfile.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
+        }
+        internal enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case applicationProblemJson
+            case other(Swift.String)
+            internal init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                case "application/problem+json":
+                    self = .applicationProblemJson
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            internal var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                case .applicationProblemJson:
+                    return "application/problem+json"
+                }
+            }
+            internal static var allCases: [Self] {
+                [
+                    .json,
+                    .applicationProblemJson
+                ]
+            }
+        }
+    }
+    /// Cek Legalitas
+    ///
+    /// Searches OJK's list of licensed fintech lenders by app, company or web address, every word of q matching. An empty result means only that the name is not in this list; Kira does not judge legality. The query is not stored, and the request log keeps the path without it.
+    ///
+    /// - Remark: HTTP `GET /api/legality`.
+    /// - Remark: Generated from `#/paths//api/legality/get(searchLegality)`.
+    internal enum SearchLegality {
+        internal static let id: Swift.String = "searchLegality"
+        internal struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/api/legality/GET/query`.
+            internal struct Query: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/legality/GET/query/q`.
+                internal var q: Swift.String
+                /// Creates a new `Query`.
+                ///
+                /// - Parameters:
+                ///   - q:
+                internal init(q: Swift.String) {
+                    self.q = q
+                }
+            }
+            internal var query: Operations.SearchLegality.Input.Query
+            /// - Remark: Generated from `#/paths/api/legality/GET/header`.
+            internal struct Headers: Sendable, Hashable {
+                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.SearchLegality.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.SearchLegality.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            internal var headers: Operations.SearchLegality.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - query:
+            ///   - headers:
+            internal init(
+                query: Operations.SearchLegality.Input.Query,
+                headers: Operations.SearchLegality.Input.Headers = .init()
+            ) {
+                self.query = query
+                self.headers = headers
+            }
+        }
+        internal enum Output: Sendable, Hashable {
+            internal struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/legality/GET/responses/200/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/legality/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.LegalitySearch)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    internal var json: Components.Schemas.LegalitySearch {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SearchLegality.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SearchLegality.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// Matches
+            ///
+            /// - Remark: Generated from `#/paths//api/legality/get(searchLegality)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.SearchLegality.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            internal var ok: Operations.SearchLegality.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Unauthorized: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/legality/GET/responses/401/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/legality/GET/responses/401/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SearchLegality.Output.Unauthorized.Body
+                /// Creates a new `Unauthorized`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SearchLegality.Output.Unauthorized.Body) {
+                    self.body = body
+                }
+            }
+            /// No valid session
+            ///
+            /// - Remark: Generated from `#/paths//api/legality/get(searchLegality)/responses/401`.
+            ///
+            /// HTTP response code: `401 unauthorized`.
+            case unauthorized(Operations.SearchLegality.Output.Unauthorized)
+            /// The associated value of the enum case if `self` is `.unauthorized`.
+            ///
+            /// - Throws: An error if `self` is not `.unauthorized`.
+            /// - SeeAlso: `.unauthorized`.
+            internal var unauthorized: Operations.SearchLegality.Output.Unauthorized {
+                get throws {
+                    switch self {
+                    case let .unauthorized(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unauthorized",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct UnprocessableContent: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/legality/GET/responses/422/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/legality/GET/responses/422/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SearchLegality.Output.UnprocessableContent.Body
+                /// Creates a new `UnprocessableContent`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SearchLegality.Output.UnprocessableContent.Body) {
+                    self.body = body
+                }
+            }
+            /// Request schema validation failed
+            ///
+            /// - Remark: Generated from `#/paths//api/legality/get(searchLegality)/responses/422`.
+            ///
+            /// HTTP response code: `422 unprocessableContent`.
+            case unprocessableContent(Operations.SearchLegality.Output.UnprocessableContent)
+            /// The associated value of the enum case if `self` is `.unprocessableContent`.
+            ///
+            /// - Throws: An error if `self` is not `.unprocessableContent`.
+            /// - SeeAlso: `.unprocessableContent`.
+            internal var unprocessableContent: Operations.SearchLegality.Output.UnprocessableContent {
+                get throws {
+                    switch self {
+                    case let .unprocessableContent(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unprocessableContent",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/legality/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/legality/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SearchLegality.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SearchLegality.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
+            ///
+            /// - Remark: Generated from `#/paths//api/legality/get(searchLegality)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.SearchLegality.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.SearchLegality.Output.Default {
                 get throws {
                     switch self {
                     case let .`default`(_, response):
