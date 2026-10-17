@@ -44,8 +44,9 @@ struct RetirementGoalModelTests {
         #expect(outcome.projection.shortfall == 1_503_375_580)
         #expect(outcome.projection.fit == .short)
         #expect(outcome.assetClasses == [.stocks, .crypto, .indexFund, .etf])
-        #expect(GoalShares(principal: outcome.projection.principal, growth: outcome.projection.growth)
-            .principalPercent == 18)
+        #expect(
+            GoalShares(principal: outcome.projection.principal, growth: outcome.projection.growth)
+                .principalPercent == 18)
     }
 
     @Test("recommends Rp2.950.000 a month or 12%, never more time")
