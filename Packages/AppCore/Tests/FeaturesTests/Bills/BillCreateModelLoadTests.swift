@@ -47,6 +47,20 @@ struct BillCreateModelLoadTests {
         #expect(model.canSave)
     }
 
+    @Test("resetting after an empty account load keeps the empty phase")
+    func resetAfterEmptyAccounts() async {
+        let day = CalendarDay(year: 2026, month: 10, day: 17)
+        let model = BillCreateModel(service: FakeBillsService(), today: { day })
+        await model.load()
+
+        model.resetDraft()
+
+        guard case .empty = model.phase else {
+            Issue.record("expected reset to keep the empty debt-account phase")
+            return
+        }
+    }
+
     @Test("preserves a load problem and offers a retry")
     func accountFailure() async {
         let problem = BillsFixtures.problem("HTTP_ERROR")

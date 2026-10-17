@@ -20,6 +20,7 @@ struct BillCreateModelSubmissionTests {
         await model.save()
 
         #expect(model.savedBill == BillsFixtures.bill)
+        #expect(model.nameError == nil)
         #expect(try #require(model.phase.value?.savedBill) == BillsFixtures.bill)
         let request = try #require(await service.submissions().first)
         #expect(request.name == "Internet Rumah" && request.amount == 350_000)
