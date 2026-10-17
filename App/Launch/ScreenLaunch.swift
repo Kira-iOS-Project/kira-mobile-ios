@@ -49,6 +49,7 @@
             case .walletAdd: WalletAddLaunch(screen: screen)
             case .bills: BillsLaunch(screen: screen)
             case .billForm: BillFormLaunch(screen: screen)
+            case .weeklySummary: WeeklySummaryLaunch(screen: screen)
             }
         }
     }
@@ -142,6 +143,8 @@
         case bills, billsEmpty, billsFailed
         /** UNG: Tambah Tagihan (empty, filled, failing) and Ubah Tagihan; the tests open their dialogs. */
         case billAdd, billAddSaved, billAddFailing, billEdit
+        /** UNG-08: Ringkasan Mingguan, a week without spending, and a week that failed to load. */
+        case weeklySummary, weeklySummaryEmpty, weeklySummaryFailed
 
         /** The area whose launcher builds the screen. */
         enum Area {
@@ -159,6 +162,7 @@
             case walletAdd
             case bills
             case billForm
+            case weeklySummary
         }
 
         var area: Area {
@@ -211,6 +215,7 @@
             case .budget: .budget
             case .walletAdd, .walletAddFailing: .walletAdd
             case .billAdd, .billAddSaved, .billAddFailing, .billEdit: .billForm
+            case .weeklySummary, .weeklySummaryEmpty, .weeklySummaryFailed: .weeklySummary
             }
         }
     }

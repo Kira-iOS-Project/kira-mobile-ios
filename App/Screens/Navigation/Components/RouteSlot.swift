@@ -78,7 +78,7 @@ struct RouteSlot: View {
         case .editBill(let id):
             EditBillRoute(
                 id: id, bills: services.bills, editor: services.billEditor, wallets: services.wallet, onOpen: onOpen)
-        case .weeklySummary: EmptySlot()
+        case .weeklySummary: WeeklySummaryScreen(service: services.weeklySummary, onOpen: onOpen)
         case .home, .record, .plan, .community, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history,
             .transaction, .conversation, .importStatement, .unavailable:
             EmptySlot()

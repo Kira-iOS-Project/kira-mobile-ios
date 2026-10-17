@@ -38,6 +38,8 @@ struct AppServices {
     let bills: any BillService
     /** Tambah and Ubah Tagihan's writes (UNG-07, UNG-07c). */
     let billEditor: any BillEditorService
+    /** Ringkasan Mingguan's week (UNG-08). */
+    let weeklySummary: any WeeklySummaryService
 }
 
 extension AppServices {
@@ -66,7 +68,8 @@ extension AppServices {
             portfolio: LivePortfolioService(api: api), goals: LiveGoalService(api: api),
             riskProfile: LiveRiskProfileService(api: api), riskDraft: RiskQuizDraft(),
             wallet: LiveWalletService(api: api), budget: LiveBudgetService(api: api),
-            bills: UnavailableBillService(), billEditor: LiveBillEditorService(api: api))
+            bills: LiveBillService(api: api), billEditor: LiveBillEditorService(api: api),
+            weeklySummary: LiveWeeklySummaryService(api: api))
     }
 
     /** The canvas's sample data: nothing leaves the device. */
@@ -81,7 +84,7 @@ extension AppServices {
             portfolio: PreviewPortfolioService(), goals: PreviewGoalService(),
             riskProfile: PreviewRiskProfileService(), riskDraft: RiskQuizDraft(),
             wallet: PreviewWalletService(), budget: PreviewBudgetService(), bills: PreviewBillService(),
-            billEditor: PreviewBillEditorService())
+            billEditor: PreviewBillEditorService(), weeklySummary: PreviewWeeklySummaryService())
     }
 }
 
