@@ -172,6 +172,13 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `GET /api/home`.
     /// - Remark: Generated from `#/paths//api/home/get(getHome)`.
     func getHome(_ input: Operations.GetHome.Input) async throws -> Operations.GetHome.Output
+    /// Ringkasan Mingguan
+    ///
+    /// The seven WIB days ending on `end` (today by default): expenses per day and per category, the week before, and the budget of the payday period. Numbers only; the app writes the sentences.
+    ///
+    /// - Remark: HTTP `GET /api/summary/weekly`.
+    /// - Remark: Generated from `#/paths//api/summary/weekly/get(getWeeklySummary)`.
+    func getWeeklySummary(_ input: Operations.GetWeeklySummary.Input) async throws -> Operations.GetWeeklySummary.Output
     /// The plans, their prices and quotas, and the current one
     ///
     /// - Remark: HTTP `GET /api/plans`.
@@ -469,11 +476,51 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `POST /api/wallets`.
     /// - Remark: Generated from `#/paths//api/wallets/post(createWallet)`.
     func createWallet(_ input: Operations.CreateWallet.Input) async throws -> Operations.CreateWallet.Output
-    /// Current budget and adjusted payday
+    /// Budget per Kategori: this payday period
+    ///
+    /// The payday period (Beranda's), income left, each category's limit and spending, the last three periods' averages and the Dana Darurat pos from Rencana.
     ///
     /// - Remark: HTTP `GET /api/budgets/current`.
     /// - Remark: Generated from `#/paths//api/budgets/current/get(getCurrentBudget)`.
     func getCurrentBudget(_ input: Operations.GetCurrentBudget.Input) async throws -> Operations.GetCurrentBudget.Output
+    /// Simpan Budget: the limits per category and the payday
+    ///
+    /// Replaces the limits (each category at most once) and sets the payday Beranda also follows; answers the budget afterwards.
+    ///
+    /// - Remark: HTTP `PUT /api/budgets/current`.
+    /// - Remark: Generated from `#/paths//api/budgets/current/put(saveCurrentBudget)`.
+    func saveCurrentBudget(_ input: Operations.SaveCurrentBudget.Input) async throws -> Operations.SaveCurrentBudget.Output
+    /// Detail Utang
+    ///
+    /// One debt account: what is paid, the next due date, its payments newest first, and the payoff engine's next step with the Kira Score estimate.
+    ///
+    /// - Remark: HTTP `GET /api/debts/{id}`.
+    /// - Remark: Generated from `#/paths//api/debts/{id}/get(getDebt)`.
+    func getDebt(_ input: Operations.GetDebt.Input) async throws -> Operations.GetDebt.Output
+    /// Tagihan & Cicilan: the bills grouped by when they fall due
+    ///
+    /// 7 Hari ke Depan (overdue included), Bulan Ini, Bulan Depan and later, in WIB. A bill paid this period sits in the group of its next due date.
+    ///
+    /// - Remark: HTTP `GET /api/bills`.
+    /// - Remark: Generated from `#/paths//api/bills/get(listBills)`.
+    func listBills(_ input: Operations.ListBills.Input) async throws -> Operations.ListBills.Output
+    /// Tambah Tagihan
+    ///
+    /// debtId links the bill to one of the person's debt accounts as its instalment.
+    ///
+    /// - Remark: HTTP `POST /api/bills`.
+    /// - Remark: Generated from `#/paths//api/bills/post(createBill)`.
+    func createBill(_ input: Operations.CreateBill.Input) async throws -> Operations.CreateBill.Output
+    /// Ubah Tagihan, or Tandai Sudah Dibayar with paidOn (null takes it back)
+    ///
+    /// - Remark: HTTP `PATCH /api/bills/{id}`.
+    /// - Remark: Generated from `#/paths//api/bills/{id}/patch(updateBill)`.
+    func updateBill(_ input: Operations.UpdateBill.Input) async throws -> Operations.UpdateBill.Output
+    /// Hapus Tagihan
+    ///
+    /// - Remark: HTTP `DELETE /api/bills/{id}`.
+    /// - Remark: Generated from `#/paths//api/bills/{id}/delete(deleteBill)`.
+    func deleteBill(_ input: Operations.DeleteBill.Input) async throws -> Operations.DeleteBill.Output
     /// Keep a parsed bank statement for review (Kira Plus)
     ///
     /// At most three months per file; rows already recorded are flagged `isDuplicate`.
@@ -796,6 +843,21 @@ extension APIProtocol {
     /// - Remark: Generated from `#/paths//api/home/get(getHome)`.
     internal func getHome(headers: Operations.GetHome.Input.Headers = .init()) async throws -> Operations.GetHome.Output {
         try await getHome(Operations.GetHome.Input(headers: headers))
+    }
+    /// Ringkasan Mingguan
+    ///
+    /// The seven WIB days ending on `end` (today by default): expenses per day and per category, the week before, and the budget of the payday period. Numbers only; the app writes the sentences.
+    ///
+    /// - Remark: HTTP `GET /api/summary/weekly`.
+    /// - Remark: Generated from `#/paths//api/summary/weekly/get(getWeeklySummary)`.
+    internal func getWeeklySummary(
+        query: Operations.GetWeeklySummary.Input.Query = .init(),
+        headers: Operations.GetWeeklySummary.Input.Headers = .init()
+    ) async throws -> Operations.GetWeeklySummary.Output {
+        try await getWeeklySummary(Operations.GetWeeklySummary.Input(
+            query: query,
+            headers: headers
+        ))
     }
     /// The plans, their prices and quotas, and the current one
     ///
@@ -1416,12 +1478,96 @@ extension APIProtocol {
             body: body
         ))
     }
-    /// Current budget and adjusted payday
+    /// Budget per Kategori: this payday period
+    ///
+    /// The payday period (Beranda's), income left, each category's limit and spending, the last three periods' averages and the Dana Darurat pos from Rencana.
     ///
     /// - Remark: HTTP `GET /api/budgets/current`.
     /// - Remark: Generated from `#/paths//api/budgets/current/get(getCurrentBudget)`.
     internal func getCurrentBudget(headers: Operations.GetCurrentBudget.Input.Headers = .init()) async throws -> Operations.GetCurrentBudget.Output {
         try await getCurrentBudget(Operations.GetCurrentBudget.Input(headers: headers))
+    }
+    /// Simpan Budget: the limits per category and the payday
+    ///
+    /// Replaces the limits (each category at most once) and sets the payday Beranda also follows; answers the budget afterwards.
+    ///
+    /// - Remark: HTTP `PUT /api/budgets/current`.
+    /// - Remark: Generated from `#/paths//api/budgets/current/put(saveCurrentBudget)`.
+    internal func saveCurrentBudget(
+        headers: Operations.SaveCurrentBudget.Input.Headers = .init(),
+        body: Operations.SaveCurrentBudget.Input.Body
+    ) async throws -> Operations.SaveCurrentBudget.Output {
+        try await saveCurrentBudget(Operations.SaveCurrentBudget.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Detail Utang
+    ///
+    /// One debt account: what is paid, the next due date, its payments newest first, and the payoff engine's next step with the Kira Score estimate.
+    ///
+    /// - Remark: HTTP `GET /api/debts/{id}`.
+    /// - Remark: Generated from `#/paths//api/debts/{id}/get(getDebt)`.
+    internal func getDebt(
+        path: Operations.GetDebt.Input.Path,
+        headers: Operations.GetDebt.Input.Headers = .init()
+    ) async throws -> Operations.GetDebt.Output {
+        try await getDebt(Operations.GetDebt.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Tagihan & Cicilan: the bills grouped by when they fall due
+    ///
+    /// 7 Hari ke Depan (overdue included), Bulan Ini, Bulan Depan and later, in WIB. A bill paid this period sits in the group of its next due date.
+    ///
+    /// - Remark: HTTP `GET /api/bills`.
+    /// - Remark: Generated from `#/paths//api/bills/get(listBills)`.
+    internal func listBills(headers: Operations.ListBills.Input.Headers = .init()) async throws -> Operations.ListBills.Output {
+        try await listBills(Operations.ListBills.Input(headers: headers))
+    }
+    /// Tambah Tagihan
+    ///
+    /// debtId links the bill to one of the person's debt accounts as its instalment.
+    ///
+    /// - Remark: HTTP `POST /api/bills`.
+    /// - Remark: Generated from `#/paths//api/bills/post(createBill)`.
+    internal func createBill(
+        headers: Operations.CreateBill.Input.Headers = .init(),
+        body: Operations.CreateBill.Input.Body
+    ) async throws -> Operations.CreateBill.Output {
+        try await createBill(Operations.CreateBill.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Ubah Tagihan, or Tandai Sudah Dibayar with paidOn (null takes it back)
+    ///
+    /// - Remark: HTTP `PATCH /api/bills/{id}`.
+    /// - Remark: Generated from `#/paths//api/bills/{id}/patch(updateBill)`.
+    internal func updateBill(
+        path: Operations.UpdateBill.Input.Path,
+        headers: Operations.UpdateBill.Input.Headers = .init(),
+        body: Operations.UpdateBill.Input.Body
+    ) async throws -> Operations.UpdateBill.Output {
+        try await updateBill(Operations.UpdateBill.Input(
+            path: path,
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Hapus Tagihan
+    ///
+    /// - Remark: HTTP `DELETE /api/bills/{id}`.
+    /// - Remark: Generated from `#/paths//api/bills/{id}/delete(deleteBill)`.
+    internal func deleteBill(
+        path: Operations.DeleteBill.Input.Path,
+        headers: Operations.DeleteBill.Input.Headers = .init()
+    ) async throws -> Operations.DeleteBill.Output {
+        try await deleteBill(Operations.DeleteBill.Input(
+            path: path,
+            headers: headers
+        ))
     }
     /// Keep a parsed bank statement for review (Kira Plus)
     ///
