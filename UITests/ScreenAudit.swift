@@ -34,12 +34,16 @@ extension XCTestCase {
                  Scrolls on while any of the last element is still cut by the scroll view's edge: an
                  element half under that edge is sampled against what lies past it (Laporkan Grup's
                  privacy note over Kirim Laporan), so the last pass sees it whole. A scroll that
-                 brings nothing more into view ends the audit.
+                 brings nothing more into view ends the audit, and so does a drag that leaves the
+                 content where it was: the end is reached, and a drag there only bounces, which
+                 leaves the accessibility frames where the content was (Isi Rencana Keselamatanku's
+                 headings read as low contrast on passes 2 to 7, its scroll indicator shrinking a
+                 little with each bounce).
                  */
                 let remaining = scroll.exists ? hiddenBelow(in: scroll, window: window) : 0
                 guard remaining >= 1, remaining < before else { break }
                 before = remaining
-                scrollDown(scroll, by: remaining)
+                guard scrollDown(scroll, by: remaining) else { break }
             }
             try XCTContext.runActivity(named: "\(screen), pass \(pass + 1)") { _ in
                 try auditInPlace(app) { cuts.accepts($0) || accepted($0) }
@@ -177,15 +181,20 @@ extension XCTestCase {
      Scrolls by `distance`, at most about two thirds of a screen, with a drag that holds still before
      lifting, then lets the page settle. The drag adds the touch slop, which moves nothing, so the
      content moves by `distance` itself. Never past the end: a bounce there leaves the accessibility
-     frames where the content was, and the audit then measures the wrong pixels.
+     frames where the content was, and the audit then measures the wrong pixels. True when the
+     content moved; false when it stayed, the end being reached.
      */
     @MainActor
-    private func scrollDown(_ scroll: XCUIElement, by distance: CGFloat) {
+    private func scrollDown(_ scroll: XCUIElement, by distance: CGFloat) -> Bool {
+        let anchor = scroll.staticTexts.firstMatch
+        let top = anchor.exists ? anchor.frame.minY : nil
         let height = scroll.frame.height
         let travel = min(distance + Self.touchSlop, height * 0.65) / max(height, 1)
         let start = scroll.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.85))
         let end = scroll.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.85 - travel))
         start.press(forDuration: 0.05, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.5)
         Thread.sleep(forTimeInterval: 1)
+        guard let top, anchor.exists else { return true }
+        return abs(anchor.frame.minY - top) >= 1
     }
 }
