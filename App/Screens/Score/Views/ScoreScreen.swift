@@ -74,8 +74,6 @@ private struct ScoreContent: View {
 /** The back button and Kira Peduli, the title, and when the score was computed and is next due. */
 private struct ScoreHeader: View {
     let report: ScoreReport
-    /** Where "Lihat Riwayat Skor" leads for this plan. */
-    let historyRoute: AppRoute
     let onOpen: (AppRoute) -> Void
     let onBack: () -> Void
     @Environment(\.dynamicTypeSize) private var typeSize
