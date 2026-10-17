@@ -2086,6 +2086,76 @@
         }
       }
     },
+    "bills.edit.delete.action" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Tagihan"
+          }
+        }
+      }
+    },
+    "bills.edit.delete.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan ini tidak lagi muncul di Beranda atau daftar tagihan. Transaksi yang sudah tercatat tetap ada."
+          }
+        }
+      }
+    },
+    "bills.edit.delete.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "bills.edit.delete.confirm" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Tagihan"
+          }
+        }
+      }
+    },
+    "bills.edit.delete.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Tagihan Ini?"
+          }
+        }
+      }
+    },
+    "bills.edit.deleteFailed.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jadwal dan riwayat transaksi tetap tersimpan. Coba hapus lagi."
+          }
+        }
+      }
+    },
+    "bills.edit.deleteFailed.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Berhasil Menghapus"
+          }
+        }
+      }
+    },
     "bills.edit.lede" : {
       "localizations" : {
         "id" : {

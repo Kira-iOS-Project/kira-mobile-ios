@@ -19,4 +19,9 @@ package struct LiveBillEditService: BillEditService {
     package func updateBill(id: String, update: BillScheduleUpdate) async throws -> RecurringBill {
         try await api.updateBill(id: id, update: update)
     }
+
+    /** Cancels future occurrences through the authenticated finance client. */
+    package func deleteBill(id: String) async throws {
+        try await api.deleteBill(id: id)
+    }
 }

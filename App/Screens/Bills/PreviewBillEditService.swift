@@ -16,4 +16,6 @@ nonisolated struct PreviewBillEditService: BillEditService {
             nextDueDate: update.nextDueDate, repeatInterval: update.repeatInterval.rawValue, kind: .bill,
             isDueSoon: bill.isDueSoon, isPaidThisPeriod: bill.isPaidThisPeriod)
     }
+
+    func deleteBill(id: String) async throws {}
 }

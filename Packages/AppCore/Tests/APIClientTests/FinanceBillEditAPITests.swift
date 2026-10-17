@@ -36,6 +36,14 @@ struct FinanceBillEditAPITests {
         #expect(body.linkedDebtAccountId == nil)
     }
 
+    @Test("DELETE cancels the future schedule without touching its history")
+    func deleteBill() async throws {
+        let (api, transport) = KiraAPI.canned(status: 204)
+        try await api.deleteBill(id: "bill-1")
+        let request = await transport.request
+        #expect(request?.method == .delete && request?.path == "/api/bills/bill-1")
+    }
+
     @Test("maps the documented GET and PATCH failures")
     func failures() async {
         await expectProblems([401, 404, 422]) { _ = try await $0.getBill(id: "bill-1") }
@@ -46,6 +54,7 @@ struct FinanceBillEditAPITests {
                     name: "Internet", amount: 350_000, category: .bills,
                     nextDueDate: CalendarDay(year: 2026, month: 10, day: 22), repeatInterval: .monthly))
         }
+        await expectProblems([401, 404, 422]) { try await $0.deleteBill(id: "bill-1") }
     }
 
     @Test("rejects a category outside the expense contract before sending")

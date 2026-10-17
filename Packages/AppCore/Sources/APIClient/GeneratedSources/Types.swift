@@ -491,6 +491,13 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `PATCH /api/bills/{id}`.
     /// - Remark: Generated from `#/paths//api/bills/{id}/patch(updateBill)`.
     func updateBill(_ input: Operations.UpdateBill.Input) async throws -> Operations.UpdateBill.Output
+    /// Cancel a recurring bill schedule
+    ///
+    /// Cancels future occurrences while preserving saved payment transactions.
+    ///
+    /// - Remark: HTTP `DELETE /api/bills/{id}`.
+    /// - Remark: Generated from `#/paths//api/bills/{id}/delete(deleteBill)`.
+    func deleteBill(_ input: Operations.DeleteBill.Input) async throws -> Operations.DeleteBill.Output
     /// Current budget and adjusted payday
     ///
     /// - Remark: HTTP `GET /api/budgets/current`.
@@ -1501,6 +1508,21 @@ extension APIProtocol {
             path: path,
             headers: headers,
             body: body
+        ))
+    }
+    /// Cancel a recurring bill schedule
+    ///
+    /// Cancels future occurrences while preserving saved payment transactions.
+    ///
+    /// - Remark: HTTP `DELETE /api/bills/{id}`.
+    /// - Remark: Generated from `#/paths//api/bills/{id}/delete(deleteBill)`.
+    internal func deleteBill(
+        path: Operations.DeleteBill.Input.Path,
+        headers: Operations.DeleteBill.Input.Headers = .init()
+    ) async throws -> Operations.DeleteBill.Output {
+        try await deleteBill(Operations.DeleteBill.Input(
+            path: path,
+            headers: headers
         ))
     }
     /// Current budget and adjusted payday

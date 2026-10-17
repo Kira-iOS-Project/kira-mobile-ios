@@ -19,6 +19,12 @@ package final class BillEditModel {
     package private(set) var saveProblem: AppProblem?
     /** Whether the latest save succeeded. */
     package private(set) var hasSaved = false
+    /** Whether the deletion request is in flight. */
+    package private(set) var isDeleting = false
+    /** The API problem from the latest failed deletion. */
+    package private(set) var deleteProblem: AppProblem?
+    /** Whether the server has cancelled this schedule. */
+    package private(set) var hasDeleted = false
 
     private let id: String
     private let service: any BillEditService
@@ -50,7 +56,7 @@ package final class BillEditModel {
     /** Saves a valid form while preserving the draft after a server refusal. */
     package func save() async {
         showsFieldErrors = true
-        guard let draft, let update = draft.update, !isSaving else { return }
+        guard let draft, let update = draft.update, !isSaving, !isDeleting, !hasDeleted else { return }
         isSaving = true
         saveProblem = nil
         hasSaved = false
@@ -65,10 +71,27 @@ package final class BillEditModel {
         }
     }
 
+    /** Cancels only the future schedule and leaves the loaded form intact if the API refuses. */
+    package func delete() async {
+        guard canDelete else { return }
+        isDeleting = true
+        deleteProblem = nil
+        defer { isDeleting = false }
+        do {
+            try await service.deleteBill(id: id)
+            hasDeleted = true
+        } catch {
+            deleteProblem = billEditProblem(error)
+        }
+    }
+
     /** Whether the current draft can be sent. */
     package var canSave: Bool {
-        phase.value != nil && draft?.update != nil && !isSaving
+        phase.value != nil && draft?.update != nil && !isSaving && !isDeleting && !hasDeleted
     }
+
+    /** Whether the loaded schedule can be cancelled now. */
+    package var canDelete: Bool { phase.value != nil && !isSaving && !isDeleting && !hasDeleted }
 
     /** Expense categories offered by the recurring-bill form. */
     package var categories: [TransactionCategory] {

@@ -7,6 +7,8 @@ package protocol BillEditService: Sendable {
     func bill(id: String) async throws -> RecurringBill
     /** Saves changed future-schedule fields without changing recorded transactions. */
     func updateBill(id: String, update: BillScheduleUpdate) async throws -> RecurringBill
+    /** Cancels future occurrences while preserving recorded transactions. */
+    func deleteBill(id: String) async throws
 }
 
 /** The problem shown when the edit screen cannot load or save a schedule. */

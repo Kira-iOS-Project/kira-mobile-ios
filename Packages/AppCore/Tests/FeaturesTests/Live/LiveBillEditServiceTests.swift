@@ -11,6 +11,7 @@ struct LiveBillEditServiceTests {
         let (api, transport) = KiraAPI.routed([
             "GET /api/bills/bill-1": ok(billJSON),
             "PATCH /api/bills/bill-1": ok(billJSON),
+            "DELETE /api/bills/bill-1": empty(),
         ])
         let service = LiveBillEditService(api: api)
         let loaded = try await service.bill(id: "bill-1")
@@ -18,10 +19,14 @@ struct LiveBillEditServiceTests {
             name: "Internet Baru", amount: 500_000, category: .bills,
             nextDueDate: CalendarDay(year: 2026, month: 11, day: 1), repeatInterval: .monthly)
         let saved = try await service.updateBill(id: "bill-1", update: update)
+        let sentUpdate = await transport.sent.last
+        try await service.deleteBill(id: "bill-1")
         #expect(loaded.id == "bill-1" && saved.name == "Internet Rumah")
-        #expect(await transport.routes == ["GET /api/bills/bill-1", "PATCH /api/bills/bill-1"])
-        #expect(await transport.sent.last?.json["name"] == .string("Internet Baru"))
-        #expect(await transport.sent.last?.json["amount"] == .number(500_000))
+        #expect(
+            await transport.routes
+                == ["GET /api/bills/bill-1", "PATCH /api/bills/bill-1", "DELETE /api/bills/bill-1"])
+        #expect(sentUpdate?.json["name"] == .string("Internet Baru"))
+        #expect(sentUpdate?.json["amount"] == .number(500_000))
     }
 
     @Test("keeps the API problem from a refused update")
@@ -31,10 +36,14 @@ struct LiveBillEditServiceTests {
         let update = BillScheduleUpdate(
             name: "Internet", amount: 350_000, category: .bills,
             nextDueDate: CalendarDay(year: 2026, month: 10, day: 22), repeatInterval: .monthly)
-        let problem = AppProblem(
+        let expectedProblem = AppProblem(
             type: AppProblem.typeBase + "BILL_NOT_FOUND", code: "BILL_NOT_FOUND", requestId: "r-1")
-        await #expect(throws: problem) {
+        await #expect(throws: expectedProblem) {
             try await service.updateBill(id: "bill-1", update: update)
+        }
+        let (deleteAPI, _) = KiraAPI.routed(["DELETE /api/bills/bill-1": problem("BILL_NOT_FOUND", status: 404)])
+        await #expect(throws: expectedProblem) {
+            try await LiveBillEditService(api: deleteAPI).deleteBill(id: "bill-1")
         }
     }
 

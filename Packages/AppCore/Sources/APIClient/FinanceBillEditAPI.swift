@@ -14,4 +14,21 @@ extension KiraAPI {
             .init(path: .init(id: id), body: .json(body))
         ).bill()
     }
+
+    /** Cancels future occurrences without removing saved payments or transactions. */
+    package func deleteBill(id: String) async throws {
+        try await client.deleteBill(.init(path: .init(id: id))).deleted()
+    }
+}
+
+extension Operations.DeleteBill.Output {
+    func deleted() throws {
+        switch self {
+        case .noContent: return
+        case .unauthorized(let response): throw try response.body.applicationProblemJson
+        case .notFound(let response): throw try response.body.applicationProblemJson
+        case .unprocessableContent(let response): throw try response.body.applicationProblemJson
+        case .default: throw AppProblem()
+        }
+    }
 }

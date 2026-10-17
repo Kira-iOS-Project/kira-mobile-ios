@@ -106,4 +106,39 @@ struct BillEditModelTests {
         }
         #expect(problem == AppProblem())
     }
+
+    @Test("deletes a loaded schedule and prevents later saves")
+    func deleteSuccess() async {
+        let service = FakeBillEditService()
+        let model = BillEditModel(id: "bill-1", service: service)
+        #expect(!model.canDelete)
+        await model.delete()
+        #expect(await service.calls().deletions.isEmpty)
+        await model.load()
+        #expect(model.canDelete)
+        model.draft?.name = "Tetap ada di draf"
+        await model.delete()
+        #expect(model.hasDeleted && model.deleteProblem == nil && !model.canDelete)
+        #expect(model.draft?.name == "Tetap ada di draf")
+        #expect(await service.calls().deletions == ["bill-1"])
+        await model.save()
+        #expect(await service.calls().updates.isEmpty)
+    }
+
+    @Test("keeps bill edit state on delete failure and retries the same schedule")
+    func deleteFailureRetry() async throws {
+        let service = FakeBillEditService(deletion: .failure(BillEditFixtures.problem))
+        let model = BillEditModel(id: "bill-1", service: service)
+        await model.load()
+        model.draft?.name = "Internet Baru"
+        let draft = try #require(model.draft)
+        await model.delete()
+        #expect(model.deleteProblem == BillEditFixtures.problem && !model.hasDeleted)
+        #expect(model.draft == draft && model.canDelete && !model.isDeleting)
+        await service.setDeleteResult(.success(()))
+        await model.delete()
+        #expect(model.hasDeleted && model.deleteProblem == nil)
+        #expect(await service.calls().deletions == ["bill-1", "bill-1"])
+        #expect(model.draft == draft)
+    }
 }

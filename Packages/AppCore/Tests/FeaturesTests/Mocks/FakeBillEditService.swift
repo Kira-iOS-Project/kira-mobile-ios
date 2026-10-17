@@ -6,15 +6,19 @@ import Domain
 actor FakeBillEditService: BillEditService {
     var billResult: Result<RecurringBill, any Error>
     var updateResult: Result<RecurringBill, any Error>
+    var deleteResult: Result<Void, any Error>
     private(set) var loadCount = 0
     private(set) var updates: [(String, BillScheduleUpdate)] = []
+    private(set) var deletions: [String] = []
 
     init(
         bill: Result<RecurringBill, any Error> = .success(BillEditFixtures.bill),
-        update: Result<RecurringBill, any Error>? = nil
+        update: Result<RecurringBill, any Error>? = nil,
+        deletion: Result<Void, any Error> = .success(())
     ) {
         billResult = bill
         updateResult = update ?? bill
+        deleteResult = deletion
     }
 
     func bill(id: String) async throws -> RecurringBill {
@@ -27,8 +31,17 @@ actor FakeBillEditService: BillEditService {
         return try updateResult.get()
     }
 
-    func calls() -> (loads: Int, updates: [(String, BillScheduleUpdate)]) {
-        (loadCount, updates)
+    func deleteBill(id: String) async throws {
+        deletions.append(id)
+        try deleteResult.get()
+    }
+
+    func setDeleteResult(_ result: Result<Void, any Error>) {
+        deleteResult = result
+    }
+
+    func calls() -> (loads: Int, updates: [(String, BillScheduleUpdate)], deletions: [String]) {
+        (loadCount, updates, deletions)
     }
 }
 
