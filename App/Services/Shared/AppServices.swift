@@ -40,6 +40,8 @@ struct AppServices {
     let billEditor: any BillEditorService
     /** Ringkasan Mingguan's week (UNG-08). */
     let weeklySummary: any WeeklySummaryService
+    /** Atur Budget's setup and save (UNG-05). */
+    let budgetSettings: any BudgetSettingsService
 }
 
 extension AppServices {
@@ -69,7 +71,8 @@ extension AppServices {
             riskProfile: LiveRiskProfileService(api: api), riskDraft: RiskQuizDraft(),
             wallet: LiveWalletService(api: api), budget: LiveBudgetService(api: api),
             bills: LiveBillService(api: api), billEditor: LiveBillEditorService(api: api),
-            weeklySummary: LiveWeeklySummaryService(api: api))
+            weeklySummary: LiveWeeklySummaryService(api: api),
+            budgetSettings: LiveBudgetSettingsService(api: api))
     }
 
     /** The canvas's sample data: nothing leaves the device. */
@@ -84,7 +87,8 @@ extension AppServices {
             portfolio: PreviewPortfolioService(), goals: PreviewGoalService(),
             riskProfile: PreviewRiskProfileService(), riskDraft: RiskQuizDraft(),
             wallet: PreviewWalletService(), budget: PreviewBudgetService(), bills: PreviewBillService(),
-            billEditor: PreviewBillEditorService(), weeklySummary: PreviewWeeklySummaryService())
+            billEditor: PreviewBillEditorService(), weeklySummary: PreviewWeeklySummaryService(),
+            budgetSettings: PreviewBudgetSettingsService())
     }
 }
 

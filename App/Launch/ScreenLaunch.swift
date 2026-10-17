@@ -50,6 +50,7 @@
             case .bills: BillsLaunch(screen: screen)
             case .billForm: BillFormLaunch(screen: screen)
             case .weeklySummary: WeeklySummaryLaunch(screen: screen)
+            case .budgetEdit: BudgetEditLaunch(screen: screen)
             }
         }
     }
@@ -145,6 +146,8 @@
         case billAdd, billAddSaved, billAddFailing, billEdit
         /** UNG-08: Ringkasan Mingguan, a week without spending, and a week that failed to load. */
         case weeklySummary, weeklySummaryEmpty, weeklySummaryFailed
+        /** UNG-05: Atur Budget on its board; the tests save (Budget Tersimpan) or fail (Belum Berhasil Menyimpan). */
+        case budgetEdit, budgetEditFailing
 
         /** The area whose launcher builds the screen. */
         enum Area {
@@ -163,6 +166,7 @@
             case bills
             case billForm
             case weeklySummary
+            case budgetEdit
         }
 
         var area: Area {
@@ -191,6 +195,7 @@
             case .payoff, .payoffHow, .payoffAvalanche: .payoff
             case .educationGoal, .educationGoalResult, .educationGoalStage: .educationGoal
             case .bills, .billsEmpty, .billsFailed: .bills
+            case .budgetEdit, .budgetEditFailing: .budgetEdit
             case .marketplace, .marketplaceEmpty, .marketplaceFailed, .product, .productConsultation, .productEbook,
                 .productEvent, .productGone, .submitProduct:
                 .marketplace

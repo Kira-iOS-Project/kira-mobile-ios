@@ -69,7 +69,8 @@ struct RouteSlot: View {
         case .budget: BudgetScreen(service: services.budget, onOpen: onOpen)
         case .debtDetail: EmptySlot()
         case .creditReport: EmptySlot()
-        case .editBudget: EmptySlot()
+        case .editBudget:
+            BudgetSettingsScreen(model: BudgetSettingsModel(service: services.budgetSettings), onOpen: onOpen)
         case .bills:
             BillsScreen(
                 service: services.bills, onAdd: { onOpen(.addBill) }, onEdit: { onOpen(.editBill(id: $0.id)) },

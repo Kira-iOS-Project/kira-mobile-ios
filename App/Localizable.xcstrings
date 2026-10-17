@@ -2937,6 +2937,216 @@
         }
       }
     },
+    "budget.set.allocated" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teralokasi"
+          }
+        }
+      }
+    },
+    "budget.set.average %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rata-rata 3 bulan: %@"
+          }
+        }
+      }
+    },
+    "budget.set.averages.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rata-rata dihitung mesin dari 3 periode gajian terakhir."
+          }
+        }
+      }
+    },
+    "budget.set.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Budget"
+          }
+        }
+      }
+    },
+    "budget.set.categories" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Per Kategori"
+          }
+        }
+      }
+    },
+    "budget.set.categories.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "lihat rata-ratanya dulu"
+          }
+        }
+      }
+    },
+    "budget.set.cents" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ",00"
+          }
+        }
+      }
+    },
+    "budget.set.currency" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rp"
+          }
+        }
+      }
+    },
+    "budget.set.goal" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pos Tujuan"
+          }
+        }
+      }
+    },
+    "budget.set.goal.emergency" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dana Darurat"
+          }
+        }
+      }
+    },
+    "budget.set.goal.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diambil dari tujuan Dana Darurat. Ubah setorannya lewat Rencana."
+          }
+        }
+      }
+    },
+    "budget.set.goal.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disisihkan tiap gajian"
+          }
+        }
+      }
+    },
+    "budget.set.goal.tag" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dari Tujuanmu"
+          }
+        }
+      }
+    },
+    "budget.set.income %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dari gaji %@"
+          }
+        }
+      }
+    },
+    "budget.set.payday" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanggal Gajian"
+          }
+        }
+      }
+    },
+    "budget.set.payday.note %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Periode budget jadi %@, mengikuti gajian."
+          }
+        }
+      }
+    },
+    "budget.set.period %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ – %2$@"
+          }
+        }
+      }
+    },
+    "budget.set.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Budget"
+          }
+        }
+      }
+    },
+    "budget.set.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atur Budget"
+          }
+        }
+      }
+    },
+    "budget.set.unallocated %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ belum dialokasikan."
+          }
+        }
+      }
+    },
+    "budget.set.unallocated.instalments %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ belum dialokasikan, termasuk cicilan %2$@."
+          }
+        }
+      }
+    },
     "budget.setup.body" : {
       "localizations" : {
         "id" : {
