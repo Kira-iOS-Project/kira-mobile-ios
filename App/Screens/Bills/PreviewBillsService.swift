@@ -3,6 +3,7 @@ import Features
 
 /** Sample recurring bills used by previews and the debug screen launcher. */
 nonisolated struct PreviewBillsService: BillsService {
+    static let debtAccounts = [BillDebtAccount(id: "debt-preview", name: "Paylater")]
     static let samples = [
         RecurringBill(
             id: "internet", name: "Internet Rumah", amount: 350_000, category: "bills",
@@ -16,4 +17,15 @@ nonisolated struct PreviewBillsService: BillsService {
     ]
 
     func bills() async throws -> [RecurringBill] { Self.samples }
+
+    func debtAccounts() async throws -> [BillDebtAccount] { Self.debtAccounts }
+
+    func createBill(_ request: BillCreateRequest) async throws -> RecurringBill {
+        RecurringBill(
+            id: "bill-preview", name: request.name, amount: request.amount, category: request.category.rawValue,
+            nextDueDate: request.nextDueDate, repeatInterval: request.repeatInterval.rawValue,
+            kind: request.linkedDebtAccountID == nil ? .bill : .debtInstallment,
+            linkedDebtAccountID: request.linkedDebtAccountID,
+            linkedDebtName: Self.debtAccounts.first { $0.id == request.linkedDebtAccountID }?.name)
+    }
 }

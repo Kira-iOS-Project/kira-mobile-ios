@@ -46,22 +46,32 @@
     /** BRD and SKR: the three Beranda, Kira Score and the six indicators. */
     struct HomeLaunch: View {
         let screen: LaunchScreen
+        @State private var showsBillCreate = false
 
         var body: some View {
             NavigationStack {
-                switch screen {
-                case .billList:
-                    BillsScreen(service: PreviewBillsService(), onOpenBill: { _ in })
-                case .homeFirstSteps: HomeScreen(service: PreviewHomeService(.sampleFirstSteps)) { _ in }
-                case .homeDebtPlan: HomeScreen(service: PreviewHomeService(.sampleDebtPlan)) { _ in }
-                case .score: ScoreScreen(service: PreviewScoreService()) { _ in }
-                case .emergencyFund: indicator(.emergencyFund)
-                case .savingsRatio: indicator(.savingsRatio)
-                case .instalmentRatio: indicator(.instalmentRatio)
-                case .consumerDebt: indicator(.consumerDebt)
-                case .debtToAsset: indicator(.debtToAsset)
-                case .protectionCover: indicator(.protection)
-                default: HomeScreen(service: PreviewHomeService()) { _ in }
+                Group {
+                    switch screen {
+                    case .billList:
+                        BillsScreen(
+                            service: PreviewBillsService(), onOpenBill: { _ in },
+                            onOpenCreate: { showsBillCreate = true })
+                    case .billCreate:
+                        BillCreateScreen(service: PreviewBillsService(), onOpenHelp: {})
+                    case .homeFirstSteps: HomeScreen(service: PreviewHomeService(.sampleFirstSteps)) { _ in }
+                    case .homeDebtPlan: HomeScreen(service: PreviewHomeService(.sampleDebtPlan)) { _ in }
+                    case .score: ScoreScreen(service: PreviewScoreService()) { _ in }
+                    case .emergencyFund: indicator(.emergencyFund)
+                    case .savingsRatio: indicator(.savingsRatio)
+                    case .instalmentRatio: indicator(.instalmentRatio)
+                    case .consumerDebt: indicator(.consumerDebt)
+                    case .debtToAsset: indicator(.debtToAsset)
+                    case .protectionCover: indicator(.protection)
+                    default: HomeScreen(service: PreviewHomeService()) { _ in }
+                    }
+                }
+                .navigationDestination(isPresented: $showsBillCreate) {
+                    BillCreateScreen(service: PreviewBillsService(), onOpenHelp: {})
                 }
             }
         }

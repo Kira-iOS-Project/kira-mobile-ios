@@ -34,7 +34,9 @@ struct RouteSlot: View {
                 service: services.bills,
                 onOpenBill: { bill in
                     if let id = bill.linkedDebtAccountID { onOpen(.debtDetail(id: id)) }
-                })
+                }, onOpenCreate: { onOpen(.billCreate) })
+        case .billCreate:
+            BillCreateScreen(service: services.bills, onOpenHelp: { onOpen(.unavailable(.care)) })
         case .security, .changePin:
             SecurityScreen(service: services.account, settings: services.security, onOpen: onOpen)
         case .privacy, .deleteAccount:

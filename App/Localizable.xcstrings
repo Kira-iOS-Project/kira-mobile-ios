@@ -1691,6 +1691,276 @@
         }
       }
     },
+    "bills.create.amount" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jumlah"
+          }
+        }
+      }
+    },
+    "bills.create.amount.prompt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masukkan jumlah tagihan"
+          }
+        }
+      }
+    },
+    "bills.create.amount.required" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masukkan jumlah lebih dari Rp0."
+          }
+        }
+      }
+    },
+    "bills.create.category" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategori"
+          }
+        }
+      }
+    },
+    "bills.create.date" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanggal Jatuh Tempo"
+          }
+        }
+      }
+    },
+    "bills.create.date.past" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih tanggal hari ini atau setelahnya."
+          }
+        }
+      }
+    },
+    "bills.create.debt.accounts" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih Akun Utang"
+          }
+        }
+      }
+    },
+    "bills.create.debt.empty" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum ada akun utang. Tambahkan akun terlebih dahulu di Dompet & Akun Utang."
+          }
+        }
+      }
+    },
+    "bills.create.debt.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akun utang belum berhasil dimuat"
+          }
+        }
+      }
+    },
+    "bills.create.debt.loading" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Memuat akun utang"
+          }
+        }
+      }
+    },
+    "bills.create.debt.required" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih akun utang untuk menghubungkan cicilan ini."
+          }
+        }
+      }
+    },
+    "bills.create.debt.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan Utang"
+          }
+        }
+      }
+    },
+    "bills.create.debt.toggle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ini Cicilan Utang"
+          }
+        }
+      }
+    },
+    "bills.create.failed.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan Belum Berhasil Disimpan"
+          }
+        }
+      }
+    },
+    "bills.create.lede" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catat tagihan rutin agar jadwal berikutnya mudah dipantau."
+          }
+        }
+      }
+    },
+    "bills.create.name" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama Tagihan"
+          }
+        }
+      }
+    },
+    "bills.create.name.prompt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contoh: Tagihan listrik"
+          }
+        }
+      }
+    },
+    "bills.create.name.required" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masukkan nama tagihan."
+          }
+        }
+      }
+    },
+    "bills.create.name.tooLong" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gunakan nama maksimal 80 karakter."
+          }
+        }
+      }
+    },
+    "bills.create.open" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah Tagihan"
+          }
+        }
+      }
+    },
+    "bills.create.repeat" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jadwal Berulang"
+          }
+        }
+      }
+    },
+    "bills.create.repeat.monthly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bulanan"
+          }
+        }
+      }
+    },
+    "bills.create.repeat.weekly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mingguan"
+          }
+        }
+      }
+    },
+    "bills.create.repeat.yearly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tahunan"
+          }
+        }
+      }
+    },
+    "bills.create.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
+          }
+        }
+      }
+    },
+    "bills.create.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Tagihan"
+          }
+        }
+      }
+    },
+    "bills.create.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah Tagihan"
+          }
+        }
+      }
+    },
     "bills.due %@" : {
       "localizations" : {
         "id" : {

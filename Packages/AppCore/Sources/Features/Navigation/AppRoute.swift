@@ -9,6 +9,8 @@ package enum AppRoute: Hashable, Sendable {
     case home
     /** UNG-06: recurring bills and debt installments. */
     case bills
+    /** UNG-07: create a recurring bill or link it to an owned debt account. */
+    case billCreate
     /** SKR-01: Kira Score. */
     case score
     /** SKR-02: one indicator's detail. */

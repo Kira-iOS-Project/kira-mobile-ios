@@ -14,4 +14,15 @@ package struct LiveBillsService: BillsService {
     package func bills() async throws -> [RecurringBill] {
         try await api.getBills()
     }
+
+    /** Lists only the owner's liabilities for the installment picker. */
+    package func debtAccounts() async throws -> [BillDebtAccount] {
+        let overview = try await api.getWalletOverview()
+        return overview.accounts.filter { $0.type.isDebt }.map { BillDebtAccount(id: $0.id, name: $0.name) }
+    }
+
+    /** Creates the owner's schedule using the generated, bearer-authenticated operation. */
+    package func createBill(_ request: BillCreateRequest) async throws -> RecurringBill {
+        try await api.createBill(request)
+    }
 }

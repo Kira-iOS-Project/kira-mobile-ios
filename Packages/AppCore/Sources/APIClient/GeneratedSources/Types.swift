@@ -474,6 +474,11 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `GET /api/bills`.
     /// - Remark: Generated from `#/paths//api/bills/get(listBills)`.
     func listBills(_ input: Operations.ListBills.Input) async throws -> Operations.ListBills.Output
+    /// Add a recurring bill or linked debt installment
+    ///
+    /// - Remark: HTTP `POST /api/bills`.
+    /// - Remark: Generated from `#/paths//api/bills/post(createBill)`.
+    func createBill(_ input: Operations.CreateBill.Input) async throws -> Operations.CreateBill.Output
     /// Current budget and adjusted payday
     ///
     /// - Remark: HTTP `GET /api/budgets/current`.
@@ -1442,6 +1447,19 @@ extension APIProtocol {
     /// - Remark: Generated from `#/paths//api/bills/get(listBills)`.
     internal func listBills(headers: Operations.ListBills.Input.Headers = .init()) async throws -> Operations.ListBills.Output {
         try await listBills(Operations.ListBills.Input(headers: headers))
+    }
+    /// Add a recurring bill or linked debt installment
+    ///
+    /// - Remark: HTTP `POST /api/bills`.
+    /// - Remark: Generated from `#/paths//api/bills/post(createBill)`.
+    internal func createBill(
+        headers: Operations.CreateBill.Input.Headers = .init(),
+        body: Operations.CreateBill.Input.Body
+    ) async throws -> Operations.CreateBill.Output {
+        try await createBill(Operations.CreateBill.Input(
+            headers: headers,
+            body: body
+        ))
     }
     /// Current budget and adjusted payday
     ///

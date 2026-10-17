@@ -7839,5 +7839,92 @@ extension Components {
                 case paymentHistory
             }
         }
+        /// - Remark: Generated from `#/components/schemas/CreateBillInput`.
+        internal struct CreateBillInput: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CreateBillInput/name`.
+            internal var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CreateBillInput/amount`.
+            internal var amount: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/CreateBillInput/category`.
+            internal enum CategoryPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case food = "food"
+                case coffee = "coffee"
+                case transport = "transport"
+                case shopping = "shopping"
+                case bills = "bills"
+                case paylaterInstalment = "paylater_instalment"
+                case savingsDeposit = "savings_deposit"
+                case insurance = "insurance"
+                case entertainment = "entertainment"
+                case health = "health"
+                case education = "education"
+                case household = "household"
+                case otherExpense = "other_expense"
+            }
+            /// - Remark: Generated from `#/components/schemas/CreateBillInput/category`.
+            internal var category: Components.Schemas.CreateBillInput.CategoryPayload
+            /// - Remark: Generated from `#/components/schemas/CreateBillInput/nextDueDate`.
+            internal var nextDueDate: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CreateBillInput/repeatInterval`.
+            internal enum RepeatIntervalPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case weekly = "weekly"
+                case monthly = "monthly"
+                case yearly = "yearly"
+            }
+            /// - Remark: Generated from `#/components/schemas/CreateBillInput/repeatInterval`.
+            internal var repeatInterval: Components.Schemas.CreateBillInput.RepeatIntervalPayload
+            /// - Remark: Generated from `#/components/schemas/CreateBillInput/installmentsTotal`.
+            internal var installmentsTotal: Swift.Int?
+            /// - Remark: Generated from `#/components/schemas/CreateBillInput/installmentsRemaining`.
+            internal var installmentsRemaining: Swift.Int?
+            /// - Remark: Generated from `#/components/schemas/CreateBillInput/linkedDebtAccountId`.
+            internal var linkedDebtAccountId: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/CreateBillInput/clientId`.
+            internal var clientId: Swift.String
+            /// Creates a new `CreateBillInput`.
+            ///
+            /// - Parameters:
+            ///   - name:
+            ///   - amount:
+            ///   - category:
+            ///   - nextDueDate:
+            ///   - repeatInterval:
+            ///   - installmentsTotal:
+            ///   - installmentsRemaining:
+            ///   - linkedDebtAccountId:
+            ///   - clientId:
+            internal init(
+                name: Swift.String,
+                amount: Swift.Int,
+                category: Components.Schemas.CreateBillInput.CategoryPayload,
+                nextDueDate: Swift.String,
+                repeatInterval: Components.Schemas.CreateBillInput.RepeatIntervalPayload,
+                installmentsTotal: Swift.Int? = nil,
+                installmentsRemaining: Swift.Int? = nil,
+                linkedDebtAccountId: Swift.String? = nil,
+                clientId: Swift.String
+            ) {
+                self.name = name
+                self.amount = amount
+                self.category = category
+                self.nextDueDate = nextDueDate
+                self.repeatInterval = repeatInterval
+                self.installmentsTotal = installmentsTotal
+                self.installmentsRemaining = installmentsRemaining
+                self.linkedDebtAccountId = linkedDebtAccountId
+                self.clientId = clientId
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case name
+                case amount
+                case category
+                case nextDueDate
+                case repeatInterval
+                case installmentsTotal
+                case installmentsRemaining
+                case linkedDebtAccountId
+                case clientId
+            }
+        }
     }
 }

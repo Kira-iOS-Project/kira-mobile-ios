@@ -6,12 +6,17 @@ import SwiftUI
 struct BillsScreen: View {
     private let service: any BillsService
     private let onOpenBill: (RecurringBill) -> Void
+    private let onOpenCreate: () -> Void
     @State private var model: BillsModel
     @Environment(\.dismiss) private var dismiss
 
-    init(service: any BillsService, onOpenBill: @escaping (RecurringBill) -> Void) {
+    init(
+        service: any BillsService, onOpenBill: @escaping (RecurringBill) -> Void,
+        onOpenCreate: @escaping () -> Void = {}
+    ) {
         self.service = service
         self.onOpenBill = onOpenBill
+        self.onOpenCreate = onOpenCreate
         _model = State(initialValue: BillsModel(service: service))
     }
 
@@ -29,6 +34,7 @@ struct BillsScreen: View {
                 case .failed(let problem):
                     LoadFailedView(title: "bills.failed", problem: problem) { Task { await model.load() } }
                 }
+                KiraButton("bills.create.open", action: onOpenCreate).icon(.plus).block()
             }
             .padding(.horizontal, KiraSpacing.screen)
             .padding(.top, KiraSpacing.space2)
