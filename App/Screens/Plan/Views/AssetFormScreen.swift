@@ -63,13 +63,13 @@ struct AssetFormScreen: View {
         VStack(spacing: KiraSpacing.space4) {
             ScrollView {
                 fields
-                .padding(.horizontal, KiraSpacing.screen)
-                .padding(.top, KiraSpacing.space1)
-                .background(alignment: .topTrailing) {
-                    KiraLeaf(.twig, tone: .soft, size: 130, isFlipped: true)
-                        .offset(x: 40, y: -36)
-                        .accessibilityHidden(true)
-                }
+                    .padding(.horizontal, KiraSpacing.screen)
+                    .padding(.top, KiraSpacing.space1)
+                    .background(alignment: .topTrailing) {
+                        KiraLeaf(.twig, tone: .soft, size: 130, isFlipped: true)
+                            .offset(x: 40, y: -36)
+                            .accessibilityHidden(true)
+                    }
             }
             .scrollBounceBehavior(.basedOnSize)
             VStack(spacing: 12) {

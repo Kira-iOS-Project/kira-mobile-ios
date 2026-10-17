@@ -11,7 +11,8 @@ import Features
 struct PreviewPortfolioService: PortfolioService {
     /** The board's three assets. */
     static let sampleAssets = [
-        Asset(id: "mutual-fund", assetClass: .mutualFund, name: "Reksa Dana Pasar Uang", value: 3_000_000,
+        Asset(
+            id: "mutual-fund", assetClass: .mutualFund, name: "Reksa Dana Pasar Uang", value: 3_000_000,
             valuedOn: day),
         Asset(id: "bond", assetClass: .governmentBond, name: "SBN Ritel", value: 2_500_000, valuedOn: day),
         Asset(id: "gold", assetClass: .gold, name: "Emas Batangan", value: 2_400_000, valuedOn: day),
@@ -41,7 +42,8 @@ struct PreviewPortfolioService: PortfolioService {
 
     private func save(id: String, _ input: AssetInput) throws -> Asset {
         if failsSave { throw AppProblem.connectionLost }
-        return Asset(id: id, assetClass: input.assetClass, name: input.name, value: input.value,
+        return Asset(
+            id: id, assetClass: input.assetClass, name: input.name, value: input.value,
             valuedOn: input.valuedOn)
     }
 }
