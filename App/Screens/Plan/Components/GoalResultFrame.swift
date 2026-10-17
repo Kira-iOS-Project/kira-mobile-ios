@@ -39,9 +39,9 @@ struct GoalResultFrame<Extra: View>: View {
                 if content.projection.fit != .fits, !content.recommendations.isEmpty {
                     GoalRecommendations(content: content, chosen: $chosen)
                 }
-                GoalAssetClasses(classes: content.assetClasses)
+                GoalAssetClasses(classes: content.assetClasses, title: content.assetsTitle, note: content.assetsNote)
                 KiraNotice(.education, title: "plan.result.education.title", message: "plan.result.education")
-                GoalFormulas(formulas: content.formulas, footnote: content.footnote)
+                GoalFormulas(formulas: content.formulas, footnote: content.footnote, opens: content.opensFormulas)
                 KiraNotice(.simulation, title: "plan.goal.simulation.title", message: "plan.result.simulation")
                 GoalResultButtons(isSaving: isSaving, onEdit: { onEdit(chosen) }, onBudget: onBudget)
                     .padding(.top, KiraSpacing.space1)

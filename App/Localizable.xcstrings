@@ -17428,6 +17428,76 @@
         }
       }
     },
+    "plan.emergency.assets" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kelas Aset untuk Dana Darurat"
+          }
+        }
+      }
+    },
+    "plan.emergency.assets.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih yang mudah dicairkan dan nilainya stabil. Return-nya umumnya sampai 10% per tahun."
+          }
+        }
+      }
+    },
+    "plan.emergency.caption.married %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld× pengeluaran pokok, karena sudah menikah dan tanpa tanggungan"
+          }
+        }
+      }
+    },
+    "plan.emergency.caption.marriedWith %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld× pengeluaran pokok, karena sudah menikah dan %2$lld tanggungan"
+          }
+        }
+      }
+    },
+    "plan.emergency.caption.single %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld× pengeluaran pokok, karena belum menikah dan tanpa tanggungan"
+          }
+        }
+      }
+    },
+    "plan.emergency.caption.singleWith %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld× pengeluaran pokok, karena belum menikah dan %2$lld tanggungan"
+          }
+        }
+      }
+    },
+    "plan.emergency.overline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dana darurat yang kamu butuhkan"
+          }
+        }
+      }
+    },
     "plan.empty.body" : {
       "localizations" : {
         "id" : {

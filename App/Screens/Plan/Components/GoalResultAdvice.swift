@@ -30,14 +30,16 @@ struct GoalRecommendations: View {
 /** Kelas Aset untuk Jangka Ini: the classes as neutral tags, and the note on moving to lower risk. */
 struct GoalAssetClasses: View {
     let classes: [GoalAssetClass]
+    var title: LocalizedStringResource = "plan.result.assets"
+    var note: LocalizedStringResource = "plan.result.assets.note"
 
     var body: some View {
-        KiraSectionTitle("plan.result.assets").padding(.top, KiraSpacing.space2)
+        KiraSectionTitle(title).padding(.top, KiraSpacing.space2)
         VStack(alignment: .leading, spacing: 10) {
             KiraFlowRow(spacing: 6) {
                 ForEach(Array(classes.enumerated()), id: \.offset) { KiraTag($0.element.title) }
             }
-            Text("plan.result.assets.note").font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
+            Text(note).font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
         }
         .padding(KiraSpacing.space4)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -49,6 +51,7 @@ struct GoalAssetClasses: View {
 struct GoalFormulas: View {
     let formulas: [GoalFormula]
     let footnote: LocalizedStringResource
+    var opens = false
 
     var body: some View {
         KiraAccordion("plan.result.formula.title", subtitle: "plan.result.formula.subtitle", icon: .calculator) {
@@ -69,5 +72,6 @@ struct GoalFormulas: View {
             .kiraCard(.surface, cornerRadius: KiraRadius.small)
             Text(footnote).font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
         }
+        .openByDefault(opens)
     }
 }
