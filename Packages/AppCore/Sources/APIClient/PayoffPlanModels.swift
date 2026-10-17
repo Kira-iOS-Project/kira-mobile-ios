@@ -24,6 +24,12 @@ package struct PlanAccountDTO: Hashable, Sendable {
     package let dueDay: Int?
     /** Its tag. */
     package let status: PayoffAccountStatusDTO
+    /** The month (`YYYY-MM`) it is paid off; nil when it cannot be known. */
+    package let payoffMonth: String?
+    /** The due date (`YYYY-MM-DD`) of its last payment; nil without a due day. */
+    package let payoffDate: String?
+    /** For the account that comes next, the month (`YYYY-MM`) the plan reaches it. */
+    package let startMonth: String?
 
     init(_ account: Components.Schemas.PayoffPlanAccount) throws {
         id = account.id
@@ -36,6 +42,9 @@ package struct PlanAccountDTO: Hashable, Sendable {
         annualInterestRate = account.annualInterestRate
         dueDay = account.dueDay
         status = try bridged(account.status)
+        payoffMonth = account.payoffMonth
+        payoffDate = account.payoffDate
+        startMonth = account.startMonth
     }
 }
 
@@ -45,8 +54,12 @@ package struct NextPaymentDTO: Hashable, Sendable {
     package let debtId: String
     /** Its name. */
     package let name: String
-    /** The instalment, or what is left when that is less. */
+    /** The whole payment: the instalment and the extra. */
     package let amount: Int
+    /** The instalment part. */
+    package let instalment: Int
+    /** The plan's extra part. */
+    package let extra: Int
     /** The next due date (`YYYY-MM-DD`); nil without a due day. */
     package let dueDate: String?
     /** Days until then; nil without a due day. */
@@ -56,6 +69,8 @@ package struct NextPaymentDTO: Hashable, Sendable {
         debtId = payment.debtId
         name = payment.name
         amount = payment.amount
+        instalment = payment.instalment
+        extra = payment.extra
         dueDate = payment.dueDate
         daysLeft = payment.daysLeft
     }
@@ -121,6 +136,8 @@ package struct PaymentResultDTO: Hashable, Sendable {
     package let paid: Int
     /** What is left. */
     package let remaining: Int
+    /** The account's monthly instalment. */
+    package let monthlyInstalment: Int
     /** Paid so far over the original balance, 0 to 100. */
     package let progressPercent: Int
     /** True only for the payment that settled the account: show the celebration once. */
@@ -134,6 +151,7 @@ package struct PaymentResultDTO: Hashable, Sendable {
         debtId = result.debtId
         paid = result.paid
         remaining = result.remaining
+        monthlyInstalment = result.monthlyInstalment
         progressPercent = result.progressPercent
         paidOff = result.paidOff
         nextAccount = result.nextAccount.map { NextAccountDTO(id: $0.id, name: $0.name) }

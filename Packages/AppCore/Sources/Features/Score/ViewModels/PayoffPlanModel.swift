@@ -4,22 +4,37 @@ import Observation
 
 /**
  Rencanaku (SKR-04) and the celebration it opens (SKR-05): the plan's accounts with their tags, the
- payment to make next, moving the plan to another account and Tandai Sudah Bayar. The celebration
- is set once, by the payment that settles an account, and cleared when the person dismisses it.
+ payment to make next, Tandai Sudah Bayar, and moving the plan to the next account ("Lanjut ke
+ Paylater B"). The celebration is set once, by the payment that settles an account, and cleared
+ when the person leaves it. A payment or a move that fails opens the failure dialog; Coba Lagi
+ sends it again.
  */
 @MainActor
 @Observable
 package final class PayoffPlanModel {
+    /** What failed, for the failure dialog, with what Coba Lagi sends again. */
+    package enum Failure: Sendable {
+        /** Tandai Sudah Bayar did not go through. */
+        case payment(AppProblem)
+        /** Moving the plan to the account `debtId` did not go through. */
+        case focus(debtId: String, AppProblem)
+
+        /** The API's problem. */
+        package var problem: AppProblem {
+            switch self {
+            case .payment(let problem), .focus(_, let problem): problem
+            }
+        }
+    }
+
     /** Empty when the person has not made a plan yet. */
     package private(set) var phase: ScreenPhase<ActivePayoffPlan> = .loading
     /** True while a payment or a move is in flight. */
     package private(set) var isWorking = false
-    /** The problem of the last payment or move, which leaves the plan on screen; nil when it worked. */
-    package private(set) var actionProblem: AppProblem?
-    /** The payment that settled an account, until the person closes the celebration. */
-    package private(set) var celebration: DebtPayment?
-    /** The name of the account the celebration is for. */
-    package private(set) var celebratedName: String?
+    /** The failed payment or move, until the dialog closes. */
+    package var failure: Failure?
+    /** The account a payment settled, until the person leaves the celebration. */
+    package var celebration: PaidOffAccount?
 
     private let service: any PayoffPlanService
 
@@ -33,43 +48,73 @@ package final class PayoffPlanModel {
         do {
             phase = .loaded(try await service.active())
         } catch {
-            let problem = error as? AppProblem ?? AppProblem()
+            let problem = AppProblem(error)
             phase = problem.knownCode == .payoffPlanNotFound ? .empty : .failed(problem)
         }
     }
 
-    /** Moves the plan to the account `debtId`, which the plan then pays first. */
-    package func focus(on debtId: String) async {
+    /**
+     Marks the next payment as paid, opens the celebration when it settles the account, and reloads
+     the plan. When only the reload fails, the page shows the load failure rather than the old plan,
+     so the same payment cannot be marked twice.
+     */
+    package func markPaid() async {
+        guard !isWorking, let plan = phase.value, let next = plan.nextPayment else { return }
+        isWorking = true
+        failure = nil
+        defer { isWorking = false }
+        let payment: DebtPayment
+        do {
+            payment = try await service.recordPayment(debtId: next.debtId, amount: next.amount)
+        } catch {
+            failure = .payment(AppProblem(error))
+            return
+        }
+        if payment.paidOff {
+            celebration = PaidOffAccount(payment: payment, plan: plan, name: next.name)
+        }
+        do {
+            phase = .loaded(try await service.active())
+        } catch {
+            phase = .failed(AppProblem(error))
+        }
+    }
+
+    /**
+     Lanjut ke the next account: moves the plan to the account `paid`'s celebration names. It runs
+     once the celebration has gone, so it is given the account rather than reading `celebration`.
+     */
+    package func continueToNext(after paid: PaidOffAccount) async {
+        celebration = nil
+        guard let next = paid.nextAccount else { return }
+        await focus(on: next.id)
+    }
+
+    /**
+     Coba Lagi: sends `failed` again. It is passed in because the dialog clears `failure` as it
+     closes, before the retry runs.
+     */
+    package func retry(_ failed: Failure) async {
+        switch failed {
+        case .payment: await markPaid()
+        case .focus(let debtId, _): await focus(on: debtId)
+        }
+    }
+
+    /** Leaves the celebration without moving the plan. */
+    package func dismissCelebration() {
+        celebration = nil
+    }
+
+    private func focus(on debtId: String) async {
         guard !isWorking else { return }
         isWorking = true
-        actionProblem = nil
+        failure = nil
+        defer { isWorking = false }
         do {
             phase = .loaded(try await service.setFocus(debtId: debtId))
         } catch {
-            actionProblem = error as? AppProblem ?? AppProblem()
+            failure = .focus(debtId: debtId, AppProblem(error))
         }
-        isWorking = false
-    }
-
-    /** Marks the next payment as paid, opens the celebration when it settles the account and reloads the plan. */
-    package func markPaid() async {
-        guard !isWorking, let next = phase.value?.nextPayment else { return }
-        isWorking = true
-        actionProblem = nil
-        do {
-            let payment = try await service.recordPayment(debtId: next.debtId, amount: next.amount)
-            celebration = payment.paidOff ? payment : nil
-            celebratedName = payment.paidOff ? next.name : nil
-            phase = .loaded(try await service.active())
-        } catch {
-            actionProblem = error as? AppProblem ?? AppProblem()
-        }
-        isWorking = false
-    }
-
-    /** Closes the celebration. */
-    package func dismissCelebration() {
-        celebration = nil
-        celebratedName = nil
     }
 }
