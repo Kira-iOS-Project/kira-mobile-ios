@@ -113,8 +113,9 @@ struct CareHelpSheet: View {
     }
 
     private var footer: some View {
-        VStack(spacing: 2) {
-            KiraButton("care.sheet.back", variant: .quiet, action: onBack)
+        VStack(spacing: 10) {
+            /** As Perayaan Lunas's Ke Beranda: a secondary block button (owner's request, board SheetBantuan). */
+            KiraButton("care.sheet.back", variant: .secondary, action: onBack).block()
             Text("care.disclaimer")
                 .font(.caption).kiraLineHeight(16, size: 12).foregroundStyle(.inkMuted)
                 .multilineTextAlignment(.center)
