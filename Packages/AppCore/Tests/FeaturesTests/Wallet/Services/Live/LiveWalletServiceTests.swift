@@ -35,4 +35,31 @@ struct LiveWalletServiceTests {
         #expect(overview.runningDebt == 4_900_000)
         #expect(await transport.routes == ["GET /api/wallets"])
     }
+
+    @Test("POST /wallets sends a balance for money held and the debt left for a debt account")
+    func adds() async throws {
+        let created =
+            #"{"accountType":"wallet","id":"6f1c2b9e-0000-4000-8000-000000000002","name":"Dompet Digital 2","#
+            + #""type":"e_wallet","balance":0,"#
+            + #""createdAt":"2026-10-17T05:00:00.000Z"}"#
+        let (api, transport) = KiraAPI.routed(["POST /api/wallets": ok(created, status: 201)])
+        let service = LiveWalletService(api: api)
+        let types: [WalletType] = [.ewallet, .bank, .cash, .creditCard, .paylater, .onlineLoan, .other]
+        for (amount, type) in types.enumerated() {
+            try await service.addWallet(WalletDraft(type: type, name: "Dompet", amount: amount))
+        }
+        let sent = await transport.sent
+        let sentTypes = ["ewallet", "bank", "cash", "credit_card", "paylater", "pinjol", "other"]
+        #expect(sent.map { $0.json["type"] } == sentTypes.map(JSONValue.string))
+        #expect(sent[0].json["balance"] == .number(0) && sent[3].json["remainingDebt"] == .number(3))
+    }
+
+    @Test("a refused wallet is thrown as its problem")
+    func addRefused() async {
+        let (api, _) = KiraAPI.routed(["POST /api/wallets": problem("VALIDATION_FAILED", status: 422)])
+        let error = await #expect(throws: AppProblem.self) {
+            try await LiveWalletService(api: api).addWallet(WalletDraft(type: .bank, name: "", amount: 0))
+        }
+        #expect(error?.code == "VALIDATION_FAILED")
+    }
 }

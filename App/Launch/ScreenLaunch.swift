@@ -46,6 +46,7 @@
             case .planModule: PlanModuleLaunch(screen: screen)
             case .wallets: WalletsLaunch()
             case .budget: BudgetLaunch()
+            case .walletAdd: WalletAddLaunch(screen: screen)
             }
         }
     }
@@ -133,6 +134,8 @@
 
         /** UNG: Dompet (UNG-01) and Budget (UNG-04) on the preview services. */
         case wallets, budget
+        /** UNG: Tambah Dompet over Dompet, and with a save that fails, for its failure dialog. */
+        case walletAdd, walletAddFailing
 
         /** The area whose launcher builds the screen. */
         enum Area {
@@ -147,6 +150,7 @@
             case payoffPlan
             case planModule
             case wallets, budget
+            case walletAdd
         }
 
         var area: Area {
@@ -196,6 +200,7 @@
                 .planModule
             case .wallets: .wallets
             case .budget: .budget
+            case .walletAdd, .walletAddFailing: .walletAdd
             }
         }
     }

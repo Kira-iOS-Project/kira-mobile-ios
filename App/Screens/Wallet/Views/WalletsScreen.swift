@@ -5,13 +5,21 @@ import SwiftUI
 
 struct WalletsScreen: View {
     @State private var model: WalletsModel
+    @State private var adding: AddWalletModel
     private let onOpenDebt: (String) -> Void
     private let onOpenHelp: () -> Void
+    /** Whether Tambah Dompet opens as the screen appears (the debug launcher's audits). */
+    private let startsAdding: Bool
 
-    init(service: any WalletService, onOpenDebt: @escaping (String) -> Void, onOpenHelp: @escaping () -> Void) {
+    init(
+        service: any WalletService, onOpenDebt: @escaping (String) -> Void, onOpenHelp: @escaping () -> Void,
+        startsAdding: Bool = false
+    ) {
+        self.startsAdding = startsAdding
         self.onOpenDebt = onOpenDebt
         self.onOpenHelp = onOpenHelp
         _model = State(initialValue: WalletsModel(service: service))
+        _adding = State(initialValue: AddWalletModel(service: service))
     }
 
     var body: some View {
@@ -19,6 +27,8 @@ struct WalletsScreen: View {
             VStack(alignment: .leading, spacing: KiraSpacing.space4) {
                 header
                 content
+                KiraButton("wallet.add.button") { adding.open() }.icon(.plus).block()
+                    .padding(.top, KiraSpacing.space2)
             }
             .padding(.horizontal, KiraSpacing.screen)
             .padding(.top, KiraSpacing.space2)
@@ -34,7 +44,11 @@ struct WalletsScreen: View {
         .background(.surface)
         .kiraScrollEdges()
         .toolbar(.hidden, for: .navigationBar)
-        .onAppear { Task { await model.load() } }
+        .onAppear {
+            Task { await model.load() }
+            if startsAdding { adding.open() }
+        }
+        .addWalletSheet(adding) { Task { await model.load() } }
     }
 
     private var header: some View {

@@ -10,6 +10,10 @@ actor PreviewWalletService: WalletService {
         return WalletOverview(accounts: accounts)
     }
 
+    func addWallet(_: WalletDraft) async throws {
+        try await pause()
+    }
+
     private func pause() async throws {
         try await Task.sleep(for: .milliseconds(180))
     }
