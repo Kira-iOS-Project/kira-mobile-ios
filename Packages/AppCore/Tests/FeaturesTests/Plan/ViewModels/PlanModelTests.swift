@@ -19,7 +19,7 @@ struct PlanModelTests {
                 ladder: [
                     LadderStep(step: 2, key: .emergencyFund, status: .todo, detail: LadderDetail(targetMultiple: 6))
                 ],
-                goals: [emergency, FakeGoalService.summary], riskProfile: nil, prefill: PlanPrefill())
+                goals: [emergency, FakeGoalService.summary], prefill: PlanPrefill())
         }
         let model = PlanModel(service: service)
         #expect(model.phase.value == nil && model.emergencyGoal == nil && model.emergencyTargetMultiple == nil)

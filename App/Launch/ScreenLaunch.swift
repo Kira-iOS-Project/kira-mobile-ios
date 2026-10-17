@@ -33,9 +33,9 @@
             case .debtEmergency: DebtEmergencyLaunch(screen: screen)
             case .educationGoal: EducationGoalLaunch(screen: screen)
             case .careTools: CareToolsLaunch(screen: screen)
+            case .planRisk: PlanRiskLaunch(screen: screen)
             case .houseGoal: HouseGoalLaunch(screen: screen)
             case .weddingGoal: WeddingGoalLaunch(screen: screen)
-            case .planRisk: PlanRiskLaunch(screen: screen)
             case .goals: GoalsLaunch(screen: screen)
             case .retirementGoal: RetirementGoalLaunch(screen: screen)
             case .plan: PortfolioLaunch(screen: screen)
@@ -130,8 +130,8 @@
         /** The area whose launcher builds the screen. */
         enum Area {
             case onboarding, home, account, plans, record, chat, community, care, careTools, debtEmergency, marketplace
-            case houseGoal, weddingGoal, educationGoal
             case planRisk
+            case houseGoal, weddingGoal, educationGoal
             case goals
             case retirementGoal
             case plan, planHome
@@ -169,11 +169,11 @@
             case .marketplace, .marketplaceEmpty, .marketplaceFailed, .product, .productConsultation, .productEbook,
                 .productEvent, .productGone, .submitProduct:
                 .marketplace
-            case .houseGoal, .houseGoalResult, .houseGoalBudgetFailing: .houseGoal
-            case .weddingGoal, .weddingGoalResult: .weddingGoal
             case .riskQuiz, .riskQuizUnreadablePlan, .riskDrawdown, .riskHorizon, .riskExperience, .riskDeposit,
                 .riskSaveFailing, .riskResult, .riskResultConservative, .riskResultAggressive, .legalityCheck:
                 .planRisk
+            case .houseGoal, .houseGoalResult, .houseGoalBudgetFailing: .houseGoal
+            case .weddingGoal, .weddingGoalResult: .weddingGoal
             case .goalVehicle, .goalGoods, .goalOther: .goals
             case .goalRetirement, .goalRetirementResult: .retirementGoal
             case .portfolio, .portfolioMasked, .portfolioEmpty, .portfolioFailed, .addAsset, .addAssetFailing,

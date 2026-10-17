@@ -17,7 +17,7 @@ struct LiveGoalServiceTests {
         #expect(plan.ladder.map(\.key) == [.expensiveDebt, .emergencyFund, .protection, .investing])
         #expect(plan.ladder[0].detail.debtName == "Paylater A" && plan.ladder[1].detail.targetMultiple == 6)
         #expect(plan.ladder[2].detail.health == .held && plan.ladder[2].detail.incomeCover == .missing)
-        #expect(plan.riskProfile == .moderate && plan.prefill.maritalStatus == .married)
+        #expect(plan.prefill.maritalStatus == .married)
         #expect(plan.prefill.essentialExpense == 4_200_000 && plan.prefill.monthlyIncome == 7_500_000)
         #expect(plan.goals.first?.targetDate == CalendarDay(year: 2029, month: 4, day: 25))
     }
@@ -84,11 +84,11 @@ private let summaryJSON =
 private let goalJSON =
     #"{"id":"e","kind":"emergency_fund","name":"Dana Darurat","targetAmount":25200000,"targetDate":"2029-04-25","#
     + #""monthlyDeposit":650000,"savedAmount":4800000,"inputs":{"essentialExpense":4200000},"initialAmount":0,"#
-    + #""inBudget":true,"createdAt":"2026-10-01T00:00:00Z","updatedAt":"2026-10-01T00:00:00Z"}"#
+    + #""inBudget":true,"createdAt":"2026-10-01T00:00:00.000Z","updatedAt":"2026-10-01T00:00:00.000Z"}"#
 private let goalDetailJSON =
     #"{"id":"e","kind":"emergency_fund","name":"Dana Darurat","targetAmount":25200000,"targetDate":"2029-04-25","#
     + #""monthlyDeposit":650000,"savedAmount":4800000,"inputs":{"essentialExpense":4200000},"initialAmount":0,"#
-    + #""inBudget":true,"createdAt":"2026-10-01T00:00:00Z","updatedAt":"2026-10-01T00:00:00Z","#
+    + #""inBudget":true,"createdAt":"2026-10-01T00:00:00.000Z","updatedAt":"2026-10-01T00:00:00.000Z","#
     + #""deposits":[{"id":"d1","amount":600000,"depositedOn":"2026-09-25"}],"#
     + #""milestones":[{"key":"one_week","amount":980000,"reachedOn":"2026-03-25"},"#
     + #"{"key":"target","amount":25200000,"reachedOn":null}]}"#

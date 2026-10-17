@@ -60,7 +60,7 @@ struct RouteSlot: View {
         case .editGoal: EmptySlot()
         case .riskQuiz, .riskResult: riskQuiz(start: route == .riskResult ? .savedResult : .quiz())
         case .legalityCheck: LegalityCheckScreen(onOpen: onOpen)
-        case .assetModule(let assetClass): AssetModuleScreen(assetClass: assetClass, onOpen: onOpen)
+        case .assetModule: EmptySlot()
         case .home, .record, .plan, .community, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history,
             .transaction, .conversation, .importStatement, .unavailable:
             EmptySlot()

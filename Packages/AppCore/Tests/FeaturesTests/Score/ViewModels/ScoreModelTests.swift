@@ -9,6 +9,7 @@ import Testing
 private struct FakeScoreService: ScoreService {
     var report: Result<ScoreReport?, AppProblem> = .success(nil)
     var detail: Result<IndicatorDetail, AppProblem> = .failure(AppProblem(code: "ROUTE_NOT_FOUND"))
+    var plus = true
 
     func score() throws -> ScoreReport? { try report.get() }
     func indicator(_ key: IndicatorKey) throws -> IndicatorDetail {

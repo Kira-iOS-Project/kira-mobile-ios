@@ -24,11 +24,11 @@ struct RiskQuizContextTests {
                     step: 2, key: .emergencyFund, status: .todo,
                     detail: LadderDetail(multiple: 1.1, targetMultiple: 6)),
             ],
-            goals: [], riskProfile: nil, prefill: PlanPrefill(monthlyIncome: 7_500_000))
+            goals: [], prefill: PlanPrefill(monthlyIncome: 7_500_000))
         #expect(
             RiskQuizContext(plan: plan)
                 == RiskQuizContext(emergencyMultiple: 1.1, emergencyTarget: 6, monthlyIncome: 7_500_000))
-        let none = PlanOverview(ladder: [], goals: [], riskProfile: nil, prefill: PlanPrefill())
+        let none = PlanOverview(ladder: [], goals: [], prefill: PlanPrefill())
         #expect(RiskQuizContext(plan: none) == .unknown)
     }
 

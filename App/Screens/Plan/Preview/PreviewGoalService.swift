@@ -27,7 +27,7 @@ actor PreviewGoalService: GoalService {
                     step: 3, key: .protection, status: .done, detail: LadderDetail(health: .held, incomeCover: .held)),
                 LadderStep(step: 4, key: .investing, status: .todo),
             ],
-            goals: stored.map(\.summary), riskProfile: nil,
+            goals: stored.map(\.summary),
             prefill: PlanPrefill(
                 essentialExpense: 4_200_000, emergencyFund: 4_800_000, maritalStatus: .single, dependants: 0,
                 monthlyIncome: 7_500_000))
