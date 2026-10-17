@@ -32,9 +32,6 @@
             case .care: CareLaunch(screen: screen)
             case .debtEmergency: DebtEmergencyLaunch(screen: screen)
             case .careTools: CareToolsLaunch(screen: screen)
-<<<<<<< HEAD
-            case .planModule: PlanModuleLaunch(screen: screen)
-=======
             case .planRisk: PlanRiskLaunch(screen: screen)
             case .goals: GoalsLaunch(screen: screen)
             case .retirementGoal: RetirementGoalLaunch(screen: screen)
@@ -43,7 +40,7 @@
             case .scoreHistory: ScoreHistoryLaunch(screen: screen)
             case .payoff: PayoffLaunch(screen: screen)
             case .payoffPlan: PayoffPlanLaunch(screen: screen)
->>>>>>> c160f1e
+            case .planModule: PlanModuleLaunch(screen: screen)
             }
         }
     }
@@ -90,10 +87,6 @@
          its form.
          */
         case breathing, safetyPlan, safetyPlanEmpty, safetyPlanFailing, safetyPlanForm
-<<<<<<< HEAD
-        /** REN-08: Modul Belajar of each asset class. */
-        case moduleMoneyMarketFund, moduleGovernmentBonds, moduleDeposits, moduleGold, moduleStocks, moduleCrypto
-=======
         /**
          REN: Kenali Profil Risikomu fresh (and with the plan unreadable), each later question, a Lihat
          Hasil that fails once, Hasil Kuis for each profile, and Cek Legalitas.
@@ -120,14 +113,12 @@
          the last account).
          */
         case myPlan, myPlanEmpty, myPlanFailing, payoffCelebration, payoffCelebrationLast
->>>>>>> c160f1e
+        /** REN-08: Modul Belajar of each asset class. */
+        case moduleMoneyMarketFund, moduleGovernmentBonds, moduleDeposits, moduleGold, moduleStocks, moduleCrypto
 
         /** The area whose launcher builds the screen. */
         enum Area {
             case onboarding, home, account, plans, record, chat, community, care, careTools, debtEmergency, marketplace
-<<<<<<< HEAD
-            case planModule
-=======
             case planRisk
             case goals
             case retirementGoal
@@ -135,7 +126,7 @@
             case scoreHistory
             case payoff
             case payoffPlan
->>>>>>> c160f1e
+            case planModule
         }
 
         var area: Area {
@@ -165,11 +156,6 @@
             case .marketplace, .marketplaceEmpty, .marketplaceFailed, .product, .productConsultation, .productEbook,
                 .productEvent, .productGone, .submitProduct:
                 .marketplace
-<<<<<<< HEAD
-            case .moduleMoneyMarketFund, .moduleGovernmentBonds, .moduleDeposits, .moduleGold, .moduleStocks,
-                .moduleCrypto:
-                .planModule
-=======
             case .riskQuiz, .riskQuizUnreadablePlan, .riskDrawdown, .riskHorizon, .riskExperience, .riskDeposit,
                 .riskSaveFailing, .riskResult, .riskResultConservative, .riskResultAggressive, .legalityCheck:
                 .planRisk
@@ -182,7 +168,9 @@
             case .scoreHistory, .scoreHistoryShort, .scoreHistoryEmpty, .scoreHistoryFailed, .scoreHistoryLocked:
                 .scoreHistory
             case .myPlan, .myPlanEmpty, .myPlanFailing, .payoffCelebration, .payoffCelebrationLast: .payoffPlan
->>>>>>> c160f1e
+            case .moduleMoneyMarketFund, .moduleGovernmentBonds, .moduleDeposits, .moduleGold, .moduleStocks,
+                .moduleCrypto:
+                .planModule
             }
         }
     }
