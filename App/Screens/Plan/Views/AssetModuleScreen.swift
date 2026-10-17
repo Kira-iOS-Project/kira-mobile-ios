@@ -108,37 +108,43 @@ private struct AssetModuleSectionView: View {
                 Text(body).font(.body).kiraLineHeight(23, size: 16).foregroundStyle(.ink)
                     .padding(.horizontal, KiraSpacing.space1)
             }
-            ForEach(Array(section.items.enumerated()), id: \.offset) { _, item in
-                HStack(alignment: .top, spacing: 10) {
-                    KiraIcon(.check, size: 13, weight: .heavy)
-                        .foregroundStyle(.healthy)
-                        .frame(width: 22, height: 22)
-                        .background(.healthySoft, in: Circle())
-                        .overlay { Circle().strokeBorder(.healthyLine, lineWidth: 1) }
-                        .padding(.top, 1)
-                        .accessibilityHidden(true)
-                    Text(item).font(.body).kiraLineHeight(23, size: 16).foregroundStyle(.ink)
-                }
-                .padding(.horizontal, KiraSpacing.space1)
-            }
-            if section.checksLegality {
-                Button(action: onCheckLegality) {
-                    HStack(spacing: 6) {
-                        KiraIcon(.shield, size: 17)
-                        Text("plan.module.checkLegality")
-                        KiraIcon(.arrowRight, size: 16, weight: .semibold)
-                    }
-                    .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(.pandan)
-                    .padding(.horizontal, KiraSpacing.space1)
-                    .frame(minHeight: KiraSize.tap)
-                    .contentShape(Rectangle())
-                }
-                .buttonStyle(.plain)
-                .padding(.top, -2)
-                .padding(.bottom, -8)
-            }
+            ForEach(Array(section.items.enumerated()), id: \.offset) { _, item in itemRow(item) }
+            if section.checksLegality { legalityButton }
         }
+    }
+
+    /** A checked point of the section's list. */
+    private func itemRow(_ item: LocalizedStringResource) -> some View {
+        HStack(alignment: .top, spacing: 10) {
+            KiraIcon(.check, size: 13, weight: .heavy)
+                .foregroundStyle(.healthy)
+                .frame(width: 22, height: 22)
+                .background(.healthySoft, in: Circle())
+                .overlay { Circle().strokeBorder(.healthyLine, lineWidth: 1) }
+                .padding(.top, 1)
+                .accessibilityHidden(true)
+            Text(item).font(.body).kiraLineHeight(23, size: 16).foregroundStyle(.ink)
+        }
+        .padding(.horizontal, KiraSpacing.space1)
+    }
+
+    /** Cek Legalitas, under the section on who oversees the asset. */
+    private var legalityButton: some View {
+        Button(action: onCheckLegality) {
+            HStack(spacing: 6) {
+                KiraIcon(.shield, size: 17)
+                Text("plan.module.checkLegality")
+                KiraIcon(.arrowRight, size: 16, weight: .semibold)
+            }
+            .font(.subheadline.weight(.semibold))
+            .foregroundStyle(.pandan)
+            .padding(.horizontal, KiraSpacing.space1)
+            .frame(minHeight: KiraSize.tap)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .padding(.top, -2)
+        .padding(.bottom, -8)
     }
 }
 

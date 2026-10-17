@@ -37,9 +37,11 @@ extension RiskAssetClass {
             ]
         case .oversight:
             [
-                AssetModuleSection(title: "plan.module.section.oversight", body: text("oversight"), checksLegality: true),
+                AssetModuleSection(
+                    title: "plan.module.section.oversight", body: text("oversight"), checksLegality: true),
                 AssetModuleSection(title: "plan.module.section.guarantee", body: text("guarantee")),
-                AssetModuleSection(title: "plan.module.section.beforeStarting", items: [text("before1"), text("before2")]),
+                AssetModuleSection(
+                    title: "plan.module.section.beforeStarting", items: [text("before1"), text("before2")]),
             ]
         }
     }
