@@ -3,7 +3,8 @@
  the "Rp" prefix: the person types digits only, ",00" is added on save and said in the hint. An
  error uses `vulnerable` and a sentence that offers a way out, never blame. Kira never asks for a bank
  PIN, a password or a bank OTP; its own app-lock PIN and email code use KiraCodeField. Set the
- keyboard on the field as on any view: `.keyboardType(.numberPad)`.
+ keyboard on the field as on any view: `.keyboardType(.numberPad)`. `.amount()` groups a rupiah
+ field's digits with dots within each keystroke ("10.000.000", AmountTextField), on the number pad.
  */
 import SwiftUI
 
@@ -18,7 +19,11 @@ struct KiraField: View {
     private var suffixText: LocalizedStringResource?
     private var iconName: KiraIconName?
     private var minimumLines = 1
+    private var groupsDigits = false
+    private var wrapsText = false
     @FocusState private var isFocused: Bool
+    /** Whether an `.amount()` field's UIKit text field is being typed in. */
+    @State private var isEditingAmount = false
     /**
      An empty prompt: without one, a text field shows its label in the box, and Kira's label
      already sits above it.
@@ -37,6 +42,8 @@ struct KiraField: View {
                 .font(.footnote.weight(.semibold)).kiraLineHeight(18, size: 13)
                 .foregroundStyle(.inkMuted)
                 .padding(.horizontal, 4)
+                /** A long label ("Harga Properti Impian Saat Ini") wraps, never squeezed by the field's container. */
+                .fixedSize(horizontal: false, vertical: true)
                 .accessibilityHidden(true)
             box
             if let message = errorText ?? hintText {
@@ -44,6 +51,8 @@ struct KiraField: View {
                     .font(.footnote).kiraLineHeight(18, size: 13)
                     .foregroundStyle(errorText == nil ? Color.inkMuted : Color.vulnerable)
                     .padding(.horizontal, 4)
+                    /** As tall as its lines at every text size, never squeezed by the field's container. */
+                    .fixedSize(horizontal: false, vertical: true)
             }
         }
     }
@@ -59,15 +68,11 @@ struct KiraField: View {
                 if isSingleLine, text.isEmpty, let prompt {
                     Text(prompt).font(.body).foregroundStyle(.inkMuted).accessibilityHidden(true)
                 }
-                TextField(text: $text, prompt: systemPrompt, axis: isSingleLine ? .horizontal : .vertical) {
-                    Text(label)
+                if groupsDigits {
+                    AmountTextField(text: $text, isEditing: $isEditingAmount, label: label, hint: prompt)
+                } else {
+                    textField
                 }
-                .lineLimit(minimumLines...max(minimumLines, 6))
-                .font(.body)
-                .foregroundStyle(.ink)
-                .focused($isFocused)
-                .accessibilityLabel(Text(label))
-                .accessibilityHint(prompt.map { Text($0) } ?? Text(Self.noPrompt))
             }
             .padding(.vertical, 14)
             if let suffixText { affix(suffixText) }
@@ -78,12 +83,31 @@ struct KiraField: View {
         .kiraCard(border: borderColor, cornerRadius: KiraRadius.medium)
         .overlay {
             RoundedRectangle(cornerRadius: KiraRadius.medium + 3, style: .continuous)
-                .strokeBorder(isFocused ? Color.pandanLine : .clear, lineWidth: 3)
+                .strokeBorder(isActive ? Color.pandanLine : .clear, lineWidth: 3)
                 .padding(-3)
         }
     }
 
+    private var textField: some View {
+        TextField(text: $text, prompt: systemPrompt, axis: isSingleLine && !wrapsText ? .horizontal : .vertical) {
+            Text(label)
+        }
+        .lineLimit(minimumLines...max(minimumLines, 6))
+        /** A wrapping field still holds one line of text: Return would type a line break, so it is dropped. */
+        .onChange(of: text) { _, value in
+            if wrapsText, value.contains(where: \.isNewline) { text = value.filter { !$0.isNewline } }
+        }
+        .font(.body)
+        .foregroundStyle(.ink)
+        .focused($isFocused)
+        .accessibilityLabel(Text(label))
+        .accessibilityHint(prompt.map { Text($0) } ?? Text(Self.noPrompt))
+    }
+
     private var isSingleLine: Bool { minimumLines == 1 }
+
+    /** Whether the field is being typed in: the SwiftUI field's focus, or the amount field's editing. */
+    private var isActive: Bool { isFocused || isEditingAmount }
 
     /** The prompt the system draws: a multi-line field's, which wraps already; none for a single line. */
     private var systemPrompt: Text {
@@ -93,7 +117,7 @@ struct KiraField: View {
 
     private var borderColor: Color {
         if errorText != nil { return .vulnerable }
-        return isFocused ? .pandan : .hairline
+        return isActive ? .pandan : .hairline
     }
 
     private func affix(_ text: LocalizedStringResource) -> some View {
@@ -115,8 +139,18 @@ struct KiraField: View {
     /** The same field with an icon at the end of the box, such as `.search`. */
     func icon(_ name: KiraIconName) -> Self { copy { $0.iconName = name } }
 
+    /** The same field holding whole rupiah: digits only, on the number pad, grouped with dots as they are typed. */
+    func amount() -> Self { copy { $0.groupsDigits = true } }
+
     /** The same field, growing to show at least `lines` lines. */
     func multiline(_ lines: Int) -> Self { copy { $0.minimumLines = lines } }
+
+    /**
+     The same field, one line when empty, wrapping onto more lines as a long value grows (a contact's
+     name), instead of scrolling it out of view at large text sizes. It stays one line of text: a
+     typed line break is dropped.
+     */
+    func wraps() -> Self { copy { $0.wrapsText = true } }
 
     private func copy(_ change: (inout Self) -> Void) -> Self {
         var field = self

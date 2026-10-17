@@ -22,6 +22,7 @@ struct KiraListRow<Extra: View>: View {
     private var amount: KiraAmount?
     private var value: Text?
     private var isDanger = false
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     init(
         _ title: Text, leading: Leading = .none, trailing: Trailing = .automatic, action: (() -> Void)? = nil,
@@ -55,28 +56,51 @@ struct KiraListRow<Extra: View>: View {
         return false
     }
 
+    /** A switch goes under the title at the accessibility sizes, so the title keeps its words whole. */
+    private var stacksTrailing: Bool {
+        if case .toggle = trailing { return typeSize.isAccessibilitySize }
+        return false
+    }
+
     private var row: some View {
-        HStack(spacing: KiraSpacing.space3) {
-            RowLeadingTile(leading: leading, isDanger: isDanger)
-            VStack(alignment: .leading, spacing: 2) {
-                title.font(.callout.weight(.semibold)).kiraLineHeight(21, size: 16).foregroundStyle(
-                    isDanger ? Color.vulnerable : Color.ink)
-                if let subtitle {
-                    subtitle.font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
-                }
-                if let amount { amount.padding(.top, 2) }
-                if let value {
-                    value.font(.subheadline.weight(.semibold)).kiraLineHeight(20, size: 15)
-                        .foregroundStyle(.ink).padding(.top, 2)
-                }
-                VStack(alignment: .leading, spacing: 6) { extra }.padding(.top, Extra.self == EmptyView.self ? 0 : 6)
+        let layout =
+            stacksTrailing
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: KiraSpacing.space2))
+            : AnyLayout(HStackLayout(spacing: KiraSpacing.space3))
+        return layout {
+            HStack(spacing: KiraSpacing.space3) {
+                RowLeadingTile(leading: leading, isDanger: isDanger)
+                main
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
             trailingView
         }
         .padding(.vertical, KiraSpacing.space3)
         .frame(minHeight: 60)
         .contentShape(Rectangle())
+    }
+
+    /**
+     The title and the subtitle take the column's whole width and grow downwards: sized to their
+     own one-line width, a line that just fits (QRIS's "Bayar lewat aplikasi bank atau e-wallet"
+     beside the check at 393 pt) is reported by the accessibility audit as clipped.
+     */
+    private var main: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            title.font(.callout.weight(.semibold)).kiraLineHeight(21, size: 16).foregroundStyle(
+                isDanger ? Color.vulnerable : Color.ink
+            )
+            .wrapsInColumn()
+            if let subtitle {
+                subtitle.font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted).wrapsInColumn()
+            }
+            if let amount { amount.padding(.top, 2) }
+            if let value {
+                value.font(.subheadline.weight(.semibold)).kiraLineHeight(20, size: 15)
+                    .foregroundStyle(.ink).padding(.top, 2)
+            }
+            VStack(alignment: .leading, spacing: 6) { extra }.padding(.top, Extra.self == EmptyView.self ? 0 : 6)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     @ViewBuilder private var trailingView: some View {
@@ -120,6 +144,13 @@ struct KiraListRow<Extra: View>: View {
         var row = self
         change(&row)
         return row
+    }
+}
+
+extension View {
+    /** As wide as the row's text column, and as tall as its lines need. */
+    fileprivate func wrapsInColumn() -> some View {
+        fixedSize(horizontal: false, vertical: true).frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 

@@ -19,6 +19,7 @@ struct KiraAccordion<Content: View>: View {
     /** Whether the person has opened or closed it; until then `opensAtFirst` decides. */
     @State private var wasToggled = false
     @State private var isOpen = false
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     /** Closed by default (`.openByDefault()` opens it); pass `isExpanded` to open or close it from outside. */
     init(
@@ -49,14 +50,25 @@ struct KiraAccordion<Content: View>: View {
         .disclosureGroupStyle(KiraAccordionStyle(isSoft: isSoft))
     }
 
+    /**
+     The icon beside the title as in the artifact. At the accessibility sizes the icon and the
+     chevron share a row above the title (an empty 38 pt one without an icon), so the title has the
+     card's whole width and wraps between words, never inside one ("Ngitungnya?").
+     */
     private var header: some View {
-        HStack(spacing: KiraSpacing.space3) {
+        let row =
+            typeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: KiraSpacing.space2))
+            : AnyLayout(HStackLayout(spacing: KiraSpacing.space3))
+        return row {
             if let icon {
                 KiraIcon(icon, size: 20)
                     .foregroundStyle(.pandan)
                     .frame(width: 38, height: 38)
                     .kiraCard(
                         isSoft ? .surfaceRaised : .pandanSoft, border: .pandanLine, cornerRadius: KiraRadius.small)
+            } else if typeSize.isAccessibilitySize {
+                Color.clear.frame(width: 38, height: 38)
             }
             VStack(alignment: .leading, spacing: 2) {
                 Text(title).font(.headline).kiraLineHeight(22, size: 17).foregroundStyle(.ink)
@@ -76,9 +88,9 @@ struct KiraAccordion<Content: View>: View {
     }
 
     /** The same accordion, open until the person closes it (the design system's `defaultOpen`). */
-    func openByDefault() -> Self {
+    func openByDefault(_ isOpen: Bool = true) -> Self {
         var accordion = self
-        accordion.opensAtFirst = true
+        accordion.opensAtFirst = isOpen
         return accordion
     }
 }
@@ -95,19 +107,23 @@ private struct AccordionBody: View {
     let configuration: DisclosureGroupStyleConfiguration
     let isSoft: Bool
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     var body: some View {
         VStack(spacing: 0) {
             Button {
                 withAnimation(reduceMotion ? nil : .easeInOut(duration: 0.2)) { configuration.isExpanded.toggle() }
             } label: {
-                HStack(spacing: KiraSpacing.space3) {
-                    configuration.label
-                    KiraIcon(.chevronDown, size: 18, weight: .semibold)
-                        .foregroundStyle(.inkMuted)
-                        .rotationEffect(.degrees(configuration.isExpanded ? 180 : 0))
-                        .frame(width: 28, height: 28)
-                        .background(.surfaceMuted, in: Circle())
+                Group {
+                    if typeSize.isAccessibilitySize {
+                        /** On the icon's row, centred on its 38 pt. */
+                        configuration.label.overlay(alignment: .topTrailing) { chevron.padding(.top, 5) }
+                    } else {
+                        HStack(spacing: KiraSpacing.space3) {
+                            configuration.label
+                            chevron
+                        }
+                    }
                 }
                 .padding(.vertical, KiraSpacing.space3)
                 .padding(.horizontal, KiraSpacing.space4)
@@ -127,6 +143,14 @@ private struct AccordionBody: View {
         .kiraCard(
             isSoft ? .pandanSoft : .surfaceRaised, border: isSoft ? .pandanLine : .hairline,
             cornerRadius: KiraRadius.medium)
+    }
+
+    private var chevron: some View {
+        KiraIcon(.chevronDown, size: 18, weight: .semibold)
+            .foregroundStyle(.inkMuted)
+            .rotationEffect(.degrees(configuration.isExpanded ? 180 : 0))
+            .frame(width: 28, height: 28)
+            .background(.surfaceMuted, in: Circle())
     }
 }
 

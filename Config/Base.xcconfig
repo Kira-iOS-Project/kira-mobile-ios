@@ -19,6 +19,9 @@ ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES
 
 ENABLE_USER_SCRIPT_SANDBOXING = YES
 GENERATE_INFOPLIST_FILE = YES
+INFOPLIST_KEY_NSCameraUsageDescription = Kira memakai kamera untuk memotret struk. Foto dibaca di ponselmu lalu dihapus.
+INFOPLIST_KEY_NSMicrophoneUsageDescription = Kira memakai mikrofon saat kamu mencatat dengan suara. Suara diubah jadi teks lalu dihapus.
+INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = Kira mengubah suaramu jadi teks di ponselmu untuk mencatat transaksi.
 ALWAYS_SEARCH_USER_PATHS = NO
 
 ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C0DE5EE5A1B2000000000018 /* APIClient in Frameworks */ = {isa = PBXBuildFile; productRef = C0DE5EE5A1B2000000000017 /* APIClient */; };
 		C0DE5EE5A1B2000000000023 /* Domain in Frameworks */ = {isa = PBXBuildFile; productRef = C0DE5EE5A1B2000000000022 /* Domain */; };
+		C0DE5EE5A1B2000000000026 /* Features in Frameworks */ = {isa = PBXBuildFile; productRef = C0DE5EE5A1B2000000000025 /* Features */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 			files = (
 				C0DE5EE5A1B2000000000018 /* APIClient in Frameworks */,
 				C0DE5EE5A1B2000000000023 /* Domain in Frameworks */,
+				C0DE5EE5A1B2000000000026 /* Features in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +88,15 @@
 			);
 			sourceTree = "<group>";
 		};
+		C0DE5EE5A1B2000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C0DE5EE5A1B200000000000A /* Kira.app */,
+				C0DE5EE5A1B200000000000B /* KiraUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		C0DE5EE5A1B2000000000004 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,15 +105,6 @@
 				C0DE5EE5A1B2000000000009 /* Release.xcconfig */,
 			);
 			path = Config;
-			sourceTree = "<group>";
-		};
-		C0DE5EE5A1B2000000000003 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C0DE5EE5A1B200000000000A /* Kira.app */,
-				C0DE5EE5A1B200000000000B /* KiraUITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +129,7 @@
 			packageProductDependencies = (
 				C0DE5EE5A1B2000000000017 /* APIClient */,
 				C0DE5EE5A1B2000000000022 /* Domain */,
+				C0DE5EE5A1B2000000000025 /* Features */,
 			);
 			productName = Kira;
 			productReference = C0DE5EE5A1B200000000000A /* Kira.app */;
@@ -259,10 +262,14 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 92PKDX722L;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Kira;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Kira memakai kamera untuk memotret struk. Foto dibaca di ponselmu lalu dihapus.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Kira memakai mikrofon saat kamu mencatat dengan suara. Suara diubah jadi teks lalu dihapus.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Kira mengubah suaramu jadi teks di ponselmu untuk mencatat transaksi.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -272,7 +279,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kira;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kira.finance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -287,6 +294,9 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Kira;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Kira memakai kamera untuk memotret struk. Foto dibaca di ponselmu lalu dihapus.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Kira memakai mikrofon saat kamu mencatat dengan suara. Suara diubah jadi teks lalu dihapus.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Kira mengubah suaramu jadi teks di ponselmu untuk mencatat transaksi.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -296,7 +306,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kira;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kira.finance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "$(KIRA_PROVISIONING_PROFILE)";
 			};
@@ -308,7 +318,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kira.uitests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kira.finance.uitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = Kira;
 			};
@@ -320,7 +330,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kira.uitests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kira.finance.uitests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = Kira;
 			};
@@ -375,6 +385,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C0DE5EE5A1B2000000000016 /* XCLocalSwiftPackageReference "Packages/AppCore" */;
 			productName = Domain;
+		};
+		C0DE5EE5A1B2000000000025 /* Features */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0DE5EE5A1B2000000000016 /* XCLocalSwiftPackageReference "Packages/AppCore" */;
+			productName = Features;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

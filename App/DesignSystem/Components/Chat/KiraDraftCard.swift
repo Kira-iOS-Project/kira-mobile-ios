@@ -52,7 +52,10 @@ struct KiraDraftCard: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.bottom, KiraSpacing.space3)
             .overlay(alignment: .bottom) { Rectangle().fill(.line).frame(height: 1) }
-            ForEach(items) { item in row(item) }
+            /** `.k-draft__list` has no gap of its own: the rows touch, each with its 10 pt padding. */
+            VStack(spacing: 0) {
+                ForEach(items) { item in row(item) }
+            }
             actions
         }
         .padding(KiraSpacing.space4)

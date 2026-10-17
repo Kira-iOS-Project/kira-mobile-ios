@@ -99,8 +99,10 @@ struct KiraChatBubble<Content: View>: View {
 }
 
 /**
- A message's line (`.k-bubble__line`): the bubble at most 82 % of the width, or 76 % beside an avatar,
- a bubble with saved transactions exactly 82 %; the avatar 8 pt from it, both on the line's bottom.
+ A message's line (`.k-bubble__line`): the bubble at most 82 % of the width, or 76 % beside an avatar
+ (`max-width` also caps the card's `width: 82%`, so a card is 82 % alone and 76 % beside one); a
+ bubble whose text wraps takes its whole limit, as a CSS box does, rather than its longest line;
+ the avatar 8 pt from it, both on the line's bottom.
  Kira's line starts at the left, the person's at the right. Its subviews are the bubble, then the
  avatar if any.
  */
@@ -126,9 +128,9 @@ private struct ChatLineLayout: Layout {
     private func arrange(width: CGFloat, subviews: Subviews) -> [CGRect] {
         guard let bubble = subviews.first else { return [] }
         let avatar = subviews.count > 1 ? subviews[1].sizeThatFits(.unspecified) : nil
-        let limit = (width * (isCard ? 0.82 : avatar == nil ? 0.82 : 0.76)).rounded(.down)
+        let limit = (width * (avatar == nil ? 0.82 : 0.76)).rounded(.down)
         var size = bubble.sizeThatFits(ProposedViewSize(width: limit, height: nil))
-        if isCard { size.width = limit }
+        if isCard || bubble.sizeThatFits(.unspecified).width > limit { size.width = limit }
         let height = max(size.height, avatar?.height ?? 0)
         let inset = avatar.map { $0.width + KiraSpacing.space2 } ?? 0
         let bubbleX = isUser ? width - inset - size.width : inset
@@ -143,22 +145,13 @@ private struct ChatLineLayout: Layout {
     }
 }
 
-/** Kuku's calm face in a 32 pt circle with the pandan AI sparkle: Kira's avatar. */
+/**
+ Kira's avatar: the guide's calm Kuku on its round ground with the pandan sparkle that marks an AI
+ reply, the circle 32 pt across (the image adds the badge's overhang).
+ */
 private struct KiraAvatarFace: View {
     var body: some View {
-        KiraMascot(.calm, size: 32, crop: .face)
-            .background(.artGreenLight)
-            .clipShape(Circle())
-            .overlay { Circle().strokeBorder(.hairline, lineWidth: 1) }
-            .overlay(alignment: .bottomTrailing) {
-                Image(systemName: "sparkle")
-                    .font(.system(size: 8, weight: .bold))
-                    .foregroundStyle(.onPandan)
-                    .frame(width: 16, height: 16)
-                    .background(.pandan, in: Circle())
-                    .overlay { Circle().strokeBorder(.surface, lineWidth: 2) }
-                    .offset(x: 4, y: 3)
-            }
+        KiraMascot(.calm, size: 32 * 124 / 114, crop: .face)
             .accessibilityHidden(true)
     }
 }

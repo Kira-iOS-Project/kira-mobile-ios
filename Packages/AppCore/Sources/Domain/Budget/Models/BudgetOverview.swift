@@ -1,0 +1,32 @@
+/** The current budget, including the server-adjusted pay period and this period's spending. */
+import Foundation
+
+/** Budget Bulanan's figures: income, what remains, the period and each category's allocation. */
+package struct BudgetOverview: Equatable, Sendable {
+    /** The monthly income used to size the plan. */
+    package let income: Int
+    /** Income remaining after spending reported by the server for this period. */
+    package let remaining: Int
+    /** Whether category allocations have been configured for this account. */
+    package let isConfigured: Bool
+    /** The period the server resolved from the adjusted payday. */
+    package let period: PayPeriod
+    /** Planned and spent amounts, in the API's stable category order. */
+    package let allocations: [BudgetAllocation]
+    /** Savings goals returned by the budget API. */
+    package let goalPosts: [BudgetGoalPost]
+
+    /** The current budget and its period. */
+    package init(
+        income: Int, remaining: Int? = nil, goalPosts: [BudgetGoalPost] = [],
+        period: PayPeriod, allocations: [BudgetAllocation], isConfigured: Bool = true
+    ) {
+        let normalizedIncome = max(0, income)
+        self.income = normalizedIncome
+        self.remaining = remaining ?? (normalizedIncome - allocations.reduce(0) { $0 + $1.spent })
+        self.isConfigured = isConfigured
+        self.period = period
+        self.allocations = allocations
+        self.goalPosts = goalPosts
+    }
+}

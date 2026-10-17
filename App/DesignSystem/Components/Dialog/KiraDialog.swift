@@ -31,6 +31,7 @@ struct KiraDialog: View {
     private let secondary: KiraButton?
     private var onDismiss: (() -> Void)?
     @AccessibilityFocusState private var titleFocused: Bool
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     /**
      `primary` goes on top; `secondary` (Batal, Tutup) under it. Presented, either button closes
@@ -51,15 +52,17 @@ struct KiraDialog: View {
         VStack(spacing: KiraSpacing.space2) {
             artView
             Text(title)
-                .font(KiraFont.display(22, .heavy, relativeTo: .title2)).kiraLineHeight(
-                    28, size: 22, natural: 1.26, relativeTo: .title2
-                )
+                /** `.k-dialog__title`'s 750, which keeps "Belum Berhasil Menyimpan" within 280 pt. */
+                .font(KiraFont.display(22, axisWeight: 750, relativeTo: .title2, typeSize: typeSize))
+                .kiraLineHeight(28, size: 22, natural: 1.26, relativeTo: .title2)
                 .tracking(-0.33)
                 .foregroundStyle(.ink)
                 .accessibilityAddTraits(.isHeader)
                 .accessibilityFocused($titleFocused)
                 .frame(maxWidth: 280)
-            Text(message)
+                .balancedLines()
+            /** Resolved first, then shown as plain text (no Markdown), so an email address stays untinted. */
+            Text(String(localized: message))
                 .font(.subheadline).kiraLineHeight(21, size: 15)
                 .foregroundStyle(.inkMuted)
                 .frame(maxWidth: 270)
