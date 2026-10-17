@@ -12,7 +12,7 @@ struct MortgageSummary: View {
         KiraSectionTitle("plan.kpr.title").padding(.top, KiraSpacing.space2)
         VStack(alignment: .leading, spacing: 6) {
             KiraTag(mortgage.health.tag, tone: mortgage.health.tone, icon: .shield)
-            Text("plan.kpr.health.body \(Text(mortgage.highestShare * 100, format: .kiraDecimal(1))) \(mortgage.health.limit)")
+            Text("plan.kpr.health.body \(highestShare) \(mortgage.health.limit)")
                 .font(.subheadline).kiraLineHeight(21, size: 15).foregroundStyle(.ink)
         }
         .padding(KiraSpacing.space4)
@@ -34,7 +34,8 @@ struct MortgageSummary: View {
                 .subtitle(Text("plan.kpr.fixInstalment.detail \(fixMonths) \(GoalCopy.percent(mortgage.fixRate))"))
                 .amount(KiraAmount(mortgage.fixInstalment.rupiah))
             KiraListRow(Text("plan.kpr.floatInstalment"), leading: .icon(.calendar))
-                .subtitle(Text("plan.kpr.floatInstalment.detail \(months - fixMonths) \(GoalCopy.percent(mortgage.floatRate))"))
+                .subtitle(
+                    Text("plan.kpr.floatInstalment.detail \(months - fixMonths) \(GoalCopy.percent(mortgage.floatRate))"))
                 .amount(KiraAmount(mortgage.floatInstalment.rupiah))
             KiraListRow(Text("plan.kpr.interest"), leading: .icon(.chart))
                 .subtitle(Text("plan.kpr.interest.detail \(Text(mortgage.interestShare * 100, format: .kiraMultiple))"))
@@ -51,13 +52,18 @@ struct MortgageSummary: View {
             row("plan.kpr.bphtb", "plan.kpr.bphtb.detail", costs.bphtb)
             row("plan.kpr.deed", "plan.kpr.ofPrice \(1)", costs.deed)
             row("plan.kpr.transfer", "plan.kpr.ofPrice \(1)", costs.transfer)
-            row("plan.kpr.notary", "plan.kpr.ofPrice.decimal \(Text(notaryPercent, format: .kiraMultiple))", costs.notary)
+            row("plan.kpr.notary", "plan.kpr.ofPrice.decimal \(notaryText)", costs.notary)
             row("plan.kpr.provision", "plan.kpr.ofLoan", costs.provision)
             row("plan.kpr.appraisal", nil, costs.appraisal)
             row("plan.kpr.admin", nil, costs.admin)
             row("plan.kpr.costs.total", nil, costs.total)
         }
     }
+
+    /** "29,9" for the instalment's share of the income. */
+    private var highestShare: Text { Text(mortgage.highestShare * 100, format: .kiraDecimal(1)) }
+
+    private var notaryText: Text { Text(notaryPercent, format: .kiraMultiple) }
 
     /** 2,5% under Rp100.000.000,00, 1% above Rp1.000.000.000,00, else 1,5% (the site's rule). */
     private var notaryPercent: Double {
