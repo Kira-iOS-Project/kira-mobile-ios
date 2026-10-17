@@ -56,19 +56,22 @@ struct BillFormScreen: View {
     private var isEditing: Bool { model.mode != .create }
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: KiraSpacing.space4) {
-                navBar
-                BillFormFields(model: model)
-                actions.padding(.top, KiraSpacing.space2)
+        GeometryReader { screen in
+            ScrollView {
+                VStack(alignment: .leading, spacing: KiraSpacing.space4) {
+                    navBar
+                    BillFormFields(model: model)
+                    /** The buttons sit at the foot when the form is short, as on the boards. */
+                    Spacer(minLength: 0)
+                    actions.padding(.top, KiraSpacing.space2)
+                }
+                .padding(.horizontal, KiraSpacing.screen)
+                .padding(.vertical, KiraSpacing.space2)
+                .frame(maxWidth: .infinity, minHeight: screen.size.height, alignment: .top)
             }
-            .padding(.horizontal, KiraSpacing.screen)
-            .padding(.top, KiraSpacing.space2)
-            .padding(.bottom, KiraSpacing.space4)
-            .background(alignment: .topTrailing) {
-                KiraLeaf(.twig, tone: .soft, size: 150, isFlipped: true).offset(x: 34, y: -29)
-                    .accessibilityHidden(true)
-            }
+        }
+        .background(alignment: .topTrailing) {
+            KiraLeaf(.twig, tone: .soft, size: 150, isFlipped: true).offset(x: 36, y: 40).accessibilityHidden(true)
         }
         .background(.surface)
         .kiraScrollEdges()

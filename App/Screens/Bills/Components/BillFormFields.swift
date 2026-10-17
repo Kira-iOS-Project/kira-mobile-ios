@@ -37,7 +37,8 @@ private struct BillCategoryTiles: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text("bills.add.category").font(.footnote.weight(.semibold)).kiraLineHeight(18, size: 13)
-                .foregroundStyle(.inkMuted).padding(.horizontal, KiraSpacing.space1).accessibilityAddTraits(.isHeader)
+                .foregroundStyle(.inkMuted).padding(.horizontal, KiraSpacing.space1)
+                .accessibilityAddTraits(.isHeader)
             /** Four to a row as on the board; two at the accessibility sizes so each name keeps one line. */
             let columns = typeSize.isAccessibilitySize ? 2 : 4
             LazyVGrid(
@@ -60,11 +61,16 @@ private struct BillCategoryTiles: View {
                     .font(.caption.weight(isOn ? .bold : .medium)).kiraLineHeight(16, size: 12)
                     .foregroundStyle(isOn ? Color.pandan : .inkMuted).multilineTextAlignment(.center)
             }
-            .padding(.vertical, KiraSpacing.space2)
+            .padding(.top, KiraSpacing.space2)
+            .padding(.bottom, 6)
             .frame(maxWidth: .infinity)
             .background(
                 isOn ? Color.pandanSoft : .clear,
                 in: RoundedRectangle(cornerRadius: KiraRadius.medium, style: .continuous))
+            .overlay {
+                RoundedRectangle(cornerRadius: KiraRadius.medium, style: .continuous)
+                    .strokeBorder(isOn ? Color.pandan : .clear, lineWidth: 1.5)
+            }
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
