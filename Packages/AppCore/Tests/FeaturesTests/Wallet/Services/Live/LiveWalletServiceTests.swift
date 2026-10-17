@@ -5,15 +5,16 @@ import Testing
 @testable import Features
 
 private let walletListJSON =
-    #"{"items":[{"id":"wallet-1","name":"BCA","type":"bank","balance":7000000,"createdAt":"2026-10-16"#
-    + #"T05:00:00.000Z"}],"debts":[\#(debtSummaryJSON)],"heldTotal":7100000,"totalDebt":4900000}"#
+    #"{"items":[{"id":"wallet-1","accountType":"wallet","name":"BCA","type":"bank","balance":70000"#
+    + #"00,"createdAt":"2026-10-16T05:00:00.000Z"}],"debts":[\#(debtSummaryJSON)],"heldTotal":710000"#
+    + #"0,"totalDebt":4900000}"#
 
 private let debtSummaryJSON =
-    #"{"id":"debt-1","name":"Paylater A","kind":"paylater","originalAmount":6000000,"remainingAmount""#
-    + #":4800000,"monthlyInstallment":400000,"remainingTenorMonths":12,"installmentsTotal":18,"installm"#
-    + #"entsRemaining":12,"paymentStatus":"on_time","nextInstallment":{"dueDate":"2026-10-21","amount":"#
-    + #"400000,"status":"dueSoon"},"dueSoon":true,"totalPaid":1200000,"scoreEstimate":{"value":66,"isSi"#
-    + #"mulated":true},"nextStep":"Bayar lebih awal"}"#
+    #"{"id":"debt-1","accountType":"debt","name":"Paylater A","kind":"paylater","originalAmount":6"#
+    + #"000000,"remainingAmount":4800000,"monthlyInstallment":400000,"remainingTenorMonths":12,"inst"#
+    + #"allmentsTotal":18,"installmentsRemaining":12,"paymentStatus":"on_time","nextInstallment":{"d"#
+    + #"ueDate":"2026-10-21","amount":400000,"status":"dueSoon"},"dueSoon":true,"totalPaid":1200000,"#
+    + #""scoreEstimate":{"value":66,"isSimulated":true},"nextStep":"Bayar lebih awal"}"#
 
 @Suite("LiveWalletService")
 struct LiveWalletServiceTests {
