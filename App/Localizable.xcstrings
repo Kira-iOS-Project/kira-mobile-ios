@@ -28124,6 +28124,16 @@
         }
       }
     },
+    "record.scan.focusArea" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Area fokus"
+          }
+        }
+      }
+    },
     "record.scan.frame" : {
       "localizations" : {
         "id" : {

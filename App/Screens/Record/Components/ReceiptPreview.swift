@@ -17,10 +17,13 @@ struct ReceiptPreview: View {
             switch stage {
             case .camera, .reading:
                 CameraPreview(camera: camera)
+                /** The overlays let a tap through to the camera, which focuses where it lands. */
                 Viewfinder().frame(width: 258, height: 332).padding(.top, 34).frame(
-                    maxHeight: .infinity, alignment: .top)
+                    maxHeight: .infinity, alignment: .top
+                ).allowsHitTesting(false)
                 chip("record.scan.frame", icon: .scan).frame(maxHeight: .infinity, alignment: .bottom).padding(
-                    .bottom, 18)
+                    .bottom, 18
+                ).allowsHitTesting(false)
             case .photo(let data):
                 still(data)
                 chip("record.scan.ready", icon: .check).frame(maxHeight: .infinity, alignment: .bottom).padding(
