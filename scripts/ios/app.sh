@@ -41,8 +41,12 @@ fi
 }
 scheme="${IOS_SCHEME:-$(basename "$project" .xcodeproj)}"
 
-# The first iPhone of the newest iOS runtime, by udid: device names differ between Xcode images.
+# IOS_SIMULATOR_ID when set; otherwise an iPhone of the newest iOS runtime, by udid (device names
+# differ between Xcode images), one that is not booted first: a booted simulator is likely the one
+# someone is using, and this unsigned test build would replace their signed app (its Keychain then
+# refuses every write, errSecMissingEntitlement).
 simulator() {
+  if [ -n "${IOS_SIMULATOR_ID:-}" ]; then echo "$IOS_SIMULATOR_ID"; return 0; fi
   xcrun simctl list devices available -j | python3 -c '
 import json, re, sys
 runtimes = json.load(sys.stdin).get("devices", {})
@@ -50,10 +54,11 @@ def version(key):
     m = re.search(r"iOS-(\d+)-(\d+)", key)
     return (int(m.group(1)), int(m.group(2))) if m else None
 for key in sorted((k for k in runtimes if version(k)), key=version, reverse=True):
-    for device in runtimes[key]:
-        if device.get("isAvailable", True) and device.get("name", "").startswith("iPhone"):
-            print(device["udid"])
-            sys.exit(0)
+    phones = [d for d in runtimes[key] if d.get("isAvailable", True) and d.get("name", "").startswith("iPhone")]
+    phones.sort(key=lambda d: d.get("state") == "Booted")
+    if phones:
+        print(phones[0]["udid"])
+        sys.exit(0)
 sys.exit(1)'
 }
 
