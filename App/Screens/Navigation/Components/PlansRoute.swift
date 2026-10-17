@@ -16,11 +16,11 @@ struct PlansRoute: View {
         switch route {
         case .plans(let yearly): PlansScreen(service: service, onOpen: onOpen, period: yearly ? .yearly : .monthly)
         case .planDetail(let plan):
-            PlanTermsRoute(plan: plan, service: service) { terms in
+            PlanTermsRoute(plan: plan, service: service, back: "plans.detail.back") { terms in
                 PlanDetailView(terms: terms, period: .monthly, service: service, onOpen: onOpen)
             }
         case .checkout(let plan, let yearly):
-            PlanTermsRoute(plan: plan, service: service) { terms in
+            PlanTermsRoute(plan: plan, service: service, back: "checkout.back") { terms in
                 CheckoutView(terms: terms, period: yearly ? .yearly : .monthly, service: service) {
                     onOpen(.subscription)
                 }
@@ -39,15 +39,20 @@ struct PlansRoute: View {
 /** A plan's terms from `GET /plans`, then the screen built from them. */
 private struct PlanTermsRoute<Content: View>: View {
     @State private var model: RouteLoadModel<PlanTerms>
+    private let back: LocalizedStringResource
     private let content: (PlanTerms) -> Content
 
-    init(plan: PlanID, service: any PlansService, @ViewBuilder content: @escaping (PlanTerms) -> Content) {
+    init(
+        plan: PlanID, service: any PlansService, back: LocalizedStringResource,
+        @ViewBuilder content: @escaping (PlanTerms) -> Content
+    ) {
         _model = State(initialValue: RouteLoadModel { try await service.plans().plans.first { $0.id == plan } })
+        self.back = back
         self.content = content
     }
 
     var body: some View {
-        RouteLoadView(model: model, content: content)
+        RouteLoadView(model: model, back: back, content: content)
     }
 }
 
@@ -62,27 +67,46 @@ private struct PaymentMethodRoute: View {
     }
 
     var body: some View {
-        RouteLoadView(model: model) { subscription in
+        RouteLoadView(model: model, back: "method.back") { subscription in
             PaymentMethodView(current: subscription.paymentMethod, service: service) {}
         }
     }
 }
 
-/** A spinner while the route loads, the problem with Coba Lagi when it failed, then the screen. */
+/**
+ A spinner while the route loads, the problem with Coba Lagi when it failed, then the screen. Until
+ the screen shows, the way back is the screen's own Kira back button (`back`, "Kembali ke …"), never
+ the system bar's chevron.
+ */
 private struct RouteLoadView<Value: Sendable, Content: View>: View {
     let model: RouteLoadModel<Value>
+    let back: LocalizedStringResource
     @ViewBuilder let content: (Value) -> Content
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         Group {
             switch model.phase {
-            case .loading: PlansLoadingView()
+            case .loading: waiting { PlansLoadingView() }
             case .empty: EmptySlot()
             case .loaded(let value): content(value)
             case .failed(let problem):
-                PlansProblemView(problem: problem) { Task { await model.load() } }.padding(KiraSpacing.screen)
+                waiting {
+                    PlansProblemView(problem: problem) { Task { await model.load() } }.padding(KiraSpacing.screen)
+                }
             }
         }
+        .toolbar(.hidden, for: .navigationBar)
         .task { await model.loadIfNeeded() }
+    }
+
+    /** `state` under the Kira back button, top left, as the screen's bar will show it. */
+    private func waiting(@ViewBuilder _ state: () -> some View) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            KiraIconButton.back(back) { dismiss() }
+                .padding(.horizontal, KiraSpacing.screen).padding(.top, KiraSpacing.space2)
+            state().frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .background(.surface)
     }
 }
