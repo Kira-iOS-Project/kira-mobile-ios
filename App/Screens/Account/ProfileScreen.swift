@@ -57,7 +57,7 @@ private struct ProfileContent: View {
         ProfileIdentity(profile: profile)
         ProfileQuotaCard(usage: profile.usage) { onOpen(.plans(yearly: false)) }
         KiraListGroup("account.profile.money") {
-            KiraListRow(Text("account.profile.wallets"), leading: .icon(.wallet)) { onOpen(.unavailable(.wallets)) }
+            KiraListRow(Text("account.profile.wallets"), leading: .icon(.wallet)) { onOpen(.wallets) }
                 .subtitle(Text("account.profile.wallets.subtitle \(profile.debtAccountCount)"))
             KiraListRow(Text("account.profile.bills"), leading: .icon(.calendar)) { onOpen(.unavailable(.bills)) }
             KiraListRow(Text("account.profile.budget"), leading: .icon(.chart)) { onOpen(.unavailable(.budget)) }

@@ -14,7 +14,7 @@ struct WalletTests {
         #expect(wallet.type == .paylater)
         #expect(wallet.balance == 420_000)
         #expect(wallet.nextDueAt == due)
-        #expect(wallet.dueSoon == nil)
+        #expect(wallet.dueSoon == false)
         #expect(Wallet(id: "cash", name: "Tunai", type: .cash, balance: 0, dueSoon: false).dueSoon == false)
         #expect(Wallet(id: "other", name: "Other", type: .other, balance: 0).type == .other)
     }

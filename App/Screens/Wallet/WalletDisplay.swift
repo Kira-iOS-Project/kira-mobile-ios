@@ -31,8 +31,4 @@ extension WalletType {
         case .other: .other
         }
     }
-
-    var amountLabelKey: LocalizedStringResource {
-        isDebt ? "wallet.create.remaining" : "wallet.create.balance"
-    }
 }

@@ -4,7 +4,9 @@ import XCTest
 nonisolated final class WalletAuditTests: XCTestCase {
     @MainActor
     func testWalletsPassesTheAudit() throws {
-        try auditScreen("wallets")
+        try auditScreen("profile") { app in
+            app.buttons["Dompet & Akun Utang"].tap()
+        }
     }
 
 }

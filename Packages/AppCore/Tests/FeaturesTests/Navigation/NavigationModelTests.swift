@@ -28,6 +28,15 @@ struct NavigationModelTests {
         #expect(navigation.homePath == [.score, .indicator(.emergencyFund)])
     }
 
+    @Test("opens Dompet from Profil on the current stack")
+    func walletsRoute() {
+        let navigation = NavigationModel()
+        navigation.open(.profile)
+        navigation.open(.wallets)
+        #expect(navigation.homePath == [.profile, .wallets])
+        #expect(navigation.showsDock == false)
+    }
+
     @Test("Beranda and Catat return to their root when tapped while open")
     func reselect() {
         let navigation = NavigationModel()

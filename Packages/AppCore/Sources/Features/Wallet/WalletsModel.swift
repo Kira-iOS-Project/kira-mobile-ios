@@ -40,7 +40,7 @@ package final class WalletsModel {
     /** Whether this account's next due date is today through `days` days away in the chosen calendar. */
     package func isDueSoon(_ wallet: Wallet, within days: Int = 10) -> Bool {
         guard wallet.type.isDebt, days >= 0 else { return false }
-        if let dueSoon = wallet.dueSoon { return dueSoon }
+        if wallet.dueSoon { return true }
         guard let due = wallet.nextDueAt else { return false }
         let today = calendar.startOfDay(for: now())
         let dueDay = calendar.startOfDay(for: due)

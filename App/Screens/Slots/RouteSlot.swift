@@ -20,6 +20,8 @@ struct RouteSlot: View {
         case .profile:
             ProfileScreen(
                 service: services.account, settings: services.security, onOpen: onOpen, onSignedOut: { endSession() })
+        case .wallets:
+            WalletsScreen(service: services.wallets, onOpenDebt: { _ in }, onOpenHelp: { onOpen(.unavailable(.care)) })
         case .security, .changePin:
             SecurityScreen(service: services.account, settings: services.security, onOpen: onOpen)
         case .privacy, .deleteAccount:

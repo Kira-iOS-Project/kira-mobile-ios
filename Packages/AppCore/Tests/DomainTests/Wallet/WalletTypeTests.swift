@@ -21,6 +21,5 @@ struct WalletTypeTests {
         #expect(WalletType.familyLoan.rawValue == "family_loan")
         #expect(WalletType.other.isDebt == false)
         #expect(WalletType.allCases.count == 10)
-        #expect(WalletType.selectableCases.count == 6)
     }
 }

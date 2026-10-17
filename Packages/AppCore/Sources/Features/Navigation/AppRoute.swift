@@ -33,6 +33,8 @@ package enum AppRoute: Hashable, Sendable {
 
     /** AKN-01: Profil. */
     case profile
+    /** UNG-01: Dompet & Akun Utang, opened from Profil. */
+    case wallets
     /** AKN-03: Keamanan. */
     case security
     /** AKN-03: Ganti PIN. */
@@ -83,8 +85,6 @@ package enum UnavailableArea: String, CaseIterable, Hashable, Sendable {
     case care
     /** UNG: the budget. */
     case budget
-    /** UNG: Dompet, the wallets. */
-    case wallets
     /** UNG: Tagihan, the bills. */
     case bills
     /** UNG: Ringkasan Mingguan, the weekly summary. */
