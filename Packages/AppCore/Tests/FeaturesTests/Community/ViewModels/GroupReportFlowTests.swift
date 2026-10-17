@@ -15,6 +15,13 @@ struct GroupReportFlowTests {
         return model
     }
 
+    /** How many reports reached `service`. */
+    private func reports(_ service: FakeCommunityService) async -> Int {
+        await service.calls.filter {
+            if case .report = $0 { true } else { false }
+        }.count
+    }
+
     @Test("nothing is sent without a reason; a sent report shows Laporan Terkirim over the sheet")
     func sent() async {
         let service = FakeCommunityService()
@@ -33,7 +40,7 @@ struct GroupReportFlowTests {
         #expect(!model.showsReportSent && model.reportFinished)
     }
 
-    @Test("offline closes the sheet and keeps the report; Coba Lagi reopens it and sends again")
+    @Test("offline closes the sheet and keeps the report; Coba Lagi reopens it and sends once it has risen")
     func offlineRetry() async {
         let service = FakeCommunityService(failures: ["report": [URLError(.notConnectedToInternet)]])
         let model = await model(service)
@@ -42,16 +49,42 @@ struct GroupReportFlowTests {
         #expect(!model.showsReport && model.failure?.failure == .connection && model.failure?.attempt == .report)
         #expect(model.reportForm.report.reason == .scam && (model.failure?.failure.kind?.allowsRetry ?? true))
         await model.retry()
+        #expect(model.showsReport && !model.showsReportSent && model.failure == nil)
+        #expect(await reports(service) == 1)
+        await model.sheetShown(.report)
         #expect(model.showsReportSent && model.showsReport)
     }
 
-    @Test("Tutup on the failure drops the report as typed")
-    func closeDrops() async {
-        let model = await model(FakeCommunityService(failures: ["report": [URLError(.notConnectedToInternet)]]))
+    @Test("two failures then a success: each Coba Lagi sends only once its sheet has risen")
+    func retryTwice() async {
+        let offline = URLError(.notConnectedToInternet)
+        let service = FakeCommunityService(failures: ["report": [offline, offline]])
+        let model = await model(service)
         model.reportForm.choose(.scam)
         await model.sendReport()
+        await model.retry()
+        await model.sheetShown(.report)
+        #expect(!model.showsReport && model.failure?.attempt == .report && model.reportForm.report.reason == .scam)
+        await model.retry()
+        await model.sheetShown(.report)
+        #expect(model.showsReportSent && model.failure == nil)
+        #expect(await reports(service) == 3)
+    }
+
+    @Test("Tutup on the failure keeps the reason and story; Laporkan Grup reopens them, and only a send clears them")
+    func closeKeeps() async {
+        let model = await model(FakeCommunityService(failures: ["report": [URLError(.notConnectedToInternet)]]))
+        model.reportForm.choose(.other)
+        model.reportForm.report.story = "Admin jualan data."
+        await model.sendReport()
         model.dismissFailure()
-        #expect(model.failure == nil && model.reportForm.report == GroupReport())
+        #expect(model.failure == nil && model.reportForm.report.reason == .other)
+        #expect(model.reportForm.report.story == "Admin jualan data.")
+        model.report()
+        await model.sheetShown(.report)
+        #expect(model.showsReport && !model.showsReportSent)
+        await model.sendReport()
+        #expect(model.showsReportSent && model.reportForm.report == GroupReport())
     }
 
     @Test("a duplicate after a lost answer is the report already sent")
@@ -63,6 +96,7 @@ struct GroupReportFlowTests {
         model.reportForm.choose(.scam)
         await model.sendReport()
         await model.retry()
+        await model.sheetShown(.report)
         #expect(model.showsReportSent)
     }
 

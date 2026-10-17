@@ -7,7 +7,8 @@ import Observation
  current rules are accepted, then asks the API for the invite and confirms the outside link
  (KOM-04) every time. "Laporkan Grup" (KOM-05) is always there; "Laporan Terkirim" shows over
  its sheet, and Selesai goes back to Komunitas. A submit that fails closes its sheet and shows the
- failure dialog here; Coba Lagi reopens that sheet with its input and repeats, Tutup drops it.
+ failure dialog here; Coba Lagi reopens that sheet with its input and repeats once it has risen.
+ Tutup closes the dialog; a report keeps what was typed until it is sent.
  */
 @MainActor @Observable
 package final class GroupDetailModel {
@@ -39,6 +40,8 @@ package final class GroupDetailModel {
     package private(set) var failure: (failure: CommunityFailure, attempt: Attempt)?
     /** Whether a rules or join request is on its way. */
     package private(set) var isWorking = false
+    /** The submit Coba Lagi left waiting for its sheet to have fully risen (`sheetShown`). */
+    private var pendingRetry: Attempt?
     /** The report's form, kept while the sheet is closed. */
     package let reportForm: GroupReportModel
     /** The group's id. */
@@ -71,6 +74,7 @@ package final class GroupDetailModel {
             await requestInvite()
         } else {
             rulesAgreed = false
+            pendingRetry = nil
             showsRules = true
         }
     }
@@ -116,19 +120,22 @@ package final class GroupDetailModel {
         }
     }
 
-    /** Coba Lagi: reopens the failed sheet with its input and repeats the submit. */
+    /**
+     Coba Lagi, once the dialog is down: reopens the failed sheet with its input, and its submit waits
+     for `sheetShown`, so an answer never meets a sheet still rising. A join has no sheet: it asks again.
+     */
     package func retry() async {
         guard let attempt = failure?.attempt else { return }
         failure = nil
         switch attempt {
         case .acceptRules:
+            pendingRetry = .acceptRules
             showsRules = true
-            await acceptRules()
         case .join:
             await requestInvite()
         case .report:
+            pendingRetry = .report
             showsReport = true
-            await sendReport()
         }
     }
 
@@ -153,9 +160,17 @@ package final class GroupDetailModel {
 }
 
 extension GroupDetailModel {
-    /** "Laporkan Grup". */
+    /** "Laporkan Grup", on what an earlier report that failed kept. */
     package func report() {
+        pendingRetry = nil
         showsReport = true
+    }
+
+    /** The sheet of `sheet` has fully risen: the submit Coba Lagi left waiting for it goes now. */
+    package func sheetShown(_ sheet: Attempt) async {
+        guard pendingRetry == sheet else { return }
+        pendingRetry = nil
+        if sheet == .report { await sendReport() } else { await acceptRules() }
     }
 
     /** Selesai on "Laporan Terkirim": the dialog and the sheet close, and the screen goes back. */
@@ -164,13 +179,12 @@ extension GroupDetailModel {
         reportFinished = true
     }
 
-    /** Tutup on the failure dialog: what the failed sheet held is dropped. */
+    /**
+     Tutup on the failure dialog. The report keeps its reason and story for the next Laporkan Grup
+     (only a report sent clears them); the rules' tick drops, as the rules are opened unticked.
+     */
     package func dismissFailure() {
-        switch failure?.attempt {
-        case .acceptRules: rulesAgreed = false
-        case .report: reportForm.report = GroupReport()
-        case .join, nil: break
-        }
+        if failure?.attempt == .acceptRules { rulesAgreed = false }
         failure = nil
     }
 }
