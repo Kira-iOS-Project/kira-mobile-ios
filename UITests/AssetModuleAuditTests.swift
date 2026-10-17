@@ -37,7 +37,7 @@ nonisolated final class AssetModuleAuditTests: XCTestCase {
     }
 
     /**
-     Accepted pending the owner: contrast on three elements of the module, and nothing else: the section title
+     Accepted by the owner (2026-10-17): contrast on three elements of the module, and nothing else: the section title
      "Cocok untuk", the "Cek Legalitas" link and the education notice's sentence. The audit flags them only on the
      passes after a scroll (the acceptance cannot tell the passes apart). All three are in the board's colours
      (ink, pandan and ink-muted on surface-raised), pass on the first, unscrolled pass of every module, and pass on
