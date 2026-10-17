@@ -35,7 +35,7 @@ extension Operations.SimulatePayoff.Output {
         case .badRequest(let response): throw try response.body.applicationProblemJson
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -47,7 +47,7 @@ extension Operations.CreatePayoffPlan.Output {
         case .badRequest(let response): throw try response.body.applicationProblemJson
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -58,7 +58,7 @@ extension Operations.GetActivePayoffPlan.Output {
         case .ok(let response): return try ActivePlanDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .notFound(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -70,7 +70,7 @@ extension Operations.SetPayoffFocus.Output {
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .notFound(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -83,7 +83,7 @@ extension Operations.RecordDebtPayment.Output {
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .notFound(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
-        case .undocumented: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }

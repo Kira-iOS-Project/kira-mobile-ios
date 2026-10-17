@@ -34,7 +34,8 @@ package enum CommunityProblemKind: Equatable, Sendable {
             .transactionBatchNotFound, .transactionUndoExpired, .importNotFound, .importRangeTooLong,
             .importRowUnknown, .subscriptionNotFound, .subscriptionNotCancellable, .subscriptionNotPaid,
             .scholarshipNotEligible, .scholarshipApplicationNotFound, .scholarshipDebtEmergencyRequired,
-            .communityProductNotFound, .careCheckInNotFound, .careSafetyPlanNotFound:
+            .communityProductNotFound, .careCheckInNotFound, .careSafetyPlanNotFound,
+            .payoffExtraTooHigh, .payoffNothingToPlan, .payoffPlanNotFound, .payoffDebtNotFound, .payoffPaymentTooHigh:
             self = .other
         }
     }
