@@ -4,6 +4,7 @@
  answer (the UI test taps it for the failure dialog).
  */
 #if DEBUG
+    import Domain
     import Features
     import SwiftUI
 
