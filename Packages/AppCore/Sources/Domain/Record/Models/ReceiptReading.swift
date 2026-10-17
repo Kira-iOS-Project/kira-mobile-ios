@@ -19,6 +19,22 @@ package struct ReceiptReading: Equatable, Sendable {
 
     /** Whether the items add up to the total, as the API checks (RECEIPT_TOTAL_MISMATCH). */
     package var isBalanced: Bool { items.map(\.amount).reduce(0, +) == total }
+
+    /**
+     The reading with items that add up to the printed total, which always wins: what the items
+     leave out (tax, service, a line OCR missed) becomes one line named `otherName`; items worth more
+     than the total, or none at all, become that one line for the whole total. The person corrects
+     the draft; the scan never fails on a total it could read.
+     */
+    package func balanced(otherName: String) -> ReceiptReading {
+        let sum = items.map(\.amount).reduce(0, +)
+        guard sum != total else { return self }
+        let lines =
+            sum < total && !items.isEmpty
+            ? items + [ReceiptLine(name: otherName, amount: total - sum)]
+            : [ReceiptLine(name: otherName, amount: total)]
+        return ReceiptReading(storeName: storeName, printedAt: printedAt, items: lines, total: total)
+    }
 }
 
 /** One bought item. */
