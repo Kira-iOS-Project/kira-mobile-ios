@@ -44,7 +44,8 @@ nonisolated final class PlanAuditTests: XCTestCase {
             prepare: { app in
                 XCTAssertTrue(app.staticTexts["Tonggak 1 Bulan Tercapai"].waitForExistence(timeout: 10))
                 XCTAssertTrue(app.buttons["Ubah Tujuan"].exists && app.buttons["Tambah Setoran"].exists)
-            })
+            },
+            accepting: Self.isTwigLeaf)
     }
 
     @MainActor
@@ -54,7 +55,8 @@ nonisolated final class PlanAuditTests: XCTestCase {
             prepare: { app in
                 XCTAssertTrue(app.staticTexts["Tujuan ini sudah tidak ada."].waitForExistence(timeout: 10))
                 XCTAssertFalse(app.buttons["Coba Lagi"].exists)
-            })
+            },
+            accepting: Self.isTwigLeaf)
     }
 
     @MainActor
@@ -78,5 +80,19 @@ nonisolated final class PlanAuditTests: XCTestCase {
         retry?.tap()
         XCTAssertTrue(save.waitForExistence(timeout: 5))
         app.terminate()
+    }
+
+    /**
+     Accepted, as for Catat's leaves (CrisisChatAuditTests.isRecordLeaf): "Element has no description" on
+     Detail Tujuan's corner twig (KiraLeaf .twig, 136 × 136), decorative artwork, and nothing else.
+     */
+    @MainActor
+    private static func isTwigLeaf(_ issue: XCUIAccessibilityAuditIssue) -> Bool {
+        guard issue.auditType == .sufficientElementDescription, let element = issue.element, element.label.isEmpty
+        else {
+            return false
+        }
+        let size = element.frame.size
+        return abs(size.width - 136) < 1 && abs(size.height - 136) < 1
     }
 }
