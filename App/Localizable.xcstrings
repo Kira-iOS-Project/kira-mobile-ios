@@ -16488,6 +16488,216 @@
         }
       }
     },
+    "plan.other.amount" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jumlah Uang yang Ingin Dicapai"
+          }
+        }
+      }
+    },
+    "plan.other.caption %@ %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$lld tahun lagi"
+          }
+        }
+      }
+    },
+    "plan.other.deposit.year" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Target Investasi per Tahun"
+          }
+        }
+      }
+    },
+    "plan.other.footnote.monthEnd" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Investasi disetor di akhir tiap bulan dan imbal hasilnya berbunga majemuk bulanan. Belum memperhitungkan pajak dan biaya produk investasi."
+          }
+        }
+      }
+    },
+    "plan.other.footnote.yearEnd" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Investasi disetor di akhir tiap tahun dan imbal hasilnya berbunga majemuk tahunan. Belum memperhitungkan pajak dan biaya produk investasi."
+          }
+        }
+      }
+    },
+    "plan.other.footnote.yearStart" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Investasi disetor di awal tiap tahun dan imbal hasilnya berbunga majemuk tahunan. Belum memperhitungkan pajak dan biaya produk investasi."
+          }
+        }
+      }
+    },
+    "plan.other.formula.fv.end %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@, akhir periode)"
+          }
+        }
+      }
+    },
+    "plan.other.formula.fv.start %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@, awal periode)"
+          }
+        }
+      }
+    },
+    "plan.other.formula.fv.yearly %@ %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FV(%1$@%%, %2$lld tahun,"
+          }
+        }
+      }
+    },
+    "plan.other.formula.noInflation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanpa inflasi, sesuai angka yang kamu isi"
+          }
+        }
+      }
+    },
+    "plan.other.lead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tulis tujuanmu sendiri."
+          }
+        }
+      }
+    },
+    "plan.other.name" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama Tujuan"
+          }
+        }
+      }
+    },
+    "plan.other.period" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menabung Setiap"
+          }
+        }
+      }
+    },
+    "plan.other.period.month" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bulan"
+          }
+        }
+      }
+    },
+    "plan.other.period.year" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tahun"
+          }
+        }
+      }
+    },
+    "plan.other.present" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uang yang Sudah Ada"
+          }
+        }
+      }
+    },
+    "plan.other.result.overline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jumlah uang yang ingin kamu capai"
+          }
+        }
+      }
+    },
+    "plan.other.timing" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah Dana di"
+          }
+        }
+      }
+    },
+    "plan.other.timing.end" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akhir"
+          }
+        }
+      }
+    },
+    "plan.other.timing.start" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Awal"
+          }
+        }
+      }
+    },
+    "plan.other.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lainnya"
+          }
+        }
+      }
+    },
     "plan.price.automatic" : {
       "localizations" : {
         "id" : {
