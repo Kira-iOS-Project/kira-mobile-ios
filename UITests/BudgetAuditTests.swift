@@ -14,4 +14,13 @@ nonisolated final class BudgetAuditTests: XCTestCase {
             XCTAssertTrue(app.staticTexts["Pos Tujuan"].exists)
         }
     }
+
+    /** A failed load keeps the way back the loaded screen shows (owner's request), beside Coba Lagi. */
+    @MainActor
+    func testBudgetFailedKeepsTheWayBackAndPassesTheAudit() throws {
+        try auditScreen("budgetFailed") { app in
+            XCTAssertTrue(app.buttons["Kembali ke Beranda"].waitForExistence(timeout: 5))
+            XCTAssertTrue(app.buttons["Coba Lagi"].exists)
+        }
+    }
 }
