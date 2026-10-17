@@ -61,8 +61,11 @@ struct GoalMilestoneCard: View {
             VStack(alignment: .leading, spacing: KiraSpacing.space1) {
                 Text(milestone.reachedTitle).font(.body.weight(.bold)).kiraLineHeight(22, size: 17)
                     .foregroundStyle(.ink)
+                    /** As tall as its lines beside Kuku, never held to one. */
+                    .fixedSize(horizontal: false, vertical: true)
                 Text(milestone.reachedLine).font(.subheadline).kiraLineHeight(20, size: 15)
                     .foregroundStyle(.inkMuted)
+                    .fixedSize(horizontal: false, vertical: true)
                 KiraHandNote(
                     "plan.detail.note \(progress, format: .percent.precision(.fractionLength(0)))", size: .small
                 )

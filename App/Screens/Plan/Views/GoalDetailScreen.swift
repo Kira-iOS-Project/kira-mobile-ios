@@ -84,8 +84,10 @@ private struct GoalDetailContent: View {
         HStack(spacing: 14) {
             KiraCategoryIcon(goal.summary.kind.category, size: 56)
             VStack(alignment: .leading, spacing: 2) {
+                /** The display face's own line, as the check-in title: a 32 pt line cut it at larger sizes. */
                 Text(goal.summary.name).font(KiraFont.display(26, .heavy, relativeTo: .title))
-                    .kiraLineHeight(32, size: 26, relativeTo: .title).tracking(-0.65).foregroundStyle(.ink)
+                    .tracking(-0.65).foregroundStyle(.ink)
+                    .fixedSize(horizontal: false, vertical: true)
                     .accessibilityAddTraits(.isHeader)
                 Text(target)
                     .font(.subheadline).kiraLineHeight(20, size: 15).foregroundStyle(.inkMuted).monospacedDigit()
