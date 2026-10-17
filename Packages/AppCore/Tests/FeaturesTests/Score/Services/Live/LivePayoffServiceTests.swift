@@ -1,5 +1,6 @@
 import APIClient
 import Domain
+import Foundation
 import Testing
 
 @testable import Features
@@ -41,6 +42,25 @@ struct LivePayoffServiceTests {
         #expect(
             simulation.comparison
                 == PayoffComparison(otherMethod: .snowball, interestSaved: 1_200, firstPayoffMonthsLater: nil))
+    }
+
+    @Test("the API's payoff days become calendar days, for the accounts, the productive debts and the last payoff")
+    func days() async throws {
+        let json =
+            planJSON
+            .replacingOccurrences(of: #""interest":6400}"#, with: #""interest":6400,"payoffDate":"2026-11-05"}"#)
+            .replacingOccurrences(
+                of: #""monthlyInstalment":850000}"#,
+                with: #""monthlyInstalment":850000,"payoffMonth":"2027-12","payoffDate":"2027-12-28"}"#
+            )
+            .replacingOccurrences(
+                of: #""allPaidMonth":"2026-11","#, with: #""allPaidMonth":"2026-11","allPaidDate":"2026-11-05","#)
+        let (api, _) = KiraAPI.routed(["POST /api/payoff/simulate": ok(json)])
+        let simulation = try await LivePayoffService(api: api).simulate(method: .avalanche, extraPayment: 200_000)
+        #expect(simulation.accounts.first?.payoffDate == CalendarDay(year: 2026, month: 11, day: 5))
+        #expect(simulation.productive.first?.payoffDate == CalendarDay(year: 2027, month: 12, day: 28))
+        #expect(simulation.productive.first?.payoffMonth == "2027-12")
+        #expect(simulation.allPaidDate == CalendarDay(year: 2026, month: 11, day: 5))
     }
 
     @Test("a payoff problem reaches the screen with its code")
