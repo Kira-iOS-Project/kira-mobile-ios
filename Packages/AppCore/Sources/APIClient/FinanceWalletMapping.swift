@@ -9,9 +9,10 @@ extension Operations.ListWallets.Output {
                 Wallet(id: $0.id, name: $0.name, type: try walletType($0._type.rawValue), balance: $0.balance)
             }
             let debts = try result.debts.map(mapDebtWallet)
-            return WalletOverview(accounts: wallets + debts)
+            return WalletOverview(
+                accounts: wallets + debts, heldTotal: result.heldTotal, runningDebt: result.totalDebt)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
-        case .default: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
@@ -35,5 +36,5 @@ func walletType(_ rawValue: String) throws -> WalletType {
 func mapDebtWallet(_ row: Components.Schemas.DebtSummary) throws -> Wallet {
     Wallet(
         id: row.id, name: row.name, type: try walletType(row.kind.rawValue), balance: row.remainingAmount,
-        nextDueAt: row.nextInstallment.flatMap { CalendarDay(iso: $0.dueDate)?.start }, dueSoon: row.dueSoon)
+        nextDueAt: row.nextInstallment.flatMap { CalendarDay(iso: $0.dueDate)?.start })
 }

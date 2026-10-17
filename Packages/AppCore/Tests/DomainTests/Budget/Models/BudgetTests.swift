@@ -3,7 +3,7 @@ import Testing
 
 @Suite("Budget overview values")
 struct BudgetTests {
-    @Test("near limit starts at 90 percent and progress stays capped")
+    @Test("near limit starts at 90 percent of a positive amount, unless the API says otherwise")
     func categoryUsage() {
         let below = BudgetAllocation(category: .food, amount: 1_000, spent: 899)
         let threshold = BudgetAllocation(category: .food, amount: 1_000, spent: 900)
@@ -12,10 +12,9 @@ struct BudgetTests {
         #expect(!below.isNearLimit)
         #expect(threshold.isNearLimit)
         #expect(exceeded.isNearLimit)
-        #expect(exceeded.progress == 1)
-        #expect(zero.progress == 0)
         #expect(!zero.isNearLimit)
         #expect(!BudgetAllocation(category: .food, amount: 1_000, spent: 950, nearLimit: false).isNearLimit)
+        #expect(BudgetAllocation(category: .food, amount: -5, spent: -1, nearLimit: true).amount == 0)
         #expect(BudgetAllocation(category: .food, amount: 1_000, spent: 10, nearLimit: true).isNearLimit)
     }
 

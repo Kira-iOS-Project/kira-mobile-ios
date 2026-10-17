@@ -5,7 +5,7 @@ extension Operations.GetCurrentBudget.Output {
         switch self {
         case .ok(let response): try budgetOverview(response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
-        case .default: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }

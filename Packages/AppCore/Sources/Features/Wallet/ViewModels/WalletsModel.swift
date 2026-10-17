@@ -7,13 +7,16 @@ import Observation
 @MainActor
 @Observable
 package final class WalletsModel {
+    /** Loading, the accounts, none yet, or the problem of a first load that failed. */
     package private(set) var phase: ScreenPhase<WalletOverview> = .loading
+    /** Whether every amount is masked. */
     package private(set) var hidesBalances = false
 
     private let service: any WalletService
     private let now: @Sendable () -> Date
     private let calendar: Calendar
 
+    /** Dompet over `service`, judging due days by `now` in `calendar` (WIB unless given). */
     package init(
         service: any WalletService, now: @escaping @Sendable () -> Date = { Date() }, calendar: Calendar? = nil
     ) {
@@ -43,7 +46,6 @@ package final class WalletsModel {
     /** Whether this account's next due date is today through `days` days away in the chosen calendar. */
     package func isDueSoon(_ wallet: Wallet, within days: Int = 10) -> Bool {
         guard wallet.type.isDebt, days >= 0 else { return false }
-        if let dueSoon = wallet.dueSoon { return dueSoon }
         guard let due = wallet.nextDueAt else { return false }
         let today = calendar.startOfDay(for: now())
         let dueDay = calendar.startOfDay(for: due)
