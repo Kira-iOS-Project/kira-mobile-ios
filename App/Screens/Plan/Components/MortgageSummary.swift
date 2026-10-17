@@ -34,8 +34,7 @@ struct MortgageSummary: View {
                 .subtitle(Text("plan.kpr.fixInstalment.detail \(fixMonths) \(GoalCopy.percent(mortgage.fixRate))"))
                 .amount(KiraAmount(mortgage.fixInstalment.rupiah))
             KiraListRow(Text("plan.kpr.floatInstalment"), leading: .icon(.calendar))
-                .subtitle(
-                    Text("plan.kpr.floatInstalment.detail \(months - fixMonths) \(GoalCopy.percent(mortgage.floatRate))"))
+                .subtitle(Text("plan.kpr.floatInstalment.detail \(months - fixMonths) \(floatRate)"))
                 .amount(KiraAmount(mortgage.floatInstalment.rupiah))
             KiraListRow(Text("plan.kpr.interest"), leading: .icon(.chart))
                 .subtitle(Text("plan.kpr.interest.detail \(Text(mortgage.interestShare * 100, format: .kiraMultiple))"))
@@ -62,6 +61,8 @@ struct MortgageSummary: View {
 
     /** "29,9" for the instalment's share of the income. */
     private var highestShare: Text { Text(mortgage.highestShare * 100, format: .kiraDecimal(1)) }
+
+    private var floatRate: Text { GoalCopy.percent(mortgage.floatRate) }
 
     private var notaryText: Text { Text(notaryPercent, format: .kiraMultiple) }
 
