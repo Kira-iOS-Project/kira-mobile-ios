@@ -36,7 +36,7 @@ struct FinanceAPIBillsTests {
         {"id":"b","name":"Pulsa","kind":"bill","category":"other_expense","amount":50000,"isEstimate":false,\
         "repeats":"once","dueOn":"2026-10-01","dueDay":1,"nextDueOn":\(next),"daysUntil":null,"debtId":null,\
         "remainingInstalments":null,"paidThisPeriod":true,"lastPaidOn":"2026-10-01",\
-        "createdAt":"2026-01-01T00:00:00Z"}
+        "createdAt":"2026-01-01T00:00:00.000Z"}
         """
     }
 }
