@@ -17398,6 +17398,396 @@
         }
       }
     },
+    "plan.wedding.attire" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pakaian / Seragam"
+          }
+        }
+      }
+    },
+    "plan.wedding.budget" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anggaran Pernikahan"
+          }
+        }
+      }
+    },
+    "plan.wedding.budgeting" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipe Budgeting"
+          }
+        }
+      }
+    },
+    "plan.wedding.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "plan.wedding.caption %@ %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anggaran %1$@ menikah %2$lld tahun lagi, sudah termasuk inflasi %3$@%% per tahun"
+          }
+        }
+      }
+    },
+    "plan.wedding.caption.own %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anggaranmu menikah %1$lld tahun lagi, sudah termasuk inflasi %2$@%% per tahun"
+          }
+        }
+      }
+    },
+    "plan.wedding.catering" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Katering"
+          }
+        }
+      }
+    },
+    "plan.wedding.decoration" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dekorasi"
+          }
+        }
+      }
+    },
+    "plan.wedding.detailed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rinci"
+          }
+        }
+      }
+    },
+    "plan.wedding.documentation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokumentasi"
+          }
+        }
+      }
+    },
+    "plan.wedding.dowry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mahar"
+          }
+        }
+      }
+    },
+    "plan.wedding.economical" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ekonomis"
+          }
+        }
+      }
+    },
+    "plan.wedding.emcee" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MC"
+          }
+        }
+      }
+    },
+    "plan.wedding.examples" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pakai Contoh Anggaran"
+          }
+        }
+      }
+    },
+    "plan.wedding.examples.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contoh anggaran"
+          }
+        }
+      }
+    },
+    "plan.wedding.examples.source" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ekonomis Rp42.500.000,00 · Standar Rp175.000.000,00 · Sultan Rp775.000.000,00. Sumber: CNN Indonesia dan Bride Story."
+          }
+        }
+      }
+    },
+    "plan.wedding.goal" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menikah"
+          }
+        }
+      }
+    },
+    "plan.wedding.guests" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jumlah Tamu"
+          }
+        }
+      }
+    },
+    "plan.wedding.inflation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asumsi Inflasi"
+          }
+        }
+      }
+    },
+    "plan.wedding.invitation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Undangan"
+          }
+        }
+      }
+    },
+    "plan.wedding.lavish" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sultan"
+          }
+        }
+      }
+    },
+    "plan.wedding.lead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biaya hari bahagia."
+          }
+        }
+      }
+    },
+    "plan.wedding.makeup" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Makeup"
+          }
+        }
+      }
+    },
+    "plan.wedding.music" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Musik / Hiburan"
+          }
+        }
+      }
+    },
+    "plan.wedding.organizer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wedding Organizer"
+          }
+        }
+      }
+    },
+    "plan.wedding.pax" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pax"
+          }
+        }
+      }
+    },
+    "plan.wedding.perGuest %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld pax × %2$@"
+          }
+        }
+      }
+    },
+    "plan.wedding.present" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uang yang Sudah Ada untuk Menikah"
+          }
+        }
+      }
+    },
+    "plan.wedding.price" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Harga"
+          }
+        }
+      }
+    },
+    "plan.wedding.pricePerGuest" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Harga per Pax"
+          }
+        }
+      }
+    },
+    "plan.wedding.rows" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rincian biaya"
+          }
+        }
+      }
+    },
+    "plan.wedding.rows.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketuk baris untuk mengubah harganya."
+          }
+        }
+      }
+    },
+    "plan.wedding.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan"
+          }
+        }
+      }
+    },
+    "plan.wedding.simple" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sederhana"
+          }
+        }
+      }
+    },
+    "plan.wedding.souvenir" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suvenir"
+          }
+        }
+      }
+    },
+    "plan.wedding.standard" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standar"
+          }
+        }
+      }
+    },
+    "plan.wedding.total" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Anggaran"
+          }
+        }
+      }
+    },
+    "plan.wedding.venue" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Venue / Gedung"
+          }
+        }
+      }
+    },
+    "plan.wedding.years" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menikah dalam"
+          }
+        }
+      }
+    },
     "plans.alwaysFree.body" : {
       "localizations" : {
         "id" : {
