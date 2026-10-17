@@ -6,7 +6,6 @@
 import Domain
 import Features
 import SwiftUI
-import UIKit
 
 struct SubmitProductScreen: View {
     let onOpen: (AppRoute) -> Void
@@ -34,7 +33,7 @@ struct SubmitProductScreen: View {
             }
             .padding(.horizontal, KiraSpacing.screen)
             .padding(.top, 62 - 59)
-            .padding(.bottom, KiraSpacing.space8)
+            .padding(.bottom, KiraSpacing.screenBottom)
             .background(alignment: .topTrailing) {
                 KiraLeaf(.twig, tone: .soft, size: 130, isFlipped: true).offset(x: 38, y: 34 - 59)
                     .accessibilityHidden(true)
@@ -47,7 +46,7 @@ struct SubmitProductScreen: View {
             KiraDialog(
                 "submitProduct.noMail.title", message: "submitProduct.noMail.body", art: .illustration(.letter),
                 primary: KiraButton("submitProduct.noMail.copy") {
-                    UIPasteboard.general.string = ProductSubmission.address
+                    KiraClipboard.copy(ProductSubmission.address, copied: "submitProduct.noMail.copied")
                 },
                 secondary: KiraButton("submitProduct.noMail.close", variant: .secondary) {})
         }

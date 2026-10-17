@@ -117,6 +117,8 @@ package enum AppRoute: Hashable, Sendable {
     case newGoal
     /** REN-02b to REN-02h: the form of one goal kind, chosen in Tujuan Baru. */
     case goalForm(GoalKind)
+    /** REN-01b: Semua Tujuan, every goal, from Tujuanmu's "Lihat Semua". */
+    case goals
     /** REN-05: one goal's detail. */
     case goal(id: String)
     /** REN-03 and the other goals' forms, opened from Detail Tujuan's "Ubah Tujuan" on that goal's values. */

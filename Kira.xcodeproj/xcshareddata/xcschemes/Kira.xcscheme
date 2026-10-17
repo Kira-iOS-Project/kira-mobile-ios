@@ -68,6 +68,10 @@
             argument = "-KiraGallery"
             isEnabled = "NO">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-KiraServer http://127.0.0.1:3000"
+            isEnabled = "NO">
+         </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction

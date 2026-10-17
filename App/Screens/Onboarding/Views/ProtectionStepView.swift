@@ -23,12 +23,12 @@ struct ProtectionStepView: View {
             .frame(maxWidth: .infinity)
             .padding(.bottom, KiraSpacing.space1)
             VStack(spacing: KiraSpacing.space2) {
-                if let problem = model.phase.problem { ProblemMessage(problem: problem) }
                 KiraButton("onboarding.protection.submit") { Task { await model.submit() } }
                     .block()
                     .disabled(model.phase.isSubmitting)
             }
         }
+        .problemDialog(model.phase.problem)
     }
 }
 

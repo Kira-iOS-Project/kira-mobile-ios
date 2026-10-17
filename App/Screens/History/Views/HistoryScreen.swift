@@ -37,7 +37,7 @@ struct HistoryScreen: View {
             }
             .padding(.horizontal, KiraSpacing.screen)
             .padding(.top, KiraSpacing.space2)
-            .padding(.bottom, KiraSpacing.space10)
+            .padding(.bottom, KiraSpacing.screenBottom)
             .background(alignment: .topTrailing) {
                 KiraLeaf(.twig, tone: .soft, size: 150, isFlipped: true).offset(x: 52, y: -22)
             }
@@ -90,7 +90,7 @@ struct HistoryScreen: View {
 private struct HistoryEmptyView: View {
     var body: some View {
         VStack(spacing: KiraSpacing.space3) {
-            KiraIllustration(.sprout, size: 112)
+            KiraMascot(.calm, size: 132)
             Text("history.empty.title").kiraFont(.title).foregroundStyle(.ink)
             Text("history.empty.body")
                 .font(.body).kiraLineHeight(22, size: 17)

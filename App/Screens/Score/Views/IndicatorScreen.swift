@@ -80,7 +80,7 @@ private struct IndicatorContent: View {
             .padding(.horizontal, KiraSpacing.screen)
             /** The board's 62 pt from the top of the screen, and its twig at 34 pt. */
             .padding(.top, 62 - 59)
-            .padding(.bottom, KiraSpacing.space8)
+            .padding(.bottom, KiraSpacing.screenBottom)
             .background(alignment: .topTrailing) {
                 KiraLeaf(.twig, tone: .soft, size: 130, isFlipped: true).offset(x: 38, y: 34 - 59)
                     .accessibilityHidden(true)

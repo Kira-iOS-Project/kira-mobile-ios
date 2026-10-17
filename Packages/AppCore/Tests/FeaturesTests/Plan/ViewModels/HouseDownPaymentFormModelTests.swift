@@ -87,4 +87,16 @@ struct GoalBudgetModelTests {
         await model.save(draft)
         #expect(model.failure == nil && model.saved != nil)
     }
+
+    @Test("Ubah Tujuan changes the goal it names, creates nothing, and a refusal shows its problem")
+    func updates() async {
+        let model = GoalBudgetModel(service: service, goalId: "goal-1")
+        await model.save(draft)
+        #expect(await service.updated == ["goal-1": draft] && model.saved != nil && model.draft == draft)
+        #expect(await service.created.isEmpty)
+        await service.configure { $0.failing[.update] = FakeGoalService.problem }
+        let refused = GoalBudgetModel(service: service, goalId: "goal-1")
+        await refused.save(draft)
+        #expect(refused.failure == FakeGoalService.problem && refused.saved == nil)
+    }
 }

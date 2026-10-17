@@ -1,13 +1,13 @@
 /**
  Naskah Pengajuan Keringanan (PED-09, board NaskahNegosiasi): the lender (09b opens its list), the
  instalment it fills, what the person can pay, then the script with its two coloured phrases, the
- notice, and Lihat Simulasi beside Salin Naskah, which shows Naskah Disalin (09c). No help button,
- no mascot: a Kira Peduli screen.
+ notice, and Lihat Simulasi beside Salin Naskah, whose toast says the script is copied, or, before
+ both amounts are in, what is missing (the owner's call, 2026-10-18: a toast, not the 09c dialog).
+ No help button, no mascot: a Kira Peduli screen.
  */
 import Domain
 import Features
 import SwiftUI
-import UIKit
 
 struct NegotiationScriptScreen: View {
     private let onOpen: (AppRoute) -> Void
@@ -19,7 +19,7 @@ struct NegotiationScriptScreen: View {
         _model = State(
             initialValue: NegotiationScriptModel(
                 service: service, defaultReason: String(localized: "care.script.reasonDefault"),
-                copier: { UIPasteboard.general.string = ScriptText.copied($0) }))
+                copier: { KiraClipboard.copy(ScriptText.copied($0), copied: "care.script.copied") }))
     }
 
     var body: some View {
@@ -30,7 +30,7 @@ struct NegotiationScriptScreen: View {
             }
             .padding(.horizontal, KiraSpacing.screen)
             .padding(.top, KiraSpacing.space2)
-            .padding(.bottom, KiraSpacing.space10)
+            .padding(.bottom, KiraSpacing.screenBottom)
             .background(alignment: .topTrailing) {
                 KiraLeaf(.twig, tone: .soft, size: 150, isFlipped: true).offset(x: 54, y: -28)
             }
@@ -40,11 +40,6 @@ struct NegotiationScriptScreen: View {
         .toolbar(.hidden, for: .navigationBar)
         .task { await model.load() }
         .kiraSheet(isPresented: isEditing, title: sheetTitle) { ScriptPhraseSheet(model: model) }
-        .kiraDialog(isPresented: copied) {
-            KiraDialog(
-                "care.script.copied.title", message: "care.script.copied.body", art: .illustration(.bloom),
-                primary: KiraButton("care.script.copied.done") {})
-        }
     }
 
     private var header: some View {
@@ -98,11 +93,17 @@ struct NegotiationScriptScreen: View {
                 secondary: KiraButton("care.script.simulation", variant: .secondary, size: .small) {
                     onOpen(.payoffSimulation)
                 },
-                primary: KiraButton("care.script.copy", size: .small) { model.copy() }
-                    .icon(.copy)
+                primary: KiraButton("care.script.copy", size: .small, action: copyScript).icon(.copy)
             )
             /** Both stay enabled, as the board draws them; Salin Naskah copies nothing until the script is complete. */
             .padding(.top, KiraSpacing.space2)
+        }
+    }
+
+    /** Salin Naskah: the copier's toast says it is copied; an incomplete script says what to fill. */
+    private func copyScript() {
+        if !model.copy() {
+            KiraToastCenter.shared.show(KiraToast(tone: .failure, message: "care.script.copy.incomplete"))
         }
     }
 
@@ -114,9 +115,6 @@ struct NegotiationScriptScreen: View {
         Binding(get: { model.editing != nil }, set: { if !$0 { model.editing = nil } })
     }
 
-    private var copied: Binding<Bool> {
-        Binding(get: { model.showsCopied }, set: { if !$0 { model.copiedClosed() } })
-    }
 }
 
 #if DEBUG

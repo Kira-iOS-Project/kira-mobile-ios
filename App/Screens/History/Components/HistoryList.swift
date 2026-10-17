@@ -16,11 +16,7 @@ struct HistoryList: View {
         HistoryTotalsCard(summary: content.summary)
         categoryChips
         if content.sections.isEmpty {
-            Text("history.noMatch")
-                .font(.body).kiraLineHeight(22, size: 17)
-                .foregroundStyle(.inkMuted)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, KiraSpacing.space6)
+            HistoryNoMatchView { Task { await model.clearFilters() } }
         }
         ForEach(content.sections) { section in
             switch section {
@@ -129,5 +125,32 @@ struct HistoryTotalsCard: View {
         .padding(.vertical, 14)
         .accessibilityElement(children: .combine)
         .kiraRowSeparator()
+    }
+}
+
+/**
+ Nothing matches the search, the segment or the category: Kuku, calm, says so and how to widen it,
+ and Hapus Filter shows the whole period again.
+ */
+private struct HistoryNoMatchView: View {
+    let onClear: () -> Void
+
+    var body: some View {
+        VStack(spacing: KiraSpacing.space3) {
+            KiraMascot(.calm, size: 132)
+            Text("history.noMatch")
+                .kiraFont(.title).foregroundStyle(.ink)
+                .accessibilityAddTraits(.isHeader)
+            Text("history.noMatch.body")
+                .font(.body).kiraLineHeight(22, size: 17)
+                .foregroundStyle(.inkMuted)
+                .frame(maxWidth: 300)
+            KiraButton("history.noMatch.clear", variant: .secondary, size: .small, action: onClear)
+                .icon(.close)
+                .padding(.top, KiraSpacing.space1)
+        }
+        .multilineTextAlignment(.center)
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, KiraSpacing.space6)
     }
 }

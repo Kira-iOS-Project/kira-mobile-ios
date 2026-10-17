@@ -21,6 +21,8 @@ struct KiraField: View {
     private var minimumLines = 1
     private var groupsDigits = false
     private var wrapsText = false
+    /** The focus ring's width, drawn outside the border (`kiraFieldRingRoom()` keeps it whole). */
+    static let ringWidth: CGFloat = 3
     @FocusState private var isFocused: Bool
     /** Whether an `.amount()` field's UIKit text field is being typed in. */
     @State private var isEditingAmount = false
@@ -82,9 +84,9 @@ struct KiraField: View {
         .frame(minHeight: 52)
         .kiraCard(border: borderColor, cornerRadius: KiraRadius.medium)
         .overlay {
-            RoundedRectangle(cornerRadius: KiraRadius.medium + 3, style: .continuous)
-                .strokeBorder(isActive ? Color.pandanLine : .clear, lineWidth: 3)
-                .padding(-3)
+            RoundedRectangle(cornerRadius: KiraRadius.medium + Self.ringWidth, style: .continuous)
+                .strokeBorder(isActive ? Color.pandanLine : .clear, lineWidth: Self.ringWidth)
+                .padding(-Self.ringWidth)
         }
     }
 

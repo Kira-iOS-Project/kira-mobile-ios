@@ -13,6 +13,7 @@ struct HouseDownPaymentResultScreen: View {
     private let onOpen: (AppRoute) -> Void
     @State private var budget: GoalBudgetModel
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.goalEditBudget) private var editBudget
 
     init(result: HouseDownPaymentResult, service: any GoalService, onOpen: @escaping (AppRoute) -> Void) {
         self.result = result
@@ -22,8 +23,8 @@ struct HouseDownPaymentResultScreen: View {
 
     var body: some View {
         GoalResultFrame(
-            content: content, isSaving: budget.isSaving, onEdit: { _ in dismiss() },
-            onBudget: { Task { await budget.save(result.draft(today: CalendarDay(.now))) } },
+            content: content, isSaving: (editBudget ?? budget).isSaving, onEdit: { _ in dismiss() },
+            onBudget: { Task { await (editBudget ?? budget).save(result.draft(today: CalendarDay(.now))) } },
             onHelp: { onOpen(.care) },
             extra: { MortgageSummary(mortgage: result.mortgage) }
         )

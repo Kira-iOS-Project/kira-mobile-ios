@@ -20,6 +20,7 @@ struct DraftEditSheet: View {
                 fields
             }
             .scrollBounceBehavior(.basedOnSize)
+            .kiraFieldRingRoom()
             KiraButtonPair(
                 secondary: KiraButton("record.edit.delete", variant: .destructive, size: .small) {
                     model.requestDelete()

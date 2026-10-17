@@ -15,6 +15,7 @@ struct GroupReportSheet: View {
             GroupReportForm(form: model.reportForm)
         }
         .scrollBounceBehavior(.basedOnSize)
+        .kiraFieldRingRoom()
         KiraButton("community.report.send", variant: .emergency) { Task { await model.sendReport() } }
             .icon(.flag)
             .block()

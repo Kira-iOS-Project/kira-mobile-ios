@@ -3,8 +3,8 @@
  calm countdown before another code, and the warning never to share the code. The sixth digit
  verifies at once; back and "Ganti Email" return to where the email was typed. "Ganti Email" is
  the outlined block button of Intro, not the board's quiet link (the owner's choice, 2026-10-16).
+ A refused code or resend says why in a dialog, never under the boxes (the owner's choice, 2026-10-17).
  */
-import APIClient
 import Features
 import SwiftUI
 
@@ -46,6 +46,10 @@ struct CodeVerificationView: View {
             }
         }
         .onboardingBackdrop(leaf: .twig)
+        .problemDialog(
+            model.phase.problem,
+            title: model.failedRequest == .resend ? "onboarding.code.resendFailed" : "onboarding.code.failed"
+        )
         .task(id: model.countdownRun) { await model.runCountdown() }
         .task(id: model.code) { await model.verifyIfComplete() }
     }
@@ -55,18 +59,19 @@ struct CodeVerificationView: View {
     }
 }
 
-/** The six boxes, the problem if any, and the countdown or the resend link. */
+/** The six boxes and the countdown or the resend link; a problem shows in the dialog. */
 private struct CodeEntry: View {
     @Bindable var model: CodeVerificationModel
 
     var body: some View {
         VStack(spacing: 14) {
             KiraCodeField("onboarding.code.field", code: $model.code, kind: .code)
-                .error(model.phase.problem.map(\.message))
-            if let problem = model.phase.problem, problem.showsReference {
-                Text("problem.reference \(problem.reference)")
-                    .font(.caption.monospaced()).foregroundStyle(.inkMuted)
-            }
+                /** Its own layer: the screen's problem dialog sits on the page. */
+                .kiraDialog(isPresented: $model.showsCodeResent) {
+                    KiraDialog(
+                        "onboarding.code.resent.title", message: "onboarding.code.resent.body \(model.email)",
+                        art: .illustration(.letter), primary: KiraButton("onboarding.code.resent.done") {})
+                }
             if model.secondsUntilResend > 0 {
                 Text("onboarding.code.resendIn \(countdown)")
                     .font(.subheadline.monospacedDigit()).kiraLineHeight(20, size: 15)

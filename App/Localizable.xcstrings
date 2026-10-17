@@ -2742,7 +2742,27 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Budget Belum Tersedia"
+            "value" : "Budget Belum Diatur"
+          }
+        }
+      }
+    },
+    "budget.empty.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atur penghasilan, tanggal gajian, dan jatah tiap kategori. Kira lalu menghitung sisa uangmu sampai gajian berikutnya."
+          }
+        }
+      }
+    },
+    "budget.empty.setUp" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atur Budget"
           }
         }
       }
@@ -2873,16 +2893,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Periode %1$@ – %2$@"
-          }
-        }
-      }
-    },
-    "budget.retry" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Coba Lagi"
           }
         }
       }
@@ -3603,6 +3613,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Salin Nomor"
+          }
+        }
+      }
+    },
+    "care.copyNumber.copied" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nomor disalin."
           }
         }
       }
@@ -4417,32 +4437,12 @@
         }
       }
     },
-    "care.script.copied.body" : {
+    "care.script.copied" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tempel naskah ke pesan atau formulir pengaduan pemberi pinjaman."
-          }
-        }
-      }
-    },
-    "care.script.copied.done" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Selesai"
-          }
-        }
-      }
-    },
-    "care.script.copied.title" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Naskah Disalin"
+            "value" : "Naskah disalin. Tempel ke pesan untuk pemberi pinjamanmu."
           }
         }
       }
@@ -4453,6 +4453,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Salin Naskah"
+          }
+        }
+      }
+    },
+    "care.script.copy.incomplete" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi Cicilan Sekarang dan Kemampuan Bayar dulu, lalu salin lagi."
           }
         }
       }
@@ -7880,6 +7890,16 @@
         }
       }
     },
+    "ds.copy.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum bisa menyalin. Coba lagi, ya."
+          }
+        }
+      }
+    },
     "ds.draft.count %lld" : {
       "localizations" : {
         "id" : {
@@ -11125,7 +11145,27 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tidak ada transaksi yang cocok."
+            "value" : "Belum Ada yang Cocok"
+          }
+        }
+      }
+    },
+    "history.noMatch.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba kata lain, atau ganti pilihan Keluar, Masuk, dan kategorinya."
+          }
+        }
+      }
+    },
+    "history.noMatch.clear" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Filter"
           }
         }
       }
@@ -14517,12 +14557,32 @@
         }
       }
     },
+    "lock.recovery.pin.error.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ganti PIN"
+          }
+        }
+      }
+    },
     "lock.recovery.pin.error.simple" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "PIN ini mudah ditebak. Hindari angka yang berulang atau berurutan."
+          }
+        }
+      }
+    },
+    "lock.recovery.pin.error.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih PIN Lain"
           }
         }
       }
@@ -14997,6 +15057,16 @@
         }
       }
     },
+    "onboarding.code.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Bisa Masuk"
+          }
+        }
+      }
+    },
     "onboarding.code.field" : {
       "localizations" : {
         "id" : {
@@ -15037,12 +15107,52 @@
         }
       }
     },
+    "onboarding.code.resendFailed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Bisa Mengirim Kode"
+          }
+        }
+      }
+    },
     "onboarding.code.resendIn %@" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kirim ulang kode dalam %@"
+          }
+        }
+      }
+    },
+    "onboarding.code.resent.body %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cek emailmu. Kode baru sudah dikirim ke %@, dan kode sebelumnya tidak berlaku lagi."
+          }
+        }
+      }
+    },
+    "onboarding.code.resent.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masukkan Kode"
+          }
+        }
+      }
+    },
+    "onboarding.code.resent.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kode Baru Terkirim"
           }
         }
       }
@@ -16327,6 +16437,26 @@
         }
       }
     },
+    "onboarding.pin.weak.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ganti PIN"
+          }
+        }
+      }
+    },
+    "onboarding.pin.weak.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PIN Terlalu Mudah Ditebak"
+          }
+        }
+      }
+    },
     "onboarding.protection.bpjsEmployment" : {
       "localizations" : {
         "id" : {
@@ -17433,6 +17563,26 @@
         }
       }
     },
+    "payoff.extra.noRoom.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sisa uangmu periode ini sudah habis untuk kebutuhan dan cicilan minimum, jadi rencana di bawah memakai cicilan minimum saja. Tambahan bisa diisi lagi setelah gajian berikutnya."
+          }
+        }
+      }
+    },
+    "payoff.extra.noRoom.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Ada Sisa untuk Tambahan Bayar"
+          }
+        }
+      }
+    },
     "payoff.extra.slider" : {
       "localizations" : {
         "id" : {
@@ -18127,6 +18277,106 @@
         }
       }
     },
+    "plan.delete.body %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tujuan %@ dan riwayat setorannya akan dihapus. Ini tidak bisa dibatalkan."
+          }
+        }
+      }
+    },
+    "plan.delete.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "plan.delete.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup"
+          }
+        }
+      }
+    },
+    "plan.delete.confirm" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus"
+          }
+        }
+      }
+    },
+    "plan.delete.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Berhasil Menghapus"
+          }
+        }
+      }
+    },
+    "plan.delete.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
+          }
+        }
+      }
+    },
+    "plan.delete.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Tujuan Ini?"
+          }
+        }
+      }
+    },
+    "plan.deleted.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Rencana"
+          }
+        }
+      }
+    },
+    "plan.deleted.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rencanamu sudah diperbarui."
+          }
+        }
+      }
+    },
+    "plan.deleted.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tujuan Dihapus"
+          }
+        }
+      }
+    },
     "plan.deposit.amount" : {
       "localizations" : {
         "id" : {
@@ -18253,6 +18503,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kembali ke Rencana"
+          }
+        }
+      }
+    },
+    "plan.detail.delete" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Tujuan"
           }
         }
       }
@@ -20180,12 +20440,52 @@
         }
       }
     },
+    "plan.goals.all.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Rencana"
+          }
+        }
+      }
+    },
+    "plan.goals.all.count %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Tujuan"
+          }
+        }
+      }
+    },
+    "plan.goals.all.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semua Tujuan"
+          }
+        }
+      }
+    },
     "plan.goals.empty" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Belum ada tujuan. Mulai dari Dana Darurat lewat Tambah."
+          }
+        }
+      }
+    },
+    "plan.goals.seeAll %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Semua (%lld)"
           }
         }
       }
@@ -23416,6 +23716,16 @@
         }
       }
     },
+    "plan.result.saveChanges" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Perubahan"
+          }
+        }
+      }
+    },
     "plan.result.shortfall" : {
       "localizations" : {
         "id" : {
@@ -24156,6 +24466,86 @@
         }
       }
     },
+    "plan.risk.legality.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.contact" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hubungi OJK 157"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Bisa Mencari"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.found %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld di Daftar Pinjol Berizin OJK"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.foundMany.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cocokkan nama aplikasi dan perusahaannya persis di daftar di bawah. Penipu sering memakai nama yang mirip."
+          }
+        }
+      }
+    },
+    "plan.risk.legality.foundMany.title %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Nama Cocok di Daftar OJK"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.foundOne.body %@ %@ %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ (%2$@) ada di daftar pinjaman daring berizin OJK sejak %3$@, menurut data OJK per %4$@. Tetap cocokkan nama perusahaannya sebelum meminjam."
+          }
+        }
+      }
+    },
+    "plan.risk.legality.foundOne.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terdaftar di OJK"
+          }
+        }
+      }
+    },
     "plan.risk.legality.heading" : {
       "localizations" : {
         "id" : {
@@ -24196,6 +24586,26 @@
         }
       }
     },
+    "plan.risk.legality.lender %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · Berizin sejak %2$@"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.lender.sharia %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · Syariah · Berizin sejak %2$@"
+          }
+        }
+      }
+    },
     "plan.risk.legality.lenders" : {
       "localizations" : {
         "id" : {
@@ -24216,12 +24626,32 @@
         }
       }
     },
+    "plan.risk.legality.notFound.body %@ %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama ini tidak ada di %2$lld pinjaman daring berizin OJK per %1$@. Ini belum tentu ilegal: cek juga lewat OJK 157 atau daftar resmi di bawah."
+          }
+        }
+      }
+    },
+    "plan.risk.legality.notFound.title %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"%@\" Tidak Ada di Daftar Pinjol Berizin"
+          }
+        }
+      }
+    },
     "plan.risk.legality.notice.body" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cek namanya langsung di daftar resmi berikut."
+            "value" : "Pencarian di atas hanya mencakup pinjaman daring berizin OJK. Untuk investasi dan lainnya, cek di daftar resmi berikut."
           }
         }
       }
@@ -24286,6 +24716,16 @@
         }
       }
     },
+    "plan.risk.legality.openSite" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka Situs Resmi"
+          }
+        }
+      }
+    },
     "plan.risk.legality.report" : {
       "localizations" : {
         "id" : {
@@ -24306,6 +24746,16 @@
         }
       }
     },
+    "plan.risk.legality.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
+          }
+        }
+      }
+    },
     "plan.risk.legality.search" : {
       "localizations" : {
         "id" : {
@@ -24322,6 +24772,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kira tidak menyimpan pencarianmu."
+          }
+        }
+      }
+    },
+    "plan.risk.legality.searching" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mencari di daftar OJK"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.seeList" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Daftar"
           }
         }
       }
@@ -24412,6 +24882,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tanda Bahaya"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.source %@ %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sumber: direktori OJK per %1$@, %2$lld perusahaan. Kira tidak menilai legal atau ilegal."
           }
         }
       }
@@ -26161,7 +26641,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tambahkan aset yang kamu punya. Nilainya kamu isi sendiri, Kira tidak terhubung ke akun investasimu."
+            "value" : "Tambahkan aset yang kamu punya, lalu isi nilainya sendiri."
           }
         }
       }
@@ -26251,7 +26731,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kira tidak terhubung ke akun investasimu."
+            "value" : "Kira tidak akan terhubung ke akun investasi mana pun. Semua aset dicatat manual, jadi perbarui nilainya sendiri saat berubah."
           }
         }
       }
@@ -26876,6 +27356,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Koneksi terputus. Cek internetmu, lalu coba lagi."
+          }
+        }
+      }
+    },
+    "problem.dialog.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Berhasil"
           }
         }
       }
@@ -30951,6 +31441,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tutup"
+          }
+        }
+      }
+    },
+    "submitProduct.noMail.copied" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alamat email disalin."
           }
         }
       }

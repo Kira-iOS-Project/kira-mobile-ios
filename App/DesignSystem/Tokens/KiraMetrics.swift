@@ -22,6 +22,13 @@ nonisolated enum KiraSpacing {
     static let space6: CGFloat = 24
     /** space-8, 32: breathing room under a big number. */
     static let space8: CGFloat = 32
+    /**
+     The end of a scrolling screen without the dock: its last block (a button, a card) sits 8 pt above
+     the home indicator, as the boards end on the indicator's padding plus about 8 pt. One value for
+     every such screen, so none ends far from the bottom (the owner's call, 2026-10-18). A dock screen
+     ends on `space10 + dockReserve` instead.
+     */
+    static let screenBottom: CGFloat = space2
     /** space-10, 40: room above the floating dock at the end of a scroll. */
     static let space10: CGFloat = 40
     /**

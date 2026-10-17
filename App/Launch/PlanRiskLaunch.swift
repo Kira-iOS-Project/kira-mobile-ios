@@ -18,14 +18,18 @@
         var body: some View {
             NavigationStack(path: $path) {
                 root.navigationDestination(for: AppRoute.self) { route in
-                    if route == .legalityCheck { LegalityCheckScreen(onOpen: open) } else { EmptySlot() }
+                    if route == .legalityCheck {
+                        LegalityCheckScreen(service: PreviewLegalityService(), onOpen: open)
+                    } else {
+                        EmptySlot()
+                    }
                 }
             }
         }
 
         @ViewBuilder private var root: some View {
             switch screen {
-            case .legalityCheck: LegalityCheckScreen(onOpen: open)
+            case .legalityCheck: LegalityCheckScreen(service: PreviewLegalityService(), onOpen: open)
             case .riskQuizUnreadablePlan: quiz(plans: UnreadablePlanService())
             case .riskDrawdown: quiz(.quiz(.drawdown), answered: 1)
             case .riskHorizon: quiz(.quiz(.horizon), answered: 2)

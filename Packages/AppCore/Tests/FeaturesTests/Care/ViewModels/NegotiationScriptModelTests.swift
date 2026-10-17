@@ -93,22 +93,20 @@ struct NegotiationScriptModelTests {
         #expect(model.editing == nil)
     }
 
-    @Test("an early Salin Naskah copies nothing and shows no Naskah Disalin; a complete script is copied, then 09c")
+    @Test("an early Salin Naskah copies nothing and says so; a complete script is copied whole")
     func copy() async {
         let clipboard = Clipboard()
         let model = model(clipboard)
         await model.load()
-        model.copy()
-        #expect(clipboard.copied.isEmpty && !model.showsCopied)
+        #expect(!model.copy())
+        #expect(clipboard.copied.isEmpty)
         model.affordableText = "150000"
         model.edit(.contract)
         model.draft = "PB-0098 4821"
         model.finishEditing()
         #expect(model.shown.contract == "••••4821")
-        model.copy()
-        #expect(clipboard.copied == [model.script.fill(for: .clipboard)] && model.showsCopied)
+        #expect(model.copy())
+        #expect(clipboard.copied == [model.script.fill(for: .clipboard)])
         #expect(clipboard.copied.first?.contract == "PB-0098 4821" && clipboard.copied.first?.name == "dinda")
-        model.copiedClosed()
-        #expect(!model.showsCopied)
     }
 }

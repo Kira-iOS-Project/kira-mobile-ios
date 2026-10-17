@@ -5,7 +5,6 @@
  */
 import Domain
 import SwiftUI
-import UIKit
 
 /** Telepon Healing119 and Chat Healing119; `isShort` drops the counsellors line (PED-03). */
 struct CareHealingRows: View {
@@ -102,7 +101,7 @@ extension View {
     func copiesNumber(_ number: String) -> some View {
         contextMenu {
             Button {
-                UIPasteboard.general.string = number
+                KiraClipboard.copy(number, copied: "care.copyNumber.copied")
             } label: {
                 Label {
                     Text("care.copyNumber")

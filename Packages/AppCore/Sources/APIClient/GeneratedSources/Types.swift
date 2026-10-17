@@ -364,6 +364,13 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `PATCH /api/goals/{id}`.
     /// - Remark: Generated from `#/paths//api/goals/{id}/patch(updateGoal)`.
     func updateGoal(_ input: Operations.UpdateGoal.Input) async throws -> Operations.UpdateGoal.Output
+    /// Hapus Tujuan
+    ///
+    /// Deletes the goal with its deposits. An unknown goal, or one another person owns, is 404.
+    ///
+    /// - Remark: HTTP `DELETE /api/goals/{id}`.
+    /// - Remark: Generated from `#/paths//api/goals/{id}/delete(deleteGoal)`.
+    func deleteGoal(_ input: Operations.DeleteGoal.Input) async throws -> Operations.DeleteGoal.Output
     /// Tambah Setoran
     ///
     /// Records a deposit. The same depositId again on this goal answers the stored deposit as it was first recorded (whatever amount the retry carries) and adds nothing; one used on another goal is refused, and a day before the goal was made answers 422.
@@ -385,6 +392,13 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `PUT /api/risk-profile`.
     /// - Remark: Generated from `#/paths//api/risk-profile/put(saveRiskProfile)`.
     func saveRiskProfile(_ input: Operations.SaveRiskProfile.Input) async throws -> Operations.SaveRiskProfile.Output
+    /// Cek Legalitas
+    ///
+    /// Searches OJK's list of licensed fintech lenders by app, company or web address, every word of q matching. An empty result means only that the name is not in this list; Kira does not judge legality. The query is not stored, and the request log keeps the path without it.
+    ///
+    /// - Remark: HTTP `GET /api/legality`.
+    /// - Remark: Generated from `#/paths//api/legality/get(searchLegality)`.
+    func searchLegality(_ input: Operations.SearchLegality.Input) async throws -> Operations.SearchLegality.Output
     /// This period’s quota usage
     ///
     /// AI messages, receipts and voice seconds used against the plan, and the date they reset.
@@ -1234,6 +1248,21 @@ extension APIProtocol {
             body: body
         ))
     }
+    /// Hapus Tujuan
+    ///
+    /// Deletes the goal with its deposits. An unknown goal, or one another person owns, is 404.
+    ///
+    /// - Remark: HTTP `DELETE /api/goals/{id}`.
+    /// - Remark: Generated from `#/paths//api/goals/{id}/delete(deleteGoal)`.
+    internal func deleteGoal(
+        path: Operations.DeleteGoal.Input.Path,
+        headers: Operations.DeleteGoal.Input.Headers = .init()
+    ) async throws -> Operations.DeleteGoal.Output {
+        try await deleteGoal(Operations.DeleteGoal.Input(
+            path: path,
+            headers: headers
+        ))
+    }
     /// Tambah Setoran
     ///
     /// Records a deposit. The same depositId again on this goal answers the stored deposit as it was first recorded (whatever amount the retry carries) and adds nothing; one used on another goal is refused, and a day before the goal was made answers 422.
@@ -1273,6 +1302,21 @@ extension APIProtocol {
         try await saveRiskProfile(Operations.SaveRiskProfile.Input(
             headers: headers,
             body: body
+        ))
+    }
+    /// Cek Legalitas
+    ///
+    /// Searches OJK's list of licensed fintech lenders by app, company or web address, every word of q matching. An empty result means only that the name is not in this list; Kira does not judge legality. The query is not stored, and the request log keeps the path without it.
+    ///
+    /// - Remark: HTTP `GET /api/legality`.
+    /// - Remark: Generated from `#/paths//api/legality/get(searchLegality)`.
+    internal func searchLegality(
+        query: Operations.SearchLegality.Input.Query,
+        headers: Operations.SearchLegality.Input.Headers = .init()
+    ) async throws -> Operations.SearchLegality.Output {
+        try await searchLegality(Operations.SearchLegality.Input(
+            query: query,
+            headers: headers
         ))
     }
     /// This period’s quota usage

@@ -13,6 +13,7 @@ struct WeddingResultScreen: View {
     private let onOpen: (AppRoute) -> Void
     @State private var budget: GoalBudgetModel
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.goalEditBudget) private var editBudget
 
     init(goal: WeddingGoal, preset: WeddingPreset?, service: any GoalService, onOpen: @escaping (AppRoute) -> Void) {
         self.goal = goal
@@ -24,8 +25,8 @@ struct WeddingResultScreen: View {
     var body: some View {
         let draft = goal.draft(today: CalendarDay(.now), preset: preset)
         GoalResultFrame(
-            content: content, isSaving: budget.isSaving, onEdit: { _ in dismiss() },
-            onBudget: { Task { await budget.save(draft) } }, onHelp: { onOpen(.care) }
+            content: content, isSaving: (editBudget ?? budget).isSaving, onEdit: { _ in dismiss() },
+            onBudget: { Task { await (editBudget ?? budget).save(draft) } }, onHelp: { onOpen(.care) }
         )
         .goalBudgetDialog(budget, draft: draft)
         .onChange(of: budget.saved) { _, saved in

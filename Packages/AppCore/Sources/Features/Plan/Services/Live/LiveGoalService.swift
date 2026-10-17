@@ -25,6 +25,16 @@ package struct LiveGoalService: GoalService {
         try await api.createGoal(draft)
     }
 
+    /** `PATCH /goals/{id}`. */
+    package func updateGoal(id: String, _ draft: GoalDraft) async throws -> GoalDetail {
+        try await api.updateGoal(id: id, draft)
+    }
+
+    /** `DELETE /goals/{id}`. */
+    package func deleteGoal(id: String) async throws {
+        try await api.deleteGoal(id: id)
+    }
+
     /** `POST /goals/{id}/deposits`. */
     package func addDeposit(goalId: String, amount: Int, depositedOn: CalendarDay, depositId: String) async throws
         -> GoalDeposit

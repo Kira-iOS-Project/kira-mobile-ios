@@ -62,8 +62,13 @@ struct KiraNotice: View {
                     KiraLink(link.title, action: link.action).padding(.top, 2)
                 }
             }
-            .padding(.top, 1)
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.top, title == nil ? 0 : 1)
+            /**
+             A message alone is as tall as the icon at least, centred on it: one line sat 5 pt above the
+             icon's middle (Portofolio Manual's "Kira tidak terhubung ke akun investasimu."). Longer
+             text grows past 30 pt and starts at the top as before.
+             */
+            .frame(maxWidth: .infinity, minHeight: title == nil ? 30 : nil, alignment: .leading)
         }
         /** `.k-notice`'s 12 and 14 pt inside its 1 pt border, which CSS lays out and kiraCard draws over. */
         .padding(.vertical, 13)

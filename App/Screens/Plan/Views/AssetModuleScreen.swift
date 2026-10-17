@@ -36,7 +36,7 @@ struct AssetModuleScreen: View {
                 button.padding(.top, KiraSpacing.space1)
             }
             .padding(.horizontal, KiraSpacing.screen)
-            .padding(.bottom, KiraSpacing.space6)
+            .padding(.bottom, KiraSpacing.screenBottom)
             .frame(maxWidth: .infinity, alignment: .top)
             .background(alignment: .topTrailing) {
                 KiraLeaf(.twig, tone: .soft, size: 136, isFlipped: true)
