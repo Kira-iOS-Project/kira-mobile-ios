@@ -19721,6 +19721,426 @@
         }
       }
     },
+    "score.history.cardLabel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Score sekarang dan riwayatnya"
+          }
+        }
+      }
+    },
+    "score.history.change.gain %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+%lld Poin"
+          }
+        }
+      }
+    },
+    "score.history.change.labels %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ → %2$@"
+          }
+        }
+      }
+    },
+    "score.history.change.labelsUnit %@ %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ → %2$@ %3$@"
+          }
+        }
+      }
+    },
+    "score.history.change.loss %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "−%lld Poin"
+          }
+        }
+      }
+    },
+    "score.history.change.now %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
+    "score.history.change.nowUnit %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "score.history.change.points %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld → %2$lld poin"
+          }
+        }
+      }
+    },
+    "score.history.changes" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yang Berubah Bulan Ini"
+          }
+        }
+      }
+    },
+    "score.history.changes.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indikator yang berubah"
+          }
+        }
+      }
+    },
+    "score.history.chart %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Score per bulan: %@"
+          }
+        }
+      }
+    },
+    "score.history.chart.down %@ %@ %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Score per bulan, %1$@ sampai %2$@: turun dari %3$lld ke %4$lld"
+          }
+        }
+      }
+    },
+    "score.history.chart.flat %@ %@ %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Score per bulan, %1$@ sampai %2$@: tetap %3$lld"
+          }
+        }
+      }
+    },
+    "score.history.chart.up %@ %@ %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Score per bulan, %1$@ sampai %2$@: naik dari %3$lld ke %4$lld"
+          }
+        }
+      }
+    },
+    "score.history.delta.down %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "−%1$lld dari %2$@"
+          }
+        }
+      }
+    },
+    "score.history.delta.flat %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sama seperti %@"
+          }
+        }
+      }
+    },
+    "score.history.delta.up %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+%1$lld dari %2$@"
+          }
+        }
+      }
+    },
+    "score.history.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat Kira Score Belum Bisa Dimuat"
+          }
+        }
+      }
+    },
+    "score.history.footer %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "score.history.footer.down %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skor turun dari %1$lld ke %2$lld."
+          }
+        }
+      }
+    },
+    "score.history.footer.downBecause %lld %lld %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skor turun dari %1$lld ke %2$lld karena %3$@ kini %4$@."
+          }
+        }
+      }
+    },
+    "score.history.footer.unchanged %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ indikator lain tetap sama."
+          }
+        }
+      }
+    },
+    "score.history.footer.up %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skor naik dari %1$lld ke %2$lld."
+          }
+        }
+      }
+    },
+    "score.history.footer.upBecause %lld %lld %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skor naik dari %1$lld ke %2$lld karena %3$@ kini %4$@."
+          }
+        }
+      }
+    },
+    "score.history.month %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
+    "score.history.notice" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diperbarui otomatis tiap tanggal 25 dari catatanmu. Butuh minimal satu bulan data."
+          }
+        }
+      }
+    },
+    "score.history.outOf" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "/100"
+          }
+        }
+      }
+    },
+    "score.history.plans" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Paket"
+          }
+        }
+      }
+    },
+    "score.history.plusOnly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Score otomatis tiap bulan ada di Kira Plus."
+          }
+        }
+      }
+    },
+    "score.history.points %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      }
+    },
+    "score.history.range" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rentang waktu"
+          }
+        }
+      }
+    },
+    "score.history.range.oneYear" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 Tahun"
+          }
+        }
+      }
+    },
+    "score.history.range.sixMonths" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "6 Bulan"
+          }
+        }
+      }
+    },
+    "score.history.simulation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Score dihitung mesin dari catatanmu dan tidak dipakai untuk menilai kelayakan kredit."
+          }
+        }
+      }
+    },
+    "score.history.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dicek tiap tanggal 25"
+          }
+        }
+      }
+    },
+    "score.history.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat Kira Score"
+          }
+        }
+      }
+    },
+    "score.history.trend.down %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turun %1$lld poin sejak %2$@."
+          }
+        }
+      }
+    },
+    "score.history.trend.flat %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tetap di %1$lld poin sejak %2$@."
+          }
+        }
+      }
+    },
+    "score.history.trend.up %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naik %1$lld poin sejak %2$@. Pelan, tapi terus tumbuh."
+          }
+        }
+      }
+    },
+    "score.history.unit.assets" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dari aset"
+          }
+        }
+      }
+    },
+    "score.history.unit.expenses" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pengeluaran pokok"
+          }
+        }
+      }
+    },
+    "score.history.unit.income" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dari gaji"
+          }
+        }
+      }
+    },
     "score.indicators.title" : {
       "localizations" : {
         "id" : {

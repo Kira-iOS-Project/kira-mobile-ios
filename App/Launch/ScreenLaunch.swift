@@ -33,6 +33,7 @@
             case .debtEmergency: DebtEmergencyLaunch(screen: screen)
             case .careTools: CareToolsLaunch(screen: screen)
             case .plan: PortfolioLaunch(screen: screen)
+            case .scoreHistory: ScoreHistoryLaunch(screen: screen)
             }
         }
     }
@@ -81,11 +82,17 @@
         case breathing, safetyPlan, safetyPlanEmpty, safetyPlanFailing, safetyPlanForm
         /** REN: Portofolio (masked, empty, failed), Tambah Aset (a save that fails), updating an asset. */
         case portfolio, portfolioMasked, portfolioEmpty, portfolioFailed, addAsset, addAssetFailing, editAsset
+        /**
+         SKR: Riwayat Kira Score (the tests tap 1 Tahun), under a month of data, before the check, failed,
+         and outside Kira Plus.
+         */
+        case scoreHistory, scoreHistoryShort, scoreHistoryEmpty, scoreHistoryFailed, scoreHistoryLocked
 
         /** The area whose launcher builds the screen. */
         enum Area {
             case onboarding, home, account, plans, record, chat, community, care, careTools, debtEmergency, marketplace
             case plan
+            case scoreHistory
         }
 
         var area: Area {
@@ -117,6 +124,8 @@
             case .portfolio, .portfolioMasked, .portfolioEmpty, .portfolioFailed, .addAsset, .addAssetFailing,
                 .editAsset:
                 .plan
+            case .scoreHistory, .scoreHistoryShort, .scoreHistoryEmpty, .scoreHistoryFailed, .scoreHistoryLocked:
+                .scoreHistory
             }
         }
     }

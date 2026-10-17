@@ -17,6 +17,7 @@ private struct FakeScoreService: ScoreService {
         guard detail.indicator.key == key else { throw AppProblem(code: "VALIDATION_FAILED") }
         return detail
     }
+    func history(_: ScoreHistoryRange) throws -> ScoreHistory? { nil }
     func includesPlus() -> Bool { plus }
 }
 
@@ -26,6 +27,7 @@ private struct OtherError: Error {}
 private struct BrokenScoreService: ScoreService {
     func score() throws -> ScoreReport? { throw OtherError() }
     func indicator(_: IndicatorKey) throws -> IndicatorDetail { throw OtherError() }
+    func history(_: ScoreHistoryRange) throws -> ScoreHistory? { throw OtherError() }
     func includesPlus() -> Bool { true }
 }
 
@@ -51,6 +53,19 @@ struct ScoreModelTests {
         let before = ScoreModel(service: FakeScoreService())
         await before.load()
         guard case .empty = before.phase else { return #expect(Bool(false)) }
+    }
+
+    @Test("Lihat Riwayat Skor opens the history on Kira Plus, Paket Kira on any other plan")
+    func historyRoute() async {
+        let plus = ScoreModel(service: FakeScoreService(report: .success(report)))
+        #expect(plus.historyRoute == .scoreHistory)
+        await plus.load()
+        #expect(plus.historyRoute == .scoreHistory)
+        var free = FakeScoreService(report: .success(report))
+        free.plus = false
+        let other = ScoreModel(service: free)
+        await other.load()
+        #expect(other.historyRoute == .plans(yearly: false))
     }
 
     @Test("shows the score's problem, or the generic one")

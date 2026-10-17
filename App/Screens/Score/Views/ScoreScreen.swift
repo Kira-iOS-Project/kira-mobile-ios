@@ -22,11 +22,11 @@ struct ScoreScreen: View {
         Group {
             switch model.phase {
             case .loading:
-                ScoreContent(report: .sample, onOpen: { _ in }, onBack: {})
+                ScoreContent(report: .sample, historyRoute: .scoreHistory, onOpen: { _ in }, onBack: {})
                     .redacted(reason: .placeholder)
                     .disabled(true)
             case .loaded(let report):
-                ScoreContent(report: report, onOpen: onOpen) { dismiss() }
+                ScoreContent(report: report, historyRoute: model.historyRoute, onOpen: onOpen) { dismiss() }
             case .empty:
                 ScoreEmptyView(onOpen: onOpen) { dismiss() }
             case .failed(let problem):
@@ -42,6 +42,8 @@ struct ScoreScreen: View {
 /** The loaded score, top to bottom as the board lays it. */
 private struct ScoreContent: View {
     let report: ScoreReport
+    /** Where "Lihat Riwayat Skor" leads for this plan. */
+    let historyRoute: AppRoute
     let onOpen: (AppRoute) -> Void
     let onBack: () -> Void
 
@@ -50,7 +52,7 @@ private struct ScoreContent: View {
             VStack(alignment: .leading, spacing: KiraSpacing.space5) {
                 ScoreHeader(report: report, onOpen: onOpen, onBack: onBack)
                 ScoreFormulaAccordion(report: report)
-                ScoreSummaryCard(report: report) { onOpen(.unavailable(.scoreHistory)) }
+                ScoreSummaryCard(report: report) { onOpen(historyRoute) }
                 if !report.steps.isEmpty {
                     ScoreStepList(steps: report.steps, onOpen: onOpen)
                 }
@@ -72,6 +74,8 @@ private struct ScoreContent: View {
 /** The back button and Kira Peduli, the title, and when the score was computed and is next due. */
 private struct ScoreHeader: View {
     let report: ScoreReport
+    /** Where "Lihat Riwayat Skor" leads for this plan. */
+    let historyRoute: AppRoute
     let onOpen: (AppRoute) -> Void
     let onBack: () -> Void
     @Environment(\.dynamicTypeSize) private var typeSize
