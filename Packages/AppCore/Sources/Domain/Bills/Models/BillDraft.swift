@@ -31,16 +31,6 @@ package struct BillDraft: Hashable, Sendable {
     }
 }
 
-/** How often a bill repeats ("Ulangi"), with the API's values. */
-package enum BillRepeat: String, CaseIterable, Hashable, Sendable {
-    /** "Sekali". */
-    case once
-    /** "Bulanan": on the due date's day each month. */
-    case monthly
-    /** "Tahunan": on the due date's day and month each year. */
-    case yearly
-}
-
 /** The form's four category tiles, with the ledger's expense ids the API takes. */
 package enum BillCategory: String, CaseIterable, Hashable, Sendable {
     /** "Tagihan". */
