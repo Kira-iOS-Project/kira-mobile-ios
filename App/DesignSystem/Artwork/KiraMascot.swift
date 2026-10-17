@@ -5,9 +5,9 @@
  small celebrations (an account paid off, a band reached, an emergency-fund milestone), and (face
  crop) as Kira's chat avatar. Never in the Kira Peduli sheet, on heavy arrears, in error messages
  or lock-screen notifications, and never as a pet: no clothes, no cage, no extra accessories.
- 200–250 pt in onboarding and celebrations, 120–160 pt in empty states. Kuku keeps the guide's
- proportions and colours in both themes, so each expression is one image; only the ground circle
- behind Kuku follows the theme.
+ 200–250 pt in onboarding and celebrations, 120–160 pt in empty states. The art is the design
+ system's `Kira.Mascot` on its 240 box: framed Kuku sits on the soft ground with the sun and hills,
+ and every image carries the DS's dark-theme colours as its dark appearance.
  */
 import SwiftUI
 
@@ -63,11 +63,10 @@ struct KiraMascot: View {
         if crop == .face {
             Image(decorative: "mascot-\(expression.rawValue)-face").resizable().frame(width: size, height: size)
         } else if isFramed {
-            let inset = size * 8 / 240
-            Image(decorative: "mascot-\(expression.rawValue)").resizable()
+            /** The DS draws Kuku on a 240 box and clips the framed scene to a circle of radius 112. */
+            Image(decorative: "mascot-\(expression.rawValue)-framed").resizable()
                 .frame(width: size, height: size)
-                .background(Circle().fill(.artMascotGround).padding(inset))
-                .clipShape(Circle().inset(by: inset))
+                .clipShape(Circle().inset(by: size * 8 / 240))
         } else {
             Image(decorative: "mascot-\(expression.rawValue)").resizable().frame(width: size, height: size)
         }
