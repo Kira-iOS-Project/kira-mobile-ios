@@ -6,6 +6,7 @@ import SwiftUI
 /** UNG-07: create a recurring bill and keep the form until the server confirms it. */
 struct BillCreateScreen: View {
     @State private var model: BillCreateModel
+    @State private var isShowingSavedDialog = false
     @Environment(\.dismiss) private var dismiss
     private let onOpenHelp: () -> Void
 
@@ -40,8 +41,38 @@ struct BillCreateScreen: View {
         .toolbar(.hidden, for: .navigationBar)
         .task { await model.load() }
         .onChange(of: model.savedBill) { _, bill in
-            if bill != nil { dismiss() }
+            isShowingSavedDialog = bill != nil
         }
+        .kiraDialog(isPresented: savedBillPresented) {
+            savedDialog
+        }
+    }
+
+    private var savedBillPresented: Binding<Bool> {
+        Binding(
+            get: { isShowingSavedDialog },
+            set: {
+                isShowingSavedDialog = $0
+                if !$0 { dismiss() }
+            }
+        )
+    }
+
+    private var savedDialog: KiraDialog {
+        guard let bill = model.savedBill else {
+            return KiraDialog(
+                "bills.create.saved.title", message: "bills.create.saved.bill \(model.name)",
+                art: .illustration(.bloom),
+                primary: KiraButton("bills.create.done") {})
+        }
+        let message: LocalizedStringResource =
+            switch bill.kind {
+            case .bill: "bills.create.saved.bill \(bill.name)"
+            case .debtInstallment: "bills.create.saved.debt \(bill.name)"
+            }
+        return KiraDialog(
+            "bills.create.saved.title", message: message, art: .illustration(.bloom),
+            primary: KiraButton("bills.create.done") {})
     }
 
     @ViewBuilder private var saveProblem: some View {
