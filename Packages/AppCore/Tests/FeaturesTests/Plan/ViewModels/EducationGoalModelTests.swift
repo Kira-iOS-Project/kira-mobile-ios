@@ -124,4 +124,13 @@ struct EducationGoalModelTests {
         #expect(model.values(for: .seniorHigh).fee == "1.800.000")
         #expect(EducationRegion.allCases.count == 4 && EducationSchool.allCases.count == 4)
     }
+
+    @Test("nothing collected yet counts as Rp0,00")
+    func nothingCollected() throws {
+        let model = raka()
+        model.present = ""
+        let plan = try #require(model.outcome).plan
+        #expect(plan.present == 0)
+        #expect(plan.projection().principal == 24_000_000 * 19)
+    }
 }
