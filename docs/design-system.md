@@ -435,15 +435,23 @@ catalog key that holds a word of this Indonesian vocabulary.
   uploads lack (15 illustrations instead of 8, 28 category tiles instead of 9, the face crops, the
   leaves and the sceneries). A category set holds the tile's art only; `KiraCategoryIcon` draws the
   tile, so its tint and hairline follow the theme too.
+- **Kuku** (`Mascot/`) comes from the owner's guide, "Kira.Mascot · Kuku — Identitas & panduan"
+  (an SVG of outlined paths), not from the artifact's `KUKU_*` tables: each expression's figure
+  (Tenang, Senang, Bangga, on its branch) is the guide's own paths, cut out at its card's 204-unit
+  square; `mascot-calm-face` is the guide's chat avatar whole (Kuku on its `#EDF1E3` ground with the
+  pandan sparkle badge), the other faces a window on their figure. The guide's rules hold: same
+  proportions and colours in both themes (one SVG per set, no dark variant), space around Kuku, no
+  extra accessories. `KiraMascot`'s frame circle is `art-mascot-ground`, the guide's `#ECF0DF`.
+  `design-assets.py` keeps the Mascot folder as it is when it rebuilds the catalog.
 - **Regenerating**: `scripts/generate/design-assets.py` rebuilds the whole catalog (colour sets,
   icon, artwork) from the artifact's `tokens.json`, `bundle.js` and icon PNG; its header says how.
   Rebuild when the artifact changes, then check the gallery.
 - **Logo marks** cut the leaf's vein out of the mark (even-odd fill), so the vein always shows
   whatever is behind it, as the design system asks (`--k-logo-bg`); `logo-mark-mono` and the
   hand-drawn arrows are template images that take the surrounding colour.
-- Uploaded assets map as `design-system.json` lists them: Maskot `2e557f5b…` is `kuku-tenang`
+- Uploaded assets map as `design-system.json` lists them: Maskot `2e557f5b…` was `kuku-tenang`
   (`mascot-calm`), `d9c5f557…` `kuku-senang` (`mascot-happy`), `f033f686…` `kuku-bangga`
-  (`mascot-proud`); the nine Kategori uploads (07:10:59–07:11:06) are makan, transportasi, kopi,
+  (`mascot-proud`), now replaced by the owner's guide (Kuku, above); the nine Kategori uploads (07:10:59–07:11:06) are makan, transportasi, kopi,
   belanja, tagihan, gaji, paylater, tabungan and proteksi; the eight 07:22 uploads are the Ilustrasi
   group; the eight earlier 07:10:52–58 uploads are older
   illustration exports no group lists.

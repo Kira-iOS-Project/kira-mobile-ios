@@ -3,7 +3,7 @@ import Testing
 
 @Suite("Budget overview values")
 struct BudgetTests {
-    @Test("near limit starts at 90 percent and progress stays capped")
+    @Test("near limit starts at 90 percent of a positive amount, unless the API says otherwise")
     func categoryUsage() {
         let below = BudgetAllocation(category: .food, amount: 1_000, spent: 899)
         let threshold = BudgetAllocation(category: .food, amount: 1_000, spent: 900)
@@ -12,10 +12,9 @@ struct BudgetTests {
         #expect(!below.isNearLimit)
         #expect(threshold.isNearLimit)
         #expect(exceeded.isNearLimit)
-        #expect(exceeded.progress == 1)
-        #expect(zero.progress == 0)
         #expect(!zero.isNearLimit)
         #expect(!BudgetAllocation(category: .food, amount: 1_000, spent: 950, nearLimit: false).isNearLimit)
+        #expect(BudgetAllocation(category: .food, amount: -5, spent: -1, nearLimit: true).amount == 0)
         #expect(BudgetAllocation(category: .food, amount: 1_000, spent: 10, nearLimit: true).isNearLimit)
     }
 
@@ -36,7 +35,7 @@ struct BudgetTests {
                     milestones: [BudgetGoalMilestone(amount: 500, label: "Pertama", reached: true)]
                 )
             ],
-            payday: .endOfMonth, period: period,
+            period: period,
             allocations: [BudgetAllocation(category: .food, amount: 1_000, spent: 300)])
         #expect(overview.allocated == 1_000)
         #expect(overview.spent == 300)
@@ -51,12 +50,12 @@ struct BudgetTests {
         #expect(overview.goalPosts.first?.milestones.first?.label == "Pertama")
         #expect(overview.goalPosts.first?.milestones.first?.reached == true)
         let setup = BudgetOverview(
-            income: 2_000, payday: .endOfMonth, period: period, allocations: [], isConfigured: false)
+            income: 2_000, period: period, allocations: [], isConfigured: false)
         #expect(!setup.isConfigured)
         #expect(setup.income == 2_000)
         #expect(setup.remaining == 2_000)
         #expect(setup.goalPosts.isEmpty)
-        let negativeIncome = BudgetOverview(income: -1, payday: .endOfMonth, period: period, allocations: [])
+        let negativeIncome = BudgetOverview(income: -1, period: period, allocations: [])
         #expect(negativeIncome.income == 0)
         #expect(negativeIncome.remaining == 0)
     }

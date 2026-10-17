@@ -39,7 +39,7 @@
             case .privacyPolicy: PrivacyPolicyScreen(onOpen: open)
             case .complaints: ComplaintsScreen()
             case .wallets: WalletsScreen(service: PreviewWalletService(), onOpenDebt: { _ in }, onOpenHelp: {})
-            case .budget: BudgetScreen(service: PreviewBudgetService())
+            case .budget: BudgetScreen(service: PreviewBudgetService()) { _ in }
             default: EmptyView()
             }
         }

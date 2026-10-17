@@ -18,5 +18,7 @@ struct WalletOverviewTests {
         #expect(overview.wallets.map(\.id) == ["bank", "cash"])
         #expect(overview.debts.map(\.id) == ["card", "paylater", "pinjol"])
         #expect(WalletOverview(accounts: []).heldTotal == 0)
+        let server = WalletOverview(accounts: overview.accounts, heldTotal: 1, runningDebt: 2)
+        #expect(server.heldTotal == 1 && server.runningDebt == 2)
     }
 }

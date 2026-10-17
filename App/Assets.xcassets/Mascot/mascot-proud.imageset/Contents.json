@@ -3,16 +3,6 @@
     {
       "filename": "mascot-proud.svg",
       "idiom": "universal"
-    },
-    {
-      "appearances": [
-        {
-          "appearance": "luminosity",
-          "value": "dark"
-        }
-      ],
-      "filename": "mascot-proud-dark.svg",
-      "idiom": "universal"
     }
   ],
   "info": {

@@ -91,7 +91,7 @@
                         KiraMascot(expression, size: 180)
                     }
                     KiraMascot(.happy, size: 120, isFramed: false)
-                    KiraMascot(.calm, size: 48, crop: .face).clipShape(Circle())
+                    KiraMascot(.calm, size: 52, crop: .face)
                 }
             }
         }
