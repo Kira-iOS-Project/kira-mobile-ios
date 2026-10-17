@@ -17488,12 +17488,155 @@
         }
       }
     },
+    "plan.emergency.formula.base.married" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "9× (sudah menikah)"
+          }
+        }
+      }
+    },
+    "plan.emergency.formula.base.single" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "6× (belum menikah)"
+          }
+        }
+      }
+    },
+    "plan.emergency.formula.dependants %lld %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "+ 3× × %1$lld tanggungan = %2$lld×"
+          }
+        }
+      }
+    },
+    "plan.emergency.formula.footnote" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Investasi disetor di awal tiap bulan dan imbal hasilnya berbunga majemuk bulanan. Pengali 6× untuk belum menikah dan 9× untuk sudah menikah, ditambah 3× untuk tiap tanggungan, paling banyak 15×."
+          }
+        }
+      }
+    },
+    "plan.emergency.formula.multiplier" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengali"
+          }
+        }
+      }
+    },
+    "plan.emergency.formula.target %lld %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld × %2$@"
+          }
+        }
+      }
+    },
     "plan.emergency.overline" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dana darurat yang kamu butuhkan"
+          }
+        }
+      }
+    },
+    "plan.emergency.split.bank" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tabungan Bank"
+          }
+        }
+      }
+    },
+    "plan.emergency.split.bank.detail" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bisa diambil kapan saja untuk kebutuhan mendadak."
+          }
+        }
+      }
+    },
+    "plan.emergency.split.lead" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bagi dua, dan simpan terpisah dari rekening harianmu."
+          }
+        }
+      }
+    },
+    "plan.emergency.split.liquid" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instrumen Likuid Berisiko Rendah"
+          }
+        }
+      }
+    },
+    "plan.emergency.split.liquid.detail" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cair dalam beberapa hari kerja dan nilainya stabil."
+          }
+        }
+      }
+    },
+    "plan.emergency.split.share" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50%"
+          }
+        }
+      }
+    },
+    "plan.emergency.split.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tempat Menyimpannya"
           }
         }
       }
