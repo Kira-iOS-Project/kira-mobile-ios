@@ -2091,6 +2091,371 @@
         }
       }
     },
+    "bills.add.amount" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jumlah"
+          }
+        }
+      }
+    },
+    "bills.add.amount.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalau nominalnya berubah-ubah, isi perkiraannya."
+          }
+        }
+      }
+    },
+    "bills.add.amount.prompt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0"
+          }
+        }
+      }
+    },
+    "bills.add.category" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategori"
+          }
+        }
+      }
+    },
+    "bills.add.cents" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ",00"
+          }
+        }
+      }
+    },
+    "bills.add.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup, kembali ke Tagihan"
+          }
+        }
+      }
+    },
+    "bills.add.currency" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rp"
+          }
+        }
+      }
+    },
+    "bills.add.date" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanggal"
+          }
+        }
+      }
+    },
+    "bills.add.date.monthly %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiap Tanggal %lld"
+          }
+        }
+      }
+    },
+    "bills.add.date.pick" : {
+      "comment" : "Not on a board: the date sheet's button. For owner review.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih Tanggal"
+          }
+        }
+      }
+    },
+    "bills.add.date.prompt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih Tanggal"
+          }
+        }
+      }
+    },
+    "bills.add.date.sheet" : {
+      "comment" : "Not on a board: the date sheet's title. For owner review.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih Tanggal"
+          }
+        }
+      }
+    },
+    "bills.add.date.yearly %@" : {
+      "comment" : "Not on a board (the board shows Bulanan only): a yearly bill, e.g. \"Tiap 22 Oktober\". For owner review.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiap %@"
+          }
+        }
+      }
+    },
+    "bills.add.debt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ini Cicilan Utang"
+          }
+        }
+      }
+    },
+    "bills.add.debt.group" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hubungkan ke Akun Utang"
+          }
+        }
+      }
+    },
+    "bills.add.debt.none" : {
+      "comment" : "Not on a board: the toggle is on and Dompet has no debt account. For owner review.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum ada akun utang di Dompet."
+          }
+        }
+      }
+    },
+    "bills.add.debt.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hubungkan ke Akun Utang"
+          }
+        }
+      }
+    },
+    "bills.add.failure.message" : {
+      "comment" : "Not on a board: worded like Atur Budget's (budget.save.failure.message). For owner review.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koneksi terputus. Tagihanmu masih ada di layar, coba lagi."
+          }
+        }
+      }
+    },
+    "bills.add.failure.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Berhasil Menyimpan"
+          }
+        }
+      }
+    },
+    "bills.add.name" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama"
+          }
+        }
+      }
+    },
+    "bills.add.name.prompt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contoh: Internet Rumah"
+          }
+        }
+      }
+    },
+    "bills.add.repeat" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ulangi"
+          }
+        }
+      }
+    },
+    "bills.add.repeat.monthly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bulanan"
+          }
+        }
+      }
+    },
+    "bills.add.repeat.once" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sekali"
+          }
+        }
+      }
+    },
+    "bills.add.repeat.yearly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tahunan"
+          }
+        }
+      }
+    },
+    "bills.add.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Tagihan"
+          }
+        }
+      }
+    },
+    "bills.add.saved.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
+    "bills.add.saved.message" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan muncul di Beranda saat jatuh temponya sudah dekat."
+          }
+        }
+      }
+    },
+    "bills.add.saved.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan Tersimpan"
+          }
+        }
+      }
+    },
+    "bills.add.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan berulang"
+          }
+        }
+      }
+    },
+    "bills.add.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah Tagihan"
+          }
+        }
+      }
+    },
+    "bills.edit.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Tagihan & Cicilan"
+          }
+        }
+      }
+    },
+    "bills.edit.delete" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Tagihan"
+          }
+        }
+      }
+    },
+    "bills.edit.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Perubahan"
+          }
+        }
+      }
+    },
+    "bills.edit.subtitle %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
+    "bills.edit.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah Tagihan"
+          }
+        }
+      }
+    },
     "budget.allocated" : {
       "localizations" : {
         "id" : {
@@ -25232,6 +25597,30 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kode sudah terlalu sering dicoba. Tunggu beberapa menit, lalu coba lagi."
+          }
+        }
+      }
+    },
+    "problem.BILL_DEBT_NOT_FOUND" : {
+      "comment" : "Not on a board: a cicilan's debt account is gone. For owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akun utang ini tidak ditemukan. Mungkin sudah dihapus."
+          }
+        }
+      }
+    },
+    "problem.BILL_NOT_FOUND" : {
+      "comment" : "Not on a board: worded like problem.GOAL_NOT_FOUND. For owner review.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan ini tidak ditemukan. Mungkin sudah dihapus."
           }
         }
       }

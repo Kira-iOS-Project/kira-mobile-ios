@@ -26,6 +26,7 @@ package final class BillFormModel {
     /** The longest name the API takes. */
     package static let nameLimit = 60
 
+    /** Tambah or Ubah Tagihan. */
     package let mode: Mode
     /** "Nama". */
     package var name: String
@@ -36,10 +37,12 @@ package final class BillFormModel {
     /** "Ulangi". */
     package var repeats: BillRepeat
     /** "Tanggal"; nil until one is chosen. */
+    /** "Tanggal"; nil until chosen. */
     package var dueOn: CalendarDay?
     /** "Ini Cicilan Utang". */
     package var isInstalment: Bool
     /** The debt account a cicilan pays. */
+    /** The debt account of a cicilan. */
     package var debtId: String?
     /** The debt accounts to link, from Dompet; empty until loaded or when there are none. */
     package private(set) var debts: [Wallet] = []
@@ -138,9 +141,13 @@ package final class BillFormModel {
 
 /** What a bill form opens with: empty and monthly, or the bill being changed. */
 package struct BillFormValues: Hashable, Sendable {
+    /** "Nama". */
     package var name = ""
+    /** "Jumlah"; nil when empty. */
     package var amount: Int?
+    /** "Kategori". */
     package var category = BillCategory.bills
+    /** "Ulangi". */
     package var repeats = BillRepeat.monthly
     package var dueOn: CalendarDay?
     package var debtId: String?
