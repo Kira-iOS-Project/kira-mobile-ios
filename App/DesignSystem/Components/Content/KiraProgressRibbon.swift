@@ -21,6 +21,8 @@ struct KiraProgressRibbon: View {
         case pandan
         /** A healthy outcome. */
         case healthy
+        /** A category approaching its planned limit. */
+        case turmeric
     }
 
     private let value: Double
@@ -72,7 +74,13 @@ struct KiraProgressRibbon: View {
 
     private var colors: RibbonTrack.Colors {
         if isInverse { return RibbonTrack.Colors(track: .heroTrack, fill: .heroAccent) }
-        return RibbonTrack.Colors(track: .track, fill: tone == .healthy ? .healthy : .pandan)
+        let fill: Color
+        switch tone {
+        case .pandan: fill = .pandan
+        case .healthy: fill = .healthy
+        case .turmeric: fill = .coping
+        }
+        return RibbonTrack.Colors(track: .track, fill: fill)
     }
 
     private var milestoneLabels: some View {
