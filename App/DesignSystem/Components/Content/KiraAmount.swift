@@ -1,7 +1,8 @@
 /**
  Amount (design system): rupiah in full with two decimals and tabular figures, "Rp1.840.000,00".
- From md up, "Rp" and ",00" are smaller and muted so the whole rupiah reads first. It never wraps:
- put a big amount on its own line with its words in a small label above. Income and spending are
+ From md up, "Rp" and ",00" are smaller and muted so the whole rupiah reads first. One line: put a
+ big amount on its own line with its words in a small label above. Only at the accessibility text
+ sizes may it wrap, between "Rp" and the number, never inside the number. Income and spending are
  told apart by the sign (`.signed()`) and a label, never by green and red. Every balance can be
  hidden (`.masked(_:)`): "Rp••••••", read by VoiceOver as "Nominal disembunyikan".
  */
@@ -28,6 +29,7 @@ struct KiraAmount: View {
     private var isSigned = false
     private var isMuted = false
     private var isInverse = false
+    @Environment(\.dynamicTypeSize) private var typeSize
 
     init(_ value: Decimal, size: Size = .medium) {
         self.value = value
@@ -39,12 +41,7 @@ struct KiraAmount: View {
     }
 
     var body: some View {
-        composed
-            .font(mainFont)
-            .foregroundStyle(mainColor)
-            /** One line always; at the largest text sizes a long amount shrinks to fit, all of it at once. */
-            .lineLimit(1)
-            .minimumScaleFactor(0.4)
+        lines
             /** On the text and on the element: the audit reads the text inside an element too. */
             .kiraSmallType(size == .medium)
             .accessibilityElement(children: .ignore)
@@ -53,16 +50,47 @@ struct KiraAmount: View {
     }
 
     /**
+     One line, shrinking as a whole when it must. At the accessibility sizes the amount keeps its
+     size instead and, when one line cannot hold it, wraps between "Rp" and the number, never inside
+     the number (the owner's rule, 2026-10-17); only a number too long even alone still shrinks.
+     */
+    @ViewBuilder private var lines: some View {
+        if typeSize.isAccessibilitySize {
+            ViewThatFits(in: .horizontal) {
+                line(composed)
+                VStack(alignment: .leading, spacing: 0) {
+                    line(symbolPart)
+                    line(numberPart).minimumScaleFactor(0.4)
+                }
+            }
+        } else {
+            line(composed).minimumScaleFactor(0.4)
+        }
+    }
+
+    /** `text` in the amount's font and colour, on one line. */
+    private func line(_ text: Text) -> some View {
+        text.font(mainFont).foregroundStyle(mainColor).lineLimit(1).kiraSmallType(size == .medium)
+    }
+
+    /**
      The amount as one Text, so it shrinks as a whole: sign, "Rp", the integer, ",00". The space
      after "Rp" and before ",00" (`.k-amount__cur` 0.14em, `.k-amount__dec` 0.03em, of their own
      size) is tracking on the glyph before it.
      */
-    private var composed: Text {
+    private var composed: Text { symbolPart + numberPart }
+
+    /** The sign and "Rp": the first line when the amount wraps. */
+    private var symbolPart: Text {
         let symbol = style.part(.symbol).format(value)
-        let integer = style.part(.integer).format(value)
         return Text(style.part(.sign).format(value))
             + spaced(symbol, tracking: 0, after: symbolGap).minor(minorFont, minorColor)
-            + spaced(integer, tracking: tracking, after: tracking + fractionGap)
+    }
+
+    /** The integer and ",00": never split. */
+    private var numberPart: Text {
+        let integer = style.part(.integer).format(value)
+        return spaced(integer, tracking: tracking, after: tracking + fractionGap)
             + Text(style.part(.fraction).format(value)).minor(minorFont, minorColor)
     }
 
