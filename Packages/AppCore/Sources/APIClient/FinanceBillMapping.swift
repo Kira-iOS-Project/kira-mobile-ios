@@ -36,7 +36,16 @@ func bill(_ row: Components.Schemas.Bill) throws -> Bill? {
     return Bill(
         id: row.id, name: row.name, kind: row.kind == .instalment ? .instalment : .bill,
         category: row.category.rawValue, amount: row.amount, isEstimate: row.isEstimate,
-        repeats: BillRepeat(rawValue: row.repeats.rawValue) ?? .monthly, dueOn: dueOn, dueDay: row.dueDay,
+        repeats: billRepeat(row.repeats), dueOn: dueOn, dueDay: row.dueDay,
         nextDueOn: nextDueOn, debtId: row.debtId, remainingInstalments: row.remainingInstalments,
         paidThisPeriod: row.paidThisPeriod)
+}
+
+/** How often a listed bill comes back. */
+func billRepeat(_ repeats: Components.Schemas.Bill.RepeatsPayload) -> BillRepeat {
+    switch repeats {
+    case .once: .once
+    case .monthly: .monthly
+    case .yearly: .yearly
+    }
 }
