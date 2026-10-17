@@ -98,6 +98,15 @@ package enum AppRoute: Hashable, Sendable {
     /** KOM-08: Kirim Produk ke Etalase. */
     case submitProduct
 
+    /** REN-06: Kenali Profil Risikomu */
+    case riskQuiz
+    /** REN-09: Cek Legalitas */
+    case legalityCheck
+    /** REN-07: Hasil Risiko */
+    case riskResult
+    /** REN-08: Modul Kelas Aset; its screen belongs to work/r4b-modules */
+    case assetModule(AssetClass)
+
     /** A link the boards show to an area not built yet: it stays visible and opens nothing. */
     case unavailable(UnavailableArea)
 }

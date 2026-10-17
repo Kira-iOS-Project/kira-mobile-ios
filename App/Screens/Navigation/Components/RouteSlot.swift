@@ -43,6 +43,8 @@ struct RouteSlot: View {
         case .marketplace: MarketplaceScreen(service: services.marketplace, onOpen: onOpen)
         case .product(let id): ProductScreen(id: id, service: services.marketplace, onOpen: onOpen)
         case .submitProduct: SubmitProductScreen(onOpen: onOpen)
+        case .riskQuiz, .legalityCheck, .riskResult: EmptySlot()
+        case .assetModule: EmptySlot()
         case .home, .record, .community, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history, .transaction,
             .conversation, .importStatement, .unavailable:
             EmptySlot()
