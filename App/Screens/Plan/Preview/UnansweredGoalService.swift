@@ -11,13 +11,9 @@ struct UnansweredGoalService: GoalService {
 
     func plan() async -> PlanOverview { await preview.plan() }
 
-    func goals() async -> [GoalSummary] { await preview.goals() }
-
     func goal(id: String) async -> GoalDetail { await preview.goal(id: id) }
 
     func createGoal(_: GoalDraft) throws -> GoalDetail { throw AppProblem.connectionLost }
-
-    func updateGoal(id _: String, _: GoalDraft) throws -> GoalDetail { throw AppProblem.connectionLost }
 
     func addDeposit(goalId _: String, amount _: Int, depositedOn _: CalendarDay, depositId _: String) throws
         -> GoalDeposit
