@@ -23,4 +23,12 @@ package struct LiveScoreService: ScoreService {
     package func indicator(_ key: IndicatorKey) async throws -> IndicatorDetail {
         try IndicatorDetail(try await api.getScoreIndicator(key))
     }
+
+    /**
+     `GET /score/history`: answers the generic problem until the client is regenerated from B3's
+     spec, which adds `getScoreHistory`.
+     */
+    package func history(_: ScoreHistoryRange) async throws -> ScoreHistory? {
+        throw AppProblem()
+    }
 }

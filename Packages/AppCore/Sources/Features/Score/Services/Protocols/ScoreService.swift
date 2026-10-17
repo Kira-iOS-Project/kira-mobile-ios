@@ -1,7 +1,8 @@
 import Domain
 
 /**
- What the Kira Score screens need from the API: `GET /score` and `GET /score/indicators/{key}`.
+ What the Kira Score screens need from the API: `GET /score`, `GET /score/indicators/{key}` and
+ `GET /score/history`.
  The integrator implements it with the generated client; each call throws an `AppProblem`.
  */
 package protocol ScoreService: Sendable {
@@ -10,4 +11,7 @@ package protocol ScoreService: Sendable {
 
     /** One indicator in full. */
     func indicator(_ key: IndicatorKey) async throws -> IndicatorDetail
+
+    /** Riwayat Kira Score over `range`, or nil before the health check (`SCORE_NOT_AVAILABLE`). */
+    func history(_ range: ScoreHistoryRange) async throws -> ScoreHistory?
 }

@@ -11,6 +11,8 @@ package enum AppRoute: Hashable, Sendable {
     case score
     /** SKR-02: one indicator's detail. */
     case indicator(IndicatorKey)
+    /** SKR-07, SKR-07b: Riwayat Kira Score. */
+    case scoreHistory
     /** The health check again, from the score ("Cek Ulang"). */
     case healthCheck
 
@@ -114,8 +116,6 @@ package enum UnavailableArea: String, CaseIterable, Hashable, Sendable {
     case weeklySummary
     /** SKR: Rencana Pelunasan, the payoff plan. */
     case debtPlan
-    /** SKR: Riwayat Skor, the score history. */
-    case scoreHistory
     /** SKR: SLIK, the credit report. */
     case creditReport
     /** REN: the Rencana tab. */

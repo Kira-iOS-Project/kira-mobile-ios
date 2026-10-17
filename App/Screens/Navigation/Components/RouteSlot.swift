@@ -1,6 +1,6 @@
 /**
- The screen of each pushed route, by area: Score (score, indicator), Account (profile … deleteAccount,
- about … complaints), Plans (plans … scholarshipStatus), Kira Peduli (care, trustedMessage,
+ The screen of each pushed route, by area: Score (score, indicator, scoreHistory), Account (profile
+ … deleteAccount, about … complaints), Plans (plans … scholarshipStatus), Kira Peduli (care, trustedMessage,
  negotiationScript, breathingExercise, safetyPlan), Mode Darurat Utang and its guides (debtEmergency,
  debtGuide), Etalase (marketplace, product, submitProduct). "Cek Ulang" (`healthCheck`) covers the shell
  instead (MainShell); Komunitas (`community`) is the dock's own section; Catat's and Riwayat's routes
@@ -19,6 +19,7 @@ struct RouteSlot: View {
         switch route {
         case .score: ScoreScreen(service: services.score, onOpen: onOpen)
         case .indicator(let key): IndicatorScreen(key: key, service: services.score, onOpen: onOpen)
+        case .scoreHistory: ScoreHistoryScreen(service: services.score, onOpen: onOpen)
         case .profile:
             ProfileScreen(
                 service: services.account, settings: services.security, onOpen: onOpen, onSignedOut: { endSession() })
