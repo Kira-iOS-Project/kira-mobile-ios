@@ -164,11 +164,6 @@ extension GroupDetailModel {
         reportFinished = true
     }
 
-    /** Whether Coba Lagi can help: not when the same thing sent again cannot work. */
-    package var canRetry: Bool {
-        failure?.failure.kind?.allowsRetry ?? true
-    }
-
     /** Tutup on the failure dialog: what the failed sheet held is dropped. */
     package func dismissFailure() {
         switch failure?.attempt {
