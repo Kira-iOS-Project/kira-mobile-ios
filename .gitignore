@@ -15,3 +15,6 @@ DerivedData/
 xcuserdata/
 *.xcresult
 # <<< agent-config-kit
+
+# Python bytecode from scripts/generate (never committed).
+__pycache__/
