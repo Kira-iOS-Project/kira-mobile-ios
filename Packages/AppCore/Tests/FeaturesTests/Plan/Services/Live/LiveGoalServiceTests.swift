@@ -17,7 +17,7 @@ struct LiveGoalServiceTests {
         #expect(plan.ladder.map(\.key) == [.expensiveDebt, .emergencyFund, .protection, .investing])
         #expect(plan.ladder[0].detail.debtName == "Paylater A" && plan.ladder[1].detail.targetMultiple == 6)
         #expect(plan.ladder[2].detail.health == .held && plan.ladder[2].detail.incomeCover == .missing)
-        #expect(plan.riskProfile == .moderate && plan.prefill.maritalStatus == .married)
+        #expect(plan.prefill.maritalStatus == .married)
         #expect(plan.prefill.essentialExpense == 4_200_000 && plan.prefill.monthlyIncome == 7_500_000)
         #expect(plan.goals.first?.targetDate == CalendarDay(year: 2029, month: 4, day: 25))
     }

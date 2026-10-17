@@ -19,7 +19,7 @@ actor FakeGoalService: GoalService {
         ladder: [
             LadderStep(step: 1, key: .expensiveDebt, status: .current, detail: LadderDetail(debtName: "Paylater A"))
         ],
-        goals: [summary], riskProfile: nil, prefill: PlanPrefill(essentialExpense: 4_200_000))
+        goals: [summary], prefill: PlanPrefill(essentialExpense: 4_200_000))
     /** The calls that fail, and how. */
     var failing: [Call: any Error] = [:]
     private(set) var created: [GoalDraft] = []

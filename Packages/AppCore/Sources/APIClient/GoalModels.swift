@@ -12,7 +12,6 @@ extension PlanOverview {
         let prefill = dto.prefill
         self.init(
             ladder: try dto.ladder.map(LadderStep.init), goals: try dto.goals.map(GoalSummary.init),
-            riskProfile: dto.riskProfile.flatMap { RiskProfile(rawValue: $0.rawValue) },
             prefill: PlanPrefill(
                 essentialExpense: prefill.essentialExpense, emergencyFund: prefill.emergencyFund,
                 maritalStatus: prefill.married.map { $0 ? .married : .single }, dependants: prefill.dependants,

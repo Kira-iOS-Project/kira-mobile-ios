@@ -1,22 +1,19 @@
 /**
- Rencana (REN-01, `GET /plan`): the four-step ladder, the goals, the risk profile once the quiz is
- taken, and what the app already knows for a new goal's form.
+ Rencana (REN-01, `GET /plan`): the four-step ladder, the goals, and what the app already knows for
+ a new goal's form. The API's riskProfile is not read: the Rencana board has no state that shows it.
  */
 package struct PlanOverview: Hashable, Sendable {
     /** The four steps, in order. */
     package var ladder: [LadderStep]
     /** The goals, as `GET /goals` lists them. */
     package var goals: [GoalSummary]
-    /** Nil until Kenali Profil Risikomu is answered. */
-    package var riskProfile: RiskProfile?
     /** What a new goal's form starts from. */
     package var prefill: PlanPrefill
 
     /** An overview with the given parts. */
-    package init(ladder: [LadderStep], goals: [GoalSummary], riskProfile: RiskProfile?, prefill: PlanPrefill) {
+    package init(ladder: [LadderStep], goals: [GoalSummary], prefill: PlanPrefill) {
         self.ladder = ladder
         self.goals = goals
-        self.riskProfile = riskProfile
         self.prefill = prefill
     }
 }
