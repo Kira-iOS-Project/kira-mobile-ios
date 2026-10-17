@@ -57,7 +57,7 @@ struct DebtDetailScreen: View {
             }
             if !debt.payments.isEmpty { DebtPaymentHistory(debt: debt) }
             KiraTapCard(
-                .shield, label: Text("debt.detail.slik.label"), action: { onOpen(.unavailable(.creditReport)) },
+                .shield, label: Text("debt.detail.slik.label"), action: { onOpen(.creditReport) },
                 content: {
                     Text("debt.detail.slik.eyebrow").kiraFont(.overline).foregroundStyle(.pandan)
                     Text("debt.detail.slik.title").font(.body.weight(.semibold)).kiraLineHeight(22, size: 17)

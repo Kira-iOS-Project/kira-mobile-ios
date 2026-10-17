@@ -45,6 +45,8 @@
             case .payoff: PayoffLaunch(screen: screen)
             case .payoffPlan: PayoffPlanLaunch(screen: screen)
             case .planModule: PlanModuleLaunch(screen: screen)
+            case .wallets: WalletsLaunch()
+            case .budget: BudgetLaunch()
             }
         }
     }
@@ -132,6 +134,8 @@
 
         /** UNG: Detail Utang (Paylater A, and a debt that is gone) and SKR: Panduan SLIK. */
         case debtDetail, debtDetailGone, creditReportGuide
+        /** UNG: Dompet (UNG-01) and Budget (UNG-04) on the preview services. */
+        case wallets, budget
 
         /** The area whose launcher builds the screen. */
         enum Area {
@@ -146,6 +150,7 @@
             case payoff
             case payoffPlan
             case planModule
+            case wallets, budget
         }
 
         var area: Area {
@@ -194,6 +199,8 @@
                 .moduleCrypto:
                 .planModule
             case .debtDetail, .debtDetailGone, .creditReportGuide: .debtDetail
+            case .wallets: .wallets
+            case .budget: .budget
             }
         }
     }

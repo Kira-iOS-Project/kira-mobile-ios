@@ -30,6 +30,12 @@ struct AppServices {
     let riskProfile: any RiskProfileService
     /** The quiz's answers for the app's session (`RiskQuizDraft`). */
     let riskDraft: RiskQuizDraft
+    /** Dompet's accounts (UNG-01). */
+    let wallet: any WalletService
+    /** The current pay period's budget (UNG-04). */
+    let budget: any BudgetService
+    /** One debt account in full (UNG-03 Detail Utang). */
+    let debtDetail: any DebtDetailService
 }
 
 extension AppServices {
@@ -56,7 +62,9 @@ extension AppServices {
             debtEmergency: LiveDebtEmergencyService(api: api),
             marketplace: LiveMarketplaceService(api: api),
             portfolio: LivePortfolioService(api: api), goals: LiveGoalService(api: api),
-            riskProfile: LiveRiskProfileService(api: api), riskDraft: RiskQuizDraft())
+            riskProfile: LiveRiskProfileService(api: api), riskDraft: RiskQuizDraft(),
+            wallet: LiveWalletService(api: api), budget: LiveBudgetService(api: api),
+            debtDetail: LiveDebtDetailService(api: api))
     }
 
     /** The canvas's sample data: nothing leaves the device. */
@@ -69,7 +77,8 @@ extension AppServices {
             community: PreviewCommunityService(), care: PreviewCareService(), careTools: PreviewCareToolsService(),
             debtEmergency: PreviewDebtEmergencyService(), marketplace: PreviewMarketplaceService(),
             portfolio: PreviewPortfolioService(), goals: PreviewGoalService(),
-            riskProfile: PreviewRiskProfileService(), riskDraft: RiskQuizDraft())
+            riskProfile: PreviewRiskProfileService(), riskDraft: RiskQuizDraft(),
+            wallet: PreviewWalletService(), budget: PreviewBudgetService(), debtDetail: PreviewDebtDetailService())
     }
 }
 

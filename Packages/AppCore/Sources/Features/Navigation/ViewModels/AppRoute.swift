@@ -137,22 +137,35 @@ package enum AppRoute: Hashable, Sendable {
     /** REN-08: Modul Kelas Aset; its screen belongs to work/r4b-modules */
     case assetModule(RiskAssetClass)
 
+    /** UNG-01: Dompet, the wallets and debt accounts. */
+    case wallets
+    /** UNG-03: Detail Utang of one debt account. */
+    case debtDetail(id: String)
+    /** SKR-06: Panduan SLIK, reading the credit report. */
+    case creditReport
+    /** UNG-04: Budget of the current pay period. */
+    case budget
+    /** UNG-05: Atur Budget. */
+    case editBudget
+    /** UNG-06: Tagihan & Cicilan. */
+    case bills
+    /** UNG-07: Tambah Tagihan. */
+    case addBill
+    /** UNG-07c: Ubah Tagihan of one bill. */
+    case editBill(id: String)
+    /** UNG-08: Ringkasan Mingguan. */
+    case weeklySummary
+
     /** A link the boards show to an area not built yet: it stays visible and opens nothing. */
     case unavailable(UnavailableArea)
 }
 
 /** The areas the boards link to that are not built yet (UNG, REN, KOM and the rest of SKR and PED). */
 package enum UnavailableArea: String, CaseIterable, Hashable, Sendable {
-    /** UNG: the budget. */
-    case budget
-    /** UNG: Dompet, the wallets. */
-    case wallets
+    /** UNG-05: Atur Budget, where the payday is set (Beranda's Langkah Awal), until its screen lands. */
+    case editBudget
     /** UNG: Tagihan, the bills. */
     case bills
     /** UNG: Ringkasan Mingguan, the weekly summary. */
     case weeklySummary
-    /** SKR: SLIK, the credit report. */
-    case creditReport
-    /** SKR: Detail Utang, one debt account's detail (Rencanaku's account rows). */
-    case debtDetail
 }
