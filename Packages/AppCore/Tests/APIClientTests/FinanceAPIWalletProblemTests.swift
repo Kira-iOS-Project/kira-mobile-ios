@@ -19,7 +19,7 @@ struct FinanceAPIWalletProblemTests {
         #expect(try walletType("credit_card") == .creditCard)
         #expect(try walletType("paylater") == .paylater)
         #expect(try walletType("online_loan") == .onlineLoan)
-        #expect(try walletType("pinjol") == .onlineLoan)
+        #expect(try walletType(WalletType.onlineLoan.rawValue) == .onlineLoan)
         #expect(try walletType("vehicle") == .vehicle)
         #expect(try walletType("mortgage") == .mortgage)
         #expect(try walletType("family_loan") == .familyLoan)
@@ -51,7 +51,9 @@ struct FinanceAPIWalletProblemTests {
         }
         #expect(try createWalletInput(type: .ewallet, name: "A", balance: 1).value1?._type == .eWallet)
         #expect(try createWalletInput(type: .other, name: "A", balance: 1).value1?._type == .other)
-        #expect(try createWalletInput(type: .onlineLoan, name: "A", balance: 1).value2?._type == .pinjol)
+        #expect(
+            try createWalletInput(type: .onlineLoan, name: "A", balance: 1).value2?._type.rawValue
+                == WalletType.onlineLoan.rawValue)
         #expect(try createWalletInput(type: .creditCard, name: "A", balance: 1).value2?._type == .creditCard)
         #expect(try createWalletInput(type: .paylater, name: "A", balance: 1).value2?._type == .paylater)
         #expect(throws: AppProblem.self) {

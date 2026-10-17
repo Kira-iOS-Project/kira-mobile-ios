@@ -54,8 +54,9 @@ func createWalletInput(type: WalletType, name: String, balance: Int) throws -> C
         return Components.Schemas.CreateWalletInput(
             value2: debt.init(name: name, _type: .paylater, remainingDebt: balance))
     case .onlineLoan:
-        return Components.Schemas.CreateWalletInput(
-            value2: debt.init(name: name, _type: .pinjol, remainingDebt: balance))
+        guard let kind = Components.Schemas.CreateWalletInput.Value2Payload._TypePayload(rawValue: type.rawValue)
+        else { throw AppProblem() }
+        return Components.Schemas.CreateWalletInput(value2: debt.init(name: name, _type: kind, remainingDebt: balance))
     case .vehicle, .mortgage, .familyLoan: throw AppProblem()
     }
 }
@@ -67,7 +68,7 @@ func walletType(_ rawValue: String) throws -> WalletType {
     case "ewallet", "e_wallet": .ewallet
     case "credit_card": .creditCard
     case "paylater": .paylater
-    case "online_loan", "pinjol": .onlineLoan
+    case "online_loan", WalletType.onlineLoan.rawValue: .onlineLoan
     case "vehicle": .vehicle
     case "mortgage": .mortgage
     case "family_loan": .familyLoan

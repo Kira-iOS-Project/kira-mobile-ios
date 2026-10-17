@@ -21,6 +21,9 @@ package enum WalletType: String, CaseIterable, Hashable, Sendable {
     /** A legacy account type retained for existing records. */
     case other
 
+    /** The account kinds offered by the create-wallet form. */
+    package static let selectableCases: [WalletType] = [.bank, .ewallet, .cash, .creditCard, .paylater, .onlineLoan]
+
     /** Whether this account's amount is an outstanding liability. */
     package var isDebt: Bool {
         switch self {

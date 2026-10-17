@@ -2,6 +2,12 @@ import Domain
 import SwiftUI
 
 extension WalletType {
+    static let selectableCases: [WalletType] = [.bank, .ewallet, .cash, .creditCard, .paylater, .onlineLoan]
+
+    var amountLabelKey: LocalizedStringResource {
+        isDebt ? "wallet.create.remaining" : "wallet.create.balance"
+    }
+
     var titleKey: LocalizedStringResource {
         switch self {
         case .bank: "wallet.type.bank"

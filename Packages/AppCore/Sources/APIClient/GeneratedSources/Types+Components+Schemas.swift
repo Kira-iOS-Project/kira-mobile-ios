@@ -6464,6 +6464,201 @@ extension Components {
                 case dueSoon
             }
         }
+        /// - Remark: Generated from `#/components/schemas/CreateWalletInput`.
+        internal struct CreateWalletInput: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CreateWalletInput/value1`.
+            internal struct Value1Payload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/CreateWalletInput/value1/name`.
+                internal var name: Swift.String
+                /// - Remark: Generated from `#/components/schemas/CreateWalletInput/value1/type`.
+                internal enum _TypePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                    case cash = "cash"
+                    case bank = "bank"
+                    case ewallet = "ewallet"
+                    case eWallet = "e_wallet"
+                    case other = "other"
+                }
+                /// - Remark: Generated from `#/components/schemas/CreateWalletInput/value1/type`.
+                internal var _type: Components.Schemas.CreateWalletInput.Value1Payload._TypePayload
+                /// - Remark: Generated from `#/components/schemas/CreateWalletInput/value1/balance`.
+                internal var balance: Swift.Int?
+                /// - Remark: Generated from `#/components/schemas/CreateWalletInput/value1/openingBalance`.
+                internal var openingBalance: Swift.Int?
+                /// Creates a new `Value1Payload`.
+                ///
+                /// - Parameters:
+                ///   - name:
+                ///   - _type:
+                ///   - balance:
+                ///   - openingBalance:
+                internal init(
+                    name: Swift.String,
+                    _type: Components.Schemas.CreateWalletInput.Value1Payload._TypePayload,
+                    balance: Swift.Int? = nil,
+                    openingBalance: Swift.Int? = nil
+                ) {
+                    self.name = name
+                    self._type = _type
+                    self.balance = balance
+                    self.openingBalance = openingBalance
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case name
+                    case _type = "type"
+                    case balance
+                    case openingBalance
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/CreateWalletInput/value1`.
+            internal var value1: Components.Schemas.CreateWalletInput.Value1Payload?
+            /// - Remark: Generated from `#/components/schemas/CreateWalletInput/value2`.
+            internal struct Value2Payload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/CreateWalletInput/value2/name`.
+                internal var name: Swift.String
+                /// - Remark: Generated from `#/components/schemas/CreateWalletInput/value2/type`.
+                internal enum _TypePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                    case creditCard = "credit_card"
+                    case paylater = "paylater"
+                    case pinjol = "pinjol"
+                }
+                /// - Remark: Generated from `#/components/schemas/CreateWalletInput/value2/type`.
+                internal var _type: Components.Schemas.CreateWalletInput.Value2Payload._TypePayload
+                /// - Remark: Generated from `#/components/schemas/CreateWalletInput/value2/remainingDebt`.
+                internal var remainingDebt: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/CreateWalletInput/value2/monthlyInstallment`.
+                internal var monthlyInstallment: Swift.Int?
+                /// - Remark: Generated from `#/components/schemas/CreateWalletInput/value2/remainingTenorMonths`.
+                internal var remainingTenorMonths: Swift.Int?
+                /// - Remark: Generated from `#/components/schemas/CreateWalletInput/value2/nextDueDate`.
+                internal var nextDueDate: Swift.String?
+                /// Creates a new `Value2Payload`.
+                ///
+                /// - Parameters:
+                ///   - name:
+                ///   - _type:
+                ///   - remainingDebt:
+                ///   - monthlyInstallment:
+                ///   - remainingTenorMonths:
+                ///   - nextDueDate:
+                internal init(
+                    name: Swift.String,
+                    _type: Components.Schemas.CreateWalletInput.Value2Payload._TypePayload,
+                    remainingDebt: Swift.Int,
+                    monthlyInstallment: Swift.Int? = nil,
+                    remainingTenorMonths: Swift.Int? = nil,
+                    nextDueDate: Swift.String? = nil
+                ) {
+                    self.name = name
+                    self._type = _type
+                    self.remainingDebt = remainingDebt
+                    self.monthlyInstallment = monthlyInstallment
+                    self.remainingTenorMonths = remainingTenorMonths
+                    self.nextDueDate = nextDueDate
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case name
+                    case _type = "type"
+                    case remainingDebt
+                    case monthlyInstallment
+                    case remainingTenorMonths
+                    case nextDueDate
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/CreateWalletInput/value2`.
+            internal var value2: Components.Schemas.CreateWalletInput.Value2Payload?
+            /// Creates a new `CreateWalletInput`.
+            ///
+            /// - Parameters:
+            ///   - value1:
+            ///   - value2:
+            internal init(
+                value1: Components.Schemas.CreateWalletInput.Value1Payload? = nil,
+                value2: Components.Schemas.CreateWalletInput.Value2Payload? = nil
+            ) {
+                self.value1 = value1
+                self.value2 = value2
+            }
+            internal init(from decoder: any Swift.Decoder) throws {
+                var errors: [any Swift.Error] = []
+                do {
+                    self.value1 = try .init(from: decoder)
+                } catch {
+                    errors.append(error)
+                }
+                do {
+                    self.value2 = try .init(from: decoder)
+                } catch {
+                    errors.append(error)
+                }
+                try Swift.DecodingError.verifyAtLeastOneSchemaIsNotNil(
+                    [
+                        self.value1,
+                        self.value2
+                    ],
+                    type: Self.self,
+                    codingPath: decoder.codingPath,
+                    errors: errors
+                )
+            }
+            internal func encode(to encoder: any Swift.Encoder) throws {
+                try self.value1?.encode(to: encoder)
+                try self.value2?.encode(to: encoder)
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CreateDebtInput`.
+        internal struct CreateDebtInput: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CreateDebtInput/name`.
+            internal var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CreateDebtInput/kind`.
+            internal enum KindPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case creditCard = "credit_card"
+                case paylater = "paylater"
+                case pinjol = "pinjol"
+                case onlineLoan = "online_loan"
+            }
+            /// - Remark: Generated from `#/components/schemas/CreateDebtInput/kind`.
+            internal var kind: Components.Schemas.CreateDebtInput.KindPayload
+            /// - Remark: Generated from `#/components/schemas/CreateDebtInput/amount`.
+            internal var amount: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/CreateDebtInput/monthlyInstallment`.
+            internal var monthlyInstallment: Swift.Int?
+            /// - Remark: Generated from `#/components/schemas/CreateDebtInput/remainingTenorMonths`.
+            internal var remainingTenorMonths: Swift.Int?
+            /// - Remark: Generated from `#/components/schemas/CreateDebtInput/nextDueDate`.
+            internal var nextDueDate: Swift.String?
+            /// Creates a new `CreateDebtInput`.
+            ///
+            /// - Parameters:
+            ///   - name:
+            ///   - kind:
+            ///   - amount:
+            ///   - monthlyInstallment:
+            ///   - remainingTenorMonths:
+            ///   - nextDueDate:
+            internal init(
+                name: Swift.String,
+                kind: Components.Schemas.CreateDebtInput.KindPayload,
+                amount: Swift.Int,
+                monthlyInstallment: Swift.Int? = nil,
+                remainingTenorMonths: Swift.Int? = nil,
+                nextDueDate: Swift.String? = nil
+            ) {
+                self.name = name
+                self.kind = kind
+                self.amount = amount
+                self.monthlyInstallment = monthlyInstallment
+                self.remainingTenorMonths = remainingTenorMonths
+                self.nextDueDate = nextDueDate
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case name
+                case kind
+                case amount
+                case monthlyInstallment
+                case remainingTenorMonths
+                case nextDueDate
+            }
+        }
         /// - Remark: Generated from `#/components/schemas/BankImport`.
         internal struct BankImport: Codable, Hashable, Sendable {
             /// - Remark: Generated from `#/components/schemas/BankImport/id`.
