@@ -19,6 +19,13 @@ nonisolated final class EmergencyFundAuditTests: XCTestCase {
             let working = app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Gimana Ngitungnya?'")).firstMatch
             XCTAssertTrue(working.waitForExistence(timeout: 5), "no Gimana Ngitungnya?")
             working.tap()
+            /**
+             The working's lines fade in as the accordion opens; the audit waits until the last one
+             is there and then a second more, so it never samples them mid-animation.
+             */
+            let result = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH '= Rp'")).firstMatch
+            XCTAssertTrue(result.waitForExistence(timeout: 5), "the working did not open")
+            Thread.sleep(forTimeInterval: 1)
         }
     }
 
