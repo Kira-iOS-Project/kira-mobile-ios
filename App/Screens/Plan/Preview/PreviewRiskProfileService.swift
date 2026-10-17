@@ -27,16 +27,22 @@ actor PreviewRiskProfileService: RiskProfileService {
             failedSaves -= 1
             throw problem
         }
-        let profile: RiskProfile =
-            if answers == [2, 2, 3, 3, 3] { .aggressive } else if answers.dropFirst(2).first == 0 { .conservative } else {
-                .moderate
-            }
+        let profile = Self.profile(answers)
         saved = SavedRiskProfile(profile: profile, answers: RiskAnswers(answers))
         return profile
     }
 
-    /** The board's persona: Menambah Dana Pelan-pelan, Diam dan Tunggu Pulih, 1 sampai 3 Tahun, Belum Pernah Sama Sekali, the second range. */
+    /**
+     The board's persona: Menambah Dana Pelan-pelan, Diam dan Tunggu Pulih, 1 sampai 3 Tahun, Belum
+     Pernah Sama Sekali, and the second range.
+     */
     static let persona = [1, 1, 1, 0, 1]
+
+    /** The server's answer for the fixtures; anything else reads as Moderat here. */
+    private static func profile(_ answers: [Int]) -> RiskProfile {
+        if answers == [2, 2, 3, 3, 3] { return .aggressive }
+        return answers.dropFirst(2).first == 0 ? .conservative : .moderate
+    }
 
     /** A saved profile with the fixture that scores it. */
     static func saved(_ profile: RiskProfile) -> SavedRiskProfile {

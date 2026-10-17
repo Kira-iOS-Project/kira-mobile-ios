@@ -9,7 +9,10 @@ import XCTest
 nonisolated final class PlanRiskAuditTests: XCTestCase {
     @MainActor
     func testQuestionsPassTheAudit() throws {
-        for screen in ["riskQuiz", "riskQuizUnreadablePlan", "riskDrawdown", "riskHorizon", "riskExperience", "riskDeposit"] {
+        let screens = [
+            "riskQuiz", "riskQuizUnreadablePlan", "riskDrawdown", "riskHorizon", "riskExperience", "riskDeposit",
+        ]
+        for screen in screens {
             try auditScreen(screen)
         }
     }

@@ -30,7 +30,7 @@ package final class RiskQuizModel {
         case savedResult
     }
 
-    /** The plan's numbers once read (`RiskQuizContext.unknown` when they could not be), or the saved profile's problem. */
+    /** The plan's numbers once read (`RiskQuizContext.unknown` when unreadable), or the saved profile's problem. */
     package private(set) var phase: ScreenPhase<RiskQuizContext> = .loading
     /** The question or the result on screen. */
     package private(set) var stage: Stage

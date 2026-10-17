@@ -12,8 +12,11 @@ struct RiskQuizModelTests {
     private let plans = FakeGoalService()
     private static let board = RiskQuizContext(emergencyMultiple: 1.1, emergencyTarget: 6, monthlyIncome: 7_500_000)
     private static let persona = [1, 1, 1, 0, 1]
+    private static let aggressive = SavedRiskProfile(profile: .aggressive, answers: RiskAnswers([2, 2, 3, 3, 3]))
 
-    private func model(_ draft: RiskQuizDraft = RiskQuizDraft(), start: RiskQuizModel.Start = .quiz()) -> RiskQuizModel {
+    private func model(_ draft: RiskQuizDraft = RiskQuizDraft(), start: RiskQuizModel.Start = .quiz())
+        -> RiskQuizModel
+    {
         RiskQuizModel(service: service, draft: draft, plans: plans, start: start)
     }
 
@@ -82,7 +85,7 @@ struct RiskQuizModelTests {
 
     @Test("Hasil Kuis opens on the saved profile and fills its answers in; none saved opens the quiz")
     func savedResult() async {
-        await service.configure { $0.saved = SavedRiskProfile(profile: .aggressive, answers: RiskAnswers([2, 2, 3, 3, 3])) }
+        await service.configure { $0.saved = Self.aggressive }
         let quiz = model(start: .savedResult)
         await quiz.load()
         #expect(quiz.stage == .result(.aggressive))
@@ -96,7 +99,7 @@ struct RiskQuizModelTests {
 
     @Test("an answer already chosen in this session wins over the saved ones")
     func draftWins() async {
-        await service.configure { $0.saved = SavedRiskProfile(profile: .aggressive, answers: RiskAnswers([2, 2, 3, 3, 3])) }
+        await service.configure { $0.saved = Self.aggressive }
         let quiz = model(RiskQuizDraft(answers: RiskAnswers(Self.persona)))
         await quiz.load()
         #expect(quiz.choice(for: .goal) == 1 && quiz.stage == .question(.goal))

@@ -18,7 +18,9 @@ struct RiskResultView: View {
         PlanScreenFrame {
             KiraScenery(hasSun: true, height: 150).padding(.top, 50)
         } content: {
-            KiraNavBar("plan.result.title", subtitle: "plan.result.subtitle", leading: .back("plan.result.back", onBack)) {
+            KiraNavBar(
+                "plan.result.title", subtitle: "plan.result.subtitle", leading: .back("plan.result.back", onBack)
+            ) {
                 KiraHelpButton(.icon) { onOpen(.care) }
             }
             RiskProfileCard(profile: profile).padding(.top, 80)

@@ -40,9 +40,15 @@ extension RiskQuestion {
         switch self {
         case .goal: ["plan.risk.goal.option1", "plan.risk.goal.option2", "plan.risk.goal.option3", "plan.risk.unsure"]
         case .drawdown:
-            ["plan.risk.drawdown.option1", "plan.risk.drawdown.option2", "plan.risk.drawdown.option3", "plan.risk.unsure"]
+            [
+                "plan.risk.drawdown.option1", "plan.risk.drawdown.option2", "plan.risk.drawdown.option3",
+                "plan.risk.unsure",
+            ]
         case .horizon:
-            ["plan.risk.horizon.option1", "plan.risk.horizon.option2", "plan.risk.horizon.option3", "plan.risk.horizon.option4"]
+            [
+                "plan.risk.horizon.option1", "plan.risk.horizon.option2", "plan.risk.horizon.option3",
+                "plan.risk.horizon.option4",
+            ]
         case .experience:
             [
                 "plan.risk.experience.option1", "plan.risk.experience.option2", "plan.risk.experience.option3",

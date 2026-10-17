@@ -24,9 +24,10 @@ struct RiskQuestionView: View {
                 current: question.number, total: RiskQuestion.total,
                 label: "plan.risk.progress \(question.number) \(RiskQuestion.total)")
             if question == .goal, let ladder = context.ladder {
+                let multiple = Self.multiple(ladder.multiple)
+                let target = Self.multiple(Double(ladder.target))
                 KiraNotice(
-                    .info, title: "plan.risk.ladder.title",
-                    message: "plan.risk.ladder.body \(Self.multiple(ladder.multiple)) \(Self.multiple(Double(ladder.target)))",
+                    .info, title: "plan.risk.ladder.title", message: "plan.risk.ladder.body \(multiple) \(target)",
                     icon: .target)
             }
             PlanHeading(title: question.title, subtitle: question.subtitle(income: context.monthlyIncome))

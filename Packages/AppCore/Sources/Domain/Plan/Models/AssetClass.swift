@@ -29,6 +29,12 @@ package enum AssetClass: String, CaseIterable, Hashable, Sendable {
 
 /** A risk label: Rendah, Sedang, Tinggi, Sangat Tinggi. */
 package enum AssetRisk: Int, CaseIterable, Hashable, Sendable {
-    case low, medium, high, veryHigh
+    /** Risiko Rendah. */
+    case low
+    /** Risiko Sedang. */
+    case medium
+    /** Risiko Tinggi. */
+    case high
+    /** Risiko Sangat Tinggi. */
+    case veryHigh
 }
-

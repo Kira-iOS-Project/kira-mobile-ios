@@ -11,4 +11,3 @@ package protocol RiskProfileService: Sendable {
     /** `PUT /risk-profile` (`saveRiskProfile`): stores the five 0-based answers and returns the profile. */
     func saveRiskProfile(answers: [Int]) async throws -> RiskProfile
 }
-

@@ -18,7 +18,7 @@ struct LegalityCheckScreen: View {
     @Environment(\.openURL) private var openURL
 
     var body: some View {
-        PlanScreenFrame(backdrop: { EmptyView() }) {
+        PlanScreenFrame(backdrop: { EmptyView() }, content: {
             KiraNavBar("legality.title", leading: .back("legality.back") { dismiss() }) {
                 KiraHelpButton(.icon) { onOpen(.care) }
             }
@@ -31,7 +31,7 @@ struct LegalityCheckScreen: View {
             }
             .padding(.top, KiraSpacing.space1)
             LegalityWarnings().padding(.top, KiraSpacing.space2)
-        }
+        })
         .kiraSheet(isPresented: $showsContact, title: "legality.ojk157") { LegalityContactSheet() }
     }
 
@@ -45,7 +45,8 @@ struct LegalityCheckScreen: View {
     private var officialList: some View {
         KiraListGroup("legality.official") {
             site("legality.lenders", subtitle: "legality.lenders.subtitle", icon: .list, url: LegalityLinks.ojk)
-            site("legality.investments", subtitle: "legality.investments.subtitle", icon: .chart, url: LegalityLinks.ojk)
+            site(
+                "legality.investments", subtitle: "legality.investments.subtitle", icon: .chart, url: LegalityLinks.ojk)
             site("legality.report", subtitle: "legality.report.subtitle", icon: .flag, url: LegalityLinks.satgasPasti)
             KiraListRow(Text("legality.ojk157"), leading: .icon(.phone), trailing: .external) { showsContact = true }
                 .subtitle(Text("legality.ojk157.subtitle"))

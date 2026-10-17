@@ -21,7 +21,8 @@ struct RiskQuizContextTests {
             ladder: [
                 LadderStep(step: 1, key: .expensiveDebt, status: .current),
                 LadderStep(
-                    step: 2, key: .emergencyFund, status: .todo, detail: LadderDetail(multiple: 1.1, targetMultiple: 6)),
+                    step: 2, key: .emergencyFund, status: .todo,
+                    detail: LadderDetail(multiple: 1.1, targetMultiple: 6)),
             ],
             goals: [], riskProfile: nil, prefill: PlanPrefill(monthlyIncome: 7_500_000))
         #expect(

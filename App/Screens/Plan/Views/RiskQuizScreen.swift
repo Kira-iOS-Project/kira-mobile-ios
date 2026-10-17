@@ -52,7 +52,8 @@ struct RiskQuizScreen: View {
     #Preview {
         NavigationStack {
             RiskQuizScreen(
-                model: RiskQuizModel(service: PreviewRiskProfileService(), draft: RiskQuizDraft(), plans: PreviewGoalService()),
+                model: RiskQuizModel(
+                    service: PreviewRiskProfileService(), draft: RiskQuizDraft(), plans: PreviewGoalService()),
                 onOpen: { _ in })
         }
     }

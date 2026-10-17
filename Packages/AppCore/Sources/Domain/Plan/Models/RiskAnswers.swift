@@ -7,7 +7,9 @@ package struct RiskAnswers: Hashable, Sendable {
 
     /** No answer yet, or `indexes` in the questions' order (the saved answers, the board's persona). */
     package init(_ indexes: [Int] = []) {
-        choices = RiskQuestion.allCases.map { indexes.indices.contains($0.rawValue - 1) ? indexes[$0.rawValue - 1] : nil }
+        choices = RiskQuestion.allCases.map { question in
+            indexes.indices.contains(question.rawValue - 1) ? indexes[question.rawValue - 1] : nil
+        }
     }
 
     /** The option chosen for `question`, if any. */
