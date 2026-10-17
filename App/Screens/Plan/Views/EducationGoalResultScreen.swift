@@ -144,7 +144,7 @@ private struct EducationCostBreakdown: View {
         }
         KiraListGroup(
             "plan.education.result.perStage",
-            footer: "plan.education.result.perStage.footer \(Text(plan.inflation * 100, format: .kiraMultiple))"
+            footer: "plan.education.result.perStage.footer \((plan.inflation * 100).formatted(.number.locale(Locale(identifier: "id_ID"))))"
         ) {
             ForEach(Array(costs.enumerated()), id: \.offset) { index, cost in
                 let details = outcome.details[index]
