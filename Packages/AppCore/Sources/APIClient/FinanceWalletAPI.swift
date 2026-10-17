@@ -9,7 +9,7 @@ extension KiraAPI {
 
     /** A wallet, or a debt account for a credit card, paylater or pinjol (`POST /api/wallets`). */
     package func createWallet(_ draft: WalletDraft) async throws {
-        try await client.createWallet(body: .json(Components.Schemas.CreateWalletInput(draft))).created()
+        try await client.createWallet(body: .json(Components.Schemas.CreateWalletInput(draft))).added()
     }
 }
 
@@ -30,7 +30,7 @@ extension Components.Schemas.CreateWalletInput {
 }
 
 extension Operations.CreateWallet.Output {
-    func created() throws {
+    func added() throws {
         switch self {
         case .created: return
         case .unauthorized(let response): throw try response.body.applicationProblemJson
