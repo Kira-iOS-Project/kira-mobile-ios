@@ -80,12 +80,13 @@ struct PayoffHowAccordion: View {
             "payoff.how.title", subtitle: "payoff.how.subtitle", icon: .calculator, isExpanded: $model.isHowOpen
         ) {
             VStack(alignment: .leading, spacing: KiraSpacing.space3) {
-                Text(PayoffCopy.howRule(simulation.method))
+                Text(PayoffCopy.howRule(simulation.method)).font(.subheadline).kiraLineHeight(20, size: 15)
+                    .foregroundStyle(.ink)
                 if let first = simulation.firstAccount {
                     VStack(alignment: .leading, spacing: 2) {
-                        let extra = PayoffCopy.rupiah(simulation.extraPayment)
-                        Text("payoff.how.sum \(extra) \(PayoffCopy.rupiah(first.monthlyInstalment))")
-                        Text("payoff.how.result \(first.name) \(PayoffCopy.date(of: first) ?? "")")
+                        ForEach(PayoffCopy.formula(simulation, first: first), id: \.key) { line in
+                            Text(line)
+                        }
                     }
                     .kiraFont(.formula).foregroundStyle(.ink)
                     .padding(.horizontal, KiraSpacing.space3)
@@ -94,9 +95,8 @@ struct PayoffHowAccordion: View {
                     .background(.surface, in: RoundedRectangle(cornerRadius: KiraRadius.small))
                     .overlay(RoundedRectangle(cornerRadius: KiraRadius.small).strokeBorder(.hairline))
                 }
-                Text("payoff.how.after")
+                Text("payoff.how.after").font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
             }
-            .font(.subheadline).kiraLineHeight(20, size: 15).foregroundStyle(.inkMuted)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
     }

@@ -15539,17 +15539,29 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cicilan minimum tetap dibayar di semua akun. Tambahanmu masuk ke akun dengan bunga tertinggi. Akun tanpa bunga dihitung 0% dan masuk paling akhir."
+            "value" : "Cicilan minimum tetap dibayar di semua akun. Tambahanmu masuk ke akun dengan bunga tertinggi."
           }
         }
       }
     },
     "payoff.how.result %@ %@" : {
+      "extractionState" : "manual",
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "→ %1$@ lunas %2$@"
+          }
+        }
+      }
+    },
+    "payoff.how.resultSnowball %@ %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "= %1$@ → %2$@ lunas"
           }
         }
       }
@@ -15575,11 +15587,23 @@
       }
     },
     "payoff.how.sum %@ %@" : {
+      "extractionState" : "manual",
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ + %2$@ per bulan"
+          }
+        }
+      }
+    },
+    "payoff.how.sumSnowball %@ %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ + %2$@"
           }
         }
       }

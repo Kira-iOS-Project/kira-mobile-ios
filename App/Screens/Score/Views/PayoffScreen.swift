@@ -16,8 +16,12 @@ struct PayoffScreen: View {
     private let onOpen: (AppRoute) -> Void
     @Environment(\.dismiss) private var dismiss
 
-    init(service: any PayoffService, plans: any PayoffPlanService, onOpen: @escaping (AppRoute) -> Void) {
-        _model = State(initialValue: PayoffModel(service: service))
+    /** The screen on Snowball with "Gimana Ngitungnya?" closed, unless `method` and `showsHow` say otherwise. */
+    init(
+        service: any PayoffService, plans: any PayoffPlanService, method: PayoffMethod = .snowball,
+        showsHow: Bool = false, onOpen: @escaping (AppRoute) -> Void
+    ) {
+        _model = State(initialValue: PayoffModel(service: service, method: method, showsHow: showsHow))
         self.plans = plans
         self.onOpen = onOpen
     }

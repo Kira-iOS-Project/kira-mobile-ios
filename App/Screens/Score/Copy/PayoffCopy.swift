@@ -35,6 +35,27 @@ enum PayoffCopy {
         return day.map { "payoff.hero.allPaid \($0)" } ?? "payoff.hero.notAll"
     }
 
+    /**
+     The two lines of the formula box: Snowball adds the extra to the first account's instalment and
+     names the sum ("= Rp420.000,00 → Paylater A lunas"); Avalanche gives the sum per month and the
+     first account's day.
+     */
+    static func formula(_ simulation: PayoffSimulation, first: PayoffAccount) -> [LocalizedStringResource] {
+        let extra = rupiah(simulation.extraPayment)
+        let instalment = rupiah(first.monthlyInstalment)
+        switch simulation.method {
+        case .snowball:
+            let total = rupiah(simulation.extraPayment + first.monthlyInstalment)
+            return [
+                "payoff.how.sumSnowball \(extra) \(instalment)", "payoff.how.resultSnowball \(total) \(first.name)",
+            ]
+        case .avalanche:
+            return [
+                "payoff.how.sum \(extra) \(instalment)", "payoff.how.result \(first.name) \(date(of: first) ?? "")",
+            ]
+        }
+    }
+
     /** The method's line under the segmented control. */
     static func methodLine(_ method: PayoffMethod) -> LocalizedStringResource {
         switch method {
