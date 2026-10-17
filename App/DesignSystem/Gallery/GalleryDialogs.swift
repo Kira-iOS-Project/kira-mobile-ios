@@ -9,15 +9,11 @@
 
     struct GalleryDialogs: View {
         @State private var isConfirming = false
-        // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
         @State private var budgetSaveFailure: AppProblem?
         // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
         @State private var budgetAmount = "350000"
-        // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
         @State private var didRetryBudgetSave = false
-        // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
         @State private var isBudgetSaveSuccessPresented = false
-        // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
         @State private var isConfirmingBillDelete = false
 
         var body: some View {
@@ -31,7 +27,7 @@
                             secondary: KiraButton("gallery.dialog.keep", variant: .secondary) {})
                     }
             }
-            GallerySection(title: "gallery.dialog.billDelete.section") {
+            GallerySection(title: "gallery.section.dialogBillDelete") {
                 KiraButton("gallery.dialog.billDelete.open", variant: .secondary) {
                     isConfirmingBillDelete = true
                 }

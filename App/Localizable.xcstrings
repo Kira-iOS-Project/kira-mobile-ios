@@ -6901,16 +6901,6 @@
         }
       }
     },
-    "gallery.dialog.billDelete.section" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Konfirmasi Hapus Tagihan"
-          }
-        }
-      }
-    },
     "gallery.dialog.budgetFailure.amount" : {
       "localizations" : {
         "id" : {
@@ -8411,12 +8401,22 @@
         }
       }
     },
+    "gallery.section.dialogBillDelete" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dialog Hapus"
+          }
+        }
+      }
+    },
     "gallery.section.dialogBudgetFailure" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dialog Gagal Menyimpan Budget"
+            "value" : "Dialog Budget"
           }
         }
       }

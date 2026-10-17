@@ -12,9 +12,7 @@
         @State private var agreesToTerms = true
         // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
         @State private var paydayAtMonthEnd = false
-        // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
         @State private var isPaydayPickerPresented = false
-        // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
         @State private var payday = Payday(day: Payday.defaultDay)
         // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
         @State private var pin = "3814"
