@@ -23,7 +23,7 @@ nonisolated final class EmergencyFundAuditTests: XCTestCase {
              The working's lines fade in as the accordion opens; the audit waits until the last one
              is there and then a second more, so it never samples them mid-animation.
              */
-            let result = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH '= Rp'")).firstMatch
+            let result = app.staticTexts.matching(NSPredicate(format: "label CONTAINS '= Rp'")).firstMatch
             XCTAssertTrue(result.waitForExistence(timeout: 5), "the working did not open")
             Thread.sleep(forTimeInterval: 1)
         }
