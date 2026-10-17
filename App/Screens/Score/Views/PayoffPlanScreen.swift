@@ -34,7 +34,9 @@ struct PayoffPlanScreen: View {
             case .empty:
                 PayoffPlanEmptyView(onOpen: onOpen) { dismiss() }
             case .failed(let problem):
-                LoadFailedView(title: "plan.failed", problem: problem) { Task { await model.load() } }
+                LoadFailedView(title: "plan.failed", leading: .back("plan.back") { dismiss() }, problem: problem) {
+                    Task { await model.load() }
+                }
             }
         }
         .background(.surface)

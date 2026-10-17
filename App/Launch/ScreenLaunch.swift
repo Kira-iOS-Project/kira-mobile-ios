@@ -46,7 +46,7 @@
             case .payoffPlan: PayoffPlanLaunch(screen: screen)
             case .planModule: PlanModuleLaunch(screen: screen)
             case .wallets: WalletsLaunch()
-            case .budget: BudgetLaunch()
+            case .budget: BudgetLaunch(screen: screen)
             case .walletAdd: WalletAddLaunch(screen: screen)
             case .bills: BillsLaunch(screen: screen)
             case .billForm: BillFormLaunch(screen: screen)
@@ -139,8 +139,8 @@
 
         /** UNG: Detail Utang (Paylater A, and a debt that is gone) and SKR: Panduan SLIK. */
         case debtDetail, debtDetailGone, creditReportGuide
-        /** UNG: Dompet (UNG-01) and Budget (UNG-04) on the preview services. */
-        case wallets, budget
+        /** UNG: Dompet (UNG-01) and Budget (UNG-04) on the preview services, and Budget failing to load. */
+        case wallets, budget, budgetFailed
         /** UNG: Tambah Dompet over Dompet, and with a save that fails, for its failure dialog. */
         case walletAdd, walletAddFailing
         /** UNG-06: Tagihan & Cicilan with the board's bills, none, and a load that fails. */
