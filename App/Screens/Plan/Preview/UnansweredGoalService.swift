@@ -6,7 +6,7 @@ import APIClient
 import Domain
 import Features
 
-struct FailingGoalService: GoalService {
+struct UnansweredGoalService: GoalService {
     private let preview = PreviewGoalService()
 
     func plan() async -> PlanOverview { await preview.plan() }

@@ -14,7 +14,7 @@
             NavigationStack {
                 switch screen {
                 case .houseGoalResult: result(PreviewGoalService())
-                case .houseGoalBudgetFailing: result(FailingGoalService())
+                case .houseGoalBudgetFailing: result(UnansweredGoalService())
                 default: HouseDownPaymentFormScreen(service: PreviewGoalService(), model: .sample()) { _ in }
                 }
             }
