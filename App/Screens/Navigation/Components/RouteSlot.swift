@@ -1,6 +1,6 @@
 /**
  The screen of each pushed route, by area: Score (score, indicator, scoreHistory, debtPlan,
- payoffSimulation, myPlan), Account (profile … deleteAccount, about … complaints), Plans (plans …
+ payoffSimulation, myPlan, creditReport), Account (profile … deleteAccount, about … complaints), Plans (plans …
  scholarshipStatus), Kira Peduli (care, trustedMessage, negotiationScript, breathingExercise,
  safetyPlan), Mode Darurat Utang and its guides (debtEmergency, debtGuide), Etalase (marketplace,
  product, submitProduct), Portofolio Manual (portfolio, addAsset, editAsset). "Cek Ulang"
@@ -26,6 +26,7 @@ struct RouteSlot: View {
             PayoffEntryScreen(service: services.payoff, plans: services.payoffPlan, onOpen: onOpen)
         case .payoffSimulation: PayoffScreen(service: services.payoff, plans: services.payoffPlan, onOpen: onOpen)
         case .myPlan: PayoffPlanScreen(service: services.payoffPlan, onOpen: onOpen)
+        case .creditReport: CreditReportScreen(onOpen: onOpen)
         case .profile:
             ProfileScreen(
                 service: services.account, settings: services.security, onOpen: onOpen, onSignedOut: { endSession() })

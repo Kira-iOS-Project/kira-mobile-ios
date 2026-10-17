@@ -36,6 +36,7 @@
             case .scoreHistory: ScoreHistoryLaunch(screen: screen)
             case .payoff: PayoffLaunch(screen: screen)
             case .payoffPlan: PayoffPlanLaunch(screen: screen)
+            case .creditReport: CreditReportLaunch()
             }
         }
     }
@@ -96,6 +97,8 @@
          the last account).
          */
         case myPlan, myPlanEmpty, myPlanFailing, payoffCelebration, payoffCelebrationLast
+        /** SKR: Cek SLIK (06). */
+        case creditReport
 
         /** The area whose launcher builds the screen. */
         enum Area {
@@ -104,6 +107,7 @@
             case scoreHistory
             case payoff
             case payoffPlan
+            case creditReport
         }
 
         var area: Area {
@@ -139,6 +143,7 @@
             case .scoreHistory, .scoreHistoryShort, .scoreHistoryEmpty, .scoreHistoryFailed, .scoreHistoryLocked:
                 .scoreHistory
             case .myPlan, .myPlanEmpty, .myPlanFailing, .payoffCelebration, .payoffCelebrationLast: .payoffPlan
+            case .creditReport: .creditReport
             }
         }
     }

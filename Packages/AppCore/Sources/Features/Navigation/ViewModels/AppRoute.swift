@@ -27,6 +27,8 @@ package enum AppRoute: Hashable, Sendable {
     case payoffSimulation
     /** SKR-04: Rencanaku, the plan the person made; SKR-05 (Perayaan Lunas) opens over it. */
     case myPlan
+    /** SKR-06: Cek SLIK, the guide to one's own credit record at iDebKu OJK (UNG-03's Panduan SLIK). */
+    case creditReport
 
     /** CAT-01: Catat, the record section's root. */
     case record
@@ -132,8 +134,6 @@ package enum UnavailableArea: String, CaseIterable, Hashable, Sendable {
     case bills
     /** UNG: Ringkasan Mingguan, the weekly summary. */
     case weeklySummary
-    /** SKR: SLIK, the credit report. */
-    case creditReport
     /** SKR: Detail Utang, one debt account's detail (Rencanaku's account rows). */
     case debtDetail
     /** REN: the Rencana tab. */

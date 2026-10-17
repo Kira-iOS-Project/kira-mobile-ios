@@ -23201,6 +23201,226 @@
         }
       }
     },
+    "creditReport.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali"
+          }
+        }
+      }
+    },
+    "creditReport.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SLIK adalah catatan resmi OJK tentang pinjaman, kartu kredit, dan paylater atas namamu. Kamu bisa melihatnya sendiri di iDebKu, tanpa biaya."
+          }
+        }
+      }
+    },
+    "creditReport.heading" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cek Riwayat Kreditmu, Gratis"
+          }
+        }
+      }
+    },
+    "creditReport.open" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka iDebKu OJK"
+          }
+        }
+      }
+    },
+    "creditReport.outbound" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu akan membuka situs resmi OJK di luar Kira."
+          }
+        }
+      }
+    },
+    "creditReport.paid.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cek SLIK di iDebKu gratis. Jangan serahkan KTP atau datamu ke pihak yang meminta bayaran untuk mengeceknya."
+          }
+        }
+      }
+    },
+    "creditReport.paid.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hati-Hati dengan Jasa Cek SLIK Berbayar"
+          }
+        }
+      }
+    },
+    "creditReport.privacy.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira tidak pernah meminta, menyimpan, atau membaca data SLIK-mu. Semuanya kamu isi langsung di situs OJK."
+          }
+        }
+      }
+    },
+    "creditReport.privacy.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Tidak Melihat Data SLIK-mu"
+          }
+        }
+      }
+    },
+    "creditReport.step.spoken %lld %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld. %2$@, %3$@"
+          }
+        }
+      }
+    },
+    "creditReport.step1" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka iDebKu OJK"
+          }
+        }
+      }
+    },
+    "creditReport.step1.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketuk tombol di bawah. Alamatnya idebku.ojk.go.id, situs resmi OJK."
+          }
+        }
+      }
+    },
+    "creditReport.step2" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi Data Dirimu"
+          }
+        }
+      }
+    },
+    "creditReport.step2.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih Debitur Perorangan, lalu isi NIK, nama sesuai KTP, dan email yang aktif."
+          }
+        }
+      }
+    },
+    "creditReport.step3" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unggah KTP dan Swafoto"
+          }
+        }
+      }
+    },
+    "creditReport.step3.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foto KTP-mu dan swafoto sambil memegang KTP, lalu kirim permohonannya."
+          }
+        }
+      }
+    },
+    "creditReport.step4" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cek Hasil di Email"
+          }
+        }
+      }
+    },
+    "creditReport.step4.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OJK mengirim hasil SLIK ke emailmu setelah permohonannya diperiksa."
+          }
+        }
+      }
+    },
+    "creditReport.steps" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4 Langkah Cek SLIK"
+          }
+        }
+      }
+    },
+    "creditReport.steps.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "gratis dari OJK"
+          }
+        }
+      }
+    },
+    "creditReport.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Panduan iDebKu OJK"
+          }
+        }
+      }
+    },
+    "creditReport.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cek SLIK"
+          }
+        }
+      }
+    },
     "indicator.rung.consumer_debt.25.onTime" : {
       "extractionState" : "manual",
       "localizations" : {
