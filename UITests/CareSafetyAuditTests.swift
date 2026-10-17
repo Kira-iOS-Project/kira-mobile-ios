@@ -58,6 +58,7 @@ nonisolated final class CareSafetyAuditTests: XCTestCase {
      (fece597) never flagged it; the audit reads it as low contrast on the first pass, before any
      scroll, at a fixed frame, for a cause not yet found.
      */
+    @MainActor
     private static func contactHeaderContrast(_ issue: XCUIAccessibilityAuditIssue) -> Bool {
         guard issue.auditType == .contrast, let label = issue.element?.label else { return false }
         return label == "Orang yang Bisa Kuhubungi"
