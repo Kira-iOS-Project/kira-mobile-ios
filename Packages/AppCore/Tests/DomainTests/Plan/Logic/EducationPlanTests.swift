@@ -50,6 +50,7 @@ struct EducationPlanTests {
         guard case .raiseReturn(let rate) = found.last else { return #expect(Bool(false)) }
         #expect(rate > 0 && rate <= 0.30)
         #expect(plan(deposit: 10_000_000).recommendations().isEmpty)
+        #expect(plan(annualReturn: nil).projection().result == 20_000_000 + 24_000_000 * 19)
         /** Already above the income share: the deposit stays, and only the return rises, as on the site. */
         let above = plan(income: 3_000_000, annualReturn: nil).recommendations()
         #expect(above.first == .raiseDeposit(to: 2_000_000) && above.count == 2)

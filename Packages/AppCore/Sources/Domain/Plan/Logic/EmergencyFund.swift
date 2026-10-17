@@ -48,6 +48,11 @@ package struct EmergencyFund: Equatable, Sendable {
             target: Double(target), present: present, deposit: deposit, annualReturn: annualReturn, months: months)
     }
 
+    /** Kelas Aset untuk Dana Darurat, the site's list: easy to cash and stable. */
+    package static let assetClasses: [GoalAssetClass] = [
+        .shortTermDeposit, .gold, .usDollar, .moneyMarket, .fixedIncomeFund,
+    ]
+
     /** Each half of Tempat Menyimpannya: Tabungan Bank and Instrumen Likuid Berisiko Rendah. */
     package var half: Int { Rupiah.rounded(Double(target) / 2) }
 

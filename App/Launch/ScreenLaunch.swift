@@ -97,6 +97,8 @@
         case riskResult, riskResultConservative, riskResultAggressive, legalityCheck
         /** REN: Tujuan Baru · Kendaraan, Barang Impian and Lainnya on their boards; Hitung opens each result. */
         case goalVehicle, goalGoods, goalOther
+        /** REN: Kalkulator Dana Darurat on the board's persona; Hitung opens Hasil Simulasi. */
+        case goalEmergency
         /** REN: Tujuan Baru · Dana Pensiun and its Hasil Simulasi, on the board's persona. */
         case goalRetirement, goalRetirementResult
         /** REN: Portofolio (masked, empty, failed), Tambah Aset (a save that fails), updating an asset. */
@@ -170,7 +172,7 @@
                 .planRisk
             case .houseGoal, .houseGoalResult, .houseGoalBudgetFailing: .houseGoal
             case .weddingGoal, .weddingGoalResult: .weddingGoal
-            case .goalVehicle, .goalGoods, .goalOther: .goals
+            case .goalVehicle, .goalGoods, .goalOther, .goalEmergency: .goals
             case .goalRetirement, .goalRetirementResult: .retirementGoal
             case .portfolio, .portfolioMasked, .portfolioEmpty, .portfolioFailed, .addAsset, .addAssetFailing,
                 .editAsset:

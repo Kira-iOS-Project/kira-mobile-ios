@@ -30,10 +30,16 @@ struct GoalResultContent {
     var recommendations: [GoalRecommendation] = []
     /** "Kelas Aset untuk Jangka Ini". */
     let assetClasses: [GoalAssetClass]
+    /** The asset classes' title: Dana Darurat names itself ("Kelas Aset untuk Dana Darurat"). */
+    var assetsTitle: LocalizedStringResource = "plan.result.assets"
+    /** The note under the asset classes. */
+    var assetsNote: LocalizedStringResource = "plan.result.assets.note"
     /** "Gimana Ngitungnya?": the target's and the result's working. */
     let formulas: [GoalFormula]
     /** The muted paragraph under the formulas. */
     var footnote: LocalizedStringResource = "plan.result.footnote"
+    /** "Gimana Ngitungnya?" starts open (HasilSimulasiTerbuka, REN-04b). */
+    var opensFormulas = false
 }
 
 /** How long a goal runs: in years for most kinds, in months for Barang Impian. */

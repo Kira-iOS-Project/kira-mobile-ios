@@ -18,6 +18,7 @@
                         model: PriceGoalModel(kind: .goods, horizon: .months, values: GoalSamples.goods),
                         onOpen: { _ in })
                 case .goalOther: OtherGoalScreen(model: OtherGoalModel(values: GoalSamples.other), onOpen: { _ in })
+                case .goalEmergency: EmergencyFundGoalScreen(model: GoalSamples.emergency, onOpen: { _ in })
                 default:
                     PriceGoalScreen(
                         model: PriceGoalModel(kind: .vehicle, horizon: .years, values: GoalSamples.vehicle),
