@@ -5,6 +5,8 @@
  */
 #if DEBUG
     import APIClient
+    import Domain
+    import Features
     import SwiftUI
 
     struct ScoreHistoryLaunch: View {
