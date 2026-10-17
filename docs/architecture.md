@@ -3,8 +3,9 @@
 Kira is MVVM, and its folders say which layer a file belongs to. Every layer uses the same area
 names, so a feature's files are found in the same place in each layer:
 
-Onboarding, Home, Score, Record, History, Import, Account, Plans, Lock, Community, Care, Navigation,
-Session, Shared.
+Onboarding, Home, Score, Record, History, Import, Account, Plans, Plan, Lock, Community, Care,
+Navigation, Session, Shared. `Plans` is Paket Kira and Beasiswa Kira; `Plan` is Rencana (Portofolio
+Manual today).
 
 `Shared` holds what several areas use (money, dates, transactions, the six-digit code). An area
 folder is created only when it has a file.

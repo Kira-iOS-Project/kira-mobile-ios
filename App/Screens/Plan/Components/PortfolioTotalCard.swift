@@ -18,7 +18,8 @@ struct PortfolioTotalCard: View {
                 Text("portfolio.total.title").kiraFont(.overline).foregroundStyle(.inkMuted)
                 Spacer(minLength: KiraSpacing.space2)
                 KiraIconButton(
-                    model.isMasked ? .eyeOff : .eye, label: model.isMasked ? "portfolio.mask.show" : "portfolio.mask.hide"
+                    model.isMasked ? .eyeOff : .eye,
+                        label: model.isMasked ? "portfolio.mask.show" : "portfolio.mask.hide"
                 ) { model.toggleMasked() }
                 .accessibilityAddTraits(model.isMasked ? .isSelected : [])
                 .padding(.trailing, -10)

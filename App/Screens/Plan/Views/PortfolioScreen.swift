@@ -56,6 +56,8 @@ struct PortfolioScreen: View {
             if let impact = portfolio.debtToAsset { PortfolioImpactCard(impact: impact, onOpen: onOpen) }
             notices
             addButton
+        case .failed(let problem) where model.needsPlan:
+            PlanGateNotice(problem: problem) { onOpen(.plans(yearly: false)) }
         case .failed(let problem):
             LoadFailedView(title: "portfolio.failed", problem: problem) { Task { await model.load() } }
                 .padding(.vertical, KiraSpacing.space8)

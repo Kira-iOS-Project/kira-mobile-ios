@@ -13,10 +13,12 @@ import SwiftUI
 
 struct AssetFormScreen: View {
     @State private var model: AssetFormModel
+    private let onOpen: (AppRoute) -> Void
     @Environment(\.dismiss) private var dismiss
 
-    init(service: any PortfolioService, assetId: String? = nil) {
+    init(service: any PortfolioService, assetId: String? = nil, onOpen: @escaping (AppRoute) -> Void = { _ in }) {
         _model = State(initialValue: AssetFormModel(service: service, assetId: assetId))
+        self.onOpen = onOpen
     }
 
     var body: some View {
@@ -27,9 +29,14 @@ struct AssetFormScreen: View {
             case .loaded:
                 form
             case .failed(let problem):
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: KiraSpacing.space4) {
                     navBar
-                    LoadFailedView(title: "asset.failed.load", problem: problem) { Task { await model.load() } }
+                    if model.loadNeedsPlan {
+                        PlanGateNotice(problem: problem) { onOpen(.plans(yearly: false)) }
+                        Spacer()
+                    } else {
+                        LoadFailedView(title: "asset.failed.load", problem: problem) { Task { await model.load() } }
+                    }
                 }
                 .padding(.horizontal, KiraSpacing.screen)
             }
@@ -55,19 +62,7 @@ struct AssetFormScreen: View {
     private var form: some View {
         VStack(spacing: KiraSpacing.space4) {
             ScrollView {
-                VStack(alignment: .leading, spacing: KiraSpacing.space4) {
-                    navBar
-                    AssetClassGrid(model: model)
-                    KiraField("asset.name", text: $model.name)
-                        .hint("asset.name.hint")
-                        .error(model.issue(in: .name)?.message)
-                    KiraField("asset.value", text: $model.valueText)
-                        .prefix("asset.currency").suffix("asset.cents").amount()
-                        .hint("asset.value.hint")
-                        .error(model.issue(in: .value)?.message)
-                        .keyboardType(.numberPad)
-                    AssetDayField(model: model)
-                }
+                fields
                 .padding(.horizontal, KiraSpacing.screen)
                 .padding(.top, KiraSpacing.space1)
                 .background(alignment: .topTrailing) {
@@ -78,13 +73,35 @@ struct AssetFormScreen: View {
             }
             .scrollBounceBehavior(.basedOnSize)
             VStack(spacing: 12) {
-                KiraNotice(.info, message: "asset.notice")
-                KiraButton(model.isUpdate ? "asset.update.save" : "asset.save") { Task { await model.save() } }
-                    .block()
-                    .disabled(model.isSaving)
+                if model.needsPlan {
+                    PlanGateNotice(problem: AppProblem(code: ProblemCode.planFeatureUnavailable.rawValue)) {
+                        onOpen(.plans(yearly: false))
+                    }
+                } else {
+                    KiraNotice(.info, message: "asset.notice")
+                    KiraButton(model.isUpdate ? "asset.update.save" : "asset.save") { Task { await model.save() } }
+                        .block()
+                        .disabled(model.isSaving)
+                }
             }
             .padding(.horizontal, KiraSpacing.screen)
             .padding(.bottom, KiraSpacing.space2)
+        }
+    }
+
+    private var fields: some View {
+        VStack(alignment: .leading, spacing: KiraSpacing.space4) {
+            navBar
+            AssetClassGrid(model: model)
+            KiraField("asset.name", text: $model.name)
+                .hint("asset.name.hint")
+                .error(model.issue(in: .name)?.message)
+            KiraField("asset.value", text: $model.valueText)
+                .prefix("asset.currency").suffix("asset.cents").amount()
+                .hint("asset.value.hint")
+                .error(model.issue(in: .value)?.message)
+                .keyboardType(.numberPad)
+            AssetDayField(model: model)
         }
     }
 

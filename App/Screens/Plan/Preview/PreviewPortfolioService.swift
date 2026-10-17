@@ -11,7 +11,8 @@ import Features
 struct PreviewPortfolioService: PortfolioService {
     /** The board's three assets. */
     static let sampleAssets = [
-        Asset(id: "mutual-fund", assetClass: .mutualFund, name: "Reksa Dana Pasar Uang", value: 3_000_000, valuedOn: day),
+        Asset(id: "mutual-fund", assetClass: .mutualFund, name: "Reksa Dana Pasar Uang", value: 3_000_000,
+            valuedOn: day),
         Asset(id: "bond", assetClass: .governmentBond, name: "SBN Ritel", value: 2_500_000, valuedOn: day),
         Asset(id: "gold", assetClass: .gold, name: "Emas Batangan", value: 2_400_000, valuedOn: day),
     ]
@@ -23,8 +24,10 @@ struct PreviewPortfolioService: PortfolioService {
 
     func portfolio() throws -> Portfolio {
         if failsLoad { throw AppProblem.connectionLost }
+        var total = 0
+        for asset in assets { total += asset.value }
         return Portfolio(
-            assets: assets, total: assets.map(\.value).reduce(0, +), updatedOn: assets.isEmpty ? nil : Self.day,
+            assets: assets, total: total, updatedOn: assets.isEmpty ? nil : Self.day,
             debtToAsset: DebtToAssetImpact(percent: 32, points: 80, band: .healthy))
     }
 
@@ -38,6 +41,7 @@ struct PreviewPortfolioService: PortfolioService {
 
     private func save(id: String, _ input: AssetInput) throws -> Asset {
         if failsSave { throw AppProblem.connectionLost }
-        return Asset(id: id, assetClass: input.assetClass, name: input.name, value: input.value, valuedOn: input.valuedOn)
+        return Asset(id: id, assetClass: input.assetClass, name: input.name, value: input.value,
+            valuedOn: input.valuedOn)
     }
 }

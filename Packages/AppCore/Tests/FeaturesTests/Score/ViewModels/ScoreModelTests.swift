@@ -9,6 +9,7 @@ import Testing
 private struct FakeScoreService: ScoreService {
     var report: Result<ScoreReport?, AppProblem> = .success(nil)
     var detail: Result<IndicatorDetail, AppProblem> = .failure(AppProblem(code: "ROUTE_NOT_FOUND"))
+    var includesPortfolio: Result<Bool, AppProblem> = .success(true)
 
     func score() throws -> ScoreReport? { try report.get() }
     func indicator(_ key: IndicatorKey) throws -> IndicatorDetail {
@@ -16,6 +17,7 @@ private struct FakeScoreService: ScoreService {
         guard detail.indicator.key == key else { throw AppProblem(code: "VALIDATION_FAILED") }
         return detail
     }
+    func planIncludesPortfolio() throws -> Bool { try includesPortfolio.get() }
 }
 
 private struct OtherError: Error {}
@@ -24,6 +26,7 @@ private struct OtherError: Error {}
 private struct BrokenScoreService: ScoreService {
     func score() throws -> ScoreReport? { throw OtherError() }
     func indicator(_: IndicatorKey) throws -> IndicatorDetail { throw OtherError() }
+    func planIncludesPortfolio() throws -> Bool { throw OtherError() }
 }
 
 @MainActor
@@ -80,5 +83,21 @@ struct ScoreModelTests {
         await broken.load()
         guard case .failed(let generic) = broken.phase else { return #expect(Bool(false)) }
         #expect(generic == AppProblem())
+    }
+
+    @Test("Utang terhadap Aset opens Portofolio on Kira Plus, Paket Kira without it, Portofolio when unread")
+    func portfolioGate() async {
+        let plus = IndicatorModel(key: .debtToAsset, service: FakeScoreService())
+        await plus.load()
+        #expect(plus.nextRungRoute == .portfolio)
+        let free = IndicatorModel(key: .debtToAsset, service: FakeScoreService(includesPortfolio: .success(false)))
+        await free.load()
+        #expect(free.nextRungRoute == .plans(yearly: false))
+        let unread = IndicatorModel(key: .debtToAsset, service: BrokenScoreService())
+        await unread.load()
+        #expect(unread.nextRungRoute == .portfolio)
+        let other = IndicatorModel(key: .emergencyFund, service: FakeScoreService(includesPortfolio: .success(false)))
+        await other.load()
+        #expect(other.nextRungRoute == .unavailable(.plan))
     }
 }

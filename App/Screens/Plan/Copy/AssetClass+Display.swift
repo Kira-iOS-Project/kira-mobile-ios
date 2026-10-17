@@ -51,8 +51,8 @@ extension [ClassShare] {
     /** The bar's label: "Komposisi: Reksa Dana 38%, SBN 32%, Emas 30%". */
     var compositionLabel: Text {
         let parts = map { Text("portfolio.composition.part \(Text($0.assetClass.title)) \($0.percent)") }
-        guard let first = parts.first else { return Text("portfolio.total.title") }
-        let joined = parts.dropFirst().reduce(first) { Text("portfolio.composition.join \($0) \($1)") }
+        guard var joined = parts.first else { return Text("portfolio.total.title") }
+        for part in parts.dropFirst() { joined = Text("portfolio.composition.join \(joined) \(part)") }
         return Text("portfolio.composition \(joined)")
     }
 }

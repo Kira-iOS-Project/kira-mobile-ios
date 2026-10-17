@@ -21443,6 +21443,26 @@
           }
         }
       }
+    },
+    "portfolio.plusOnly.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Portofolio Ada di Kira Plus"
+          }
+        }
+      }
+    },
+    "portfolio.plans" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Paket"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

@@ -7,6 +7,15 @@ import Testing
 
 @Suite("LiveScoreService")
 struct LiveScoreServiceTests {
+    @Test("GET /me says whether the plan includes Portofolio: Kira Plus only")
+    func planIncludesPortfolio() async throws {
+        let (plus, _) = KiraAPI.routed(["GET /api/me": ok(meJSON())])
+        #expect(try await LiveScoreService(api: plus).planIncludesPortfolio())
+        let young = #"{"id":"young","source":"purchase","renewsOn":"2026-11-16"}"#
+        let (other, _) = KiraAPI.routed(["GET /api/me": ok(meJSON(plan: young))])
+        #expect(try await !LiveScoreService(api: other).planIncludesPortfolio())
+    }
+
     @Test("GET /score becomes the Domain's report, every measure and step included")
     func score() async throws {
         let (api, _) = KiraAPI.routed(["GET /api/score": ok(reportJSON)])

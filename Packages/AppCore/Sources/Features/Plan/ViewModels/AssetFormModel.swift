@@ -33,6 +33,8 @@ package final class AssetFormModel {
     package var showsSaved = false
     /** The problem of the failed save its dialog shows; nil when no dialog is up. */
     package var failure: AppProblem?
+    /** The save was refused because the plan has no Portofolio: the form shows Lihat Paket. */
+    package private(set) var needsPlan = false
     /** The form has done its work and closes. */
     package private(set) var isClosed = false
 
@@ -42,7 +44,9 @@ package final class AssetFormModel {
     private let now: @Sendable () -> Date
 
     /** A new asset when `assetId` is nil, else the update of that asset; `now` is the clock. */
-    package init(service: any PortfolioService, assetId: String? = nil, now: @escaping @Sendable () -> Date = Date.init) {
+    package init(
+        service: any PortfolioService, assetId: String? = nil, now: @escaping @Sendable () -> Date = Date.init
+    ) {
         self.service = service
         self.assetId = assetId
         self.now = now
@@ -58,6 +62,12 @@ package final class AssetFormModel {
 
     /** The latest day Tanggal takes: today. */
     package var latestDay: Date { now() }
+
+    /** Whether the asset could not be read because the plan has no Portofolio. */
+    package var loadNeedsPlan: Bool {
+        if case .failed(let problem) = phase { return problem.knownCode == .planFeatureUnavailable }
+        return false
+    }
 
     /** Fills the form with the asset to update; a missing one fails the screen. */
     package func load() async {
@@ -108,7 +118,12 @@ package final class AssetFormModel {
             }
             showsSaved = true
         } catch {
-            failure = AppProblem(error)
+            let problem = AppProblem(error)
+            if problem.knownCode == .planFeatureUnavailable {
+                needsPlan = true
+            } else {
+                failure = problem
+            }
         }
     }
 

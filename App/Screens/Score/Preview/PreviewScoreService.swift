@@ -51,6 +51,8 @@ nonisolated struct PreviewScoreService: ScoreService {
     func score() throws -> ScoreReport? { .sample }
 
     func indicator(_ key: IndicatorKey) throws -> IndicatorDetail { .sample(key) }
+
+    func planIncludesPortfolio() -> Bool { true }
 }
 
 #if DEBUG

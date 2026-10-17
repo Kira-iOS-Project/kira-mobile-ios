@@ -44,4 +44,10 @@ package struct ClassShare: Hashable, Sendable {
     package let assetClass: AssetClass
     /** Its whole percentage of the total. */
     package let percent: Int
+
+    /** A share. */
+    package init(assetClass: AssetClass, percent: Int) {
+        self.assetClass = assetClass
+        self.percent = percent
+    }
 }

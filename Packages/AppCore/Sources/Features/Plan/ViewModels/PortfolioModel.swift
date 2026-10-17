@@ -33,6 +33,12 @@ package final class PortfolioModel {
         }
     }
 
+    /** Whether the load was refused because the plan has no Portofolio (Kira Plus only). */
+    package var needsPlan: Bool {
+        if case .failed(let problem) = phase { return problem.knownCode == .planFeatureUnavailable }
+        return false
+    }
+
     /** The eye: hides or shows every amount. */
     package func toggleMasked() {
         isMasked.toggle()

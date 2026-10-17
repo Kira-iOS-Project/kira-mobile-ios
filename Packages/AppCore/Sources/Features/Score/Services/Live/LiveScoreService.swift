@@ -23,4 +23,9 @@ package struct LiveScoreService: ScoreService {
     package func indicator(_ key: IndicatorKey) async throws -> IndicatorDetail {
         try IndicatorDetail(try await api.getScoreIndicator(key))
     }
+
+    /** `GET /me`: Portofolio Manual is part of Kira Plus. */
+    package func planIncludesPortfolio() async throws -> Bool {
+        try await api.getMe().plan.id == .plus
+    }
 }

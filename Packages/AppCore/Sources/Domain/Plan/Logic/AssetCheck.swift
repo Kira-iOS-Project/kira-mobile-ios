@@ -1,9 +1,9 @@
+import Foundation
+
 /**
  What Tambah Aset checks before it sends (REN-11), the backend's own limits: a class chosen, a name
  of 1 to 80 characters, a value from Rp1 to Rp999.999.999.999 and a day no later than today.
  */
-import Foundation
-
 package enum AssetCheck {
     /** The longest name the API takes. */
     package static let maximumNameLength = 80

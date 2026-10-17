@@ -15,23 +15,7 @@ struct AssetDayField: View {
                 .foregroundStyle(.inkMuted)
                 .padding(.horizontal, 4)
                 .accessibilityHidden(true)
-            Button {
-                withAnimation(.easeOut(duration: 0.2)) { model.isPickingDay.toggle() }
-            } label: {
-                HStack(spacing: KiraSpacing.space2) {
-                    Text(model.valuedOn, format: .kiraDate).font(.body).foregroundStyle(.ink)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    KiraIcon(.calendar, size: 20).foregroundStyle(.inkMuted)
-                }
-                .padding(.horizontal, KiraSpacing.space4)
-                .padding(.vertical, 14)
-                .frame(minHeight: 52)
-                .kiraCard(border: model.issue(in: .day) == nil ? .hairline : .vulnerable, cornerRadius: KiraRadius.medium)
-                .contentShape(Rectangle())
-            }
-            .buttonStyle(.plain)
-            .accessibilityLabel(Text("asset.day"))
-            .accessibilityValue(Text(model.valuedOn, format: .kiraDate))
+            box
             if model.isPickingDay {
                 DatePicker(selection: $model.valuedOn, in: ...model.latestDay, displayedComponents: .date) {
                     Text("asset.day")
@@ -44,5 +28,26 @@ struct AssetDayField: View {
                     .padding(.horizontal, 4)
             }
         }
+    }
+
+    /** The box: the day and the calendar icon, its border vulnerable while the day is refused. */
+    private var box: some View {
+        Button {
+            withAnimation(.easeOut(duration: 0.2)) { model.isPickingDay.toggle() }
+        } label: {
+            HStack(spacing: KiraSpacing.space2) {
+                Text(model.valuedOn, format: .kiraDate).font(.body).foregroundStyle(.ink)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                KiraIcon(.calendar, size: 20).foregroundStyle(.inkMuted)
+            }
+            .padding(.horizontal, KiraSpacing.space4)
+            .padding(.vertical, 14)
+            .frame(minHeight: 52)
+            .kiraCard(border: model.issue(in: .day) == nil ? .hairline : .vulnerable, cornerRadius: KiraRadius.medium)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel(Text("asset.day"))
+        .accessibilityValue(Text(model.valuedOn, format: .kiraDate))
     }
 }
