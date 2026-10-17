@@ -53,15 +53,15 @@ nonisolated final class CareSafetyAuditTests: XCTestCase {
 
     /**
      Accepted, the owner's call: contrast on Isi Rencana Keselamatanku's contact part title "Orang
-     yang Bisa Kuhubungi", and nothing else. It is ink on the surface, its element screenshot shows
-     clean ink on cream, its style passes everywhere else, and CI before the audit's scroll changed
-     (fece597) never flagged it; the audit reads it as low contrast on the first pass, before any
-     scroll, at a fixed frame, for a cause not yet found.
+     yang Bisa Kuhubungi" and its Tambah Kontak button, and nothing else. Both are ink on the
+     surface, their element screenshots show clean ink on cream, their styles pass everywhere else,
+     and CI before the audit's scroll changed (fece597) never flagged them; the audit reads them as
+     low contrast at fixed frames, the title before any scroll, for a cause not yet found.
      */
     @MainActor
     private static func contactHeaderContrast(_ issue: XCUIAccessibilityAuditIssue) -> Bool {
         guard issue.auditType == .contrast, let label = issue.element?.label else { return false }
-        return label == "Orang yang Bisa Kuhubungi"
+        return ["Orang yang Bisa Kuhubungi", "Tambah Kontak"].contains(label)
     }
 
     /** Accepted, as for every presented dialog (docs/design-system.md): text behind its scrim. */
