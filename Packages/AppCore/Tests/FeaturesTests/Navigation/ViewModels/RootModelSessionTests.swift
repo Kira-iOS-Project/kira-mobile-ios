@@ -48,4 +48,19 @@ struct RootModelSessionTests {
         #expect(model.onboardingGeneration > second)
         #expect(model.onboardingStart == .signIn)
     }
+
+    @Test("an ended session forgets what the app held for the person, once per end")
+    func forgetsTheUser() async throws {
+        let vault = InMemoryVault()
+        let session = SessionStore(vault: vault) { _ in .rejected }
+        try await session.signIn(rootTokens, email: "dinda@email.com")
+        var forgotten = 0
+        let model = RootModel(
+            session: session, lock: AppLockModel(pins: PinStore(vault: vault), vault: vault),
+            sleep: { _ in }, forgetUser: { forgotten += 1 })
+        await model.endSession()
+        #expect(forgotten == 1)
+        await model.endSession(to: .signIn)
+        #expect(forgotten == 2)
+    }
 }

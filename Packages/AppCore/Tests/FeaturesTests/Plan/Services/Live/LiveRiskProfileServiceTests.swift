@@ -33,6 +33,10 @@ struct LiveRiskProfileServiceTests {
         #expect(try await empty.savedProfile() == nil)
         let (unknown, _) = service(["GET /api/risk-profile": ok(#"{"profile":"","answers":[],"updatedAt":null}"#)])
         #expect(try await unknown.savedProfile() == nil)
+        let bare = #"{"profile":"conservative","answers":null,"updatedAt":null}"#
+        let (withoutAnswers, _) = service(["GET /api/risk-profile": ok(bare)])
+        let expected = SavedRiskProfile(profile: .conservative, answers: RiskAnswers([]))
+        #expect(try await withoutAnswers.savedProfile() == expected)
     }
 
     @Test("a PUT answered without a profile is a generic problem")

@@ -80,9 +80,10 @@ extension KiraApp {
         let lock = AppLockModel(pins: pins, vault: vault)
         let previews = usesPreviewServices
         let services = previews ? AppServices.preview : .live(api: api, session: session, lock: lock, pins: pins)
-        let root = RootModel(session: session, lock: lock) {
-            previews ? .ready(hidesBalances: false) : await AccountStage.check(with: api)
-        }
+        let root = RootModel(
+            session: session, lock: lock,
+            checkAccount: { previews ? .ready(hidesBalances: false) : await AccountStage.check(with: api) },
+            forgetUser: { services.riskDraft.clear() })
         return ComposedApp(root: root, services: services, record: previews ? nil : .live(api: api))
     }
 

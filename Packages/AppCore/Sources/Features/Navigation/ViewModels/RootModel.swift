@@ -42,21 +42,25 @@ package final class RootModel {
     private var isSignedIn = false
     @ObservationIgnored private let sleep: @Sendable (Duration) async -> Void
     @ObservationIgnored private let checkAccount: @Sendable () async -> AccountStage?
+    @ObservationIgnored private let forgetUser: @MainActor () -> Void
 
     /** A root over `session` and `lock`; `sleep` waits out the splash. */
     /**
      A root over `session` and `lock`; `checkAccount` reads `GET /me` (nil when the API is out of
-     reach); `sleep` waits out the splash.
+     reach); `sleep` waits out the splash; `forgetUser` drops what the app holds in memory for the
+     person (the risk quiz's draft answers) when the session ends.
      */
     package init(
         session: SessionStore, lock: AppLockModel,
         checkAccount: @escaping @Sendable () async -> AccountStage? = { nil },
-        sleep: @escaping @Sendable (Duration) async -> Void = { try? await Task.sleep(for: $0) }
+        sleep: @escaping @Sendable (Duration) async -> Void = { try? await Task.sleep(for: $0) },
+        forgetUser: @escaping @MainActor () -> Void = {}
     ) {
         self.session = session
         self.lock = lock
         self.checkAccount = checkAccount
         self.sleep = sleep
+        self.forgetUser = forgetUser
     }
 
     /** What to show now. */
@@ -123,6 +127,7 @@ package final class RootModel {
         await session.signOut()
         lock.reset()
         navigation.reset()
+        forgetUser()
         onboardingStart = start
         isSignedIn = false
     }
