@@ -70,8 +70,12 @@ private struct CheckInHeading: View {
         VStack(spacing: KiraSpacing.space2) {
             KiraIllustration(.care, size: 80).accessibilityHidden(true)
             Text("care.checkIn.title")
+                /**
+                 The display face's own line, not kiraLineHeight's 32 pt: its heavy glyphs run taller
+                 than the 1.19 natural line the modifier assumes, so a 32 pt line cut them and the
+                 audit read the title as clipped. One line at the default size, so the look is unchanged.
+                 */
                 .font(KiraFont.display(26, axisWeight: 800, relativeTo: .title1, typeSize: typeSize))
-                .kiraLineHeight(32, size: 26, relativeTo: .title)
                 .tracking(-0.52)
                 /** As tall as its lines: it fills one line at the default size and wraps at larger ones. */
                 .fixedSize(horizontal: false, vertical: true)
