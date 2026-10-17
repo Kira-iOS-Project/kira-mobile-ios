@@ -18221,6 +18221,16 @@
         }
       }
     },
+    "plan.asset.usDollar" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dolar AS"
+          }
+        }
+      }
+    },
     "plan.deposit.amount" : {
       "localizations" : {
         "id" : {

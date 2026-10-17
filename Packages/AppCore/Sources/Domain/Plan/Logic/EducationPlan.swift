@@ -68,9 +68,10 @@ package struct EducationPlan: Equatable, Sendable {
 
     /** The first stage's fees a month with its other costs, as a share of income. */
     package var firstMonthlyShare: Double {
-        guard let first = costs.first, income > 0 else { return 0 }
+        guard let level = levels.first, income > 0 else { return 0 }
+        let first = level.cost(childAge: childAge, inflation: inflation)
         let monthly = first.tuitionAmount / 12 / Double(first.years)
-        return monthly * (1 + (levels.first?.otherRate ?? 0)) / Double(income)
+        return monthly * (1 + level.otherRate) / Double(income)
     }
 
     /** Naikkan Investasi, and Pilih Return Lebih Tinggi when the income share is not enough. */
