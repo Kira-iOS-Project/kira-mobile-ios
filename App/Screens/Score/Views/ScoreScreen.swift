@@ -50,7 +50,7 @@ private struct ScoreContent: View {
             VStack(alignment: .leading, spacing: KiraSpacing.space5) {
                 ScoreHeader(report: report, onOpen: onOpen, onBack: onBack)
                 ScoreFormulaAccordion(report: report)
-                ScoreSummaryCard(report: report) { onOpen(.scoreHistory) }
+                ScoreSummaryCard(report: report) { onOpen(model.historyRoute) }
                 if !report.steps.isEmpty {
                     ScoreStepList(steps: report.steps, onOpen: onOpen)
                 }

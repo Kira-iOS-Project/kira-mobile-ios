@@ -99,7 +99,7 @@ internal protocol APIProtocol: Sendable {
     func getScore(_ input: Operations.GetScore.Input) async throws -> Operations.GetScore.Output
     /// Riwayat Kira Score
     ///
-    /// The score now against last month, a point per month (taken on the 25th, WIB, and at the first health check) and the indicators that changed.
+    /// The score now against last month, a point per month (taken on the 25th, WIB, and at the first health check) and the indicators that changed. Kira Plus only: other plans get 403 PLAN_FEATURE_UNAVAILABLE.
     ///
     /// - Remark: HTTP `GET /api/score/history`.
     /// - Remark: Generated from `#/paths//api/score/history/get(getScoreHistory)`.
@@ -146,6 +146,25 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `POST /api/debts/{id}/payments`.
     /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)`.
     func recordDebtPayment(_ input: Operations.RecordDebtPayment.Input) async throws -> Operations.RecordDebtPayment.Output
+    /// Portofolio Manual
+    ///
+    /// The assets, newest value first, their total, and Utang terhadap Aset with them.
+    ///
+    /// - Remark: HTTP `GET /api/assets`.
+    /// - Remark: Generated from `#/paths//api/assets/get(listAssets)`.
+    func listAssets(_ input: Operations.ListAssets.Input) async throws -> Operations.ListAssets.Output
+    /// Tambah Aset
+    ///
+    /// The score reads the new total on its next request.
+    ///
+    /// - Remark: HTTP `POST /api/assets`.
+    /// - Remark: Generated from `#/paths//api/assets/post(createAsset)`.
+    func createAsset(_ input: Operations.CreateAsset.Input) async throws -> Operations.CreateAsset.Output
+    /// Change an asset
+    ///
+    /// - Remark: HTTP `PATCH /api/assets/{id}`.
+    /// - Remark: Generated from `#/paths//api/assets/{id}/patch(updateAsset)`.
+    func updateAsset(_ input: Operations.UpdateAsset.Input) async throws -> Operations.UpdateAsset.Output
     /// Beranda
     ///
     /// The layout to show (first steps, overview or debt plan) and its numbers: money left this payday period, the next step, the Kira Score, the checklist, the debt plan and the micro target.
@@ -555,7 +574,7 @@ extension APIProtocol {
     }
     /// Riwayat Kira Score
     ///
-    /// The score now against last month, a point per month (taken on the 25th, WIB, and at the first health check) and the indicators that changed.
+    /// The score now against last month, a point per month (taken on the 25th, WIB, and at the first health check) and the indicators that changed. Kira Plus only: other plans get 403 PLAN_FEATURE_UNAVAILABLE.
     ///
     /// - Remark: HTTP `GET /api/score/history`.
     /// - Remark: Generated from `#/paths//api/score/history/get(getScoreHistory)`.
@@ -649,6 +668,45 @@ extension APIProtocol {
         body: Operations.RecordDebtPayment.Input.Body
     ) async throws -> Operations.RecordDebtPayment.Output {
         try await recordDebtPayment(Operations.RecordDebtPayment.Input(
+            path: path,
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Portofolio Manual
+    ///
+    /// The assets, newest value first, their total, and Utang terhadap Aset with them.
+    ///
+    /// - Remark: HTTP `GET /api/assets`.
+    /// - Remark: Generated from `#/paths//api/assets/get(listAssets)`.
+    internal func listAssets(headers: Operations.ListAssets.Input.Headers = .init()) async throws -> Operations.ListAssets.Output {
+        try await listAssets(Operations.ListAssets.Input(headers: headers))
+    }
+    /// Tambah Aset
+    ///
+    /// The score reads the new total on its next request.
+    ///
+    /// - Remark: HTTP `POST /api/assets`.
+    /// - Remark: Generated from `#/paths//api/assets/post(createAsset)`.
+    internal func createAsset(
+        headers: Operations.CreateAsset.Input.Headers = .init(),
+        body: Operations.CreateAsset.Input.Body
+    ) async throws -> Operations.CreateAsset.Output {
+        try await createAsset(Operations.CreateAsset.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Change an asset
+    ///
+    /// - Remark: HTTP `PATCH /api/assets/{id}`.
+    /// - Remark: Generated from `#/paths//api/assets/{id}/patch(updateAsset)`.
+    internal func updateAsset(
+        path: Operations.UpdateAsset.Input.Path,
+        headers: Operations.UpdateAsset.Input.Headers = .init(),
+        body: Operations.UpdateAsset.Input.Body
+    ) async throws -> Operations.UpdateAsset.Output {
+        try await updateAsset(Operations.UpdateAsset.Input(
             path: path,
             headers: headers,
             body: body

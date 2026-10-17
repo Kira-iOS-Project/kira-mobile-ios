@@ -17,6 +17,11 @@ package final class ScoreHistoryModel {
     package private(set) var phase: ScreenPhase<ScoreHistory> = .loading
     /** Whether the chosen range is loading while another one is on screen. */
     package private(set) var isSwitching = false
+    /** Whether the plan refused the history (PLAN_FEATURE_UNAVAILABLE): the screen offers Lihat Paket. */
+    package var needsPlan: Bool {
+        guard case .failed(let problem) = phase else { return false }
+        return problem.knownCode == .planFeatureUnavailable
+    }
 
     private let service: any ScoreService
     private var loaded: [ScoreHistoryRange: ScoreHistory] = [:]

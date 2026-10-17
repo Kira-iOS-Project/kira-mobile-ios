@@ -53,6 +53,8 @@ nonisolated struct PreviewScoreService: ScoreService {
     func indicator(_ key: IndicatorKey) throws -> IndicatorDetail { .sample(key) }
 
     func history(_ range: ScoreHistoryRange) throws -> ScoreHistory? { .sample(range) }
+
+    func includesHistory() -> Bool { true }
 }
 
 #if DEBUG

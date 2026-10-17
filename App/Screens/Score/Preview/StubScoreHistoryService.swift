@@ -32,6 +32,8 @@
             if let problem { throw problem }
             return history
         }
+
+        func includesHistory() -> Bool { true }
     }
 
     extension ScoreHistory {

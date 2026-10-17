@@ -29,6 +29,6 @@ struct ScoreHistoryDTOTests {
 
     @Test("throws every problem the route answers")
     func problems() async {
-        await expectProblems([401, 404, 422]) { _ = try await $0.getScoreHistory(.sixMonths) }
+        await expectProblems([401, 403, 404, 422]) { _ = try await $0.getScoreHistory(.sixMonths) }
     }
 }

@@ -74,12 +74,16 @@ extension ScoreHistory {
         guard let delta = deltaFromPrevious, delta != 0 else { return unchanged }
         let from = score - delta
         guard changes.count == 1, let change = changes.first else {
-            let moved = delta > 0 ? Text("score.history.footer.up \(from) \(score)")
+            let moved =
+                delta > 0
+                ? Text("score.history.footer.up \(from) \(score)")
                 : Text("score.history.footer.down \(from) \(score)")
             return Text("score.history.footer \(unchanged) \(moved)")
         }
         let name = Text(change.indicator.name)
-        let moved = delta > 0 ? Text("score.history.footer.upBecause \(from) \(score) \(name) \(change.now)")
+        let moved =
+            delta > 0
+            ? Text("score.history.footer.upBecause \(from) \(score) \(name) \(change.now)")
             : Text("score.history.footer.downBecause \(from) \(score) \(name) \(change.now)")
         return Text("score.history.footer \(unchanged) \(moved)")
     }

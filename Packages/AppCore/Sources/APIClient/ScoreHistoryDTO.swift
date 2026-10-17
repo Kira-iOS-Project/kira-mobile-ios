@@ -56,11 +56,12 @@ package struct ScoreHistoryDTO: Hashable, Sendable {
 
 extension KiraAPI {
     /**
-     Riwayat Kira Score over `range` (`GET /api/score/history`); 404 `SCORE_NOT_AVAILABLE` before
-     the health check.
+     Riwayat Kira Score over `range` (`GET /api/score/history`); 403 `PLAN_FEATURE_UNAVAILABLE`
+     outside Kira Plus, 404 `SCORE_NOT_AVAILABLE` before the health check.
      */
     package func getScoreHistory(_ range: ScoreHistoryRange) async throws -> ScoreHistoryDTO {
-        try await client.getScoreHistory(query: .init(range: try bridged(range))).history()
+        let query: Operations.GetScoreHistory.Input.Query.RangePayload = try bridged(range)
+        return try await client.getScoreHistory(query: .init(range: query)).history()
     }
 }
 
@@ -69,6 +70,7 @@ extension Operations.GetScoreHistory.Output {
         switch self {
         case .ok(let response): return try ScoreHistoryDTO(try response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
+        case .forbidden(let response): throw try response.body.applicationProblemJson
         case .notFound(let response): throw try response.body.applicationProblemJson
         case .unprocessableContent(let response): throw try response.body.applicationProblemJson
         case .default(_, let response): throw try response.body.applicationProblemJson

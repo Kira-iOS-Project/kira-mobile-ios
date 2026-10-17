@@ -24,6 +24,12 @@ package struct LiveScoreService: ScoreService {
         try IndicatorDetail(try await api.getScoreIndicator(key))
     }
 
+    /** `GET /me`: Kira Plus includes the history; an unreadable answer leaves it to the history's own. */
+    package func includesHistory() async -> Bool {
+        guard let account = try? await api.getMe() else { return true }
+        return account.plan.id == .plus
+    }
+
     /** `GET /score/history`; nil before the health check (`SCORE_NOT_AVAILABLE`). */
     package func history(_ range: ScoreHistoryRange) async throws -> ScoreHistory? {
         do {

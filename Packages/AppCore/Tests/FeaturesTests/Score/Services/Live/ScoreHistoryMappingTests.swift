@@ -45,7 +45,8 @@ struct ScoreHistoryMappingTests {
     func problems() async throws {
         let (before, _) = KiraAPI.routed(["GET /api/score/history": problem("SCORE_NOT_AVAILABLE", status: 404)])
         #expect(try await LiveScoreService(api: before).history(.sixMonths) == nil)
-        for (code, status) in [("AUTH_UNAUTHENTICATED", 401), ("VALIDATION_FAILED", 422)] {
+        let problems = [("AUTH_UNAUTHENTICATED", 401), ("PLAN_FEATURE_UNAVAILABLE", 403), ("VALIDATION_FAILED", 422)]
+        for (code, status) in problems {
             let (api, _) = KiraAPI.routed(["GET /api/score/history": problem(code, status: status)])
             do {
                 _ = try await LiveScoreService(api: api).history(.oneYear)
@@ -60,5 +61,15 @@ struct ScoreHistoryMappingTests {
         } catch {
             #expect(AppProblem(error).isConnectionLoss)
         }
+    }
+
+    @Test("Kira Plus includes the history, Gratis and Muda do not; an unreadable GET /me leaves it to the history")
+    func includesHistory() async {
+        for (plan, expected) in [("plus", true), ("free", false), ("young", false)] {
+            let json = meJSON(plan: #"{"id":"\#(plan)","source":null,"renewsOn":null}"#)
+            let (api, _) = KiraAPI.routed(["GET /api/me": ok(json)])
+            #expect(await LiveScoreService(api: api).includesHistory() == expected)
+        }
+        #expect(await LiveScoreService(api: OfflineTransport.offline).includesHistory())
     }
 }

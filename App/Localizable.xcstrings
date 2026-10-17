@@ -19664,6 +19664,26 @@
         }
       }
     },
+    "score.history.plans" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Paket"
+          }
+        }
+      }
+    },
+    "score.history.plusOnly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Score otomatis tiap bulan ada di Kira Plus."
+          }
+        }
+      }
+    },
     "score.history.points %lld" : {
       "localizations" : {
         "id" : {
