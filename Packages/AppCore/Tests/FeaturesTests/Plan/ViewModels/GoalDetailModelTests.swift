@@ -30,13 +30,11 @@ private actor DetailStub: GoalService {
     func configure(_ change: @Sendable (isolated DetailStub) -> Void) { change(self) }
 
     func plan() throws -> PlanOverview { throw AppProblem() }
-    func goals() throws -> [GoalSummary] { throw AppProblem() }
     func goal(id _: String) throws -> GoalDetail {
         goalCalls += 1
         return try goalAnswer.get()
     }
     func createGoal(_: GoalDraft) throws -> GoalDetail { throw AppProblem() }
-    func updateGoal(id _: String, _: GoalDraft) throws -> GoalDetail { throw AppProblem() }
     func addDeposit(goalId _: String, amount: Int, depositedOn: CalendarDay, depositId: String) throws -> GoalDeposit {
         sent.append(GoalDeposit(id: depositId, amount: amount, depositedOn: depositedOn))
         if !depositFailures.isEmpty { throw depositFailures.removeFirst() }
@@ -57,7 +55,7 @@ private final class Ids: @unchecked Sendable {
 @Suite("GoalDetailModel")
 struct GoalDetailModelTests {
     /** 17 Oktober 2026, 10.00 WIB. */
-    private static let now = Date(timeIntervalSince1970: 1_792_206_000)
+    nonisolated private static let now = Date(timeIntervalSince1970: 1_792_206_000)
 
     private func model(_ stub: DetailStub, ids: Ids = Ids()) -> GoalDetailModel {
         GoalDetailModel(id: "emergency", service: stub, now: { Self.now }, makeId: { ids.make() })

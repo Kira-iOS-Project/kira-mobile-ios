@@ -51,7 +51,8 @@ package struct AmountEdit: Equatable, Sendable {
         isEditing ? current : AmountInput.grouped(binding)
     }
 
-    private static let zero = "0".utf16.first ?? 48
+    /** "0" as a UTF-16 code unit. */
+    private static let zero: UTF16.CodeUnit = 48
 
     private static func isDigit(_ unit: UTF16.CodeUnit) -> Bool {
         (48...57).contains(unit)

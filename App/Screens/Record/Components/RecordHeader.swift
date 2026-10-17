@@ -22,6 +22,8 @@ struct RecordHeader: View {
                     period(profile)
                         .font(.caption).kiraLineHeight(16, size: 12)
                         .foregroundStyle(.inkMuted)
+                        /** Never squeezed when the keyboard shortens the screen. */
+                        .fixedSize(horizontal: false, vertical: true)
                 }
             }
             .multilineTextAlignment(.center)

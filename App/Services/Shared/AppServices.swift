@@ -51,7 +51,7 @@ extension AppServices {
             careTools: LiveCareToolsService(api: api),
             debtEmergency: LiveDebtEmergencyService(api: api),
             marketplace: LiveMarketplaceService(api: api),
-            portfolio: LivePortfolioService(api: api), goals: PendingGoalService())
+            portfolio: LivePortfolioService(api: api), goals: LiveGoalService(api: api))
     }
 
     /** The canvas's sample data: nothing leaves the device. */

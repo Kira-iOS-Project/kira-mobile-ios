@@ -11,10 +11,16 @@ struct OtherGoalScreen: View {
     @State private var model: OtherGoalModel
     @State private var result: OtherGoalOutcome?
     let onOpen: (AppRoute) -> Void
+    /** Jadikan Pos Budget on the result: the caller creates the goal. */
+    var onBudget: (OtherGoalOutcome) -> Void = { _ in }
 
-    init(model: OtherGoalModel, onOpen: @escaping (AppRoute) -> Void) {
+    init(
+        model: OtherGoalModel, onOpen: @escaping (AppRoute) -> Void,
+        onBudget: @escaping (OtherGoalOutcome) -> Void = { _ in }
+    ) {
         _model = State(initialValue: model)
         self.onOpen = onOpen
+        self.onBudget = onBudget
     }
 
     var body: some View {
@@ -34,7 +40,7 @@ struct OtherGoalScreen: View {
             }
         )
         .navigationDestination(isPresented: Binding(get: { result != nil }, set: { if !$0 { result = nil } })) {
-            if let result { OtherGoalResultScreen(outcome: result, onOpen: onOpen) }
+            if let result { OtherGoalResultScreen(outcome: result, onOpen: onOpen) { onBudget(result) } }
         }
     }
 }

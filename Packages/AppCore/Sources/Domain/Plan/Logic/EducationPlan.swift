@@ -6,12 +6,15 @@
  to Rp50 juta, else 60%); still short there, the return rises a point at a time to the cap.
  */
 package struct EducationPlan: Equatable, Sendable {
+    /** The child's age now. */
     package let childAge: Int
     /** The stages chosen, youngest first. */
     package let levels: [EducationLevel]
+    /** Inflation a year, as a fraction (0.05). */
     package let inflation: Double
     /** Penghasilan Orang Tua per Bulan. */
     package let income: Int
+    /** What is saved already (Tabungan saat ini). */
     package let present: Int
     /** The monthly deposit; twelve go in at the start of each year. */
     package let deposit: Int

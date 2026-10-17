@@ -39,16 +39,12 @@
             return await preview.plan()
         }
 
-        func goals() async -> [GoalSummary] { await preview.goals() }
-
         func goal(id: String) async throws -> GoalDetail {
             if fails == .goal { throw AppProblem(code: ProblemCode.goalNotFound.rawValue) }
             return await preview.goal(id: id)
         }
 
         func createGoal(_ draft: GoalDraft) async -> GoalDetail { await preview.createGoal(draft) }
-
-        func updateGoal(id: String, _ draft: GoalDraft) async -> GoalDetail { await preview.updateGoal(id: id, draft) }
 
         func addDeposit(goalId _: String, amount _: Int, depositedOn _: CalendarDay, depositId _: String) throws
             -> GoalDeposit

@@ -33,8 +33,6 @@ actor PreviewGoalService: GoalService {
                 monthlyIncome: 7_500_000))
     }
 
-    func goals() -> [GoalSummary] { stored.map(\.summary) }
-
     func goal(id: String) -> GoalDetail {
         stored.first { $0.id == id } ?? Self.emergencyFund
     }
@@ -47,18 +45,6 @@ actor PreviewGoalService: GoalService {
             inputs: draft.inputs, initialAmount: draft.initialAmount, inBudget: draft.inBudget)
         nextId += 1
         stored.append(goal)
-        return goal
-    }
-
-    func updateGoal(id: String, _ draft: GoalDraft) -> GoalDetail {
-        var goal = goal(id: id)
-        goal.summary.name = draft.name
-        goal.summary.targetAmount = draft.targetAmount
-        goal.summary.monthlyDeposit = draft.monthlyDeposit
-        goal.summary.targetDate = draft.targetDate
-        goal.inputs = draft.inputs
-        goal.inBudget = draft.inBudget
-        replace(goal)
         return goal
     }
 

@@ -47,7 +47,8 @@ package final class DebtFormModel {
 
     /** A due day typed outside 1 to 31. */
     package var isDueDayInvalid: Bool {
-        !dueDay.isEmpty && !(1...31).contains(Int(dueDay) ?? 0)
+        let day = Int(dueDay) ?? 0
+        return !dueDay.isEmpty && !(1...31).contains(day)
     }
 
     /**

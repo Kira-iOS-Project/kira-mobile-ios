@@ -73,6 +73,8 @@ private struct CheckInHeading: View {
                 .font(KiraFont.display(26, axisWeight: 800, relativeTo: .title1, typeSize: typeSize))
                 .kiraLineHeight(32, size: 26, relativeTo: .title)
                 .tracking(-0.52)
+                /** As tall as its lines: it fills one line at the default size and wraps at larger ones. */
+                .fixedSize(horizontal: false, vertical: true)
                 .padding(.top, KiraSpacing.space1)
                 .accessibilityAddTraits(.isHeader)
             Text("care.checkIn.body")
