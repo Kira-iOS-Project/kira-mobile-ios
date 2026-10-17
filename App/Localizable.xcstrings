@@ -2456,6 +2456,17 @@
         }
       }
     },
+    "bills.edit.failed" : {
+      "comment" : "Not on a board: Ubah Tagihan opened by id when the bill list cannot load. For owner review.",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan Belum Bisa Dibuka"
+          }
+        }
+      }
+    },
     "bills.edit.save" : {
       "localizations" : {
         "id" : {

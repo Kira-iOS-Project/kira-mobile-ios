@@ -45,4 +45,20 @@ struct BillFormModelGuardTests {
         await form.loadDebts()
         #expect(form.debts.isEmpty)
     }
+
+    @Test("Ubah Tagihan opens with the bill's fields; a list-only category opens on Lainnya")
+    func fromBill() {
+        let day = CalendarDay(year: 2026, month: 10, day: 22)
+        let bill = Bill(
+            id: "b-1", name: "Internet Rumah", kind: .bill, category: "entertainment", amount: 350_000,
+            repeats: .yearly, dueOn: day, dueDay: 22, nextDueOn: day, debtId: "debt-1")
+        let values = BillFormValues(bill: bill)
+        #expect(values == BillFormValues(
+            name: "Internet Rumah", amount: 350_000, category: .entertainment, repeats: .yearly, dueOn: day,
+            debtId: "debt-1"))
+        let household = Bill(
+            id: "b-2", name: "Air", kind: .bill, category: "household", amount: 90_000, dueOn: day, dueDay: 22,
+            nextDueOn: day)
+        #expect(BillFormValues(bill: household).category == .other)
+    }
 }

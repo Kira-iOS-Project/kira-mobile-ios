@@ -155,6 +155,16 @@ package struct BillFormValues: Hashable, Sendable {
     /** An empty Tambah Tagihan. */
     package init() {}
 
+    /**
+     Ubah Tagihan of `bill`. A category outside the form's four tiles (a list-only one such as
+     "household") opens on Lainnya, the tile it falls under.
+     */
+    package init(bill: Bill) {
+        self.init(
+            name: bill.name, amount: bill.amount, category: BillCategory(rawValue: bill.category) ?? .other,
+            repeats: bill.repeats, dueOn: bill.dueOn, debtId: bill.debtId)
+    }
+
     /** Ubah Tagihan of a bill with these fields. */
     package init(
         name: String, amount: Int, category: BillCategory, repeats: BillRepeat, dueOn: CalendarDay,
