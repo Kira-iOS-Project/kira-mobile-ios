@@ -125,8 +125,7 @@ struct CareDebtTests {
     @Test("keeps the lender and its instalment")
     func fields() {
         let debt = CareDebt(
-            id: "d1", name: "Paylater B", kind: .paylater, remaining: 1_200_000, monthlyInstalment: 230_000)
-        #expect(debt.id == "d1" && debt.name == "Paylater B" && debt.kind == .paylater)
-        #expect(debt.remaining == 1_200_000 && debt.monthlyInstalment == 230_000)
+            id: "d1", name: "Paylater B", monthlyInstalment: 230_000)
+        #expect(debt.id == "d1" && debt.name == "Paylater B" && debt.monthlyInstalment == 230_000)
     }
 }
