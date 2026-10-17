@@ -20,7 +20,7 @@ package struct PayoffAccount: Hashable, Sendable {
     /** An account with every field given. */
     package init(
         id: String, kind: DebtKind, name: String, remaining: Int, monthlyInstalment: Int,
-        position: Int, payoffMonth: String?, 
+        position: Int, payoffMonth: String?,
         payoffDate: CalendarDay? = nil
     ) {
         self.id = id
@@ -76,9 +76,6 @@ package struct PayoffComparison: Hashable, Sendable {
         self.firstPayoffMonthsLater = firstPayoffMonthsLater
     }
 
-
-
-
 }
 
 /** A simulated plan: what the screen shows for a method and an extra payment. */
@@ -105,7 +102,7 @@ package struct PayoffSimulation: Hashable, Sendable {
     /** A simulation with every field given. */
     package init(
         method: PayoffMethod, extraPayment: Int, maxExtraPayment: Int, hasUnknownRate: Bool,
-        accounts: [PayoffAccount], productive: [ProductiveDebt], 
+        accounts: [PayoffAccount], productive: [ProductiveDebt],
         allPaidMonth: String?, comparison: PayoffComparison?, allPaidDate: CalendarDay? = nil
     ) {
         self.method = method

@@ -24,8 +24,12 @@ struct PayoffCall: Equatable, Sendable {
 }
 
 func payoffSimulation(for call: PayoffCall) -> PayoffSimulation {
-    PayoffSimulation(method: call.method, extraPayment: call.extraPayment, maxExtraPayment: 1_840_000, hasUnknownRate: false, accounts: [
-            PayoffAccount(id: "a-1", kind: .paylater, name: "Paylater A", remaining: 420_000, monthlyInstalment: 210_000, position: 1, payoffMonth: "2026-11")
+    PayoffSimulation(
+        method: call.method, extraPayment: call.extraPayment, maxExtraPayment: 1_840_000, hasUnknownRate: false,
+        accounts: [
+            PayoffAccount(
+                id: "a-1", kind: .paylater, name: "Paylater A", remaining: 420_000, monthlyInstalment: 210_000,
+                position: 1, payoffMonth: "2026-11")
         ], productive: [], allPaidMonth: nil, comparison: nil)
 }
 

@@ -17,7 +17,9 @@ struct PaidOffAccountTests {
 
     @Test("counts accounts already paid off, which the plan keeps first")
     func countsPaidOff() {
-        let plan = ActivePayoffPlan(method: .snowball, startedAt: PayoffPlanFixtures.plan().startedAt, accounts: [
+        let plan = ActivePayoffPlan(
+            method: .snowball, startedAt: PayoffPlanFixtures.plan().startedAt,
+            accounts: [
                 PayoffPlanFixtures.account("p-1", status: .paidOff, remaining: 0, original: 300_000),
                 PayoffPlanFixtures.account("a-1", status: .inProgress, remaining: 420_000, original: 600_000),
                 PayoffPlanFixtures.account("a-2", status: .next, remaining: 400_000, original: 400_000),
@@ -28,7 +30,8 @@ struct PaidOffAccountTests {
 
     @Test("an account the plan no longer lists has no place, and the last one has nothing next")
     func notListed() {
-        let payment = DebtPayment(debtId: "gone", monthlyInstalment: 100_000, paidOff: true, nextAccount: nil, scoreEstimate: nil)
+        let payment = DebtPayment(
+            debtId: "gone", monthlyInstalment: 100_000, paidOff: true, nextAccount: nil, scoreEstimate: nil)
         let paid = PaidOffAccount(payment: payment, plan: PayoffPlanFixtures.plan(), name: "Akun Lama")
         #expect(paid.position == nil && paid.total == 3 && paid.nextAccount == nil && paid.scoreEstimate == nil)
     }
