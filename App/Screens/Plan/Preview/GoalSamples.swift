@@ -28,6 +28,16 @@ enum GoalSamples {
     }
 
     /** Lainnya: Liburan Keluarga, Rp25.000.000,00 in 2 years, Rp1.000.000,00 a month at 5%. */
+    /** Kalkulator Dana Darurat's persona: Rp4.200.000 a month, single, Rp4.800.000 there, 30 months. */
+    @MainActor static var emergency: EmergencyFundGoalModel {
+        let form = EmergencyFundGoalModel(
+            prefill: PlanPrefill(essentialExpense: 4_200_000, emergencyFund: 4_800_000, maritalStatus: .single))
+        form.months = "30"
+        form.deposit = "650000"
+        form.annualReturn = "4"
+        return form
+    }
+
     static var other: OtherGoalValues {
         var values = OtherGoalValues()
         values.name = "Liburan Keluarga"

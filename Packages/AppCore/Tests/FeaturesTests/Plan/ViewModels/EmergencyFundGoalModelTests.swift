@@ -43,6 +43,17 @@ struct EmergencyFundGoalModelTests {
         #expect(draft.targetDate == CalendarDay(year: 2029, month: 4, day: 17) && draft.initialAmount == 4_800_000)
     }
 
+    @Test("a prefill arriving later fills what is empty and keeps what was typed")
+    func lateprefill() {
+        let form = EmergencyFundGoalModel()
+        form.present = "1000000"
+        form.apply(
+            PlanPrefill(essentialExpense: 4_200_000, emergencyFund: 9, maritalStatus: .married, dependants: 2))
+        #expect(form.essential == "4200000" && form.present == "1000000" && form.married && form.dependants == "2")
+        form.apply(PlanPrefill(essentialExpense: 1, maritalStatus: .single, dependants: 5))
+        #expect(form.essential == "4200000" && form.married && form.dependants == "2")
+    }
+
     @Test("nothing to work out without spending, months, a deposit or a return")
     func incomplete() {
         let empty = EmergencyFundGoalModel()

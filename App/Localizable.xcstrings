@@ -18631,6 +18631,176 @@
         }
       }
     },
+    "plan.emergency.form.automatic" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hitungan otomatis"
+          }
+        }
+      }
+    },
+    "plan.emergency.form.dependants" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jumlah Tanggungan"
+          }
+        }
+      }
+    },
+    "plan.emergency.form.essential" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengeluaran Pokok per Bulan"
+          }
+        }
+      }
+    },
+    "plan.emergency.form.essential.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dari catatanmu 3 bulan terakhir. Hanya yang pokok, seperti kos, listrik, dan transportasi."
+          }
+        }
+      }
+    },
+    "plan.emergency.form.lead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bekal kalau ada kejadian mendadak."
+          }
+        }
+      }
+    },
+    "plan.emergency.form.married" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah Menikah?"
+          }
+        }
+      }
+    },
+    "plan.emergency.form.married.no" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum"
+          }
+        }
+      }
+    },
+    "plan.emergency.form.married.yes" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah"
+          }
+        }
+      }
+    },
+    "plan.emergency.form.monthsAhead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bulan Lagi"
+          }
+        }
+      }
+    },
+    "plan.emergency.form.needed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dana Darurat yang Kamu Butuhkan"
+          }
+        }
+      }
+    },
+    "plan.emergency.form.needed.multiple %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld× pengeluaran pokok"
+          }
+        }
+      }
+    },
+    "plan.emergency.form.needs" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kebutuhanmu"
+          }
+        }
+      }
+    },
+    "plan.emergency.form.people" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orang"
+          }
+        }
+      }
+    },
+    "plan.emergency.form.present" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dana Darurat yang Sudah Ada"
+          }
+        }
+      }
+    },
+    "plan.emergency.form.present.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saldo dompet Tabungan Dana Darurat"
+          }
+        }
+      }
+    },
+    "plan.emergency.form.return.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Untuk dana darurat, pilih aset berisiko rendah dengan return sampai 10% per tahun."
+          }
+        }
+      }
+    },
+    "plan.emergency.form.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dana Darurat"
+          }
+        }
+      }
+    },
     "plan.eyebrow" : {
       "localizations" : {
         "id" : {

@@ -10,8 +10,8 @@ import Features
 import SwiftUI
 
 struct GoalFormRoute: View {
-    /** The kinds with a built form, in TujuanBaru's order; Dana Darurat is not in yet. */
-    static let built: [GoalKind] = [.houseDownPayment, .education, .wedding, .retirement, .vehicle, .goods, .other]
+    /** The kinds with a built form, in TujuanBaru's order. */
+    static let built: [GoalKind] = [.emergencyFund, .houseDownPayment, .education, .wedding, .retirement, .vehicle, .goods, .other]
 
     let kind: GoalKind
     let service: any GoalService
@@ -46,7 +46,11 @@ struct GoalFormRoute: View {
             ) { save($0.draft(kind: kind, today: today)) }
         case .other: OtherGoalScreen(model: OtherGoalModel(), onOpen: onOpen) { save($0.draft(today: today)) }
         case .education: EducationGoalScreen(onOpen: onOpen) { save($0.draft(today: today)) }
-        case .emergencyFund: EmptySlot()
+        case .emergencyFund:
+            EmergencyFundGoalScreen(
+                model: EmergencyFundGoalModel(), onOpen: onOpen,
+                prefill: { [service] in try? await service.plan().prefill }
+            ) { save($0.draft(today: today)) }
         }
     }
 

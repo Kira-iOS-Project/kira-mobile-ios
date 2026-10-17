@@ -34,6 +34,14 @@ package final class EmergencyFundGoalModel {
         annualReturn = ""
     }
 
+    /** Rencana's prefill arriving after the form opened: it fills only what is still empty or untouched. */
+    package func apply(_ prefill: PlanPrefill) {
+        if essential.isEmpty, let value = prefill.essentialExpense { essential = String(value) }
+        if present.isEmpty, let value = prefill.emergencyFund { present = String(value) }
+        if !married, prefill.maritalStatus == .married { married = true }
+        if dependants == "0", let value = prefill.dependants { dependants = String(value) }
+    }
+
     /** The fund the answers so far need ("Dana Darurat yang Kamu Butuhkan"), before Hitung. */
     package var neededFund: EmergencyFund? {
         guard let essential = GoalFieldInput.rupiah(essential), essential > 0 else { return nil }
