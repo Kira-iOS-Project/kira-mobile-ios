@@ -35,7 +35,7 @@ struct GoalAssetClasses: View {
         KiraSectionTitle("plan.result.assets").padding(.top, KiraSpacing.space2)
         VStack(alignment: .leading, spacing: 10) {
             KiraFlowRow(spacing: 6) {
-                ForEach(classes, id: \.self) { KiraTag($0.title) }
+                ForEach(Array(classes.enumerated()), id: \.offset) { KiraTag($0.element.title) }
             }
             Text("plan.result.assets.note").font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
         }

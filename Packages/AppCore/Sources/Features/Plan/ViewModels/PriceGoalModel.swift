@@ -83,7 +83,7 @@ package final class PriceGoalModel {
         else { return nil }
         let present = GoalFieldInput.rupiah(present) ?? 0
         let cost = Int((Double(price) * share).rounded())
-        let target = GoalMath.inflatedAmount(cost, rate: inflation, years: Double(months) / 12)
+        let target = GoalMath.inflatedAmount(.init(cost), rate: inflation, years: Double(months) / 12)
         let projection = GoalMath.project(
             target: target, present: present, deposit: deposit, annualReturn: annualReturn, months: months)
         return PriceGoalOutcome(
