@@ -151,7 +151,10 @@ enum PayoffPlanFailureDialog {
             secondary: KiraButton("plan.failure.close", variant: .secondary) {})
     }
 
-    /** The connection's sentence for a request that got no answer, the reference for an unknown problem, else the problem's. */
+    /**
+     The connection's sentence for a request that got no answer, the reference for an unknown
+     problem, else the problem's.
+     */
     private static func message(_ problem: AppProblem?) -> LocalizedStringResource {
         guard let problem else { return "problem.connection" }
         if problem.isConnectionLoss { return "problem.connection" }

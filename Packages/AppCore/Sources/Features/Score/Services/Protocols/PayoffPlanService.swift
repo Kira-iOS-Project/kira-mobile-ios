@@ -12,6 +12,9 @@ package protocol PayoffPlanService: Sendable {
     func active() async throws -> ActivePayoffPlan
     /** Moves the plan to another account. */
     func setFocus(debtId: String) async throws -> ActivePayoffPlan
-    /** Marks `amount` paid on an account: Tandai Sudah Bayar. */
-    func recordPayment(debtId: String, amount: Int) async throws -> DebtPayment
+    /**
+     Marks `amount` paid on an account: Tandai Sudah Bayar. `paymentId` names this one payment, so
+     a retry of it is answered `PAYOFF_PAYMENT_ALREADY_RECORDED` instead of paying twice.
+     */
+    func recordPayment(debtId: String, amount: Int, paymentId: String) async throws -> DebtPayment
 }

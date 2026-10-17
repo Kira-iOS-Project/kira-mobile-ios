@@ -27,7 +27,7 @@ package struct LivePayoffPlanService: PayoffPlanService {
     }
 
     /** `POST /debts/{id}/payments`. */
-    package func recordPayment(debtId: String, amount: Int) async throws -> DebtPayment {
-        DebtPayment(try await api.recordDebtPayment(debtId: debtId, amount: amount))
+    package func recordPayment(debtId: String, amount: Int, paymentId: String) async throws -> DebtPayment {
+        DebtPayment(try await api.recordDebtPayment(debtId: debtId, amount: amount, paymentId: paymentId))
     }
 }

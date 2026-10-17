@@ -111,7 +111,8 @@ private struct PaidOffScoreCard: View {
     /** "66 → 71"; "Kira Score tetap 36" when the score does not move. */
     private var scoreLine: LocalizedStringResource {
         estimate.after == estimate.before
-            ? "plan.celebrate.score.same \(estimate.after)" : "plan.celebrate.score \(estimate.before) \(estimate.after)"
+            ? "plan.celebrate.score.same \(estimate.after)"
+            : "plan.celebrate.score \(estimate.before) \(estimate.after)"
     }
 
     var body: some View {

@@ -9,7 +9,8 @@ enum PayoffPlanFixtures {
         PlanAccount(
             id: id, kind: kind, name: "Akun \(id)", remaining: remaining, original: original,
             progressPercent: original == 0 ? 0 : (original - remaining) * 100 / original, monthlyInstalment: 210_000,
-            annualInterestRate: 24, dueDay: 5, status: status)
+            annualInterestRate: 24, dueDay: 5, status: status,
+            payoffMonth: "2026-11", payoffDate: "2026-11-05", startMonth: status == .next ? "2026-12" : nil)
     }
 
     /** Two consumer accounts, the first in progress, and a motor loan the plan leaves alone. */
@@ -22,8 +23,8 @@ enum PayoffPlanFixtures {
                 account("m-1", status: .ongoing, remaining: 13_000_000, original: 15_000_000, kind: .vehicle),
             ],
             nextPayment: NextPayment(
-                debtId: focusIsFirst ? "a-1" : "a-2", name: "Akun", amount: 210_000, dueDate: "2026-11-05",
-                daysLeft: 20))
+                debtId: focusIsFirst ? "a-1" : "a-2", name: "Akun", amount: 210_000, instalment: 210_000, extra: 0,
+                dueDate: "2026-11-05", daysLeft: 20))
     }
 
     /** A plan whose consumer accounts are all paid. */
@@ -32,11 +33,12 @@ enum PayoffPlanFixtures {
         accounts: [], nextPayment: nil)
 
     static let partPayment = DebtPayment(
-        debtId: "a-1", paid: 210_000, remaining: 210_000, progressPercent: 65, paidOff: false, nextAccount: nil,
+        debtId: "a-1", paid: 210_000, remaining: 210_000, monthlyInstalment: 210_000, progressPercent: 65,
+        paidOff: false, nextAccount: nil,
         scoreEstimate: nil)
 
     static let settledPayment = DebtPayment(
-        debtId: "a-1", paid: 420_000, remaining: 0, progressPercent: 100, paidOff: true,
+        debtId: "a-1", paid: 420_000, remaining: 0, monthlyInstalment: 210_000, progressPercent: 100, paidOff: true,
         nextAccount: NextAccount(id: "a-2", name: "Pinjol B"),
         scoreEstimate: ScoreEstimate(before: 66, after: 72, consumerDebtBefore: 50, consumerDebtAfter: 80))
 }

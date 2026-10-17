@@ -127,7 +127,10 @@ struct PayoffPlanDoneCard: View {
     }
 }
 
-/** Semua Akun: every account in the plan's order with what is left, when it is paid off, and its tag. */
+/**
+ Semua Akun: every account in the plan's order (those already paid first) with what is left, when
+ it is paid off, and its tag.
+ */
 struct PayoffPlanAccounts: View {
     let plan: ActivePayoffPlan
     /** Opens an account's detail. */
@@ -141,7 +144,7 @@ struct PayoffPlanAccounts: View {
                     PayoffAccountTile(
                         rank: index + 1, category: account.kind.category, name: account.name,
                         lines: lines(account), tag: PayoffPlanCopy.tag(account),
-                        tagTone: account.status == .inProgress ? .pandan : .neutral
+                        tagTone: tone(account.status)
                     ) { onOpen(account) }
                 }
             }
@@ -149,9 +152,21 @@ struct PayoffPlanAccounts: View {
         .padding(.top, KiraSpacing.space1)
     }
 
+    /** Sedang Dilunasi in pandan, Lunas in healthy green, the rest neutral. */
+    private func tone(_ status: PlanAccountStatus) -> KiraTag.Tone {
+        switch status {
+        case .inProgress: .pandan
+        case .paidOff: .healthy
+        case .next, .ongoing: .neutral
+        }
+    }
+
+    /** What is left and when it is paid off; a paid account says only when it was paid. */
     private func lines(_ account: PlanAccount) -> [LocalizedStringResource] {
+        let payoff = PayoffPlanCopy.payoff(account)
+        if account.status == .paidOff { return payoff.map { [$0] } ?? [] }
         let remaining: LocalizedStringResource = "plan.account.remaining \(PayoffCopy.rupiah(account.remaining))"
-        guard let payoff = PayoffPlanCopy.payoff(account) else { return [remaining] }
+        guard let payoff else { return [remaining] }
         return [remaining, payoff]
     }
 }

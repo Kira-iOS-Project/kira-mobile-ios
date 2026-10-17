@@ -53,7 +53,8 @@ package struct DebtPayment: Hashable, Sendable {
 
     /** A payment with every field given. */
     package init(
-        debtId: String, paid: Int, remaining: Int, monthlyInstalment: Int, progressPercent: Int, paidOff: Bool, nextAccount: NextAccount?,
+        debtId: String, paid: Int, remaining: Int, monthlyInstalment: Int, progressPercent: Int, paidOff: Bool,
+        nextAccount: NextAccount?,
         scoreEstimate: ScoreEstimate?
     ) {
         self.debtId = debtId

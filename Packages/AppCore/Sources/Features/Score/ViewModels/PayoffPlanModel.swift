@@ -1,5 +1,6 @@
 import APIClient
 import Domain
+import Foundation
 import Observation
 
 /**
@@ -7,22 +8,22 @@ import Observation
  payment to make next, Tandai Sudah Bayar, and moving the plan to the next account ("Lanjut ke
  Paylater B"). The celebration is set once, by the payment that settles an account, and cleared
  when the person leaves it. A payment or a move that fails opens the failure dialog; Coba Lagi
- sends it again.
+ sends it again, a payment under the same id, which the API records once.
  */
 @MainActor
 @Observable
 package final class PayoffPlanModel {
     /** What failed, for the failure dialog, with what Coba Lagi sends again. */
     package enum Failure: Sendable {
-        /** Tandai Sudah Bayar did not go through. */
-        case payment(AppProblem)
+        /** Tandai Sudah Bayar did not go through; Coba Lagi sends it again as `paymentId`. */
+        case payment(paymentId: String, AppProblem)
         /** Moving the plan to the account `debtId` did not go through. */
         case focus(debtId: String, AppProblem)
 
         /** The API's problem. */
         package var problem: AppProblem {
             switch self {
-            case .payment(let problem), .focus(_, let problem): problem
+            case .payment(_, let problem), .focus(_, let problem): problem
             }
         }
     }
@@ -37,10 +38,14 @@ package final class PayoffPlanModel {
     package var celebration: PaidOffAccount?
 
     private let service: any PayoffPlanService
+    private let makePaymentId: @Sendable () -> String
 
-    /** A model that reads and changes the plan through `service`. */
-    package init(service: any PayoffPlanService) {
+    /** A model that reads and changes the plan through `service`, naming each new payment with `makePaymentId`. */
+    package init(
+        service: any PayoffPlanService, makePaymentId: @escaping @Sendable () -> String = { UUID().uuidString }
+    ) {
         self.service = service
+        self.makePaymentId = makePaymentId
     }
 
     /** Loads the person's plan. */
@@ -53,25 +58,34 @@ package final class PayoffPlanModel {
         }
     }
 
-    /**
-     Marks the next payment as paid, opens the celebration when it settles the account, and reloads
-     the plan. When only the reload fails, the page shows the load failure rather than the old plan,
-     so the same payment cannot be marked twice.
-     */
+    /** Tandai Sudah Bayar: marks the next payment as paid, as a new payment. */
     package func markPaid() async {
+        await pay(paymentId: makePaymentId())
+    }
+
+    /**
+     Sends the next payment as `paymentId`, opens the celebration when it settles the account, and
+     reloads the plan. A payment the API already recorded (a retry of one whose answer was lost)
+     counts as saved: the plan reloads, without a dialog. When only the reload fails, the page shows
+     the load failure rather than the old plan, so the same payment cannot be marked twice.
+     */
+    private func pay(paymentId: String) async {
         guard !isWorking, let plan = phase.value, let next = plan.nextPayment else { return }
         isWorking = true
         failure = nil
         defer { isWorking = false }
-        let payment: DebtPayment
         do {
-            payment = try await service.recordPayment(debtId: next.debtId, amount: next.amount)
+            let payment = try await service.recordPayment(
+                debtId: next.debtId, amount: next.amount, paymentId: paymentId)
+            if payment.paidOff {
+                celebration = PaidOffAccount(payment: payment, plan: plan, name: next.name)
+            }
         } catch {
-            failure = .payment(AppProblem(error))
-            return
-        }
-        if payment.paidOff {
-            celebration = PaidOffAccount(payment: payment, plan: plan, name: next.name)
+            let problem = AppProblem(error)
+            guard problem.knownCode == .payoffPaymentAlreadyRecorded else {
+                failure = .payment(paymentId: paymentId, problem)
+                return
+            }
         }
         do {
             phase = .loaded(try await service.active())
@@ -96,7 +110,7 @@ package final class PayoffPlanModel {
      */
     package func retry(_ failed: Failure) async {
         switch failed {
-        case .payment: await markPaid()
+        case .payment(let paymentId, _): await pay(paymentId: paymentId)
         case .focus(let debtId, _): await focus(on: debtId)
         }
     }

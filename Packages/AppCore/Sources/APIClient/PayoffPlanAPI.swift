@@ -10,9 +10,13 @@ extension KiraAPI {
         try await client.setPayoffFocus(body: .json(.init(focusDebtId: debtId))).plan()
     }
 
-    /** Marks a payment on an account (`POST /api/debts/{id}/payments`, Tandai Sudah Bayar). */
-    package func recordDebtPayment(debtId: String, amount: Int) async throws -> PaymentResultDTO {
-        try await client.recordDebtPayment(path: .init(id: debtId), body: .json(.init(amount: amount))).result()
+    /**
+     Marks a payment on an account (`POST /api/debts/{id}/payments`, Tandai Sudah Bayar); a repeat of
+     `paymentId` is 409 `PAYOFF_PAYMENT_ALREADY_RECORDED`.
+     */
+    package func recordDebtPayment(debtId: String, amount: Int, paymentId: String) async throws -> PaymentResultDTO {
+        let body = Components.Schemas.RecordDebtPayment(amount: amount, paymentId: paymentId)
+        return try await client.recordDebtPayment(path: .init(id: debtId), body: .json(body)).result()
     }
 }
 

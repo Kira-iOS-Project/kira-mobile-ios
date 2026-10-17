@@ -59,7 +59,7 @@ nonisolated struct PreviewPayoffPlanService: PayoffPlanService {
         return .sample
     }
 
-    func recordPayment(debtId _: String, amount _: Int) throws -> DebtPayment {
+    func recordPayment(debtId _: String, amount _: Int, paymentId _: String) throws -> DebtPayment {
         if let failing { throw failing }
         return payment
     }
