@@ -3,6 +3,7 @@
  TujuanBarang, TujuanLainnya); the UI tests tap Hitung for each Hasil Simulasi.
  */
 #if DEBUG
+    import Domain
     import Features
     import SwiftUI
 
