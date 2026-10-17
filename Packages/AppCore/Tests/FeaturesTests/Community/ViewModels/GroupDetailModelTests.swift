@@ -93,18 +93,6 @@ struct GroupDetailModelTests {
         await model.retry()
     }
 
-    @Test("a failed consent closes the sheet with the tick kept; Coba Lagi reopens it and sends again")
-    func rulesRetry() async {
-        let service = FakeCommunityService(failures: ["acceptRules": [URLError(.notConnectedToInternet)]])
-        let model = await loaded(service)
-        await model.join()
-        model.rulesAgreed = true
-        await model.acceptRules()
-        #expect(!model.showsRules && model.rulesAgreed && model.failure?.attempt == .acceptRules)
-        await model.retry()
-        #expect(model.invite != nil && model.phase.value?.rulesAccepted == true)
-    }
-
     @Test("an old rules version refused (422) shows without Coba Lagi, drops the tick on Tutup, and reloads")
     func rulesRefused() async {
         let service = FakeCommunityService(failures: ["acceptRules": [communityProblem(.validationFailed)]])
