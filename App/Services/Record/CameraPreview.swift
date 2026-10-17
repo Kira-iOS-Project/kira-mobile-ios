@@ -1,99 +1,115 @@
 /**
- The live picture of Scan Struk's camera, filling its frame, with the focus box: a pandan square at
- the center that pulses while the lens focuses and settles once it is sharp. A tap focuses where it
- lands and the box follows it, back to the center when the camera returns there. A camera without a
- session (previews, the simulator) leaves the frame's dark mask showing.
+ The live picture of Scan Struk's camera, filling its frame, with the focus box: a pandan square
+ where the camera focuses, that pulses while the lens focuses and settles once it is sharp. The box is
+ placed by the preview layer itself (`layerPointConverted(fromCaptureDevicePoint:)`), so it sits
+ exactly on the picture's center that the device's (0.5, 0.5) focus point means, and on a tapped
+ point when a tap moves the focus; back to the center when the camera returns there. A camera
+ without a session (previews, the simulator) leaves the frame's dark mask showing, with the box at the
+ middle of the frame.
  */
 import AVFoundation
 import Features
 import SwiftUI
 import UIKit
 
-struct CameraPreview: View {
+struct CameraPreview: UIViewRepresentable {
     let camera: any ReceiptCapturing
-    @State private var focus = AVReceiptCamera.Focus(isAdjusting: false, isCentered: true)
-    @State private var tapped: CGPoint?
 
-    var body: some View {
-        GeometryReader { proxy in
-            ZStack {
-                CameraLayer(camera: camera) { point in tapped = point }
-                FocusBox(isAdjusting: focus.isAdjusting)
-                    .position(
-                        focus.isCentered ? CGPoint(x: proxy.size.width / 2, y: proxy.size.height / 2) : tapped ?? .zero)
-            }
-        }
-        .onAppear {
-            (camera as? AVReceiptCamera)?.onFocus = { focus = $0 }
-        }
-    }
-}
-
-/** The focus box: a 72 pt rounded square, a 2 pt pandan line, no shadow; it pulses while focusing. */
-private struct FocusBox: View {
-    let isAdjusting: Bool
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
-
-    var body: some View {
-        RoundedRectangle(cornerRadius: KiraRadius.medium, style: .continuous)
-            .stroke(.pandan, lineWidth: 2)
-            .frame(width: 72, height: 72)
-            .scaleEffect(isAdjusting && !reduceMotion ? 1.12 : 1)
-            .opacity(isAdjusting && reduceMotion ? 0.6 : 1)
-            .animation(reduceMotion ? nil : .easeOut(duration: 0.25), value: isAdjusting)
-            .allowsHitTesting(false)
-            .accessibilityElement()
-            .accessibilityLabel(Text("record.scan.focusArea"))
-    }
-}
-
-/** The camera's preview layer, with a tap that focuses where it lands (in the device's coordinates). */
-private struct CameraLayer: UIViewRepresentable {
-    let camera: any ReceiptCapturing
-    let onTap: (CGPoint) -> Void
-
-    func makeUIView(context: Context) -> PreviewLayerView {
+    func makeUIView(context _: Context) -> PreviewLayerView {
         let view = PreviewLayerView()
         view.previewLayer.videoGravity = .resizeAspectFill
-        view.previewLayer.session = (camera as? AVReceiptCamera)?.session
-        view.isAccessibilityElement = false
-        view.addGestureRecognizer(
-            UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.tap(_:))))
+        let receiptCamera = camera as? AVReceiptCamera
+        view.previewLayer.session = receiptCamera?.session
+        view.onTap = { [weak receiptCamera] devicePoint in receiptCamera?.focus(at: devicePoint) }
+        receiptCamera?.onFocus = { [weak view] focus in view?.show(focus) }
         return view
     }
 
-    func updateUIView(_: PreviewLayerView, context: Context) {
-        context.coordinator.parent = self
-    }
-
-    func makeCoordinator() -> Coordinator { Coordinator(parent: self) }
-
-    /** Turns a tap on the layer into a focus point for the camera and a place for the box. */
-    final class Coordinator: NSObject {
-        var parent: CameraLayer
-
-        init(parent: CameraLayer) {
-            self.parent = parent
-        }
-
-        @objc func tap(_ gesture: UITapGestureRecognizer) {
-            guard let view = gesture.view as? PreviewLayerView, let camera = parent.camera as? AVReceiptCamera else {
-                return
-            }
-            let point = gesture.location(in: view)
-            camera.focus(at: view.previewLayer.captureDevicePointConverted(fromLayerPoint: point))
-            parent.onTap(point)
-        }
-    }
+    func updateUIView(_: PreviewLayerView, context _: Context) {}
 }
 
-/** A view whose layer is the camera's preview layer. */
+/** A view whose layer is the camera's preview layer, with the focus box on it. */
 final class PreviewLayerView: UIView {
     override static var layerClass: AnyClass { AVCaptureVideoPreviewLayer.self }
+
+    /** Told the device point of a tap, to focus there. */
+    var onTap: ((CGPoint) -> Void)?
+    private let box = FocusBoxView()
+    private var focusPoint = AVReceiptCamera.center
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(box)
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapped(_:))))
+    }
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) { nil }
 
     /** The layer, as the preview layer it is. */
     var previewLayer: AVCaptureVideoPreviewLayer {
         guard let layer = layer as? AVCaptureVideoPreviewLayer else { return AVCaptureVideoPreviewLayer() }
         return layer
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        box.center = place(focusPoint)
+    }
+
+    /** Shows the camera's focus: back to the center when it is there, the pulse while it adjusts. */
+    func show(_ focus: AVReceiptCamera.Focus) {
+        if focus.isCentered { focusPoint = AVReceiptCamera.center }
+        box.center = place(focusPoint)
+        box.setAdjusting(focus.isAdjusting)
+    }
+
+    @objc private func tapped(_ gesture: UITapGestureRecognizer) {
+        let devicePoint = previewLayer.captureDevicePointConverted(fromLayerPoint: gesture.location(in: self))
+        focusPoint = devicePoint
+        box.center = place(devicePoint)
+        onTap?(devicePoint)
+    }
+
+    /** Where `devicePoint` falls on the visible picture; the frame's middle while there is no picture. */
+    private func place(_ devicePoint: CGPoint) -> CGPoint {
+        let point = previewLayer.layerPointConverted(fromCaptureDevicePoint: devicePoint)
+        guard point.x.isFinite, point.y.isFinite, bounds.contains(point) else {
+            return CGPoint(x: bounds.midX, y: bounds.midY)
+        }
+        return point
+    }
+}
+
+/** The focus box: a 72 pt rounded square, a 2 pt pandan line, no shadow; it pulses while focusing. */
+private final class FocusBoxView: UIView {
+    private static let side: CGFloat = 72
+
+    override init(frame _: CGRect) {
+        super.init(frame: CGRect(x: 0, y: 0, width: Self.side, height: Self.side))
+        isUserInteractionEnabled = false
+        layer.borderColor = UIColor(Color.pandan).cgColor
+        layer.borderWidth = 2
+        layer.cornerRadius = KiraRadius.medium
+        layer.cornerCurve = .continuous
+        isAccessibilityElement = true
+        accessibilityLabel = String(localized: "record.scan.focusArea")
+        registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (box: Self, _) in
+            box.layer.borderColor = UIColor(Color.pandan).cgColor
+        }
+    }
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) { nil }
+
+    /** A short pulse while the lens adjusts, a fade under Reduce Motion; settles once it is sharp. */
+    func setAdjusting(_ isAdjusting: Bool) {
+        if UIAccessibility.isReduceMotionEnabled {
+            alpha = isAdjusting ? 0.6 : 1
+            return
+        }
+        UIView.animate(withDuration: 0.25, delay: 0, options: [.beginFromCurrentState, .curveEaseOut]) {
+            self.transform = isAdjusting ? CGAffineTransform(scaleX: 1.12, y: 1.12) : .identity
+        }
     }
 }
