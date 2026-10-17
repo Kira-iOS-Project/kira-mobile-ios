@@ -14,17 +14,20 @@ extension KiraAPI {
 }
 
 extension Components.Schemas.CreateWalletInput {
-    /** The draft as the API takes it: a balance for money held, the debt left for a debt account. */
+    /**
+     The draft as the API takes it: the debt left for a debt account, a balance for money held.
+     The kind is read by its wire value (WalletType's raw value); one the API has no name for is
+     sent as other.
+     */
     init(_ draft: WalletDraft) {
-        switch draft.type {
-        case .creditCard: self.init(value2: .init(name: draft.name, _type: .creditCard, remainingDebt: draft.amount))
-        case .paylater: self.init(value2: .init(name: draft.name, _type: .paylater, remainingDebt: draft.amount))
-        case .onlineLoan: self.init(value2: .init(name: draft.name, _type: .onlineLoan, remainingDebt: draft.amount))
-        case .bank: self.init(value1: .init(name: draft.name, _type: .bank, balance: draft.amount))
-        case .ewallet: self.init(value1: .init(name: draft.name, _type: .ewallet, balance: draft.amount))
-        case .cash: self.init(value1: .init(name: draft.name, _type: .cash, balance: draft.amount))
-        case .vehicle, .mortgage, .familyLoan, .other:
-            self.init(value1: .init(name: draft.name, _type: .other, balance: draft.amount))
+        let type = draft.type.rawValue
+        if let debt = Value2Payload._TypePayload(rawValue: type) {
+            self.init(value2: .init(name: draft.name, _type: debt, remainingDebt: draft.amount))
+        } else {
+            self.init(
+                value1: .init(
+                    name: draft.name, _type: Value1Payload._TypePayload(rawValue: type) ?? .other, balance: draft.amount
+                ))
         }
     }
 }

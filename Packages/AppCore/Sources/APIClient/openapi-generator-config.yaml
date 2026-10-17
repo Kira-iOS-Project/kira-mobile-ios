@@ -20,7 +20,3 @@ namingStrategy: idiomatic
 typeOverrides:
   schemas:
     Problem: AppProblem
-# Swift names stay English (english-names.mjs): the spec's wire value "pinjol" (an online loan) is
-# generated as onlineLoan; the JSON on the wire is unchanged.
-nameOverrides:
-  pinjol: onlineLoan
