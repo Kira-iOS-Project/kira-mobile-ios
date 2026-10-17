@@ -24,10 +24,11 @@ struct PriceGoalScreen: View {
             goal: copy.title, lead: copy.lead, category: copy.category, canCalculate: model.canCalculate,
             onCalculate: { result = model.outcome }, onHelp: { onOpen(.care) },
             content: {
-            KiraSectionTitle("plan.goal.dream").padding(.top, KiraSpacing.space2)
-            PriceGoalDream(model: model, copy: copy)
-            GoalStrategyFields(deposit: $model.deposit, annualReturn: $model.annualReturn)
-            })
+                KiraSectionTitle("plan.goal.dream").padding(.top, KiraSpacing.space2)
+                PriceGoalDream(model: model, copy: copy)
+                GoalStrategyFields(deposit: $model.deposit, annualReturn: $model.annualReturn)
+            }
+        )
         .navigationDestination(isPresented: Binding(get: { result != nil }, set: { if !$0 { result = nil } })) {
             if let result { PriceGoalResultScreen(outcome: result, kind: model.kind, onOpen: onOpen) }
         }
@@ -56,7 +57,7 @@ private struct PriceGoalDream: View {
             KiraListGroup("plan.price.automatic") {
                 KiraListRow(Text("plan.vehicle.downPaymentAmount"), leading: .icon(.wallet), trailing: .none)
                     .amount(KiraAmount((model.downPaymentAmount ?? 0).rupiah))
-                if let loan = model.loanPrincipal, let share = GoalInput.percent(model.downPayment) {
+                if let loan = model.loanPrincipal, let share = GoalFieldInput.percent(model.downPayment) {
                     KiraListRow(
                         Text("plan.vehicle.loan \(Text((1 - share) * 100, format: .kiraMultiple))"),
                         leading: .icon(.receipt), trailing: .none

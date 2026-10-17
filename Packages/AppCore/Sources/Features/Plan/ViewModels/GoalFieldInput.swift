@@ -4,7 +4,7 @@ import Domain
  Reads what is typed into a goal form: whole rupiah (grouped while typing, `AmountInput`), whole
  years or months, and a percent written with a comma or a dot ("4,5"), as a fraction (0.045).
  */
-package enum GoalInput {
+package enum GoalFieldInput {
     /** Whole rupiah; nil when nothing is typed. */
     package static func rupiah(_ text: String) -> Int? {
         AmountInput.value(of: text)

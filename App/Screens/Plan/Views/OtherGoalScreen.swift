@@ -22,16 +22,17 @@ struct OtherGoalScreen: View {
             goal: "plan.other.title", lead: "plan.other.lead", category: .other, canCalculate: model.canCalculate,
             onCalculate: { result = model.outcome }, onHelp: { onOpen(.care) },
             content: {
-            KiraSectionTitle("plan.goal.dream").padding(.top, KiraSpacing.space2)
-            KiraField("plan.other.name", text: $model.name)
-            KiraField("plan.other.amount", text: $model.amount)
-                .prefix("plan.goal.currency").suffix("plan.goal.cents").amount().keyboardType(.numberPad)
-            KiraField("plan.price.duration", text: $model.duration).suffix("plan.goal.yearsAhead")
-                .keyboardType(.numberPad)
-            KiraField("plan.other.present", text: $model.present)
-                .prefix("plan.goal.currency").suffix("plan.goal.cents").amount().keyboardType(.numberPad)
-            OtherGoalStrategy(model: model)
-            })
+                KiraSectionTitle("plan.goal.dream").padding(.top, KiraSpacing.space2)
+                KiraField("plan.other.name", text: $model.name)
+                KiraField("plan.other.amount", text: $model.amount)
+                    .prefix("plan.goal.currency").suffix("plan.goal.cents").amount().keyboardType(.numberPad)
+                KiraField("plan.price.duration", text: $model.duration).suffix("plan.goal.yearsAhead")
+                    .keyboardType(.numberPad)
+                KiraField("plan.other.present", text: $model.present)
+                    .prefix("plan.goal.currency").suffix("plan.goal.cents").amount().keyboardType(.numberPad)
+                OtherGoalStrategy(model: model)
+            }
+        )
         .navigationDestination(isPresented: Binding(get: { result != nil }, set: { if !$0 { result = nil } })) {
             if let result { OtherGoalResultScreen(outcome: result, onOpen: onOpen) }
         }
@@ -48,15 +49,19 @@ private struct OtherGoalStrategy: View {
             choice("plan.other.period") {
                 KiraSegmented(
                     "plan.other.period",
-                    options: [.init(id: DepositPeriod.month, title: "plan.other.period.month"),
-                        .init(id: .year, title: "plan.other.period.year")],
+                    options: [
+                        .init(id: DepositPeriod.month, title: "plan.other.period.month"),
+                        .init(id: .year, title: "plan.other.period.year"),
+                    ],
                     selection: $model.period)
             }
             choice("plan.other.timing") {
                 KiraSegmented(
                     "plan.other.timing",
-                    options: [.init(id: DepositTiming.start, title: "plan.other.timing.start"),
-                        .init(id: .end, title: "plan.other.timing.end")],
+                    options: [
+                        .init(id: DepositTiming.start, title: "plan.other.timing.start"),
+                        .init(id: .end, title: "plan.other.timing.end"),
+                    ],
                     selection: $model.timing)
             }
         }

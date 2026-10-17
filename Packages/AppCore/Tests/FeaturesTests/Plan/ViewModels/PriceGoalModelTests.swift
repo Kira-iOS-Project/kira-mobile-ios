@@ -62,14 +62,14 @@ struct PriceGoalModelTests {
     }
 }
 
-@Suite("GoalInput and GoalShares")
-struct GoalInputTests {
+@Suite("GoalFieldInput and GoalShares")
+struct GoalFieldInputTests {
     @Test("rupiah, counts and percents with a comma or a dot")
     func parse() {
-        #expect(GoalInput.rupiah("1.150.000") == 1_150_000 && GoalInput.rupiah("") == nil)
-        #expect(GoalInput.count("27") == 27 && GoalInput.count("0") == nil && GoalInput.count("") == nil)
-        #expect(GoalInput.percent("4,5") == 0.045 && GoalInput.percent(" 10 ") == 0.1)
-        #expect(GoalInput.percent("101") == nil && GoalInput.percent("x") == nil)
+        #expect(GoalFieldInput.rupiah("1.150.000") == 1_150_000 && GoalFieldInput.rupiah("") == nil)
+        #expect(GoalFieldInput.count("27") == 27 && GoalFieldInput.count("0") == nil && GoalFieldInput.count("") == nil)
+        #expect(GoalFieldInput.percent("4,5") == 0.045 && GoalFieldInput.percent(" 10 ") == 0.1)
+        #expect(GoalFieldInput.percent("101") == nil && GoalFieldInput.percent("x") == nil)
     }
 
     @Test("pokok and imbal hasil as the boards round them, always adding up to 100")

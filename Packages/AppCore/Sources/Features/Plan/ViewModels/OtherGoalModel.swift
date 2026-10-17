@@ -43,11 +43,11 @@ package final class OtherGoalModel {
     /** Hitung: the projection and what goes with it; nil while something is missing. */
     package var outcome: OtherGoalOutcome? {
         let name = name.trimmingCharacters(in: .whitespaces)
-        guard !name.isEmpty, let target = GoalInput.rupiah(amount), target > 0,
-            let years = GoalInput.count(duration), let deposit = GoalInput.rupiah(deposit),
-            let annualReturn = GoalInput.percent(annualReturn)
+        guard !name.isEmpty, let target = GoalFieldInput.rupiah(amount), target > 0,
+            let years = GoalFieldInput.count(duration), let deposit = GoalFieldInput.rupiah(deposit),
+            let annualReturn = GoalFieldInput.percent(annualReturn)
         else { return nil }
-        let present = GoalInput.rupiah(present) ?? 0
+        let present = GoalFieldInput.rupiah(present) ?? 0
         let projection = GoalMath.project(
             target: Double(target), present: present, deposit: deposit, annualReturn: annualReturn,
             months: years * 12, period: period, timing: timing)

@@ -55,13 +55,16 @@ package final class PriceGoalModel {
 
     /** "DP Kamu Setara": the DP share of today's price. */
     package var downPaymentAmount: Int? {
-        guard let price = GoalInput.rupiah(price), let share = GoalInput.percent(downPayment) else { return nil }
+        guard let price = GoalFieldInput.rupiah(price), let share = GoalFieldInput.percent(downPayment) else {
+            return nil
+        }
         return Int((Double(price) * share).rounded())
     }
 
     /** "Pokok KKB": the rest of today's price, nil when bought in cash. */
     package var loanPrincipal: Int? {
-        guard let price = GoalInput.rupiah(price), let share = GoalInput.percent(downPayment), share < 1 else {
+        guard let price = GoalFieldInput.rupiah(price), let share = GoalFieldInput.percent(downPayment), share < 1
+        else {
             return nil
         }
         return price - Int((Double(price) * share).rounded())
@@ -72,12 +75,13 @@ package final class PriceGoalModel {
 
     /** Hitung: the projection and what goes with it; nil while something is missing. */
     package var outcome: PriceGoalOutcome? {
-        guard let months = months, let price = GoalInput.rupiah(price), price > 0,
-            let share = GoalInput.percent(downPayment), share > 0, let inflation = GoalInput.percent(inflation),
-            let deposit = GoalInput.rupiah(deposit), let annualReturn = GoalInput.percent(annualReturn),
+        guard let months = months, let price = GoalFieldInput.rupiah(price), price > 0,
+            let share = GoalFieldInput.percent(downPayment), share > 0,
+            let inflation = GoalFieldInput.percent(inflation),
+            let deposit = GoalFieldInput.rupiah(deposit), let annualReturn = GoalFieldInput.percent(annualReturn),
             kind != .goods || !name.trimmingCharacters(in: .whitespaces).isEmpty
         else { return nil }
-        let present = GoalInput.rupiah(present) ?? 0
+        let present = GoalFieldInput.rupiah(present) ?? 0
         let cost = Int((Double(price) * share).rounded())
         let target = GoalMath.inflatedAmount(cost, rate: inflation, years: Double(months) / 12)
         let projection = GoalMath.project(
@@ -93,7 +97,7 @@ package final class PriceGoalModel {
     }
 
     private var months: Int? {
-        guard let count = GoalInput.count(duration) else { return nil }
+        guard let count = GoalFieldInput.count(duration) else { return nil }
         return horizon == .years ? count * 12 : count
     }
 
