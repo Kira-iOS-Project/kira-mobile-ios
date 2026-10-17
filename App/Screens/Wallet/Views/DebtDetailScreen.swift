@@ -57,13 +57,13 @@ struct DebtDetailScreen: View {
             }
             if !debt.payments.isEmpty { DebtPaymentHistory(debt: debt) }
             KiraTapCard(
-                illustration: .shield, label: Text("debt.detail.slik.label"),
-                action: { onOpen(.unavailable(.creditReport)) }
-            ) {
-                Text("debt.detail.slik.eyebrow").kiraFont(.overline).foregroundStyle(.pandan)
-                Text("debt.detail.slik.title").font(.body.weight(.semibold)).kiraLineHeight(22, size: 17)
-                Text("debt.detail.slik.body").font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
-            }
+                .shield, label: Text("debt.detail.slik.label"), action: { onOpen(.unavailable(.creditReport)) },
+                content: {
+                    Text("debt.detail.slik.eyebrow").kiraFont(.overline).foregroundStyle(.pandan)
+                    Text("debt.detail.slik.title").font(.body.weight(.semibold)).kiraLineHeight(22, size: 17)
+                    Text("debt.detail.slik.body").font(.footnote).kiraLineHeight(18, size: 13)
+                        .foregroundStyle(.inkMuted)
+                })
         case .failed(let problem):
             LoadFailedView(problem: problem) { Task { await model.load() } }
         }

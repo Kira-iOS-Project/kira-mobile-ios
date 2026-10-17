@@ -33,6 +33,7 @@
             case .debtEmergency: DebtEmergencyLaunch(screen: screen)
             case .educationGoal: EducationGoalLaunch(screen: screen)
             case .careTools: CareToolsLaunch(screen: screen)
+            case .debtDetail: DebtDetailLaunch(screen: screen)
             case .planRisk: PlanRiskLaunch(screen: screen)
             case .houseGoal: HouseGoalLaunch(screen: screen)
             case .weddingGoal: WeddingGoalLaunch(screen: screen)
@@ -129,9 +130,13 @@
         /** REN: Tujuan Baru · Pendidikan Anak, Atur Jenjang, and Hasil Simulasi on the board's Raka. */
         case educationGoal, educationGoalResult, educationGoalStage
 
+        /** UNG: Detail Utang (Paylater A, and a debt that is gone) and SKR: Panduan SLIK. */
+        case debtDetail, debtDetailGone, creditReportGuide
+
         /** The area whose launcher builds the screen. */
         enum Area {
             case onboarding, home, account, plans, record, chat, community, care, careTools, debtEmergency, marketplace
+            case debtDetail
             case planRisk
             case houseGoal, weddingGoal, educationGoal
             case goals
@@ -188,6 +193,7 @@
             case .moduleMoneyMarketFund, .moduleGovernmentBonds, .moduleDeposits, .moduleGold, .moduleStocks,
                 .moduleCrypto:
                 .planModule
+            case .debtDetail, .debtDetailGone, .creditReportGuide: .debtDetail
             }
         }
     }
