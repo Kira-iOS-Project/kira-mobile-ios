@@ -9,14 +9,14 @@ enum PayoffPlanFixtures {
         PlanAccount(
             id: id, kind: kind, name: "Akun \(id)", remaining: remaining, original: original,
             progressPercent: original == 0 ? 0 : (original - remaining) * 100 / original, monthlyInstalment: 210_000,
-            annualInterestRate: 24, dueDay: 5, status: status,
-            payoffMonth: "2026-11", payoffDate: "2026-11-05", startMonth: status == .next ? "2026-12" : nil)
+            status: status, payoffMonth: "2026-11", payoffDate: "2026-11-05",
+            startMonth: status == .next ? "2026-12" : nil)
     }
 
     /** Two consumer accounts, the first in progress, and a motor loan the plan leaves alone. */
     static func plan(focusIsFirst: Bool = true) -> ActivePayoffPlan {
         ActivePayoffPlan(
-            id: "plan-1", method: .snowball, extraPayment: 0, startedAt: Date(timeIntervalSince1970: 1_791_000_000),
+            method: .snowball, startedAt: Date(timeIntervalSince1970: 1_791_000_000),
             accounts: [
                 account("a-1", status: focusIsFirst ? .inProgress : .next, remaining: 420_000, original: 600_000),
                 account("a-2", status: focusIsFirst ? .next : .inProgress, remaining: 400_000, original: 400_000),
@@ -29,7 +29,7 @@ enum PayoffPlanFixtures {
 
     /** The plan after a-1 was paid off: a-1 first and paid, a-2 in progress. */
     static let planAfterPayoff = ActivePayoffPlan(
-        id: "plan-1", method: .snowball, extraPayment: 0, startedAt: Date(timeIntervalSince1970: 1_791_000_000),
+        method: .snowball, startedAt: Date(timeIntervalSince1970: 1_791_000_000),
         accounts: [
             account("a-1", status: .paidOff, remaining: 0, original: 600_000),
             account("a-2", status: .inProgress, remaining: 400_000, original: 400_000),
@@ -41,16 +41,12 @@ enum PayoffPlanFixtures {
 
     /** A plan whose consumer accounts are all paid. */
     static let donePlan = ActivePayoffPlan(
-        id: "plan-1", method: .snowball, extraPayment: 0, startedAt: Date(timeIntervalSince1970: 1_791_000_000),
-        accounts: [], nextPayment: nil)
+        method: .snowball, startedAt: Date(timeIntervalSince1970: 1_791_000_000), accounts: [], nextPayment: nil)
 
     static let partPayment = DebtPayment(
-        debtId: "a-1", paid: 210_000, remaining: 210_000, monthlyInstalment: 210_000, progressPercent: 65,
-        paidOff: false, nextAccount: nil,
-        scoreEstimate: nil)
+        debtId: "a-1", monthlyInstalment: 210_000, paidOff: false, nextAccount: nil, scoreEstimate: nil)
 
     static let settledPayment = DebtPayment(
-        debtId: "a-1", paid: 420_000, remaining: 0, monthlyInstalment: 210_000, progressPercent: 100, paidOff: true,
-        nextAccount: NextAccount(id: "a-2", name: "Pinjol B"),
-        scoreEstimate: ScoreEstimate(before: 66, after: 72, consumerDebtBefore: 50, consumerDebtAfter: 80))
+        debtId: "a-1", monthlyInstalment: 210_000, paidOff: true, nextAccount: NextAccount(id: "a-2", name: "Pinjol B"),
+        scoreEstimate: ScoreEstimate(before: 66, after: 72))
 }

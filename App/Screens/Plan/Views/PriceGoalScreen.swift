@@ -12,10 +12,16 @@ struct PriceGoalScreen: View {
     @State private var model: PriceGoalModel
     @State private var result: PriceGoalOutcome?
     let onOpen: (AppRoute) -> Void
+    /** Jadikan Pos Budget on the result: the caller creates the goal. */
+    var onBudget: (PriceGoalOutcome) -> Void = { _ in }
 
-    init(model: PriceGoalModel, onOpen: @escaping (AppRoute) -> Void) {
+    init(
+        model: PriceGoalModel, onOpen: @escaping (AppRoute) -> Void,
+        onBudget: @escaping (PriceGoalOutcome) -> Void = { _ in }
+    ) {
         _model = State(initialValue: model)
         self.onOpen = onOpen
+        self.onBudget = onBudget
     }
 
     var body: some View {
@@ -30,7 +36,9 @@ struct PriceGoalScreen: View {
             }
         )
         .navigationDestination(isPresented: Binding(get: { result != nil }, set: { if !$0 { result = nil } })) {
-            if let result { PriceGoalResultScreen(outcome: result, kind: model.kind, onOpen: onOpen) }
+            if let result {
+                PriceGoalResultScreen(outcome: result, kind: model.kind, onOpen: onOpen) { onBudget(result) }
+            }
         }
     }
 }

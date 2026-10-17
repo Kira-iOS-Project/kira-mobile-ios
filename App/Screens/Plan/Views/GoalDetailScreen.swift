@@ -40,7 +40,8 @@ struct GoalDetailScreen: View {
         .task { await model.load() }
         .kiraSheet(
             $model.deposit, title: "plan.deposit.title", subtitle: depositSubtitle, failureTitle: "plan.deposit.failed",
-            onRetry: { Task { await model.submitDeposit() } }, content: { GoalDepositSheet(model: model) })
+            onRetry: { Task { await model.submitDeposit() } }, content: { GoalDepositSheet(model: model) }
+        )
         .kiraDialog(isPresented: $model.showsDepositSaved) {
             KiraDialog(
                 "plan.deposit.saved.title", message: "plan.deposit.saved.body \(model.phase.value?.summary.name ?? "")",

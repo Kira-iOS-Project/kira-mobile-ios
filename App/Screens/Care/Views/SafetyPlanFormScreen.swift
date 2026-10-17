@@ -88,6 +88,7 @@ private struct SafetyContactFields: View {
         return HStack(alignment: .top, spacing: KiraSpacing.space2) {
             VStack(spacing: KiraSpacing.space2) {
                 KiraField("care.plan.contact.name", text: contact.name)
+                    .wraps()
                     .error(SafetyPlan.isTooLong(contact.name.wrappedValue) ? "care.plan.tooLong" : nil)
                 KiraField("care.plan.contact.phone", text: contact.phone)
                     .error(SafetyPlan.isTooLong(contact.phone.wrappedValue) ? "care.plan.tooLong" : nil)

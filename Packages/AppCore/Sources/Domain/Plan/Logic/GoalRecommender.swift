@@ -1,5 +1,6 @@
 import Foundation
 
+// swiftlint:disable function_parameter_count - the site's six calculator inputs, named at each call
 /**
  Rekomendasi when a plan falls short, as the site and the boards make them:
  - Naikkan Investasi: the deposit grows by Rp200.000 while the result is at most 20% of the
@@ -68,6 +69,7 @@ package enum GoalRecommender {
         return years >= 6 ? 20 : 15
     }
 }
+// swiftlint:enable function_parameter_count
 
 /** A plan of a monthly deposit the recommendations vary. */
 struct SavingsPlan {

@@ -7,7 +7,7 @@ import Foundation
 /** Rencana's API boundary, answering from what a test sets and recording what it was sent. */
 actor FakeGoalService: GoalService {
     enum Call: Hashable, Sendable {
-        case plan, goals, goal, create, update, deposit
+        case plan, goal, create, deposit
     }
 
     static let problem = AppProblem(code: "VALIDATION_FAILED", requestId: "req-1")
@@ -23,7 +23,6 @@ actor FakeGoalService: GoalService {
     /** The calls that fail, and how. */
     var failing: [Call: any Error] = [:]
     private(set) var created: [GoalDraft] = []
-    private(set) var updated: [String: GoalDraft] = [:]
     /** The deposits sent, by their id. */
     private(set) var deposits: [String: Int] = [:]
 
@@ -32,11 +31,6 @@ actor FakeGoalService: GoalService {
     func plan() throws -> PlanOverview {
         try check(.plan)
         return overview
-    }
-
-    func goals() throws -> [GoalSummary] {
-        try check(.goals)
-        return overview.goals
     }
 
     func goal(id _: String) throws -> GoalDetail {
@@ -48,12 +42,6 @@ actor FakeGoalService: GoalService {
         created.append(draft)
         try check(.create)
         return GoalDetail(summary: Self.summary, inputs: draft.inputs, inBudget: draft.inBudget)
-    }
-
-    func updateGoal(id: String, _ draft: GoalDraft) throws -> GoalDetail {
-        updated[id] = draft
-        try check(.update)
-        return GoalDetail(summary: Self.summary, inputs: draft.inputs)
     }
 
     func addDeposit(goalId _: String, amount: Int, depositedOn: CalendarDay, depositId: String) throws -> GoalDeposit {

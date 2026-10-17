@@ -35,13 +35,15 @@ let activePlanJSON = #"""
     """#
 
 let settledPaymentJSON = #"""
-    {"debtId":"00000000-0000-4000-8000-000000000001","monthlyInstalment":210000,"paid":420000,"remaining":0,"progressPercent":100,\#
+    {"debtId":"00000000-0000-4000-8000-000000000001","monthlyInstalment":210000,\#
+    "paid":420000,"remaining":0,"progressPercent":100,\#
     "paidOff":true,"nextAccount":{"id":"00000000-0000-4000-8000-000000000002","name":"Pinjol B"},\#
     "scoreEstimate":{"before":66,"after":72,"consumerDebtBefore":50,"consumerDebtAfter":80}}
     """#
 
 let partPaymentJSON = #"""
-    {"debtId":"00000000-0000-4000-8000-000000000001","monthlyInstalment":210000,"paid":210000,"remaining":210000,"progressPercent":65,\#
+    {"debtId":"00000000-0000-4000-8000-000000000001","monthlyInstalment":210000,\#
+    "paid":210000,"remaining":210000,"progressPercent":65,\#
     "paidOff":false,"nextAccount":null,"scoreEstimate":null}
     """#
 

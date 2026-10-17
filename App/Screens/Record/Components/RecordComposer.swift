@@ -70,7 +70,8 @@ struct RecordComposer: View {
      */
     private var prompt: some View {
         HStack(alignment: .lastTextBaseline, spacing: 1) {
-            Text("record.composer.prompt")
+            /** Never squeezed when the keyboard shortens the screen. */
+            Text("record.composer.prompt").fixedSize(horizontal: false, vertical: true)
             HStack(spacing: 2) {
                 ForEach(0..<3, id: \.self) { _ in Circle().frame(width: 3, height: 3) }
             }

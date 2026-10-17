@@ -36,6 +36,8 @@ struct RetirementGoalModelTests {
     @Test("matches the board: target, result, pokok, status and asset classes")
     func board() throws {
         let outcome = try #require(persona().outcome)
+        #expect(outcome.age == 28)
+        #expect(outcome.years == 27)
         #expect(outcome.annualExpense == 207_602_537)
         #expect(outcome.projection.target == 5_190_063_437)
         #expect(outcome.projection.result == 3_686_687_857)
@@ -44,8 +46,9 @@ struct RetirementGoalModelTests {
         #expect(outcome.projection.shortfall == 1_503_375_580)
         #expect(outcome.projection.fit == .short)
         #expect(outcome.assetClasses == [.stocks, .crypto, .indexFund, .etf])
-        #expect(GoalShares(principal: outcome.projection.principal, growth: outcome.projection.growth)
-            .principalPercent == 18)
+        #expect(
+            GoalShares(principal: outcome.projection.principal, growth: outcome.projection.growth)
+                .principalPercent == 18)
     }
 
     @Test("recommends Rp2.950.000 a month or 12%, never more time")
