@@ -16,7 +16,7 @@ struct BudgetSettingsForm: View {
         KiraSectionTitle("budget.set.payday")
         BudgetPaydayRow(payday: model.payday, isPicking: picksPayday) { picksPayday = true }
             .kiraPaydayPicker(isPresented: $picksPayday, payday: $model.payday)
-        Text("budget.set.payday.note \(BudgetPeriodText.range(model.period))")
+        Text("budget.set.payday.note \(Text(BudgetPeriodText.range(model.period)))")
             .font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
             .padding(.horizontal, KiraSpacing.space1)
         BudgetAllocationSummary(
