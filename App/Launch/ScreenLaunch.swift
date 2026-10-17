@@ -44,6 +44,8 @@
             case .payoff: PayoffLaunch(screen: screen)
             case .payoffPlan: PayoffPlanLaunch(screen: screen)
             case .planModule: PlanModuleLaunch(screen: screen)
+            case .wallets: WalletsLaunch()
+            case .budget: BudgetLaunch()
             }
         }
     }
@@ -129,6 +131,9 @@
         /** REN: Tujuan Baru · Pendidikan Anak, Atur Jenjang, and Hasil Simulasi on the board's Raka. */
         case educationGoal, educationGoalResult, educationGoalStage
 
+        /** UNG: Dompet (UNG-01) and Budget (UNG-04) on the preview services. */
+        case wallets, budget
+
         /** The area whose launcher builds the screen. */
         enum Area {
             case onboarding, home, account, plans, record, chat, community, care, careTools, debtEmergency, marketplace
@@ -141,6 +146,7 @@
             case payoff
             case payoffPlan
             case planModule
+            case wallets, budget
         }
 
         var area: Area {
@@ -188,6 +194,8 @@
             case .moduleMoneyMarketFund, .moduleGovernmentBonds, .moduleDeposits, .moduleGold, .moduleStocks,
                 .moduleCrypto:
                 .planModule
+            case .wallets: .wallets
+            case .budget: .budget
             }
         }
     }
