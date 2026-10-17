@@ -97,6 +97,18 @@ package enum AppRoute: Hashable, Sendable {
     case product(id: String)
     /** KOM-08: Kirim Produk ke Etalase. */
     case submitProduct
+    /** REN-01: Rencana, the Rencana tab's root. */
+    case plan
+    /** REN-02: Tujuan Baru, the goal kinds. */
+    case newGoal
+    /** REN-05: one goal's detail. */
+    case goal(id: String)
+    /** REN-03 and the other goals' forms, opened from Detail Tujuan's "Ubah Tujuan" on that goal's values. */
+    case editGoal(id: String)
+    /** REN-06: Kenali Profil Risikomu, the risk-profile quiz. */
+    case riskQuiz
+    /** REN-09: Cek Legalitas Entitas. */
+    case legalityCheck
     /** REN-10: Portofolio Manual. */
     case portfolio
     /** REN-11: Tambah Aset. */

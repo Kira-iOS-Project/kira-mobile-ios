@@ -33,6 +33,7 @@
             case .debtEmergency: DebtEmergencyLaunch(screen: screen)
             case .careTools: CareToolsLaunch(screen: screen)
             case .plan: PortfolioLaunch(screen: screen)
+            case .planHome: PlanHomeLaunch(screen: screen)
             }
         }
     }
@@ -81,11 +82,13 @@
         case breathing, safetyPlan, safetyPlanEmpty, safetyPlanFailing, safetyPlanForm
         /** REN: Portofolio (masked, empty, failed), Tambah Aset (a save that fails), updating an asset. */
         case portfolio, portfolioMasked, portfolioEmpty, portfolioFailed, addAsset, addAssetFailing, editAsset
+        /** REN: Rencana (with no goal, failed), Detail Tujuan (gone, with a deposit that fails). */
+        case plan, planNoGoals, planFailed, goalDetail, goalGone, goalDepositFailing
 
         /** The area whose launcher builds the screen. */
         enum Area {
             case onboarding, home, account, plans, record, chat, community, care, careTools, debtEmergency, marketplace
-            case plan
+            case plan, planHome
         }
 
         var area: Area {
@@ -117,6 +120,7 @@
             case .portfolio, .portfolioMasked, .portfolioEmpty, .portfolioFailed, .addAsset, .addAssetFailing,
                 .editAsset:
                 .plan
+            case .plan, .planNoGoals, .planFailed, .goalDetail, .goalGone, .goalDepositFailing: .planHome
             }
         }
     }

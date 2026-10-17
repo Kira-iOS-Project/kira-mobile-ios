@@ -2,10 +2,11 @@
  The screen of each pushed route, by area: Score (score, indicator), Account (profile … deleteAccount,
  about … complaints), Plans (plans … scholarshipStatus), Kira Peduli (care, trustedMessage,
  negotiationScript, breathingExercise, safetyPlan), Mode Darurat Utang and its guides (debtEmergency,
- debtGuide), Etalase (marketplace, product, submitProduct), Portofolio Manual (portfolio, addAsset,
- editAsset). "Cek Ulang" (`healthCheck`) covers the shell
- instead (MainShell); Komunitas (`community`) is the dock's own section; Catat's and Riwayat's routes
- stay empty for their own integration, and an unavailable area never gets here.
+ debtGuide), Etalase (marketplace, product, submitProduct), Rencana's Detail Tujuan (goal),
+ Portofolio Manual (portfolio, addAsset, editAsset); the other REN screens stay empty until their
+ branches land. "Cek Ulang" (`healthCheck`) covers the shell instead (MainShell); Rencana (`plan`) and
+ Komunitas (`community`) are the dock's own sections; Catat's and Riwayat's routes stay empty for
+ their own integration, and an unavailable area never gets here.
  */
 import Features
 import SwiftUI
@@ -47,8 +48,11 @@ struct RouteSlot: View {
         case .portfolio: PortfolioScreen(service: services.portfolio, onOpen: onOpen)
         case .addAsset: AssetFormScreen(service: services.portfolio, onOpen: onOpen)
         case .editAsset(let id): AssetFormScreen(service: services.portfolio, assetId: id, onOpen: onOpen)
-        case .home, .record, .community, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history, .transaction,
-            .conversation, .importStatement, .unavailable:
+        case .goal(let id): GoalDetailScreen(id: id, service: services.goals, onOpen: onOpen)
+        case .newGoal, .editGoal: EmptySlot()
+        case .riskQuiz, .legalityCheck: EmptySlot()
+        case .home, .record, .plan, .community, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history,
+            .transaction, .conversation, .importStatement, .unavailable:
             EmptySlot()
         }
     }

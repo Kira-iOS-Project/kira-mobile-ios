@@ -23,6 +23,7 @@ struct AppServices {
     let debtEmergency: any DebtEmergencyService
     let marketplace: any MarketplaceService
     let portfolio: any PortfolioService
+    let goals: any GoalService
 }
 
 extension AppServices {
@@ -46,7 +47,7 @@ extension AppServices {
             careTools: LiveCareToolsService(api: api),
             debtEmergency: LiveDebtEmergencyService(api: api),
             marketplace: LiveMarketplaceService(api: api),
-            portfolio: LivePortfolioService(api: api))
+            portfolio: LivePortfolioService(api: api), goals: PendingGoalService())
     }
 
     /** The canvas's sample data: nothing leaves the device. */
@@ -57,7 +58,7 @@ extension AppServices {
             score: PreviewScoreService(), recovery: PreviewPinRecoveryService(),
             community: PreviewCommunityService(), care: PreviewCareService(), careTools: PreviewCareToolsService(),
             debtEmergency: PreviewDebtEmergencyService(), marketplace: PreviewMarketplaceService(),
-            portfolio: PreviewPortfolioService())
+            portfolio: PreviewPortfolioService(), goals: PreviewGoalService())
     }
 }
 
