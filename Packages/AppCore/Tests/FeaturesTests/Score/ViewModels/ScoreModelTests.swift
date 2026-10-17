@@ -16,6 +16,7 @@ private struct FakeScoreService: ScoreService {
         guard detail.indicator.key == key else { throw AppProblem(code: "VALIDATION_FAILED") }
         return detail
     }
+    func includesPlus() -> Bool { true }
 }
 
 private struct OtherError: Error {}
@@ -24,6 +25,7 @@ private struct OtherError: Error {}
 private struct BrokenScoreService: ScoreService {
     func score() throws -> ScoreReport? { throw OtherError() }
     func indicator(_: IndicatorKey) throws -> IndicatorDetail { throw OtherError() }
+    func includesPlus() -> Bool { true }
 }
 
 @MainActor

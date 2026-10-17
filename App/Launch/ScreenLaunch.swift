@@ -35,6 +35,9 @@
             case .houseGoal: HouseGoalLaunch(screen: screen)
             case .weddingGoal: WeddingGoalLaunch(screen: screen)
             case .goals: GoalsLaunch(screen: screen)
+            case .retirementGoal: RetirementGoalLaunch(screen: screen)
+            case .plan: PortfolioLaunch(screen: screen)
+            case .planHome: PlanHomeLaunch(screen: screen)
             }
         }
     }
@@ -83,6 +86,12 @@
         case breathing, safetyPlan, safetyPlanEmpty, safetyPlanFailing, safetyPlanForm
         /** REN: Tujuan Baru · Kendaraan, Barang Impian and Lainnya on their boards; Hitung opens each result. */
         case goalVehicle, goalGoods, goalOther
+        /** REN: Tujuan Baru · Dana Pensiun and its Hasil Simulasi, on the board's persona. */
+        case goalRetirement, goalRetirementResult
+        /** REN: Portofolio (masked, empty, failed), Tambah Aset (a save that fails), updating an asset. */
+        case portfolio, portfolioMasked, portfolioEmpty, portfolioFailed, addAsset, addAssetFailing, editAsset
+        /** REN: Rencana (with no goal, failed), Detail Tujuan (gone, with a deposit that fails). */
+        case plan, planNoGoals, planFailed, goalDetail, goalGone, goalDepositFailing
 
         /** REN: Tujuan Baru · DP Rumah, its result (the tests tap Jadikan Pos Budget), and a create that fails. */
         case houseGoal, houseGoalResult, houseGoalBudgetFailing
@@ -94,6 +103,8 @@
             case onboarding, home, account, plans, record, chat, community, care, careTools, debtEmergency, marketplace
             case houseGoal, weddingGoal
             case goals
+            case retirementGoal
+            case plan, planHome
         }
 
         var area: Area {
@@ -125,6 +136,11 @@
             case .houseGoal, .houseGoalResult, .houseGoalBudgetFailing: .houseGoal
             case .weddingGoal, .weddingGoalResult: .weddingGoal
             case .goalVehicle, .goalGoods, .goalOther: .goals
+            case .goalRetirement, .goalRetirementResult: .retirementGoal
+            case .portfolio, .portfolioMasked, .portfolioEmpty, .portfolioFailed, .addAsset, .addAssetFailing,
+                .editAsset:
+                .plan
+            case .plan, .planNoGoals, .planFailed, .goalDetail, .goalGone, .goalDepositFailing: .planHome
             }
         }
     }
