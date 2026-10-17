@@ -39,7 +39,8 @@ struct LiveWalletServiceTests {
     @Test("POST /wallets sends a balance for money held and the debt left for a debt account")
     func adds() async throws {
         let created =
-            #"{"id":"w2","name":"Dompet Digital 2","type":"ewallet","balance":0,"#
+            #"{"accountType":"wallet","id":"6f1c2b9e-0000-4000-8000-000000000002","name":"Dompet Digital 2","#
+            + #""type":"e_wallet","balance":0,"#
             + #""createdAt":"2026-10-17T05:00:00.000Z"}"#
         let (api, transport) = KiraAPI.routed(["POST /api/wallets": ok(created, status: 201)])
         let service = LiveWalletService(api: api)
