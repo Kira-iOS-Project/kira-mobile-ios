@@ -42,7 +42,8 @@ nonisolated final class HouseWeddingGoalAuditTests: XCTestCase {
         try auditScreen(
             "weddingGoal",
             prepare: { app in
-                Self.tap(app.buttons["Venue / Gedung"])
+                /** The row's label is its title, then its amount: match the title. */
+                Self.tap(app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Venue / Gedung")).firstMatch)
                 XCTAssertTrue(app.textFields["Harga"].waitForExistence(timeout: 10))
             },
             accepting: Self.behindCover)
