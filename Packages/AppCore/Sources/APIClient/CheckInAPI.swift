@@ -1,5 +1,3 @@
-import Foundation
-
 /**
  Kira Peduli's crisis signals and check-ins (tag Care; PED-02, PED-05, PED-06). A signal carries
  its level and source only, never the message it was found in.
@@ -37,12 +35,9 @@ extension KiraAPI {
 package struct CheckInDTO: Equatable, Sendable {
     /** The check-in's id. */
     package let id: String
-    /** From when the greeting may show. */
-    package let dueAt: Date
 
     init(_ checkIn: Components.Schemas.CheckIn) {
         id = checkIn.id
-        dueAt = checkIn.dueAt
     }
 }
 

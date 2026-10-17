@@ -18,9 +18,7 @@ package struct LiveCareToolsService: CareToolsService {
     /** `GET /debts`. */
     package func debts() async throws -> [CareDebt] {
         try await api.listDebts().map {
-            CareDebt(
-                id: $0.id, name: $0.name, kind: $0.kind, remaining: $0.remaining,
-                monthlyInstalment: $0.monthlyInstalment)
+            CareDebt(id: $0.id, name: $0.name, monthlyInstalment: $0.monthlyInstalment)
         }
     }
 

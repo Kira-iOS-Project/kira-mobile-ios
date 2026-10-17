@@ -40,11 +40,24 @@ package final class DebtFormModel {
         dueDay = entry?.dueDay.map(String.init) ?? ""
     }
 
-    /** The debt as filled in, or nil (with `showsMissing` set) when the name or an amount is missing. */
+    /** A yearly interest typed that the plan cannot use (over 300%, or not a number). */
+    package var isInterestInvalid: Bool {
+        !interest.isEmpty && PercentInput.value(of: interest) == nil
+    }
+
+    /** A due day typed outside 1 to 31. */
+    package var isDueDayInvalid: Bool {
+        !dueDay.isEmpty && !(1...31).contains(Int(dueDay) ?? 0)
+    }
+
+    /**
+     The debt as filled in, or nil when the name or an amount is missing (with `showsMissing` set)
+     or the interest or the due day is out of range (each shows its own error).
+     */
     package func entry() -> DebtEntry? {
         let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty, let left = AmountInput.value(of: remaining),
-            let monthly = AmountInput.value(of: instalment)
+            let monthly = AmountInput.value(of: instalment), !isInterestInvalid, !isDueDayInvalid
         else {
             showsMissing = true
             return nil
@@ -52,7 +65,7 @@ package final class DebtFormModel {
         return DebtEntry(
             id: editing?.id ?? UUID(), kind: kind, name: trimmed, remaining: left, monthlyInstalment: monthly,
             remainingTenorMonths: AmountInput.value(of: tenor), annualInterestRate: PercentInput.value(of: interest),
-            dueDay: Int(dueDay).flatMap { (1...31).contains($0) ? $0 : nil })
+            dueDay: Int(dueDay))
     }
 
     private func regroup(_ field: ReferenceWritableKeyPath<DebtFormModel, String>, _ oldValue: String) {

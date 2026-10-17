@@ -38,6 +38,24 @@ nonisolated extension ScoreIndicator {
 }
 
 nonisolated extension IndicatorDetail {
+    /**
+     Utang Konsumtif with four platforms, all paid on time (KIR-126): 25 points, the rung of "4+
+     Platform atau Ada Keterlambatan"; the next step asks only to pay off down to three.
+     */
+    static let consumerDebtManyOnTime: IndicatorDetail = {
+        let indicator = ScoreIndicator(
+            key: .consumerDebt, group: .debt, points: 25, band: .vulnerable,
+            measure: .consumerDebt(platforms: 4, anyLate: false, anyOverdue: false))
+        let ladder = rungs(.consumerDebt).map { rung in
+            LadderRung(
+                points: rung.points, lower: nil, upper: nil, amountLower: nil, amountUpper: nil,
+                isCurrent: rung.points == indicator.points)
+        }
+        return IndicatorDetail(
+            indicator: indicator, ladder: ladder,
+            nextRung: NextRung(points: 50, amountNeeded: nil, scoreFrom: 66, scoreTo: 69), milestones: [])
+    }()
+
     /** The board's detail for `key`. */
     static func sample(_ key: IndicatorKey) -> IndicatorDetail {
         let indicator = ScoreIndicator.sample(key)

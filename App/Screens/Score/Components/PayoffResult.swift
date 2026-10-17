@@ -56,7 +56,8 @@ struct PayoffOrderList: View {
                 ForEach(Array(simulation.productive.enumerated()), id: \.element.id) { index, debt in
                     PayoffOrderRow(
                         rank: simulation.accounts.count + index + 1, category: debt.kind.category, name: debt.name,
-                        remaining: debt.remaining, when: nil, tag: "payoff.tag.productive", isFirst: false)
+                        remaining: debt.remaining, when: PayoffCopy.when(debt), tag: "payoff.tag.productive",
+                        isFirst: false)
                 }
             }
         }
@@ -80,6 +81,7 @@ private struct PayoffOrderRow: View {
                 .overlay(alignment: .topLeading) {
                     Text(rank, format: .number)
                         .font(KiraFont.display(11, .heavy, relativeTo: .caption2))
+                        .kiraSmallType()
                         .foregroundStyle(isFirst ? .onPandan : .ink)
                         .frame(width: 20, height: 20)
                         .background(isFirst ? Color.pandan : Color.surfaceMuted, in: Circle())

@@ -173,4 +173,8 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case careCheckInNotFound = "CARE_CHECK_IN_NOT_FOUND"
     /** No Rencana Keselamatanku has been saved yet. */
     case careSafetyPlanNotFound = "CARE_SAFETY_PLAN_NOT_FOUND"
+    /** This payment was already recorded (the same payment sent twice). */
+    case payoffPaymentAlreadyRecorded = "PAYOFF_PAYMENT_ALREADY_RECORDED"
+    /** The portfolio asset is gone. */
+    case assetNotFound = "ASSET_NOT_FOUND"
 }

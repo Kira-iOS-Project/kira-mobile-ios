@@ -28,7 +28,6 @@ struct CheckInAPITests {
         let (api, transport) = KiraAPI.canned(status: 201, json: checkInJSON)
         let checkIn = try await api.scheduleCheckIn(afterHours: 48)
         #expect(checkIn.id == "6f1c2a8e-4b1d-4d7a-9c3e-2f5b8a1d0e74")
-        #expect(checkIn.dueAt == Date(timeIntervalSince1970: 1_792_152_000))
         let request = try #require(await transport.request)
         #expect(request.path.hasSuffix("care/check-ins"))
         #expect(try request.decoded(ScheduleBody.self).afterHours == 48)

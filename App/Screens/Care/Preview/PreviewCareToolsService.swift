@@ -19,16 +19,10 @@ actor PreviewCareToolsService: CareToolsService {
 
     func debts() -> [CareDebt] {
         [
-            CareDebt(
-                id: "debt-a", name: "Pinjol A", kind: .onlineLoan, remaining: 3_690_000,
-                monthlyInstalment: 410_000),
-            CareDebt(
-                id: "debt-b", name: "Paylater B", kind: .paylater, remaining: 1_380_000,
-                monthlyInstalment: 230_000),
-            CareDebt(
-                id: "debt-c", name: "Kartu Kredit C", kind: .creditCard, remaining: 6_240_000,
-                monthlyInstalment: 520_000),
-            CareDebt(id: "debt-d", name: "Pinjol D", kind: .onlineLoan, remaining: 950_000, monthlyInstalment: 190_000),
+            CareDebt(id: "debt-a", name: "Pinjol A", monthlyInstalment: 410_000),
+            CareDebt(id: "debt-b", name: "Paylater B", monthlyInstalment: 230_000),
+            CareDebt(id: "debt-c", name: "Kartu Kredit C", monthlyInstalment: 520_000),
+            CareDebt(id: "debt-d", name: "Pinjol D", monthlyInstalment: 190_000),
         ]
     }
 

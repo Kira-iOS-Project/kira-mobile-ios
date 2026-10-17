@@ -74,7 +74,7 @@ package enum ChatTimeline {
         let chat = messages.map { message in
             (message.createdAt, row(of: message, source: message.replyToId.flatMap { byId[$0] }, undoable: undoable))
         }
-        var lines = care[...]
+        var lines = ArraySlice(care)
         var result: [(Date, ChatRow)] = []
         for item in chat {
             while let line = lines.first, line.createdAt < item.0 {

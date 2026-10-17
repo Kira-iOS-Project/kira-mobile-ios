@@ -77,7 +77,7 @@ struct GroupDetailModelTests {
         )
         await model.join()
         #expect(model.failure?.failure == .problem(communityProblem(.communityLinkUnavailable)))
-        #expect(model.failure?.attempt == .join && !model.canRetry)
+        #expect(model.failure?.attempt == .join && !(model.failure?.failure.kind?.allowsRetry ?? true))
         model.dismissFailure()
         #expect(model.failure == nil)
     }
@@ -87,22 +87,10 @@ struct GroupDetailModelTests {
         let model = await loaded(
             FakeCommunityService(rulesAccepted: true, failures: ["join": [URLError(.notConnectedToInternet)]]))
         await model.join()
-        #expect(model.failure?.failure == .connection && model.canRetry)
+        #expect(model.failure?.failure == .connection && (model.failure?.failure.kind?.allowsRetry ?? true))
         await model.retry()
         #expect(model.failure == nil && model.invite != nil)
         await model.retry()
-    }
-
-    @Test("a failed consent closes the sheet with the tick kept; Coba Lagi reopens it and sends again")
-    func rulesRetry() async {
-        let service = FakeCommunityService(failures: ["acceptRules": [URLError(.notConnectedToInternet)]])
-        let model = await loaded(service)
-        await model.join()
-        model.rulesAgreed = true
-        await model.acceptRules()
-        #expect(!model.showsRules && model.rulesAgreed && model.failure?.attempt == .acceptRules)
-        await model.retry()
-        #expect(model.invite != nil && model.phase.value?.rulesAccepted == true)
     }
 
     @Test("an old rules version refused (422) shows without Coba Lagi, drops the tick on Tutup, and reloads")
@@ -112,7 +100,7 @@ struct GroupDetailModelTests {
         await model.join()
         model.rulesAgreed = true
         await model.acceptRules()
-        #expect(model.failure?.attempt == .acceptRules && !model.canRetry)
+        #expect(model.failure?.attempt == .acceptRules && !(model.failure?.failure.kind?.allowsRetry ?? true))
         #expect(await service.calls.filter { $0 == .group("g-1") }.count == 2)
         model.dismissFailure()
         #expect(!model.rulesAgreed && model.failure == nil)

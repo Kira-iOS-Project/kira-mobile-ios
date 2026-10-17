@@ -54,7 +54,7 @@ struct CareOutboxTests {
         checkIns.cancelResult = .failure(offlineError())
         try await offerAgain(record).decline()
         #expect(checkIns.cancelled == ["c-1"] && record.failure == nil && record.care.checkInFailure == nil)
-        checkIns.dueResult = .success(CheckIn(id: "c-1", dueAt: Fixtures.noon))
+        checkIns.dueResult = .success(CheckIn(id: "c-1"))
         await record.load()
         #expect(checkIns.cancelled == ["c-1", "c-1"] && checkIns.seen.isEmpty)
         #expect(!record.care.entries.contains { $0.id == "check-in-c-1" })
@@ -69,7 +69,7 @@ struct CareOutboxTests {
     func greetingClears() async throws {
         let checkIns = FakeCheckInService()
         let record = try await scheduled(checkIns, delay: .dayAfterTomorrow)
-        checkIns.dueResult = .success(CheckIn(id: "c-1", dueAt: Fixtures.noon))
+        checkIns.dueResult = .success(CheckIn(id: "c-1"))
         await record.load()
         #expect(record.care.entries.contains { $0.id == "check-in-c-1" })
         let offer = try await offerAgain(record)
