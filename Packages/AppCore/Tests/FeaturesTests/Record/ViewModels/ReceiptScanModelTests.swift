@@ -81,7 +81,7 @@ struct ReceiptScanModelTests {
         #expect(scan.image == nil)
     }
 
-    @Test("an unreadable or unbalanced receipt asks to retake or type; a failure says why")
+    @Test("an unreadable receipt asks to retake or type; a failure says why")
     func unreadable() async {
         let scan = model(FakeRecordService(), reader: FakeReceiptReader(result: .success(["Terima kasih"])))
         scan.picked(Data([1]), fileName: nil)
