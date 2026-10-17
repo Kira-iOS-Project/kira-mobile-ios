@@ -16618,6 +16618,816 @@
         }
       }
     },
+    "plan.education.child" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tentang Anakmu"
+          }
+        }
+      }
+    },
+    "plan.education.childAge" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usia Saat Ini"
+          }
+        }
+      }
+    },
+    "plan.education.childName" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama Anak"
+          }
+        }
+      }
+    },
+    "plan.education.costs" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biaya per jenjang"
+          }
+        }
+      }
+    },
+    "plan.education.costs.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Angka awal dari perkiraan rata-rata biaya sekolah. Ketuk jenjang untuk mengubah."
+          }
+        }
+      }
+    },
+    "plan.education.entryFee" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perkiraan Uang Pangkal"
+          }
+        }
+      }
+    },
+    "plan.education.fee" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perkiraan Uang Sekolah"
+          }
+        }
+      }
+    },
+    "plan.education.feePeriod" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uang Sekolah Dibayar per"
+          }
+        }
+      }
+    },
+    "plan.education.feePeriod.month" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bulan"
+          }
+        }
+      }
+    },
+    "plan.education.feePeriod.semester" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semester"
+          }
+        }
+      }
+    },
+    "plan.education.feePeriod.year" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tahun"
+          }
+        }
+      }
+    },
+    "plan.education.first" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jenjang Awal"
+          }
+        }
+      }
+    },
+    "plan.education.formula.cost" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biaya tiap jenjang"
+          }
+        }
+      }
+    },
+    "plan.education.formula.cost.line %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biaya hari ini × (1 + %@%%)^tahun"
+          }
+        }
+      }
+    },
+    "plan.education.formula.cost.until" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "sampai anak masuk jenjang itu"
+          }
+        }
+      }
+    },
+    "plan.education.formula.fv %@ %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FV(%1$@%%, %2$lld tahun, %3$@,"
+          }
+        }
+      }
+    },
+    "plan.education.formula.fv.present %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@)"
+          }
+        }
+      }
+    },
+    "plan.education.income" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Penghasilan Orang Tua Saat Ini"
+          }
+        }
+      }
+    },
+    "plan.education.inflation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inflasi Biaya Pendidikan"
+          }
+        }
+      }
+    },
+    "plan.education.inflation.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biaya pendidikan biasanya naik lebih cepat dari inflasi umum"
+          }
+        }
+      }
+    },
+    "plan.education.knows" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah Tahu Mau Investasi di Mana?"
+          }
+        }
+      }
+    },
+    "plan.education.knows.no" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum"
+          }
+        }
+      }
+    },
+    "plan.education.knows.yes" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah"
+          }
+        }
+      }
+    },
+    "plan.education.last" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jenjang Akhir"
+          }
+        }
+      }
+    },
+    "plan.education.lead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biaya sekolah sampai kuliah."
+          }
+        }
+      }
+    },
+    "plan.education.money" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kondisi Keuanganmu"
+          }
+        }
+      }
+    },
+    "plan.education.other" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perkiraan Biaya Lain-lain"
+          }
+        }
+      }
+    },
+    "plan.education.other.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seragam, buku, dan kegiatan sekolah"
+          }
+        }
+      }
+    },
+    "plan.education.other.suffix" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "% dari Total"
+          }
+        }
+      }
+    },
+    "plan.education.per.month" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "per bulan"
+          }
+        }
+      }
+    },
+    "plan.education.per.semester" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "per semester"
+          }
+        }
+      }
+    },
+    "plan.education.per.year" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "per tahun"
+          }
+        }
+      }
+    },
+    "plan.education.plan" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rencana Pendidikan"
+          }
+        }
+      }
+    },
+    "plan.education.present" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dana Pendidikan yang Sudah Terkumpul"
+          }
+        }
+      }
+    },
+    "plan.education.region" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daerah Sekolah"
+          }
+        }
+      }
+    },
+    "plan.education.region.abroad" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Luar Negeri"
+          }
+        }
+      }
+    },
+    "plan.education.region.jakarta" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jakarta"
+          }
+        }
+      }
+    },
+    "plan.education.region.java" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pulau Jawa"
+          }
+        }
+      }
+    },
+    "plan.education.region.outsideJava" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Luar Pulau Jawa"
+          }
+        }
+      }
+    },
+    "plan.education.result.caption %@ %@ %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ sampai %2$@, mulai %3$lld tahun lagi"
+          }
+        }
+      }
+    },
+    "plan.education.result.costs" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rincian Biaya"
+          }
+        }
+      }
+    },
+    "plan.education.result.entry %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uang pangkal %@"
+          }
+        }
+      }
+    },
+    "plan.education.result.footnote" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Investasi dihitung per tahun (12 × setoran bulanan) di awal tahun. Untuk pendidikan, imbal hasilnya berbunga majemuk tahunan."
+          }
+        }
+      }
+    },
+    "plan.education.result.horizon %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld tahun · sampai lulus %2$@"
+          }
+        }
+      }
+    },
+    "plan.education.result.monthly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biaya Sekolah per Bulan Nanti"
+          }
+        }
+      }
+    },
+    "plan.education.result.monthly.body %@ %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sekitar %1$@ dari penghasilan orang tua saat ini, untuk %2$@ (uang sekolah ditambah %3$@%%)."
+          }
+        }
+      }
+    },
+    "plan.education.result.other %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biaya lain %@"
+          }
+        }
+      }
+    },
+    "plan.education.result.overline %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total biaya pendidikan %@"
+          }
+        }
+      }
+    },
+    "plan.education.result.parts" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rincian Biaya per Jenjang"
+          }
+        }
+      }
+    },
+    "plan.education.result.parts.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uang pangkal, uang sekolah, dan biaya lain"
+          }
+        }
+      }
+    },
+    "plan.education.result.perStage" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biaya per Jenjang"
+          }
+        }
+      }
+    },
+    "plan.education.result.perStage.footer %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah termasuk inflasi biaya pendidikan %@%% per tahun sampai anak masuk tiap jenjang."
+          }
+        }
+      }
+    },
+    "plan.education.result.stage %lld %lld %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masuk %1$lld tahun lagi · %2$lld tahun · %3$@ · %4$@"
+          }
+        }
+      }
+    },
+    "plan.education.result.target.all" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semua"
+          }
+        }
+      }
+    },
+    "plan.education.result.target.entry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uang Pangkal"
+          }
+        }
+      }
+    },
+    "plan.education.result.target.tuition" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "UP + SPP"
+          }
+        }
+      }
+    },
+    "plan.education.result.targetKind" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih Tipe Target"
+          }
+        }
+      }
+    },
+    "plan.education.result.tuition %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uang sekolah %@"
+          }
+        }
+      }
+    },
+    "plan.education.return" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Target Return Investasi"
+          }
+        }
+      }
+    },
+    "plan.education.return.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalau belum tahu, Kira menghitung dengan return 0%."
+          }
+        }
+      }
+    },
+    "plan.education.school" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jenis Sekolah"
+          }
+        }
+      }
+    },
+    "plan.education.school.international" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Internasional"
+          }
+        }
+      }
+    },
+    "plan.education.school.nationalPlus" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nasional Plus"
+          }
+        }
+      }
+    },
+    "plan.education.school.private" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swasta"
+          }
+        }
+      }
+    },
+    "plan.education.school.public" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Negeri"
+          }
+        }
+      }
+    },
+    "plan.education.stage.bachelor" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S1 / D4"
+          }
+        }
+      }
+    },
+    "plan.education.stage.bachelor.short" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S1"
+          }
+        }
+      }
+    },
+    "plan.education.stage.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "plan.education.stage.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup tanpa menyimpan"
+          }
+        }
+      }
+    },
+    "plan.education.stage.juniorHigh" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SMP / MTs"
+          }
+        }
+      }
+    },
+    "plan.education.stage.juniorHigh.short" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SMP"
+          }
+        }
+      }
+    },
+    "plan.education.stage.notice %@ %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Angka awal dari perkiraan rata-rata %1$@ %2$@ di %3$@. Ubah sesuai sekolah incaranmu."
+          }
+        }
+      }
+    },
+    "plan.education.stage.primary" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SD / MI"
+          }
+        }
+      }
+    },
+    "plan.education.stage.primary.short" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SD"
+          }
+        }
+      }
+    },
+    "plan.education.stage.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Jenjang"
+          }
+        }
+      }
+    },
+    "plan.education.stage.seniorHigh" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SMA / SMK / MA"
+          }
+        }
+      }
+    },
+    "plan.education.stage.seniorHigh.short" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SMA"
+          }
+        }
+      }
+    },
+    "plan.education.stage.summary %@ %@ %@ %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@ · pangkal %3$@ · %4$@ %5$@"
+          }
+        }
+      }
+    },
+    "plan.education.stage.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atur Jenjang"
+          }
+        }
+      }
+    },
+    "plan.education.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pendidikan Anak"
+          }
+        }
+      }
+    },
+    "plan.education.years" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tahun"
+          }
+        }
+      }
+    },
     "plan.empty.body" : {
       "localizations" : {
         "id" : {

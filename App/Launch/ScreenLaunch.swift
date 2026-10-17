@@ -31,6 +31,7 @@
             case .marketplace: MarketplaceLaunch(screen: screen)
             case .care: CareLaunch(screen: screen)
             case .debtEmergency: DebtEmergencyLaunch(screen: screen)
+            case .educationGoal: EducationGoalLaunch(screen: screen)
             case .careTools: CareToolsLaunch(screen: screen)
             case .houseGoal: HouseGoalLaunch(screen: screen)
             case .weddingGoal: WeddingGoalLaunch(screen: screen)
@@ -113,10 +114,13 @@
         /** REN: Tujuan Baru · Menikah, its price sheet (the tests tap Venue / Gedung), and its result. */
         case weddingGoal, weddingGoalResult
 
+        /** REN: Tujuan Baru · Pendidikan Anak, Atur Jenjang, and Hasil Simulasi on the board's Raka. */
+        case educationGoal, educationGoalResult, educationGoalStage
+
         /** The area whose launcher builds the screen. */
         enum Area {
             case onboarding, home, account, plans, record, chat, community, care, careTools, debtEmergency, marketplace
-            case houseGoal, weddingGoal
+            case houseGoal, weddingGoal, educationGoal
             case goals
             case retirementGoal
             case plan, planHome
@@ -149,6 +153,7 @@
                 .careTools
             case .debtEmergency, .harshCollection, .illegalLender, .unresolvedComplaint, .payoffOffer: .debtEmergency
             case .payoff, .payoffHow, .payoffAvalanche: .payoff
+            case .educationGoal, .educationGoalResult, .educationGoalStage: .educationGoal
             case .marketplace, .marketplaceEmpty, .marketplaceFailed, .product, .productConsultation, .productEbook,
                 .productEvent, .productGone, .submitProduct:
                 .marketplace
