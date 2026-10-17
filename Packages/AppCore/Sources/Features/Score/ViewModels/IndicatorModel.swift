@@ -10,6 +10,11 @@ package final class IndicatorModel {
     package let key: IndicatorKey
     /** The detail, loading until the API answers. */
     package private(set) var phase: ScreenPhase<IndicatorDetail> = .loading
+    /**
+     Whether the plan is Kira Plus, which has Portofolio Manual; read only for Utang terhadap Aset,
+     and true when it cannot be read, since Portofolio then says itself that the plan lacks it.
+     */
+    package private(set) var includesPortfolio = true
 
     private let service: any ScoreService
 
@@ -21,10 +26,19 @@ package final class IndicatorModel {
 
     /** Loads the indicator. */
     package func load() async {
+        if key == .debtToAsset { includesPortfolio = await service.includesPlus() }
         do {
             phase = .loaded(try await service.indicator(key))
         } catch {
             phase = .failed(AppProblem(error))
         }
+    }
+
+    /**
+     The next-rung card's primary button: the key's route, except that Utang terhadap Aset opens
+     Paket Kira on a plan without Portofolio Manual, as Riwayat's import does.
+     */
+    package var nextRungRoute: AppRoute {
+        key == .debtToAsset && !includesPortfolio ? .plans(yearly: false) : key.nextRungRoute
     }
 }

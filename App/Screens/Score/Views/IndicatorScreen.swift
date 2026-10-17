@@ -23,11 +23,14 @@ struct IndicatorScreen: View {
         Group {
             switch model.phase {
             case .loading:
-                IndicatorContent(detail: .sample(model.key), onOpen: { _ in }, onBack: {})
-                    .redacted(reason: .placeholder)
-                    .disabled(true)
+                IndicatorContent(
+                    detail: .sample(model.key), nextRungRoute: model.nextRungRoute,
+                    onOpen: { _ in }, onBack: {}
+                )
+                .redacted(reason: .placeholder)
+                .disabled(true)
             case .loaded(let detail):
-                IndicatorContent(detail: detail, onOpen: onOpen) { dismiss() }
+                IndicatorContent(detail: detail, nextRungRoute: model.nextRungRoute, onOpen: onOpen) { dismiss() }
             case .empty:
                 LoadFailedView(title: "indicator.failed", problem: AppProblem()) { reload() }
             case .failed(let problem):
@@ -46,6 +49,8 @@ struct IndicatorScreen: View {
 
 private struct IndicatorContent: View {
     let detail: IndicatorDetail
+    /** Where the next-rung card's primary button goes. */
+    let nextRungRoute: AppRoute
     let onOpen: (AppRoute) -> Void
     let onBack: () -> Void
     @Environment(\.dynamicTypeSize) private var typeSize
@@ -90,7 +95,7 @@ private struct IndicatorContent: View {
     private func nextRungCard(_ next: NextRung) -> some View {
         KiraNextStepCard(
             "indicator.next.title \(next.points)", message: detail.nextRungMessage(next),
-            primaryLabel: detail.nextRungLabel, onPrimary: { onOpen(indicator.key.nextRungRoute) },
+            primaryLabel: detail.nextRungLabel, onPrimary: { onOpen(nextRungRoute) },
             onSecondary: onBack
         )
         .eyebrow("indicator.next.eyebrow")

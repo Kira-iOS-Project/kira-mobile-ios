@@ -25,7 +25,7 @@ struct ScoreRoutesTests {
         arguments: [
             (IndicatorKey.emergencyFund, AppRoute.unavailable(.plan)), (.savingsRatio, .unavailable(.plan)),
             (.instalmentRatio, .unavailable(.debtPlan)), (.consumerDebt, .unavailable(.debtPlan)),
-            (.debtToAsset, .unavailable(.debtPlan)), (.protection, .healthCheck),
+            (.debtToAsset, .portfolio), (.protection, .healthCheck),
         ])
     func nextRung(key: IndicatorKey, route: AppRoute) {
         #expect(key.nextRungRoute == route)
