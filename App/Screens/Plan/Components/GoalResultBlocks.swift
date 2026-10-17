@@ -3,6 +3,7 @@
  gets), the status card, Rinciannya, and Dari Mana Hasilnya? (pokok against imbal hasil).
  */
 import Domain
+import Features
 import SwiftUI
 
 /** The hero: the overline, the target, the kind's line, and "Hasil investasi · N% dari target". */
