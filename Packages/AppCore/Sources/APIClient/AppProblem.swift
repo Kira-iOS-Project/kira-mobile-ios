@@ -115,6 +115,16 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case accountExportRateLimited = "ACCOUNT_EXPORT_RATE_LIMITED"
     /** There is no Kira Score before the health check. */
     case scoreNotAvailable = "SCORE_NOT_AVAILABLE"
+    /** The extra payment is more than the money left this payday period. */
+    case payoffExtraTooHigh = "PAYOFF_EXTRA_TOO_HIGH"
+    /** There is no consumer debt to make a plan from. */
+    case payoffNothingToPlan = "PAYOFF_NOTHING_TO_PLAN"
+    /** There is no active payoff plan yet. */
+    case payoffPlanNotFound = "PAYOFF_PLAN_NOT_FOUND"
+    /** The debt account is paid off, gone, or not in the plan. */
+    case payoffDebtNotFound = "PAYOFF_DEBT_NOT_FOUND"
+    /** The payment is more than what is left on the account. */
+    case payoffPaymentTooHigh = "PAYOFF_PAYMENT_TOO_HIGH"
     /** Kira AI is off in the consents, so chat reading is off. */
     case chatAIDisabled = "CHAT_AI_DISABLED"
     /** The chat message is gone. */
@@ -163,4 +173,8 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case careCheckInNotFound = "CARE_CHECK_IN_NOT_FOUND"
     /** No Rencana Keselamatanku has been saved yet. */
     case careSafetyPlanNotFound = "CARE_SAFETY_PLAN_NOT_FOUND"
+    /** This payment was already recorded (the same payment sent twice). */
+    case payoffPaymentAlreadyRecorded = "PAYOFF_PAYMENT_ALREADY_RECORDED"
+    /** The portfolio asset is gone. */
+    case assetNotFound = "ASSET_NOT_FOUND"
 }
