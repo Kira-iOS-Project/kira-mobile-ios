@@ -23,7 +23,9 @@ struct BillFormModelGuardTests {
         let form = model(editor: editor)
         await form.delete()
         await form.save()
-        #expect(!form.deleted && !form.saved && (await editor.created).isEmpty && (await editor.deleted).isEmpty)
+        let created = await editor.created
+        let deleted = await editor.deleted
+        #expect(!form.deleted && !form.saved && created.isEmpty && deleted.isEmpty)
     }
 
     @Test("lists Dompet's debt accounts only; a linked account that is gone is unlinked")

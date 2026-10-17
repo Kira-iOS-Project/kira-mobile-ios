@@ -72,8 +72,9 @@ struct BillFormModelTests {
         form.repeats = .yearly
         await form.save()
         #expect(form.saved && form.failure == nil && !form.isWorking)
+        let created = await editor.created
         #expect(
-            await editor.created == [
+            created == [
                 BillDraft(name: "Internet Rumah", amount: 350_000, category: .other, repeats: .yearly, dueOn: day)
             ])
         #expect(BillCategory.other.rawValue == "other_expense")
@@ -87,7 +88,8 @@ struct BillFormModelTests {
         await form.save()
         #expect(!form.saved && form.failure?.isConnectionLoss == true && form.name == "  Internet Rumah ")
         await form.retry()
-        #expect(form.saved && form.failure == nil && (await editor.created.count) == 1)
+        let created = await editor.created
+        #expect(form.saved && form.failure == nil && created.count == 1)
     }
 
     @Test("Ubah Tagihan opens with the bill, Simpan Perubahan updates it by id")
@@ -100,7 +102,8 @@ struct BillFormModelTests {
         #expect(form.amount == "350000" && form.isInstalment && form.debtId == "debt-1" && form.canSave)
         form.amount = "375.000"
         await form.save()
-        #expect(form.saved && (await editor.updated["b-1"]?.amount) == 375_000)
+        let updated = await editor.updated
+        #expect(form.saved && updated["b-1"]?.amount == 375_000)
     }
 
     @Test("a gone bill on save is BILL_NOT_FOUND; a gone debt account is BILL_DEBT_NOT_FOUND")
@@ -124,6 +127,7 @@ struct BillFormModelTests {
         await form.delete()
         #expect(!form.deleted && form.failure != nil)
         await form.retry()
-        #expect(form.deleted && form.failure == nil && (await editor.deleted) == ["b-1"])
+        let deleted = await editor.deleted
+        #expect(form.deleted && form.failure == nil && deleted == ["b-1"])
     }
 }
