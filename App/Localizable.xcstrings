@@ -4926,7 +4926,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dialog Gagal Menyimpan Budget"
+            "value" : "Budget Gagal Disimpan"
           }
         }
       }

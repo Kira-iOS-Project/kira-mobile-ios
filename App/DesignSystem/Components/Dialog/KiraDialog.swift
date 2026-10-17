@@ -66,6 +66,7 @@ struct KiraDialog: View {
                 .font(.subheadline).kiraLineHeight(21, size: 15)
                 .foregroundStyle(.inkMuted)
                 .frame(maxWidth: 270)
+                .fixedSize(horizontal: false, vertical: true)
             VStack(spacing: KiraSpacing.space2) {
                 primary.followed(by: onDismiss).block()
                 secondary?.followed(by: onDismiss).block()

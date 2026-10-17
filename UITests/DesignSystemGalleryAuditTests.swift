@@ -106,10 +106,9 @@ nonisolated final class DesignSystemGalleryAuditTests: XCTestCase {
             ].exists)
         XCTAssertTrue(app.buttons["Tutup"].exists)
         try audit(app) { issue in issue.auditType == .elementDetection && issue.element == nil }
-        let retry = app.buttons.matching(
-            NSPredicate(format: "label == %@ AND isHittable == true", "Coba Lagi")
-        ).firstMatch
+        let retry = app.buttons["Coba Lagi"]
         XCTAssertTrue(retry.waitForExistence(timeout: 5))
+        XCTAssertTrue(retry.isHittable)
         retry.tap()
 
         XCTAssertTrue(title.waitForNonExistence(timeout: 5))
@@ -118,10 +117,9 @@ nonisolated final class DesignSystemGalleryAuditTests: XCTestCase {
 
         open.tap()
         XCTAssertTrue(title.waitForExistence(timeout: 5))
-        let close = app.buttons.matching(
-            NSPredicate(format: "label == %@ AND isHittable == true", "Tutup")
-        ).firstMatch
+        let close = app.buttons["Tutup"]
         XCTAssertTrue(close.waitForExistence(timeout: 5))
+        XCTAssertTrue(close.isHittable)
         close.tap()
         XCTAssertTrue(title.waitForNonExistence(timeout: 5))
         XCTAssertEqual(amount.value as? String, "350000")
