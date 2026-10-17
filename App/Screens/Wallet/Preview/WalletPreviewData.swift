@@ -14,4 +14,23 @@ nonisolated enum WalletPreviewData {
         ]
     }
 
+    static var debt: DebtDetail {
+        let account = WalletPreviewData.accounts[3]
+        let firstDue = Date.now.addingTimeInterval(7 * 86_400)
+        let schedule = (0..<6).map { index in
+            DebtInstallment(
+                id: "installment-\(index)", dueAt: firstDue.addingTimeInterval(Double(index) * 30 * 86_400),
+                amount: 105_000, status: index == 0 ? .dueSoon : .upcoming)
+        }
+        let payments = (0..<4).map { index in
+            DebtPayment(
+                id: "payment-\(index)", paidAt: firstDue.addingTimeInterval(Double(index - 4) * 30 * 86_400),
+                amount: 45_000, timing: index == 2 ? .late : .onTime)
+        }
+        return DebtDetail(
+            account: account, originalAmount: 600_000, paidInstallments: 4, totalInstallments: 10,
+            schedule: schedule, payments: payments,
+            scoreEstimate: DebtScoreEstimate(current: 66, afterPayoff: 71))
+    }
+
 }

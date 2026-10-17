@@ -49,6 +49,13 @@ package final class WalletsModel {
         phase = .loaded(WalletOverview(accounts: accounts))
     }
 
+    /** Applies the server's debt balance after a payment is recorded. */
+    package func debtUpdated(_ detail: DebtDetail) {
+        guard let current = phase.value else { return }
+        let accounts = current.accounts.map { $0.id == detail.account.id ? detail.account : $0 }
+        phase = .loaded(WalletOverview(accounts: accounts))
+    }
+
     /** Whether this account's next due date is today through `days` days away in the chosen calendar. */
     package func isDueSoon(_ wallet: Wallet, within days: Int = 10) -> Bool {
         guard wallet.type.isDebt, days >= 0 else { return false }

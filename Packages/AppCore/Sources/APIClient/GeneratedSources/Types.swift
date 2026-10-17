@@ -469,6 +469,11 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `POST /api/wallets`.
     /// - Remark: Generated from `#/paths//api/wallets/post(createWallet)`.
     func createWallet(_ input: Operations.CreateWallet.Input) async throws -> Operations.CreateWallet.Output
+    /// Debt account detail and installment history
+    ///
+    /// - Remark: HTTP `GET /api/debts/{id}`.
+    /// - Remark: Generated from `#/paths//api/debts/{id}/get(getDebtDetail)`.
+    func getDebtDetail(_ input: Operations.GetDebtDetail.Input) async throws -> Operations.GetDebtDetail.Output
     /// Keep a parsed bank statement for review (Kira Plus)
     ///
     /// At most three months per file; rows already recorded are flagged `isDuplicate`.
@@ -1409,6 +1414,19 @@ extension APIProtocol {
         try await createWallet(Operations.CreateWallet.Input(
             headers: headers,
             body: body
+        ))
+    }
+    /// Debt account detail and installment history
+    ///
+    /// - Remark: HTTP `GET /api/debts/{id}`.
+    /// - Remark: Generated from `#/paths//api/debts/{id}/get(getDebtDetail)`.
+    internal func getDebtDetail(
+        path: Operations.GetDebtDetail.Input.Path,
+        headers: Operations.GetDebtDetail.Input.Headers = .init()
+    ) async throws -> Operations.GetDebtDetail.Output {
+        try await getDebtDetail(Operations.GetDebtDetail.Input(
+            path: path,
+            headers: headers
         ))
     }
     /// Keep a parsed bank statement for review (Kira Plus)

@@ -96,6 +96,25 @@ struct WalletsModelTests {
         #expect(empty.phase.value?.accounts == [added])
     }
 
+    @Test("applies a recorded payment to the matching debt row")
+    func debtUpdated() async {
+        let bank = Wallet(id: "bank", name: "Bank", type: .bank, balance: 100)
+        let debt = Wallet(id: "debt", name: "Paylater", type: .paylater, balance: 420)
+        let model = WalletsModel(service: FakeWalletService(wallets: [bank], debts: [debt]))
+        let updatedDetail = DebtDetail(
+            account: Wallet(id: "debt", name: "Paylater", type: .paylater, balance: 300),
+            originalAmount: 420, paidInstallments: 1, totalInstallments: 4,
+            schedule: [], payments: [], scoreEstimate: DebtScoreEstimate(current: 66, afterPayoff: 71))
+        model.debtUpdated(updatedDetail)
+        #expect(model.phase.value == nil)
+
+        await model.load()
+        model.debtUpdated(updatedDetail)
+        #expect(model.phase.value?.runningDebt == 300)
+        #expect(model.phase.value?.heldTotal == 100)
+        #expect(model.phase.value?.accounts.map(\.id) == ["bank", "debt"])
+    }
+
     private func wallet(_ id: String, due: Date?, dueSoon: Bool = false) -> Wallet {
         Wallet(id: id, name: id, type: .paylater, balance: 1, nextDueAt: due, dueSoon: dueSoon)
     }

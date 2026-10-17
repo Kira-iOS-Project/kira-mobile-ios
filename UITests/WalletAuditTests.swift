@@ -1,4 +1,4 @@
-/** Rule 24 for the Dompet overview and Tambah Dompet sheet. */
+/** Rule 24 for Dompet, Tambah Dompet, the success dialog and Detail Utang. */
 import XCTest
 
 nonisolated final class WalletAuditTests: XCTestCase {
@@ -34,6 +34,18 @@ nonisolated final class WalletAuditTests: XCTestCase {
             amount.typeText("25000")
             app.buttons["Simpan Dompet"].tap()
             XCTAssertTrue(app.staticTexts["Dompet Ditambahkan"].waitForExistence(timeout: 5))
+        }
+    }
+
+    @MainActor
+    func testDebtDetailPassesTheAudit() throws {
+        try auditScreen("debt")
+    }
+
+    @MainActor
+    func testDebtPaymentSheetPassesTheAudit() throws {
+        try auditScreen("debt") { app in
+            app.buttons["Catat Pembayaran"].tap()
         }
     }
 

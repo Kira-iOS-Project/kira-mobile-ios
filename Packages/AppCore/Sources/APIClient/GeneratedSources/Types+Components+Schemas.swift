@@ -6379,6 +6379,7 @@ extension Components {
                 internal enum StatusPayload: String, Codable, Hashable, Sendable, CaseIterable {
                     case upcoming = "upcoming"
                     case dueSoon = "dueSoon"
+                    case paid = "paid"
                 }
                 /// - Remark: Generated from `#/components/schemas/DebtSummary/nextInstallment/status`.
                 internal var status: Components.Schemas.DebtSummary.NextInstallmentPayload.StatusPayload
@@ -6657,6 +6658,272 @@ extension Components {
                 case monthlyInstallment
                 case remainingTenorMonths
                 case nextDueDate
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/DebtDetail`.
+        internal struct DebtDetail: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/id`.
+            internal var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/name`.
+            internal var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/kind`.
+            internal enum KindPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case paylater = "paylater"
+                case onlineLoan = "online_loan"
+                case creditCard = "credit_card"
+                case vehicle = "vehicle"
+                case mortgage = "mortgage"
+                case familyLoan = "family_loan"
+            }
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/kind`.
+            internal var kind: Components.Schemas.DebtDetail.KindPayload
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/originalAmount`.
+            internal var originalAmount: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/remainingAmount`.
+            internal var remainingAmount: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/monthlyInstallment`.
+            internal var monthlyInstallment: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/remainingTenorMonths`.
+            internal var remainingTenorMonths: Swift.Int?
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/installmentsTotal`.
+            internal var installmentsTotal: Swift.Int?
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/installmentsRemaining`.
+            internal var installmentsRemaining: Swift.Int?
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/paymentStatus`.
+            internal enum PaymentStatusPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case onTime = "on_time"
+                case late = "late"
+                case overdue = "overdue"
+            }
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/paymentStatus`.
+            internal var paymentStatus: Components.Schemas.DebtDetail.PaymentStatusPayload
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/nextInstallment`.
+            internal struct NextInstallmentPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/nextInstallment/dueDate`.
+                internal var dueDate: Swift.String
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/nextInstallment/amount`.
+                internal var amount: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/nextInstallment/status`.
+                internal enum StatusPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                    case upcoming = "upcoming"
+                    case dueSoon = "dueSoon"
+                    case paid = "paid"
+                }
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/nextInstallment/status`.
+                internal var status: Components.Schemas.DebtDetail.NextInstallmentPayload.StatusPayload
+                /// Creates a new `NextInstallmentPayload`.
+                ///
+                /// - Parameters:
+                ///   - dueDate:
+                ///   - amount:
+                ///   - status:
+                internal init(
+                    dueDate: Swift.String,
+                    amount: Swift.Int,
+                    status: Components.Schemas.DebtDetail.NextInstallmentPayload.StatusPayload
+                ) {
+                    self.dueDate = dueDate
+                    self.amount = amount
+                    self.status = status
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case dueDate
+                    case amount
+                    case status
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/nextInstallment`.
+            internal var nextInstallment: Components.Schemas.DebtDetail.NextInstallmentPayload?
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/dueSoon`.
+            internal var dueSoon: Swift.Bool
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/totalPaid`.
+            internal var totalPaid: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/scoreEstimate`.
+            internal struct ScoreEstimatePayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/scoreEstimate/current`.
+                internal var current: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/scoreEstimate/afterPayoff`.
+                internal var afterPayoff: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/scoreEstimate/isSimulated`.
+                internal var isSimulated: Swift.Bool
+                /// Creates a new `ScoreEstimatePayload`.
+                ///
+                /// - Parameters:
+                ///   - current:
+                ///   - afterPayoff:
+                ///   - isSimulated:
+                internal init(
+                    current: Swift.Int,
+                    afterPayoff: Swift.Int,
+                    isSimulated: Swift.Bool
+                ) {
+                    self.current = current
+                    self.afterPayoff = afterPayoff
+                    self.isSimulated = isSimulated
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case current
+                    case afterPayoff
+                    case isSimulated
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/scoreEstimate`.
+            internal var scoreEstimate: Components.Schemas.DebtDetail.ScoreEstimatePayload?
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/nextStep`.
+            internal var nextStep: Swift.String
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/InstallmentSchedulePayload`.
+            internal struct InstallmentSchedulePayloadPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/InstallmentSchedulePayload/dueDate`.
+                internal var dueDate: Swift.String
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/InstallmentSchedulePayload/amount`.
+                internal var amount: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/InstallmentSchedulePayload/status`.
+                internal enum StatusPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                    case upcoming = "upcoming"
+                    case dueSoon = "dueSoon"
+                    case paid = "paid"
+                }
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/InstallmentSchedulePayload/status`.
+                internal var status: Components.Schemas.DebtDetail.InstallmentSchedulePayloadPayload.StatusPayload
+                /// Creates a new `InstallmentSchedulePayloadPayload`.
+                ///
+                /// - Parameters:
+                ///   - dueDate:
+                ///   - amount:
+                ///   - status:
+                internal init(
+                    dueDate: Swift.String,
+                    amount: Swift.Int,
+                    status: Components.Schemas.DebtDetail.InstallmentSchedulePayloadPayload.StatusPayload
+                ) {
+                    self.dueDate = dueDate
+                    self.amount = amount
+                    self.status = status
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case dueDate
+                    case amount
+                    case status
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/installmentSchedule`.
+            internal typealias InstallmentSchedulePayload = [Components.Schemas.DebtDetail.InstallmentSchedulePayloadPayload]
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/installmentSchedule`.
+            internal var installmentSchedule: Components.Schemas.DebtDetail.InstallmentSchedulePayload
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/PaymentHistoryPayload`.
+            internal struct PaymentHistoryPayloadPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/PaymentHistoryPayload/id`.
+                internal var id: Swift.String
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/PaymentHistoryPayload/date`.
+                internal var date: Foundation.Date
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/PaymentHistoryPayload/amount`.
+                internal var amount: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/PaymentHistoryPayload/onTime`.
+                internal var onTime: Swift.Bool
+                /// Creates a new `PaymentHistoryPayloadPayload`.
+                ///
+                /// - Parameters:
+                ///   - id:
+                ///   - date:
+                ///   - amount:
+                ///   - onTime:
+                internal init(
+                    id: Swift.String,
+                    date: Foundation.Date,
+                    amount: Swift.Int,
+                    onTime: Swift.Bool
+                ) {
+                    self.id = id
+                    self.date = date
+                    self.amount = amount
+                    self.onTime = onTime
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case id
+                    case date
+                    case amount
+                    case onTime
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/paymentHistory`.
+            internal typealias PaymentHistoryPayload = [Components.Schemas.DebtDetail.PaymentHistoryPayloadPayload]
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/paymentHistory`.
+            internal var paymentHistory: Components.Schemas.DebtDetail.PaymentHistoryPayload
+            /// Creates a new `DebtDetail`.
+            ///
+            /// - Parameters:
+            ///   - id:
+            ///   - name:
+            ///   - kind:
+            ///   - originalAmount:
+            ///   - remainingAmount:
+            ///   - monthlyInstallment:
+            ///   - remainingTenorMonths:
+            ///   - installmentsTotal:
+            ///   - installmentsRemaining:
+            ///   - paymentStatus:
+            ///   - nextInstallment:
+            ///   - dueSoon:
+            ///   - totalPaid:
+            ///   - scoreEstimate:
+            ///   - nextStep:
+            ///   - installmentSchedule:
+            ///   - paymentHistory:
+            internal init(
+                id: Swift.String,
+                name: Swift.String,
+                kind: Components.Schemas.DebtDetail.KindPayload,
+                originalAmount: Swift.Int,
+                remainingAmount: Swift.Int,
+                monthlyInstallment: Swift.Int,
+                remainingTenorMonths: Swift.Int? = nil,
+                installmentsTotal: Swift.Int? = nil,
+                installmentsRemaining: Swift.Int? = nil,
+                paymentStatus: Components.Schemas.DebtDetail.PaymentStatusPayload,
+                nextInstallment: Components.Schemas.DebtDetail.NextInstallmentPayload? = nil,
+                dueSoon: Swift.Bool,
+                totalPaid: Swift.Int,
+                scoreEstimate: Components.Schemas.DebtDetail.ScoreEstimatePayload? = nil,
+                nextStep: Swift.String,
+                installmentSchedule: Components.Schemas.DebtDetail.InstallmentSchedulePayload,
+                paymentHistory: Components.Schemas.DebtDetail.PaymentHistoryPayload
+            ) {
+                self.id = id
+                self.name = name
+                self.kind = kind
+                self.originalAmount = originalAmount
+                self.remainingAmount = remainingAmount
+                self.monthlyInstallment = monthlyInstallment
+                self.remainingTenorMonths = remainingTenorMonths
+                self.installmentsTotal = installmentsTotal
+                self.installmentsRemaining = installmentsRemaining
+                self.paymentStatus = paymentStatus
+                self.nextInstallment = nextInstallment
+                self.dueSoon = dueSoon
+                self.totalPaid = totalPaid
+                self.scoreEstimate = scoreEstimate
+                self.nextStep = nextStep
+                self.installmentSchedule = installmentSchedule
+                self.paymentHistory = paymentHistory
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case id
+                case name
+                case kind
+                case originalAmount
+                case remainingAmount
+                case monthlyInstallment
+                case remainingTenorMonths
+                case installmentsTotal
+                case installmentsRemaining
+                case paymentStatus
+                case nextInstallment
+                case dueSoon
+                case totalPaid
+                case scoreEstimate
+                case nextStep
+                case installmentSchedule
+                case paymentHistory
             }
         }
         /// - Remark: Generated from `#/components/schemas/BankImport`.

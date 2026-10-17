@@ -19,4 +19,14 @@ package struct LiveWalletService: WalletService {
     package func createWallet(type: WalletType, name: String, balance: Int) async throws -> Wallet {
         try await api.createWallet(type: type, name: name, balance: balance)
     }
+
+    /** Loads the schedule and history for one owned debt account. */
+    package func debt(id: String) async throws -> DebtDetail {
+        try await api.getDebt(id: id)
+    }
+
+    /** Records one idempotent payment, then refreshes the server-calculated detail. */
+    package func payDebt(id: String, request: DebtPaymentRequest) async throws -> DebtDetail {
+        try await api.payDebt(id: id, request: request)
+    }
 }

@@ -16724,6 +16724,196 @@
         }
       }
     },
+    "wallet.debt.empty" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rincian utang belum tersedia."
+          }
+        }
+      }
+    },
+    "wallet.debt.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utang Belum Bisa Dibuka"
+          }
+        }
+      }
+    },
+    "wallet.debt.guide" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Panduan SLIK Gratis"
+          }
+        }
+      }
+    },
+    "wallet.debt.history" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat Pembayaran"
+          }
+        }
+      }
+    },
+    "wallet.debt.nextStep" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langkah Berikutnya"
+          }
+        }
+      }
+    },
+    "wallet.debt.progress" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Angsuran Terbayar"
+          }
+        }
+      }
+    },
+    "wallet.debt.progress.value %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld dari %2$lld angsuran"
+          }
+        }
+      }
+    },
+    "wallet.debt.remaining" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sisa Utang"
+          }
+        }
+      }
+    },
+    "wallet.debt.schedule" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jadwal Cicilan"
+          }
+        }
+      }
+    },
+    "wallet.debt.score.body %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dari %1$lld menjadi %2$lld setelah lunas. Ini hanya simulasi."
+          }
+        }
+      }
+    },
+    "wallet.debt.score.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simulasi Perkiraan Kira Score"
+          }
+        }
+      }
+    },
+    "wallet.debt.slik" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cek Riwayat Kreditmu"
+          }
+        }
+      }
+    },
+    "wallet.debt.slik.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pelajari cara mengecek SLIK OJK secara gratis."
+          }
+        }
+      }
+    },
+    "wallet.debt.status.dueSoon" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Segera Jatuh Tempo"
+          }
+        }
+      }
+    },
+    "wallet.debt.status.late" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terlambat"
+          }
+        }
+      }
+    },
+    "wallet.debt.status.onTime" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tepat Waktu"
+          }
+        }
+      }
+    },
+    "wallet.debt.status.paid" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dibayar"
+          }
+        }
+      }
+    },
+    "wallet.debt.status.upcoming" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akan Datang"
+          }
+        }
+      }
+    },
+    "wallet.debt.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detail Utang"
+          }
+        }
+      }
+    },
     "wallet.debt.total" : {
       "localizations" : {
         "id" : {
@@ -16810,6 +17000,76 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Saldo diisi sendiri. Kira tidak menyambungkan rekening atau meminta PIN, kata sandi, maupun OTP."
+          }
+        }
+      }
+    },
+    "wallet.payment.amount" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jumlah Dibayar"
+          }
+        }
+      }
+    },
+    "wallet.payment.amount.invalid" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masukkan jumlah positif yang tidak melebihi sisa utang."
+          }
+        }
+      }
+    },
+    "wallet.payment.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "wallet.payment.failed.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pembayaran Belum Tersimpan"
+          }
+        }
+      }
+    },
+    "wallet.payment.open" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catat Pembayaran"
+          }
+        }
+      }
+    },
+    "wallet.payment.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Pembayaran"
+          }
+        }
+      }
+    },
+    "wallet.payment.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catat Pembayaran"
           }
         }
       }
