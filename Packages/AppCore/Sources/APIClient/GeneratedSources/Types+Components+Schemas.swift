@@ -376,6 +376,8 @@ extension Components {
             internal var aiEnabled: Swift.Bool
             /// - Remark: Generated from `#/components/schemas/Me/weeklySummaryEnabled`.
             internal var weeklySummaryEnabled: Swift.Bool
+            /// - Remark: Generated from `#/components/schemas/Me/debtEmergencyActive`.
+            internal var debtEmergencyActive: Swift.Bool
             /// Creates a new `Me`.
             ///
             /// - Parameters:
@@ -394,6 +396,7 @@ extension Components {
             ///   - debtAccountCount:
             ///   - aiEnabled:
             ///   - weeklySummaryEnabled:
+            ///   - debtEmergencyActive:
             internal init(
                 id: Swift.String,
                 email: Swift.String,
@@ -409,7 +412,8 @@ extension Components {
                 lastCategories: Components.Schemas.Me.LastCategoriesPayload,
                 debtAccountCount: Swift.Int,
                 aiEnabled: Swift.Bool,
-                weeklySummaryEnabled: Swift.Bool
+                weeklySummaryEnabled: Swift.Bool,
+                debtEmergencyActive: Swift.Bool
             ) {
                 self.id = id
                 self.email = email
@@ -426,6 +430,7 @@ extension Components {
                 self.debtAccountCount = debtAccountCount
                 self.aiEnabled = aiEnabled
                 self.weeklySummaryEnabled = weeklySummaryEnabled
+                self.debtEmergencyActive = debtEmergencyActive
             }
             internal enum CodingKeys: String, CodingKey {
                 case id
@@ -443,6 +448,7 @@ extension Components {
                 case debtAccountCount
                 case aiEnabled
                 case weeklySummaryEnabled
+                case debtEmergencyActive
             }
         }
         /// - Remark: Generated from `#/components/schemas/Usage`.
@@ -1359,6 +1365,159 @@ extension Components {
                 case dueDay
             }
         }
+        /// - Remark: Generated from `#/components/schemas/ScoreHistory`.
+        internal struct ScoreHistory: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ScoreHistory/current`.
+            internal struct CurrentPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/current/score`.
+                internal var score: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/current/band`.
+                internal enum BandPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                    case vulnerable = "vulnerable"
+                    case coping = "coping"
+                    case healthy = "healthy"
+                }
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/current/band`.
+                internal var band: Components.Schemas.ScoreHistory.CurrentPayload.BandPayload
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/current/deltaFromPrevious`.
+                internal var deltaFromPrevious: Swift.Int?
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/current/previousMonth`.
+                internal var previousMonth: Swift.String?
+                /// Creates a new `CurrentPayload`.
+                ///
+                /// - Parameters:
+                ///   - score:
+                ///   - band:
+                ///   - deltaFromPrevious:
+                ///   - previousMonth:
+                internal init(
+                    score: Swift.Int,
+                    band: Components.Schemas.ScoreHistory.CurrentPayload.BandPayload,
+                    deltaFromPrevious: Swift.Int? = nil,
+                    previousMonth: Swift.String? = nil
+                ) {
+                    self.score = score
+                    self.band = band
+                    self.deltaFromPrevious = deltaFromPrevious
+                    self.previousMonth = previousMonth
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case score
+                    case band
+                    case deltaFromPrevious
+                    case previousMonth
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/ScoreHistory/current`.
+            internal var current: Components.Schemas.ScoreHistory.CurrentPayload
+            /// - Remark: Generated from `#/components/schemas/ScoreHistory/PointsPayload`.
+            internal struct PointsPayloadPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/PointsPayload/month`.
+                internal var month: Swift.String
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/PointsPayload/score`.
+                internal var score: Swift.Int
+                /// Creates a new `PointsPayloadPayload`.
+                ///
+                /// - Parameters:
+                ///   - month:
+                ///   - score:
+                internal init(
+                    month: Swift.String,
+                    score: Swift.Int
+                ) {
+                    self.month = month
+                    self.score = score
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case month
+                    case score
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/ScoreHistory/points`.
+            internal typealias PointsPayload = [Components.Schemas.ScoreHistory.PointsPayloadPayload]
+            /// - Remark: Generated from `#/components/schemas/ScoreHistory/points`.
+            internal var points: Components.Schemas.ScoreHistory.PointsPayload
+            /// - Remark: Generated from `#/components/schemas/ScoreHistory/ChangesPayload`.
+            internal struct ChangesPayloadPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/ChangesPayload/indicator`.
+                internal enum IndicatorPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                    case emergencyFund = "emergency_fund"
+                    case savingsRatio = "savings_ratio"
+                    case instalmentRatio = "instalment_ratio"
+                    case consumerDebt = "consumer_debt"
+                    case debtToAsset = "debt_to_asset"
+                    case protectionCover = "protection_cover"
+                }
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/ChangesPayload/indicator`.
+                internal var indicator: Components.Schemas.ScoreHistory.ChangesPayloadPayload.IndicatorPayload
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/ChangesPayload/fromLabel`.
+                internal var fromLabel: Swift.String?
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/ChangesPayload/toLabel`.
+                internal var toLabel: Swift.String
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/ChangesPayload/fromPoints`.
+                internal var fromPoints: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/ScoreHistory/ChangesPayload/toPoints`.
+                internal var toPoints: Swift.Int
+                /// Creates a new `ChangesPayloadPayload`.
+                ///
+                /// - Parameters:
+                ///   - indicator:
+                ///   - fromLabel:
+                ///   - toLabel:
+                ///   - fromPoints:
+                ///   - toPoints:
+                internal init(
+                    indicator: Components.Schemas.ScoreHistory.ChangesPayloadPayload.IndicatorPayload,
+                    fromLabel: Swift.String? = nil,
+                    toLabel: Swift.String,
+                    fromPoints: Swift.Int,
+                    toPoints: Swift.Int
+                ) {
+                    self.indicator = indicator
+                    self.fromLabel = fromLabel
+                    self.toLabel = toLabel
+                    self.fromPoints = fromPoints
+                    self.toPoints = toPoints
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case indicator
+                    case fromLabel
+                    case toLabel
+                    case fromPoints
+                    case toPoints
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/ScoreHistory/changes`.
+            internal typealias ChangesPayload = [Components.Schemas.ScoreHistory.ChangesPayloadPayload]
+            /// - Remark: Generated from `#/components/schemas/ScoreHistory/changes`.
+            internal var changes: Components.Schemas.ScoreHistory.ChangesPayload
+            /// - Remark: Generated from `#/components/schemas/ScoreHistory/unchangedCount`.
+            internal var unchangedCount: Swift.Int
+            /// Creates a new `ScoreHistory`.
+            ///
+            /// - Parameters:
+            ///   - current:
+            ///   - points:
+            ///   - changes:
+            ///   - unchangedCount:
+            internal init(
+                current: Components.Schemas.ScoreHistory.CurrentPayload,
+                points: Components.Schemas.ScoreHistory.PointsPayload,
+                changes: Components.Schemas.ScoreHistory.ChangesPayload,
+                unchangedCount: Swift.Int
+            ) {
+                self.current = current
+                self.points = points
+                self.changes = changes
+                self.unchangedCount = unchangedCount
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case current
+                case points
+                case changes
+                case unchangedCount
+            }
+        }
         /// - Remark: Generated from `#/components/schemas/IndicatorDetail`.
         internal struct IndicatorDetail: Codable, Hashable, Sendable {
             /// - Remark: Generated from `#/components/schemas/IndicatorDetail/value1`.
@@ -1551,6 +1710,8 @@ extension Components {
             internal var allPaidMonths: Swift.Int?
             /// - Remark: Generated from `#/components/schemas/PayoffPlan/allPaidMonth`.
             internal var allPaidMonth: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/PayoffPlan/allPaidDate`.
+            internal var allPaidDate: Swift.String?
             /// - Remark: Generated from `#/components/schemas/PayoffPlan/comparison`.
             internal var comparison: Components.Schemas.PayoffComparison?
             /// Creates a new `PayoffPlan`.
@@ -1566,6 +1727,7 @@ extension Components {
             ///   - totalInterest:
             ///   - allPaidMonths:
             ///   - allPaidMonth:
+            ///   - allPaidDate:
             ///   - comparison:
             internal init(
                 method: Components.Schemas.PayoffPlan.MethodPayload,
@@ -1578,6 +1740,7 @@ extension Components {
                 totalInterest: Swift.Int? = nil,
                 allPaidMonths: Swift.Int? = nil,
                 allPaidMonth: Swift.String? = nil,
+                allPaidDate: Swift.String? = nil,
                 comparison: Components.Schemas.PayoffComparison? = nil
             ) {
                 self.method = method
@@ -1590,6 +1753,7 @@ extension Components {
                 self.totalInterest = totalInterest
                 self.allPaidMonths = allPaidMonths
                 self.allPaidMonth = allPaidMonth
+                self.allPaidDate = allPaidDate
                 self.comparison = comparison
             }
             internal enum CodingKeys: String, CodingKey {
@@ -1603,6 +1767,7 @@ extension Components {
                 case totalInterest
                 case allPaidMonths
                 case allPaidMonth
+                case allPaidDate
                 case comparison
             }
         }
@@ -1637,6 +1802,8 @@ extension Components {
             internal var months: Swift.Int?
             /// - Remark: Generated from `#/components/schemas/PayoffAccount/payoffMonth`.
             internal var payoffMonth: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/PayoffAccount/payoffDate`.
+            internal var payoffDate: Swift.String?
             /// - Remark: Generated from `#/components/schemas/PayoffAccount/interest`.
             internal var interest: Swift.Int?
             /// Creates a new `PayoffAccount`.
@@ -1652,6 +1819,7 @@ extension Components {
             ///   - position:
             ///   - months:
             ///   - payoffMonth:
+            ///   - payoffDate:
             ///   - interest:
             internal init(
                 id: Swift.String,
@@ -1664,6 +1832,7 @@ extension Components {
                 position: Swift.Int,
                 months: Swift.Int? = nil,
                 payoffMonth: Swift.String? = nil,
+                payoffDate: Swift.String? = nil,
                 interest: Swift.Int? = nil
             ) {
                 self.id = id
@@ -1676,6 +1845,7 @@ extension Components {
                 self.position = position
                 self.months = months
                 self.payoffMonth = payoffMonth
+                self.payoffDate = payoffDate
                 self.interest = interest
             }
             internal enum CodingKeys: String, CodingKey {
@@ -1689,6 +1859,7 @@ extension Components {
                 case position
                 case months
                 case payoffMonth
+                case payoffDate
                 case interest
             }
         }
@@ -1713,6 +1884,10 @@ extension Components {
             internal var remaining: Swift.Int
             /// - Remark: Generated from `#/components/schemas/PayoffProductiveDebt/monthlyInstalment`.
             internal var monthlyInstalment: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/PayoffProductiveDebt/payoffMonth`.
+            internal var payoffMonth: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/PayoffProductiveDebt/payoffDate`.
+            internal var payoffDate: Swift.String?
             /// Creates a new `PayoffProductiveDebt`.
             ///
             /// - Parameters:
@@ -1721,18 +1896,24 @@ extension Components {
             ///   - name:
             ///   - remaining:
             ///   - monthlyInstalment:
+            ///   - payoffMonth:
+            ///   - payoffDate:
             internal init(
                 id: Swift.String,
                 kind: Components.Schemas.PayoffProductiveDebt.KindPayload,
                 name: Swift.String,
                 remaining: Swift.Int,
-                monthlyInstalment: Swift.Int
+                monthlyInstalment: Swift.Int,
+                payoffMonth: Swift.String? = nil,
+                payoffDate: Swift.String? = nil
             ) {
                 self.id = id
                 self.kind = kind
                 self.name = name
                 self.remaining = remaining
                 self.monthlyInstalment = monthlyInstalment
+                self.payoffMonth = payoffMonth
+                self.payoffDate = payoffDate
             }
             internal enum CodingKeys: String, CodingKey {
                 case id
@@ -1740,6 +1921,8 @@ extension Components {
                 case name
                 case remaining
                 case monthlyInstalment
+                case payoffMonth
+                case payoffDate
             }
         }
         /// - Remark: Generated from `#/components/schemas/PayoffComparison`.
@@ -1887,12 +2070,19 @@ extension Components {
             internal var dueDay: Swift.Int?
             /// - Remark: Generated from `#/components/schemas/PayoffPlanAccount/status`.
             internal enum StatusPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case paidOff = "paid_off"
                 case inProgress = "in_progress"
                 case next = "next"
                 case ongoing = "ongoing"
             }
             /// - Remark: Generated from `#/components/schemas/PayoffPlanAccount/status`.
             internal var status: Components.Schemas.PayoffPlanAccount.StatusPayload
+            /// - Remark: Generated from `#/components/schemas/PayoffPlanAccount/payoffMonth`.
+            internal var payoffMonth: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/PayoffPlanAccount/payoffDate`.
+            internal var payoffDate: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/PayoffPlanAccount/startMonth`.
+            internal var startMonth: Swift.String?
             /// Creates a new `PayoffPlanAccount`.
             ///
             /// - Parameters:
@@ -1906,6 +2096,9 @@ extension Components {
             ///   - annualInterestRate:
             ///   - dueDay:
             ///   - status:
+            ///   - payoffMonth:
+            ///   - payoffDate:
+            ///   - startMonth:
             internal init(
                 id: Swift.String,
                 kind: Components.Schemas.PayoffPlanAccount.KindPayload,
@@ -1916,7 +2109,10 @@ extension Components {
                 monthlyInstalment: Swift.Int,
                 annualInterestRate: Swift.Double? = nil,
                 dueDay: Swift.Int? = nil,
-                status: Components.Schemas.PayoffPlanAccount.StatusPayload
+                status: Components.Schemas.PayoffPlanAccount.StatusPayload,
+                payoffMonth: Swift.String? = nil,
+                payoffDate: Swift.String? = nil,
+                startMonth: Swift.String? = nil
             ) {
                 self.id = id
                 self.kind = kind
@@ -1928,6 +2124,9 @@ extension Components {
                 self.annualInterestRate = annualInterestRate
                 self.dueDay = dueDay
                 self.status = status
+                self.payoffMonth = payoffMonth
+                self.payoffDate = payoffDate
+                self.startMonth = startMonth
             }
             internal enum CodingKeys: String, CodingKey {
                 case id
@@ -1940,6 +2139,9 @@ extension Components {
                 case annualInterestRate
                 case dueDay
                 case status
+                case payoffMonth
+                case payoffDate
+                case startMonth
             }
         }
         /// - Remark: Generated from `#/components/schemas/PayoffNextPayment`.
@@ -1950,6 +2152,10 @@ extension Components {
             internal var name: Swift.String
             /// - Remark: Generated from `#/components/schemas/PayoffNextPayment/amount`.
             internal var amount: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/PayoffNextPayment/instalment`.
+            internal var instalment: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/PayoffNextPayment/extra`.
+            internal var extra: Swift.Int
             /// - Remark: Generated from `#/components/schemas/PayoffNextPayment/dueDate`.
             internal var dueDate: Swift.String?
             /// - Remark: Generated from `#/components/schemas/PayoffNextPayment/daysLeft`.
@@ -1960,18 +2166,24 @@ extension Components {
             ///   - debtId:
             ///   - name:
             ///   - amount:
+            ///   - instalment:
+            ///   - extra:
             ///   - dueDate:
             ///   - daysLeft:
             internal init(
                 debtId: Swift.String,
                 name: Swift.String,
                 amount: Swift.Int,
+                instalment: Swift.Int,
+                extra: Swift.Int,
                 dueDate: Swift.String? = nil,
                 daysLeft: Swift.Int? = nil
             ) {
                 self.debtId = debtId
                 self.name = name
                 self.amount = amount
+                self.instalment = instalment
+                self.extra = extra
                 self.dueDate = dueDate
                 self.daysLeft = daysLeft
             }
@@ -1979,6 +2191,8 @@ extension Components {
                 case debtId
                 case name
                 case amount
+                case instalment
+                case extra
                 case dueDate
                 case daysLeft
             }
@@ -2030,6 +2244,8 @@ extension Components {
         internal struct DebtPaymentResult: Codable, Hashable, Sendable {
             /// - Remark: Generated from `#/components/schemas/DebtPaymentResult/debtId`.
             internal var debtId: Swift.String
+            /// - Remark: Generated from `#/components/schemas/DebtPaymentResult/monthlyInstalment`.
+            internal var monthlyInstalment: Swift.Int
             /// - Remark: Generated from `#/components/schemas/DebtPaymentResult/paid`.
             internal var paid: Swift.Int
             /// - Remark: Generated from `#/components/schemas/DebtPaymentResult/remaining`.
@@ -2069,6 +2285,7 @@ extension Components {
             ///
             /// - Parameters:
             ///   - debtId:
+            ///   - monthlyInstalment:
             ///   - paid:
             ///   - remaining:
             ///   - progressPercent:
@@ -2077,6 +2294,7 @@ extension Components {
             ///   - scoreEstimate:
             internal init(
                 debtId: Swift.String,
+                monthlyInstalment: Swift.Int,
                 paid: Swift.Int,
                 remaining: Swift.Int,
                 progressPercent: Swift.Int,
@@ -2085,6 +2303,7 @@ extension Components {
                 scoreEstimate: Components.Schemas.PayoffScoreEstimate? = nil
             ) {
                 self.debtId = debtId
+                self.monthlyInstalment = monthlyInstalment
                 self.paid = paid
                 self.remaining = remaining
                 self.progressPercent = progressPercent
@@ -2094,6 +2313,7 @@ extension Components {
             }
             internal enum CodingKeys: String, CodingKey {
                 case debtId
+                case monthlyInstalment
                 case paid
                 case remaining
                 case progressPercent
@@ -2141,15 +2361,234 @@ extension Components {
         internal struct RecordDebtPayment: Codable, Hashable, Sendable {
             /// - Remark: Generated from `#/components/schemas/RecordDebtPayment/amount`.
             internal var amount: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/RecordDebtPayment/paymentId`.
+            internal var paymentId: Swift.String
             /// Creates a new `RecordDebtPayment`.
             ///
             /// - Parameters:
             ///   - amount:
-            internal init(amount: Swift.Int) {
+            ///   - paymentId:
+            internal init(
+                amount: Swift.Int,
+                paymentId: Swift.String
+            ) {
                 self.amount = amount
+                self.paymentId = paymentId
             }
             internal enum CodingKeys: String, CodingKey {
                 case amount
+                case paymentId
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/Portfolio`.
+        internal struct Portfolio: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/Portfolio/assets`.
+            internal var assets: [Components.Schemas.Asset]
+            /// - Remark: Generated from `#/components/schemas/Portfolio/total`.
+            internal var total: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/Portfolio/updatedOn`.
+            internal var updatedOn: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Portfolio/debtToAsset`.
+            internal struct DebtToAssetPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/Portfolio/debtToAsset/percent`.
+                internal var percent: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/Portfolio/debtToAsset/points`.
+                internal var points: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/Portfolio/debtToAsset/band`.
+                internal enum BandPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                    case vulnerable = "vulnerable"
+                    case coping = "coping"
+                    case healthy = "healthy"
+                }
+                /// - Remark: Generated from `#/components/schemas/Portfolio/debtToAsset/band`.
+                internal var band: Components.Schemas.Portfolio.DebtToAssetPayload.BandPayload
+                /// Creates a new `DebtToAssetPayload`.
+                ///
+                /// - Parameters:
+                ///   - percent:
+                ///   - points:
+                ///   - band:
+                internal init(
+                    percent: Swift.Int,
+                    points: Swift.Int,
+                    band: Components.Schemas.Portfolio.DebtToAssetPayload.BandPayload
+                ) {
+                    self.percent = percent
+                    self.points = points
+                    self.band = band
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case percent
+                    case points
+                    case band
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/Portfolio/debtToAsset`.
+            internal var debtToAsset: Components.Schemas.Portfolio.DebtToAssetPayload?
+            /// Creates a new `Portfolio`.
+            ///
+            /// - Parameters:
+            ///   - assets:
+            ///   - total:
+            ///   - updatedOn:
+            ///   - debtToAsset:
+            internal init(
+                assets: [Components.Schemas.Asset],
+                total: Swift.Int,
+                updatedOn: Swift.String? = nil,
+                debtToAsset: Components.Schemas.Portfolio.DebtToAssetPayload? = nil
+            ) {
+                self.assets = assets
+                self.total = total
+                self.updatedOn = updatedOn
+                self.debtToAsset = debtToAsset
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case assets
+                case total
+                case updatedOn
+                case debtToAsset
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/Asset`.
+        internal struct Asset: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/Asset/id`.
+            internal var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Asset/assetClass`.
+            internal enum AssetClassPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case deposit = "deposit"
+                case mutualFund = "mutual_fund"
+                case governmentBond = "government_bond"
+                case gold = "gold"
+                case stock = "stock"
+                case crypto = "crypto"
+                case other = "other"
+            }
+            /// - Remark: Generated from `#/components/schemas/Asset/assetClass`.
+            internal var assetClass: Components.Schemas.Asset.AssetClassPayload
+            /// - Remark: Generated from `#/components/schemas/Asset/name`.
+            internal var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Asset/value`.
+            internal var value: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/Asset/valuedOn`.
+            internal var valuedOn: Swift.String
+            /// Creates a new `Asset`.
+            ///
+            /// - Parameters:
+            ///   - id:
+            ///   - assetClass:
+            ///   - name:
+            ///   - value:
+            ///   - valuedOn:
+            internal init(
+                id: Swift.String,
+                assetClass: Components.Schemas.Asset.AssetClassPayload,
+                name: Swift.String,
+                value: Swift.Int,
+                valuedOn: Swift.String
+            ) {
+                self.id = id
+                self.assetClass = assetClass
+                self.name = name
+                self.value = value
+                self.valuedOn = valuedOn
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case id
+                case assetClass
+                case name
+                case value
+                case valuedOn
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/AssetInput`.
+        internal struct AssetInput: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/AssetInput/assetClass`.
+            internal enum AssetClassPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case deposit = "deposit"
+                case mutualFund = "mutual_fund"
+                case governmentBond = "government_bond"
+                case gold = "gold"
+                case stock = "stock"
+                case crypto = "crypto"
+                case other = "other"
+            }
+            /// - Remark: Generated from `#/components/schemas/AssetInput/assetClass`.
+            internal var assetClass: Components.Schemas.AssetInput.AssetClassPayload
+            /// - Remark: Generated from `#/components/schemas/AssetInput/name`.
+            internal var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/AssetInput/value`.
+            internal var value: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/AssetInput/valuedOn`.
+            internal var valuedOn: Swift.String
+            /// Creates a new `AssetInput`.
+            ///
+            /// - Parameters:
+            ///   - assetClass:
+            ///   - name:
+            ///   - value:
+            ///   - valuedOn:
+            internal init(
+                assetClass: Components.Schemas.AssetInput.AssetClassPayload,
+                name: Swift.String,
+                value: Swift.Int,
+                valuedOn: Swift.String
+            ) {
+                self.assetClass = assetClass
+                self.name = name
+                self.value = value
+                self.valuedOn = valuedOn
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case assetClass
+                case name
+                case value
+                case valuedOn
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/AssetUpdate`.
+        internal struct AssetUpdate: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/AssetUpdate/assetClass`.
+            internal enum AssetClassPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case deposit = "deposit"
+                case mutualFund = "mutual_fund"
+                case governmentBond = "government_bond"
+                case gold = "gold"
+                case stock = "stock"
+                case crypto = "crypto"
+                case other = "other"
+            }
+            /// - Remark: Generated from `#/components/schemas/AssetUpdate/assetClass`.
+            internal var assetClass: Components.Schemas.AssetUpdate.AssetClassPayload?
+            /// - Remark: Generated from `#/components/schemas/AssetUpdate/name`.
+            internal var name: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/AssetUpdate/value`.
+            internal var value: Swift.Int?
+            /// - Remark: Generated from `#/components/schemas/AssetUpdate/valuedOn`.
+            internal var valuedOn: Swift.String?
+            /// Creates a new `AssetUpdate`.
+            ///
+            /// - Parameters:
+            ///   - assetClass:
+            ///   - name:
+            ///   - value:
+            ///   - valuedOn:
+            internal init(
+                assetClass: Components.Schemas.AssetUpdate.AssetClassPayload? = nil,
+                name: Swift.String? = nil,
+                value: Swift.Int? = nil,
+                valuedOn: Swift.String? = nil
+            ) {
+                self.assetClass = assetClass
+                self.name = name
+                self.value = value
+                self.valuedOn = valuedOn
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case assetClass
+                case name
+                case value
+                case valuedOn
             }
         }
         /// - Remark: Generated from `#/components/schemas/Home`.
@@ -2983,6 +3422,7 @@ extension Components {
                 case hasPaidPlan = "has_paid_plan"
                 case hasScholarship = "has_scholarship"
                 case hasOpenApplication = "has_open_application"
+                case debtEmergencyNotUsed = "debt_emergency_not_used"
                 case _empty_ = ""
             }
             /// - Remark: Generated from `#/components/schemas/Scholarship/ineligibleReason`.
@@ -3141,13 +3581,15 @@ extension Components {
             internal typealias SituationsPayload = [Components.Schemas.ScholarshipApplicationRequest.SituationsPayloadPayload]
             /// - Remark: Generated from `#/components/schemas/ScholarshipApplicationRequest/situations`.
             internal var situations: Components.Schemas.ScholarshipApplicationRequest.SituationsPayload
+            /// At most 1000 characters (grapheme clusters).
+            ///
             /// - Remark: Generated from `#/components/schemas/ScholarshipApplicationRequest/story`.
             internal var story: Swift.String?
             /// Creates a new `ScholarshipApplicationRequest`.
             ///
             /// - Parameters:
             ///   - situations:
-            ///   - story:
+            ///   - story: At most 1000 characters (grapheme clusters).
             internal init(
                 situations: Components.Schemas.ScholarshipApplicationRequest.SituationsPayload,
                 story: Swift.String? = nil
@@ -3158,6 +3600,950 @@ extension Components {
             internal enum CodingKeys: String, CodingKey {
                 case situations
                 case story
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CommunityGroups`.
+        internal struct CommunityGroups: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CommunityGroups/CategoriesPayload`.
+            internal struct CategoriesPayloadPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/CommunityGroups/CategoriesPayload/key`.
+                internal enum KeyPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                    case debtFree = "debt_free"
+                    case stocks = "stocks"
+                    case crypto = "crypto"
+                    case financeTalk = "finance_talk"
+                }
+                /// - Remark: Generated from `#/components/schemas/CommunityGroups/CategoriesPayload/key`.
+                internal var key: Components.Schemas.CommunityGroups.CategoriesPayloadPayload.KeyPayload
+                /// - Remark: Generated from `#/components/schemas/CommunityGroups/CategoriesPayload/label`.
+                internal var label: Swift.String
+                /// Creates a new `CategoriesPayloadPayload`.
+                ///
+                /// - Parameters:
+                ///   - key:
+                ///   - label:
+                internal init(
+                    key: Components.Schemas.CommunityGroups.CategoriesPayloadPayload.KeyPayload,
+                    label: Swift.String
+                ) {
+                    self.key = key
+                    self.label = label
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case key
+                    case label
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/CommunityGroups/categories`.
+            internal typealias CategoriesPayload = [Components.Schemas.CommunityGroups.CategoriesPayloadPayload]
+            /// - Remark: Generated from `#/components/schemas/CommunityGroups/categories`.
+            internal var categories: Components.Schemas.CommunityGroups.CategoriesPayload
+            /// - Remark: Generated from `#/components/schemas/CommunityGroups/groups`.
+            internal var groups: [Components.Schemas.CommunityGroupSummary]
+            /// Creates a new `CommunityGroups`.
+            ///
+            /// - Parameters:
+            ///   - categories:
+            ///   - groups:
+            internal init(
+                categories: Components.Schemas.CommunityGroups.CategoriesPayload,
+                groups: [Components.Schemas.CommunityGroupSummary]
+            ) {
+                self.categories = categories
+                self.groups = groups
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case categories
+                case groups
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary`.
+        internal struct CommunityGroupSummary: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary/id`.
+            internal var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary/name`.
+            internal var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary/category`.
+            internal enum CategoryPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case debtFree = "debt_free"
+                case stocks = "stocks"
+                case crypto = "crypto"
+                case financeTalk = "finance_talk"
+            }
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary/category`.
+            internal var category: Components.Schemas.CommunityGroupSummary.CategoryPayload
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary/platform`.
+            internal enum PlatformPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case whatsapp = "whatsapp"
+                case telegram = "telegram"
+                case discord = "discord"
+            }
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary/platform`.
+            internal var platform: Components.Schemas.CommunityGroupSummary.PlatformPayload
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary/memberCount`.
+            internal var memberCount: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary/summary`.
+            internal var summary: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary/icon`.
+            internal var icon: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupSummary/educationOnly`.
+            internal var educationOnly: Swift.Bool
+            /// Creates a new `CommunityGroupSummary`.
+            ///
+            /// - Parameters:
+            ///   - id:
+            ///   - name:
+            ///   - category:
+            ///   - platform:
+            ///   - memberCount:
+            ///   - summary:
+            ///   - icon:
+            ///   - educationOnly:
+            internal init(
+                id: Swift.String,
+                name: Swift.String,
+                category: Components.Schemas.CommunityGroupSummary.CategoryPayload,
+                platform: Components.Schemas.CommunityGroupSummary.PlatformPayload,
+                memberCount: Swift.Int,
+                summary: Swift.String,
+                icon: Swift.String,
+                educationOnly: Swift.Bool
+            ) {
+                self.id = id
+                self.name = name
+                self.category = category
+                self.platform = platform
+                self.memberCount = memberCount
+                self.summary = summary
+                self.icon = icon
+                self.educationOnly = educationOnly
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case id
+                case name
+                case category
+                case platform
+                case memberCount
+                case summary
+                case icon
+                case educationOnly
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CommunityGroup`.
+        internal struct CommunityGroup: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CommunityGroup/value1`.
+            internal var value1: Components.Schemas.CommunityGroupSummary
+            /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2`.
+            internal struct Value2Payload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/about`.
+                internal var about: Swift.String
+                /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/admin`.
+                internal struct AdminPayload: Codable, Hashable, Sendable {
+                    /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/admin/name`.
+                    internal var name: Swift.String
+                    /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/admin/initials`.
+                    internal var initials: Swift.String
+                    /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/admin/verifiedSince`.
+                    internal var verifiedSince: Swift.String
+                    /// Creates a new `AdminPayload`.
+                    ///
+                    /// - Parameters:
+                    ///   - name:
+                    ///   - initials:
+                    ///   - verifiedSince:
+                    internal init(
+                        name: Swift.String,
+                        initials: Swift.String,
+                        verifiedSince: Swift.String
+                    ) {
+                        self.name = name
+                        self.initials = initials
+                        self.verifiedSince = verifiedSince
+                    }
+                    internal enum CodingKeys: String, CodingKey {
+                        case name
+                        case initials
+                        case verifiedSince
+                    }
+                }
+                /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/admin`.
+                internal var admin: Components.Schemas.CommunityGroup.Value2Payload.AdminPayload
+                /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/rules`.
+                internal var rules: [Swift.String]
+                /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/linkCheckedOn`.
+                internal var linkCheckedOn: Swift.String?
+                /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/adminUnchanged`.
+                internal var adminUnchanged: Swift.Bool?
+                /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2/rulesAccepted`.
+                internal var rulesAccepted: Swift.Bool
+                /// Creates a new `Value2Payload`.
+                ///
+                /// - Parameters:
+                ///   - about:
+                ///   - admin:
+                ///   - rules:
+                ///   - linkCheckedOn:
+                ///   - adminUnchanged:
+                ///   - rulesAccepted:
+                internal init(
+                    about: Swift.String,
+                    admin: Components.Schemas.CommunityGroup.Value2Payload.AdminPayload,
+                    rules: [Swift.String],
+                    linkCheckedOn: Swift.String? = nil,
+                    adminUnchanged: Swift.Bool? = nil,
+                    rulesAccepted: Swift.Bool
+                ) {
+                    self.about = about
+                    self.admin = admin
+                    self.rules = rules
+                    self.linkCheckedOn = linkCheckedOn
+                    self.adminUnchanged = adminUnchanged
+                    self.rulesAccepted = rulesAccepted
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case about
+                    case admin
+                    case rules
+                    case linkCheckedOn
+                    case adminUnchanged
+                    case rulesAccepted
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/CommunityGroup/value2`.
+            internal var value2: Components.Schemas.CommunityGroup.Value2Payload
+            /// Creates a new `CommunityGroup`.
+            ///
+            /// - Parameters:
+            ///   - value1:
+            ///   - value2:
+            internal init(
+                value1: Components.Schemas.CommunityGroupSummary,
+                value2: Components.Schemas.CommunityGroup.Value2Payload
+            ) {
+                self.value1 = value1
+                self.value2 = value2
+            }
+            internal init(from decoder: any Swift.Decoder) throws {
+                self.value1 = try .init(from: decoder)
+                self.value2 = try .init(from: decoder)
+            }
+            internal func encode(to encoder: any Swift.Encoder) throws {
+                try self.value1.encode(to: encoder)
+                try self.value2.encode(to: encoder)
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CommunityRulesConsentRequest`.
+        internal struct CommunityRulesConsentRequest: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CommunityRulesConsentRequest/version`.
+            internal enum VersionPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case community20261001 = "community-2026-10-01"
+            }
+            /// - Remark: Generated from `#/components/schemas/CommunityRulesConsentRequest/version`.
+            internal var version: Components.Schemas.CommunityRulesConsentRequest.VersionPayload
+            /// Creates a new `CommunityRulesConsentRequest`.
+            ///
+            /// - Parameters:
+            ///   - version:
+            internal init(version: Components.Schemas.CommunityRulesConsentRequest.VersionPayload) {
+                self.version = version
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case version
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CommunityGroupJoin`.
+        internal struct CommunityGroupJoin: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupJoin/inviteUrl`.
+            internal var inviteUrl: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupJoin/platform`.
+            internal enum PlatformPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case whatsapp = "whatsapp"
+                case telegram = "telegram"
+                case discord = "discord"
+            }
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupJoin/platform`.
+            internal var platform: Components.Schemas.CommunityGroupJoin.PlatformPayload
+            /// - Remark: Generated from `#/components/schemas/CommunityGroupJoin/linkCheckedOn`.
+            internal var linkCheckedOn: Swift.String
+            /// Creates a new `CommunityGroupJoin`.
+            ///
+            /// - Parameters:
+            ///   - inviteUrl:
+            ///   - platform:
+            ///   - linkCheckedOn:
+            internal init(
+                inviteUrl: Swift.String,
+                platform: Components.Schemas.CommunityGroupJoin.PlatformPayload,
+                linkCheckedOn: Swift.String
+            ) {
+                self.inviteUrl = inviteUrl
+                self.platform = platform
+                self.linkCheckedOn = linkCheckedOn
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case inviteUrl
+                case platform
+                case linkCheckedOn
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CommunityReport`.
+        internal struct CommunityReport: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CommunityReport/id`.
+            internal var id: Swift.String
+            /// Creates a new `CommunityReport`.
+            ///
+            /// - Parameters:
+            ///   - id:
+            internal init(id: Swift.String) {
+                self.id = id
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case id
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CommunityReportRequest`.
+        internal struct CommunityReportRequest: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CommunityReportRequest/reason`.
+            internal enum ReasonPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case defaultInvite = "default_invite"
+                case guaranteedProfit = "guaranteed_profit"
+                case scam = "scam"
+                case dataOrJockey = "data_or_jockey"
+                case inappropriate = "inappropriate"
+                case other = "other"
+            }
+            /// - Remark: Generated from `#/components/schemas/CommunityReportRequest/reason`.
+            internal var reason: Components.Schemas.CommunityReportRequest.ReasonPayload
+            /// At most 500 characters (grapheme clusters).
+            ///
+            /// - Remark: Generated from `#/components/schemas/CommunityReportRequest/story`.
+            internal var story: Swift.String?
+            /// Creates a new `CommunityReportRequest`.
+            ///
+            /// - Parameters:
+            ///   - reason:
+            ///   - story: At most 500 characters (grapheme clusters).
+            internal init(
+                reason: Components.Schemas.CommunityReportRequest.ReasonPayload,
+                story: Swift.String? = nil
+            ) {
+                self.reason = reason
+                self.story = story
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case reason
+                case story
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CommunityProducts`.
+        internal struct CommunityProducts: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CommunityProducts/products`.
+            internal var products: [Components.Schemas.CommunityProductSummary]
+            /// Creates a new `CommunityProducts`.
+            ///
+            /// - Parameters:
+            ///   - products:
+            internal init(products: [Components.Schemas.CommunityProductSummary]) {
+                self.products = products
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case products
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CommunityProductSummary`.
+        internal struct CommunityProductSummary: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CommunityProductSummary/id`.
+            internal var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CommunityProductSummary/kind`.
+            internal enum KindPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case course = "course"
+                case consultation = "consultation"
+                case ebook = "ebook"
+                case event = "event"
+            }
+            /// - Remark: Generated from `#/components/schemas/CommunityProductSummary/kind`.
+            internal var kind: Components.Schemas.CommunityProductSummary.KindPayload
+            /// - Remark: Generated from `#/components/schemas/CommunityProductSummary/title`.
+            internal var title: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CommunityProductSummary/sellerName`.
+            internal var sellerName: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CommunityProductSummary/sellerInitials`.
+            internal var sellerInitials: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CommunityProductSummary/sellerBadge`.
+            internal var sellerBadge: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CommunityProductSummary/price`.
+            internal var price: Swift.Int?
+            /// - Remark: Generated from `#/components/schemas/CommunityProductSummary/icon`.
+            internal var icon: Swift.String
+            /// Creates a new `CommunityProductSummary`.
+            ///
+            /// - Parameters:
+            ///   - id:
+            ///   - kind:
+            ///   - title:
+            ///   - sellerName:
+            ///   - sellerInitials:
+            ///   - sellerBadge:
+            ///   - price:
+            ///   - icon:
+            internal init(
+                id: Swift.String,
+                kind: Components.Schemas.CommunityProductSummary.KindPayload,
+                title: Swift.String,
+                sellerName: Swift.String,
+                sellerInitials: Swift.String,
+                sellerBadge: Swift.String,
+                price: Swift.Int? = nil,
+                icon: Swift.String
+            ) {
+                self.id = id
+                self.kind = kind
+                self.title = title
+                self.sellerName = sellerName
+                self.sellerInitials = sellerInitials
+                self.sellerBadge = sellerBadge
+                self.price = price
+                self.icon = icon
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case id
+                case kind
+                case title
+                case sellerName
+                case sellerInitials
+                case sellerBadge
+                case price
+                case icon
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CommunityProduct`.
+        internal struct CommunityProduct: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CommunityProduct/value1`.
+            internal var value1: Components.Schemas.CommunityProductSummary
+            /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2`.
+            internal struct Value2Payload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2/description`.
+                internal var description: Swift.String
+                /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2/meta`.
+                internal var meta: Swift.String
+                /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2/sellerRole`.
+                internal var sellerRole: Swift.String
+                /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2/contentsTitle`.
+                internal var contentsTitle: Swift.String
+                /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2/contents`.
+                internal var contents: [Swift.String]
+                /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2/affiliate`.
+                internal var affiliate: Swift.Bool
+                /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2/investmentRisk`.
+                internal var investmentRisk: Swift.Bool
+                /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2/sellerUrl`.
+                internal var sellerUrl: Swift.String?
+                /// Creates a new `Value2Payload`.
+                ///
+                /// - Parameters:
+                ///   - description:
+                ///   - meta:
+                ///   - sellerRole:
+                ///   - contentsTitle:
+                ///   - contents:
+                ///   - affiliate:
+                ///   - investmentRisk:
+                ///   - sellerUrl:
+                internal init(
+                    description: Swift.String,
+                    meta: Swift.String,
+                    sellerRole: Swift.String,
+                    contentsTitle: Swift.String,
+                    contents: [Swift.String],
+                    affiliate: Swift.Bool,
+                    investmentRisk: Swift.Bool,
+                    sellerUrl: Swift.String? = nil
+                ) {
+                    self.description = description
+                    self.meta = meta
+                    self.sellerRole = sellerRole
+                    self.contentsTitle = contentsTitle
+                    self.contents = contents
+                    self.affiliate = affiliate
+                    self.investmentRisk = investmentRisk
+                    self.sellerUrl = sellerUrl
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case description
+                    case meta
+                    case sellerRole
+                    case contentsTitle
+                    case contents
+                    case affiliate
+                    case investmentRisk
+                    case sellerUrl
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/CommunityProduct/value2`.
+            internal var value2: Components.Schemas.CommunityProduct.Value2Payload
+            /// Creates a new `CommunityProduct`.
+            ///
+            /// - Parameters:
+            ///   - value1:
+            ///   - value2:
+            internal init(
+                value1: Components.Schemas.CommunityProductSummary,
+                value2: Components.Schemas.CommunityProduct.Value2Payload
+            ) {
+                self.value1 = value1
+                self.value2 = value2
+            }
+            internal init(from decoder: any Swift.Decoder) throws {
+                self.value1 = try .init(from: decoder)
+                self.value2 = try .init(from: decoder)
+            }
+            internal func encode(to encoder: any Swift.Encoder) throws {
+                try self.value1.encode(to: encoder)
+                try self.value2.encode(to: encoder)
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CareContacts`.
+        internal struct CareContacts: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CareContacts/verifiedOn`.
+            internal var verifiedOn: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CareContacts/contacts`.
+            internal var contacts: [Components.Schemas.CareContact]
+            /// Creates a new `CareContacts`.
+            ///
+            /// - Parameters:
+            ///   - verifiedOn:
+            ///   - contacts:
+            internal init(
+                verifiedOn: Swift.String,
+                contacts: [Components.Schemas.CareContact]
+            ) {
+                self.verifiedOn = verifiedOn
+                self.contacts = contacts
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case verifiedOn
+                case contacts
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CareContact`.
+        internal struct CareContact: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CareContact/key`.
+            internal enum KeyPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case healing119 = "healing119"
+                case kiraCare = "kira_care"
+                case psc119 = "psc119"
+                case ojk157 = "ojk157"
+                case satgasPasti = "satgas_pasti"
+                case iasc = "iasc"
+                case lapsSjk = "laps_sjk"
+            }
+            /// - Remark: Generated from `#/components/schemas/CareContact/key`.
+            internal var key: Components.Schemas.CareContact.KeyPayload
+            /// - Remark: Generated from `#/components/schemas/CareContact/name`.
+            internal var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CareContact/phone`.
+            internal var phone: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/CareContact/extension`.
+            internal var _extension: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/CareContact/whatsapp`.
+            internal var whatsapp: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/CareContact/url`.
+            internal var url: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/CareContact/note`.
+            internal var note: Swift.String
+            /// Creates a new `CareContact`.
+            ///
+            /// - Parameters:
+            ///   - key:
+            ///   - name:
+            ///   - phone:
+            ///   - _extension:
+            ///   - whatsapp:
+            ///   - url:
+            ///   - note:
+            internal init(
+                key: Components.Schemas.CareContact.KeyPayload,
+                name: Swift.String,
+                phone: Swift.String? = nil,
+                _extension: Swift.String? = nil,
+                whatsapp: Swift.String? = nil,
+                url: Swift.String? = nil,
+                note: Swift.String
+            ) {
+                self.key = key
+                self.name = name
+                self.phone = phone
+                self._extension = _extension
+                self.whatsapp = whatsapp
+                self.url = url
+                self.note = note
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case key
+                case name
+                case phone
+                case _extension = "extension"
+                case whatsapp
+                case url
+                case note
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CareSignal`.
+        internal struct CareSignal: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CareSignal/level`.
+            internal enum LevelPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case concern = "concern"
+                case danger = "danger"
+            }
+            /// - Remark: Generated from `#/components/schemas/CareSignal/level`.
+            internal var level: Components.Schemas.CareSignal.LevelPayload
+            /// - Remark: Generated from `#/components/schemas/CareSignal/source`.
+            internal enum SourcePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case chat = "chat"
+                case checkIn = "check_in"
+            }
+            /// - Remark: Generated from `#/components/schemas/CareSignal/source`.
+            internal var source: Components.Schemas.CareSignal.SourcePayload
+            /// Creates a new `CareSignal`.
+            ///
+            /// - Parameters:
+            ///   - level:
+            ///   - source:
+            internal init(
+                level: Components.Schemas.CareSignal.LevelPayload,
+                source: Components.Schemas.CareSignal.SourcePayload
+            ) {
+                self.level = level
+                self.source = source
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case level
+                case source
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CheckIn`.
+        internal struct CheckIn: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CheckIn/id`.
+            internal var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CheckIn/dueAt`.
+            internal var dueAt: Foundation.Date
+            /// Creates a new `CheckIn`.
+            ///
+            /// - Parameters:
+            ///   - id:
+            ///   - dueAt:
+            internal init(
+                id: Swift.String,
+                dueAt: Foundation.Date
+            ) {
+                self.id = id
+                self.dueAt = dueAt
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case id
+                case dueAt
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/ScheduleCheckIn`.
+        internal struct ScheduleCheckIn: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/ScheduleCheckIn/afterHours`.
+            internal struct AfterHoursPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/ScheduleCheckIn/afterHours/value1`.
+                internal var value1: Swift.Double?
+                /// - Remark: Generated from `#/components/schemas/ScheduleCheckIn/afterHours/value2`.
+                internal var value2: Swift.Double?
+                /// - Remark: Generated from `#/components/schemas/ScheduleCheckIn/afterHours/value3`.
+                internal var value3: Swift.Double?
+                /// Creates a new `AfterHoursPayload`.
+                ///
+                /// - Parameters:
+                ///   - value1:
+                ///   - value2:
+                ///   - value3:
+                internal init(
+                    value1: Swift.Double? = nil,
+                    value2: Swift.Double? = nil,
+                    value3: Swift.Double? = nil
+                ) {
+                    self.value1 = value1
+                    self.value2 = value2
+                    self.value3 = value3
+                }
+                internal init(from decoder: any Swift.Decoder) throws {
+                    var errors: [any Swift.Error] = []
+                    do {
+                        self.value1 = try decoder.decodeFromSingleValueContainer()
+                    } catch {
+                        errors.append(error)
+                    }
+                    do {
+                        self.value2 = try decoder.decodeFromSingleValueContainer()
+                    } catch {
+                        errors.append(error)
+                    }
+                    do {
+                        self.value3 = try decoder.decodeFromSingleValueContainer()
+                    } catch {
+                        errors.append(error)
+                    }
+                    try Swift.DecodingError.verifyAtLeastOneSchemaIsNotNil(
+                        [
+                            self.value1,
+                            self.value2,
+                            self.value3
+                        ],
+                        type: Self.self,
+                        codingPath: decoder.codingPath,
+                        errors: errors
+                    )
+                }
+                internal func encode(to encoder: any Swift.Encoder) throws {
+                    try encoder.encodeFirstNonNilValueToSingleValueContainer([
+                        self.value1,
+                        self.value2,
+                        self.value3
+                    ])
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/ScheduleCheckIn/afterHours`.
+            internal var afterHours: Components.Schemas.ScheduleCheckIn.AfterHoursPayload
+            /// Creates a new `ScheduleCheckIn`.
+            ///
+            /// - Parameters:
+            ///   - afterHours:
+            internal init(afterHours: Components.Schemas.ScheduleCheckIn.AfterHoursPayload) {
+                self.afterHours = afterHours
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case afterHours
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/DueCheckIn`.
+        internal struct DueCheckIn: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/DueCheckIn/checkIn`.
+            internal struct CheckInPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/DueCheckIn/checkIn/value1`.
+                internal var value1: Components.Schemas.CheckIn
+                /// - Remark: Generated from `#/components/schemas/DueCheckIn/checkIn/value2`.
+                internal var value2: OpenAPIRuntime.OpenAPIObjectContainer
+                /// Creates a new `CheckInPayload`.
+                ///
+                /// - Parameters:
+                ///   - value1:
+                ///   - value2:
+                internal init(
+                    value1: Components.Schemas.CheckIn,
+                    value2: OpenAPIRuntime.OpenAPIObjectContainer
+                ) {
+                    self.value1 = value1
+                    self.value2 = value2
+                }
+                internal init(from decoder: any Swift.Decoder) throws {
+                    self.value1 = try .init(from: decoder)
+                    self.value2 = try .init(from: decoder)
+                }
+                internal func encode(to encoder: any Swift.Encoder) throws {
+                    try self.value1.encode(to: encoder)
+                    try self.value2.encode(to: encoder)
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/DueCheckIn/checkIn`.
+            internal var checkIn: Components.Schemas.DueCheckIn.CheckInPayload?
+            /// Creates a new `DueCheckIn`.
+            ///
+            /// - Parameters:
+            ///   - checkIn:
+            internal init(checkIn: Components.Schemas.DueCheckIn.CheckInPayload? = nil) {
+                self.checkIn = checkIn
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case checkIn
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/DebtEmergency`.
+        internal struct DebtEmergency: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/DebtEmergency/activatedAt`.
+            internal var activatedAt: Foundation.Date
+            /// Creates a new `DebtEmergency`.
+            ///
+            /// - Parameters:
+            ///   - activatedAt:
+            internal init(activatedAt: Foundation.Date) {
+                self.activatedAt = activatedAt
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case activatedAt
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/Debts`.
+        internal struct Debts: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/Debts/debts`.
+            internal var debts: [Components.Schemas.Debt]
+            /// Creates a new `Debts`.
+            ///
+            /// - Parameters:
+            ///   - debts:
+            internal init(debts: [Components.Schemas.Debt]) {
+                self.debts = debts
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case debts
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/Debt`.
+        internal struct Debt: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/Debt/id`.
+            internal var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Debt/name`.
+            internal var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Debt/kind`.
+            internal enum KindPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case paylater = "paylater"
+                case onlineLoan = "online_loan"
+                case creditCard = "credit_card"
+                case vehicle = "vehicle"
+                case mortgage = "mortgage"
+                case familyLoan = "family_loan"
+            }
+            /// - Remark: Generated from `#/components/schemas/Debt/kind`.
+            internal var kind: Components.Schemas.Debt.KindPayload
+            /// - Remark: Generated from `#/components/schemas/Debt/remaining`.
+            internal var remaining: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/Debt/monthlyInstalment`.
+            internal var monthlyInstalment: Swift.Int
+            /// Creates a new `Debt`.
+            ///
+            /// - Parameters:
+            ///   - id:
+            ///   - name:
+            ///   - kind:
+            ///   - remaining:
+            ///   - monthlyInstalment:
+            internal init(
+                id: Swift.String,
+                name: Swift.String,
+                kind: Components.Schemas.Debt.KindPayload,
+                remaining: Swift.Int,
+                monthlyInstalment: Swift.Int
+            ) {
+                self.id = id
+                self.name = name
+                self.kind = kind
+                self.remaining = remaining
+                self.monthlyInstalment = monthlyInstalment
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case id
+                case name
+                case kind
+                case remaining
+                case monthlyInstalment
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/SafetyPlan`.
+        internal struct SafetyPlan: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/SafetyPlan/value1`.
+            internal var value1: Components.Schemas.SafetyPlanInput
+            /// - Remark: Generated from `#/components/schemas/SafetyPlan/value2`.
+            internal struct Value2Payload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/SafetyPlan/value2/updatedAt`.
+                internal var updatedAt: Foundation.Date
+                /// Creates a new `Value2Payload`.
+                ///
+                /// - Parameters:
+                ///   - updatedAt:
+                internal init(updatedAt: Foundation.Date) {
+                    self.updatedAt = updatedAt
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case updatedAt
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/SafetyPlan/value2`.
+            internal var value2: Components.Schemas.SafetyPlan.Value2Payload
+            /// Creates a new `SafetyPlan`.
+            ///
+            /// - Parameters:
+            ///   - value1:
+            ///   - value2:
+            internal init(
+                value1: Components.Schemas.SafetyPlanInput,
+                value2: Components.Schemas.SafetyPlan.Value2Payload
+            ) {
+                self.value1 = value1
+                self.value2 = value2
+            }
+            internal init(from decoder: any Swift.Decoder) throws {
+                self.value1 = try .init(from: decoder)
+                self.value2 = try .init(from: decoder)
+            }
+            internal func encode(to encoder: any Swift.Encoder) throws {
+                try self.value1.encode(to: encoder)
+                try self.value2.encode(to: encoder)
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/SafetyPlanPerson`.
+        internal struct SafetyPlanPerson: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/SafetyPlanPerson/name`.
+            internal var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/SafetyPlanPerson/phone`.
+            internal var phone: Swift.String
+            /// Creates a new `SafetyPlanPerson`.
+            ///
+            /// - Parameters:
+            ///   - name:
+            ///   - phone:
+            internal init(
+                name: Swift.String,
+                phone: Swift.String
+            ) {
+                self.name = name
+                self.phone = phone
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case name
+                case phone
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/SafetyPlanInput`.
+        internal struct SafetyPlanInput: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/SafetyPlanInput/warningSigns`.
+            internal var warningSigns: Swift.String
+            /// - Remark: Generated from `#/components/schemas/SafetyPlanInput/calmingThings`.
+            internal var calmingThings: Swift.String
+            /// - Remark: Generated from `#/components/schemas/SafetyPlanInput/people`.
+            internal var people: [Components.Schemas.SafetyPlanPerson]
+            /// - Remark: Generated from `#/components/schemas/SafetyPlanInput/professionals`.
+            internal var professionals: [Components.Schemas.SafetyPlanPerson]
+            /// - Remark: Generated from `#/components/schemas/SafetyPlanInput/safePlace`.
+            internal var safePlace: Swift.String
+            /// Creates a new `SafetyPlanInput`.
+            ///
+            /// - Parameters:
+            ///   - warningSigns:
+            ///   - calmingThings:
+            ///   - people:
+            ///   - professionals:
+            ///   - safePlace:
+            internal init(
+                warningSigns: Swift.String,
+                calmingThings: Swift.String,
+                people: [Components.Schemas.SafetyPlanPerson],
+                professionals: [Components.Schemas.SafetyPlanPerson],
+                safePlace: Swift.String
+            ) {
+                self.warningSigns = warningSigns
+                self.calmingThings = calmingThings
+                self.people = people
+                self.professionals = professionals
+                self.safePlace = safePlace
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case warningSigns
+                case calmingThings
+                case people
+                case professionals
+                case safePlace
             }
         }
         /// - Remark: Generated from `#/components/schemas/ChatMessagePage`.
