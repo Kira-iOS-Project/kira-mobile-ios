@@ -77,5 +77,3 @@ struct WalletsModelTests {
         Wallet(id: id, name: id, type: .paylater, balance: 1, nextDueAt: due)
     }
 }
-
-private struct WalletTestError: Error {}
