@@ -30342,6 +30342,236 @@
           }
         }
       }
+    },
+    "wallet.amount.hide" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sembunyikan nominal"
+          }
+        }
+      }
+    },
+    "wallet.amount.show" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tampilkan nominal"
+          }
+        }
+      }
+    },
+    "wallet.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Profil"
+          }
+        }
+      }
+    },
+    "wallet.debt.total" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utang Berjalan"
+          }
+        }
+      }
+    },
+    "wallet.dueSoon" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Segera Jatuh Tempo"
+          }
+        }
+      }
+    },
+    "wallet.empty.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catat saldo bank, e-wallet, uang tunai, dan utangmu di sini."
+          }
+        }
+      }
+    },
+    "wallet.empty.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mulai dengan Dompet Pertama"
+          }
+        }
+      }
+    },
+    "wallet.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dompet Belum Bisa Dibuka"
+          }
+        }
+      }
+    },
+    "wallet.group.debt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akun Utang"
+          }
+        }
+      }
+    },
+    "wallet.group.held" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dompet"
+          }
+        }
+      }
+    },
+    "wallet.held.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uang yang Dipegang"
+          }
+        }
+      }
+    },
+    "wallet.privacy" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saldo diisi sendiri. Kira tidak menyambungkan rekening atau meminta PIN, kata sandi, maupun OTP."
+          }
+        }
+      }
+    },
+    "wallet.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dompet"
+          }
+        }
+      }
+    },
+    "wallet.type.bank" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bank"
+          }
+        }
+      }
+    },
+    "wallet.type.cash" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tunai"
+          }
+        }
+      }
+    },
+    "wallet.type.creditCard" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kartu Kredit"
+          }
+        }
+      }
+    },
+    "wallet.type.ewallet" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "E-Wallet"
+          }
+        }
+      }
+    },
+    "wallet.type.familyLoan" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pinjaman Keluarga"
+          }
+        }
+      }
+    },
+    "wallet.type.mortgage" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "KPR"
+          }
+        }
+      }
+    },
+    "wallet.type.onlineLoan" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pinjol"
+          }
+        }
+      }
+    },
+    "wallet.type.other" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lainnya"
+          }
+        }
+      }
+    },
+    "wallet.type.paylater" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paylater"
+          }
+        }
+      }
+    },
+    "wallet.type.vehicle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kredit Kendaraan"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
