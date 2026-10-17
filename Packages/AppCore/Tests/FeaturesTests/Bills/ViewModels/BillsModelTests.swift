@@ -30,7 +30,7 @@ struct BillsModelTests {
         #expect(model.tag(for: BillFixtures.internet, in: .nextSevenDays) == .daysLeft(7, urgent: false))
         #expect(model.tag(for: BillFixtures.paylaterA, in: .thisMonth) == .daysLeft(10, urgent: true))
         #expect(model.tag(for: BillFixtures.motorbike, in: .thisMonth) == .daysLeft(13, urgent: false))
-        #expect(model.tag(for: BillFixtures.paylaterB, in: .nextMonth) == .date(CalendarDay(year: 2026, month: 11, day: 5)))
+        #expect(model.tag(for: BillFixtures.paylaterB, in: .nextMonth) == .date(BillFixtures.day(11, 5)))
         #expect(model.tag(for: BillFixtures.bpjs, in: .nextMonth) == .paid(month: 10))
     }
 
@@ -39,15 +39,15 @@ struct BillsModelTests {
         let model = model()
         let overdue = Bill(
             id: "late", name: "Air", kind: .bill, category: "bills", amount: 90_000,
-            dueOn: CalendarDay(year: 2026, month: 1, day: 12), dueDay: 12, nextDueOn: CalendarDay(year: 2026, month: 10, day: 12))
+            dueOn: BillFixtures.day(1, 12), dueDay: 12, nextDueOn: BillFixtures.day(10, 12))
         #expect(model.tag(for: overdue, in: .nextSevenDays) == .daysLeft(0, urgent: true))
         let yearly = Bill(
             id: "pbb", name: "PBB", kind: .bill, category: "bills", amount: 400_000, repeats: .yearly,
-            dueOn: CalendarDay(year: 2026, month: 3, day: 1), dueDay: 1, nextDueOn: CalendarDay(year: 2027, month: 3, day: 1))
+            dueOn: BillFixtures.day(3, 1), dueDay: 1, nextDueOn: CalendarDay(year: 2027, month: 3, day: 1))
         #expect(model.tag(for: yearly, in: .later) == .date(CalendarDay(year: 2027, month: 3, day: 1)))
         let paidYearly = Bill(
             id: "stnk", name: "STNK", kind: .bill, category: "transport", amount: 600_000, repeats: .yearly,
-            dueOn: CalendarDay(year: 2025, month: 12, day: 3), dueDay: 3, nextDueOn: CalendarDay(year: 2026, month: 12, day: 3),
+            dueOn: CalendarDay(year: 2025, month: 12, day: 3), dueDay: 3, nextDueOn: BillFixtures.day(12, 3),
             paidThisPeriod: true)
         #expect(model.tag(for: paidYearly, in: .nextMonth) == .paid(month: 12))
     }
@@ -95,5 +95,5 @@ struct BillsModelTests {
 
 private struct ThrowingBillService: BillService {
     struct Boom: Error {}
-    func bills() async throws -> BillOverview { throw Boom() }
+    func bills() throws -> BillOverview { throw Boom() }
 }

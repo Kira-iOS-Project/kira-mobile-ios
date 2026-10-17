@@ -44,6 +44,7 @@
             case .payoff: PayoffLaunch(screen: screen)
             case .payoffPlan: PayoffPlanLaunch(screen: screen)
             case .planModule: PlanModuleLaunch(screen: screen)
+            case .bills: BillsLaunch(screen: screen)
             }
         }
     }
@@ -129,6 +130,9 @@
         /** REN: Tujuan Baru · Pendidikan Anak, Atur Jenjang, and Hasil Simulasi on the board's Raka. */
         case educationGoal, educationGoalResult, educationGoalStage
 
+        /** UNG-06: Tagihan & Cicilan with the board's bills, none, and a load that fails. */
+        case bills, billsEmpty, billsFailed
+
         /** The area whose launcher builds the screen. */
         enum Area {
             case onboarding, home, account, plans, record, chat, community, care, careTools, debtEmergency, marketplace
@@ -141,6 +145,7 @@
             case payoff
             case payoffPlan
             case planModule
+            case bills
         }
 
         var area: Area {
@@ -168,6 +173,7 @@
             case .debtEmergency, .harshCollection, .illegalLender, .unresolvedComplaint, .payoffOffer: .debtEmergency
             case .payoff, .payoffHow, .payoffAvalanche: .payoff
             case .educationGoal, .educationGoalResult, .educationGoalStage: .educationGoal
+            case .bills, .billsEmpty, .billsFailed: .bills
             case .marketplace, .marketplaceEmpty, .marketplaceFailed, .product, .productConsultation, .productEbook,
                 .productEvent, .productGone, .submitProduct:
                 .marketplace

@@ -4,6 +4,7 @@
  estimate, the debt an instalment pays into, and whether this period's is paid already.
  */
 package struct Bill: Identifiable, Hashable, Sendable {
+    /** The bill's id. */
     package let id: String
     /** "Listrik Token". */
     package let name: String
@@ -33,8 +34,8 @@ package struct Bill: Identifiable, Hashable, Sendable {
     /** A bill with the given parts. */
     package init(
         id: String, name: String, kind: BillKind, category: String, amount: Int, isEstimate: Bool = false,
-        repeats: BillRepeat = .monthly, dueOn: CalendarDay, dueDay: Int, nextDueOn: CalendarDay, debtId: String? = nil, remainingInstalments: Int? = nil,
-        paidThisPeriod: Bool = false
+        repeats: BillRepeat = .monthly, dueOn: CalendarDay, dueDay: Int, nextDueOn: CalendarDay,
+        debtId: String? = nil, remainingInstalments: Int? = nil, paidThisPeriod: Bool = false
     ) {
         self.id = id
         self.name = name
@@ -84,7 +85,9 @@ package enum BillGroup: String, CaseIterable, Hashable, Sendable {
 
 /** One group of bills, sorted by their next due day. */
 package struct BillSection: Hashable, Sendable {
+    /** Which due window. */
     package let group: BillGroup
+    /** Its bills, by next due day. */
     package let bills: [Bill]
 
     /** A group with its bills. */
