@@ -38,12 +38,7 @@ struct PaydayField: View {
             .accessibilityValue(PaydayName(payday: payday).text)
             Text("onboarding.payday.hint").onboardingNote().padding(.horizontal, KiraSpacing.space1)
         }
-        .kiraSheet(
-            isPresented: $isPicking, title: "onboarding.payday.sheet.title",
-            subtitle: "onboarding.payday.sheet.subtitle", top: 300
-        ) {
-            PaydaySheet(payday: $payday, isPresented: $isPicking)
-        }
+        .kiraPaydayPicker(isPresented: $isPicking, payday: $payday)
     }
 }
 

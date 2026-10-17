@@ -1,13 +1,26 @@
 /**
- Pilih Tanggal Gajian (ONB-10b, ONB-10c): the days 1–31 in rows of seven, the chosen one in a
- pandan-soft circle with a pandan ring, the others like secondary buttons; "Gajian di akhir bulan"
- dims them. The button names the choice, fills the row and closes the sheet.
+ Pilih Tanggal Gajian (ONB-10b, ONB-10c, UNG-05d): the days 1–31 in rows of seven, the chosen one in
+ a pandan-soft circle with a pandan ring, the others like secondary buttons; "Gajian di akhir bulan"
+ dims them. The button names the choice, applies it and closes the sheet. One sheet for onboarding's
+ Tanggal Gajian and Atur Budget's, built once as the boards ask.
  */
 import Domain
 import Features
 import SwiftUI
 
-struct PaydaySheet: View {
+extension View {
+    /**
+     Presents Pilih Tanggal Gajian while `isPresented` is true; its button writes the chosen day, or
+     the end of the month, to `payday` and closes the sheet.
+     */
+    func kiraPaydayPicker(isPresented: Binding<Bool>, payday: Binding<Payday>) -> some View {
+        kiraSheet(isPresented: isPresented, title: "payday.sheet.title", subtitle: "payday.sheet.subtitle", top: 300) {
+            PaydaySheet(payday: payday, isPresented: isPresented)
+        }
+    }
+}
+
+private struct PaydaySheet: View {
     @Binding var payday: Payday
     @Binding var isPresented: Bool
     @State private var model: PaydayPickerModel
@@ -30,16 +43,18 @@ struct PaydaySheet: View {
                 .opacity(model.isEndOfMonth ? 0.4 : 1)
                 .disabled(model.isEndOfMonth)
                 VStack(alignment: .leading, spacing: KiraSpacing.space2) {
-                    KiraCheckbox("onboarding.payday.endOfMonth.option", isOn: $model.isEndOfMonth)
+                    KiraCheckbox("payday.endOfMonth.option", isOn: $model.isEndOfMonth)
                     if model.isEndOfMonth {
-                        Text("onboarding.payday.endOfMonth.note").onboardingNote().padding(
+                        Text("payday.endOfMonth.note").font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(
+                            .inkMuted
+                        ).padding(
                             .horizontal, KiraSpacing.space1)
                     }
                 }
             }
         }
         .scrollBounceBehavior(.basedOnSize)
-        KiraButton(model.isEndOfMonth ? "onboarding.payday.pickEnd" : "onboarding.payday.pick \(model.day)") {
+        KiraButton(model.isEndOfMonth ? "payday.pickEnd" : "payday.pick \(model.day)") {
             payday = model.payday
             isPresented = false
         }
@@ -71,7 +86,7 @@ private struct DayButton: View {
                 .overlay { Circle().strokeBorder(isChosen ? Color.pandan : .buttonLine, lineWidth: isChosen ? 1.5 : 1) }
         }
         .buttonStyle(.plain)
-        .accessibilityLabel(Text("onboarding.payday.day \(day)"))
+        .accessibilityLabel(Text("payday.day \(day)"))
         .accessibilityAddTraits(isChosen ? [.isSelected] : [])
     }
 }

@@ -4,17 +4,20 @@
  presented over the whole window.
  */
 #if DEBUG
+    import APIClient
     import SwiftUI
 
     struct GalleryDialogs: View {
         @State private var isConfirming = false
         // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
-        @State private var isBudgetSaveFailurePresented = false
+        @State private var budgetSaveFailure: AppProblem?
         // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
         @State private var budgetAmount = "350000"
         // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
         @State private var didRetryBudgetSave = false
+        // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
         @State private var isBudgetSaveSuccessPresented = false
+        // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
         @State private var isConfirmingBillDelete = false
 
         var body: some View {
@@ -32,14 +35,11 @@
                 KiraButton("gallery.dialog.billDelete.open", variant: .secondary) {
                     isConfirmingBillDelete = true
                 }
-                .kiraDialog(isPresented: $isConfirmingBillDelete) {
-                    KiraDialog(
-                        "gallery.dialog.billDelete.title", message: "gallery.dialog.billDelete.body",
-                        art: .illustration(.care),
-                        primary: KiraButton("gallery.dialog.billDelete.confirm", variant: .destructive) {},
-                        secondary: KiraButton("gallery.dialog.cancel", variant: .secondary) {}
-                    )
-                }
+                .billDeleteDialog(
+                    isPresented: $isConfirmingBillDelete, name: "Internet Rumah", amount: 350_000, repeats: .monthly
+                ) {}
+                BillDeleteDialog.dialog(name: "Asuransi Motor", amount: 420_000, repeats: .yearly) {}.onScrim()
+                BillDeleteDialog.dialog(name: "Servis Laptop", amount: 275_000, repeats: .once) {}.onScrim()
             }
             GallerySection(title: "gallery.section.dialogSuccess") {
                 KiraDialog(
@@ -47,14 +47,7 @@
                     primary: KiraButton("gallery.dialog.done") {}
                 )
                 .onScrim()
-                KiraDialog(
-                    "budget.save.success.title",
-                    message: "budget.save.success.message",
-                    art: .success,
-                    primary: KiraButton("budget.save.success.done") {}
-                )
-                .onScrim()
-                KiraButton("gallery.dialog.open", variant: .secondary) {
+                KiraButton("gallery.dialog.budgetSuccess.open", variant: .secondary) {
                     isBudgetSaveSuccessPresented = true
                 }
                 .budgetSaveSuccessDialog(isPresented: $isBudgetSaveSuccessPresented)
@@ -68,9 +61,8 @@
                 .onScrim()
             }
             GallerySection(title: "gallery.section.dialogBudgetFailure") {
-                KiraField("gallery.dialog.budgetFailure.amount", text: $budgetAmount)
-                    .prefix("gallery.field.rupiah")
-                    .keyboardType(.numberPad)
+                KiraField("gallery.dialog.budgetFailure.amount", text: $budgetAmount).prefix("gallery.field.rupiah")
+                    .amount()
                 Text(
                     didRetryBudgetSave
                         ? "gallery.dialog.budgetFailure.retried" : "gallery.dialog.budgetFailure.notRetried"
@@ -78,11 +70,9 @@
                 .font(.footnote)
                 .foregroundStyle(.inkMuted)
                 KiraButton("gallery.dialog.budgetFailure.open", variant: .secondary) {
-                    isBudgetSaveFailurePresented = true
+                    budgetSaveFailure = .connectionLost
                 }
-                .budgetSaveFailureDialog(isPresented: $isBudgetSaveFailurePresented) {
-                    didRetryBudgetSave = true
-                }
+                .budgetSaveFailureDialog(failure: $budgetSaveFailure) { didRetryBudgetSave = true }
             }
             GallerySection(title: "gallery.section.dialogConfirm") {
                 KiraDialog(

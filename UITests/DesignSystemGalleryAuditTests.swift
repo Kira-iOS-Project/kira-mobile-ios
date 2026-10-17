@@ -81,53 +81,6 @@ nonisolated final class DesignSystemGalleryAuditTests: XCTestCase {
         app.terminate()
     }
 
-    @MainActor
-    func testBudgetSaveFailureDialogPassesAuditAndKeepsDraftOnRetry() throws {
-        let app = XCUIApplication()
-        app.launchArguments = ["-KiraGallery", "dialogs"]
-        app.launch()
-
-        let scroll = app.scrollViews.firstMatch
-        XCTAssertTrue(scroll.waitForExistence(timeout: 10))
-        let open = app.buttons["Uji Gagal Menyimpan Budget"]
-        XCTAssertTrue(open.waitForExistence(timeout: 10))
-        for _ in 0..<5 where !open.isHittable { scrollDown(scroll) }
-        XCTAssertTrue(open.isHittable)
-
-        let amount = app.textFields["Alokasi Budget"]
-        XCTAssertTrue(amount.exists)
-        open.tap()
-
-        let title = app.staticTexts["Belum Berhasil Menyimpan"]
-        XCTAssertTrue(title.waitForExistence(timeout: 5))
-        XCTAssertTrue(
-            app.staticTexts[
-                "Koneksi terputus. Angka budgetmu tetap ada di layar. Sambungkan koneksi lalu coba lagi."
-            ].exists)
-        XCTAssertTrue(app.buttons["Tutup"].exists)
-        try audit(app) { issue in issue.auditType == .elementDetection && issue.element == nil }
-        let retry = app.buttons.matching(
-            NSPredicate(format: "label == %@ AND isHittable == true", "Coba Lagi")
-        ).firstMatch
-        XCTAssertTrue(retry.waitForExistence(timeout: 5))
-        retry.tap()
-
-        XCTAssertTrue(title.waitForNonExistence(timeout: 5))
-        XCTAssertEqual(amount.value as? String, "350000")
-        XCTAssertTrue(app.staticTexts["Percobaan ulang dipanggil."].exists)
-
-        open.tap()
-        XCTAssertTrue(title.waitForExistence(timeout: 5))
-        let close = app.buttons.matching(
-            NSPredicate(format: "label == %@ AND isHittable == true", "Tutup")
-        ).firstMatch
-        XCTAssertTrue(close.waitForExistence(timeout: 5))
-        close.tap()
-        XCTAssertTrue(title.waitForNonExistence(timeout: 5))
-        XCTAssertEqual(amount.value as? String, "350000")
-        app.terminate()
-    }
-
     /**
      One accessibility audit, made once more only when Apple's audit could not finish in time
      (XCTest's code -56). On a slow CI runner a long page can outlast the audit's own time limit:

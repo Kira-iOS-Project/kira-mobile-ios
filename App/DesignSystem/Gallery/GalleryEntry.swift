@@ -1,8 +1,10 @@
 /**
- Gallery page for consent and codes: the checkbox, the PIN and the email code (filling, and not
- accepted), and text links on their own and inside a sentence.
+ Gallery page for consent and codes: the checkbox, Pilih Tanggal Gajian (the payday sheet onboarding
+ and Atur Budget share), the PIN and the email code (filling, and not accepted), and text links on
+ their own and inside a sentence.
  */
 #if DEBUG
+    import Domain
     import SwiftUI
 
     struct GalleryEntry: View {
@@ -10,10 +12,10 @@
         @State private var agreesToTerms = true
         // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
         @State private var paydayAtMonthEnd = false
-        // periphery:ignore - used only as a binding while previewing the payday picker
+        // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
         @State private var isPaydayPickerPresented = false
-        // periphery:ignore - used only as a binding while previewing the payday picker
-        @State private var selectedPayday: Int? = 25
+        // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
+        @State private var payday = Payday(day: Payday.defaultDay)
         // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
         @State private var pin = "3814"
         // periphery:ignore - used only as $binding (@State macro), which Periphery 3.8 cannot follow
@@ -46,14 +48,12 @@
                     KiraLinkText("gallery.link.terms") { _ in }
                 }
             }
-            .kiraPaydayPicker(isPresented: $isPaydayPickerPresented, selectedDay: selectedPayday) {
-                selectedPayday = $0
-            }
+            .kiraPaydayPicker(isPresented: $isPaydayPickerPresented, payday: $payday)
         }
 
         private var paydaySelectionLabel: Text {
-            guard let selectedPayday else { return Text("gallery.payday.endOfMonth") }
-            return Text("gallery.payday.day \(selectedPayday)")
+            guard let day = payday.day else { return Text("gallery.payday.endOfMonth") }
+            return Text("gallery.payday.day \(day)")
         }
     }
 

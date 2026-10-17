@@ -1681,12 +1681,62 @@
         }
       }
     },
-    "budget.save.failure.close" : {
+    "bill.delete.body.monthly %@ %@" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tutup"
+            "value" : "%1$@, %2$@ tiap bulan tidak akan muncul lagi di Beranda dan daftar tagihan. Transaksi yang sudah tercatat tetap ada."
+          }
+        }
+      }
+    },
+    "bill.delete.body.once %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@ tidak akan muncul lagi di Beranda dan daftar tagihan. Transaksi yang sudah tercatat tetap ada."
+          }
+        }
+      }
+    },
+    "bill.delete.body.yearly %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@ tiap tahun tidak akan muncul lagi di Beranda dan daftar tagihan. Transaksi yang sudah tercatat tetap ada."
+          }
+        }
+      }
+    },
+    "bill.delete.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "bill.delete.confirm" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus"
+          }
+        }
+      }
+    },
+    "bill.delete.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Tagihan Ini?"
           }
         }
       }
@@ -1696,17 +1746,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Koneksi terputus. Angka budgetmu tetap ada di layar. Sambungkan koneksi lalu coba lagi."
-          }
-        }
-      }
-    },
-    "budget.save.failure.retry" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Coba Lagi"
+            "value" : "Koneksi terputus. Angka budgetmu masih ada di layar, coba lagi."
           }
         }
       }
@@ -6851,26 +6891,6 @@
         }
       }
     },
-    "gallery.dialog.billDelete.body" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tagihan ini tidak lagi muncul di Beranda atau daftar tagihan. Transaksi yang sudah tercatat tetap ada."
-          }
-        }
-      }
-    },
-    "gallery.dialog.billDelete.confirm" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hapus Tagihan"
-          }
-        }
-      }
-    },
     "gallery.dialog.billDelete.open" : {
       "localizations" : {
         "id" : {
@@ -6887,16 +6907,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Konfirmasi Hapus Tagihan"
-          }
-        }
-      }
-    },
-    "gallery.dialog.billDelete.title" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hapus Tagihan Ini?"
           }
         }
       }
@@ -6937,6 +6947,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Percobaan ulang dipanggil."
+          }
+        }
+      }
+    },
+    "gallery.dialog.budgetSuccess.open" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uji Budget Tersimpan"
           }
         }
       }
@@ -14328,42 +14348,12 @@
         }
       }
     },
-    "onboarding.payday.day %lld" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tanggal %lld"
-          }
-        }
-      }
-    },
     "onboarding.payday.endOfMonth" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Setiap Akhir Bulan"
-          }
-        }
-      }
-    },
-    "onboarding.payday.endOfMonth.note" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kira memakai tanggal terakhir tiap bulan, termasuk Februari."
-          }
-        }
-      }
-    },
-    "onboarding.payday.endOfMonth.option" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gajian di akhir bulan"
           }
         }
       }
@@ -14394,46 +14384,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tanggal Gajian"
-          }
-        }
-      }
-    },
-    "onboarding.payday.pick %lld" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pilih Tanggal %lld"
-          }
-        }
-      }
-    },
-    "onboarding.payday.pickEnd" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pilih Akhir Bulan"
-          }
-        }
-      }
-    },
-    "onboarding.payday.sheet.subtitle" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Berulang tiap bulan"
-          }
-        }
-      }
-    },
-    "onboarding.payday.sheet.title" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pilih Tanggal Gajian"
           }
         }
       }
@@ -15398,27 +15348,27 @@
         }
       }
     },
-    "payday.confirm" : {
+    "payday.day %lld" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pilih Tanggal"
+            "value" : "Tanggal %lld"
           }
         }
       }
     },
-    "payday.day.accessibility %lld" : {
+    "payday.endOfMonth.note" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tanggal gajian %lld"
+            "value" : "Kira memakai tanggal terakhir tiap bulan, termasuk Februari."
           }
         }
       }
     },
-    "payday.endOfMonth" : {
+    "payday.endOfMonth.option" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -15428,12 +15378,32 @@
         }
       }
     },
+    "payday.pick %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih Tanggal %lld"
+          }
+        }
+      }
+    },
+    "payday.pickEnd" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih Akhir Bulan"
+          }
+        }
+      }
+    },
     "payday.sheet.subtitle" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pilih tanggal gajian setiap bulan"
+            "value" : "Berulang tiap bulan"
           }
         }
       }
@@ -15443,7 +15413,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tanggal Gajian"
+            "value" : "Pilih Tanggal Gajian"
           }
         }
       }
