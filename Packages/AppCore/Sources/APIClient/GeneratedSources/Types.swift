@@ -104,6 +104,41 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `GET /api/score/indicators/{key}`.
     /// - Remark: Generated from `#/paths//api/score/indicators/{key}/get(getScoreIndicator)`.
     func getScoreIndicator(_ input: Operations.GetScoreIndicator.Input) async throws -> Operations.GetScoreIndicator.Output
+    /// Simulate a debt payoff plan
+    ///
+    /// Orders the consumer debts by snowball or avalanche and returns the month and interest of each, set against the other method. Nothing is saved.
+    ///
+    /// - Remark: HTTP `POST /api/payoff/simulate`.
+    /// - Remark: Generated from `#/paths//api/payoff/simulate/post(simulatePayoff)`.
+    func simulatePayoff(_ input: Operations.SimulatePayoff.Input) async throws -> Operations.SimulatePayoff.Output
+    /// Make this the plan (Jadikan Rencanaku)
+    ///
+    /// Ends the active plan, if any, and starts one on the first consumer account of the method. The extra payment may not exceed the money left this payday period.
+    ///
+    /// - Remark: HTTP `POST /api/payoff/plans`.
+    /// - Remark: Generated from `#/paths//api/payoff/plans/post(createPayoffPlan)`.
+    func createPayoffPlan(_ input: Operations.CreatePayoffPlan.Input) async throws -> Operations.CreatePayoffPlan.Output
+    /// Rencanaku
+    ///
+    /// The active plan: every account with its progress and tag, and the next payment with the days left.
+    ///
+    /// - Remark: HTTP `GET /api/payoff/plans/active`.
+    /// - Remark: Generated from `#/paths//api/payoff/plans/active/get(getActivePayoffPlan)`.
+    func getActivePayoffPlan(_ input: Operations.GetActivePayoffPlan.Input) async throws -> Operations.GetActivePayoffPlan.Output
+    /// Move the plan to another account
+    ///
+    /// Moves the focus of the active plan to an open consumer account ("Lanjut ke Paylater B").
+    ///
+    /// - Remark: HTTP `PATCH /api/payoff/plans/active`.
+    /// - Remark: Generated from `#/paths//api/payoff/plans/active/patch(setPayoffFocus)`.
+    func setPayoffFocus(_ input: Operations.SetPayoffFocus.Input) async throws -> Operations.SetPayoffFocus.Output
+    /// Mark a payment (Tandai Sudah Bayar)
+    ///
+    /// Records a payment against an open debt account. When it settles the account the response says so once, with the score the engine expects and the account the plan moves to next.
+    ///
+    /// - Remark: HTTP `POST /api/debts/{id}/payments`.
+    /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)`.
+    func recordDebtPayment(_ input: Operations.RecordDebtPayment.Input) async throws -> Operations.RecordDebtPayment.Output
     /// Beranda
     ///
     /// The layout to show (first steps, overview or debt plan) and its numbers: money left this payday period, the next step, the Kira Score, the checklist, the debt plan and the micro target.
@@ -524,6 +559,77 @@ extension APIProtocol {
         try await getScoreIndicator(Operations.GetScoreIndicator.Input(
             path: path,
             headers: headers
+        ))
+    }
+    /// Simulate a debt payoff plan
+    ///
+    /// Orders the consumer debts by snowball or avalanche and returns the month and interest of each, set against the other method. Nothing is saved.
+    ///
+    /// - Remark: HTTP `POST /api/payoff/simulate`.
+    /// - Remark: Generated from `#/paths//api/payoff/simulate/post(simulatePayoff)`.
+    internal func simulatePayoff(
+        headers: Operations.SimulatePayoff.Input.Headers = .init(),
+        body: Operations.SimulatePayoff.Input.Body
+    ) async throws -> Operations.SimulatePayoff.Output {
+        try await simulatePayoff(Operations.SimulatePayoff.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Make this the plan (Jadikan Rencanaku)
+    ///
+    /// Ends the active plan, if any, and starts one on the first consumer account of the method. The extra payment may not exceed the money left this payday period.
+    ///
+    /// - Remark: HTTP `POST /api/payoff/plans`.
+    /// - Remark: Generated from `#/paths//api/payoff/plans/post(createPayoffPlan)`.
+    internal func createPayoffPlan(
+        headers: Operations.CreatePayoffPlan.Input.Headers = .init(),
+        body: Operations.CreatePayoffPlan.Input.Body
+    ) async throws -> Operations.CreatePayoffPlan.Output {
+        try await createPayoffPlan(Operations.CreatePayoffPlan.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Rencanaku
+    ///
+    /// The active plan: every account with its progress and tag, and the next payment with the days left.
+    ///
+    /// - Remark: HTTP `GET /api/payoff/plans/active`.
+    /// - Remark: Generated from `#/paths//api/payoff/plans/active/get(getActivePayoffPlan)`.
+    internal func getActivePayoffPlan(headers: Operations.GetActivePayoffPlan.Input.Headers = .init()) async throws -> Operations.GetActivePayoffPlan.Output {
+        try await getActivePayoffPlan(Operations.GetActivePayoffPlan.Input(headers: headers))
+    }
+    /// Move the plan to another account
+    ///
+    /// Moves the focus of the active plan to an open consumer account ("Lanjut ke Paylater B").
+    ///
+    /// - Remark: HTTP `PATCH /api/payoff/plans/active`.
+    /// - Remark: Generated from `#/paths//api/payoff/plans/active/patch(setPayoffFocus)`.
+    internal func setPayoffFocus(
+        headers: Operations.SetPayoffFocus.Input.Headers = .init(),
+        body: Operations.SetPayoffFocus.Input.Body
+    ) async throws -> Operations.SetPayoffFocus.Output {
+        try await setPayoffFocus(Operations.SetPayoffFocus.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Mark a payment (Tandai Sudah Bayar)
+    ///
+    /// Records a payment against an open debt account. When it settles the account the response says so once, with the score the engine expects and the account the plan moves to next.
+    ///
+    /// - Remark: HTTP `POST /api/debts/{id}/payments`.
+    /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)`.
+    internal func recordDebtPayment(
+        path: Operations.RecordDebtPayment.Input.Path,
+        headers: Operations.RecordDebtPayment.Input.Headers = .init(),
+        body: Operations.RecordDebtPayment.Input.Body
+    ) async throws -> Operations.RecordDebtPayment.Output {
+        try await recordDebtPayment(Operations.RecordDebtPayment.Input(
+            path: path,
+            headers: headers,
+            body: body
         ))
     }
     /// Beranda

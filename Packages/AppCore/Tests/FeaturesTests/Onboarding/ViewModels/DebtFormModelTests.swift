@@ -49,4 +49,43 @@ struct DebtFormModelTests {
             DebtFormModel(editing: DebtEntry(kind: .paylater, name: "A", remaining: 1, monthlyInstalment: 1)).tenor
                 .isEmpty)
     }
+
+    @Test("the interest keeps a decimal comma and the due day two digits")
+    func optionalFields() {
+        let model = DebtFormModel()
+        model.interest = "24.755"
+        model.dueDay = "2x5y"
+        #expect(model.interest == "24,75" && model.dueDay == "25")
+        model.dueDay = "123"
+        #expect(model.dueDay == "12")
+    }
+
+    @Test("a filled interest and due day are saved, and left out when empty or out of range")
+    func optionalEntry() throws {
+        let model = DebtFormModel()
+        model.name = "Paylater A"
+        model.remaining = "420000"
+        model.instalment = "210000"
+        let plain = try #require(model.entry())
+        #expect(plain.annualInterestRate == nil && plain.dueDay == nil)
+        model.interest = "36"
+        model.dueDay = "5"
+        let filled = try #require(model.entry())
+        #expect(filled.annualInterestRate == 36 && filled.dueDay == 5)
+        model.interest = "301"
+        model.dueDay = "0"
+        let invalid = try #require(model.entry())
+        #expect(invalid.annualInterestRate == nil && invalid.dueDay == nil)
+        model.dueDay = "32"
+        #expect(try #require(model.entry()).dueDay == nil)
+    }
+
+    @Test("editing opens with the interest and due day filled")
+    func editingOptionalFields() {
+        let debt = DebtEntry(
+            kind: .onlineLoan, name: "Pinjol B", remaining: 900_000, monthlyInstalment: 300_000,
+            annualInterestRate: 2.5, dueDay: 28)
+        let model = DebtFormModel(editing: debt)
+        #expect(model.interest == "2,5" && model.dueDay == "28")
+    }
 }

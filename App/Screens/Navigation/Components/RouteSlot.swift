@@ -1,5 +1,5 @@
 /**
- The screen of each pushed route, by area: Score (score, indicator), Account (profile … deleteAccount,
+ The screen of each pushed route, by area: Score (score, indicator, debtPlan, myPlan), Account (profile … deleteAccount,
  about … complaints), Plans (plans … scholarshipStatus), Kira Peduli (care, trustedMessage,
  negotiationScript, breathingExercise, safetyPlan), Mode Darurat Utang and its guides (debtEmergency,
  debtGuide), Etalase (marketplace, product, submitProduct). "Cek Ulang" (`healthCheck`) covers the shell
@@ -19,6 +19,8 @@ struct RouteSlot: View {
         switch route {
         case .score: ScoreScreen(service: services.score, onOpen: onOpen)
         case .indicator(let key): IndicatorScreen(key: key, service: services.score, onOpen: onOpen)
+        case .debtPlan: PayoffScreen(service: services.payoff, plans: services.payoffPlan, onOpen: onOpen)
+        case .myPlan: PayoffPlanScreen(service: services.payoffPlan, onOpen: onOpen)
         case .profile:
             ProfileScreen(
                 service: services.account, settings: services.security, onOpen: onOpen, onSignedOut: { endSession() })

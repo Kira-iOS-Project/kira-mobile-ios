@@ -61,6 +61,13 @@ private struct DebtFormFields: View {
                 .suffix("onboarding.debt.sheet.months")
                 .hint("onboarding.debt.sheet.tenor.hint")
                 .keyboardType(.numberPad)
+            KiraField("onboarding.debt.sheet.interest", text: $form.interest, prompt: "onboarding.debt.sheet.zero")
+                .suffix("onboarding.debt.sheet.percent")
+                .hint("onboarding.debt.sheet.interest.hint")
+                .keyboardType(.decimalPad)
+            KiraField("onboarding.debt.sheet.dueDay", text: $form.dueDay, prompt: "onboarding.debt.sheet.dueDay.prompt")
+                .hint("onboarding.debt.sheet.dueDay.hint")
+                .keyboardType(.numberPad)
         }
         .padding(.bottom, KiraSpacing.space2)
     }

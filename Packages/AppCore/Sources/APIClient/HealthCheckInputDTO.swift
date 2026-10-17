@@ -48,14 +48,23 @@ package struct HealthCheckDebtDTO: Hashable, Sendable {
     package var monthlyInstalment: Int
     /** Months left; nil when unknown. */
     package var remainingTenorMonths: Int?
+    /** The interest a year in percent; nil when unknown. */
+    package var annualInterestRate: Double?
+    /** The day of the month the instalment is due; nil when unknown. */
+    package var dueDay: Int?
 
     /** A debt as entered. */
-    package init(kind: DebtKindDTO, name: String, remaining: Int, monthlyInstalment: Int, remainingTenorMonths: Int?) {
+    package init(
+        kind: DebtKindDTO, name: String, remaining: Int, monthlyInstalment: Int, remainingTenorMonths: Int?,
+        annualInterestRate: Double? = nil, dueDay: Int? = nil
+    ) {
         self.kind = kind
         self.name = name
         self.remaining = remaining
         self.monthlyInstalment = monthlyInstalment
         self.remainingTenorMonths = remainingTenorMonths
+        self.annualInterestRate = annualInterestRate
+        self.dueDay = dueDay
     }
 }
 
@@ -96,7 +105,8 @@ package struct HealthCheckInputDTO: Hashable, Sendable {
             debts: try debts.map {
                 .init(
                     kind: try bridged($0.kind), name: $0.name, remaining: $0.remaining,
-                    monthlyInstalment: $0.monthlyInstalment, remainingTenorMonths: $0.remainingTenorMonths)
+                    monthlyInstalment: $0.monthlyInstalment, remainingTenorMonths: $0.remainingTenorMonths,
+                    annualInterestRate: $0.annualInterestRate, dueDay: $0.dueDay)
             },
             emergencyFund: emergencyFund, monthlySavings: monthlySavings, otherAssets: otherAssets,
             propertyAssets: propertyAssets, dependents: dependents, maritalStatus: try bridged(maritalStatus),
