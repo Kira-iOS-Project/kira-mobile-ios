@@ -44,7 +44,8 @@ extension HealthCheckInputDTO {
         debts = try answers.debts.map {
             HealthCheckDebtDTO(
                 kind: try Bridge.value($0.kind), name: $0.name, remaining: $0.remaining,
-                monthlyInstalment: $0.monthlyInstalment, remainingTenorMonths: $0.remainingTenorMonths)
+                monthlyInstalment: $0.monthlyInstalment, remainingTenorMonths: $0.remainingTenorMonths,
+                annualInterestRate: $0.annualInterestRate, dueDay: $0.dueDay)
         }
         emergencyFund = answers.emergencyFund
         monthlySavings = answers.monthlySavings

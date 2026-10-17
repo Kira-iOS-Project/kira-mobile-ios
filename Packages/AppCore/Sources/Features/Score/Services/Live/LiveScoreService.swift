@@ -29,4 +29,13 @@ package struct LiveScoreService: ScoreService {
         guard let account = try? await api.getMe() else { return true }
         return account.plan.id == .plus
     }
+
+    /** `GET /score/history`; nil before the health check (`SCORE_NOT_AVAILABLE`). */
+    package func history(_ range: ScoreHistoryRange) async throws -> ScoreHistory? {
+        do {
+            return try ScoreHistory(try await api.getScoreHistory(range))
+        } catch let problem as AppProblem where problem.knownCode == .scoreNotAvailable {
+            return nil
+        }
+    }
 }

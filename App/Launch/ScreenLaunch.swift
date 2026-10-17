@@ -36,6 +36,9 @@
             case .retirementGoal: RetirementGoalLaunch(screen: screen)
             case .plan: PortfolioLaunch(screen: screen)
             case .planHome: PlanHomeLaunch(screen: screen)
+            case .scoreHistory: ScoreHistoryLaunch(screen: screen)
+            case .payoff: PayoffLaunch(screen: screen)
+            case .payoffPlan: PayoffPlanLaunch(screen: screen)
             }
         }
     }
@@ -90,6 +93,18 @@
         case portfolio, portfolioMasked, portfolioEmpty, portfolioFailed, addAsset, addAssetFailing, editAsset
         /** REN: Rencana (with no goal, failed), Detail Tujuan (gone, with a deposit that fails). */
         case plan, planNoGoals, planFailed, goalDetail, goalGone, goalDepositFailing
+        /**
+         SKR: Riwayat Kira Score (the tests tap 1 Tahun), under a month of data, before the check, failed,
+         and outside Kira Plus.
+         */
+        case scoreHistory, scoreHistoryShort, scoreHistoryEmpty, scoreHistoryFailed, scoreHistoryLocked
+        /** SKR: Rencana Pelunasan (03), with Gimana Ngitungnya? open (03b), on Avalanche (03c). */
+        case payoff, payoffHow, payoffAvalanche
+        /**
+         SKR: Rencanaku (also before a plan and with a failing payment) and Perayaan Lunas (also after
+         the last account).
+         */
+        case myPlan, myPlanEmpty, myPlanFailing, payoffCelebration, payoffCelebrationLast
 
         /** The area whose launcher builds the screen. */
         enum Area {
@@ -97,6 +112,9 @@
             case goals
             case retirementGoal
             case plan, planHome
+            case scoreHistory
+            case payoff
+            case payoffPlan
         }
 
         var area: Area {
@@ -122,6 +140,7 @@
             case .breathing, .negotiationScript, .safetyPlan, .safetyPlanEmpty, .safetyPlanFailing, .safetyPlanForm:
                 .careTools
             case .debtEmergency, .harshCollection, .illegalLender, .unresolvedComplaint, .payoffOffer: .debtEmergency
+            case .payoff, .payoffHow, .payoffAvalanche: .payoff
             case .marketplace, .marketplaceEmpty, .marketplaceFailed, .product, .productConsultation, .productEbook,
                 .productEvent, .productGone, .submitProduct:
                 .marketplace
@@ -131,6 +150,9 @@
                 .editAsset:
                 .plan
             case .plan, .planNoGoals, .planFailed, .goalDetail, .goalGone, .goalDepositFailing: .planHome
+            case .scoreHistory, .scoreHistoryShort, .scoreHistoryEmpty, .scoreHistoryFailed, .scoreHistoryLocked:
+                .scoreHistory
+            case .myPlan, .myPlanEmpty, .myPlanFailing, .payoffCelebration, .payoffCelebrationLast: .payoffPlan
             }
         }
     }

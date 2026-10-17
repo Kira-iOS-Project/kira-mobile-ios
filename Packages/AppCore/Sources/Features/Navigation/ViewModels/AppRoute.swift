@@ -11,8 +11,22 @@ package enum AppRoute: Hashable, Sendable {
     case score
     /** SKR-02: one indicator's detail. */
     case indicator(IndicatorKey)
+    /** SKR-07, SKR-07b: Riwayat Kira Score. */
+    case scoreHistory
     /** The health check again, from the score ("Cek Ulang"). */
     case healthCheck
+    /**
+     Beranda's and the score's way into paying off: Rencanaku (SKR-04) when the person has a plan,
+     else Rencana Pelunasan (SKR-03).
+     */
+    case debtPlan
+    /**
+     SKR-03: Rencana Pelunasan, with its open formula (SKR-03b) and the Avalanche method (SKR-03c),
+     always: Naskah Negosiasi's "Lihat Simulasi" and Rencanaku's "Ubah Rencana".
+     */
+    case payoffSimulation
+    /** SKR-04: Rencanaku, the plan the person made; SKR-05 (Perayaan Lunas) opens over it. */
+    case myPlan
 
     /** CAT-01: Catat, the record section's root. */
     case record
@@ -130,12 +144,8 @@ package enum UnavailableArea: String, CaseIterable, Hashable, Sendable {
     case bills
     /** UNG: Ringkasan Mingguan, the weekly summary. */
     case weeklySummary
-    /** SKR: Rencana Pelunasan, the payoff plan. */
-    case debtPlan
-    /** SKR: Riwayat Skor, the score history. */
-    case scoreHistory
     /** SKR: SLIK, the credit report. */
     case creditReport
-    /** REN: the Rencana tab. */
-    case plan
+    /** SKR: Detail Utang, one debt account's detail (Rencanaku's account rows). */
+    case debtDetail
 }
