@@ -29,9 +29,31 @@ extension Components.Schemas.CreateBill {
     init(_ draft: BillDraft) {
         self.init(
             name: draft.name, amount: draft.amount,
-            category: CategoryPayload(rawValue: draft.category.rawValue) ?? .bills,
-            repeats: RepeatsPayload(rawValue: draft.repeats.rawValue) ?? .monthly, dueOn: draft.dueOn.iso,
-            debtId: draft.debtId)
+            category: CategoryPayload(draft.category), repeats: RepeatsPayload(draft.repeats),
+            dueOn: draft.dueOn.iso, debtId: draft.debtId)
+    }
+}
+
+extension Components.Schemas.CreateBill.CategoryPayload {
+    /** The form's tile as the API names it. */
+    init(_ category: BillCategory) {
+        switch category {
+        case .bills: self = .bills
+        case .entertainment: self = .entertainment
+        case .health: self = .health
+        case .other: self = .otherExpense
+        }
+    }
+}
+
+extension Components.Schemas.CreateBill.RepeatsPayload {
+    /** How often, as the API names it. */
+    init(_ repeats: BillRepeat) {
+        switch repeats {
+        case .once: self = .once
+        case .monthly: self = .monthly
+        case .yearly: self = .yearly
+        }
     }
 }
 

@@ -21,6 +21,27 @@ struct LiveBillEditorServiceTests {
         #expect(sent["dueOn"] == .string("2026-10-22") && sent["debtId"] == .string("d-1"))
     }
 
+    @Test("each tile and each Ulangi go out with the API's own values")
+    func values() async throws {
+        let (api, transport) = KiraAPI.routed(["POST /api/bills": ok(billJSON, status: 201)])
+        let service = LiveBillEditorService(api: api)
+        for category in BillCategory.allCases {
+            var bill = draft
+            bill.category = category
+            _ = try await service.createBill(bill)
+        }
+        for repeats in BillRepeat.allCases {
+            var bill = draft
+            bill.repeats = repeats
+            _ = try await service.createBill(bill)
+        }
+        let sent = await transport.sent.map(\.json)
+        let categories: [JSONValue?] = sent.prefix(4).map { $0["category"] }
+        let repeats: [JSONValue?] = sent.suffix(3).map { $0["repeats"] }
+        #expect(categories == ["bills", "entertainment", "health", "other_expense"].map { .string($0) })
+        #expect(repeats == ["once", "monthly", "yearly"].map { .string($0) })
+    }
+
     @Test("PATCH /bills/{id} sends every field; DELETE answers 204")
     func updateAndDelete() async throws {
         let (api, transport) = KiraAPI.routed([
