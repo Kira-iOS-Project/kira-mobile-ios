@@ -70,10 +70,7 @@ struct PayoffModelTests {
         let none = FakePayoffService()
         await none.answers { call in
             let full = payoffSimulation(for: call)
-            return PayoffSimulation(
-                method: full.method, extraPayment: full.extraPayment, maxExtraPayment: full.maxExtraPayment,
-                monthlyBudget: 0, hasUnknownRate: false, accounts: [], productive: full.productive,
-                totalInterest: nil, allPaidMonths: nil, allPaidMonth: nil, comparison: nil)
+            return PayoffSimulation(method: full.method, extraPayment: full.extraPayment, maxExtraPayment: full.maxExtraPayment, hasUnknownRate: false, accounts: [], productive: full.productive, allPaidMonth: nil, comparison: nil)
         }
         let answered = PayoffModel(service: none)
         await answered.load()

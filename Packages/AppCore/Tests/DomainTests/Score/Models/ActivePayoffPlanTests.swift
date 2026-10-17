@@ -10,13 +10,13 @@ struct ActivePayoffPlanTests {
     ) -> PlanAccount {
         PlanAccount(
             id: id, kind: .paylater, name: id, remaining: remaining, original: original, progressPercent: 0,
-            monthlyInstalment: 1, annualInterestRate: nil, dueDay: nil, status: status, payoffMonth: payoffMonth,
+            monthlyInstalment: 1, status: status, payoffMonth: payoffMonth,
             payoffDate: payoffDate, startMonth: nil)
     }
 
     private func plan(_ accounts: [PlanAccount], next: NextPayment? = nil) -> ActivePayoffPlan {
         ActivePayoffPlan(
-            id: "p", method: .avalanche, extraPayment: 0, startedAt: Date(timeIntervalSince1970: 0),
+            method: .avalanche, startedAt: Date(timeIntervalSince1970: 0),
             accounts: accounts, nextPayment: next)
     }
 

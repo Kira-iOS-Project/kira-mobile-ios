@@ -31,9 +31,7 @@ struct PayoffPlanModelNextTests {
 
     @Test("the last account has nothing to move to: the celebration closes and no move is sent")
     func continueAfterLast() async throws {
-        let last = DebtPayment(
-            debtId: "a-1", paid: 420_000, remaining: 0, monthlyInstalment: 210_000, progressPercent: 100,
-            paidOff: true, nextAccount: nil, scoreEstimate: nil)
+        let last = DebtPayment(debtId: "a-1", monthlyInstalment: 210_000, paidOff: true, nextAccount: nil, scoreEstimate: nil)
         await service.answersPayment(.success(last))
         let model = await loadedModel()
         await model.markPaid()

@@ -28,10 +28,6 @@ package struct PlanAccount: Hashable, Sendable {
     package let progressPercent: Int
     /** The monthly instalment. */
     package let monthlyInstalment: Int
-    /** The interest a year in percent; nil when unknown. */
-    package let annualInterestRate: Double?
-    /** The day of the month it is due; nil when unknown. */
-    package let dueDay: Int?
     /** Its tag. */
     package let status: PlanAccountStatus
     /** The month (`YYYY-MM`) the plan pays it off, or its own instalments end; nil when it cannot be known. */
@@ -44,7 +40,7 @@ package struct PlanAccount: Hashable, Sendable {
     /** An account with every field given. */
     package init(
         id: String, kind: DebtKind, name: String, remaining: Int, original: Int, progressPercent: Int,
-        monthlyInstalment: Int, annualInterestRate: Double?, dueDay: Int?, status: PlanAccountStatus,
+        monthlyInstalment: Int, status: PlanAccountStatus,
         payoffMonth: String?, payoffDate: String?, startMonth: String?
     ) {
         self.id = id
@@ -54,8 +50,6 @@ package struct PlanAccount: Hashable, Sendable {
         self.original = original
         self.progressPercent = progressPercent
         self.monthlyInstalment = monthlyInstalment
-        self.annualInterestRate = annualInterestRate
-        self.dueDay = dueDay
         self.status = status
         self.payoffMonth = payoffMonth
         self.payoffDate = payoffDate
@@ -111,12 +105,8 @@ package enum PayoffCountdown: Hashable, Sendable {
 
 /** The plan the person made: Rencanaku. */
 package struct ActivePayoffPlan: Hashable, Sendable {
-    /** The plan's id. */
-    package let id: String
     /** Its method. */
     package let method: PayoffMethod
-    /** The extra payment it adds each month. */
-    package let extraPayment: Int
     /** When the plan was made. */
     package let startedAt: Date
     /** Every account in the plan's order: the consumer accounts, then the debts it leaves alone. */
@@ -126,12 +116,10 @@ package struct ActivePayoffPlan: Hashable, Sendable {
 
     /** A plan with every field given. */
     package init(
-        id: String, method: PayoffMethod, extraPayment: Int, startedAt: Date, accounts: [PlanAccount],
+        method: PayoffMethod, startedAt: Date, accounts: [PlanAccount],
         nextPayment: NextPayment?
     ) {
-        self.id = id
         self.method = method
-        self.extraPayment = extraPayment
         self.startedAt = startedAt
         self.accounts = accounts
         self.nextPayment = nextPayment

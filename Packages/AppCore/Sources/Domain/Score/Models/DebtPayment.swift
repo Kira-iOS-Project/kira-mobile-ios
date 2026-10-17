@@ -4,17 +4,11 @@ package struct ScoreEstimate: Hashable, Sendable {
     package let before: Int
     /** The score after. */
     package let after: Int
-    /** The consumer-debt points before. */
-    package let consumerDebtBefore: Int
-    /** The consumer-debt points after. */
-    package let consumerDebtAfter: Int
 
     /** An estimate with every field given. */
-    package init(before: Int, after: Int, consumerDebtBefore: Int, consumerDebtAfter: Int) {
+    package init(before: Int, after: Int) {
         self.before = before
         self.after = after
-        self.consumerDebtBefore = consumerDebtBefore
-        self.consumerDebtAfter = consumerDebtAfter
     }
 }
 
@@ -36,14 +30,8 @@ package struct NextAccount: Hashable, Sendable {
 package struct DebtPayment: Hashable, Sendable {
     /** The account paid. */
     package let debtId: String
-    /** What was paid. */
-    package let paid: Int
-    /** What is left. */
-    package let remaining: Int
     /** The account's monthly instalment, which a payoff takes off the month ("Cicilanmu turun"). */
     package let monthlyInstalment: Int
-    /** Paid so far over the original balance, 0 to 100. */
-    package let progressPercent: Int
     /** True only for the payment that settled the account: the celebration shows once. */
     package let paidOff: Bool
     /** The account the plan moves to next; nil when the plan has no other account. */
@@ -53,15 +41,12 @@ package struct DebtPayment: Hashable, Sendable {
 
     /** A payment with every field given. */
     package init(
-        debtId: String, paid: Int, remaining: Int, monthlyInstalment: Int, progressPercent: Int, paidOff: Bool,
+        debtId: String, monthlyInstalment: Int, paidOff: Bool,
         nextAccount: NextAccount?,
         scoreEstimate: ScoreEstimate?
     ) {
         self.debtId = debtId
-        self.paid = paid
-        self.remaining = remaining
         self.monthlyInstalment = monthlyInstalment
-        self.progressPercent = progressPercent
         self.paidOff = paidOff
         self.nextAccount = nextAccount
         self.scoreEstimate = scoreEstimate

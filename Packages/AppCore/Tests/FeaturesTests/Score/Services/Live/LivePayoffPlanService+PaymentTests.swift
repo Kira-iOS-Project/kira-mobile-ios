@@ -30,10 +30,7 @@ struct LivePayoffPlanServicePaymentTests {
         #expect(sent.json == ["amount": .number(420_000), "paymentId": .string("pay-7")])
         #expect(
             payment
-                == DebtPayment(
-                    debtId: "a-1", paid: 420_000, remaining: 0, monthlyInstalment: 210_000, progressPercent: 100,
-                    paidOff: true, nextAccount: NextAccount(id: "a-2", name: "Pinjol B"),
-                    scoreEstimate: ScoreEstimate(before: 66, after: 72, consumerDebtBefore: 50, consumerDebtAfter: 80)))
+                == DebtPayment(debtId: "a-1", monthlyInstalment: 210_000, paidOff: true, nextAccount: NextAccount(id: "a-2", name: "Pinjol B"), scoreEstimate: ScoreEstimate(before: 66, after: 72)))
     }
 
     @Test("a part payment has no next account and no estimate")
@@ -41,7 +38,7 @@ struct LivePayoffPlanServicePaymentTests {
         let (api, _) = KiraAPI.routed([paymentRoute: ok(partJSON)])
         let payment = try await LivePayoffPlanService(api: api)
             .recordPayment(debtId: "a-1", amount: 210_000, paymentId: "pay-8")
-        #expect(!payment.paidOff && payment.remaining == 210_000)
+        #expect(!payment.paidOff)
         #expect(payment.nextAccount == nil && payment.scoreEstimate == nil)
     }
 

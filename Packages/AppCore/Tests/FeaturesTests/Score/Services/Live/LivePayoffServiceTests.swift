@@ -25,23 +25,20 @@ struct LivePayoffServiceTests {
         let simulation = try await LivePayoffService(api: api).simulate(method: .avalanche, extraPayment: 200_000)
         #expect(await transport.sent.first?.json == ["method": .string("avalanche"), "extraPayment": .number(200_000)])
         #expect(simulation.method == .avalanche && simulation.extraPayment == 200_000)
-        #expect(simulation.maxExtraPayment == 1_840_000 && simulation.monthlyBudget == 700_000)
-        #expect(simulation.hasUnknownRate && simulation.totalInterest == 6_400)
-        #expect(simulation.allPaidMonths == 2 && simulation.allPaidMonth == "2026-11")
+        #expect(simulation.maxExtraPayment == 1_840_000)
+        #expect(simulation.hasUnknownRate)
+        #expect(simulation.allPaidMonth == "2026-11")
         #expect(
             simulation.accounts == [
-                PayoffAccount(
-                    id: "a-1", kind: .paylater, name: "Paylater A", remaining: 420_000, monthlyInstalment: 210_000,
-                    annualInterestRate: 24, position: 1, months: 2, payoffMonth: "2026-11", interest: 6_400)
+                PayoffAccount(id: "a-1", kind: .paylater, name: "Paylater A", remaining: 420_000, monthlyInstalment: 210_000, position: 1, payoffMonth: "2026-11")
             ])
         #expect(
             simulation.productive == [
-                ProductiveDebt(
-                    id: "p-1", kind: .vehicle, name: "Cicilan Motor", remaining: 13_000_000, monthlyInstalment: 850_000)
+                ProductiveDebt(id: "p-1", kind: .vehicle, name: "Cicilan Motor", remaining: 13_000_000)
             ])
         #expect(
             simulation.comparison
-                == PayoffComparison(otherMethod: .snowball, interestSaved: 1_200, firstPayoffMonthsLater: nil))
+                == PayoffComparison(interestSaved: 1_200, firstPayoffMonthsLater: nil))
     }
 
     @Test("the API's payoff days become calendar days, for the accounts, the productive debts and the last payoff")

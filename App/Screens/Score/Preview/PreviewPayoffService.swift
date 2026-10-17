@@ -8,31 +8,25 @@ import Features
 import SwiftUI
 
 nonisolated extension PayoffSimulation {
-    /** The board's plan: Snowball, Rp200.000,00 extra, Paylater A first. */
-    static let sample = PayoffSimulation.sample(method: .snowball, extraPayment: 200_000)
 
     /** The sample plan for `method` and `extraPayment`; Avalanche puts Pinjol B, the dearer, first. */
     static func sample(method: PayoffMethod, extraPayment: Int) -> PayoffSimulation {
         let paylater = PayoffAccount(
             id: "paylater-a", kind: .paylater, name: "Paylater A", remaining: 420_000, monthlyInstalment: 210_000,
-            annualInterestRate: 24, position: method == .snowball ? 1 : 2, months: 2, payoffMonth: "2026-11",
-            interest: 6_400)
+            position: method == .snowball ? 1 : 2, payoffMonth: "2026-11"
+        )
         let loan = PayoffAccount(
             id: "pinjol-b", kind: .onlineLoan, name: "Pinjol B", remaining: 890_000, monthlyInstalment: 290_000,
-            annualInterestRate: 36, position: method == .snowball ? 2 : 1, months: 3, payoffMonth: "2026-12",
-            interest: 21_800)
+            position: method == .snowball ? 2 : 1, payoffMonth: "2026-12"
+        )
         return PayoffSimulation(
-            method: method, extraPayment: extraPayment, maxExtraPayment: 1_840_000,
-            monthlyBudget: 500_000 + extraPayment, hasUnknownRate: false,
+            method: method, extraPayment: extraPayment, maxExtraPayment: 1_840_000, hasUnknownRate: false,
             accounts: method == .snowball ? [paylater, loan] : [loan, paylater],
             productive: [
-                ProductiveDebt(
-                    id: "motor", kind: .vehicle, name: "Cicilan Motor", remaining: 13_000_000,
-                    monthlyInstalment: 850_000)
-            ],
-            totalInterest: 28_200, allPaidMonths: 3, allPaidMonth: "2026-12",
+                ProductiveDebt(id: "motor", kind: .vehicle, name: "Cicilan Motor", remaining: 13_000_000)
+            ], allPaidMonth: "2026-12",
             comparison: PayoffComparison(
-                otherMethod: method.other, interestSaved: method == .snowball ? -1_200 : 1_200,
+                interestSaved: method == .snowball ? -1_200 : 1_200,
                 firstPayoffMonthsLater: method == .snowball ? 1 : -1))
     }
 }
