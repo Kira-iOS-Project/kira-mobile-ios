@@ -17378,6 +17378,146 @@
         }
       }
     },
+    "plan.dp.automatic" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hitungan otomatis"
+          }
+        }
+      }
+    },
+    "plan.dp.caption %@ %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DP %1$@%% rumah %2$lld tahun lagi, sudah termasuk inflasi properti %3$@%% per tahun"
+          }
+        }
+      }
+    },
+    "plan.dp.downPayment" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DP Kamu Setara"
+          }
+        }
+      }
+    },
+    "plan.dp.formula.cost %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ × %2$@%%"
+          }
+        }
+      }
+    },
+    "plan.dp.goal" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DP Rumah"
+          }
+        }
+      }
+    },
+    "plan.dp.inflation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inflasi Properti"
+          }
+        }
+      }
+    },
+    "plan.dp.lead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uang muka untuk rumah pertamamu."
+          }
+        }
+      }
+    },
+    "plan.dp.loan %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokok KPR · %lld%%"
+          }
+        }
+      }
+    },
+    "plan.dp.percent" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%"
+          }
+        }
+      }
+    },
+    "plan.dp.present" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uang yang Sudah Ada untuk DP"
+          }
+        }
+      }
+    },
+    "plan.dp.price" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Harga Properti Impian Saat Ini"
+          }
+        }
+      }
+    },
+    "plan.dp.rate" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DP"
+          }
+        }
+      }
+    },
+    "plan.dp.rate.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biasanya 10% sampai 50%"
+          }
+        }
+      }
+    },
+    "plan.dp.years" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tercapai dalam"
+          }
+        }
+      }
+    },
     "plan.eyebrow" : {
       "localizations" : {
         "id" : {
@@ -17404,6 +17544,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "= %@"
+          }
+        }
+      }
+    },
+    "plan.formula.fv %@ %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "FV(%1$@%% ÷ 12, %2$lld bulan,"
+          }
+        }
+      }
+    },
+    "plan.formula.fv.amounts %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@)"
           }
         }
       }
@@ -17439,6 +17599,16 @@
       }
     },
     "plan.formula.inflate.years %@ %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "× (1 + %1$@%%)^%2$lld"
+          }
+        }
+      }
+    },
+    "plan.formula.inflation %@ %lld" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -17584,6 +17754,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@"
+          }
+        }
+      }
+    },
+    "plan.goal.number %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
           }
         }
       }
@@ -17944,6 +18124,466 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Biaya hari bahagia"
+          }
+        }
+      }
+    },
+    "plan.kpr.admin" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Administrasi"
+          }
+        }
+      }
+    },
+    "plan.kpr.analysis" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Analisis KPR"
+          }
+        }
+      }
+    },
+    "plan.kpr.appraisal" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appraisal"
+          }
+        }
+      }
+    },
+    "plan.kpr.bphtb" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BPHTB"
+          }
+        }
+      }
+    },
+    "plan.kpr.bphtb.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5% × (harga − NJOP-TKP)"
+          }
+        }
+      }
+    },
+    "plan.kpr.costs" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biaya Lain Saat Beli"
+          }
+        }
+      }
+    },
+    "plan.kpr.costs.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asuransi jiwa sesuai umur dan asuransi kebakaran sesuai nilai rumah belum dihitung."
+          }
+        }
+      }
+    },
+    "plan.kpr.costs.total" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Biaya Lain"
+          }
+        }
+      }
+    },
+    "plan.kpr.deed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AJB"
+          }
+        }
+      }
+    },
+    "plan.kpr.fixInstalment" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan Masa Bunga Fix"
+          }
+        }
+      }
+    },
+    "plan.kpr.fixInstalment.detail %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld bulan pertama · bunga %2$@%%"
+          }
+        }
+      }
+    },
+    "plan.kpr.fixRate" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bunga Fix"
+          }
+        }
+      }
+    },
+    "plan.kpr.fixYears" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Periode Bunga Fix (Tahun)"
+          }
+        }
+      }
+    },
+    "plan.kpr.floatInstalment" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan Masa Floating"
+          }
+        }
+      }
+    },
+    "plan.kpr.floatInstalment.detail %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld bulan berikutnya · bunga %2$@%%"
+          }
+        }
+      }
+    },
+    "plan.kpr.floatRate" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bunga Floating"
+          }
+        }
+      }
+    },
+    "plan.kpr.formula.annuity" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokok × i ÷ (1 − (1 + i)^−n)"
+          }
+        }
+      }
+    },
+    "plan.kpr.formula.terms" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "i = bunga ÷ 12, n = sisa bulan"
+          }
+        }
+      }
+    },
+    "plan.kpr.formula.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan KPR"
+          }
+        }
+      }
+    },
+    "plan.kpr.health.body %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan tertinggi %1$@%% dari penghasilanmu. %2$@"
+          }
+        }
+      }
+    },
+    "plan.kpr.health.dangerous" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan Berbahaya"
+          }
+        }
+      }
+    },
+    "plan.kpr.health.healthy" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan Sehat"
+          }
+        }
+      }
+    },
+    "plan.kpr.health.unhealthy" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan Tidak Sehat"
+          }
+        }
+      }
+    },
+    "plan.kpr.health.veryHealthy" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan Sangat Sehat"
+          }
+        }
+      }
+    },
+    "plan.kpr.income" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Penghasilan Bulanan"
+          }
+        }
+      }
+    },
+    "plan.kpr.income.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Untuk mengecek kesehatan cicilan"
+          }
+        }
+      }
+    },
+    "plan.kpr.interest" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Bunga KPR"
+          }
+        }
+      }
+    },
+    "plan.kpr.interest.detail %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@%% dari pokok pinjaman"
+          }
+        }
+      }
+    },
+    "plan.kpr.limit.dangerous" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Di atas 50% termasuk berbahaya."
+          }
+        }
+      }
+    },
+    "plan.kpr.limit.healthy" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batas sehat sampai 30%."
+          }
+        }
+      }
+    },
+    "plan.kpr.limit.unhealthy" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batas sehat sampai 30%."
+          }
+        }
+      }
+    },
+    "plan.kpr.limit.veryHealthy" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Di bawah 15% termasuk sangat sehat."
+          }
+        }
+      }
+    },
+    "plan.kpr.loan" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokok Pinjaman"
+          }
+        }
+      }
+    },
+    "plan.kpr.loan.detail %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld tahun · %2$lld bulan"
+          }
+        }
+      }
+    },
+    "plan.kpr.njop" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NJOP-TKP"
+          }
+        }
+      }
+    },
+    "plan.kpr.njop.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nilai tidak kena pajak untuk BPHTB, berbeda tiap daerah"
+          }
+        }
+      }
+    },
+    "plan.kpr.notary" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notaris"
+          }
+        }
+      }
+    },
+    "plan.kpr.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bunga fix lalu floating"
+          }
+        }
+      }
+    },
+    "plan.kpr.ofLoan" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1% dari pokok pinjaman"
+          }
+        }
+      }
+    },
+    "plan.kpr.ofPrice %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%% dari harga"
+          }
+        }
+      }
+    },
+    "plan.kpr.ofPrice.decimal %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@%% dari harga"
+          }
+        }
+      }
+    },
+    "plan.kpr.provision" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Provisi"
+          }
+        }
+      }
+    },
+    "plan.kpr.remaining" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sisa Pokok setelah Masa Fix"
+          }
+        }
+      }
+    },
+    "plan.kpr.tenor" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tenor KPR (Tahun)"
+          }
+        }
+      }
+    },
+    "plan.kpr.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simulasi KPR"
+          }
+        }
+      }
+    },
+    "plan.kpr.transfer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Balik Nama"
           }
         }
       }
@@ -18808,6 +19448,36 @@
         }
       }
     },
+    "plan.result.budget.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup"
+          }
+        }
+      }
+    },
+    "plan.result.budget.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Berhasil Menyimpan"
+          }
+        }
+      }
+    },
+    "plan.result.budget.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
+          }
+        }
+      }
+    },
     "plan.result.composition" : {
       "localizations" : {
         "id" : {
@@ -19044,6 +19714,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pokok ditambah imbal hasil"
+          }
+        }
+      }
+    },
+    "plan.result.overline.total" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total uang yang kamu butuhkan"
           }
         }
       }
@@ -19454,6 +20134,396 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kendaraan"
+          }
+        }
+      }
+    },
+    "plan.wedding.attire" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pakaian / Seragam"
+          }
+        }
+      }
+    },
+    "plan.wedding.budget" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anggaran Pernikahan"
+          }
+        }
+      }
+    },
+    "plan.wedding.budgeting" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipe Budgeting"
+          }
+        }
+      }
+    },
+    "plan.wedding.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "plan.wedding.caption %@ %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anggaran %1$@ menikah %2$lld tahun lagi, sudah termasuk inflasi %3$@%% per tahun"
+          }
+        }
+      }
+    },
+    "plan.wedding.caption.own %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anggaranmu menikah %1$lld tahun lagi, sudah termasuk inflasi %2$@%% per tahun"
+          }
+        }
+      }
+    },
+    "plan.wedding.catering" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Katering"
+          }
+        }
+      }
+    },
+    "plan.wedding.decoration" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dekorasi"
+          }
+        }
+      }
+    },
+    "plan.wedding.detailed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rinci"
+          }
+        }
+      }
+    },
+    "plan.wedding.documentation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokumentasi"
+          }
+        }
+      }
+    },
+    "plan.wedding.dowry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mahar"
+          }
+        }
+      }
+    },
+    "plan.wedding.economical" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ekonomis"
+          }
+        }
+      }
+    },
+    "plan.wedding.emcee" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MC"
+          }
+        }
+      }
+    },
+    "plan.wedding.examples" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pakai Contoh Anggaran"
+          }
+        }
+      }
+    },
+    "plan.wedding.examples.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contoh anggaran"
+          }
+        }
+      }
+    },
+    "plan.wedding.examples.source" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ekonomis Rp42.500.000,00 · Standar Rp175.000.000,00 · Sultan Rp775.000.000,00. Sumber: CNN Indonesia dan Bride Story."
+          }
+        }
+      }
+    },
+    "plan.wedding.goal" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menikah"
+          }
+        }
+      }
+    },
+    "plan.wedding.guests" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jumlah Tamu"
+          }
+        }
+      }
+    },
+    "plan.wedding.inflation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asumsi Inflasi"
+          }
+        }
+      }
+    },
+    "plan.wedding.invitation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Undangan"
+          }
+        }
+      }
+    },
+    "plan.wedding.lavish" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sultan"
+          }
+        }
+      }
+    },
+    "plan.wedding.lead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biaya hari bahagia."
+          }
+        }
+      }
+    },
+    "plan.wedding.makeup" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Makeup"
+          }
+        }
+      }
+    },
+    "plan.wedding.music" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Musik / Hiburan"
+          }
+        }
+      }
+    },
+    "plan.wedding.organizer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wedding Organizer"
+          }
+        }
+      }
+    },
+    "plan.wedding.pax" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pax"
+          }
+        }
+      }
+    },
+    "plan.wedding.perGuest %lld %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld pax × %2$@"
+          }
+        }
+      }
+    },
+    "plan.wedding.present" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uang yang Sudah Ada untuk Menikah"
+          }
+        }
+      }
+    },
+    "plan.wedding.price" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Harga"
+          }
+        }
+      }
+    },
+    "plan.wedding.pricePerGuest" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Harga per Pax"
+          }
+        }
+      }
+    },
+    "plan.wedding.rows" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rincian biaya"
+          }
+        }
+      }
+    },
+    "plan.wedding.rows.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketuk baris untuk mengubah harganya."
+          }
+        }
+      }
+    },
+    "plan.wedding.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan"
+          }
+        }
+      }
+    },
+    "plan.wedding.simple" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sederhana"
+          }
+        }
+      }
+    },
+    "plan.wedding.souvenir" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suvenir"
+          }
+        }
+      }
+    },
+    "plan.wedding.standard" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standar"
+          }
+        }
+      }
+    },
+    "plan.wedding.total" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Anggaran"
+          }
+        }
+      }
+    },
+    "plan.wedding.venue" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Venue / Gedung"
+          }
+        }
+      }
+    },
+    "plan.wedding.years" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menikah dalam"
           }
         }
       }
