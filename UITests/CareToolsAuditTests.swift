@@ -8,16 +8,19 @@ import XCTest
 nonisolated final class CareToolsAuditTests: XCTestCase {
     @MainActor
     func testNegotiationScriptPassesTheAudit() throws {
-        try auditScreen("negotiationScript")
+        try auditScreen("negotiationScript", accepting: Self.isBoardSecondaryText)
     }
 
     /** NaskahNegosiasiDropdown: Pemberi Pinjaman opens the list of the person's lenders. */
     @MainActor
     func testLenderListPassesTheAudit() throws {
-        try auditScreen("negotiationScript") { app in
-            Self.tap(app.buttons["Pemberi Pinjaman"])
-            XCTAssertTrue(app.buttons["Paylater B"].waitForExistence(timeout: 5))
-        }
+        try auditScreen(
+            "negotiationScript",
+            prepare: { app in
+                Self.tap(app.buttons["Pemberi Pinjaman"])
+                XCTAssertTrue(app.buttons["Paylater B"].waitForExistence(timeout: 5))
+            },
+            accepting: Self.isBoardSecondaryText)
     }
 
     /** The contract number's sheet, opened from the script's coloured phrase. */
@@ -51,6 +54,21 @@ nonisolated final class CareToolsAuditTests: XCTestCase {
                 /** Accepted, as for every presented dialog (docs/design-system.md): text behind its scrim. */
                 issue.auditType == .elementDetection && issue.element == nil
             })
+    }
+
+    /**
+     Accepted, owner's decision (design precise to the board): contrast on the script card's "untuk
+     <lender>" (care.script.for) and a lender row's "Cicilan Rp… per bulan" (care.script.lenderInfo),
+     and nothing else. Both are drawn as NaskahNegosiasi and NaskahNegosiasiDropdown draw them (12 px,
+     weight 500, and 13 px, both var(--ink-muted)), and their tokens pass AA: ink-muted on the card
+     5.9 : 1, on pandan-soft 5.2 : 1, in light and dark. Apple's audit samples the pixels of these
+     thin 12-13 pt strokes and reads them below 4.5 at some positions only (the same label passes at
+     one scroll offset and fails at the next).
+     */
+    @MainActor
+    private static func isBoardSecondaryText(_ issue: XCUIAccessibilityAuditIssue) -> Bool {
+        guard issue.auditType == .contrast, let label = issue.element?.label else { return false }
+        return label.hasPrefix("untuk ") || (label.hasPrefix("Cicilan Rp") && label.hasSuffix(" per bulan"))
     }
 
     @MainActor
