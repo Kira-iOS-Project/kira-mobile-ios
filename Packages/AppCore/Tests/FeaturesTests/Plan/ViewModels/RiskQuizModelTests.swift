@@ -12,7 +12,8 @@ struct RiskQuizModelTests {
     private let plans = FakeGoalService()
     private static let board = RiskQuizContext(emergencyMultiple: 1.1, emergencyTarget: 6, monthlyIncome: 7_500_000)
     private static let persona = [1, 1, 1, 0, 1]
-    private static let aggressive = SavedRiskProfile(profile: .aggressive, answers: RiskAnswers([2, 2, 3, 3, 3]))
+    nonisolated private static let aggressive = SavedRiskProfile(
+        profile: .aggressive, answers: RiskAnswers([2, 2, 3, 3, 3]))
 
     private func model(_ draft: RiskQuizDraft = RiskQuizDraft(), start: RiskQuizModel.Start = .quiz())
         -> RiskQuizModel
@@ -69,7 +70,8 @@ struct RiskQuizModelTests {
         #expect(again.choice(for: .drawdown) == 3 && again.stage == .question(.drawdown))
     }
 
-    @Test("a failed save keeps the answers and shows its problem; Coba Lagi sends them again", arguments: [true, false])
+    @Test(
+        "a failed save keeps the answers and shows its problem; Coba Lagi sends them again", arguments: [true, false])
     func failure(offline: Bool) async {
         let error: any Error = offline ? URLError(.notConnectedToInternet) : FakeRiskProfileService.problem
         await service.configure { $0.saveFailures = [error] }

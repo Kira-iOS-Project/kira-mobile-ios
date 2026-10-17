@@ -10,24 +10,24 @@ extension AssetClass {
     /** The class's name. */
     var title: LocalizedStringResource {
         switch self {
-        case .moneyMarketFund: "plan.asset.moneyMarketFund"
-        case .governmentBonds: "plan.asset.governmentBonds"
-        case .deposits: "plan.asset.deposits"
-        case .gold: "plan.asset.gold"
-        case .stocks: "plan.asset.stocks"
-        case .crypto: "plan.asset.crypto"
+        case .moneyMarketFund: "plan.risk.asset.moneyMarketFund"
+        case .governmentBonds: "plan.risk.asset.governmentBonds"
+        case .deposits: "plan.risk.asset.deposits"
+        case .gold: "plan.risk.asset.gold"
+        case .stocks: "plan.risk.asset.stocks"
+        case .crypto: "plan.risk.asset.crypto"
         }
     }
 
     /** The line under the name. */
     var subtitle: LocalizedStringResource {
         switch self {
-        case .moneyMarketFund: "plan.asset.moneyMarketFund.subtitle"
-        case .governmentBonds: "plan.asset.governmentBonds.subtitle"
-        case .deposits: "plan.asset.deposits.subtitle"
-        case .gold: "plan.asset.gold.subtitle"
-        case .stocks: "plan.asset.stocks.subtitle"
-        case .crypto: "plan.asset.crypto.subtitle"
+        case .moneyMarketFund: "plan.risk.asset.moneyMarketFund.subtitle"
+        case .governmentBonds: "plan.risk.asset.governmentBonds.subtitle"
+        case .deposits: "plan.risk.asset.deposits.subtitle"
+        case .gold: "plan.risk.asset.gold.subtitle"
+        case .stocks: "plan.risk.asset.stocks.subtitle"
+        case .crypto: "plan.risk.asset.crypto.subtitle"
         }
     }
 
@@ -48,10 +48,10 @@ extension AssetRisk {
     /** Risiko Rendah, Sedang, Tinggi, Sangat Tinggi. */
     var title: LocalizedStringResource {
         switch self {
-        case .low: "plan.asset.risk.low"
-        case .medium: "plan.asset.risk.medium"
-        case .high: "plan.asset.risk.high"
-        case .veryHigh: "plan.asset.risk.veryHigh"
+        case .low: "plan.risk.asset.risk.low"
+        case .medium: "plan.risk.asset.risk.medium"
+        case .high: "plan.risk.asset.risk.high"
+        case .veryHigh: "plan.risk.asset.risk.veryHigh"
         }
     }
 

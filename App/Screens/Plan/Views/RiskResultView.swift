@@ -19,14 +19,15 @@ struct RiskResultView: View {
             KiraScenery(hasSun: true, height: 150).padding(.top, 50)
         } content: {
             KiraNavBar(
-                "plan.result.title", subtitle: "plan.result.subtitle", leading: .back("plan.result.back", onBack)
+                "plan.risk.result.title", subtitle: "plan.risk.result.subtitle",
+                leading: .back("plan.risk.result.back", onBack)
             ) {
                 KiraHelpButton(.icon) { onOpen(.care) }
             }
             RiskProfileCard(profile: profile).padding(.top, 80)
             VStack(alignment: .leading, spacing: 10) {
-                KiraSectionTitle("plan.result.learn", trailing: .note("plan.result.learn.note"))
-                KiraListGroup(footer: "plan.result.learn.footer") {
+                KiraSectionTitle("plan.risk.result.learn", trailing: .note("plan.risk.result.learn.note"))
+                KiraListGroup(footer: "plan.risk.result.learn.footer") {
                     ForEach(AssetClass.allCases, id: \.self) { asset in
                         KiraListRow(Text(asset.title), leading: .category(asset.tile), trailing: .chevron) {
                             onOpen(.assetModule(asset))
@@ -38,11 +39,11 @@ struct RiskResultView: View {
                 }
             }
             .padding(.top, KiraSpacing.space2)
-            KiraNotice(.education, title: "plan.education.title", message: "plan.result.education.body")
+            KiraNotice(.education, title: "plan.risk.education.title", message: "plan.risk.result.education.body")
             Spacer(minLength: KiraSpacing.space1)
             PlanButtonRow(
-                secondary: KiraButton("plan.result.restart", variant: .secondary, action: onRestart),
-                primary: KiraButton("plan.result.start") { onOpen(.assetModule(.moneyMarketFund)) })
+                secondary: KiraButton("plan.risk.result.restart", variant: .secondary, action: onRestart),
+                primary: KiraButton("plan.risk.result.start") { onOpen(.assetModule(.moneyMarketFund)) })
         }
     }
 }

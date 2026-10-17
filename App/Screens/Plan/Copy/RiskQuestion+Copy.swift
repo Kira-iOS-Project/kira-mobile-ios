@@ -29,7 +29,9 @@ extension RiskQuestion {
         case .horizon: "plan.risk.horizon.subtitle"
         case .experience: "plan.risk.experience.subtitle"
         case .monthlyDeposit:
-            if let income { "plan.risk.deposit.subtitle \(Decimal(income).formatted(.rupiah))" } else {
+            if let income {
+                "plan.risk.deposit.subtitle \(Decimal(income).formatted(.rupiah))"
+            } else {
                 "plan.risk.deposit.subtitleUnknown"
             }
         }

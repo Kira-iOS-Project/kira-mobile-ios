@@ -12588,296 +12588,6 @@
         }
       }
     },
-    "legality.back" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kembali ke Rencana"
-          }
-        }
-      }
-    },
-    "legality.heading" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cek Dulu\nSebelum Percaya"
-          }
-        }
-      }
-    },
-    "legality.heading.subtitle" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tawaran terlalu manis perlu dicek."
-          }
-        }
-      }
-    },
-    "legality.investments" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Daftar Entitas Investasi Berizin OJK"
-          }
-        }
-      }
-    },
-    "legality.investments.subtitle" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ojk.go.id · investasi"
-          }
-        }
-      }
-    },
-    "legality.lenders" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Daftar Pindar Berizin OJK"
-          }
-        }
-      }
-    },
-    "legality.lenders.subtitle" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ojk.go.id · pinjaman daring"
-          }
-        }
-      }
-    },
-    "legality.notice.body" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cek namanya langsung di daftar resmi berikut."
-          }
-        }
-      }
-    },
-    "legality.notice.title" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kira Tidak Memutuskan Legal atau Ilegal"
-          }
-        }
-      }
-    },
-    "legality.official" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Daftar Resmi"
-          }
-        }
-      }
-    },
-    "legality.ojk157" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kontak OJK 157"
-          }
-        }
-      }
-    },
-    "legality.ojk157.call %@" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Telepon %@"
-          }
-        }
-      }
-    },
-    "legality.ojk157.subtitle" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Telepon 157 · WhatsApp 081157157157"
-          }
-        }
-      }
-    },
-    "legality.ojk157.whatsApp %@" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "WhatsApp %@"
-          }
-        }
-      }
-    },
-    "legality.report" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lapor Entitas Ilegal ke Satgas PASTI"
-          }
-        }
-      }
-    },
-    "legality.report.subtitle" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "sipasti.ojk.go.id"
-          }
-        }
-      }
-    },
-    "legality.search" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nama Aplikasi, Perusahaan, atau Tawaran"
-          }
-        }
-      }
-    },
-    "legality.search.hint" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kira tidak menyimpan pencarianmu."
-          }
-        }
-      }
-    },
-    "legality.sign.guaranteed" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Janji Untung Pasti atau Tetap"
-          }
-        }
-      }
-    },
-    "legality.sign.guaranteed.detail" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Investasi yang legal selalu punya risiko."
-          }
-        }
-      }
-    },
-    "legality.sign.noLicence" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tidak Bisa Menunjukkan Izin OJK"
-          }
-        }
-      }
-    },
-    "legality.sign.noLicence.detail" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Namanya harus ada di daftar resmi."
-          }
-        }
-      }
-    },
-    "legality.sign.personalAccount" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Minta Transfer ke Rekening Pribadi"
-          }
-        }
-      }
-    },
-    "legality.sign.personalAccount.detail" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rekening resmi atas nama lembaga."
-          }
-        }
-      }
-    },
-    "legality.sign.today" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Desakan “Hari Ini Saja”"
-          }
-        }
-      }
-    },
-    "legality.sign.today.detail" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tawaran resmi memberi waktu berpikir."
-          }
-        }
-      }
-    },
-    "legality.signs" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tanda Bahaya"
-          }
-        }
-      }
-    },
-    "legality.title" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cek Legalitas"
-          }
-        }
-      }
-    },
-    "legality.transferred" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sudah terlanjur transfer? Hubungi bankmu secepatnya dan lapor ke IASC di iasc.ojk.go.id."
-          }
-        }
-      }
-    },
     "loadFailed.retry" : {
       "localizations" : {
         "id" : {
@@ -15728,176 +15438,6 @@
         }
       }
     },
-    "plan.asset.crypto" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kripto"
-          }
-        }
-      }
-    },
-    "plan.asset.crypto.subtitle" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aset digital, naik-turunnya sangat tajam"
-          }
-        }
-      }
-    },
-    "plan.asset.deposits" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deposito"
-          }
-        }
-      }
-    },
-    "plan.asset.deposits.subtitle" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Simpanan berjangka di bank"
-          }
-        }
-      }
-    },
-    "plan.asset.gold" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Emas"
-          }
-        }
-      }
-    },
-    "plan.asset.gold.subtitle" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Penyimpan nilai jangka panjang"
-          }
-        }
-      }
-    },
-    "plan.asset.governmentBonds" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "SBN"
-          }
-        }
-      }
-    },
-    "plan.asset.governmentBonds.subtitle" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Surat berharga yang diterbitkan negara"
-          }
-        }
-      }
-    },
-    "plan.asset.moneyMarketFund" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reksa Dana Pasar Uang"
-          }
-        }
-      }
-    },
-    "plan.asset.moneyMarketFund.subtitle" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Untuk dana darurat dan tujuan dekat"
-          }
-        }
-      }
-    },
-    "plan.asset.risk.high" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Risiko Tinggi"
-          }
-        }
-      }
-    },
-    "plan.asset.risk.low" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Risiko Rendah"
-          }
-        }
-      }
-    },
-    "plan.asset.risk.medium" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Risiko Sedang"
-          }
-        }
-      }
-    },
-    "plan.asset.risk.veryHigh" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Risiko Sangat Tinggi"
-          }
-        }
-      }
-    },
-    "plan.asset.stocks" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Saham"
-          }
-        }
-      }
-    },
-    "plan.asset.stocks.subtitle" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bagian kepemilikan sebuah perusahaan"
-          }
-        }
-      }
-    },
-    "plan.education.title" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Edukasi, Bukan Rekomendasi"
-          }
-        }
-      }
-    },
     "plan.goal.cents" : {
       "localizations" : {
         "id" : {
@@ -16038,112 +15578,162 @@
         }
       }
     },
-    "plan.result.back" : {
+    "plan.risk.asset.crypto" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kembali ke Rencana"
+            "value" : "Kripto"
           }
         }
       }
     },
-    "plan.result.education.body" : {
+    "plan.risk.asset.crypto.subtitle" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kira tidak menyebut produk, kode saham, atau koin tertentu."
+            "value" : "Aset digital, naik-turunnya sangat tajam"
           }
         }
       }
     },
-    "plan.result.learn" : {
+    "plan.risk.asset.deposits" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pelajari Dulu"
+            "value" : "Deposito"
           }
         }
       }
     },
-    "plan.result.learn.footer" : {
+    "plan.risk.asset.deposits.subtitle" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diurutkan dari risiko paling rendah. Profilmu tidak membatasi apa yang boleh kamu pelajari."
+            "value" : "Simpanan berjangka di bank"
           }
         }
       }
     },
-    "plan.result.learn.note" : {
+    "plan.risk.asset.gold" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "mulai dari yang stabil"
+            "value" : "Emas"
           }
         }
       }
     },
-    "plan.result.overline" : {
+    "plan.risk.asset.gold.subtitle" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Profil risikomu"
+            "value" : "Penyimpan nilai jangka panjang"
           }
         }
       }
     },
-    "plan.result.restart" : {
+    "plan.risk.asset.governmentBonds" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ulangi Kuis"
+            "value" : "SBN"
           }
         }
       }
     },
-    "plan.result.scale %@" : {
+    "plan.risk.asset.governmentBonds.subtitle" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Skala profil risiko: Konservatif, Moderat, Agresif. Kamu di %@."
+            "value" : "Surat berharga yang diterbitkan negara"
           }
         }
       }
     },
-    "plan.result.start" : {
+    "plan.risk.asset.moneyMarketFund" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mulai Belajar"
+            "value" : "Reksa Dana Pasar Uang"
           }
         }
       }
     },
-    "plan.result.subtitle" : {
+    "plan.risk.asset.moneyMarketFund.subtitle" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Profil risiko"
+            "value" : "Untuk dana darurat dan tujuan dekat"
           }
         }
       }
     },
-    "plan.result.title" : {
+    "plan.risk.asset.risk.high" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hasil Kuis"
+            "value" : "Risiko Tinggi"
+          }
+        }
+      }
+    },
+    "plan.risk.asset.risk.low" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Risiko Rendah"
+          }
+        }
+      }
+    },
+    "plan.risk.asset.risk.medium" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Risiko Sedang"
+          }
+        }
+      }
+    },
+    "plan.risk.asset.risk.veryHigh" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Risiko Sangat Tinggi"
+          }
+        }
+      }
+    },
+    "plan.risk.asset.stocks" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saham"
+          }
+        }
+      }
+    },
+    "plan.risk.asset.stocks.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bagian kepemilikan sebuah perusahaan"
           }
         }
       }
@@ -16274,6 +15864,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kalau Nilai Investasimu Turun 15% dalam Sebulan, Apa yang Kamu Lakukan?"
+          }
+        }
+      }
+    },
+    "plan.risk.education.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edukasi, Bukan Rekomendasi"
           }
         }
       }
@@ -16488,6 +16088,296 @@
         }
       }
     },
+    "plan.risk.legality.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Rencana"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.heading" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cek Dulu\nSebelum Percaya"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.heading.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tawaran terlalu manis perlu dicek."
+          }
+        }
+      }
+    },
+    "plan.risk.legality.investments" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daftar Entitas Investasi Berizin OJK"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.investments.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ojk.go.id · investasi"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.lenders" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daftar Pindar Berizin OJK"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.lenders.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ojk.go.id · pinjaman daring"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.notice.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cek namanya langsung di daftar resmi berikut."
+          }
+        }
+      }
+    },
+    "plan.risk.legality.notice.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Tidak Memutuskan Legal atau Ilegal"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.official" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daftar Resmi"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.ojk157" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontak OJK 157"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.ojk157.call %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telepon %@"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.ojk157.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Telepon 157 · WhatsApp 081157157157"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.ojk157.whatsApp %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WhatsApp %@"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.report" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lapor Entitas Ilegal ke Satgas PASTI"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.report.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "sipasti.ojk.go.id"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.search" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama Aplikasi, Perusahaan, atau Tawaran"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.search.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira tidak menyimpan pencarianmu."
+          }
+        }
+      }
+    },
+    "plan.risk.legality.sign.guaranteed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Janji Untung Pasti atau Tetap"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.sign.guaranteed.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Investasi yang legal selalu punya risiko."
+          }
+        }
+      }
+    },
+    "plan.risk.legality.sign.noLicence" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak Bisa Menunjukkan Izin OJK"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.sign.noLicence.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namanya harus ada di daftar resmi."
+          }
+        }
+      }
+    },
+    "plan.risk.legality.sign.personalAccount" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minta Transfer ke Rekening Pribadi"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.sign.personalAccount.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rekening resmi atas nama lembaga."
+          }
+        }
+      }
+    },
+    "plan.risk.legality.sign.today" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desakan “Hari Ini Saja”"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.sign.today.detail" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tawaran resmi memberi waktu berpikir."
+          }
+        }
+      }
+    },
+    "plan.risk.legality.signs" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanda Bahaya"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cek Legalitas"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.transferred" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah terlanjur transfer? Hubungi bankmu secepatnya dan lapor ke IASC di iasc.ojk.go.id."
+          }
+        }
+      }
+    },
     "plan.risk.next" : {
       "localizations" : {
         "id" : {
@@ -16574,6 +16464,116 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pertanyaan %1$lld dari %2$lld"
+          }
+        }
+      }
+    },
+    "plan.risk.result.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Rencana"
+          }
+        }
+      }
+    },
+    "plan.risk.result.education.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira tidak menyebut produk, kode saham, atau koin tertentu."
+          }
+        }
+      }
+    },
+    "plan.risk.result.learn" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pelajari Dulu"
+          }
+        }
+      }
+    },
+    "plan.risk.result.learn.footer" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diurutkan dari risiko paling rendah. Profilmu tidak membatasi apa yang boleh kamu pelajari."
+          }
+        }
+      }
+    },
+    "plan.risk.result.learn.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "mulai dari yang stabil"
+          }
+        }
+      }
+    },
+    "plan.risk.result.overline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profil risikomu"
+          }
+        }
+      }
+    },
+    "plan.risk.result.restart" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ulangi Kuis"
+          }
+        }
+      }
+    },
+    "plan.risk.result.scale %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skala profil risiko: Konservatif, Moderat, Agresif. Kamu di %@."
+          }
+        }
+      }
+    },
+    "plan.risk.result.start" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mulai Belajar"
+          }
+        }
+      }
+    },
+    "plan.risk.result.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profil risiko"
+          }
+        }
+      }
+    },
+    "plan.risk.result.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hasil Kuis"
           }
         }
       }

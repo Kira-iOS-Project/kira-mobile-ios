@@ -13,7 +13,7 @@ struct RiskProfileCard: View {
         VStack(spacing: 14) {
             KiraIllustration(.stairs, size: 120).padding(.top, -84)
             VStack(spacing: 2) {
-                Text("plan.result.overline").kiraFont(.overline).foregroundStyle(.pandan)
+                Text("plan.risk.result.overline").kiraFont(.overline).foregroundStyle(.pandan)
                 Text(profile.title).kiraFont(.largeTitle).foregroundStyle(.ink).accessibilityAddTraits(.isHeader)
             }
             Text(profile.sentence)
@@ -41,6 +41,6 @@ struct RiskProfileCard: View {
         }
         .padding(.top, 6)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text("plan.result.scale \(String(localized: profile.title))"))
+        .accessibilityLabel(Text("plan.risk.result.scale \(String(localized: profile.title))"))
     }
 }

@@ -6,15 +6,15 @@ import SwiftUI
 
 struct LegalityWarnings: View {
     private let signs: [(LocalizedStringResource, LocalizedStringResource)] = [
-        ("legality.sign.guaranteed", "legality.sign.guaranteed.detail"),
-        ("legality.sign.personalAccount", "legality.sign.personalAccount.detail"),
-        ("legality.sign.today", "legality.sign.today.detail"),
-        ("legality.sign.noLicence", "legality.sign.noLicence.detail"),
+        ("plan.risk.legality.sign.guaranteed", "plan.risk.legality.sign.guaranteed.detail"),
+        ("plan.risk.legality.sign.personalAccount", "plan.risk.legality.sign.personalAccount.detail"),
+        ("plan.risk.legality.sign.today", "plan.risk.legality.sign.today.detail"),
+        ("plan.risk.legality.sign.noLicence", "plan.risk.legality.sign.noLicence.detail"),
     ]
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            KiraSectionTitle("legality.signs")
+            KiraSectionTitle("plan.risk.legality.signs")
             KiraRowStack {
                 ForEach(signs.indices, id: \.self) { index in
                     sign(signs[index].0, detail: signs[index].1).kiraRowSeparator()
@@ -22,9 +22,11 @@ struct LegalityWarnings: View {
             }
             .padding(.horizontal, KiraSpacing.space4)
             .kiraCard()
-            Text("legality.transferred").font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
-                .padding(.horizontal, KiraSpacing.space1)
-                .fixedSize(horizontal: false, vertical: true)
+            Text("plan.risk.legality.transferred").font(.footnote).kiraLineHeight(18, size: 13).foregroundStyle(
+                .inkMuted
+            )
+            .padding(.horizontal, KiraSpacing.space1)
+            .fixedSize(horizontal: false, vertical: true)
         }
     }
 
