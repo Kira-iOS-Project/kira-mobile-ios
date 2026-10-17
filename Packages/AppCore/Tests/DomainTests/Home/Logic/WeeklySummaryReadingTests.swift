@@ -13,7 +13,7 @@ struct WeeklySummaryReadingTests {
             categories: categories.map { CategorySpending(category: $0, amount: $1) })
     }
 
-    private var board: WeeklySummary {
+    private var boardWeek: WeeklySummary {
         week(
             [165_000, 240_000, 310_000, 280_000, 95_000, 140_000, 155_000], previous: 1_505_000,
             categories: [(.food, 640_000), (.transport, 285_000), (.shopping, 250_000), (.entertainment, 210_000)])
@@ -21,7 +21,7 @@ struct WeeklySummaryReadingTests {
 
     @Test("the board: Rp120.000 less, Sabtu busiest, Senin quietest, the weekend heaviest, 46/21/18/15")
     func board() {
-        let reading = WeeklySummaryReading(self.board)
+        let reading = WeeklySummaryReading(boardWeek)
         #expect(reading.comparison == .less(120_000))
         #expect(reading.busiest == DaySpending(day: CalendarDay(year: 2026, month: 10, day: 10), amount: 310_000))
         #expect(reading.quietest == DaySpending(day: CalendarDay(year: 2026, month: 10, day: 12), amount: 95_000))
