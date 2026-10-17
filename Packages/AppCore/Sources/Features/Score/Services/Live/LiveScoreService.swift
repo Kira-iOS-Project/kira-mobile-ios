@@ -24,11 +24,12 @@ package struct LiveScoreService: ScoreService {
         try IndicatorDetail(try await api.getScoreIndicator(key))
     }
 
-    /**
-     `GET /score/history`: answers the generic problem until the client is regenerated from B3's
-     spec, which adds `getScoreHistory`.
-     */
-    package func history(_: ScoreHistoryRange) async throws -> ScoreHistory? {
-        throw AppProblem()
+    /** `GET /score/history`; nil before the health check (`SCORE_NOT_AVAILABLE`). */
+    package func history(_ range: ScoreHistoryRange) async throws -> ScoreHistory? {
+        do {
+            return try ScoreHistory(try await api.getScoreHistory(range))
+        } catch let problem as AppProblem where problem.knownCode == .scoreNotAvailable {
+            return nil
+        }
     }
 }
