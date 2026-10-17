@@ -32,6 +32,8 @@
             case .care: CareLaunch(screen: screen)
             case .debtEmergency: DebtEmergencyLaunch(screen: screen)
             case .careTools: CareToolsLaunch(screen: screen)
+            case .houseGoal: HouseGoalLaunch(screen: screen)
+            case .weddingGoal: WeddingGoalLaunch(screen: screen)
             case .goals: GoalsLaunch(screen: screen)
             case .retirementGoal: RetirementGoalLaunch(screen: screen)
             case .plan: PortfolioLaunch(screen: screen)
@@ -106,9 +108,15 @@
          */
         case myPlan, myPlanEmpty, myPlanFailing, payoffCelebration, payoffCelebrationLast
 
+        /** REN: Tujuan Baru · DP Rumah, its result (the tests tap Jadikan Pos Budget), and a create that fails. */
+        case houseGoal, houseGoalResult, houseGoalBudgetFailing
+        /** REN: Tujuan Baru · Menikah, its price sheet (the tests tap Venue / Gedung), and its result. */
+        case weddingGoal, weddingGoalResult
+
         /** The area whose launcher builds the screen. */
         enum Area {
             case onboarding, home, account, plans, record, chat, community, care, careTools, debtEmergency, marketplace
+            case houseGoal, weddingGoal
             case goals
             case retirementGoal
             case plan, planHome
@@ -144,6 +152,8 @@
             case .marketplace, .marketplaceEmpty, .marketplaceFailed, .product, .productConsultation, .productEbook,
                 .productEvent, .productGone, .submitProduct:
                 .marketplace
+            case .houseGoal, .houseGoalResult, .houseGoalBudgetFailing: .houseGoal
+            case .weddingGoal, .weddingGoalResult: .weddingGoal
             case .goalVehicle, .goalGoods, .goalOther: .goals
             case .goalRetirement, .goalRetirementResult: .retirementGoal
             case .portfolio, .portfolioMasked, .portfolioEmpty, .portfolioFailed, .addAsset, .addAssetFailing,
