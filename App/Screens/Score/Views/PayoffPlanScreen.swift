@@ -99,7 +99,7 @@ private struct PayoffPlanContent: View {
             }
             .padding(.horizontal, KiraSpacing.screen)
             .padding(.top, KiraSpacing.space2)
-            .padding(.bottom, KiraSpacing.space8)
+            .padding(.bottom, KiraSpacing.space2)
             .frame(maxWidth: .infinity, alignment: .top)
             .background(alignment: .topTrailing) {
                 KiraLeaf(.twig, tone: .soft, size: 130, isFlipped: true)

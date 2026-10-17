@@ -34,7 +34,7 @@ struct RecoveryNewPinView: View {
                     .disabled(model.newPin.count < PinPolicy.length)
             }
             .padding(.horizontal, KiraSpacing.screen)
-            .padding(.bottom, KiraSpacing.space8)
+            .padding(.bottom, KiraSpacing.space2)
         }
         .background { RecoveryBackground() }
         .kiraScrollEdges()
