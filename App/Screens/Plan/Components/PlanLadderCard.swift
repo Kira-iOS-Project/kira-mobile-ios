@@ -1,8 +1,9 @@
 /**
  Tangga Keuanganmu (REN-01): the four steps the engine reports, each with its number badge, title
  and line. A step in progress carries "Sedang Berjalan" (with what the API names, "Paylater A"), a
- done one "Sudah Aman"; step 2 shows the emergency fund's progress. Step 4 is a suggestion, never
- locked. The note under it says the order is a guide, not a rule.
+ done one "Sudah Aman"; step 2 shows the emergency fund's progress (the engine's amount of its
+ target), and Proteksi names BPJS as active only when both covers are held. Step 4 is a
+ suggestion, never locked. The note under it says the order is a guide, not a rule.
  */
 import Domain
 import SwiftUI
@@ -46,6 +47,16 @@ private struct PlanLadderRow: View {
     let emergency: GoalSummary?
     let isLast: Bool
 
+    /**
+     Step 2's progress: the engine's saved amount and target for the rung, else the emergency-fund
+     goal's; nil when neither has a target.
+     */
+    private var progress: (saved: Int, target: Int)? {
+        if let target = step.detail.target, target > 0 { return (step.detail.amount ?? 0, target) }
+        guard let emergency, emergency.targetAmount > 0 else { return nil }
+        return (emergency.savedAmount, emergency.targetAmount)
+    }
+
     var body: some View {
         HStack(alignment: .top, spacing: 14) {
             PlanLadderBadge(step: step)
@@ -54,8 +65,8 @@ private struct PlanLadderRow: View {
                 if let line = step.line {
                     Text(line).font(.subheadline).kiraLineHeight(20, size: 15).foregroundStyle(.inkMuted)
                 }
-                if step.key == .emergencyFund, let emergency, emergency.targetAmount > 0 {
-                    KiraProgressRibbon(value: Double(emergency.savedAmount), target: Double(emergency.targetAmount))
+                if step.key == .emergencyFund, let progress {
+                    KiraProgressRibbon(value: Double(progress.saved), target: Double(progress.target))
                         .padding(.top, 10)
                 } else if let tag = step.tag {
                     tag.padding(.top, KiraSpacing.space2)

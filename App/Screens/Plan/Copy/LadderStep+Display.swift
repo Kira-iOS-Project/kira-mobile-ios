@@ -28,7 +28,9 @@ extension LadderStep {
         case .expensiveDebt: "plan.ladder.payOffDebt.line"
         case .emergencyFund:
             detail.multiple.map { "plan.ladder.emergencyFund.line \($0, format: .kiraMultiple)" }
-        case .protection: "plan.ladder.protection.line"
+        /** Only when both covers are held: the board's line names BPJS Kesehatan and Ketenagakerjaan as active. */
+        case .protection:
+            detail.health == .held && detail.incomeCover == .held ? "plan.ladder.protection.line" : nil
         case .investing: "plan.ladder.invest.line"
         }
     }
