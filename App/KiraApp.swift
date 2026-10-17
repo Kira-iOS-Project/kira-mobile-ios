@@ -55,8 +55,20 @@ private struct ComposedApp {
 }
 
 extension KiraApp {
-    /** The API's host; every route already starts with `/api`. The one place the server is named. */
-    private static let serverURL = URL(string: "https://api-kira.serenitycode.tech") ?? URL(filePath: "/")
+    /**
+     The API's host; every route already starts with `/api`. The one place the server is named. A
+     debug build launched with `-KiraServer <url>` talks to that server instead, such as a local
+     backend on `http://127.0.0.1:3452` for the live UI tests (Config/DebugLocalServer.plist allows
+     plain HTTP to local addresses in debug builds only).
+     */
+    private static let serverURL: URL = {
+        #if DEBUG
+            let arguments = ProcessInfo.processInfo.arguments
+            let value = arguments.firstIndex(of: "-KiraServer").flatMap { arguments.dropFirst($0 + 1).first }
+            if let value, let url = URL(string: value) { return url }
+        #endif
+        return URL(string: "https://api-kira.serenitycode.tech") ?? URL(filePath: "/")
+    }()
 
     private static func makeApp() -> ComposedApp {
         let vault = lockedDemoVault() ?? KeychainVault()
@@ -68,9 +80,10 @@ extension KiraApp {
         let lock = AppLockModel(pins: pins, vault: vault)
         let previews = usesPreviewServices
         let services = previews ? AppServices.preview : .live(api: api, session: session, lock: lock, pins: pins)
-        let root = RootModel(session: session, lock: lock) {
-            previews ? .ready(hidesBalances: false) : await AccountStage.check(with: api)
-        }
+        let root = RootModel(
+            session: session, lock: lock,
+            checkAccount: { previews ? .ready(hidesBalances: false) : await AccountStage.check(with: api) },
+            forgetUser: { services.riskDraft.clear() })
         return ComposedApp(root: root, services: services, record: previews ? nil : .live(api: api))
     }
 

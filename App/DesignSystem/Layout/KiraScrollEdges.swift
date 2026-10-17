@@ -22,4 +22,18 @@ extension View {
             banded
         }
     }
+
+    /**
+     A scroll view inside a Kira sheet: no blur at the top or the bottom, so the text just above
+     the sheet's main action keeps its contrast. The panel is already solid `surface`, so it needs
+     no band. KiraSheet applies it to every sheet's content.
+     */
+    @ViewBuilder
+    func kiraSheetScrollEdges() -> some View {
+        if #available(iOS 26, *) {
+            scrollEdgeEffectHidden(true, for: .vertical)
+        } else {
+            self
+        }
+    }
 }

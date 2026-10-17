@@ -57,22 +57,21 @@ package struct AppProblem: Error, Codable, Hashable, Sendable {
     }
 
     /**
-     The String Catalog key of the message to show: `problem.<CODE>` for a known code, else
-     `problem.unknown`, which is shown together with `reference`.
+     The String Catalog key of the message to show: `problem.<CODE>` for a known code, the key of a
+     problem this app made itself (no answer, Kira unreachable, too many requests), else
+     `problem.unknown`.
      */
     package var messageKey: String {
-        guard let knownCode else { return "problem.unknown" }
+        guard let knownCode else { return clientMessageKey ?? "problem.unknown" }
         return "problem.\(knownCode.rawValue)"
     }
 
     /**
-     `CODE · <first 8 characters of the request id>`, the reference a person can quote to
-     support. `UNKNOWN` stands in for a missing code.
+     The first 8 characters of the request id, the reference a person can quote to support. Shown
+     only when `showsReference`, so never empty on a screen.
      */
     package var reference: String {
-        let shown = code ?? "UNKNOWN"
-        guard let requestId, !requestId.isEmpty else { return shown }
-        return "\(shown) · \(requestId.prefix(8))"
+        String((requestId ?? "").prefix(8))
     }
 }
 
@@ -98,6 +97,8 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case metaHealthUnhealthy = "META_HEALTH_UNHEALTHY"
     /** Too many codes were asked for; wait before asking again. */
     case authCodeRateLimited = "AUTH_CODE_RATE_LIMITED"
+    /** Too many codes were checked for this address or network; wait a few minutes. */
+    case authVerifyRateLimited = "AUTH_VERIFY_RATE_LIMITED"
     /** The sign-in code does not match. */
     case authCodeInvalid = "AUTH_CODE_INVALID"
     /** The sign-in code is past its ten minutes. */
@@ -110,8 +111,20 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case authRefreshInvalid = "AUTH_REFRESH_INVALID"
     /** The email could not be sent right now. */
     case emailDeliveryFailed = "EMAIL_DELIVERY_FAILED"
+    /** The data export was emailed less than ten minutes ago. */
+    case accountExportRateLimited = "ACCOUNT_EXPORT_RATE_LIMITED"
     /** There is no Kira Score before the health check. */
     case scoreNotAvailable = "SCORE_NOT_AVAILABLE"
+    /** The extra payment is more than the money left this payday period. */
+    case payoffExtraTooHigh = "PAYOFF_EXTRA_TOO_HIGH"
+    /** There is no consumer debt to make a plan from. */
+    case payoffNothingToPlan = "PAYOFF_NOTHING_TO_PLAN"
+    /** There is no active payoff plan yet. */
+    case payoffPlanNotFound = "PAYOFF_PLAN_NOT_FOUND"
+    /** The debt account is paid off, gone, or not in the plan. */
+    case payoffDebtNotFound = "PAYOFF_DEBT_NOT_FOUND"
+    /** The payment is more than what is left on the account. */
+    case payoffPaymentTooHigh = "PAYOFF_PAYMENT_TOO_HIGH"
     /** Kira AI is off in the consents, so chat reading is off. */
     case chatAIDisabled = "CHAT_AI_DISABLED"
     /** The chat message is gone. */
@@ -138,8 +151,40 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case subscriptionNotFound = "SUBSCRIPTION_NOT_FOUND"
     /** A Beasiswa Kira plan cannot be cancelled. */
     case subscriptionNotCancellable = "SUBSCRIPTION_NOT_CANCELLABLE"
+    /** A Beasiswa Kira plan is free: it has no payment method to change. */
+    case subscriptionNotPaid = "SUBSCRIPTION_NOT_PAID"
     /** Applying is not possible right now. */
     case scholarshipNotEligible = "SCHOLARSHIP_NOT_ELIGIBLE"
     /** There is no open application. */
     case scholarshipApplicationNotFound = "SCHOLARSHIP_APPLICATION_NOT_FOUND"
+    /** Otherwise eligible, but Mode Darurat Utang has never been opened. */
+    case scholarshipDebtEmergencyRequired = "SCHOLARSHIP_DEBT_EMERGENCY_REQUIRED"
+    /** The community group does not exist, or the team suspended it for review. */
+    case communityGroupNotFound = "COMMUNITY_GROUP_NOT_FOUND"
+    /** The group has no checked invite link yet; the curation team is checking it. */
+    case communityLinkUnavailable = "COMMUNITY_LINK_UNAVAILABLE"
+    /** The Etalase product does not exist. */
+    case communityProductNotFound = "COMMUNITY_PRODUCT_NOT_FOUND"
+    /** The person already has an open report on this group. */
+    case communityReportDuplicate = "COMMUNITY_REPORT_DUPLICATE"
+    /** The current community rules have not been accepted yet. */
+    case communityRulesNotAccepted = "COMMUNITY_RULES_NOT_ACCEPTED"
+    /** The check-in is gone (cancelled, seen or never made). */
+    case careCheckInNotFound = "CARE_CHECK_IN_NOT_FOUND"
+    /** No Rencana Keselamatanku has been saved yet. */
+    case careSafetyPlanNotFound = "CARE_SAFETY_PLAN_NOT_FOUND"
+    /** This payment was already recorded (the same payment sent twice). */
+    case payoffPaymentAlreadyRecorded = "PAYOFF_PAYMENT_ALREADY_RECORDED"
+    /** The portfolio asset is gone. */
+    case assetNotFound = "ASSET_NOT_FOUND"
+    /** The goal does not exist, or no longer does. */
+    case goalNotFound = "GOAL_NOT_FOUND"
+    /** The person already has an emergency-fund goal; there is one per person. */
+    case goalEmergencyExists = "GOAL_EMERGENCY_EXISTS"
+    /** The deposit's idempotency key was already used on another goal. */
+    case goalDepositConflict = "GOAL_DEPOSIT_CONFLICT"
+    /** The bill is gone. */
+    case billNotFound = "BILL_NOT_FOUND"
+    /** The debt account a cicilan bill links to is gone or not the person's. */
+    case billDebtNotFound = "BILL_DEBT_NOT_FOUND"
 }

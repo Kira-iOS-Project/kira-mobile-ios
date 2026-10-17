@@ -18,7 +18,7 @@ private let meJSON = #"""
     "usage":\#(accountUsageJSON),"period":{"start":"2026-09-25","end":"2026-10-24",\#
     "nextPayday":"2026-10-25","daysUntilPayday":9},\#
     "lastCategories":{"expense":"coffee","income":null},"debtAccountCount":2,\#
-    "aiEnabled":true,"weeklySummaryEnabled":false}
+    "aiEnabled":true,"weeklySummaryEnabled":false,"debtEmergencyActive":false}
     """#
 
 private let consentsJSON = #"""
@@ -107,7 +107,7 @@ struct AccountAPITests {
         await expectProblems([401]) { _ = try await $0.getConsents() }
         await expectProblems([401, 422]) { _ = try await $0.updateConsents(aiProcessing: true, weeklySummary: true) }
         await expectProblems([401]) { _ = try await $0.exportData() }
-        await expectProblems([401, 503]) { try await $0.emailDataExport() }
+        await expectProblems([401, 429, 503]) { try await $0.emailDataExport() }
         await expectProblems([401, 422]) { try await $0.deleteAccount(confirmation: "x") }
     }
 }

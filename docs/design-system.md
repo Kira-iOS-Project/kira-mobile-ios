@@ -48,12 +48,16 @@ a screen built from them keeps them by default.
   amounts, values and tags go under the title.
 - **Red (`emergency`, the artifact's `darurat`) only for the 119 call and reporting**; `destructive`
   (`bahaya`, terracotta) confirms deletions.
+- **A failed submit in a sheet closes the sheet and shows a failure dialog; validation stays
+  inline.** Coba Lagi reopens the sheet with the input kept and submits again; Tutup closes the
+  dialog. The owner's rule (2026-10-17), over red problem text inside the sheet (Sheets, below).
 - **At most one handwritten note per screen**, anchored to a section title, an illustration or the
   splash.
 - **Glass only on the dock.** A scrolling screen calls `.kiraScrollEdges()`: from iOS 26 a scroll
   view blurs its top and bottom edges, which is glass (and fades text the accessibility audit then
   reads as low contrast); the modifier hides that effect and lays a solid `surface` band behind the
-  status bar.
+  status bar. Every Kira sheet hides it too (`kiraSheetScrollEdges()`, applied by KiraSheet, with no
+  band: the panel is solid), so the text just above a sheet's main action keeps its contrast.
 
 ## Tokens
 
@@ -183,12 +187,13 @@ Options beyond five initializer parameters are chained modifiers, such as
 | `Toggle` | `KiraToggle(_:isOn:)` | `Components/Controls/KiraToggle.swift` |
 | `Field` (prefix, suffix, hint, error, multiline) | `KiraField(_:text:prompt:)` `.prefix` `.suffix` `.hint` `.error` `.multiline` | `Components/Controls/KiraField.swift` |
 | `Checkbox` (canvas ONB-10c: a full-width row) | `KiraCheckbox(_:isOn:)` | `Components/Controls/KiraCheckbox.swift` |
-| Code boxes (canvas "PIN 6 kotak (pola OTP)": the app-lock PIN, the email code; hint, error) | `KiraCodeField(_:code:kind:)` (`.pin`, `.code`) `.hint` `.error`; digits kept by `DigitCode` | `Components/Controls/KiraCodeField.swift`, `KiraCodeFieldParts.swift`, `Packages/AppCore/Sources/Domain/Code/DigitCode.swift` |
+| Payday picker (ONB-10b, ONB-10c, UNG-05d: days 1–31 or "Gajian di akhir bulan", the button names the choice) | `.kiraPaydayPicker(isPresented:payday:)` over `PaydaySheet`, model `PaydayPickerModel` | `App/Screens/Shared/Components/PaydaySheet.swift` |
+| Code boxes (canvas "PIN 6 kotak (pola OTP)": the app-lock PIN, the email code; hint, error) | `KiraCodeField(_:code:kind:)` (`.pin`, `.code`) `.hint` `.error`; digits kept by `DigitCode` | `Components/Controls/KiraCodeField.swift`, `KiraCodeFieldParts.swift`, `Packages/AppCore/Sources/Domain/Shared/Models/DigitCode.swift` |
 | `.k-link` (on its own; inside a sentence) | `KiraLink(_:action:)`; `KiraLinkText(_:onOpen:)` with Markdown links in the catalog value | `Components/Controls/KiraLink.swift` |
 | `Segmented` | `KiraSegmented(_:options:selection:)` | `Components/Controls/KiraSegmented.swift` |
 | `Chip` (selected, icon, category) | `KiraChip(_:isSelected:leading:action:)`; wrap many in `KiraFlowRow` | `Components/Controls/KiraChip.swift`, `Layout/KiraFlowRow.swift` |
 | `Tag` (neutral, pandan, turmeric, healthy, vulnerable, emergency, hero) | `KiraTag(_:tone:icon:)` | `Components/Content/KiraTag.swift` |
-| `Notice` (info, simulation, education, privacy, safe, ai, warning) | `KiraNotice(_:title:message:icon:)` (`ai` is `.aiText`) | `Components/Content/KiraNotice.swift` |
+| `Notice` (info, simulation, education, privacy, safe, ai, warning; a link under the sentence) | `KiraNotice(_:title:message:icon:)` `.link(_:action:)` (`ai` is `.aiText`) | `Components/Content/KiraNotice.swift` |
 | `Amount` (sm, md, lg, xl; masked, signed, muted, inverse) | `KiraAmount(_:size:)` `.masked(_:)` `.signed()` `.muted()` `.inverse()` | `Components/Content/KiraAmount.swift` |
 | `Avatar` | `KiraAvatar(_:size:tone:label:)` | `Components/Content/KiraAvatar.swift` |
 | `Accordion` (raised, soft; controlled or not) | `KiraAccordion(_:subtitle:icon:isExpanded:content:)` `.soft()` | `Components/Content/KiraAccordion.swift` |
@@ -204,7 +209,7 @@ Options beyond five initializer parameters are chained modifiers, such as
 | `ListRow` (category, icon, illustration, initial; chevron, external, toggle, check; danger) | `KiraListRow(_:leading:trailing:action:extra:)` `.subtitle` `.amount` `.value` `.danger()` | `Components/Lists/KiraListRow.swift`, `KiraListRowParts.swift` |
 | `NavBar` (back, close, large, eyebrow, actions) | `KiraNavBar(_:subtitle:leading:isLarge:trailing:)` `.eyebrow(_:)` | `Components/Navigation/KiraNavBar.swift` |
 | `TabBar` (the dock with Catat) | `KiraTabBar(selection:isRecordActive:onRecord:)`, `KiraTab` | `Components/Navigation/KiraTabBar.swift` |
-| `Sheet` | `.kiraSheet(isPresented:title:subtitle:top:leaf:content:)`: the artifact's sheet, not the system one (the scrim, a line-strong grabber, the hairline top, 30 pt corners, the close X on the right), in a KiraCover | `Components/Navigation/KiraSheet.swift`, `Layout/KiraCover.swift` |
+| `Sheet` | `.kiraSheet(isPresented:title:subtitle:top:leaf:content:)`: the artifact's sheet, not the system one (the scrim, a line-strong grabber, the hairline top, 30 pt corners, the close X on the right), in a KiraCover; a sheet that submits to the server: `.kiraSheet(_:title:…:failureTitle:connectionMessage:onRetry:content:)` on a `SheetSubmission` (Sheets, below) | `Components/Navigation/KiraSheet.swift`, `Layout/KiraCover.swift`, `Screens/Shared/Components/SubmissionSheet.swift` |
 | `.k-dialog` (success, failure, confirm; illustration or round icon; one or two buttons) | `KiraDialog(_:message:art:primary:secondary:)`, presented with `.kiraDialog(isPresented:dialog:)` | `Components/Dialog/KiraDialog.swift`, `KiraDialogPresentation.swift` |
 | (screen edges) | `.kiraScrollEdges()` | `Layout/KiraScrollEdges.swift` |
 | `ChatBubble` (me, kira; meta, initial, saved) | `KiraChatBubble(_:meta:initial:content:)` `.saved(_:)` `.hidesAvatar()` (`me` is `.user`) | `Components/Chat/KiraChatBubble.swift` |
@@ -228,6 +233,34 @@ action, so a screen only flips its flag:
         "transaction.delete.title", message: "transaction.delete.body", art: .illustration(.care),
         primary: KiraButton("transaction.delete", variant: .destructive) { model.delete() },
         secondary: KiraButton("transaction.keep", variant: .secondary) {})
+}
+```
+
+### Sheets
+
+A failed submit in a sheet closes the sheet and shows a failure dialog; validation stays inline.
+When the server refuses the sheet's action or never answers, the sheet closes and, once it has
+gone, a failure dialog shows: the umbrella, a title naming what did not happen ("Kode Belum
+Terkirim", "Belum Berhasil Menyimpan"), the problem's own sentence (`problem.<CODE>`), the
+connection's sentence when the request got no answer, or the generic one with the reference, then
+Coba Lagi on top and Tutup under it. Coba Lagi opens the sheet again on everything that was typed
+and submits again; Tutup closes the dialog and drops the sheet's input. A check the app makes
+itself (an email's shape, a required field, an amount of zero) stays inline in the open sheet, and
+no red problem text is shown inside a sheet. Success dialogs ("Perubahan Tersimpan") still show over
+the sheet.
+
+The screen model keeps the input outside the sheet's view (the sheet's own `@State` would lose it
+when the sheet closes) and a `SheetSubmission` (`Features/Shared/ViewModels/`): `fail(_:)` in the submit's
+`catch`, and a `retry()` that calls `open()` and submits again. The view presents it with
+`.kiraSheet(_:…)`, which brings the dialog up only after the sheet's cover is down, and the sheet
+again only after the dialog's, since both are full-screen covers:
+
+```swift
+.kiraSheet(
+    $model.editSheet, title: "transaction.edit.title", failureTitle: "transaction.failed.title",
+    connectionMessage: "transaction.failed.body", onRetry: { Task { await model.retryEdit() } }
+) {
+    TransactionEditForm(model: model)
 }
 ```
 
@@ -271,8 +304,8 @@ A screen that uses `KiraNavBar` hides the system bar. A tab root lays `KiraTabBa
 Every control is at least 44 pt, labels scale with Dynamic Type and wrap rather than truncate at the
 largest sizes, and parts that would squeeze each other stack at the accessibility sizes (a button
 pair, primary on top; a nav bar's buttons above its title; a section title's note under it; the
-dock grows taller). An amount stays on one line and shrinks to fit there, and a large title shrinks
-before it would clip. Icon-only buttons require a name,
+dock grows taller). An amount stays on one line and shrinks to fit there, and a large title wraps
+as `.k-nav__large` does. Icon-only buttons require a name,
 artwork is one named image or hidden (`artworkLabel(_:)`), selected chips, segments, tabs and
 checks carry the selected trait, the switch carries the toggle trait and says "Aktif" or
 "Nonaktif", the accordion says whether it is open, an amount reads as one value in words
@@ -402,15 +435,23 @@ catalog key that holds a word of this Indonesian vocabulary.
   uploads lack (15 illustrations instead of 8, 28 category tiles instead of 9, the face crops, the
   leaves and the sceneries). A category set holds the tile's art only; `KiraCategoryIcon` draws the
   tile, so its tint and hairline follow the theme too.
+- **Kuku** (`Mascot/`) comes from the owner's guide, "Kira.Mascot · Kuku — Identitas & panduan"
+  (an SVG of outlined paths), not from the artifact's `KUKU_*` tables: each expression's figure
+  (Tenang, Senang, Bangga, on its branch) is the guide's own paths, cut out at its card's 204-unit
+  square; `mascot-calm-face` is the guide's chat avatar whole (Kuku on its `#EDF1E3` ground with the
+  pandan sparkle badge), the other faces a window on their figure. The guide's rules hold: same
+  proportions and colours in both themes (one SVG per set, no dark variant), space around Kuku, no
+  extra accessories. `KiraMascot`'s frame circle is `art-mascot-ground`, the guide's `#ECF0DF`.
+  `design-assets.py` keeps the Mascot folder as it is when it rebuilds the catalog.
 - **Regenerating**: `scripts/generate/design-assets.py` rebuilds the whole catalog (colour sets,
   icon, artwork) from the artifact's `tokens.json`, `bundle.js` and icon PNG; its header says how.
   Rebuild when the artifact changes, then check the gallery.
 - **Logo marks** cut the leaf's vein out of the mark (even-odd fill), so the vein always shows
   whatever is behind it, as the design system asks (`--k-logo-bg`); `logo-mark-mono` and the
   hand-drawn arrows are template images that take the surrounding colour.
-- Uploaded assets map as `design-system.json` lists them: Maskot `2e557f5b…` is `kuku-tenang`
+- Uploaded assets map as `design-system.json` lists them: Maskot `2e557f5b…` was `kuku-tenang`
   (`mascot-calm`), `d9c5f557…` `kuku-senang` (`mascot-happy`), `f033f686…` `kuku-bangga`
-  (`mascot-proud`); the nine Kategori uploads (07:10:59–07:11:06) are makan, transportasi, kopi,
+  (`mascot-proud`), now replaced by the owner's guide (Kuku, above); the nine Kategori uploads (07:10:59–07:11:06) are makan, transportasi, kopi,
   belanja, tagihan, gaji, paylater, tabungan and proteksi; the eight 07:22 uploads are the Ilustrasi
   group; the eight earlier 07:10:52–58 uploads are older
   illustration exports no group lists.
@@ -499,7 +540,7 @@ components (sizes, paddings, radii, borders, colours, icon sizes) already matche
 | Category chip | Two buttons | The round tile is a separate button with the same action, hidden from VoiceOver, so the labelled button holds only text (the audit reads a pastel tile inside a button as low-contrast text) |
 | Line heights | iOS 26 and later | Set as in the artifact from iOS 26 (`lineHeight`); iOS 17 and 18 keep the system's leading, 1 to 2 pt shorter per line |
 | Font weights 650 and 750 | Nearest named | Semibold (600) and ExtraBold (800): SwiftUI's `Font.Weight` has no public initializer from a number |
-| Small sizes the audit reports | Accepted deviation | The owner keeps the artifact's sizes: the 11 pt overline, the medium amount's 11 pt "Rp" and ",00", the 10 pt "Catat" and the 11 pt bar caption. Apple's audit reports each as "Dynamic Type font sizes are partially unsupported"; they carry `kira.small-type`, and the gallery's audit test lists them apart |
+| Small sizes the audit reports | Accepted deviation | The owner keeps the artifact's sizes: the 11 pt overline, the medium amount's 11 pt "Rp" and ",00", the 10 pt "Catat", the 11 pt bar caption and the initials of an avatar under 30 pt (10 pt at Etalase's 26 pt). Apple's audit reports each as "Dynamic Type font sizes are partially unsupported"; they carry `kira.small-type`, and the gallery's audit test lists them apart |
 | Text behind a dialog's scrim | Accepted in the test | The dimmed screen shows through the scrim, and the audit reads its text, which VoiceOver rightly cannot reach while the dialog is modal, as text without an element ("Potentially inaccessible text", no element named); the presented-dialog test accepts only that finding |
 | Field prompt | Drawn by the field | A single-line field draws its prompt as text that wraps at large sizes, where the system's prompt would be cut off; VoiceOver hears it as the field's hint |
 | Button pair order in the Button preview | Rule | The preview puts the primary left; Kira's rule puts the secondary left and the primary right (`KiraButtonPair`) |
@@ -524,6 +565,12 @@ components (sizes, paddings, radii, borders, colours, icon sizes) already matche
   the end leaves the accessibility frames where the content was, and the audit then reports
   contrast failures on text it measures in the wrong place. Text left under the status bar or at
   the home indicator is the one contrast finding the gallery's test accepts, with its reason.
+  `auditScreen` (`UITests/ScreenAudit.swift`) also accepts contrast on text the scroll view's own
+  edge cuts (a sheet's last note half under its scroll edge, above the main action), and only on
+  condition: it scrolls until the last element is whole, notes every element seen whole after each
+  pass (`UITests/ScrollEdgeCuts.swift`), and fails the test if a text it accepted as cut was never
+  audited whole. A drag loses about 10 pt to the touch slop before the content moves; the audit's
+  scroll adds it back.
 - **iOS 17 and 18 (found while testing, not caused by this work).** A debug build does not launch on
   the iOS 17.5 simulator: dyld cannot find `libswiftCompatibilitySpan.dylib`, which the
   swift-collections code under the API client's `swift-openapi-urlsession` needs with the Swift 6.4

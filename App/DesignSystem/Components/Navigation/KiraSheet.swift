@@ -10,23 +10,44 @@
  sizes it rises to 56 again so the content keeps its room. `leaf` lays a soft twig in the panel's
  top right corner, behind the header (Catat Manual). Swiping the grabber or the header down,
  tapping the scrim, the X and VoiceOver's escape gesture close it. The main action goes at the
- bottom.
+ bottom. Without a title (Kira Peduli's help over the chat) the sheet has no header and no X: only the
+ grabber, and it closes by swiping, the scrim or the escape gesture, or an action in its content.
  */
 import SwiftUI
 
 extension View {
     /**
      Presents `content` as a Kira sheet over the window while `isPresented` is true, its panel from
-     `top` points below the top of the screen (56 by default), with `leaf` in its top corner if any.
+     `top` points below the top of the screen (56 by default), with `leaf` in its top corner if any;
+     `onShown` runs once the panel has risen, and `onDismiss` once the sheet's layer is down.
      */
     func kiraSheet<Content: View>(
         isPresented: Binding<Bool>, title: LocalizedStringResource, subtitle: LocalizedStringResource? = nil,
-        top: CGFloat? = nil, leaf: KiraLeaf? = nil, @ViewBuilder content: @escaping () -> Content
+        top: CGFloat? = nil, leaf: KiraLeaf? = nil, onShown: (() -> Void)? = nil, onDismiss: (() -> Void)? = nil,
+        @ViewBuilder content: @escaping () -> Content
     ) -> some View {
-        kiraCover(isPresented: isPresented) { onGone in
+        kiraCover(isPresented: isPresented, onDismiss: onDismiss) { onGone in
             SheetCover(
-                isPresented: isPresented, title: title, subtitle: subtitle, top: top, leaf: leaf, onGone: onGone,
-                content: content)
+                isPresented: isPresented, title: title, subtitle: subtitle, top: top, leaf: leaf, onShown: onShown,
+                onGone: onGone, content: content)
+        }
+    }
+
+    /**
+     Presents `content` as a Kira sheet with no header and no X: the content carries its own title
+     (VoiceOver starts there) and the action that closes it. `label` names the sheet for VoiceOver
+     (Tautan Keluar's "Konfirmasi membuka WhatsApp"); `onDismiss` runs once its layer is down.
+     */
+    func kiraSheet<Content: View>(
+        isPresented: Binding<Bool>, label: LocalizedStringResource? = nil, top: CGFloat? = nil,
+        onDismiss: (() -> Void)? = nil, @ViewBuilder content: @escaping () -> Content
+    ) -> some View {
+        kiraCover(isPresented: isPresented, onDismiss: onDismiss) { onGone in
+            SheetCover(
+                isPresented: isPresented, title: nil, subtitle: nil, top: top, leaf: nil, onShown: nil,
+                onGone: onGone, content: content
+            )
+            .sheetLabel(label)
         }
     }
 }
@@ -34,10 +55,11 @@ extension View {
 /** The scrim and the panel: the scrim fades in as the panel rises, and both go before the cover. */
 private struct SheetCover<Content: View>: View {
     @Binding var isPresented: Bool
-    let title: LocalizedStringResource
+    let title: LocalizedStringResource?
     let subtitle: LocalizedStringResource?
     let top: CGFloat?
     let leaf: KiraLeaf?
+    let onShown: (() -> Void)?
     let onGone: () -> Void
     @ViewBuilder let content: () -> Content
     @State private var isShown = false
@@ -95,12 +117,13 @@ private struct SheetCover<Content: View>: View {
         VStack(spacing: 0) {
             VStack(spacing: 0) {
                 Capsule().fill(.lineStrong).opacity(0.5).frame(width: 36, height: 5).padding(.bottom, 6)
-                header.padding(.bottom, KiraSpacing.space4)
+                if let title { header(title).padding(.bottom, KiraSpacing.space4) }
             }
             .contentShape(Rectangle())
             .gesture(dragToClose)
             VStack(spacing: KiraSpacing.space4) { content() }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                .kiraSheetScrollEdges()
         }
         .padding(.top, KiraSpacing.space2)
         .padding(.horizontal, KiraSpacing.space4)
@@ -121,7 +144,7 @@ private struct SheetCover<Content: View>: View {
         .accessibilityAction(.escape) { isPresented = false }
     }
 
-    private var header: some View {
+    private func header(_ title: LocalizedStringResource) -> some View {
         HStack(spacing: KiraSpacing.space4) {
             Color.clear.frame(width: KiraSize.tap, height: KiraSize.tap)
             VStack(spacing: 0) {
@@ -130,6 +153,8 @@ private struct SheetCover<Content: View>: View {
                     .foregroundStyle(.ink)
                     .accessibilityAddTraits(.isHeader)
                     .accessibilityFocused($titleFocused)
+                    /** Wraps at large sizes instead of being cut to one line. */
+                    .fixedSize(horizontal: false, vertical: true)
                 if let subtitle {
                     /** `.k-sheet__sub`'s `text-wrap: balance`. */
                     Text(subtitle).font(.caption).kiraLineHeight(16, size: 12).foregroundStyle(.inkMuted)
@@ -161,6 +186,7 @@ private struct SheetCover<Content: View>: View {
         } completion: {
             if presented {
                 titleFocused = true
+                if isPresented { onShown?() }
             } else if !isPresented {
                 drag = 0
                 onGone()

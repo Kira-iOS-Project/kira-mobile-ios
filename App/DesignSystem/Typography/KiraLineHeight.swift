@@ -26,8 +26,9 @@ extension View {
 extension View {
     /**
      Marks text the design system sets below the sizes Apple's accessibility audit accepts (the
-     11 pt overline, the medium amount's 11 pt "Rp" and ",00", the 10 pt Catat label and the 11 pt
-     bar caption), so the gallery's audit test can list them apart: docs/design-system.md.
+     11 pt overline, the medium amount's 11 pt "Rp" and ",00", the 10 pt Catat label, the 11 pt
+     bar caption and a small avatar's initials), so the gallery's audit test can list them apart:
+     docs/design-system.md.
      */
     @ViewBuilder
     func kiraSmallType(_ isSmall: Bool = true) -> some View {

@@ -68,11 +68,16 @@ extension IndicatorDetail {
         }
     }
 
+    /**
+     What the next consumer-debt rung takes. Reaching 50 asks a late payer to pay on time first; four
+     or more platforms already paid on time (also 25 points, KIR-126) only need paying off to three.
+     */
     private func consumerNext(_ points: Int) -> LocalizedStringResource {
-        switch points {
-        case 100: "indicator.next.consumerDebtLast"
-        case 75: "indicator.next.consumerDebtOne"
-        case 50: "indicator.next.consumerDebtOnTime"
+        switch (points, indicator.measure.payment) {
+        case (100, _): "indicator.next.consumerDebtLast"
+        case (75, _): "indicator.next.consumerDebtOne"
+        case (50, .onTime): "indicator.next.consumerDebtMany"
+        case (50, _): "indicator.next.consumerDebtOnTime"
         default: "indicator.next.consumerDebtOverdue"
         }
     }

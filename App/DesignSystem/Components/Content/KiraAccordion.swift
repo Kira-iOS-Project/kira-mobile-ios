@@ -88,9 +88,9 @@ struct KiraAccordion<Content: View>: View {
     }
 
     /** The same accordion, open until the person closes it (the design system's `defaultOpen`). */
-    func openByDefault() -> Self {
+    func openByDefault(_ isOpen: Bool = true) -> Self {
         var accordion = self
-        accordion.opensAtFirst = true
+        accordion.opensAtFirst = isOpen
         return accordion
     }
 }
