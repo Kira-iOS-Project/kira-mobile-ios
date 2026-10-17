@@ -16,6 +16,7 @@ struct DebtFormSheet: View {
             DebtFormFields(form: debts.form)
         }
         .scrollBounceBehavior(.basedOnSize)
+        .kiraFieldRingRoom()
         actions.padding(.bottom, KiraSpacing.space2)
     }
 

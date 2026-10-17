@@ -54,5 +54,6 @@ private struct AddWalletForm: View {
             .padding(.bottom, KiraSpacing.space2)
         }
         .scrollBounceBehavior(.basedOnSize)
+        .kiraFieldRingRoom()
     }
 }

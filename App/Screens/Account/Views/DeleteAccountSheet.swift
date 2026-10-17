@@ -18,6 +18,7 @@ struct DeleteAccountSheet: View {
                 form.frame(minHeight: frame.size.height, alignment: .top)
             }
             .scrollBounceBehavior(.basedOnSize)
+            .kiraFieldRingRoom()
         }
         .kiraDialog(isPresented: $model.showsDeleted) {
             KiraDialog(
