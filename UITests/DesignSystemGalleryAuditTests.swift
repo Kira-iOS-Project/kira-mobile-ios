@@ -81,6 +81,26 @@ nonisolated final class DesignSystemGalleryAuditTests: XCTestCase {
         app.terminate()
     }
 
+    @MainActor
+    func testBillDeleteDialogPassesTheAuditAndCloses() throws {
+        let app = XCUIApplication()
+        app.launchArguments = ["-KiraGallery", "dialogs"]
+        app.launch()
+        let scroll = app.scrollViews.firstMatch
+        let open = app.buttons["Uji Hapus Tagihan"]
+        XCTAssertTrue(open.waitForExistence(timeout: 10))
+        for _ in 0..<8 where !open.isHittable { scrollDown(scroll) }
+        XCTAssertTrue(open.isHittable)
+        open.tap()
+        let title = app.staticTexts["Hapus Tagihan Ini?"]
+        XCTAssertTrue(title.waitForExistence(timeout: 5))
+        try audit(app) { issue in issue.auditType == .elementDetection && issue.element == nil }
+        app.buttons["Batal"].tap()
+        XCTAssertTrue(title.waitForNonExistence(timeout: 5))
+        XCTAssertTrue(open.isHittable)
+        app.terminate()
+    }
+
     /**
      One accessibility audit, made once more only when Apple's audit could not finish in time
      (XCTest's code -56). On a slow CI runner a long page can outlast the audit's own time limit:

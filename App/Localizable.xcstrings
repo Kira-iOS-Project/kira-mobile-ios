@@ -3761,7 +3761,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tagihan ini tidak lagi muncul di Beranda atau daftar tagihan. Transaksi yang sudah tercatat tetap ada."
+            "value" : "Tagihan ini tak lagi muncul di Beranda atau daftar tagihan. Transaksi lama tetap tercatat."
           }
         }
       }
