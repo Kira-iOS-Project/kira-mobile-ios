@@ -37,6 +37,8 @@ package enum GoalAssetClass: CaseIterable, Equatable, Sendable {
     case gold
     /** Kripto. */
     case crypto
+    /** Dolar AS, a Dana Darurat home on the site. */
+    case usDollar
 }
 
 /** When a deposit goes in: at the start of each period (the site's default) or at its end. */

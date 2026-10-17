@@ -115,6 +115,7 @@ extension GoalAssetClass {
         case .etf: "plan.asset.etf"
         case .gold: "plan.asset.gold"
         case .crypto: "plan.asset.crypto"
+        case .usDollar: "plan.asset.usDollar"
         }
     }
 }
