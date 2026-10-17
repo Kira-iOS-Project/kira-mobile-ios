@@ -42,6 +42,8 @@ struct KiraField: View {
                 .font(.footnote.weight(.semibold)).kiraLineHeight(18, size: 13)
                 .foregroundStyle(.inkMuted)
                 .padding(.horizontal, 4)
+                /** A long label ("Harga Properti Impian Saat Ini") wraps, never squeezed by the field's container. */
+                .fixedSize(horizontal: false, vertical: true)
                 .accessibilityHidden(true)
             box
             if let message = errorText ?? hintText {
