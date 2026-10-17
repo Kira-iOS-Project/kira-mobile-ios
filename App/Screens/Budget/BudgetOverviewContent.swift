@@ -4,11 +4,13 @@ import SwiftUI
 
 struct BudgetOverviewContent: View {
     let budget: BudgetOverview
+    let onEdit: () -> Void
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: KiraSpacing.space4) {
                 KiraNavBar("budget.title", subtitle: period, isLarge: true)
+                KiraButton("budget.edit", variant: .secondary, size: .small, action: onEdit)
                 summary
                 if budget.isConfigured {
                     if budget.isOverallocated { BudgetOverallocationNotice() }

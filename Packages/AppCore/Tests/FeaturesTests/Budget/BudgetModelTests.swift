@@ -14,6 +14,11 @@ private struct FakeBudgetService: BudgetService {
         if failsUnexpectedly { throw UnexpectedBudgetError() }
         return try current.get()
     }
+
+    func saveCurrentBudget(_ draft: BudgetDraft) async throws -> BudgetOverview {
+        _ = draft
+        return try await currentBudget()
+    }
 }
 
 @MainActor
@@ -29,7 +34,11 @@ struct BudgetModelTests {
     }
 
     @Test("loads the server budget and reports known and unexpected failures")
-    func load() async {
+    func load() async throws {
+        let fallback = try await FakeBudgetService(current: .success(overview())).currentBudgetEdit()
+        #expect(fallback.budget.income == overview().income)
+        #expect(fallback.averagePeriods == 0 && fallback.averages.isEmpty)
+
         let model = BudgetModel(service: FakeBudgetService(current: .success(overview())))
         #expect(model.phase.value == nil)
         await model.load()

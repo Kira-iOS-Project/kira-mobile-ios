@@ -41,4 +41,11 @@ package struct BudgetOverview: Equatable, Sendable {
     /** Whether the plan assigns more than the monthly income; allowed but surfaced as a warning. */
     package var isOverallocated: Bool { allocated > income }
 
+    /** The editable plan, with current spending excluded from each allocation. */
+    package var draft: BudgetDraft {
+        BudgetDraft(
+            income: income, payday: payday,
+            allocations: allocations.map { BudgetAllocation(category: $0.category, amount: $0.amount) })
+    }
+
 }

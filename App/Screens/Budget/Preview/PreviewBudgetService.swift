@@ -7,6 +7,22 @@ nonisolated struct PreviewBudgetService: BudgetService {
 
     func currentBudget() async throws -> BudgetOverview { budget }
 
+    func currentBudgetEdit() async throws -> BudgetEditContext {
+        BudgetEditContext(
+            budget: budget, averagePeriods: 3,
+            averages: [
+                BudgetCategoryAverage(category: .food, amount: 1_100_000),
+                BudgetCategoryAverage(category: .transport, amount: 250_000),
+            ])
+    }
+
+    func saveCurrentBudget(_ draft: BudgetDraft) async throws -> BudgetOverview {
+        BudgetOverview(
+            income: draft.income, remaining: budget.remaining, goalPosts: budget.goalPosts,
+            payday: draft.payday, period: budget.period,
+            allocations: draft.allocations, isConfigured: true)
+    }
+
     private static let sample = BudgetOverview(
         income: 7_500_000, payday: Payday(day: 25),
         period: PayPeriod(

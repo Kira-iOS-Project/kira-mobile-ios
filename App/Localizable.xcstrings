@@ -1691,6 +1691,16 @@
         }
       }
     },
+    "budget.average.periods %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rata-rata dari %lld periode sebelumnya"
+          }
+        }
+      }
+    },
     "budget.categories" : {
       "localizations" : {
         "id" : {
@@ -1721,6 +1731,16 @@
         }
       }
     },
+    "budget.category.field %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alokasi untuk %@"
+          }
+        }
+      }
+    },
     "budget.category.nearLimit" : {
       "localizations" : {
         "id" : {
@@ -1737,6 +1757,56 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Terpakai"
+          }
+        }
+      }
+    },
+    "budget.edit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atur Budget"
+          }
+        }
+      }
+    },
+    "budget.edit.cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batal"
+          }
+        }
+      }
+    },
+    "budget.edit.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Budget"
+          }
+        }
+      }
+    },
+    "budget.edit.subtitle" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sesuaikan alokasi dan tanggal gajian."
+          }
+        }
+      }
+    },
+    "budget.edit.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atur Budget"
           }
         }
       }
@@ -1827,6 +1897,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Total alokasi melebihi penghasilan"
+          }
+        }
+      }
+    },
+    "budget.payday.day %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setiap Tanggal %lld"
+          }
+        }
+      }
+    },
+    "budget.payday.endOfMonth" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setiap Akhir Bulan"
+          }
+        }
+      }
+    },
+    "budget.payday.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanggal Gajian"
           }
         }
       }

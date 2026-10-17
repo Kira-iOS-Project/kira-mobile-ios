@@ -5,8 +5,11 @@ import SwiftUI
 
 struct BudgetScreen: View {
     @State private var model: BudgetModel
+    @State private var isEditing = false
+    private let service: any BudgetService
 
     init(service: any BudgetService) {
+        self.service = service
         _model = State(initialValue: BudgetModel(service: service))
     }
 
@@ -14,12 +17,20 @@ struct BudgetScreen: View {
         Group {
             switch model.phase {
             case .loading:
-                BudgetOverviewContent(budget: .placeholder)
+                BudgetOverviewContent(budget: .placeholder, onEdit: {})
                     .redacted(reason: .placeholder).disabled(true)
             case .empty:
                 BudgetEmptyContent(retry: reload)
             case .loaded(let budget):
-                BudgetOverviewContent(budget: budget)
+                BudgetOverviewContent(budget: budget) { isEditing = true }
+                    .kiraSheet(isPresented: $isEditing, title: "budget.edit.title", subtitle: "budget.edit.subtitle") {
+                        BudgetEditorForm(
+                            budget: budget, service: service,
+                            onSaved: {
+                                isEditing = false
+                                reload()
+                            }, onCancel: { isEditing = false })
+                    }
             case .failed(let problem):
                 LoadFailedView(title: "budget.failed", problem: problem, retry: reload)
             }

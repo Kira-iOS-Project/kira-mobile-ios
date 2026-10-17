@@ -6,4 +6,9 @@ nonisolated final class BudgetAuditTests: XCTestCase {
     func testBudgetOverviewPassesTheAudit() throws {
         try auditScreen("budget")
     }
+
+    @MainActor
+    func testBudgetEditorPassesTheAudit() throws {
+        try auditScreen("budget", prepare: { $0.buttons["Atur Budget"].tap() })
+    }
 }
