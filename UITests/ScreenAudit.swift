@@ -26,6 +26,7 @@ extension XCTestCase {
         Thread.sleep(forTimeInterval: 1)
         let window = app.windows.firstMatch.frame
         let scroll = app.scrollViews.firstMatch
+        let cuts = ScrollEdgeCuts(clip: scroll.exists ? scroll.frame : window)
         var before = CGFloat.infinity
         for pass in 0..<8 {
             if pass > 0 {
@@ -41,10 +42,14 @@ extension XCTestCase {
                 scrollDown(scroll, by: remaining)
             }
             try XCTContext.runActivity(named: "\(screen), pass \(pass + 1)") { _ in
-                try auditInPlace(app, accepting: accepted)
+                try auditInPlace(app) { cuts.accepts($0) || accepted($0) }
             }
+            cuts.noteWhole(in: scroll, of: app)
         }
         app.terminate()
+        for reason in cuts.neverWhole {
+            XCTFail("\(screen): contrast passed as cut by the scroll edge, never audited whole: \(reason)")
+        }
     }
 
     /**
@@ -125,10 +130,13 @@ extension XCTestCase {
         Thread.sleep(forTimeInterval: 1.5)
     }
 
-    /** How far the bottom of the scroll view's content lies below what is on screen. */
+    /**
+     How far the bottom of the scroll view's content lies below what is on screen. Other elements count
+     too: a combined element, such as a KiraNotice, is neither text nor a button.
+     */
     @MainActor
     private func hiddenBelow(in scroll: XCUIElement, window: CGRect) -> CGFloat {
-        let bottoms = [scroll.staticTexts, scroll.buttons].compactMap { query -> CGFloat? in
+        let bottoms = [scroll.staticTexts, scroll.buttons, scroll.otherElements].compactMap { query -> CGFloat? in
             let count = query.count
             return count > 0 ? query.element(boundBy: count - 1).frame.maxY : nil
         }
