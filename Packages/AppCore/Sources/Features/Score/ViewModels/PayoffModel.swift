@@ -84,7 +84,7 @@ package final class PayoffModel {
             _ = try await plans.create(method: method, extraPayment: extraPayment)
             return true
         } catch {
-            makePlanProblem = error as? AppProblem ?? AppProblem()
+            makePlanProblem = AppProblem(error)
             return false
         }
     }
@@ -100,7 +100,7 @@ package final class PayoffModel {
             recalculationProblem = nil
         } catch {
             guard mine == generation else { return }
-            let problem = error as? AppProblem ?? AppProblem()
+            let problem = AppProblem(error)
             if problem.knownCode == .payoffNothingToPlan {
                 phase = .empty
             } else if phase.value == nil {

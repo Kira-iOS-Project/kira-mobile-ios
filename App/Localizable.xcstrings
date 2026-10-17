@@ -13493,7 +13493,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tanggal Jatuh Tempo (opsional)"
+            "value" : "Tanggal Jatuh Tempo (Opsional)"
           }
         }
       }
@@ -13504,6 +13504,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tanggal tiap bulan kamu harus bayar, dari 1 sampai 31."
+          }
+        }
+      }
+    },
+    "onboarding.debt.sheet.dueDay.invalid" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi tanggal dari 1 sampai 31."
           }
         }
       }
@@ -13543,7 +13553,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bunga per Tahun (opsional)"
+            "value" : "Bunga per Tahun (Opsional)"
           }
         }
       }
@@ -13554,6 +13564,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Isi kalau kamu tahu, supaya rencana pelunasan bisa menghitung bunganya."
+          }
+        }
+      }
+    },
+    "onboarding.debt.sheet.interest.invalid" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bunganya belum masuk akal. Isi persen per tahun, paling besar 300%."
           }
         }
       }

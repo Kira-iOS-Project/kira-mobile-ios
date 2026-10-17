@@ -60,7 +60,7 @@ struct DebtFormModelTests {
         #expect(model.dueDay == "12")
     }
 
-    @Test("a filled interest and due day are saved, and left out when empty or out of range")
+    @Test("a filled interest and due day are saved; out of range they show their error and nothing is saved")
     func optionalEntry() throws {
         let model = DebtFormModel()
         model.name = "Paylater A"
@@ -72,12 +72,14 @@ struct DebtFormModelTests {
         model.dueDay = "5"
         let filled = try #require(model.entry())
         #expect(filled.annualInterestRate == 36 && filled.dueDay == 5)
+        #expect(!model.isInterestInvalid && !model.isDueDayInvalid)
         model.interest = "301"
+        #expect(model.isInterestInvalid && model.entry() == nil)
+        model.interest = ""
         model.dueDay = "0"
-        let invalid = try #require(model.entry())
-        #expect(invalid.annualInterestRate == nil && invalid.dueDay == nil)
+        #expect(model.isDueDayInvalid && model.entry() == nil)
         model.dueDay = "32"
-        #expect(try #require(model.entry()).dueDay == nil)
+        #expect(model.isDueDayInvalid && model.entry() == nil)
     }
 
     @Test("editing opens with the interest and due day filled")
