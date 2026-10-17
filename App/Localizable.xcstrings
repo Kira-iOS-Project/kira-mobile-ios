@@ -16459,6 +16459,39 @@
         }
       }
     },
+    "problem.GOAL_DEPOSIT_CONFLICT" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Setoran ini sudah tercatat."
+          }
+        }
+      }
+    },
+    "problem.GOAL_EMERGENCY_EXISTS" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu sudah punya tujuan Dana Darurat. Lanjutkan yang sudah ada, ya."
+          }
+        }
+      }
+    },
+    "problem.GOAL_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tujuan ini tidak ditemukan. Mungkin sudah dihapus."
+          }
+        }
+      }
+    },
     "problem.HTTP_ERROR" : {
       "extractionState" : "manual",
       "localizations" : {
