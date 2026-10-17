@@ -66,7 +66,7 @@ extension AppServices {
             portfolio: LivePortfolioService(api: api), goals: LiveGoalService(api: api),
             riskProfile: LiveRiskProfileService(api: api), riskDraft: RiskQuizDraft(),
             wallet: LiveWalletService(api: api), budget: LiveBudgetService(api: api),
-            bills: UnavailableBillService(), billEditor: UnavailableBillEditorService())
+            bills: UnavailableBillService(), billEditor: LiveBillEditorService(api: api))
     }
 
     /** The canvas's sample data: nothing leaves the device. */
