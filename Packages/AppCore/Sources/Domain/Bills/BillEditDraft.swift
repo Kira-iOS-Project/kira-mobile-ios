@@ -1,15 +1,5 @@
 import Foundation
 
-/** A recurrence the bill editor can save. */
-package enum BillRepeatInterval: String, CaseIterable, Hashable, Sendable {
-    /** Every week. */
-    case weekly
-    /** Every month. */
-    case monthly
-    /** Every year. */
-    case yearly
-}
-
 /** Editable values for an ordinary recurring bill. */
 package struct BillEditDraft: Hashable, Sendable {
     /** The bill schedule to update. */
