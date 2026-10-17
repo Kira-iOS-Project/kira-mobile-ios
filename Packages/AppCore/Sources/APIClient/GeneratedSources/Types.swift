@@ -459,6 +459,11 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `GET /api/wallets`.
     /// - Remark: Generated from `#/paths//api/wallets/get(listWallets)`.
     func listWallets(_ input: Operations.ListWallets.Input) async throws -> Operations.ListWallets.Output
+    /// Current budget and adjusted payday
+    ///
+    /// - Remark: HTTP `GET /api/budgets/current`.
+    /// - Remark: Generated from `#/paths//api/budgets/current/get(getCurrentBudget)`.
+    func getCurrentBudget(_ input: Operations.GetCurrentBudget.Input) async throws -> Operations.GetCurrentBudget.Output
     /// Keep a parsed bank statement for review (Kira Plus)
     ///
     /// At most three months per file; rows already recorded are flagged `isDuplicate`.
@@ -1374,6 +1379,13 @@ extension APIProtocol {
     /// - Remark: Generated from `#/paths//api/wallets/get(listWallets)`.
     internal func listWallets(headers: Operations.ListWallets.Input.Headers = .init()) async throws -> Operations.ListWallets.Output {
         try await listWallets(Operations.ListWallets.Input(headers: headers))
+    }
+    /// Current budget and adjusted payday
+    ///
+    /// - Remark: HTTP `GET /api/budgets/current`.
+    /// - Remark: Generated from `#/paths//api/budgets/current/get(getCurrentBudget)`.
+    internal func getCurrentBudget(headers: Operations.GetCurrentBudget.Input.Headers = .init()) async throws -> Operations.GetCurrentBudget.Output {
+        try await getCurrentBudget(Operations.GetCurrentBudget.Input(headers: headers))
     }
     /// Keep a parsed bank statement for review (Kira Plus)
     ///
