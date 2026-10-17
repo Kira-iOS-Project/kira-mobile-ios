@@ -35,9 +35,13 @@ nonisolated final class PlanRiskAuditTests: XCTestCase {
         try auditScreen(
             "legalityCheck",
             prepare: { app in
-                Self.scrollTo(app.buttons["Kontak OJK 157"], in: app)
-                Self.tap(app.buttons["Kontak OJK 157"])
-                XCTAssertTrue(app.buttons["WhatsApp 081157157157"].waitForExistence(timeout: 5))
+                /** A row's label is its title, then its subtitle: match the title. */
+                let starts = "label BEGINSWITH %@"
+                let contact = app.buttons.matching(NSPredicate(format: starts, "Kontak OJK 157")).firstMatch
+                Self.scrollTo(contact, in: app)
+                Self.tap(contact)
+                let whatsApp = app.buttons.matching(NSPredicate(format: starts, "WhatsApp 081157157157"))
+                XCTAssertTrue(whatsApp.firstMatch.waitForExistence(timeout: 5))
             },
             accepting: { issue in
                 /** Accepted, as for every Kira sheet (ChatAuditTests): text behind the sheet's scrim. */

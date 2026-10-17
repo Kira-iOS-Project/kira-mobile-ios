@@ -68,6 +68,8 @@ nonisolated final class PlanAuditTests: XCTestCase {
         add.tap()
         let save = app.buttons["Simpan Setoran"]
         XCTAssertTrue(save.waitForExistence(timeout: 5))
+        /** The sheet has risen before the audit samples it, as auditScreen waits after its prepare. */
+        Thread.sleep(forTimeInterval: 1)
         try auditInPlace(app) { issue in issue.auditType == .elementDetection && issue.element == nil }
         save.tap()
         XCTAssertTrue(app.staticTexts["Setoran Belum Tersimpan"].waitForExistence(timeout: 5))
@@ -76,7 +78,14 @@ nonisolated final class PlanAuditTests: XCTestCase {
             .first { $0.isHittable }
         XCTAssertNotNil(retry)
         retry?.tap()
-        XCTAssertTrue(save.waitForExistence(timeout: 5))
+        /**
+         Coba Lagi reopens the sheet with the amount and sends it again once the sheet has risen; this
+         launch's service fails every deposit, so the sheet closes into the failure dialog again.
+         */
+        let failed = app.staticTexts["Setoran Belum Tersimpan"]
+        expectation(for: NSPredicate(format: "exists == false"), evaluatedWith: failed)
+        waitForExpectations(timeout: 10)
+        XCTAssertTrue(failed.waitForExistence(timeout: 10))
         app.terminate()
     }
 }
