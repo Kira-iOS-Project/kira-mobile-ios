@@ -11,8 +11,8 @@ package final class IndicatorModel {
     /** The detail, loading until the API answers. */
     package private(set) var phase: ScreenPhase<IndicatorDetail> = .loading
     /**
-     Whether the plan includes Portofolio Manual; read only for Utang terhadap Aset, and taken as
-     true when it cannot be read, since Portofolio then says itself that the plan lacks it.
+     Whether the plan is Kira Plus, which has Portofolio Manual; read only for Utang terhadap Aset,
+     and true when it cannot be read, since Portofolio then says itself that the plan lacks it.
      */
     package private(set) var includesPortfolio = true
 
@@ -26,7 +26,7 @@ package final class IndicatorModel {
 
     /** Loads the indicator. */
     package func load() async {
-        if key == .debtToAsset { includesPortfolio = (try? await service.planIncludesPortfolio()) ?? true }
+        if key == .debtToAsset { includesPortfolio = await service.includesPlus() }
         do {
             phase = .loaded(try await service.indicator(key))
         } catch {

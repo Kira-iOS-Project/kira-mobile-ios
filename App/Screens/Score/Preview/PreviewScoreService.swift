@@ -58,7 +58,7 @@ nonisolated struct PreviewScoreService: ScoreService {
         return .sample(key)
     }
 
-    func planIncludesPortfolio() -> Bool { true }
+    func includesPlus() -> Bool { true }
 }
 
 #if DEBUG

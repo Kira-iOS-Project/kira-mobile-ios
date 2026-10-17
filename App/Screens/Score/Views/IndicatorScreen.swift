@@ -23,10 +23,12 @@ struct IndicatorScreen: View {
         Group {
             switch model.phase {
             case .loading:
-                IndicatorContent(detail: .sample(model.key), nextRungRoute: model.nextRungRoute,
-                    onOpen: { _ in }, onBack: {})
-                    .redacted(reason: .placeholder)
-                    .disabled(true)
+                IndicatorContent(
+                    detail: .sample(model.key), nextRungRoute: model.nextRungRoute,
+                    onOpen: { _ in }, onBack: {}
+                )
+                .redacted(reason: .placeholder)
+                .disabled(true)
             case .loaded(let detail):
                 IndicatorContent(detail: detail, nextRungRoute: model.nextRungRoute, onOpen: onOpen) { dismiss() }
             case .empty:

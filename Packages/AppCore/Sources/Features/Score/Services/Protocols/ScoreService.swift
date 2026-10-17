@@ -11,6 +11,9 @@ package protocol ScoreService: Sendable {
     /** One indicator in full. */
     func indicator(_ key: IndicatorKey) async throws -> IndicatorDetail
 
-    /** Whether the plan in force includes Portofolio Manual (Kira Plus), from `GET /me`. */
-    func planIncludesPortfolio() async throws -> Bool
+    /**
+     Whether the plan in force is Kira Plus (Portofolio Manual, Riwayat Kira Score), from `GET /me`;
+     true when that cannot be read, so the feature's own answer decides.
+     */
+    func includesPlus() async -> Bool
 }
