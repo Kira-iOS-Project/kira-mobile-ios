@@ -2980,6 +2980,160 @@ extension Components {
                 case daysUntilPayday
             }
         }
+        /// - Remark: Generated from `#/components/schemas/WeeklySummary`.
+        internal struct WeeklySummary: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/start`.
+            internal var start: Swift.String
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/end`.
+            internal var end: Swift.String
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/total`.
+            internal var total: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/previousTotal`.
+            internal var previousTotal: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/DaysPayload`.
+            internal struct DaysPayloadPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/DaysPayload/date`.
+                internal var date: Swift.String
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/DaysPayload/expense`.
+                internal var expense: Swift.Int
+                /// Creates a new `DaysPayloadPayload`.
+                ///
+                /// - Parameters:
+                ///   - date:
+                ///   - expense:
+                internal init(
+                    date: Swift.String,
+                    expense: Swift.Int
+                ) {
+                    self.date = date
+                    self.expense = expense
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case date
+                    case expense
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/days`.
+            internal typealias DaysPayload = [Components.Schemas.WeeklySummary.DaysPayloadPayload]
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/days`.
+            internal var days: Components.Schemas.WeeklySummary.DaysPayload
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/CategoriesPayload`.
+            internal struct CategoriesPayloadPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/CategoriesPayload/category`.
+                internal enum CategoryPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                    case food = "food"
+                    case coffee = "coffee"
+                    case transport = "transport"
+                    case shopping = "shopping"
+                    case bills = "bills"
+                    case paylaterInstalment = "paylater_instalment"
+                    case savingsDeposit = "savings_deposit"
+                    case insurance = "insurance"
+                    case entertainment = "entertainment"
+                    case health = "health"
+                    case education = "education"
+                    case household = "household"
+                    case otherExpense = "other_expense"
+                }
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/CategoriesPayload/category`.
+                internal var category: Components.Schemas.WeeklySummary.CategoriesPayloadPayload.CategoryPayload
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/CategoriesPayload/amount`.
+                internal var amount: Swift.Int
+                /// Creates a new `CategoriesPayloadPayload`.
+                ///
+                /// - Parameters:
+                ///   - category:
+                ///   - amount:
+                internal init(
+                    category: Components.Schemas.WeeklySummary.CategoriesPayloadPayload.CategoryPayload,
+                    amount: Swift.Int
+                ) {
+                    self.category = category
+                    self.amount = amount
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case category
+                    case amount
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/categories`.
+            internal typealias CategoriesPayload = [Components.Schemas.WeeklySummary.CategoriesPayloadPayload]
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/categories`.
+            internal var categories: Components.Schemas.WeeklySummary.CategoriesPayload
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/budget`.
+            internal struct BudgetPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/budget/amount`.
+                internal var amount: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/budget/spent`.
+                internal var spent: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/budget/periodStart`.
+                internal var periodStart: Swift.String
+                /// - Remark: Generated from `#/components/schemas/WeeklySummary/budget/periodEnd`.
+                internal var periodEnd: Swift.String
+                /// Creates a new `BudgetPayload`.
+                ///
+                /// - Parameters:
+                ///   - amount:
+                ///   - spent:
+                ///   - periodStart:
+                ///   - periodEnd:
+                internal init(
+                    amount: Swift.Int,
+                    spent: Swift.Int,
+                    periodStart: Swift.String,
+                    periodEnd: Swift.String
+                ) {
+                    self.amount = amount
+                    self.spent = spent
+                    self.periodStart = periodStart
+                    self.periodEnd = periodEnd
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case amount
+                    case spent
+                    case periodStart
+                    case periodEnd
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/WeeklySummary/budget`.
+            internal var budget: Components.Schemas.WeeklySummary.BudgetPayload?
+            /// Creates a new `WeeklySummary`.
+            ///
+            /// - Parameters:
+            ///   - start:
+            ///   - end:
+            ///   - total:
+            ///   - previousTotal:
+            ///   - days:
+            ///   - categories:
+            ///   - budget:
+            internal init(
+                start: Swift.String,
+                end: Swift.String,
+                total: Swift.Int,
+                previousTotal: Swift.Int,
+                days: Components.Schemas.WeeklySummary.DaysPayload,
+                categories: Components.Schemas.WeeklySummary.CategoriesPayload,
+                budget: Components.Schemas.WeeklySummary.BudgetPayload? = nil
+            ) {
+                self.start = start
+                self.end = end
+                self.total = total
+                self.previousTotal = previousTotal
+                self.days = days
+                self.categories = categories
+                self.budget = budget
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case start
+                case end
+                case total
+                case previousTotal
+                case days
+                case categories
+                case budget
+            }
+        }
         /// - Remark: Generated from `#/components/schemas/Plans`.
         internal struct Plans: Codable, Hashable, Sendable {
             /// - Remark: Generated from `#/components/schemas/Plans/plans`.
@@ -6286,6 +6440,12 @@ extension Components {
         }
         /// - Remark: Generated from `#/components/schemas/Wallet`.
         internal struct Wallet: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/Wallet/accountType`.
+            internal enum AccountTypePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case wallet = "wallet"
+            }
+            /// - Remark: Generated from `#/components/schemas/Wallet/accountType`.
+            internal var accountType: Components.Schemas.Wallet.AccountTypePayload
             /// - Remark: Generated from `#/components/schemas/Wallet/id`.
             internal var id: Swift.String
             /// - Remark: Generated from `#/components/schemas/Wallet/name`.
@@ -6306,18 +6466,21 @@ extension Components {
             /// Creates a new `Wallet`.
             ///
             /// - Parameters:
+            ///   - accountType:
             ///   - id:
             ///   - name:
             ///   - _type:
             ///   - balance:
             ///   - createdAt:
             internal init(
+                accountType: Components.Schemas.Wallet.AccountTypePayload,
                 id: Swift.String,
                 name: Swift.String,
                 _type: Components.Schemas.Wallet._TypePayload,
                 balance: Swift.Int,
                 createdAt: Foundation.Date
             ) {
+                self.accountType = accountType
                 self.id = id
                 self.name = name
                 self._type = _type
@@ -6325,6 +6488,7 @@ extension Components {
                 self.createdAt = createdAt
             }
             internal enum CodingKeys: String, CodingKey {
+                case accountType
                 case id
                 case name
                 case _type = "type"
@@ -6334,6 +6498,12 @@ extension Components {
         }
         /// - Remark: Generated from `#/components/schemas/DebtSummary`.
         internal struct DebtSummary: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/DebtSummary/accountType`.
+            internal enum AccountTypePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case debt = "debt"
+            }
+            /// - Remark: Generated from `#/components/schemas/DebtSummary/accountType`.
+            internal var accountType: Components.Schemas.DebtSummary.AccountTypePayload
             /// - Remark: Generated from `#/components/schemas/DebtSummary/id`.
             internal var id: Swift.String
             /// - Remark: Generated from `#/components/schemas/DebtSummary/name`.
@@ -6410,6 +6580,7 @@ extension Components {
             /// Creates a new `DebtSummary`.
             ///
             /// - Parameters:
+            ///   - accountType:
             ///   - id:
             ///   - name:
             ///   - kind:
@@ -6423,6 +6594,7 @@ extension Components {
             ///   - nextInstallment:
             ///   - dueSoon:
             internal init(
+                accountType: Components.Schemas.DebtSummary.AccountTypePayload,
                 id: Swift.String,
                 name: Swift.String,
                 kind: Components.Schemas.DebtSummary.KindPayload,
@@ -6436,6 +6608,7 @@ extension Components {
                 nextInstallment: Components.Schemas.DebtSummary.NextInstallmentPayload? = nil,
                 dueSoon: Swift.Bool
             ) {
+                self.accountType = accountType
                 self.id = id
                 self.name = name
                 self.kind = kind
@@ -6450,6 +6623,7 @@ extension Components {
                 self.dueSoon = dueSoon
             }
             internal enum CodingKeys: String, CodingKey {
+                case accountType
                 case id
                 case name
                 case kind
@@ -6531,173 +6705,115 @@ extension Components {
             internal var totalAllocated: Swift.Int
             /// - Remark: Generated from `#/components/schemas/CurrentBudget/overAllocated`.
             internal var overAllocated: Swift.Bool
-            /// - Remark: Generated from `#/components/schemas/CurrentBudget/GoalPostsPayload`.
-            internal struct GoalPostsPayloadPayload: Codable, Hashable, Sendable {
-                /// - Remark: Generated from `#/components/schemas/CurrentBudget/GoalPostsPayload/category`.
+            /// - Remark: Generated from `#/components/schemas/CurrentBudget/AveragesPayload`.
+            internal struct AveragesPayloadPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/CurrentBudget/AveragesPayload/category`.
                 internal enum CategoryPayload: String, Codable, Hashable, Sendable, CaseIterable {
-                    case emergencyFund = "emergency_fund"
+                    case food = "food"
+                    case coffee = "coffee"
+                    case transport = "transport"
+                    case shopping = "shopping"
+                    case bills = "bills"
+                    case paylaterInstalment = "paylater_instalment"
+                    case savingsDeposit = "savings_deposit"
+                    case insurance = "insurance"
+                    case entertainment = "entertainment"
+                    case health = "health"
+                    case education = "education"
+                    case household = "household"
+                    case otherExpense = "other_expense"
                 }
-                /// - Remark: Generated from `#/components/schemas/CurrentBudget/GoalPostsPayload/category`.
-                internal var category: Components.Schemas.CurrentBudget.GoalPostsPayloadPayload.CategoryPayload
-                /// - Remark: Generated from `#/components/schemas/CurrentBudget/GoalPostsPayload/name`.
-                internal var name: Swift.String
-                /// - Remark: Generated from `#/components/schemas/CurrentBudget/GoalPostsPayload/currentAmount`.
-                internal var currentAmount: Swift.Int
-                /// - Remark: Generated from `#/components/schemas/CurrentBudget/GoalPostsPayload/targetAmount`.
-                internal var targetAmount: Swift.Int
-                /// - Remark: Generated from `#/components/schemas/CurrentBudget/GoalPostsPayload/MilestonesPayload`.
-                internal struct MilestonesPayloadPayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/components/schemas/CurrentBudget/GoalPostsPayload/MilestonesPayload/amount`.
-                    internal var amount: Swift.Int
-                    /// - Remark: Generated from `#/components/schemas/CurrentBudget/GoalPostsPayload/MilestonesPayload/label`.
-                    internal var label: Swift.String
-                    /// - Remark: Generated from `#/components/schemas/CurrentBudget/GoalPostsPayload/MilestonesPayload/reached`.
-                    internal var reached: Swift.Bool
-                    /// Creates a new `MilestonesPayloadPayload`.
-                    ///
-                    /// - Parameters:
-                    ///   - amount:
-                    ///   - label:
-                    ///   - reached:
-                    internal init(
-                        amount: Swift.Int,
-                        label: Swift.String,
-                        reached: Swift.Bool
-                    ) {
-                        self.amount = amount
-                        self.label = label
-                        self.reached = reached
-                    }
-                    internal enum CodingKeys: String, CodingKey {
-                        case amount
-                        case label
-                        case reached
-                    }
-                }
-                /// - Remark: Generated from `#/components/schemas/CurrentBudget/GoalPostsPayload/milestones`.
-                internal typealias MilestonesPayload = [Components.Schemas.CurrentBudget.GoalPostsPayloadPayload.MilestonesPayloadPayload]
-                /// - Remark: Generated from `#/components/schemas/CurrentBudget/GoalPostsPayload/milestones`.
-                internal var milestones: Components.Schemas.CurrentBudget.GoalPostsPayloadPayload.MilestonesPayload
-                /// Creates a new `GoalPostsPayloadPayload`.
+                /// - Remark: Generated from `#/components/schemas/CurrentBudget/AveragesPayload/category`.
+                internal var category: Components.Schemas.CurrentBudget.AveragesPayloadPayload.CategoryPayload
+                /// - Remark: Generated from `#/components/schemas/CurrentBudget/AveragesPayload/amount`.
+                internal var amount: Swift.Int
+                /// Creates a new `AveragesPayloadPayload`.
                 ///
                 /// - Parameters:
                 ///   - category:
-                ///   - name:
-                ///   - currentAmount:
-                ///   - targetAmount:
-                ///   - milestones:
+                ///   - amount:
                 internal init(
-                    category: Components.Schemas.CurrentBudget.GoalPostsPayloadPayload.CategoryPayload,
-                    name: Swift.String,
-                    currentAmount: Swift.Int,
-                    targetAmount: Swift.Int,
-                    milestones: Components.Schemas.CurrentBudget.GoalPostsPayloadPayload.MilestonesPayload
+                    category: Components.Schemas.CurrentBudget.AveragesPayloadPayload.CategoryPayload,
+                    amount: Swift.Int
                 ) {
                     self.category = category
-                    self.name = name
-                    self.currentAmount = currentAmount
-                    self.targetAmount = targetAmount
-                    self.milestones = milestones
+                    self.amount = amount
                 }
                 internal enum CodingKeys: String, CodingKey {
                     case category
-                    case name
-                    case currentAmount
-                    case targetAmount
-                    case milestones
+                    case amount
                 }
             }
-            /// - Remark: Generated from `#/components/schemas/CurrentBudget/goalPosts`.
-            internal typealias GoalPostsPayload = [Components.Schemas.CurrentBudget.GoalPostsPayloadPayload]
-            /// - Remark: Generated from `#/components/schemas/CurrentBudget/goalPosts`.
-            internal var goalPosts: Components.Schemas.CurrentBudget.GoalPostsPayload
+            /// - Remark: Generated from `#/components/schemas/CurrentBudget/averages`.
+            internal typealias AveragesPayload = [Components.Schemas.CurrentBudget.AveragesPayloadPayload]
+            /// - Remark: Generated from `#/components/schemas/CurrentBudget/averages`.
+            internal var averages: Components.Schemas.CurrentBudget.AveragesPayload
+            /// - Remark: Generated from `#/components/schemas/CurrentBudget/instalmentsMonthly`.
+            internal var instalmentsMonthly: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/CurrentBudget/goalPost`.
+            internal struct GoalPostPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/CurrentBudget/goalPost/goalId`.
+                internal var goalId: Swift.String
+                /// - Remark: Generated from `#/components/schemas/CurrentBudget/goalPost/monthlyDeposit`.
+                internal var monthlyDeposit: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/CurrentBudget/goalPost/savedAmount`.
+                internal var savedAmount: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/CurrentBudget/goalPost/targetAmount`.
+                internal var targetAmount: Swift.Int
+                /// Creates a new `GoalPostPayload`.
+                ///
+                /// - Parameters:
+                ///   - goalId:
+                ///   - monthlyDeposit:
+                ///   - savedAmount:
+                ///   - targetAmount:
+                internal init(
+                    goalId: Swift.String,
+                    monthlyDeposit: Swift.Int,
+                    savedAmount: Swift.Int,
+                    targetAmount: Swift.Int
+                ) {
+                    self.goalId = goalId
+                    self.monthlyDeposit = monthlyDeposit
+                    self.savedAmount = savedAmount
+                    self.targetAmount = targetAmount
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case goalId
+                    case monthlyDeposit
+                    case savedAmount
+                    case targetAmount
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/CurrentBudget/goalPost`.
+            internal var goalPost: Components.Schemas.CurrentBudget.GoalPostPayload?
             /// - Remark: Generated from `#/components/schemas/CurrentBudget/payday`.
             internal struct PaydayPayload: Codable, Hashable, Sendable {
                 /// - Remark: Generated from `#/components/schemas/CurrentBudget/payday/requested`.
-                internal enum RequestedPayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/components/schemas/CurrentBudget/payday/requested/case1`.
-                    internal struct Case1Payload: Codable, Hashable, Sendable {
-                        /// - Remark: Generated from `#/components/schemas/CurrentBudget/payday/requested/case1/type`.
-                        internal enum _TypePayload: String, Codable, Hashable, Sendable, CaseIterable {
-                            case day = "day"
-                        }
-                        /// - Remark: Generated from `#/components/schemas/CurrentBudget/payday/requested/case1/type`.
-                        internal var _type: Components.Schemas.CurrentBudget.PaydayPayload.RequestedPayload.Case1Payload._TypePayload
-                        /// - Remark: Generated from `#/components/schemas/CurrentBudget/payday/requested/case1/day`.
-                        internal var day: Swift.Int
-                        /// Creates a new `Case1Payload`.
-                        ///
-                        /// - Parameters:
-                        ///   - _type:
-                        ///   - day:
-                        internal init(
-                            _type: Components.Schemas.CurrentBudget.PaydayPayload.RequestedPayload.Case1Payload._TypePayload,
-                            day: Swift.Int
-                        ) {
-                            self._type = _type
-                            self.day = day
-                        }
-                        internal enum CodingKeys: String, CodingKey {
-                            case _type = "type"
-                            case day
-                        }
+                internal struct RequestedPayload: Codable, Hashable, Sendable {
+                    /// - Remark: Generated from `#/components/schemas/CurrentBudget/payday/requested/day`.
+                    internal var day: Swift.Int?
+                    /// - Remark: Generated from `#/components/schemas/CurrentBudget/payday/requested/endOfMonth`.
+                    internal var endOfMonth: Swift.Bool
+                    /// Creates a new `RequestedPayload`.
+                    ///
+                    /// - Parameters:
+                    ///   - day:
+                    ///   - endOfMonth:
+                    internal init(
+                        day: Swift.Int? = nil,
+                        endOfMonth: Swift.Bool
+                    ) {
+                        self.day = day
+                        self.endOfMonth = endOfMonth
                     }
-                    /// - Remark: Generated from `#/components/schemas/CurrentBudget/payday/requested/case1`.
-                    case case1(Components.Schemas.CurrentBudget.PaydayPayload.RequestedPayload.Case1Payload)
-                    /// - Remark: Generated from `#/components/schemas/CurrentBudget/payday/requested/case2`.
-                    internal struct Case2Payload: Codable, Hashable, Sendable {
-                        /// - Remark: Generated from `#/components/schemas/CurrentBudget/payday/requested/case2/type`.
-                        internal enum _TypePayload: String, Codable, Hashable, Sendable, CaseIterable {
-                            case endOfMonth = "endOfMonth"
-                        }
-                        /// - Remark: Generated from `#/components/schemas/CurrentBudget/payday/requested/case2/type`.
-                        internal var _type: Components.Schemas.CurrentBudget.PaydayPayload.RequestedPayload.Case2Payload._TypePayload
-                        /// Creates a new `Case2Payload`.
-                        ///
-                        /// - Parameters:
-                        ///   - _type:
-                        internal init(_type: Components.Schemas.CurrentBudget.PaydayPayload.RequestedPayload.Case2Payload._TypePayload) {
-                            self._type = _type
-                        }
-                        internal enum CodingKeys: String, CodingKey {
-                            case _type = "type"
-                        }
-                    }
-                    /// - Remark: Generated from `#/components/schemas/CurrentBudget/payday/requested/case2`.
-                    case case2(Components.Schemas.CurrentBudget.PaydayPayload.RequestedPayload.Case2Payload)
-                    internal init(from decoder: any Swift.Decoder) throws {
-                        var errors: [any Swift.Error] = []
-                        do {
-                            self = .case1(try .init(from: decoder))
-                            return
-                        } catch {
-                            errors.append(error)
-                        }
-                        do {
-                            self = .case2(try .init(from: decoder))
-                            return
-                        } catch {
-                            errors.append(error)
-                        }
-                        throw Swift.DecodingError.failedToDecodeOneOfSchema(
-                            type: Self.self,
-                            codingPath: decoder.codingPath,
-                            errors: errors
-                        )
-                    }
-                    internal func encode(to encoder: any Swift.Encoder) throws {
-                        switch self {
-                        case let .case1(value):
-                            try value.encode(to: encoder)
-                        case let .case2(value):
-                            try value.encode(to: encoder)
-                        }
+                    internal enum CodingKeys: String, CodingKey {
+                        case day
+                        case endOfMonth
                     }
                 }
                 /// - Remark: Generated from `#/components/schemas/CurrentBudget/payday/requested`.
                 internal var requested: Components.Schemas.CurrentBudget.PaydayPayload.RequestedPayload
-                /// - Remark: Generated from `#/components/schemas/CurrentBudget/payday/adjustedDate`.
-                internal var adjustedDate: Swift.String
                 /// - Remark: Generated from `#/components/schemas/CurrentBudget/payday/periodStart`.
                 internal var periodStart: Swift.String
                 /// - Remark: Generated from `#/components/schemas/CurrentBudget/payday/periodEnd`.
@@ -6710,21 +6826,18 @@ extension Components {
                 ///
                 /// - Parameters:
                 ///   - requested:
-                ///   - adjustedDate:
                 ///   - periodStart:
                 ///   - periodEnd:
                 ///   - nextPayday:
                 ///   - daysUntilPayday:
                 internal init(
                     requested: Components.Schemas.CurrentBudget.PaydayPayload.RequestedPayload,
-                    adjustedDate: Swift.String,
                     periodStart: Swift.String,
                     periodEnd: Swift.String,
                     nextPayday: Swift.String,
                     daysUntilPayday: Swift.Int
                 ) {
                     self.requested = requested
-                    self.adjustedDate = adjustedDate
                     self.periodStart = periodStart
                     self.periodEnd = periodEnd
                     self.nextPayday = nextPayday
@@ -6732,7 +6845,6 @@ extension Components {
                 }
                 internal enum CodingKeys: String, CodingKey {
                     case requested
-                    case adjustedDate
                     case periodStart
                     case periodEnd
                     case nextPayday
@@ -6750,7 +6862,9 @@ extension Components {
             ///   - allocations:
             ///   - totalAllocated:
             ///   - overAllocated:
-            ///   - goalPosts:
+            ///   - averages:
+            ///   - instalmentsMonthly:
+            ///   - goalPost:
             ///   - payday:
             internal init(
                 configured: Swift.Bool,
@@ -6759,7 +6873,9 @@ extension Components {
                 allocations: Components.Schemas.CurrentBudget.AllocationsPayload,
                 totalAllocated: Swift.Int,
                 overAllocated: Swift.Bool,
-                goalPosts: Components.Schemas.CurrentBudget.GoalPostsPayload,
+                averages: Components.Schemas.CurrentBudget.AveragesPayload,
+                instalmentsMonthly: Swift.Int,
+                goalPost: Components.Schemas.CurrentBudget.GoalPostPayload? = nil,
                 payday: Components.Schemas.CurrentBudget.PaydayPayload
             ) {
                 self.configured = configured
@@ -6768,7 +6884,9 @@ extension Components {
                 self.allocations = allocations
                 self.totalAllocated = totalAllocated
                 self.overAllocated = overAllocated
-                self.goalPosts = goalPosts
+                self.averages = averages
+                self.instalmentsMonthly = instalmentsMonthly
+                self.goalPost = goalPost
                 self.payday = payday
             }
             internal enum CodingKeys: String, CodingKey {
@@ -6778,8 +6896,134 @@ extension Components {
                 case allocations
                 case totalAllocated
                 case overAllocated
-                case goalPosts
+                case averages
+                case instalmentsMonthly
+                case goalPost
                 case payday
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/SaveBudget`.
+        internal struct SaveBudget: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/SaveBudget/AllocationsPayload`.
+            internal struct AllocationsPayloadPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/SaveBudget/AllocationsPayload/category`.
+                internal enum CategoryPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                    case food = "food"
+                    case coffee = "coffee"
+                    case transport = "transport"
+                    case shopping = "shopping"
+                    case bills = "bills"
+                    case paylaterInstalment = "paylater_instalment"
+                    case savingsDeposit = "savings_deposit"
+                    case insurance = "insurance"
+                    case entertainment = "entertainment"
+                    case health = "health"
+                    case education = "education"
+                    case household = "household"
+                    case otherExpense = "other_expense"
+                }
+                /// - Remark: Generated from `#/components/schemas/SaveBudget/AllocationsPayload/category`.
+                internal var category: Components.Schemas.SaveBudget.AllocationsPayloadPayload.CategoryPayload
+                /// - Remark: Generated from `#/components/schemas/SaveBudget/AllocationsPayload/amount`.
+                internal var amount: Swift.Int
+                /// Creates a new `AllocationsPayloadPayload`.
+                ///
+                /// - Parameters:
+                ///   - category:
+                ///   - amount:
+                internal init(
+                    category: Components.Schemas.SaveBudget.AllocationsPayloadPayload.CategoryPayload,
+                    amount: Swift.Int
+                ) {
+                    self.category = category
+                    self.amount = amount
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case category
+                    case amount
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/SaveBudget/allocations`.
+            internal typealias AllocationsPayload = [Components.Schemas.SaveBudget.AllocationsPayloadPayload]
+            /// - Remark: Generated from `#/components/schemas/SaveBudget/allocations`.
+            internal var allocations: Components.Schemas.SaveBudget.AllocationsPayload
+            /// - Remark: Generated from `#/components/schemas/SaveBudget/payday`.
+            internal struct PaydayPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/SaveBudget/payday/day`.
+                internal var day: Swift.Int?
+                /// - Remark: Generated from `#/components/schemas/SaveBudget/payday/endOfMonth`.
+                internal var endOfMonth: Swift.Bool
+                /// Creates a new `PaydayPayload`.
+                ///
+                /// - Parameters:
+                ///   - day:
+                ///   - endOfMonth:
+                internal init(
+                    day: Swift.Int? = nil,
+                    endOfMonth: Swift.Bool
+                ) {
+                    self.day = day
+                    self.endOfMonth = endOfMonth
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case day
+                    case endOfMonth
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/SaveBudget/payday`.
+            internal var payday: Components.Schemas.SaveBudget.PaydayPayload
+            /// Creates a new `SaveBudget`.
+            ///
+            /// - Parameters:
+            ///   - allocations:
+            ///   - payday:
+            internal init(
+                allocations: Components.Schemas.SaveBudget.AllocationsPayload,
+                payday: Components.Schemas.SaveBudget.PaydayPayload
+            ) {
+                self.allocations = allocations
+                self.payday = payday
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case allocations
+                case payday
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CreatedAccount`.
+        internal enum CreatedAccount: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CreatedAccount/DebtSummary`.
+            case debt(Components.Schemas.DebtSummary)
+            /// - Remark: Generated from `#/components/schemas/CreatedAccount/Wallet`.
+            case wallet(Components.Schemas.Wallet)
+            internal enum CodingKeys: String, CodingKey {
+                case accountType
+            }
+            internal init(from decoder: any Swift.Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                let discriminator = try container.decode(
+                    Swift.String.self,
+                    forKey: .accountType
+                )
+                switch discriminator {
+                case "debt":
+                    self = .debt(try .init(from: decoder))
+                case "wallet":
+                    self = .wallet(try .init(from: decoder))
+                default:
+                    throw Swift.DecodingError.unknownOneOfDiscriminator(
+                        discriminatorKey: CodingKeys.accountType,
+                        discriminatorValue: discriminator,
+                        codingPath: decoder.codingPath
+                    )
+                }
+            }
+            internal func encode(to encoder: any Swift.Encoder) throws {
+                switch self {
+                case let .debt(value):
+                    try value.encode(to: encoder)
+                case let .wallet(value):
+                    try value.encode(to: encoder)
+                }
             }
         }
         /// - Remark: Generated from `#/components/schemas/CreateWalletInput`.
@@ -6975,6 +7219,545 @@ extension Components {
                 case monthlyInstallment
                 case remainingTenorMonths
                 case nextDueDate
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/DebtDetail`.
+        internal struct DebtDetail: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/id`.
+            internal var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/name`.
+            internal var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/kind`.
+            internal enum KindPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case paylater = "paylater"
+                case onlineLoan = "online_loan"
+                case creditCard = "credit_card"
+                case vehicle = "vehicle"
+                case mortgage = "mortgage"
+                case familyLoan = "family_loan"
+            }
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/kind`.
+            internal var kind: Components.Schemas.DebtDetail.KindPayload
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/remaining`.
+            internal var remaining: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/totalAmount`.
+            internal var totalAmount: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/paidAmount`.
+            internal var paidAmount: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/instalmentsPaid`.
+            internal var instalmentsPaid: Swift.Int?
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/instalmentsTotal`.
+            internal var instalmentsTotal: Swift.Int?
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/monthlyInstalment`.
+            internal var monthlyInstalment: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/dueDate`.
+            internal var dueDate: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/PaymentsPayload`.
+            internal struct PaymentsPayloadPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/PaymentsPayload/id`.
+                internal var id: Swift.String
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/PaymentsPayload/number`.
+                internal var number: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/PaymentsPayload/amount`.
+                internal var amount: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/PaymentsPayload/paidOn`.
+                internal var paidOn: Swift.String
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/PaymentsPayload/onTime`.
+                internal var onTime: Swift.Bool
+                /// Creates a new `PaymentsPayloadPayload`.
+                ///
+                /// - Parameters:
+                ///   - id:
+                ///   - number:
+                ///   - amount:
+                ///   - paidOn:
+                ///   - onTime:
+                internal init(
+                    id: Swift.String,
+                    number: Swift.Int,
+                    amount: Swift.Int,
+                    paidOn: Swift.String,
+                    onTime: Swift.Bool
+                ) {
+                    self.id = id
+                    self.number = number
+                    self.amount = amount
+                    self.paidOn = paidOn
+                    self.onTime = onTime
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case id
+                    case number
+                    case amount
+                    case paidOn
+                    case onTime
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/payments`.
+            internal typealias PaymentsPayload = [Components.Schemas.DebtDetail.PaymentsPayloadPayload]
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/payments`.
+            internal var payments: Components.Schemas.DebtDetail.PaymentsPayload
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/nextStep`.
+            internal struct NextStepPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/nextStep/priority`.
+                internal var priority: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/nextStep/priorityOf`.
+                internal var priorityOf: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/nextStep/extraAmount`.
+                internal var extraAmount: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/nextStep/payOn`.
+                internal var payOn: Swift.String?
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/nextStep/monthsEarlier`.
+                internal var monthsEarlier: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/nextStep/scoreBefore`.
+                internal var scoreBefore: Swift.Int?
+                /// - Remark: Generated from `#/components/schemas/DebtDetail/nextStep/scoreAfter`.
+                internal var scoreAfter: Swift.Int?
+                /// Creates a new `NextStepPayload`.
+                ///
+                /// - Parameters:
+                ///   - priority:
+                ///   - priorityOf:
+                ///   - extraAmount:
+                ///   - payOn:
+                ///   - monthsEarlier:
+                ///   - scoreBefore:
+                ///   - scoreAfter:
+                internal init(
+                    priority: Swift.Int,
+                    priorityOf: Swift.Int,
+                    extraAmount: Swift.Int,
+                    payOn: Swift.String? = nil,
+                    monthsEarlier: Swift.Int,
+                    scoreBefore: Swift.Int? = nil,
+                    scoreAfter: Swift.Int? = nil
+                ) {
+                    self.priority = priority
+                    self.priorityOf = priorityOf
+                    self.extraAmount = extraAmount
+                    self.payOn = payOn
+                    self.monthsEarlier = monthsEarlier
+                    self.scoreBefore = scoreBefore
+                    self.scoreAfter = scoreAfter
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case priority
+                    case priorityOf
+                    case extraAmount
+                    case payOn
+                    case monthsEarlier
+                    case scoreBefore
+                    case scoreAfter
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/DebtDetail/nextStep`.
+            internal var nextStep: Components.Schemas.DebtDetail.NextStepPayload?
+            /// Creates a new `DebtDetail`.
+            ///
+            /// - Parameters:
+            ///   - id:
+            ///   - name:
+            ///   - kind:
+            ///   - remaining:
+            ///   - totalAmount:
+            ///   - paidAmount:
+            ///   - instalmentsPaid:
+            ///   - instalmentsTotal:
+            ///   - monthlyInstalment:
+            ///   - dueDate:
+            ///   - payments:
+            ///   - nextStep:
+            internal init(
+                id: Swift.String,
+                name: Swift.String,
+                kind: Components.Schemas.DebtDetail.KindPayload,
+                remaining: Swift.Int,
+                totalAmount: Swift.Int,
+                paidAmount: Swift.Int,
+                instalmentsPaid: Swift.Int? = nil,
+                instalmentsTotal: Swift.Int? = nil,
+                monthlyInstalment: Swift.Int,
+                dueDate: Swift.String? = nil,
+                payments: Components.Schemas.DebtDetail.PaymentsPayload,
+                nextStep: Components.Schemas.DebtDetail.NextStepPayload? = nil
+            ) {
+                self.id = id
+                self.name = name
+                self.kind = kind
+                self.remaining = remaining
+                self.totalAmount = totalAmount
+                self.paidAmount = paidAmount
+                self.instalmentsPaid = instalmentsPaid
+                self.instalmentsTotal = instalmentsTotal
+                self.monthlyInstalment = monthlyInstalment
+                self.dueDate = dueDate
+                self.payments = payments
+                self.nextStep = nextStep
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case id
+                case name
+                case kind
+                case remaining
+                case totalAmount
+                case paidAmount
+                case instalmentsPaid
+                case instalmentsTotal
+                case monthlyInstalment
+                case dueDate
+                case payments
+                case nextStep
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/BillList`.
+        internal struct BillList: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/BillList/count`.
+            internal var count: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/BillList/monthlyTotal`.
+            internal var monthlyTotal: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/BillList/SectionsPayload`.
+            internal struct SectionsPayloadPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/BillList/SectionsPayload/group`.
+                internal enum GroupPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                    case next7Days = "next7Days"
+                    case thisMonth = "thisMonth"
+                    case nextMonth = "nextMonth"
+                    case later = "later"
+                }
+                /// - Remark: Generated from `#/components/schemas/BillList/SectionsPayload/group`.
+                internal var group: Components.Schemas.BillList.SectionsPayloadPayload.GroupPayload
+                /// - Remark: Generated from `#/components/schemas/BillList/SectionsPayload/bills`.
+                internal var bills: [Components.Schemas.Bill]
+                /// Creates a new `SectionsPayloadPayload`.
+                ///
+                /// - Parameters:
+                ///   - group:
+                ///   - bills:
+                internal init(
+                    group: Components.Schemas.BillList.SectionsPayloadPayload.GroupPayload,
+                    bills: [Components.Schemas.Bill]
+                ) {
+                    self.group = group
+                    self.bills = bills
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case group
+                    case bills
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/BillList/sections`.
+            internal typealias SectionsPayload = [Components.Schemas.BillList.SectionsPayloadPayload]
+            /// - Remark: Generated from `#/components/schemas/BillList/sections`.
+            internal var sections: Components.Schemas.BillList.SectionsPayload
+            /// Creates a new `BillList`.
+            ///
+            /// - Parameters:
+            ///   - count:
+            ///   - monthlyTotal:
+            ///   - sections:
+            internal init(
+                count: Swift.Int,
+                monthlyTotal: Swift.Int,
+                sections: Components.Schemas.BillList.SectionsPayload
+            ) {
+                self.count = count
+                self.monthlyTotal = monthlyTotal
+                self.sections = sections
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case count
+                case monthlyTotal
+                case sections
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/Bill`.
+        internal struct Bill: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/Bill/id`.
+            internal var id: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Bill/name`.
+            internal var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Bill/kind`.
+            internal enum KindPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case bill = "bill"
+                case instalment = "instalment"
+            }
+            /// - Remark: Generated from `#/components/schemas/Bill/kind`.
+            internal var kind: Components.Schemas.Bill.KindPayload
+            /// - Remark: Generated from `#/components/schemas/Bill/category`.
+            internal enum CategoryPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case food = "food"
+                case coffee = "coffee"
+                case transport = "transport"
+                case shopping = "shopping"
+                case bills = "bills"
+                case paylaterInstalment = "paylater_instalment"
+                case savingsDeposit = "savings_deposit"
+                case insurance = "insurance"
+                case entertainment = "entertainment"
+                case health = "health"
+                case education = "education"
+                case household = "household"
+                case otherExpense = "other_expense"
+            }
+            /// - Remark: Generated from `#/components/schemas/Bill/category`.
+            internal var category: Components.Schemas.Bill.CategoryPayload
+            /// - Remark: Generated from `#/components/schemas/Bill/amount`.
+            internal var amount: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/Bill/isEstimate`.
+            internal var isEstimate: Swift.Bool
+            /// - Remark: Generated from `#/components/schemas/Bill/repeats`.
+            internal enum RepeatsPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case once = "once"
+                case monthly = "monthly"
+                case yearly = "yearly"
+            }
+            /// - Remark: Generated from `#/components/schemas/Bill/repeats`.
+            internal var repeats: Components.Schemas.Bill.RepeatsPayload
+            /// - Remark: Generated from `#/components/schemas/Bill/dueOn`.
+            internal var dueOn: Swift.String
+            /// - Remark: Generated from `#/components/schemas/Bill/dueDay`.
+            internal var dueDay: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/Bill/nextDueOn`.
+            internal var nextDueOn: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Bill/daysUntil`.
+            internal var daysUntil: Swift.Int?
+            /// - Remark: Generated from `#/components/schemas/Bill/debtId`.
+            internal var debtId: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Bill/remainingInstalments`.
+            internal var remainingInstalments: Swift.Int?
+            /// - Remark: Generated from `#/components/schemas/Bill/paidThisPeriod`.
+            internal var paidThisPeriod: Swift.Bool
+            /// - Remark: Generated from `#/components/schemas/Bill/lastPaidOn`.
+            internal var lastPaidOn: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/Bill/createdAt`.
+            internal var createdAt: Foundation.Date
+            /// Creates a new `Bill`.
+            ///
+            /// - Parameters:
+            ///   - id:
+            ///   - name:
+            ///   - kind:
+            ///   - category:
+            ///   - amount:
+            ///   - isEstimate:
+            ///   - repeats:
+            ///   - dueOn:
+            ///   - dueDay:
+            ///   - nextDueOn:
+            ///   - daysUntil:
+            ///   - debtId:
+            ///   - remainingInstalments:
+            ///   - paidThisPeriod:
+            ///   - lastPaidOn:
+            ///   - createdAt:
+            internal init(
+                id: Swift.String,
+                name: Swift.String,
+                kind: Components.Schemas.Bill.KindPayload,
+                category: Components.Schemas.Bill.CategoryPayload,
+                amount: Swift.Int,
+                isEstimate: Swift.Bool,
+                repeats: Components.Schemas.Bill.RepeatsPayload,
+                dueOn: Swift.String,
+                dueDay: Swift.Int,
+                nextDueOn: Swift.String? = nil,
+                daysUntil: Swift.Int? = nil,
+                debtId: Swift.String? = nil,
+                remainingInstalments: Swift.Int? = nil,
+                paidThisPeriod: Swift.Bool,
+                lastPaidOn: Swift.String? = nil,
+                createdAt: Foundation.Date
+            ) {
+                self.id = id
+                self.name = name
+                self.kind = kind
+                self.category = category
+                self.amount = amount
+                self.isEstimate = isEstimate
+                self.repeats = repeats
+                self.dueOn = dueOn
+                self.dueDay = dueDay
+                self.nextDueOn = nextDueOn
+                self.daysUntil = daysUntil
+                self.debtId = debtId
+                self.remainingInstalments = remainingInstalments
+                self.paidThisPeriod = paidThisPeriod
+                self.lastPaidOn = lastPaidOn
+                self.createdAt = createdAt
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case id
+                case name
+                case kind
+                case category
+                case amount
+                case isEstimate
+                case repeats
+                case dueOn
+                case dueDay
+                case nextDueOn
+                case daysUntil
+                case debtId
+                case remainingInstalments
+                case paidThisPeriod
+                case lastPaidOn
+                case createdAt
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/CreateBill`.
+        internal struct CreateBill: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/CreateBill/name`.
+            internal var name: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CreateBill/amount`.
+            internal var amount: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/CreateBill/isEstimate`.
+            internal var isEstimate: Swift.Bool?
+            /// - Remark: Generated from `#/components/schemas/CreateBill/category`.
+            internal enum CategoryPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case food = "food"
+                case coffee = "coffee"
+                case transport = "transport"
+                case shopping = "shopping"
+                case bills = "bills"
+                case paylaterInstalment = "paylater_instalment"
+                case savingsDeposit = "savings_deposit"
+                case insurance = "insurance"
+                case entertainment = "entertainment"
+                case health = "health"
+                case education = "education"
+                case household = "household"
+                case otherExpense = "other_expense"
+            }
+            /// - Remark: Generated from `#/components/schemas/CreateBill/category`.
+            internal var category: Components.Schemas.CreateBill.CategoryPayload
+            /// - Remark: Generated from `#/components/schemas/CreateBill/repeats`.
+            internal enum RepeatsPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case once = "once"
+                case monthly = "monthly"
+                case yearly = "yearly"
+            }
+            /// - Remark: Generated from `#/components/schemas/CreateBill/repeats`.
+            internal var repeats: Components.Schemas.CreateBill.RepeatsPayload
+            /// - Remark: Generated from `#/components/schemas/CreateBill/dueOn`.
+            internal var dueOn: Swift.String
+            /// - Remark: Generated from `#/components/schemas/CreateBill/debtId`.
+            internal var debtId: Swift.String?
+            /// Creates a new `CreateBill`.
+            ///
+            /// - Parameters:
+            ///   - name:
+            ///   - amount:
+            ///   - isEstimate:
+            ///   - category:
+            ///   - repeats:
+            ///   - dueOn:
+            ///   - debtId:
+            internal init(
+                name: Swift.String,
+                amount: Swift.Int,
+                isEstimate: Swift.Bool? = nil,
+                category: Components.Schemas.CreateBill.CategoryPayload,
+                repeats: Components.Schemas.CreateBill.RepeatsPayload,
+                dueOn: Swift.String,
+                debtId: Swift.String? = nil
+            ) {
+                self.name = name
+                self.amount = amount
+                self.isEstimate = isEstimate
+                self.category = category
+                self.repeats = repeats
+                self.dueOn = dueOn
+                self.debtId = debtId
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case name
+                case amount
+                case isEstimate
+                case category
+                case repeats
+                case dueOn
+                case debtId
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/UpdateBill`.
+        internal struct UpdateBill: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/UpdateBill/name`.
+            internal var name: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/UpdateBill/amount`.
+            internal var amount: Swift.Int?
+            /// - Remark: Generated from `#/components/schemas/UpdateBill/isEstimate`.
+            internal var isEstimate: Swift.Bool?
+            /// - Remark: Generated from `#/components/schemas/UpdateBill/category`.
+            internal enum CategoryPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case food = "food"
+                case coffee = "coffee"
+                case transport = "transport"
+                case shopping = "shopping"
+                case bills = "bills"
+                case paylaterInstalment = "paylater_instalment"
+                case savingsDeposit = "savings_deposit"
+                case insurance = "insurance"
+                case entertainment = "entertainment"
+                case health = "health"
+                case education = "education"
+                case household = "household"
+                case otherExpense = "other_expense"
+            }
+            /// - Remark: Generated from `#/components/schemas/UpdateBill/category`.
+            internal var category: Components.Schemas.UpdateBill.CategoryPayload?
+            /// - Remark: Generated from `#/components/schemas/UpdateBill/repeats`.
+            internal enum RepeatsPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                case once = "once"
+                case monthly = "monthly"
+                case yearly = "yearly"
+            }
+            /// - Remark: Generated from `#/components/schemas/UpdateBill/repeats`.
+            internal var repeats: Components.Schemas.UpdateBill.RepeatsPayload?
+            /// - Remark: Generated from `#/components/schemas/UpdateBill/dueOn`.
+            internal var dueOn: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/UpdateBill/debtId`.
+            internal var debtId: Swift.String?
+            /// - Remark: Generated from `#/components/schemas/UpdateBill/paidOn`.
+            internal var paidOn: Swift.String?
+            /// Creates a new `UpdateBill`.
+            ///
+            /// - Parameters:
+            ///   - name:
+            ///   - amount:
+            ///   - isEstimate:
+            ///   - category:
+            ///   - repeats:
+            ///   - dueOn:
+            ///   - debtId:
+            ///   - paidOn:
+            internal init(
+                name: Swift.String? = nil,
+                amount: Swift.Int? = nil,
+                isEstimate: Swift.Bool? = nil,
+                category: Components.Schemas.UpdateBill.CategoryPayload? = nil,
+                repeats: Components.Schemas.UpdateBill.RepeatsPayload? = nil,
+                dueOn: Swift.String? = nil,
+                debtId: Swift.String? = nil,
+                paidOn: Swift.String? = nil
+            ) {
+                self.name = name
+                self.amount = amount
+                self.isEstimate = isEstimate
+                self.category = category
+                self.repeats = repeats
+                self.dueOn = dueOn
+                self.debtId = debtId
+                self.paidOn = paidOn
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case name
+                case amount
+                case isEstimate
+                case category
+                case repeats
+                case dueOn
+                case debtId
+                case paidOn
             }
         }
         /// - Remark: Generated from `#/components/schemas/BankImport`.

@@ -25236,6 +25236,28 @@
         }
       }
     },
+    "problem.BILL_DEBT_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akun utang untuk tagihan ini tidak ditemukan."
+          }
+        }
+      }
+    },
+    "problem.BILL_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan ini tidak ditemukan. Mungkin sudah dihapus."
+          }
+        }
+      }
+    },
     "problem.CARE_CHECK_IN_NOT_FOUND" : {
       "extractionState" : "manual",
       "localizations" : {
