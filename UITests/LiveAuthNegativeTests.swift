@@ -18,9 +18,11 @@ nonisolated final class LiveAuthNegativeTests: XCTestCase {
         requestCode(for: "neg.\(LiveFlow.email)", app)
         let field = app.textFields["Kode Verifikasi 6 Digit"]
         for attempt in 1...5 {
-            LiveFlow.type(String(repeating: XCUIKeyboardKey.delete.rawValue, count: 6) + "00000\(attempt)",
-                          into: field, in: self, app: app)
-            let message = attempt < 5
+            LiveFlow.type(
+                String(repeating: XCUIKeyboardKey.delete.rawValue, count: 6) + "00000\(attempt)",
+                into: field, in: self, app: app)
+            let message =
+                attempt < 5
                 ? "Kodenya belum cocok. Periksa lagi emailmu, ya."
                 : "Kode ini sudah terlalu sering dicoba. Minta kode baru, ya."
             LiveFlow.expect(app.staticTexts[message], in: self, timeout: 20, app: app)
@@ -41,8 +43,9 @@ nonisolated final class LiveAuthNegativeTests: XCTestCase {
         }
         let sent = try LiveFlow.codes(for: LiveFlow.email).count
         requestCode(for: LiveFlow.email, app)
-        LiveFlow.type(try LiveFlow.waitForCode(after: sent), into: app.textFields["Kode Verifikasi 6 Digit"],
-                      in: self, app: app)
+        LiveFlow.type(
+            try LiveFlow.waitForCode(after: sent), into: app.textFields["Kode Verifikasi 6 Digit"],
+            in: self, app: app)
         let pin = app.secureTextFields["Buat PIN 6 Angka"]
         if pin.waitForExistence(timeout: 15) {
             LiveFlow.type("381449", into: pin, in: self, app: app)
@@ -60,8 +63,10 @@ nonisolated final class LiveAuthNegativeTests: XCTestCase {
         let profile = profile(app)
         if profile.waitForExistence(timeout: 20) { profile.tap() }
         /** Signed out: Masuk ("Selamat Datang Kembali") or the intro that leads to it. */
-        let signedOut = app.descendants(matching: .any).matching(NSPredicate(
-            format: "label == 'Selamat Datang Kembali' OR label == 'Aku Sudah Punya Akun'")).firstMatch
+        let signedOut = app.descendants(matching: .any).matching(
+            NSPredicate(
+                format: "label == 'Selamat Datang Kembali' OR label == 'Aku Sudah Punya Akun'")
+        ).firstMatch
         LiveFlow.expect(signedOut, in: self, timeout: 30, app: app)
         LiveFlow.shot("neg-04-revoked", in: self)
     }

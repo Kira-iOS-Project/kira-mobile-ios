@@ -31,7 +31,7 @@ package enum SessionRefresh {
     package static func refresh(_ refreshToken: String, with api: KiraAPI) async throws -> RefreshOutcome {
         do {
             return .renewed(SessionTokens(try await api.refreshSession(refreshToken: refreshToken)))
-        } catch where AppProblem.isSessionRefusal(error) {
+        } catch  where AppProblem.isSessionRefusal(error) {
             return .rejected
         }
     }

@@ -24,7 +24,8 @@ struct RevokedSessionTests {
             middlewares: [AuthMiddleware(tokens: session)], transport: RoutedTransport(replies))
         let root = RootModel(session: session, lock: AppLockModel(pins: PinStore(vault: vault), vault: vault)) {
             nil
-        } sleep: { _ in }
+        } sleep: { _ in
+        }
         await root.start()
         #expect(root.stage == .main)
         return (root, api)

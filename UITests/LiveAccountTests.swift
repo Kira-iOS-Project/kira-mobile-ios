@@ -113,7 +113,9 @@ nonisolated final class LiveAccountTests: XCTestCase {
         tap(row("Lihat Paket", app), app)
         return app
     }
+}
 
+extension LiveAccountTests {
     /** The button titled `title`; a list row's label adds its subtitle ("Keamanan, Kunci PIN aktif"). */
     @MainActor
     private func row(_ title: String, _ app: XCUIApplication) -> XCUIElement {
