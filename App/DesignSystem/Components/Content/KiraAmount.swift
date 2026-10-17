@@ -20,20 +20,10 @@ struct KiraAmount: View {
         case large
         /** 42 pt display, ExtraBold: the money left on the hero card. */
         case extraLarge
-
-        /** The next size down, or nil from small. */
-        var smaller: Size? {
-            switch self {
-            case .small: nil
-            case .medium: .small
-            case .large: .medium
-            case .extraLarge: .large
-            }
-        }
     }
 
     private let value: Decimal
-    private var size: Size
+    private let size: Size
     private var isMasked = false
     private var isSigned = false
     private var isMuted = false
@@ -49,30 +39,16 @@ struct KiraAmount: View {
     }
 
     var body: some View {
-        /**
-         One line always. A long amount that does not fit at its size steps down to the next size
-         that holds it whole (Rp3.013.687.857,00 on a goal's result), drawn at that size rather than
-         shrunk: Apple's audit reads shrunk text as clipped. Only past the smallest size does it shrink.
-         */
-        ViewThatFits(in: .horizontal) {
-            line(size)
-            if let smaller = size.smaller { line(smaller) }
-            if let smallest = size.smaller?.smaller { line(smallest) }
-            line(.small).minimumScaleFactor(0.4)
-        }
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(isMasked ? Text("ds.amount.hidden") : spoken)
-        .kiraSmallType(size == .medium)
-    }
-
-    /** The amount drawn at `size`, on one line. */
-    private func line(_ size: Size) -> some View {
-        let amount = copy { $0.size = size }
-        return amount.composed
-            .font(amount.mainFont)
-            .foregroundStyle(amount.mainColor)
+        composed
+            .font(mainFont)
+            .foregroundStyle(mainColor)
+            /** One line always; at the largest text sizes a long amount shrinks to fit, all of it at once. */
             .lineLimit(1)
+            .minimumScaleFactor(0.4)
             /** On the text and on the element: the audit reads the text inside an element too. */
+            .kiraSmallType(size == .medium)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(isMasked ? Text("ds.amount.hidden") : spoken)
             .kiraSmallType(size == .medium)
     }
 
