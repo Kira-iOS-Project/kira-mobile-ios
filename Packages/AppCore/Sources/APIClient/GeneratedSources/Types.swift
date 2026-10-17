@@ -307,6 +307,11 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `GET /api/debts`.
     /// - Remark: Generated from `#/paths//api/debts/get(listDebts)`.
     func listDebts(_ input: Operations.ListDebts.Input) async throws -> Operations.ListDebts.Output
+    /// Add a debt account
+    ///
+    /// - Remark: HTTP `POST /api/debts`.
+    /// - Remark: Generated from `#/paths//api/debts/post(createDebt)`.
+    func createDebt(_ input: Operations.CreateDebt.Input) async throws -> Operations.CreateDebt.Output
     /// The person’s safety plan
     ///
     /// - Remark: HTTP `GET /api/care/safety-plan`.
@@ -454,6 +459,21 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `DELETE /api/transactions/{id}`.
     /// - Remark: Generated from `#/paths//api/transactions/{id}/delete(deleteTransaction)`.
     func deleteTransaction(_ input: Operations.DeleteTransaction.Input) async throws -> Operations.DeleteTransaction.Output
+    /// Wallets and total held balance
+    ///
+    /// - Remark: HTTP `GET /api/wallets`.
+    /// - Remark: Generated from `#/paths//api/wallets/get(listWallets)`.
+    func listWallets(_ input: Operations.ListWallets.Input) async throws -> Operations.ListWallets.Output
+    /// Add a wallet or a debt account
+    ///
+    /// - Remark: HTTP `POST /api/wallets`.
+    /// - Remark: Generated from `#/paths//api/wallets/post(createWallet)`.
+    func createWallet(_ input: Operations.CreateWallet.Input) async throws -> Operations.CreateWallet.Output
+    /// Current budget and adjusted payday
+    ///
+    /// - Remark: HTTP `GET /api/budgets/current`.
+    /// - Remark: Generated from `#/paths//api/budgets/current/get(getCurrentBudget)`.
+    func getCurrentBudget(_ input: Operations.GetCurrentBudget.Input) async throws -> Operations.GetCurrentBudget.Output
     /// Keep a parsed bank statement for review (Kira Plus)
     ///
     /// At most three months per file; rows already recorded are flagged `isDuplicate`.
@@ -1054,6 +1074,19 @@ extension APIProtocol {
     internal func listDebts(headers: Operations.ListDebts.Input.Headers = .init()) async throws -> Operations.ListDebts.Output {
         try await listDebts(Operations.ListDebts.Input(headers: headers))
     }
+    /// Add a debt account
+    ///
+    /// - Remark: HTTP `POST /api/debts`.
+    /// - Remark: Generated from `#/paths//api/debts/post(createDebt)`.
+    internal func createDebt(
+        headers: Operations.CreateDebt.Input.Headers = .init(),
+        body: Operations.CreateDebt.Input.Body
+    ) async throws -> Operations.CreateDebt.Output {
+        try await createDebt(Operations.CreateDebt.Input(
+            headers: headers,
+            body: body
+        ))
+    }
     /// The person’s safety plan
     ///
     /// - Remark: HTTP `GET /api/care/safety-plan`.
@@ -1362,6 +1395,33 @@ extension APIProtocol {
             path: path,
             headers: headers
         ))
+    }
+    /// Wallets and total held balance
+    ///
+    /// - Remark: HTTP `GET /api/wallets`.
+    /// - Remark: Generated from `#/paths//api/wallets/get(listWallets)`.
+    internal func listWallets(headers: Operations.ListWallets.Input.Headers = .init()) async throws -> Operations.ListWallets.Output {
+        try await listWallets(Operations.ListWallets.Input(headers: headers))
+    }
+    /// Add a wallet or a debt account
+    ///
+    /// - Remark: HTTP `POST /api/wallets`.
+    /// - Remark: Generated from `#/paths//api/wallets/post(createWallet)`.
+    internal func createWallet(
+        headers: Operations.CreateWallet.Input.Headers = .init(),
+        body: Operations.CreateWallet.Input.Body
+    ) async throws -> Operations.CreateWallet.Output {
+        try await createWallet(Operations.CreateWallet.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Current budget and adjusted payday
+    ///
+    /// - Remark: HTTP `GET /api/budgets/current`.
+    /// - Remark: Generated from `#/paths//api/budgets/current/get(getCurrentBudget)`.
+    internal func getCurrentBudget(headers: Operations.GetCurrentBudget.Input.Headers = .init()) async throws -> Operations.GetCurrentBudget.Output {
+        try await getCurrentBudget(Operations.GetCurrentBudget.Input(headers: headers))
     }
     /// Keep a parsed bank statement for review (Kira Plus)
     ///
