@@ -37,6 +37,17 @@ struct CheckoutModelTests {
         #expect(await service.log.calls == ["checkout young yearly app_store"])
     }
 
+    @Test("sends one checkout when Bayar is tapped twice")
+    func paysOnce() async {
+        let service = FakePlansService()
+        let model = CheckoutModel(terms: PlansFixtures.plus, period: .monthly, service: service, now: now)
+        async let first: Void = model.pay()
+        async let second: Void = model.pay()
+        _ = await (first, second)
+        await model.pay()
+        #expect(await service.log.calls == ["checkout plus monthly qris"])
+    }
+
     @Test("keeps the problem of a refused payment")
     func fails() async {
         let service = FakePlansService(changeResult: .failure(problem("VALIDATION_FAILED")))
