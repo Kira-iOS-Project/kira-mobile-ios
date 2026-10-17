@@ -58,7 +58,7 @@ struct CheckInChatTests {
         record.care.retryCheckIn()
         let again = try #require(record.care.checkIn)
         #expect(again.delay == .dayAfterTomorrow && record.care.checkInFailure == nil)
-        checkIns.scheduleResult = .success(CheckIn(id: "c-2", dueAt: Fixtures.noon))
+        checkIns.scheduleResult = .success(CheckIn(id: "c-2"))
         await again.schedule()
         #expect(checkIns.scheduled == [.dayAfterTomorrow, .dayAfterTomorrow] && record.care.checkIn == nil)
         record.care.retryCheckIn()
@@ -68,7 +68,7 @@ struct CheckInChatTests {
     @Test("a due check-in greets by name when Catat opens, once, and is marked shown")
     func greets() async {
         let checkIns = FakeCheckInService()
-        checkIns.dueResult = .success(CheckIn(id: "c-9", dueAt: Fixtures.noon))
+        checkIns.dueResult = .success(CheckIn(id: "c-9"))
         let record = model(checkIns)
         await record.load()
         await record.load()
@@ -87,7 +87,7 @@ struct CheckInChatTests {
         await offline.load()
         #expect(offline.care.entries.isEmpty && offline.phase.value != nil)
         let due = FakeCheckInService()
-        due.dueResult = .success(CheckIn(id: "c-9", dueAt: Fixtures.noon))
+        due.dueResult = .success(CheckIn(id: "c-9"))
         let broken = FakeRecordService()
         broken.profileResult = .failure(offlineError())
         let unloaded = model(due, service: broken)
@@ -98,7 +98,7 @@ struct CheckInChatTests {
     @Test("the greeting shows even when marking it shown fails")
     func seenFails() async {
         let checkIns = FakeCheckInService()
-        checkIns.dueResult = .success(CheckIn(id: "c-9", dueAt: Fixtures.noon))
+        checkIns.dueResult = .success(CheckIn(id: "c-9"))
         checkIns.seenResult = .failure(problem("CARE_CHECK_IN_NOT_FOUND"))
         let record = model(checkIns)
         await record.load()
@@ -108,7 +108,7 @@ struct CheckInChatTests {
     @Test("Sedikit Lebih Baik answers; Masih Berat opens the help; Mau Bahas Utangnya opens Mode Darurat Utang")
     func greetingReplies() async throws {
         let checkIns = FakeCheckInService()
-        checkIns.dueResult = .success(CheckIn(id: "c-9", dueAt: Fixtures.noon))
+        checkIns.dueResult = .success(CheckIn(id: "c-9"))
         let record = model(checkIns)
         var opened: [AppRoute] = []
         record.onOpen = { opened.append($0) }
