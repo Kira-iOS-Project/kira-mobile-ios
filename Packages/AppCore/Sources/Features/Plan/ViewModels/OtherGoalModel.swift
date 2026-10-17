@@ -55,7 +55,7 @@ package final class OtherGoalModel {
             name: name, years: years, present: present, period: period, timing: timing, deposit: deposit,
             annualReturn: annualReturn, projection: projection,
             recommendations: GoalRecommender.recommendations(
-                cost: target, inflation: 0, years: years, present: present, deposit: deposit,
+                cost: .init(target), inflation: 0, years: years, present: present, deposit: deposit,
                 annualReturn: annualReturn),
             assetClasses: GoalMath.assetClasses(years: Double(years)))
     }

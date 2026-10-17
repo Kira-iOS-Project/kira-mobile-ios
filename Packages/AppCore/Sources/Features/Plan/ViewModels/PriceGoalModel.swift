@@ -103,10 +103,10 @@ package final class PriceGoalModel {
     ) -> [GoalRecommendation] {
         horizon == .years
             ? GoalRecommender.recommendations(
-                cost: cost, inflation: inflation, years: months / 12, present: strategy.present,
+                cost: .init(cost), inflation: inflation, years: months / 12, present: strategy.present,
                 deposit: strategy.deposit, annualReturn: strategy.annualReturn)
             : GoalRecommender.recommendations(
-                cost: cost, inflation: inflation, months: months, present: strategy.present,
+                cost: .init(cost), inflation: inflation, months: months, present: strategy.present,
                 deposit: strategy.deposit, annualReturn: strategy.annualReturn)
     }
 
