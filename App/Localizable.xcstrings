@@ -28094,6 +28094,16 @@
         }
       }
     },
+    "record.scan.aim" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arahkan struk ke dalam bingkai"
+          }
+        }
+      }
+    },
     "record.scan.cameraBody" : {
       "localizations" : {
         "id" : {
@@ -28134,12 +28144,12 @@
         }
       }
     },
-    "record.scan.frame" : {
+    "record.scan.focusing" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Paskan Struk di Dalam Bingkai"
+            "value" : "Memfokuskan…"
           }
         }
       }
@@ -28270,6 +28280,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Foto Ulang"
+          }
+        }
+      }
+    },
+    "record.scan.sharp" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siap Difoto"
           }
         }
       }

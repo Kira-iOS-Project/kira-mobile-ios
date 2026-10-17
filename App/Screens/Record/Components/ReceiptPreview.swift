@@ -17,13 +17,6 @@ struct ReceiptPreview: View {
             switch stage {
             case .camera, .reading:
                 CameraPreview(camera: camera)
-                /** The overlays let a tap through to the camera, which focuses where it lands. */
-                Viewfinder().frame(width: 258, height: 332).padding(.top, 34).frame(
-                    maxHeight: .infinity, alignment: .top
-                ).allowsHitTesting(false)
-                chip("record.scan.frame", icon: .scan).frame(maxHeight: .infinity, alignment: .bottom).padding(
-                    .bottom, 18
-                ).allowsHitTesting(false)
             case .photo(let data):
                 still(data)
                 chip("record.scan.ready", icon: .check).frame(maxHeight: .infinity, alignment: .bottom).padding(
@@ -69,36 +62,5 @@ struct ReceiptPreview: View {
         .padding(.leading, 10).padding(.trailing, 14)
         .frame(minHeight: 34)
         .kiraCard(.surfaceRaised, cornerRadius: KiraRadius.full)
-    }
-}
-
-/** The four pandan corners of the viewfinder, 32 pt each, 3.5 pt thick, rounded 16 pt. */
-private struct Viewfinder: View {
-    var body: some View {
-        ZStack {
-            ForEach(0..<4, id: \.self) { corner in
-                ViewfinderCorner()
-                    .stroke(.pandan, style: StrokeStyle(lineWidth: 3.5, lineCap: .butt))
-                    .frame(width: 32, height: 32)
-                    .rotationEffect(.degrees(Double(corner) * 90))
-                    .frame(
-                        maxWidth: .infinity, maxHeight: .infinity,
-                        alignment: [.topLeading, .topTrailing, .bottomTrailing, .bottomLeading][corner])
-            }
-        }
-        .accessibilityHidden(true)
-    }
-}
-
-/** A top-left corner: down the left edge, round the corner, along the top. */
-private nonisolated struct ViewfinderCorner: Shape {
-    func path(in rect: CGRect) -> Path {
-        let inset: CGFloat = 1.75
-        var path = Path()
-        path.move(to: CGPoint(x: inset, y: rect.maxY))
-        path.addLine(to: CGPoint(x: inset, y: 16))
-        path.addArc(tangent1End: CGPoint(x: inset, y: inset), tangent2End: CGPoint(x: 16, y: inset), radius: 16 - inset)
-        path.addLine(to: CGPoint(x: rect.maxX, y: inset))
-        return path
     }
 }

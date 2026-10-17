@@ -35,7 +35,6 @@ final class PreviewLayerView: UIView {
     /** Told the device point of a tap, to focus there. */
     var onTap: ((CGPoint) -> Void)?
     private let box = FocusBoxView()
-    private var focusPoint = AVReceiptCamera.center
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,21 +53,17 @@ final class PreviewLayerView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        box.center = place(focusPoint)
+        box.fit(width: bounds.width)
+        box.center = place(AVReceiptCamera.center)
     }
 
     /** Shows the camera's focus: back to the center when it is there, the pulse while it adjusts. */
     func show(_ focus: AVReceiptCamera.Focus) {
-        if focus.isCentered { focusPoint = AVReceiptCamera.center }
-        box.center = place(focusPoint)
         box.setAdjusting(focus.isAdjusting)
     }
 
     @objc private func tapped(_ gesture: UITapGestureRecognizer) {
-        let devicePoint = previewLayer.captureDevicePointConverted(fromLayerPoint: gesture.location(in: self))
-        focusPoint = devicePoint
-        box.center = place(devicePoint)
-        onTap?(devicePoint)
+        onTap?(previewLayer.captureDevicePointConverted(fromLayerPoint: gesture.location(in: self)))
     }
 
     /** Where `devicePoint` falls on the visible picture; the frame's middle while there is no picture. */
@@ -81,35 +76,108 @@ final class PreviewLayerView: UIView {
     }
 }
 
-/** The focus box: a 72 pt rounded square, a 2 pt pandan line, no shadow; it pulses while focusing. */
+/**
+ The receipt guide: four rounded pandan corner brackets around a portrait 3:4 frame, 70% of the
+ preview's width, with the status pill above it ("Arahkan struk ke dalam bingkai", "Memfokuskan…",
+ "Siap Difoto"). The brackets are soft until the lens is sharp, then solid, with one light tap of the
+ haptic engine per lock; under Reduce Motion they change without animating.
+ */
 private final class FocusBoxView: UIView {
-    private static let side: CGFloat = 72
+    private let corners = CAShapeLayer()
+    private let pill = UILabel()
+    private var hasFocused = false
+    private var isReady = false
+    private var width: CGFloat = 0
 
     override init(frame _: CGRect) {
-        super.init(frame: CGRect(x: 0, y: 0, width: Self.side, height: Self.side))
+        super.init(frame: .zero)
         isUserInteractionEnabled = false
-        layer.borderColor = UIColor(Color.pandan).cgColor
-        layer.borderWidth = 2
-        layer.cornerRadius = KiraRadius.medium
-        layer.cornerCurve = .continuous
+        corners.fillColor = UIColor.clear.cgColor
+        corners.lineWidth = 3.5
+        corners.lineCap = .round
+        layer.addSublayer(corners)
+        pill.font = .preferredFont(forTextStyle: .footnote).withWeight(.semibold)
+        pill.adjustsFontForContentSizeCategory = true
+        pill.textAlignment = .center
+        pill.layer.cornerRadius = 17
+        pill.layer.masksToBounds = true
+        addSubview(pill)
         isAccessibilityElement = true
-        accessibilityLabel = String(localized: "record.scan.focusArea")
-        registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (box: Self, _) in
-            box.layer.borderColor = UIColor(Color.pandan).cgColor
-        }
+        registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (view: Self, _) in view.paint() }
+        paint()
     }
 
     @available(*, unavailable)
     required init?(coder _: NSCoder) { nil }
 
-    /** A short pulse while the lens adjusts, a fade under Reduce Motion; settles once it is sharp. */
+    /** Sizes the frame to 70% of `width`, 3:4, and draws its corners. */
+    func fit(width: CGFloat) {
+        self.width = width
+        let frameWidth = (width * 0.7).rounded()
+        bounds = CGRect(x: 0, y: 0, width: frameWidth, height: (frameWidth * 4 / 3).rounded())
+        corners.path = Self.brackets(in: bounds, length: 32, radius: 16)
+        let text = pill.intrinsicContentSize
+        pill.frame = CGRect(
+            x: (bounds.width - text.width - 28) / 2, y: -text.height - 26, width: text.width + 28,
+            height: text.height + 14)
+    }
+
+    /** Follows the lens: focusing, then ready once it settles (one light haptic per lock). */
     func setAdjusting(_ isAdjusting: Bool) {
+        if isAdjusting {
+            hasFocused = true
+            isReady = false
+        } else if hasFocused, !isReady {
+            isReady = true
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        }
+        let change = { self.paint() }
         if UIAccessibility.isReduceMotionEnabled {
-            alpha = isAdjusting ? 0.6 : 1
-            return
+            change()
+        } else {
+            UIView.animate(withDuration: 0.2, delay: 0, options: .beginFromCurrentState, animations: change)
         }
-        UIView.animate(withDuration: 0.25, delay: 0, options: [.beginFromCurrentState, .curveEaseOut]) {
-            self.transform = isAdjusting ? CGAffineTransform(scaleX: 1.12, y: 1.12) : .identity
+    }
+
+    private func paint() {
+        corners.strokeColor = UIColor(Color.pandan).withAlphaComponent(isReady ? 1 : 0.55).cgColor
+        pill.backgroundColor = UIColor(Color.surfaceRaised)
+        pill.textColor = UIColor(isReady ? Color.pandan : Color.ink)
+        let status: String
+        if isReady {
+            status = String(localized: "record.scan.sharp")
+        } else if hasFocused {
+            status = String(localized: "record.scan.focusing")
+        } else {
+            status = String(localized: "record.scan.aim")
         }
+        pill.text = status
+        accessibilityLabel = String(localized: "record.scan.focusArea")
+        accessibilityValue = status
+        fit(width: width)
+    }
+
+    /** Four corner brackets, `length` long, rounded `radius`, at the corners of `rect`. */
+    private static func brackets(in rect: CGRect, length: CGFloat, radius: CGFloat) -> CGPath {
+        let path = UIBezierPath()
+        let inset = rect.insetBy(dx: 1.75, dy: 1.75)
+        for (corner, alongX, alongY) in [
+            (CGPoint(x: inset.minX, y: inset.minY), 1.0, 1.0), (CGPoint(x: inset.maxX, y: inset.minY), -1.0, 1.0),
+            (CGPoint(x: inset.maxX, y: inset.maxY), -1.0, -1.0), (CGPoint(x: inset.minX, y: inset.maxY), 1.0, -1.0),
+        ] {
+            path.move(to: CGPoint(x: corner.x, y: corner.y + alongY * length))
+            path.addLine(to: CGPoint(x: corner.x, y: corner.y + alongY * radius))
+            path.addQuadCurve(
+                to: CGPoint(x: corner.x + alongX * radius, y: corner.y), controlPoint: corner)
+            path.addLine(to: CGPoint(x: corner.x + alongX * length, y: corner.y))
+        }
+        return path.cgPath
+    }
+}
+
+extension UIFont {
+    /** The same font at `weight`, keeping its Dynamic Type size. */
+    fileprivate func withWeight(_ weight: UIFont.Weight) -> UIFont {
+        UIFont.systemFont(ofSize: pointSize, weight: weight)
     }
 }
