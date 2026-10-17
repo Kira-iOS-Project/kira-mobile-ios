@@ -44,6 +44,19 @@ struct WeddingFormModelTests {
         #expect(form.items[7].total == 25_000_000)
     }
 
+    @Test("an emptied price, emptied guests and nothing saved yet count as Rp0,00, the guests as before")
+    func emptyFields() throws {
+        let form = WeddingFormModel.sample()
+        form.edit(.souvenir)
+        form.editPrice = ""
+        form.editGuests = ""
+        form.saveEdit()
+        let souvenir = try #require(form.items.first { $0.kind == .souvenir })
+        #expect(souvenir.price == 0 && souvenir.guests == 250)
+        form.present = ""
+        #expect(try #require(form.result).present == 0)
+    }
+
     @Test("Sederhana counts its one total, and Hitung waits for every field")
     func simple() {
         let form = WeddingFormModel()

@@ -32,6 +32,16 @@ struct HouseDownPaymentFormModelTests {
         #expect(full.result == nil)
     }
 
+    @Test("nothing saved yet and no NJOP-TKP count as Rp0,00")
+    func emptyOptionals() throws {
+        let form = HouseDownPaymentFormModel.sample()
+        form.present = ""
+        form.njopTkp = ""
+        let result = try #require(form.result)
+        #expect(result.goal.present == 0 && result.mortgage.njopTkp == 0)
+        #expect(result.mortgage.costs.bphtb == 22_500_000)
+    }
+
     @Test("Jadikan Pos Budget stores what the device computed, due in the goal's years")
     func draft() throws {
         let result = try #require(HouseDownPaymentFormModel.sample().result)
