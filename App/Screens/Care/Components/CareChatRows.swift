@@ -4,7 +4,6 @@
  the check-in greeting with its quick replies, and the reply to Sedikit Lebih Baik with the Mode
  Darurat Utang card. Kira's replies here carry no Kuku avatar and say they are automatic.
  */
-import Domain
 import Features
 import SwiftUI
 

@@ -43,9 +43,15 @@ package final class CheckoutModel {
     /** What one period costs. */
     package var price: Int { terms.price(for: period) }
 
-    /** Pays (simulated). */
+    /**
+     Pays (simulated). Once sent or paid, a second Bayar (a double tap before the button disables)
+     sends nothing: one checkout per sheet.
+     */
     package func pay() async {
-        phase = .paying
+        switch phase {
+        case .paying, .paid: return
+        case .ready, .failed: phase = .paying
+        }
         do {
             phase = .paid(try await service.checkout(plan: terms.id, period: period, paymentMethod: paymentMethod))
         } catch {

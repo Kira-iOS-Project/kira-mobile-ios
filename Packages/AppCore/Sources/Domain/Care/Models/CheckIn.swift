@@ -1,19 +1,14 @@
-import Foundation
-
 /**
  A check-in the person asked for after a heavy moment (PED-05): Kira greets them in the Catat chat
- the first time they open it after `dueAt` (PED-06). There is no notification.
+ the first time they open it after the time they chose (PED-06). There is no notification.
  */
 package struct CheckIn: Hashable, Sendable {
     /** The check-in's id. */
     package let id: String
-    /** From when the greeting may show. */
-    package let dueAt: Date
 
-    /** A check-in due at `dueAt`. */
-    package init(id: String, dueAt: Date) {
+    /** The check-in `id`. */
+    package init(id: String) {
         self.id = id
-        self.dueAt = dueAt
     }
 }
 

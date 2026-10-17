@@ -1,4 +1,3 @@
-import Domain
 import Foundation
 
 /** A debt as `GET /api/debts` lists it. */
@@ -7,18 +6,12 @@ package struct DebtDTO: Hashable, Sendable {
     package let id: String
     /** The lender as the person named it. */
     package let name: String
-    /** The kind of debt. */
-    package let kind: DebtKind
-    /** What is left to pay, in whole rupiah. */
-    package let remaining: Int
     /** The instalment each month, in whole rupiah. */
     package let monthlyInstalment: Int
 
-    init(_ debt: Components.Schemas.Debt) throws {
+    init(_ debt: Components.Schemas.Debt) {
         id = debt.id
         name = debt.name
-        kind = try bridged(debt.kind)
-        remaining = debt.remaining
         monthlyInstalment = debt.monthlyInstalment
     }
 }

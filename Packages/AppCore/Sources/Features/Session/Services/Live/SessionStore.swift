@@ -5,8 +5,8 @@ import Foundation
  The signed-in session (AGENTS.md Rule 13): the refresh token and the account's email in the
  vault (the Keychain), the bearer token in memory. It is the client's `BearerTokenSource`: a
  bearer token that has expired, or that the API refused, is minted again from the refresh token,
- once for all the requests waiting on it. When the API refuses the refresh token, the session
- ends and `onSessionEnded` runs.
+ once for all the requests waiting on it. When the API refuses the refresh token, or refuses a
+ token it has just renewed, the session ends and `onSessionEnded` runs.
  */
 package actor SessionStore: BearerTokenSource {
     /** Calls `POST /auth/refresh` with a refresh token. */
@@ -73,6 +73,16 @@ package actor SessionStore: BearerTokenSource {
         return await renew()
     }
 
+    /**
+     Ends the session when the API refused `token` right after it was renewed. A token another
+     request has replaced meanwhile says nothing about the current one, and a session already
+     ended is not ended twice.
+     */
+    package func sessionRefused(_ token: String) async {
+        guard hasSession, access?.token == token else { return }
+        await end()
+    }
+
     /** Renews the bearer token, sharing one call to the API among every caller. */
     private func renew() async -> String? {
         if let renewal { return await renewal.value }
@@ -93,14 +103,19 @@ package actor SessionStore: BearerTokenSource {
                 try store(tokens)
                 return tokens.accessToken
             case .rejected:
-                signOut()
-                await onSessionEnded?()
+                await end()
                 return nil
             }
         } catch {
             /** error ignored: the API is out of reach; the session stays for the next try. */
             return nil
         }
+    }
+
+    /** Signs out and lets the root go to Masuk. */
+    private func end() async {
+        signOut()
+        await onSessionEnded?()
     }
 
     private func store(_ tokens: SessionTokens) throws {

@@ -40,7 +40,7 @@ struct GroupReportFlowTests {
         model.reportForm.choose(.scam)
         await model.sendReport()
         #expect(!model.showsReport && model.failure?.failure == .connection && model.failure?.attempt == .report)
-        #expect(model.reportForm.report.reason == .scam && model.canRetry)
+        #expect(model.reportForm.report.reason == .scam && (model.failure?.failure.kind?.allowsRetry ?? true))
         await model.retry()
         #expect(model.showsReportSent && model.showsReport)
     }
@@ -73,7 +73,7 @@ struct GroupReportFlowTests {
             model.reportForm.choose(.inappropriate)
             await model.sendReport()
             #expect(!model.showsReport && model.failure?.failure == .problem(communityProblem(code)))
-            #expect(model.canRetry == (code == .internalError))
+            #expect((model.failure?.failure.kind?.allowsRetry ?? true) == (code == .internalError))
             #expect(model.reportForm.report.reason == .inappropriate)
         }
     }
