@@ -25,7 +25,7 @@ struct LiveGoalServiceTests {
     @Test("GET /goals/{id} maps deposits and milestones; POST deposits sends its key and the day")
     func goalAndDeposit() async throws {
         let (api, transport) = KiraAPI.routed([
-            "GET /api/goals/e": ok(detailJSON),
+            "GET /api/goals/e": ok(goalDetailJSON),
             "POST /api/goals/e/deposits": ok(#"{"id":"k-1","amount":650000,"depositedOn":"2026-10-17"}"#, status: 201),
         ])
         let service = LiveGoalService(api: api)
@@ -85,7 +85,7 @@ private let goalJSON =
     #"{"id":"e","kind":"emergency_fund","name":"Dana Darurat","targetAmount":25200000,"targetDate":"2029-04-25","#
     + #""monthlyDeposit":650000,"savedAmount":4800000,"inputs":{"essentialExpense":4200000},"initialAmount":0,"#
     + #""inBudget":true,"createdAt":"2026-10-01T00:00:00Z","updatedAt":"2026-10-01T00:00:00Z"}"#
-private let detailJSON =
+private let goalDetailJSON =
     #"{"id":"e","kind":"emergency_fund","name":"Dana Darurat","targetAmount":25200000,"targetDate":"2029-04-25","#
     + #""monthlyDeposit":650000,"savedAmount":4800000,"inputs":{"essentialExpense":4200000},"initialAmount":0,"#
     + #""inBudget":true,"createdAt":"2026-10-01T00:00:00Z","updatedAt":"2026-10-01T00:00:00Z","#
