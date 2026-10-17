@@ -5,6 +5,7 @@
  */
 #if DEBUG
     import APIClient
+    import Domain
     import SwiftUI
 
     struct GalleryDialogs: View {

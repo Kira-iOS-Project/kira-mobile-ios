@@ -4,11 +4,13 @@
  scholarshipStatus), Kira Peduli (care, trustedMessage, negotiationScript, breathingExercise,
  safetyPlan), Mode Darurat Utang and its guides (debtEmergency, debtGuide), Etalase (marketplace,
  product, submitProduct), Rencana's Detail Tujuan (goal), Portofolio Manual (portfolio, addAsset,
- editAsset); the other REN screens stay empty until their branches land. "Cek Ulang" (`healthCheck`)
+ editAsset), Tagihan & Cicilan with Tambah and Ubah Tagihan (bills, addBill, editBill);
+ the other REN screens stay empty until their branches land. "Cek Ulang" (`healthCheck`)
  covers the shell instead (MainShell); Rencana (`plan`) and Komunitas (`community`) are the dock's own
  sections; Catat's and Riwayat's routes stay empty for their own integration, and an unavailable area
  never gets here.
  */
+import Domain
 import Features
 import SwiftUI
 
@@ -68,9 +70,14 @@ struct RouteSlot: View {
         case .debtDetail: EmptySlot()
         case .creditReport: EmptySlot()
         case .editBudget: EmptySlot()
-        case .bills: EmptySlot()
-        case .addBill: EmptySlot()
-        case .editBill: EmptySlot()
+        case .bills:
+            BillsScreen(
+                service: services.bills, onAdd: { onOpen(.addBill) }, onEdit: { onOpen(.editBill(id: $0.id)) },
+                onOpenDebt: { onOpen(.debtDetail(id: $0)) }, onHelp: { onOpen(.care) })
+        case .addBill: AddBillScreen(editor: services.billEditor, wallets: services.wallet, onOpen: onOpen)
+        case .editBill(let id):
+            EditBillRoute(
+                id: id, bills: services.bills, editor: services.billEditor, wallets: services.wallet, onOpen: onOpen)
         case .weeklySummary: EmptySlot()
         case .home, .record, .plan, .community, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history,
             .transaction, .conversation, .importStatement, .unavailable:

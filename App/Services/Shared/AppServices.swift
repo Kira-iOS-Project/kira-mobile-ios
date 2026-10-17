@@ -34,6 +34,10 @@ struct AppServices {
     let wallet: any WalletService
     /** The current pay period's budget (UNG-04). */
     let budget: any BudgetService
+    /** Tagihan & Cicilan's list (UNG-06). */
+    let bills: any BillService
+    /** Tambah and Ubah Tagihan's writes (UNG-07, UNG-07c). */
+    let billEditor: any BillEditorService
 }
 
 extension AppServices {
@@ -61,7 +65,8 @@ extension AppServices {
             marketplace: LiveMarketplaceService(api: api),
             portfolio: LivePortfolioService(api: api), goals: LiveGoalService(api: api),
             riskProfile: LiveRiskProfileService(api: api), riskDraft: RiskQuizDraft(),
-            wallet: LiveWalletService(api: api), budget: LiveBudgetService(api: api))
+            wallet: LiveWalletService(api: api), budget: LiveBudgetService(api: api),
+            bills: UnavailableBillService(), billEditor: LiveBillEditorService(api: api))
     }
 
     /** The canvas's sample data: nothing leaves the device. */
@@ -75,7 +80,8 @@ extension AppServices {
             debtEmergency: PreviewDebtEmergencyService(), marketplace: PreviewMarketplaceService(),
             portfolio: PreviewPortfolioService(), goals: PreviewGoalService(),
             riskProfile: PreviewRiskProfileService(), riskDraft: RiskQuizDraft(),
-            wallet: PreviewWalletService(), budget: PreviewBudgetService())
+            wallet: PreviewWalletService(), budget: PreviewBudgetService(), bills: PreviewBillService(),
+            billEditor: PreviewBillEditorService())
     }
 }
 

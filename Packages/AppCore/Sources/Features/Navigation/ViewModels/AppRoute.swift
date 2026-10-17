@@ -164,8 +164,6 @@ package enum AppRoute: Hashable, Sendable {
 package enum UnavailableArea: String, CaseIterable, Hashable, Sendable {
     /** UNG-05: Atur Budget, where the payday is set (Beranda's Langkah Awal), until its screen lands. */
     case editBudget
-    /** UNG: Tagihan, the bills. */
-    case bills
     /** UNG: Ringkasan Mingguan, the weekly summary. */
     case weeklySummary
     /** SKR: SLIK, the credit report. */

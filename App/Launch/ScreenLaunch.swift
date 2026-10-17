@@ -48,6 +48,7 @@
             case .budget: BudgetLaunch()
             case .walletAdd: WalletAddLaunch(screen: screen)
             case .bills: BillsLaunch(screen: screen)
+            case .billForm: BillFormLaunch(screen: screen)
             }
         }
     }
@@ -139,6 +140,8 @@
         case walletAdd, walletAddFailing
         /** UNG-06: Tagihan & Cicilan with the board's bills, none, and a load that fails. */
         case bills, billsEmpty, billsFailed
+        /** UNG: Tambah Tagihan (empty, filled, failing) and Ubah Tagihan; the tests open their dialogs. */
+        case billAdd, billAddSaved, billAddFailing, billEdit
 
         /** The area whose launcher builds the screen. */
         enum Area {
@@ -155,6 +158,7 @@
             case wallets, budget
             case walletAdd
             case bills
+            case billForm
         }
 
         var area: Area {
@@ -206,6 +210,7 @@
             case .wallets: .wallets
             case .budget: .budget
             case .walletAdd, .walletAddFailing: .walletAdd
+            case .billAdd, .billAddSaved, .billAddFailing, .billEdit: .billForm
             }
         }
     }
