@@ -75,7 +75,8 @@ extension Portfolio {
 extension Asset {
     init(_ body: Components.Schemas.Asset) throws {
         guard let day = CalendarDay(iso: body.valuedOn) else { throw AppProblem() }
-        self.init(id: body.id, assetClass: try bridged(body.assetClass), name: body.name, value: body.value,
+        self.init(
+            id: body.id, assetClass: try bridged(body.assetClass), name: body.name, value: body.value,
             valuedOn: day)
     }
 }

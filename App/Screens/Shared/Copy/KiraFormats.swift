@@ -40,8 +40,14 @@ extension FormatStyle where Self == Date.FormatStyle {
     /** "Oktober", the month a quota or a period names. */
     static var kiraMonth: Date.FormatStyle { wib.month(.wide) }
 
-    /** "April 2029", when a goal is reached. */
+    /**
+     "November 2026": a month in another year than now, the month a debt is paid off, or the month a
+     goal is reached.
+     */
     static var kiraMonthYear: Date.FormatStyle { wib.month(.wide).year() }
+
+    /** "Okt", a month under a bar of a chart. */
+    static var kiraMonthShort: Date.FormatStyle { wib.month(.abbreviated) }
 
     /** "12.41", a time written before "WIB". */
     static var kiraTime: Date.FormatStyle { wib.hour(.twoDigits(amPM: .omitted)).minute(.twoDigits) }

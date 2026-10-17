@@ -92,7 +92,7 @@ struct NegotiationScriptScreen: View {
             KiraNotice(.info, message: "care.script.notice")
             KiraButtonPair(
                 secondary: KiraButton("care.script.simulation", variant: .secondary, size: .small) {
-                    onOpen(.unavailable(.debtPlan))
+                    onOpen(.payoffSimulation)
                 },
                 primary: KiraButton("care.script.copy", size: .small) { model.copy() }
                     .icon(.copy)

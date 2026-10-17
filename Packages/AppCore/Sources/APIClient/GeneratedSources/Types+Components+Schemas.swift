@@ -4872,25 +4872,20 @@ extension Components {
                 internal var value2: Swift.String?
                 /// - Remark: Generated from `#/components/schemas/GoalInputs/additionalProperties/value3`.
                 internal var value3: Swift.Bool?
-                /// - Remark: Generated from `#/components/schemas/GoalInputs/additionalProperties/value4`.
-                internal var value4: Components.Schemas.GoalInputs.AdditionalPropertiesPayload.Value4Payload?
                 /// Creates a new `AdditionalPropertiesPayload`.
                 ///
                 /// - Parameters:
                 ///   - value1:
                 ///   - value2:
                 ///   - value3:
-                ///   - value4:
                 internal init(
                     value1: Swift.Double? = nil,
                     value2: Swift.String? = nil,
-                    value3: Swift.Bool? = nil,
-                    value4: Components.Schemas.GoalInputs.AdditionalPropertiesPayload.Value4Payload? = nil
+                    value3: Swift.Bool? = nil
                 ) {
                     self.value1 = value1
                     self.value2 = value2
                     self.value3 = value3
-                    self.value4 = value4
                 }
                 internal init(from decoder: any Swift.Decoder) throws {
                     var errors: [any Swift.Error] = []
@@ -4909,17 +4904,11 @@ extension Components {
                     } catch {
                         errors.append(error)
                     }
-                    do {
-                        self.value4 = try decoder.decodeFromSingleValueContainer()
-                    } catch {
-                        errors.append(error)
-                    }
                     try Swift.DecodingError.verifyAtLeastOneSchemaIsNotNil(
                         [
                             self.value1,
                             self.value2,
-                            self.value3,
-                            self.value4
+                            self.value3
                         ],
                         type: Self.self,
                         codingPath: decoder.codingPath,
@@ -4930,18 +4919,17 @@ extension Components {
                     try encoder.encodeFirstNonNilValueToSingleValueContainer([
                         self.value1,
                         self.value2,
-                        self.value3,
-                        self.value4
+                        self.value3
                     ])
                 }
             }
             /// A container of undocumented properties.
-            internal var additionalProperties: [String: Components.Schemas.GoalInputs.AdditionalPropertiesPayload?]
+            internal var additionalProperties: [String: Components.Schemas.GoalInputs.AdditionalPropertiesPayload]
             /// Creates a new `GoalInputs`.
             ///
             /// - Parameters:
             ///   - additionalProperties: A container of undocumented properties.
-            internal init(additionalProperties: [String: Components.Schemas.GoalInputs.AdditionalPropertiesPayload?] = .init()) {
+            internal init(additionalProperties: [String: Components.Schemas.GoalInputs.AdditionalPropertiesPayload] = .init()) {
                 self.additionalProperties = additionalProperties
             }
             internal init(from decoder: any Swift.Decoder) throws {

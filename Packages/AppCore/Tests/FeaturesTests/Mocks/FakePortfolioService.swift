@@ -52,6 +52,6 @@ actor FakePortfolioService: PortfolioService {
         if !saves.isEmpty { try saves.removeFirst().get() }
         return Asset(
             id: id ?? "new", assetClass: input.assetClass, name: input.name, value: input.value,
-                valuedOn: input.valuedOn)
+            valuedOn: input.valuedOn)
     }
 }

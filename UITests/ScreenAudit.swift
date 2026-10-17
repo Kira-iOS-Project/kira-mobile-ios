@@ -26,17 +26,30 @@ extension XCTestCase {
         Thread.sleep(forTimeInterval: 1)
         let window = app.windows.firstMatch.frame
         let scroll = app.scrollViews.firstMatch
+        let cuts = ScrollEdgeCuts(clip: scroll.exists ? scroll.frame : window)
+        var before = CGFloat.infinity
         for pass in 0..<8 {
             if pass > 0 {
+                /**
+                 Scrolls on while any of the last element is still cut by the scroll view's edge: an
+                 element half under that edge is sampled against what lies past it (Laporkan Grup's
+                 privacy note over Kirim Laporan), so the last pass sees it whole. A scroll that
+                 brings nothing more into view ends the audit.
+                 */
                 let remaining = scroll.exists ? hiddenBelow(in: scroll, window: window) : 0
-                guard remaining >= 20 else { break }
+                guard remaining >= 1, remaining < before else { break }
+                before = remaining
                 scrollDown(scroll, by: remaining)
             }
             try XCTContext.runActivity(named: "\(screen), pass \(pass + 1)") { _ in
-                try auditInPlace(app, accepting: accepted)
+                try auditInPlace(app) { cuts.accepts($0) || accepted($0) }
             }
+            cuts.noteWhole(in: scroll, of: app)
         }
         app.terminate()
+        for reason in cuts.neverWhole {
+            XCTFail("\(screen): contrast passed as cut by the scroll edge, never audited whole: \(reason)")
+        }
     }
 
     /**
@@ -117,10 +130,13 @@ extension XCTestCase {
         Thread.sleep(forTimeInterval: 1.5)
     }
 
-    /** How far the bottom of the scroll view's content lies below what is on screen. */
+    /**
+     How far the bottom of the scroll view's content lies below what is on screen. Other elements count
+     too: a combined element, such as a KiraNotice, is neither text nor a button.
+     */
     @MainActor
     private func hiddenBelow(in scroll: XCUIElement, window: CGRect) -> CGFloat {
-        let bottoms = [scroll.staticTexts, scroll.buttons].compactMap { query -> CGFloat? in
+        let bottoms = [scroll.staticTexts, scroll.buttons, scroll.otherElements].compactMap { query -> CGFloat? in
             let count = query.count
             return count > 0 ? query.element(boundBy: count - 1).frame.maxY : nil
         }
@@ -154,15 +170,19 @@ extension XCTestCase {
             && error.localizedDescription.contains("accessibility audit")
     }
 
+    /** The points a drag travels before the content starts to move (UIScrollView's touch slop). */
+    private static let touchSlop: CGFloat = 10
+
     /**
      Scrolls by `distance`, at most about two thirds of a screen, with a drag that holds still before
-     lifting, then lets the page settle. Never past the end: a bounce there leaves the accessibility
+     lifting, then lets the page settle. The drag adds the touch slop, which moves nothing, so the
+     content moves by `distance` itself. Never past the end: a bounce there leaves the accessibility
      frames where the content was, and the audit then measures the wrong pixels.
      */
     @MainActor
     private func scrollDown(_ scroll: XCUIElement, by distance: CGFloat) {
         let height = scroll.frame.height
-        let travel = min(distance, height * 0.65) / max(height, 1)
+        let travel = min(distance + Self.touchSlop, height * 0.65) / max(height, 1)
         let start = scroll.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.85))
         let end = scroll.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.85 - travel))
         start.press(forDuration: 0.05, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.5)

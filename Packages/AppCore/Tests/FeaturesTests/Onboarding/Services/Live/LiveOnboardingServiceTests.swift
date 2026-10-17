@@ -69,7 +69,7 @@ struct LiveOnboardingServiceTests {
         answers.debts = [
             DebtEntry(
                 kind: .onlineLoan, name: "Pinjol B", remaining: 900_000, monthlyInstalment: 300_000,
-                remainingTenorMonths: 3)
+                remainingTenorMonths: 3, annualInterestRate: 36, dueDay: 5)
         ]
         answers.dependents = 2
         answers.maritalStatus = .married
@@ -91,6 +91,7 @@ struct LiveOnboardingServiceTests {
                     .object([
                         "kind": .string("online_loan"), "name": .string("Pinjol B"), "remaining": .number(900_000),
                         "monthlyInstalment": .number(300_000), "remainingTenorMonths": .number(3),
+                        "annualInterestRate": .number(36), "dueDay": .number(5),
                     ])
                 ]))
     }

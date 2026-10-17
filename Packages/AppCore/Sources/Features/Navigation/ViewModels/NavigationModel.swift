@@ -51,15 +51,30 @@ package final class NavigationModel {
         case .healthCheck: showsHealthCheck = true
         default:
             switch section {
-            case .record: recordPath.append(route)
-            case .plan: planPath.append(route)
-            case .community: communityPath.append(route)
-            case .home: homePath.append(route)
+            case .record: push(route, on: &recordPath)
+            case .plan: push(route, on: &planPath)
+            case .community: push(route, on: &communityPath)
+            case .home: push(route, on: &homePath)
             }
         }
     }
 
-    /** A dock tap: the section opens, or returns to its root when it is open already. */
+    /**
+     Pushes `route`, except that Rencanaku opened from Rencana Pelunasan (Jadikan Rencanaku) takes
+     its place, so going back leaves the plan for where the person came from, as the board's
+     "Kembali ke Beranda" says.
+     */
+    private func push(_ route: AppRoute, on path: inout [AppRoute]) {
+        if route == .myPlan, let last = path.last, last == .debtPlan || last == .payoffSimulation {
+            path[path.count - 1] = route
+        } else {
+            path.append(route)
+        }
+    }
+
+    /**
+     A dock tap: the section opens, or returns to its root when it is open already.
+     */
     package func select(_ target: MainSection) {
         switch target {
         case .home:
