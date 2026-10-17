@@ -130,7 +130,7 @@ extension AVReceiptCamera {
         queue.async {
             self.recenter?.cancel()
             self.aim(at: point, isCentered: false)
-            let item = DispatchWorkItem { [weak self] in self?.aim(at: Self.center, isCentered: true) }
+            let item = DispatchWorkItem { self.aim(at: Self.center, isCentered: true) }
             self.recenter = item
             self.queue.asyncAfter(deadline: .now() + Self.tapHold, execute: item)
         }
