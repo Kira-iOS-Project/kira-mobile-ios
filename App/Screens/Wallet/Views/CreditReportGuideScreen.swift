@@ -7,6 +7,7 @@ import Features
 import SwiftUI
 
 struct CreditReportGuideScreen: View {
+    @Environment(\.dynamicTypeSize) private var typeSize
     private let onOpen: (AppRoute) -> Void
     @Environment(\.dismiss) private var dismiss
     @Environment(\.openURL) private var openURL
@@ -53,7 +54,7 @@ struct CreditReportGuideScreen: View {
         VStack(alignment: .leading, spacing: KiraSpacing.space3) {
             KiraIllustration(.shield, size: 96)
             Text("slik.headline")
-                .font(KiraFont.display(28, axisWeight: 750, relativeTo: .largeTitle))
+                .font(KiraFont.display(28, axisWeight: 750, relativeTo: .largeTitle, typeSize: typeSize))
                 .kiraLineHeight(34, size: 28, natural: 1.26, relativeTo: .largeTitle)
                 .tracking(-0.56).foregroundStyle(.ink)
                 .accessibilityAddTraits(.isHeader)
