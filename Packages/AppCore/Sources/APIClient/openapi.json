@@ -5081,6 +5081,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -5148,6 +5158,16 @@
                 }
               }
             }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
           }
         }
       }
@@ -5188,6 +5208,16 @@
           },
           "404": {
             "description": "Resource not found",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -5253,6 +5283,16 @@
           },
           "422": {
             "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -5341,6 +5381,16 @@
           },
           "422": {
             "description": "Request schema validation failed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Any other problem: a server failure, a timeout, a body too large",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -5457,7 +5507,7 @@
         ],
         "operationId": "checkout",
         "summary": "Buy a plan (simulated: nothing is charged)",
-        "description": "Activates the plan now, replacing any active one, and writes an invoice.",
+        "description": "Activates the plan now, replacing any active one, and writes an invoice. The plan and period already active (and not cancelled) come back unchanged, with no new invoice.",
         "requestBody": {
           "required": true,
           "content": {

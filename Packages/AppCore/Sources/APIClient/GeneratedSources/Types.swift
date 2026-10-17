@@ -153,7 +153,7 @@ internal protocol APIProtocol: Sendable {
     func listPlans(_ input: Operations.ListPlans.Input) async throws -> Operations.ListPlans.Output
     /// Buy a plan (simulated: nothing is charged)
     ///
-    /// Activates the plan now, replacing any active one, and writes an invoice.
+    /// Activates the plan now, replacing any active one, and writes an invoice. The plan and period already active (and not cancelled) come back unchanged, with no new invoice.
     ///
     /// - Remark: HTTP `POST /api/billing/checkout`.
     /// - Remark: Generated from `#/paths//api/billing/checkout/post(checkout)`.
@@ -650,7 +650,7 @@ extension APIProtocol {
     }
     /// Buy a plan (simulated: nothing is charged)
     ///
-    /// Activates the plan now, replacing any active one, and writes an invoice.
+    /// Activates the plan now, replacing any active one, and writes an invoice. The plan and period already active (and not cancelled) come back unchanged, with no new invoice.
     ///
     /// - Remark: HTTP `POST /api/billing/checkout`.
     /// - Remark: Generated from `#/paths//api/billing/checkout/post(checkout)`.

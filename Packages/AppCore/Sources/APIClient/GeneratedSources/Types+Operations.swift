@@ -4287,10 +4287,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/simulate/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/simulate/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SimulatePayoff.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SimulatePayoff.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/payoff/simulate/post(simulatePayoff)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.SimulatePayoff.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.SimulatePayoff.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -4569,10 +4616,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/plans/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/plans/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.CreatePayoffPlan.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.CreatePayoffPlan.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/payoff/plans/post(createPayoffPlan)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.CreatePayoffPlan.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.CreatePayoffPlan.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -4789,10 +4883,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/plans/active/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/plans/active/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetActivePayoffPlan.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetActivePayoffPlan.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/payoff/plans/active/get(getActivePayoffPlan)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.GetActivePayoffPlan.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.GetActivePayoffPlan.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -5071,10 +5212,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/plans/active/PATCH/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/plans/active/PATCH/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SetPayoffFocus.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SetPayoffFocus.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/payoff/plans/active/patch(setPayoffFocus)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.SetPayoffFocus.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.SetPayoffFocus.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -5420,10 +5608,57 @@ internal enum Operations {
                     }
                 }
             }
-            /// Undocumented response.
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.RecordDebtPayment.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.RecordDebtPayment.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// A response with a code that is not documented in the OpenAPI document.
-            case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
+            /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.RecordDebtPayment.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.RecordDebtPayment.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
         }
         internal enum AcceptableContentType: AcceptableProtocol {
             case json
@@ -5889,7 +6124,7 @@ internal enum Operations {
     }
     /// Buy a plan (simulated: nothing is charged)
     ///
-    /// Activates the plan now, replacing any active one, and writes an invoice.
+    /// Activates the plan now, replacing any active one, and writes an invoice. The plan and period already active (and not cancelled) come back unchanged, with no new invoice.
     ///
     /// - Remark: HTTP `POST /api/billing/checkout`.
     /// - Remark: Generated from `#/paths//api/billing/checkout/post(checkout)`.
