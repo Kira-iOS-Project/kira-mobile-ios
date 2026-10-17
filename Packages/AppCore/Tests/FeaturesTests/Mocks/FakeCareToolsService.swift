@@ -16,8 +16,8 @@ actor FakeCareToolsService: CareToolsService {
 
     var name = "dinda"
     var debtList = [
-        CareDebt(id: "a", name: "Pinjol A", kind: .onlineLoan, remaining: 4_000_000, monthlyInstalment: 410_000),
-        CareDebt(id: "b", name: "Paylater B", kind: .paylater, remaining: 1_200_000, monthlyInstalment: 230_000),
+        CareDebt(id: "a", name: "Pinjol A", monthlyInstalment: 410_000),
+        CareDebt(id: "b", name: "Paylater B", monthlyInstalment: 230_000),
     ]
     var plan: SafetyPlan? = SafetyPlan(warningSigns: "susah tidur", safePlace: "rumah keluarga")
     /** The calls that fail, and how. */

@@ -29,16 +29,8 @@ struct LiveCareToolsServiceTests {
         #expect(
             try await service.debts() == [
                 CareDebt(
-                    id: "7c1e2d3f-0000-4000-8000-000000000001", name: "Paylater B", kind: .paylater,
-                    remaining: 1_200_000, monthlyInstalment: 230_000)
+                    id: "7c1e2d3f-0000-4000-8000-000000000001", name: "Paylater B", monthlyInstalment: 230_000)
             ])
-    }
-
-    @Test("an unknown debt kind is a problem, not a crash")
-    func unknownKind() async {
-        let debts = #"{"debts":[{"id":"x","name":"X","kind":"lottery","remaining":1,"monthlyInstalment":1}]}"#
-        let (service, _) = service(["GET /api/debts": ok(debts)])
-        await #expect(throws: (any Error).self) { try await service.debts() }
     }
 
     @Test("reads the plan; 404 CARE_SAFETY_PLAN_NOT_FOUND is no plan yet")
