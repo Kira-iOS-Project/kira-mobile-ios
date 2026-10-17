@@ -8,17 +8,17 @@ import XCTest
 nonisolated final class PayoffAuditTests: XCTestCase {
     @MainActor
     func testPayoffPassesTheAudit() throws {
-        try auditScreen("payoff", accepting: Self.heroLastLine)
+        try auditScreen("payoff", accepting: { issue in Self.heroLastLine(issue) })
     }
 
     @MainActor
     func testPayoffWithTheFormulaOpenPassesTheAudit() throws {
-        try auditScreen("payoffHow", accepting: Self.heroLastLine)
+        try auditScreen("payoffHow", accepting: { issue in Self.heroLastLine(issue) })
     }
 
     @MainActor
     func testPayoffOnAvalanchePassesTheAudit() throws {
-        try auditScreen("payoffAvalanche", accepting: Self.heroLastLine)
+        try auditScreen("payoffAvalanche", accepting: { issue in Self.heroLastLine(issue) })
     }
 
     /**
@@ -28,6 +28,7 @@ nonisolated final class PayoffAuditTests: XCTestCase {
      on the hero colour itself passes; only the hills behind it lower the measure. Every other
      finding fails.
      */
+    @MainActor
     private static func heroLastLine(_ issue: XCUIAccessibilityAuditIssue) -> Bool {
         guard issue.auditType == .contrast, let label = issue.element?.label else { return false }
         return label.hasPrefix("Semua utang konsumtif lunas") || label.hasPrefix("Dengan angka ini")
