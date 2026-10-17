@@ -14,4 +14,9 @@ package struct LiveWalletService: WalletService {
     package func overview() async throws -> WalletOverview {
         try await api.getWalletOverview()
     }
+
+    /** A new wallet or debt account. */
+    package func addWallet(_ draft: WalletDraft) async throws {
+        try await api.createWallet(draft)
+    }
 }

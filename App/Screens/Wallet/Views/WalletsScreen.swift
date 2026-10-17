@@ -5,6 +5,7 @@ import SwiftUI
 
 struct WalletsScreen: View {
     @State private var model: WalletsModel
+    @State private var adding: AddWalletModel
     private let onOpenDebt: (String) -> Void
     private let onOpenHelp: () -> Void
 
@@ -12,6 +13,7 @@ struct WalletsScreen: View {
         self.onOpenDebt = onOpenDebt
         self.onOpenHelp = onOpenHelp
         _model = State(initialValue: WalletsModel(service: service))
+        _adding = State(initialValue: AddWalletModel(service: service))
     }
 
     var body: some View {
@@ -19,6 +21,8 @@ struct WalletsScreen: View {
             VStack(alignment: .leading, spacing: KiraSpacing.space4) {
                 header
                 content
+                KiraButton("wallet.add.button") { adding.open() }.icon(.plus).block()
+                    .padding(.top, KiraSpacing.space2)
             }
             .padding(.horizontal, KiraSpacing.screen)
             .padding(.top, KiraSpacing.space2)
@@ -31,6 +35,7 @@ struct WalletsScreen: View {
         .kiraScrollEdges()
         .toolbar(.hidden, for: .navigationBar)
         .onAppear { Task { await model.load() } }
+        .addWalletSheet(adding) { Task { await model.load() } }
     }
 
     private var header: some View {
