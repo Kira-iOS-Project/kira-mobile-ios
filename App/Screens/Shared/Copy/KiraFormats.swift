@@ -40,7 +40,7 @@ extension FormatStyle where Self == Date.FormatStyle {
     /** "Oktober", the month a quota or a period names. */
     static var kiraMonth: Date.FormatStyle { wib.month(.wide) }
 
-    /** "November 2025", a month in another year than now. */
+    /** "November 2026": a month in another year than now, or the month a debt is paid off. */
     static var kiraMonthYear: Date.FormatStyle { wib.month(.wide).year() }
 
     /** "Okt", a month under a bar of a chart. */

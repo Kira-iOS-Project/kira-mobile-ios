@@ -65,6 +65,19 @@ struct NavigationModelTests {
         #expect(navigation.communityPath.isEmpty && navigation.section == .home)
     }
 
+    @Test("Rencanaku made from Rencana Pelunasan takes its place; opened elsewhere it is pushed")
+    func myPlanReplacesSimulation() {
+        let navigation = NavigationModel()
+        navigation.open(.debtPlan)
+        navigation.open(.myPlan)
+        #expect(navigation.homePath == [.myPlan])
+        navigation.open(.payoffSimulation)
+        navigation.open(.myPlan)
+        #expect(navigation.homePath == [.myPlan, .myPlan])
+        navigation.open(.myPlan)
+        #expect(navigation.homePath == [.myPlan, .myPlan, .myPlan])
+    }
+
     @Test("reset returns to an empty Beranda")
     func reset() {
         let navigation = NavigationModel()

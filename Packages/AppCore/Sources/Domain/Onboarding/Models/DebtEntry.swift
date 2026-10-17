@@ -2,7 +2,8 @@ import Foundation
 
 /**
  One debt the person adds in the health check (ONB-11b): its kind, a name they choose, what is
- left to pay, the monthly instalment and, when it has one, how many months are left.
+ left to pay, the monthly instalment and, when it has one, how many months are left. The yearly
+ interest and the day of the month it is due are optional: the payoff plan counts a missing rate as 0%.
  */
 package struct DebtEntry: Identifiable, Hashable, Sendable {
     /** Identifies the row while the quiz is open; never sent. */
@@ -17,11 +18,15 @@ package struct DebtEntry: Identifiable, Hashable, Sendable {
     package var monthlyInstalment: Int
     /** Months left to pay, when the instalment has an end. */
     package var remainingTenorMonths: Int?
+    /** The interest a year, in percent as the lender states it, when the person knows it. */
+    package var annualInterestRate: Double?
+    /** The day of the month the instalment is due, 1 to 31, when the person knows it. */
+    package var dueDay: Int?
 
     /** A debt with every field given; a new `id` unless one is passed. */
     package init(
         id: UUID = UUID(), kind: DebtKind, name: String, remaining: Int, monthlyInstalment: Int,
-        remainingTenorMonths: Int? = nil
+        remainingTenorMonths: Int? = nil, annualInterestRate: Double? = nil, dueDay: Int? = nil
     ) {
         self.id = id
         self.kind = kind
@@ -29,5 +34,7 @@ package struct DebtEntry: Identifiable, Hashable, Sendable {
         self.remaining = remaining
         self.monthlyInstalment = monthlyInstalment
         self.remainingTenorMonths = remainingTenorMonths
+        self.annualInterestRate = annualInterestRate
+        self.dueDay = dueDay
     }
 }

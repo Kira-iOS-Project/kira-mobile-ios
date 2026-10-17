@@ -3,12 +3,12 @@ import Domain
 /** Where the score's steps and indicators lead. */
 extension ScoreStep {
     /**
-     Paying off goes to the payoff plan (not built yet) and seeking relief to Mode Darurat Utang;
+     Paying off goes to the payoff plan (Rencana Pelunasan) and seeking relief to Mode Darurat Utang;
      every other step opens the indicator it improves.
      */
     package var route: AppRoute {
         switch kind {
-        case .payOffDebt: .unavailable(.debtPlan)
+        case .payOffDebt: .debtPlan
         case .seekRelief: .debtEmergency
         case .buildEmergencyFund: .indicator(.emergencyFund)
         case .addProtection: .indicator(.protection)
@@ -28,7 +28,7 @@ extension IndicatorKey {
     package var nextRungRoute: AppRoute {
         switch self {
         case .emergencyFund, .savingsRatio: .unavailable(.plan)
-        case .instalmentRatio, .consumerDebt: .unavailable(.debtPlan)
+        case .instalmentRatio, .consumerDebt: .debtPlan
         /** Until Rencana (REN-01) is built; then its "Portofolio Manual" row opens Portofolio instead. */
         case .debtToAsset: .portfolio
         case .protection: .healthCheck

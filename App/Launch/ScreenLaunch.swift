@@ -34,6 +34,8 @@
             case .careTools: CareToolsLaunch(screen: screen)
             case .plan: PortfolioLaunch(screen: screen)
             case .scoreHistory: ScoreHistoryLaunch(screen: screen)
+            case .payoff: PayoffLaunch(screen: screen)
+            case .payoffPlan: PayoffPlanLaunch(screen: screen)
             }
         }
     }
@@ -87,12 +89,21 @@
          and outside Kira Plus.
          */
         case scoreHistory, scoreHistoryShort, scoreHistoryEmpty, scoreHistoryFailed, scoreHistoryLocked
+        /** SKR: Rencana Pelunasan (03), with Gimana Ngitungnya? open (03b), on Avalanche (03c). */
+        case payoff, payoffHow, payoffAvalanche
+        /**
+         SKR: Rencanaku (also before a plan and with a failing payment) and Perayaan Lunas (also after
+         the last account).
+         */
+        case myPlan, myPlanEmpty, myPlanFailing, payoffCelebration, payoffCelebrationLast
 
         /** The area whose launcher builds the screen. */
         enum Area {
             case onboarding, home, account, plans, record, chat, community, care, careTools, debtEmergency, marketplace
             case plan
             case scoreHistory
+            case payoff
+            case payoffPlan
         }
 
         var area: Area {
@@ -118,6 +129,7 @@
             case .breathing, .negotiationScript, .safetyPlan, .safetyPlanEmpty, .safetyPlanFailing, .safetyPlanForm:
                 .careTools
             case .debtEmergency, .harshCollection, .illegalLender, .unresolvedComplaint, .payoffOffer: .debtEmergency
+            case .payoff, .payoffHow, .payoffAvalanche: .payoff
             case .marketplace, .marketplaceEmpty, .marketplaceFailed, .product, .productConsultation, .productEbook,
                 .productEvent, .productGone, .submitProduct:
                 .marketplace
@@ -126,6 +138,7 @@
                 .plan
             case .scoreHistory, .scoreHistoryShort, .scoreHistoryEmpty, .scoreHistoryFailed, .scoreHistoryLocked:
                 .scoreHistory
+            case .myPlan, .myPlanEmpty, .myPlanFailing, .payoffCelebration, .payoffCelebrationLast: .payoffPlan
             }
         }
     }

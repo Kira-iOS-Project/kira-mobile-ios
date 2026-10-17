@@ -1,11 +1,12 @@
 /**
- The screen of each pushed route, by area: Score (score, indicator, scoreHistory), Account (profile
- … deleteAccount, about … complaints), Plans (plans … scholarshipStatus), Kira Peduli (care, trustedMessage,
- negotiationScript, breathingExercise, safetyPlan), Mode Darurat Utang and its guides (debtEmergency,
- debtGuide), Etalase (marketplace, product, submitProduct), Portofolio Manual (portfolio, addAsset,
- editAsset). "Cek Ulang" (`healthCheck`) covers the shell
- instead (MainShell); Komunitas (`community`) is the dock's own section; Catat's and Riwayat's routes
- stay empty for their own integration, and an unavailable area never gets here.
+ The screen of each pushed route, by area: Score (score, indicator, scoreHistory, debtPlan,
+ payoffSimulation, myPlan), Account (profile … deleteAccount, about … complaints), Plans (plans …
+ scholarshipStatus), Kira Peduli (care, trustedMessage, negotiationScript, breathingExercise,
+ safetyPlan), Mode Darurat Utang and its guides (debtEmergency, debtGuide), Etalase (marketplace,
+ product, submitProduct), Portofolio Manual (portfolio, addAsset, editAsset). "Cek Ulang"
+ (`healthCheck`) covers the shell instead (MainShell); Komunitas (`community`) is the dock's own
+ section; Catat's and Riwayat's routes stay empty for their own integration, and an unavailable area
+ never gets here.
  */
 import Features
 import SwiftUI
@@ -21,6 +22,10 @@ struct RouteSlot: View {
         case .score: ScoreScreen(service: services.score, onOpen: onOpen)
         case .indicator(let key): IndicatorScreen(key: key, service: services.score, onOpen: onOpen)
         case .scoreHistory: ScoreHistoryScreen(service: services.score, onOpen: onOpen)
+        case .debtPlan:
+            PayoffEntryScreen(service: services.payoff, plans: services.payoffPlan, onOpen: onOpen)
+        case .payoffSimulation: PayoffScreen(service: services.payoff, plans: services.payoffPlan, onOpen: onOpen)
+        case .myPlan: PayoffPlanScreen(service: services.payoffPlan, onOpen: onOpen)
         case .profile:
             ProfileScreen(
                 service: services.account, settings: services.security, onOpen: onOpen, onSignedOut: { endSession() })

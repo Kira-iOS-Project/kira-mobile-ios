@@ -6,9 +6,9 @@ import Testing
 @Suite("ScoreRoutes")
 struct ScoreRoutesTests {
     @Test(
-        "a step opens the indicator it improves, or the debt plan and the emergency mode not built yet",
+        "a step opens the indicator it improves, the debt plan, or the emergency mode not built yet",
         arguments: [
-            (ScoreStepKind.payOffDebt, AppRoute.unavailable(.debtPlan)),
+            (ScoreStepKind.payOffDebt, AppRoute.debtPlan),
             (.seekRelief, .debtEmergency),
             (.buildEmergencyFund, .indicator(.emergencyFund)),
             (.addProtection, .indicator(.protection)),
@@ -24,7 +24,7 @@ struct ScoreRoutesTests {
         "the next rung saves toward a goal, follows the payoff plan, or checks protection again",
         arguments: [
             (IndicatorKey.emergencyFund, AppRoute.unavailable(.plan)), (.savingsRatio, .unavailable(.plan)),
-            (.instalmentRatio, .unavailable(.debtPlan)), (.consumerDebt, .unavailable(.debtPlan)),
+            (.instalmentRatio, .debtPlan), (.consumerDebt, .debtPlan),
             (.debtToAsset, .portfolio), (.protection, .healthCheck),
         ])
     func nextRung(key: IndicatorKey, route: AppRoute) {
