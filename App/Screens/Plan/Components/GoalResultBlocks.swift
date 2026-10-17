@@ -3,11 +3,13 @@
  gets), the status card, Rinciannya, and Dari Mana Hasilnya? (pokok against imbal hasil).
  */
 import Domain
+import Features
 import SwiftUI
 
 /** The hero: the overline, the target, the kind's line, and "Hasil investasi · N% dari target". */
 struct GoalResultHero: View {
     let content: GoalResultContent
+    private static let wholePercent = FloatingPointFormatStyle<Double>.Percent.percent.precision(.fractionLength(0))
 
     var body: some View {
         let projection = content.projection
@@ -17,7 +19,7 @@ struct GoalResultHero: View {
             content.caption.font(.subheadline).kiraLineHeight(20, size: 15).foregroundStyle(.onHeroMuted)
             KiraProgressRibbon(
                 value: Double(projection.result), target: Double(projection.target), label: "plan.result.ribbon",
-                valueLabel: "plan.result.ribbon.share \(min(projection.share, 1), format: .percent.precision(.fractionLength(0)))"
+                valueLabel: "plan.result.ribbon.share \(min(projection.share, 1), format: Self.wholePercent)"
             )
             .inverse()
             .padding(.top, KiraSpacing.space3)
@@ -83,10 +85,14 @@ struct GoalComposition: View {
                 .foregroundStyle(.ink).accessibilityAddTraits(.isHeader)
             GeometryReader { bar in
                 HStack(spacing: 3) {
-                    UnevenRoundedRectangle(topLeadingRadius: 6, bottomLeadingRadius: 6, bottomTrailingRadius: 3, topTrailingRadius: 3)
-                        .fill(.pandan).frame(width: max(bar.size.width - 3, 0) * parts.principalShare)
-                    UnevenRoundedRectangle(topLeadingRadius: 3, bottomLeadingRadius: 3, bottomTrailingRadius: 6, topTrailingRadius: 6)
-                        .fill(.artTurmeric)
+                    UnevenRoundedRectangle(
+                        topLeadingRadius: 6, bottomLeadingRadius: 6, bottomTrailingRadius: 3, topTrailingRadius: 3
+                    )
+                    .fill(.pandan).frame(width: max(bar.size.width - 3, 0) * parts.principalShare)
+                    UnevenRoundedRectangle(
+                        topLeadingRadius: 3, bottomLeadingRadius: 3, bottomTrailingRadius: 6, topTrailingRadius: 6
+                    )
+                    .fill(.artTurmeric)
                 }
             }
             .frame(height: 12)
