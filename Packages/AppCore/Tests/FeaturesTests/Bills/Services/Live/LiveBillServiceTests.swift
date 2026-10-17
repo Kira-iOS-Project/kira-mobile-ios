@@ -34,12 +34,12 @@ private let instalmentJSON = """
     {"id":"b1","name":"Paylater A","kind":"instalment","category":"paylater_instalment","amount":210000,\
     "isEstimate":false,"repeats":"monthly","dueOn":"2026-06-20","dueDay":20,"nextDueOn":"2026-10-20",\
     "daysUntil":5,"debtId":"debt-1","remainingInstalments":4,"paidThisPeriod":false,"lastPaidOn":null,\
-    "createdAt":"2026-01-01T00:00:00Z"}
+    "createdAt":"2026-01-01T00:00:00.000Z"}
     """
 
 private let yearlyJSON = """
     {"id":"b2","name":"PBB","kind":"bill","category":"bills","amount":350000,"isEstimate":true,\
     "repeats":"yearly","dueOn":"2026-03-01","dueDay":1,"nextDueOn":"2027-03-01","daysUntil":134,\
     "debtId":null,"remainingInstalments":null,"paidThisPeriod":true,"lastPaidOn":"2026-03-01",\
-    "createdAt":"2026-01-01T00:00:00Z"}
+    "createdAt":"2026-01-01T00:00:00.000Z"}
     """
