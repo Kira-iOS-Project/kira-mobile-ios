@@ -22,13 +22,16 @@ package final class WalletsModel {
         self.calendar = calendar ?? Self.jakartaCalendar
     }
 
-    /** Loads the user's wallets and liabilities together. */
+    /**
+     Loads the user's wallets and liabilities together. A first load that fails shows the problem
+     (a lost connection as such, Rule 12); a refresh that fails keeps the list already shown.
+     */
     package func load() async {
         do {
             let overview = try await service.overview()
             phase = overview.accounts.isEmpty ? .empty : .loaded(overview)
         } catch {
-            if phase.value == nil { phase = .failed(walletProblem(error)) }
+            if phase.value == nil { phase = .failed(AppProblem(error)) }
         }
     }
 
@@ -55,9 +58,4 @@ package final class WalletsModel {
         }
         return calendar
     }
-}
-
-/** The API's problem, or its generic code when the thrown error is not an AppProblem. */
-func walletProblem(_ error: any Error) -> AppProblem {
-    (error as? AppProblem) ?? AppProblem()
 }

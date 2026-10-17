@@ -15,12 +15,12 @@ package final class BudgetModel {
         self.service = service
     }
 
-    /** Loads the budget, including its server-adjusted pay period. */
+    /** Loads the budget, including its server-adjusted pay period; a failure shows its problem (Rule 12). */
     package func load() async {
         do {
             phase = .loaded(try await service.currentBudget())
         } catch {
-            phase = .failed(error as? AppProblem ?? AppProblem())
+            phase = .failed(AppProblem(error))
         }
     }
 }

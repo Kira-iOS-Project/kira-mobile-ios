@@ -42,8 +42,6 @@ struct WalletsModelTests {
             return
         }
         #expect(problem.code == "ROUTE_NOT_FOUND")
-        #expect(walletProblem(problem) == problem)
-        #expect(walletProblem(WalletTestError()) == AppProblem())
 
         let bank = Wallet(id: "bank", name: "Bank", type: .bank, balance: 100)
         let service = FakeWalletService(wallets: [bank])
