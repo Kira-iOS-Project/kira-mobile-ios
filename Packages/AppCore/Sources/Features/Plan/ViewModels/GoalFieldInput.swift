@@ -1,4 +1,5 @@
 import Domain
+import Foundation
 
 /**
  Reads what is typed into a goal form: whole rupiah (grouped while typing, `AmountInput`), whole
