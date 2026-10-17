@@ -44,7 +44,12 @@
             case .payoff: PayoffLaunch(screen: screen)
             case .payoffPlan: PayoffPlanLaunch(screen: screen)
             case .planModule: PlanModuleLaunch(screen: screen)
+<<<<<<< HEAD
             case .walletAdd: WalletAddLaunch(screen: screen)
+=======
+            case .wallets: WalletsLaunch()
+            case .budget: BudgetLaunch()
+>>>>>>> b9278d3
             }
         }
     }
@@ -130,8 +135,13 @@
         /** REN: Tujuan Baru · Pendidikan Anak, Atur Jenjang, and Hasil Simulasi on the board's Raka. */
         case educationGoal, educationGoalResult, educationGoalStage
 
+<<<<<<< HEAD
         /** UNG: Tambah Dompet over Dompet, and with a save that fails, for its failure dialog. */
         case walletAdd, walletAddFailing
+=======
+        /** UNG: Dompet (UNG-01) and Budget (UNG-04) on the preview services. */
+        case wallets, budget
+>>>>>>> b9278d3
 
         /** The area whose launcher builds the screen. */
         enum Area {
@@ -145,7 +155,11 @@
             case payoff
             case payoffPlan
             case planModule
+<<<<<<< HEAD
             case walletAdd
+=======
+            case wallets, budget
+>>>>>>> b9278d3
         }
 
         var area: Area {
@@ -193,7 +207,12 @@
             case .moduleMoneyMarketFund, .moduleGovernmentBonds, .moduleDeposits, .moduleGold, .moduleStocks,
                 .moduleCrypto:
                 .planModule
+<<<<<<< HEAD
             case .walletAdd, .walletAddFailing: .walletAdd
+=======
+            case .wallets: .wallets
+            case .budget: .budget
+>>>>>>> b9278d3
             }
         }
     }

@@ -25,14 +25,10 @@ extension WalletType {
         case .creditCard: .card
         case .paylater: .paylater
         case .onlineLoan: .onlineLoan
-        case .vehicle: .card
+        case .vehicle: .transport
         case .mortgage: .home
         case .familyLoan: .other
         case .other: .other
         }
-    }
-
-    var amountLabelKey: LocalizedStringResource {
-        isDebt ? "wallet.create.remaining" : "wallet.create.balance"
     }
 }
