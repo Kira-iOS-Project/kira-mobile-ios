@@ -37,6 +37,9 @@ struct LegalityCheckModelTests {
             return
         }
         #expect(query == "julo" && search.results.isEmpty && search.listed == 94)
+        #expect(model.showsResult)
+        model.resultClosed()
+        #expect(!model.showsResult)
         model.query = "  julo "
         #expect(model.phase != .idle)
         model.query = "julo teknologi"
@@ -60,5 +63,6 @@ struct LegalityCheckModelTests {
         model.query = "danamas"
         await model.search()
         #expect(model.phase == .failed(AppProblem(URLError(.notConnectedToInternet))))
+        #expect(model.showsResult)
     }
 }

@@ -33,6 +33,7 @@ struct PayoffControls: View {
                     .amount()
                     .error(errorText)
                     .keyboardType(.numberPad)
+                    .disabled(!model.hasRoomForExtra)
                 Slider(value: slider, in: model.sliderRange, step: Double(PayoffModel.sliderStep)) {
                     Text("payoff.extra.slider")
                 }
@@ -40,7 +41,12 @@ struct PayoffControls: View {
                 .disabled(!model.canSlide)
                 .padding(.horizontal, KiraSpacing.space1)
                 .accessibilityValue(Text(PayoffCopy.rupiah(model.extraPayment)))
-                note("payoff.extra.hint \(PayoffCopy.rupiah(simulation.minimumInstalments))")
+                if model.hasRoomForExtra {
+                    note("payoff.extra.hint \(PayoffCopy.rupiah(simulation.minimumInstalments))")
+                } else {
+                    /** No guess at the amount: what is left this period is nothing, and the plan says so. */
+                    KiraNotice(.info, title: "payoff.extra.noRoom.title", message: "payoff.extra.noRoom.body")
+                }
             }
         }
     }

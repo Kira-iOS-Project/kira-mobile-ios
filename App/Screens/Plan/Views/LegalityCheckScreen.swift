@@ -46,6 +46,7 @@ struct LegalityCheckScreen: View {
                 LegalityWarnings().padding(.top, KiraSpacing.space2)
             }
         )
+        .legalityResultDialog(model) { showsContact = true }
         .kiraSheet(isPresented: $showsContact, title: "plan.risk.legality.ojk157") { LegalityContactSheet() }
     }
 

@@ -32,6 +32,8 @@ package final class LegalityCheckModel {
     }
     /** Idle, searching, the answer, or the problem. */
     package private(set) var phase = Phase.idle
+    /** Whether the answer's dialog is up: each search's outcome is said once, in a dialog. */
+    package private(set) var showsResult = false
 
     @ObservationIgnored private let service: any LegalityService
 
@@ -55,5 +57,11 @@ package final class LegalityCheckModel {
         } catch {
             phase = .failed(AppProblem(error))
         }
+        showsResult = true
+    }
+
+    /** The answer's dialog closed; the matches stay listed under the field. */
+    package func resultClosed() {
+        showsResult = false
     }
 }

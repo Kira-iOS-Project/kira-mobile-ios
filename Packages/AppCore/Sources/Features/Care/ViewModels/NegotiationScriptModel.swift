@@ -32,8 +32,6 @@ package final class NegotiationScriptModel {
     package var editing: Editing?
     /** What the open sheet's field holds. */
     package var draft = ""
-    /** Whether "Naskah Disalin" (09c) shows. */
-    package private(set) var showsCopied = false
 
     private let service: any CareToolsService
     private let copier: @MainActor (NegotiationScript.Fill) -> Void
@@ -107,15 +105,14 @@ package final class NegotiationScriptModel {
         editing = nil
     }
 
-    /** Copies the script with the whole contract number, and says so. */
-    package func copy() {
-        guard script.isComplete else { return }
+    /**
+     Copies the script with the whole contract number (the copier says how the copy went); false,
+     copying nothing, while an amount or the reason is missing, so the screen can say what to fill.
+     */
+    @discardableResult
+    package func copy() -> Bool {
+        guard script.isComplete else { return false }
         copier(script.fill(for: .clipboard))
-        showsCopied = true
-    }
-
-    /** "Naskah Disalin" closed. */
-    package func copiedClosed() {
-        showsCopied = false
+        return true
     }
 }

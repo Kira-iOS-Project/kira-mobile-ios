@@ -3617,6 +3617,16 @@
         }
       }
     },
+    "care.copyNumber.copied" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nomor disalin."
+          }
+        }
+      }
+    },
     "care.counsellor.help" : {
       "localizations" : {
         "id" : {
@@ -4427,32 +4437,12 @@
         }
       }
     },
-    "care.script.copied.body" : {
+    "care.script.copied" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tempel naskah ke pesan atau formulir pengaduan pemberi pinjaman."
-          }
-        }
-      }
-    },
-    "care.script.copied.done" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Selesai"
-          }
-        }
-      }
-    },
-    "care.script.copied.title" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Naskah Disalin"
+            "value" : "Naskah disalin. Tempel ke pesan untuk pemberi pinjamanmu."
           }
         }
       }
@@ -4463,6 +4453,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Salin Naskah"
+          }
+        }
+      }
+    },
+    "care.script.copy.incomplete" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi Cicilan Sekarang dan Kemampuan Bayar dulu, lalu salin lagi."
           }
         }
       }
@@ -7886,6 +7886,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@, %2$lld dari %3$lld angka terisi"
+          }
+        }
+      }
+    },
+    "ds.copy.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum bisa menyalin. Coba lagi, ya."
           }
         }
       }
@@ -17553,6 +17563,26 @@
         }
       }
     },
+    "payoff.extra.noRoom.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sisa uangmu periode ini sudah habis untuk kebutuhan dan cicilan minimum, jadi rencana di bawah memakai cicilan minimum saja. Tambahan bisa diisi lagi setelah gajian berikutnya."
+          }
+        }
+      }
+    },
+    "payoff.extra.noRoom.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Ada Sisa untuk Tambahan Bayar"
+          }
+        }
+      }
+    },
     "payoff.extra.slider" : {
       "localizations" : {
         "id" : {
@@ -24436,6 +24466,26 @@
         }
       }
     },
+    "plan.risk.legality.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.contact" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hubungi OJK 157"
+          }
+        }
+      }
+    },
     "plan.risk.legality.failed" : {
       "localizations" : {
         "id" : {
@@ -24452,6 +24502,46 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld di Daftar Pinjol Berizin OJK"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.foundMany.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cocokkan nama aplikasi dan perusahaannya persis di daftar di bawah. Penipu sering memakai nama yang mirip."
+          }
+        }
+      }
+    },
+    "plan.risk.legality.foundMany.title %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Nama Cocok di Daftar OJK"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.foundOne.body %@ %@ %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ (%2$@) ada di daftar pinjaman daring berizin OJK sejak %3$@, menurut data OJK per %4$@. Tetap cocokkan nama perusahaannya sebelum meminjam."
+          }
+        }
+      }
+    },
+    "plan.risk.legality.foundOne.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terdaftar di OJK"
           }
         }
       }
@@ -24626,6 +24716,16 @@
         }
       }
     },
+    "plan.risk.legality.openSite" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buka Situs Resmi"
+          }
+        }
+      }
+    },
     "plan.risk.legality.report" : {
       "localizations" : {
         "id" : {
@@ -24682,6 +24782,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mencari di daftar OJK"
+          }
+        }
+      }
+    },
+    "plan.risk.legality.seeList" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Daftar"
           }
         }
       }
@@ -31331,6 +31441,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tutup"
+          }
+        }
+      }
+    },
+    "submitProduct.noMail.copied" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alamat email disalin."
           }
         }
       }

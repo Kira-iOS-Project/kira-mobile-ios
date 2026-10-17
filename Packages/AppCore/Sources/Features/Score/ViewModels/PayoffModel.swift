@@ -41,6 +41,13 @@ package final class PayoffModel {
     /** The extra payment in whole rupiah; 0 while the field is empty. */
     package var extraPayment: Int { AmountInput.value(of: extraText) ?? 0 }
 
+    /**
+     Whether this period's money leaves anything for an extra payment (`maxExtraPayment` is what is
+     left of it). With nothing left the field and the slider are off, and the plan runs on the
+     minimum instalments alone; true until the plan has loaded.
+     */
+    package var hasRoomForExtra: Bool { (maxExtraPayment ?? 1) > 0 }
+
     /** The slider's step: Rp10.000,00. */
     package static let sliderStep = 10_000
 
@@ -83,6 +90,7 @@ package final class PayoffModel {
 
     /** Takes what the person typed in the extra payment field, keeps its digits and recomputes. */
     package func setExtra(_ text: String) async {
+        guard hasRoomForExtra else { return }
         let digits = AmountInput.digits(of: text)
         extraText = AmountInput.grouped(digits)
         guard !exceedsMaximum else {

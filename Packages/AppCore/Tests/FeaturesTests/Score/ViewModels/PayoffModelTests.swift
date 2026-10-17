@@ -124,8 +124,12 @@ struct PayoffModelTests {
                     hasUnknownRate: false, accounts: full.accounts, productive: [], allPaidMonth: nil, comparison: nil)
             }
             let tight = PayoffModel(service: service)
+            #expect(tight.hasRoomForExtra)
             await tight.load()
             #expect(tight.sliderRange == 0...10_000 && !tight.canSlide && tight.sliderValue == 0)
+            #expect(!tight.hasRoomForExtra)
+            await tight.setExtra("50.000")
+            #expect(tight.extraText.isEmpty && tight.extraPayment == 0)
         }
     }
 }
