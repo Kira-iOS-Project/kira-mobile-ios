@@ -2091,16 +2091,6 @@
         }
       }
     },
-    "bills.add" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tambah Tagihan"
-          }
-        }
-      }
-    },
     "bills.add.amount" : {
       "localizations" : {
         "id" : {
@@ -2416,26 +2406,6 @@
         }
       }
     },
-    "bills.back" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kembali ke Beranda"
-          }
-        }
-      }
-    },
-    "bills.count %lld" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld tagihan berulang"
-          }
-        }
-      }
-    },
     "bills.edit.back" : {
       "localizations" : {
         "id" : {
@@ -2493,166 +2463,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ubah Tagihan"
-          }
-        }
-      }
-    },
-    "bills.failed" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tagihan Belum Bisa Dibuka"
-          }
-        }
-      }
-    },
-    "bills.group.later" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nanti"
-          }
-        }
-      }
-    },
-    "bills.group.nextMonth" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bulan Depan"
-          }
-        }
-      }
-    },
-    "bills.group.nextSevenDays" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "7 Hari ke Depan"
-          }
-        }
-      }
-    },
-    "bills.group.thisMonth" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bulan Ini"
-          }
-        }
-      }
-    },
-    "bills.homeNote" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yang paling dekat tampil di Beranda"
-          }
-        }
-      }
-    },
-    "bills.instalment.footer" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cicilan tersambung ke Akun Utang di Dompet, jadi sisa utangnya ikut berkurang."
-          }
-        }
-      }
-    },
-    "bills.perMonth" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "per bulan"
-          }
-        }
-      }
-    },
-    "bills.schedule.bill %lld" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tiap Tanggal %lld"
-          }
-        }
-      }
-    },
-    "bills.schedule.instalment %lld" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cicilan Tiap Tanggal %lld"
-          }
-        }
-      }
-    },
-    "bills.schedule.instalment.left %lld %lld" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cicilan Tiap Tanggal %1$lld · %2$lld Bulan Lagi"
-          }
-        }
-      }
-    },
-    "bills.tag.date %@" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@"
-          }
-        }
-      }
-    },
-    "bills.tag.days %lld" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld Hari Lagi"
-          }
-        }
-      }
-    },
-    "bills.tag.estimate" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Perkiraan"
-          }
-        }
-      }
-    },
-    "bills.tag.paid %@" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ Sudah Dibayar"
-          }
-        }
-      }
-    },
-    "bills.title" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tagihan & Cicilan"
           }
         }
       }
@@ -25803,19 +25613,17 @@
       }
     },
     "problem.BILL_DEBT_NOT_FOUND" : {
-      "comment" : "Not on a board: a cicilan's debt account is gone. For owner review.",
       "extractionState" : "manual",
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Akun utang ini tidak ditemukan. Mungkin sudah dihapus."
+            "value" : "Akun utang untuk tagihan ini tidak ditemukan."
           }
         }
       }
     },
     "problem.BILL_NOT_FOUND" : {
-      "comment" : "Not on a board: worded like problem.GOAL_NOT_FOUND. For owner review.",
       "extractionState" : "manual",
       "localizations" : {
         "id" : {
@@ -31158,7 +30966,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sembunyikan nominal"
+            "value" : "Sembunyikan saldo"
           }
         }
       }
@@ -31168,7 +30976,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tampilkan nominal"
+            "value" : "Tampilkan saldo"
           }
         }
       }
@@ -31183,22 +30991,35 @@
         }
       }
     },
-    "wallet.debt.total" : {
+    "wallet.debt.remaining" : {
+      "extractionState" : "manual",
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Utang Berjalan"
+            "value" : "Sisa utang"
           }
         }
       }
     },
-    "wallet.dueSoon" : {
+    "wallet.debt.total %lld" : {
+      "extractionState" : "manual",
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Segera Jatuh Tempo"
+            "value" : "Utang berjalan di %lld akun"
+          }
+        }
+      }
+    },
+    "wallet.dueOn %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jatuh Tempo %@"
           }
         }
       }
@@ -31243,12 +31064,34 @@
         }
       }
     },
+    "wallet.group.debt.footer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paylater dan pinjol dicatat sebagai akun utang, bukan pengeluaran biasa."
+          }
+        }
+      }
+    },
     "wallet.group.held" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dompet"
+            "value" : "Uang"
+          }
+        }
+      }
+    },
+    "wallet.held.count %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dari %lld dompet"
           }
         }
       }
@@ -31258,7 +31101,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uang yang Dipegang"
+            "value" : "Uang yang kamu pegang"
           }
         }
       }
@@ -31268,7 +31111,29 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Saldo diisi sendiri. Kira tidak menyambungkan rekening atau meminta PIN, kata sandi, maupun OTP."
+            "value" : "Kira tidak terhubung ke rekening dan tidak pernah meminta PIN, password, atau OTP."
+          }
+        }
+      }
+    },
+    "wallet.privacy.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saldo Diisi Sendiri"
+          }
+        }
+      }
+    },
+    "wallet.subtitle %lld %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld dompet · %2$lld akun utang"
           }
         }
       }
