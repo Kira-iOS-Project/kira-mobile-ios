@@ -15,7 +15,7 @@ package enum MainSection: CaseIterable, Sendable {
 /**
  Where the main shell is: the open section and one navigation stack per section. Screens open
  destinations through `open(_:)`; Beranda, Catat, Rencana and Komunitas switch sections, every other
- route is pushed on the open section's stack, and an unavailable area does nothing.
+ route is pushed on the open section's stack.
  */
 @MainActor @Observable
 package final class NavigationModel {
@@ -47,7 +47,6 @@ package final class NavigationModel {
         case .record: select(.record)
         case .plan: select(.plan)
         case .community: select(.community)
-        case .unavailable: break
         case .healthCheck: showsHealthCheck = true
         default:
             switch section {

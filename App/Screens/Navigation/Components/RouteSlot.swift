@@ -7,8 +7,7 @@
  editAsset), Tagihan & Cicilan with Tambah and Ubah Tagihan (bills, addBill, editBill);
  the other REN screens stay empty until their branches land. "Cek Ulang" (`healthCheck`)
  covers the shell instead (MainShell); Rencana (`plan`) and Komunitas (`community`) are the dock's own
- sections; Catat's and Riwayat's routes stay empty for their own integration, and an unavailable area
- never gets here.
+ sections; Catat's and Riwayat's routes stay empty for their own integration.
  */
 import Domain
 import Features
@@ -81,7 +80,7 @@ struct RouteSlot: View {
                 id: id, bills: services.bills, editor: services.billEditor, wallets: services.wallet, onOpen: onOpen)
         case .weeklySummary: WeeklySummaryScreen(service: services.weeklySummary, onOpen: onOpen)
         case .home, .record, .plan, .community, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history,
-            .transaction, .conversation, .importStatement, .unavailable:
+            .transaction, .conversation, .importStatement:
             EmptySlot()
         }
     }

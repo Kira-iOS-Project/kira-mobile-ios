@@ -155,11 +155,4 @@ package enum AppRoute: Hashable, Sendable {
     case editBill(id: String)
     /** UNG-08: Ringkasan Mingguan. */
     case weeklySummary
-
-    /** A link the boards show to an area not built yet: it stays visible and opens nothing. */
-    case unavailable(UnavailableArea)
-}
-
-/** The areas the boards link to that are not built yet (UNG, REN, KOM and the rest of SKR and PED). */
-package enum UnavailableArea: String, CaseIterable, Hashable, Sendable {
 }
