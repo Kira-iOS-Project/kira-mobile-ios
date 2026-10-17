@@ -55,7 +55,9 @@ struct RouteSlot: View {
         case .addAsset: AssetFormScreen(service: services.portfolio, onOpen: onOpen)
         case .editAsset(let id): AssetFormScreen(service: services.portfolio, assetId: id, onOpen: onOpen)
         case .goal(let id): GoalDetailScreen(id: id, service: services.goals, onOpen: onOpen)
-        case .newGoal, .editGoal: EmptySlot()
+        case .newGoal: NewGoalScreen(onOpen: onOpen)
+        case .goalForm(let kind): GoalFormRoute(kind: kind, service: services.goals, onOpen: onOpen)
+        case .editGoal: EmptySlot()
         case .riskQuiz, .legalityCheck: EmptySlot()
         case .home, .record, .plan, .community, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history,
             .transaction, .conversation, .importStatement, .unavailable:
