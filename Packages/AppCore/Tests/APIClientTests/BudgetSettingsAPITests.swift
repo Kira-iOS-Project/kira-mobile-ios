@@ -13,7 +13,8 @@ struct BudgetSettingsAPITests {
             + #""allocations":[{"category":"food","amount":1800000,"spent":0,"nearLimit":false},"#
             + #"{"category":"food","amount":1900000,"spent":0,"nearLimit":false}],"#
             + #""totalAllocated":1900000,"overAllocated":false,"#
-            + #""averages":[{"category":"transport","amount":860000}],"instalmentsMonthly":1350000,"#
+            + #""averages":[{"category":"transport","amount":800000},{"category":"transport","amount":860000}],"#
+            + #""instalmentsMonthly":1350000,"#
             + #""goalPost":\#(goalPost),"payday":{"requested":\#(payday),"#
             + #""periodStart":"2026-09-25","periodEnd":"2026-10-24","nextPayday":"2026-10-25","daysUntilPayday":8}}"#
     }
@@ -38,9 +39,25 @@ struct BudgetSettingsAPITests {
         try await api.saveBudget(BudgetPlan(payday: .endOfMonth, allocations: [.transport: 900_000, .food: 1_800_000]))
         let request = try #require(await transport.request)
         #expect(request.method == .put)
-        #expect(request.text.contains(#""endOfMonth":true"#))
-        let order = try #require(request.text.range(of: "food")).lowerBound
-        #expect(order < (try #require(request.text.range(of: "transport")).lowerBound))
+        let sent = try request.decoded(SentBudget.self)
+        #expect(sent.payday.endOfMonth && sent.payday.day == nil)
+        #expect(sent.allocations.map(\.category) == ["food", "transport"] && sent.allocations[0].amount == 1_800_000)
+    }
+
+    /** What Simpan Budget sends, read back. */
+    private struct SentBudget: Decodable {
+        struct Line: Decodable {
+            let category: String
+            let amount: Int
+        }
+
+        struct Day: Decodable {
+            let day: Int?
+            let endOfMonth: Bool
+        }
+
+        let allocations: [Line]
+        let payday: Day
     }
 
     @Test("reads and saves pass on the API's problems")
