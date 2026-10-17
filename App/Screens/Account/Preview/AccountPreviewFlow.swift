@@ -38,6 +38,8 @@
             case .terms: TermsScreen()
             case .privacyPolicy: PrivacyPolicyScreen(onOpen: open)
             case .complaints: ComplaintsScreen()
+            case .wallets: WalletsScreen(service: PreviewWalletService(), onOpenDebt: { _ in }, onOpenHelp: {})
+            case .budget: BudgetScreen(service: PreviewBudgetService())
             default: EmptyView()
             }
         }

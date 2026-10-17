@@ -92,7 +92,7 @@ private struct PayoffPlanContent: View {
                 } else {
                     PayoffPlanDoneCard { onOpen(.score) }
                 }
-                PayoffPlanAccounts(plan: plan) { _ in onOpen(.unavailable(.debtDetail)) }
+                PayoffPlanAccounts(plan: plan) { onOpen(.debtDetail(id: $0.id)) }
                 KiraButton("plan.edit", variant: .secondary) { onOpen(.payoffSimulation) }.icon(.pencil).block()
             }
             .padding(.horizontal, KiraSpacing.screen)

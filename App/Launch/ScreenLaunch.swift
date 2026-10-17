@@ -44,6 +44,8 @@
             case .payoff: PayoffLaunch(screen: screen)
             case .payoffPlan: PayoffPlanLaunch(screen: screen)
             case .planModule: PlanModuleLaunch(screen: screen)
+            case .wallets: WalletsLaunch()
+            case .budget: BudgetLaunch()
             case .budgetEdit: BudgetEditLaunch(screen: screen)
             }
         }
@@ -130,6 +132,8 @@
         /** REN: Tujuan Baru · Pendidikan Anak, Atur Jenjang, and Hasil Simulasi on the board's Raka. */
         case educationGoal, educationGoalResult, educationGoalStage
 
+        /** UNG: Dompet (UNG-01) and Budget (UNG-04) on the preview services. */
+        case wallets, budget
         /** UNG-05: Atur Budget on its board; the tests save (Budget Tersimpan) or fail (Belum Berhasil Menyimpan). */
         case budgetEdit, budgetEditFailing
 
@@ -145,6 +149,7 @@
             case payoff
             case payoffPlan
             case planModule
+            case wallets, budget
             case budgetEdit
         }
 
@@ -194,6 +199,8 @@
             case .moduleMoneyMarketFund, .moduleGovernmentBonds, .moduleDeposits, .moduleGold, .moduleStocks,
                 .moduleCrypto:
                 .planModule
+            case .wallets: .wallets
+            case .budget: .budget
             }
         }
     }
