@@ -26,7 +26,7 @@ struct PayoffPlanHero: View {
             .frame(minHeight: 24)
             Text(PayoffPlanCopy.headline(account, countdown: plan.focusCountdown))
                 .font(KiraFont.display(26, axisWeight: 750, relativeTo: .title1, typeSize: typeSize))
-                .kiraLineHeight(32, size: 26, relativeTo: .title)
+                .fixedSize(horizontal: false, vertical: true)
                 .tracking(-0.52)
                 .foregroundStyle(.onHero)
                 .accessibilityAddTraits(.isHeader)

@@ -12,7 +12,8 @@ nonisolated final class CrisisChatAuditTests: XCTestCase {
 
     @MainActor
     func testCrisisSignalPassesTheAudit() throws {
-        try auditScreen("crisisSignal") { app in Self.sendCrisisMessage(in: app) }
+        try auditScreen(
+            "crisisSignal", prepare: { app in Self.sendCrisisMessage(in: app) }, accepting: Self.isRecordLeaf)
     }
 
     @MainActor
@@ -26,10 +27,13 @@ nonisolated final class CrisisChatAuditTests: XCTestCase {
 
     @MainActor
     func testCheckInChatPassesTheAudit() throws {
-        try auditScreen("checkInChat") { app in
-            Self.tap(app.buttons["Sedikit Lebih Baik"])
-            XCTAssertTrue(app.staticTexts["Mode Darurat Utang"].waitForExistence(timeout: 5))
-        }
+        try auditScreen(
+            "checkInChat",
+            prepare: { app in
+                Self.tap(app.buttons["Sedikit Lebih Baik"])
+                XCTAssertTrue(app.staticTexts["Mode Darurat Utang"].waitForExistence(timeout: 5))
+            },
+            accepting: Self.isRecordLeaf)
     }
 
     /** The crisis message gets Kira's fixed reply and no drafts; Aku Tidak Aman opens the help. */
@@ -55,6 +59,22 @@ nonisolated final class CrisisChatAuditTests: XCTestCase {
         composer.typeText(crisisMessage)
         tap(app.buttons["Kirim"])
         XCTAssertTrue(app.buttons["Aku Aman"].waitForExistence(timeout: 5))
+    }
+
+    /**
+     Accepted, coordinator's decision: "Element has no description" on Catat's two soft leaves
+     (RecordScreen's RecordLeaves, ranting 140 × 140 and pandan 110 × 110), and nothing else. They are
+     decorative artwork already hidden (Image(decorative:) + accessibilityHidden ×2), yet the audit
+     reports them in the Kira Peduli states only; a follow-up finds why (work/i6-leaves).
+     */
+    @MainActor
+    private static func isRecordLeaf(_ issue: XCUIAccessibilityAuditIssue) -> Bool {
+        guard issue.auditType == .sufficientElementDescription, let element = issue.element, element.label.isEmpty
+        else {
+            return false
+        }
+        let size = element.frame.size
+        return [110, 140].contains { side in abs(size.width - side) < 1 && abs(size.height - side) < 1 }
     }
 
     @MainActor
