@@ -1,4 +1,5 @@
 import Domain
+import HTTPTypes
 import Testing
 
 @testable import APIClient

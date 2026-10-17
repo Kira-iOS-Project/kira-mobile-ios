@@ -6,7 +6,7 @@ import Testing
 @testable import Features
 
 /** The API's side of Riwayat Kira Score, answered per range from memory; it counts its calls. */
-private final class FakeHistoryService: ScoreService, @unchecked Sendable {
+private final class FakeScoreHistoryService: ScoreService, @unchecked Sendable {
     var answers: [ScoreHistoryRange: Result<ScoreHistory?, any Error>] = [:]
     private(set) var asked: [ScoreHistoryRange] = []
     /** Runs before an answer, to change the screen while a call is on its way. */
@@ -34,7 +34,7 @@ struct ScoreHistoryModelTests {
 
     @Test("6 Bulan loads first; 1 Tahun loads once, then both show from memory")
     func ranges() async {
-        let service = FakeHistoryService()
+        let service = FakeScoreHistoryService()
         service.answers = [.sixMonths: .success(history(66)), .oneYear: .success(history(67))]
         let model = ScoreHistoryModel(service: service)
         await model.load()
@@ -49,7 +49,7 @@ struct ScoreHistoryModelTests {
 
     @Test("before the health check the screen is empty")
     func empty() async {
-        let model = ScoreHistoryModel(service: FakeHistoryService())
+        let model = ScoreHistoryModel(service: FakeScoreHistoryService())
         await model.load()
         guard case .empty = model.phase else { return #expect(Bool(false)) }
     }
@@ -61,7 +61,7 @@ struct ScoreHistoryModelTests {
             (URLError(.notConnectedToInternet) as any Error, nil),
         ] as [(any Error, ProblemCode?)])
     func fails(error: any Error, code: ProblemCode?) async {
-        let service = FakeHistoryService()
+        let service = FakeScoreHistoryService()
         service.answers = [.sixMonths: .failure(error)]
         let model = ScoreHistoryModel(service: service)
         await model.load()
@@ -74,7 +74,7 @@ struct ScoreHistoryModelTests {
 
     @Test("switching keeps the last range on screen; an answer for a range left behind is not shown")
     func switching() async {
-        let service = FakeHistoryService()
+        let service = FakeScoreHistoryService()
         service.answers = [.sixMonths: .success(history(66)), .oneYear: .success(history(67))]
         let model = ScoreHistoryModel(service: service)
         await model.load()
@@ -91,7 +91,7 @@ struct ScoreHistoryModelTests {
 
     @Test("a plan without the history asks for Lihat Paket; no other failure does")
     func needsPlan() async {
-        let service = FakeHistoryService()
+        let service = FakeScoreHistoryService()
         service.answers = [.sixMonths: .failure(AppProblem(code: "PLAN_FEATURE_UNAVAILABLE"))]
         let model = ScoreHistoryModel(service: service)
         #expect(!model.needsPlan)
@@ -104,7 +104,7 @@ struct ScoreHistoryModelTests {
 
     @Test("a failed 1 Tahun shows its problem, and 6 Bulan comes back from memory")
     func switchFails() async {
-        let service = FakeHistoryService()
+        let service = FakeScoreHistoryService()
         service.answers = [.sixMonths: .success(history(66)), .oneYear: .failure(AppProblem(code: "INTERNAL_ERROR"))]
         let model = ScoreHistoryModel(service: service)
         await model.load()

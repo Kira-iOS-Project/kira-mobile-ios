@@ -18,8 +18,9 @@ struct ScoreHistoryTrendTests {
 
     @Test("a year from November 2025 crosses into 2026")
     func year() throws {
-        let trend = try #require(ScoreHistoryTrend(points([40, 66], from: CalendarDay(year: 2025, month: 11, day: 1))))
-        #expect(trend.crossesYear && trend.points == 26)
+        let scores = [40, 42, 44, 46, 47, 49, 51, 55, 58, 60, 62, 66]
+        let trend = try #require(ScoreHistoryTrend(points(scores, from: CalendarDay(year: 2025, month: 11, day: 1))))
+        #expect(trend.crossesYear && trend.points == 26 && trend.until == CalendarDay(year: 2026, month: 10, day: 1))
     }
 
     @Test("down and flat, and no trend with fewer than two months")

@@ -56,7 +56,7 @@ struct ScoreHistoryMappingTests {
             }
         }
         do {
-            _ = try await LiveScoreService(api: OfflineTransport.offline).history(.sixMonths)
+            _ = try await LiveScoreService(api: .offline).history(.sixMonths)
             Issue.record("offline returned")
         } catch {
             #expect(AppProblem(error).isConnectionLoss)
@@ -70,6 +70,6 @@ struct ScoreHistoryMappingTests {
             let (api, _) = KiraAPI.routed(["GET /api/me": ok(json)])
             #expect(await LiveScoreService(api: api).includesHistory() == expected)
         }
-        #expect(await LiveScoreService(api: OfflineTransport.offline).includesHistory())
+        #expect(await LiveScoreService(api: .offline).includesHistory())
     }
 }
