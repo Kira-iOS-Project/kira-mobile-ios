@@ -77,7 +77,7 @@ struct GroupDetailModelTests {
         )
         await model.join()
         #expect(model.failure?.failure == .problem(communityProblem(.communityLinkUnavailable)))
-        #expect(model.failure?.attempt == .join && !model.canRetry)
+        #expect(model.failure?.attempt == .join && !(model.failure?.failure.kind?.allowsRetry ?? true))
         model.dismissFailure()
         #expect(model.failure == nil)
     }
@@ -87,7 +87,7 @@ struct GroupDetailModelTests {
         let model = await loaded(
             FakeCommunityService(rulesAccepted: true, failures: ["join": [URLError(.notConnectedToInternet)]]))
         await model.join()
-        #expect(model.failure?.failure == .connection && model.canRetry)
+        #expect(model.failure?.failure == .connection && (model.failure?.failure.kind?.allowsRetry ?? true))
         await model.retry()
         #expect(model.failure == nil && model.invite != nil)
         await model.retry()
@@ -112,7 +112,7 @@ struct GroupDetailModelTests {
         await model.join()
         model.rulesAgreed = true
         await model.acceptRules()
-        #expect(model.failure?.attempt == .acceptRules && !model.canRetry)
+        #expect(model.failure?.attempt == .acceptRules && !(model.failure?.failure.kind?.allowsRetry ?? true))
         #expect(await service.calls.filter { $0 == .group("g-1") }.count == 2)
         model.dismissFailure()
         #expect(!model.rulesAgreed && model.failure == nil)
