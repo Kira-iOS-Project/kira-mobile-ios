@@ -15438,6 +15438,146 @@
         }
       }
     },
+    "plan.goal.cents" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ",00"
+          }
+        }
+      }
+    },
+    "plan.goal.currency" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rp"
+          }
+        }
+      }
+    },
+    "plan.goal.deposit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Target Investasi per Bulan"
+          }
+        }
+      }
+    },
+    "plan.goal.dream" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mimpimu"
+          }
+        }
+      }
+    },
+    "plan.goal.form.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke pilihan tujuan"
+          }
+        }
+      }
+    },
+    "plan.goal.form.calculate" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hitung"
+          }
+        }
+      }
+    },
+    "plan.goal.form.simulation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira menghitung hasil investasimu dari angka yang kamu isi, lalu membandingkannya dengan targetmu."
+          }
+        }
+      }
+    },
+    "plan.goal.form.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tujuan Baru"
+          }
+        }
+      }
+    },
+    "plan.goal.perYear" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "% per Tahun"
+          }
+        }
+      }
+    },
+    "plan.goal.return" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Return Investasi"
+          }
+        }
+      }
+    },
+    "plan.goal.return.hint" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Produk berisiko rendah umumnya sekitar 4% sampai 6% per tahun."
+          }
+        }
+      }
+    },
+    "plan.goal.simulation.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hanya Simulasi"
+          }
+        }
+      }
+    },
+    "plan.goal.strategy" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strategi Investasimu"
+          }
+        }
+      }
+    },
+    "plan.goal.yearsAhead" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tahun Lagi"
+          }
+        }
+      }
+    },
     "plans.alwaysFree.body" : {
       "localizations" : {
         "id" : {
