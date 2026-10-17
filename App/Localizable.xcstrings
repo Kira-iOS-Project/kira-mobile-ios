@@ -16974,6 +16974,16 @@
         }
       }
     },
+    "wallet.cents" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ",00"
+          }
+        }
+      }
+    },
     "wallet.create.amount.prompt" : {
       "localizations" : {
         "id" : {
@@ -17150,6 +17160,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jenis Akun"
+          }
+        }
+      }
+    },
+    "wallet.currency" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rp"
           }
         }
       }
