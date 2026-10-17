@@ -1712,6 +1712,7 @@
       }
     },
     "bills.create.amount.required" : {
+      "extractionState" : "manual",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -1742,6 +1743,7 @@
       }
     },
     "bills.create.date.past" : {
+      "extractionState" : "manual",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -1792,6 +1794,7 @@
       }
     },
     "bills.create.debt.required" : {
+      "extractionState" : "manual",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -1862,6 +1865,7 @@
       }
     },
     "bills.create.name.required" : {
+      "extractionState" : "manual",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -1872,6 +1876,7 @@
       }
     },
     "bills.create.name.tooLong" : {
+      "extractionState" : "manual",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -5987,16 +5992,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ringkasan periode ini"
-          }
-        }
-      }
-    },
-    "home.bills.due %@ %@" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@ · jatuh tempo %2$@"
           }
         }
       }
