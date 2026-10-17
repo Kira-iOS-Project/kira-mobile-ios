@@ -32,6 +32,7 @@
             case .care: CareLaunch(screen: screen)
             case .debtEmergency: DebtEmergencyLaunch(screen: screen)
             case .careTools: CareToolsLaunch(screen: screen)
+            case .retirementGoal: RetirementGoalLaunch(screen: screen)
             }
         }
     }
@@ -78,10 +79,13 @@
          its form.
          */
         case breathing, safetyPlan, safetyPlanEmpty, safetyPlanFailing, safetyPlanForm
+        /** REN: Tujuan Baru · Dana Pensiun and its Hasil Simulasi, on the board's persona. */
+        case goalRetirement, goalRetirementResult
 
         /** The area whose launcher builds the screen. */
         enum Area {
             case onboarding, home, account, plans, record, chat, community, care, careTools, debtEmergency, marketplace
+            case retirementGoal
         }
 
         var area: Area {
@@ -110,6 +114,7 @@
             case .marketplace, .marketplaceEmpty, .marketplaceFailed, .product, .productConsultation, .productEbook,
                 .productEvent, .productGone, .submitProduct:
                 .marketplace
+            case .goalRetirement, .goalRetirementResult: .retirementGoal
             }
         }
     }
