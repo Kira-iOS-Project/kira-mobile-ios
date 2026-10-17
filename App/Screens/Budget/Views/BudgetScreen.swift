@@ -20,7 +20,7 @@ struct BudgetScreen: View {
                 BudgetOverviewContent(budget: .placeholder) { _ in }
                     .redacted(reason: .placeholder).disabled(true)
             case .empty:
-                BudgetEmptyContent(retry: reload)
+                BudgetEmptyContent(retry: reload) { dismiss() }
             case .loaded(let budget):
                 BudgetOverviewContent(budget: budget, onOpen: onOpen)
             case .failed(let problem):
@@ -37,8 +37,10 @@ struct BudgetScreen: View {
     private func reload() { Task { await model.load() } }
 }
 
+/** No budget yet: Coba Lagi, and the way back the loaded screen shows (Kembali ke Beranda). */
 private struct BudgetEmptyContent: View {
     let retry: () -> Void
+    let onBack: () -> Void
 
     var body: some View {
         VStack(spacing: KiraSpacing.space4) {
@@ -48,5 +50,9 @@ private struct BudgetEmptyContent: View {
         }
         .padding(KiraSpacing.screen)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .overlay(alignment: .topLeading) {
+            KiraIconButton.back("budget.back", action: onBack)
+                .padding(.horizontal, KiraSpacing.screen).padding(.top, KiraSpacing.space2)
+        }
     }
 }
