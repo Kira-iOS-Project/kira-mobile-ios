@@ -37,6 +37,9 @@ extension FormatStyle where Self == Date.FormatStyle {
     /** "28 September", the first end of a range within one year. */
     static var kiraDayMonth: Date.FormatStyle { wib.day().month(.wide) }
 
+    /** "Sabtu", a day under a bar of Ringkasan Mingguan. */
+    static var kiraWeekday: Date.FormatStyle { wib.weekday(.wide) }
+
     /** "Oktober", the month a quota or a period names. */
     static var kiraMonth: Date.FormatStyle { wib.month(.wide) }
 
@@ -54,6 +57,13 @@ extension FormatStyle where Self == Date.FormatStyle {
 }
 
 extension FormatStyle where Self == Date.VerbatimFormatStyle {
+    /** "Kamis 8 Oktober", a week's first day in Ringkasan Mingguan (no comma, as the board writes it). */
+    static var kiraWeekdayDayMonth: Date.VerbatimFormatStyle {
+        Date.VerbatimFormatStyle(
+            format: "\(weekday: .wide) \(day: .defaultDigits) \(month: .wide)", locale: indonesian,
+            timeZone: KiraDateFormat.timeZone, calendar: gregorian)
+    }
+
     /** "Kamis 15 Oktober 2026", a day's group title in Riwayat (no comma, as the board writes it). */
     static var kiraGroupDate: Date.VerbatimFormatStyle {
         Date.VerbatimFormatStyle(

@@ -29943,6 +29943,306 @@
         }
       }
     },
+    "summary.weekly.back" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Beranda"
+          }
+        }
+      }
+    },
+    "summary.weekly.busiestDay %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, %2$@"
+          }
+        }
+      }
+    },
+    "summary.weekly.chart %@ %@ %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengeluaran per hari, %1$@ sampai %2$@. Paling besar %3$@, %4$@"
+          }
+        }
+      }
+    },
+    "summary.weekly.chart.empty %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengeluaran per hari, %1$@ sampai %2$@"
+          }
+        }
+      }
+    },
+    "summary.weekly.days %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ – %2$@"
+          }
+        }
+      }
+    },
+    "summary.weekly.empty" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum ada pengeluaran yang tercatat minggu ini."
+          }
+        }
+      }
+    },
+    "summary.weekly.empty.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minggu Ini Masih Kosong"
+          }
+        }
+      }
+    },
+    "summary.weekly.extremes %@ %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paling besar %1$@. Paling kecil %2$@, %3$@."
+          }
+        }
+      }
+    },
+    "summary.weekly.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ringkasan Belum Bisa Dimuat"
+          }
+        }
+      }
+    },
+    "summary.weekly.headline" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uangmu ke Mana Minggu Ini"
+          }
+        }
+      }
+    },
+    "summary.weekly.history" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat Riwayat"
+          }
+        }
+      }
+    },
+    "summary.weekly.less %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Lebih Sedikit dari Minggu Lalu"
+          }
+        }
+      }
+    },
+    "summary.weekly.mascot" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuku si kukang menemani ringkasan mingguanmu"
+          }
+        }
+      }
+    },
+    "summary.weekly.more %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Lebih Banyak dari Minggu Lalu"
+          }
+        }
+      }
+    },
+    "summary.weekly.note.less" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "minggu ini sedikit lebih hemat"
+          }
+        }
+      }
+    },
+    "summary.weekly.note.more" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "minggu ini sedikit lebih banyak"
+          }
+        }
+      }
+    },
+    "summary.weekly.note.same" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "minggu ini sama seperti kemarin"
+          }
+        }
+      }
+    },
+    "summary.weekly.range %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
+    "summary.weekly.same" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sama dengan Minggu Lalu"
+          }
+        }
+      }
+    },
+    "summary.weekly.share %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%% dari total"
+          }
+        }
+      }
+    },
+    "summary.weekly.tip.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catatan Minggu Ini"
+          }
+        }
+      }
+    },
+    "summary.weekly.tip.top %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengeluaran terbesar minggu ini ada di %@."
+          }
+        }
+      }
+    },
+    "summary.weekly.tip.weekend %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengeluaran terbesar ada di akhir pekan, kebanyakan untuk %@."
+          }
+        }
+      }
+    },
+    "summary.weekly.tip.weekendFood" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengeluaran terbesar ada di akhir pekan, kebanyakan makan di luar. Kalau mau, coba satu hari masak sendiri di akhir pekan depan."
+          }
+        }
+      }
+    },
+    "summary.weekly.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ringkasan Mingguan"
+          }
+        }
+      }
+    },
+    "summary.weekly.top" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terbesar Minggu Ini"
+          }
+        }
+      }
+    },
+    "summary.weekly.top.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategori terbesar minggu ini"
+          }
+        }
+      }
+    },
+    "summary.weekly.total" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total pengeluaran"
+          }
+        }
+      }
+    },
+    "summary.weekly.total.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total pengeluaran minggu ini"
+          }
+        }
+      }
+    },
+    "summary.weekly.weekday %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
     "transaction.back" : {
       "localizations" : {
         "id" : {
