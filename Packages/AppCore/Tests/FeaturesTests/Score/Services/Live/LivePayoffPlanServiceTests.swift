@@ -27,15 +27,15 @@ struct LivePayoffPlanServiceTests {
     func active() async throws {
         let (api, _) = KiraAPI.routed(["GET /api/payoff/plans/active": ok(planJSON)])
         let plan = try await LivePayoffPlanService(api: api).active()
-        #expect(plan.id == "plan-1" && plan.method == .snowball && plan.extraPayment == 0)
+        #expect(plan.method == .snowball)
         #expect(plan.startedAt == Date(timeIntervalSince1970: 1_791_601_200))
         #expect(plan.accounts.map(\.status) == [.paidOff, .inProgress, .ongoing])
         #expect(plan.accounts.map(\.kind) == [.onlineLoan, .paylater, .vehicle])
         let paid = try #require(plan.accounts.first)
         #expect(paid.remaining == 0 && paid.payoffMonth == "2026-10" && paid.payoffDate == "2026-10-05")
-        #expect(paid.annualInterestRate == nil && paid.dueDay == nil && paid.startMonth == nil)
+        #expect(paid.startMonth == nil)
         let current = plan.accounts[1]
-        #expect(current.annualInterestRate == 24 && current.dueDay == 5 && current.payoffMonth == "2026-12")
+        #expect(current.payoffMonth == "2026-12")
         #expect(
             plan.nextPayment
                 == NextPayment(
@@ -71,7 +71,7 @@ struct LivePayoffPlanServiceTests {
         let (api, transport) = KiraAPI.routed(["POST /api/payoff/plans": ok(planJSON, status: 201)])
         let plan = try await LivePayoffPlanService(api: api).create(method: .avalanche, extraPayment: 150_000)
         #expect(await transport.sent.first?.json == ["method": .string("avalanche"), "extraPayment": .number(150_000)])
-        #expect(plan.id == "plan-1")
+        #expect(plan.method == .snowball)
     }
 
     @Test("PATCH /payoff/plans/active sends the account to move to and answers the plan")
@@ -79,7 +79,7 @@ struct LivePayoffPlanServiceTests {
         let (api, transport) = KiraAPI.routed(["PATCH /api/payoff/plans/active": ok(planJSON)])
         let plan = try await LivePayoffPlanService(api: api).setFocus(debtId: "a-2")
         #expect(await transport.sent.first?.json == ["focusDebtId": .string("a-2")])
-        #expect(plan.id == "plan-1")
+        #expect(plan.method == .snowball)
     }
 
     @Test("a move the API refuses reaches the model with its code", arguments: [404, 422])

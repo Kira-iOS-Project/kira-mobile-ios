@@ -26,12 +26,24 @@ nonisolated final class CommunityAuditTests: XCTestCase {
 
     @MainActor
     func testOutboundLinkPassesTheAudit() throws {
-        try auditScreen("communityOutbound") { app in
-            tap("Gabung Grup", in: app)
-            tap("Aku sudah membaca dan setuju", in: app)
-            tap("Setuju dan Lanjut", in: app)
-            XCTAssertTrue(app.buttons["Batal"].waitForExistence(timeout: 5))
-        }
+        try auditScreen(
+            "communityOutbound",
+            prepare: { app in
+                tap("Gabung Grup", in: app)
+                tap("Aku sudah membaca dan setuju", in: app)
+                tap("Setuju dan Lanjut", in: app)
+                XCTAssertTrue(app.buttons["Batal"].waitForExistence(timeout: 5))
+            },
+            accepting: { issue in
+                /**
+                 Accepted: "Potentially inaccessible text" with no element. Tautan Keluar is a half-height
+                 sheet (TautanKeluar.dc.html, top 472), so Detail Grup's words stay visible above it under
+                 the scrim while the modal cover keeps them out of reach on purpose (KiraCover hides the
+                 screen behind a sheet); the audit reads those pixels as text no element carries. The
+                 sheet's own texts are elements, so every finding with an element still fails.
+                 */
+                issue.element == nil && issue.compactDescription.hasPrefix("Potentially inaccessible text")
+            })
     }
 
     @MainActor
