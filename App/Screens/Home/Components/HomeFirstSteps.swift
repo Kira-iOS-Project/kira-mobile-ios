@@ -68,7 +68,7 @@ struct HomeFirstSteps: View {
         .subtitle(Text("home.firstSteps.recordHint"))
         KiraListRow(
             Text("home.firstSteps.payday"), leading: .icon(.calendar), trailing: .check(checklist.paydaySet),
-            action: { onOpen(.unavailable(.editBudget)) }
+            action: { onOpen(.editBudget) }
         )
         .subtitle(Text("home.firstSteps.paydayHint"))
     }

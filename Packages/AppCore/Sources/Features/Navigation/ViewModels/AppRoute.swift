@@ -162,8 +162,6 @@ package enum AppRoute: Hashable, Sendable {
 
 /** The areas the boards link to that are not built yet (UNG, REN, KOM and the rest of SKR and PED). */
 package enum UnavailableArea: String, CaseIterable, Hashable, Sendable {
-    /** UNG-05: Atur Budget, where the payday is set (Beranda's Langkah Awal), until its screen lands. */
-    case editBudget
     /** UNG: Tagihan, the bills. */
     case bills
     /** UNG: Ringkasan Mingguan, the weekly summary. */

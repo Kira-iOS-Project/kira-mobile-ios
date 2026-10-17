@@ -67,7 +67,8 @@ struct RouteSlot: View {
         case .budget: BudgetScreen(service: services.budget)
         case .debtDetail: EmptySlot()
         case .creditReport: EmptySlot()
-        case .editBudget: EmptySlot()
+        case .editBudget:
+            BudgetSettingsScreen(model: BudgetSettingsModel(service: services.budgetSettings), onOpen: onOpen)
         case .bills: EmptySlot()
         case .addBill: EmptySlot()
         case .editBill: EmptySlot()
