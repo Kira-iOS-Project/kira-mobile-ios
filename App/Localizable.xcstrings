@@ -6851,6 +6851,56 @@
         }
       }
     },
+    "gallery.dialog.billDelete.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan ini tidak lagi muncul di Beranda atau daftar tagihan. Transaksi yang sudah tercatat tetap ada."
+          }
+        }
+      }
+    },
+    "gallery.dialog.billDelete.confirm" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Tagihan"
+          }
+        }
+      }
+    },
+    "gallery.dialog.billDelete.open" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uji Hapus Tagihan"
+          }
+        }
+      }
+    },
+    "gallery.dialog.billDelete.section" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konfirmasi Hapus Tagihan"
+          }
+        }
+      }
+    },
+    "gallery.dialog.billDelete.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Tagihan Ini?"
+          }
+        }
+      }
+    },
     "gallery.dialog.budgetFailure.amount" : {
       "localizations" : {
         "id" : {
