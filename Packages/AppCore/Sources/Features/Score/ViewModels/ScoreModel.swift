@@ -20,12 +20,12 @@ package final class ScoreModel {
 
     /** Loads the score, and whether the plan includes its history. */
     package func load() async {
-        async let includesHistory = service.includesHistory()
+        async let isPlus = service.includesPlus()
         do {
             phase = try await service.score().map { .loaded($0) } ?? .empty
         } catch {
             phase = .failed(AppProblem(error))
         }
-        historyRoute = await includesHistory ? .scoreHistory : .plans(yearly: false)
+        historyRoute = await isPlus ? .scoreHistory : .plans(yearly: false)
     }
 }

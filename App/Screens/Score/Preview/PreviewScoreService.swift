@@ -60,7 +60,7 @@ nonisolated struct PreviewScoreService: ScoreService {
 
     func history(_ range: ScoreHistoryRange) throws -> ScoreHistory? { .sample(range) }
 
-    func includesHistory() -> Bool { true }
+    func includesPlus() -> Bool { true }
 }
 
 #if DEBUG

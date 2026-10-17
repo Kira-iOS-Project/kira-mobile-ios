@@ -14,7 +14,7 @@ private final class FakeScoreHistoryService: ScoreService, @unchecked Sendable {
 
     func score() throws -> ScoreReport? { nil }
     func indicator(_: IndicatorKey) throws -> IndicatorDetail { throw AppProblem() }
-    func includesHistory() -> Bool { true }
+    func includesPlus() -> Bool { true }
     func history(_ range: ScoreHistoryRange) async throws -> ScoreHistory? {
         asked.append(range)
         if let during { await during() }

@@ -20,12 +20,12 @@
             self.problem = problem
         }
 
-        func score() async throws -> ScoreReport? {
-            try await PreviewScoreService().score()
+        func score() throws -> ScoreReport? {
+            try PreviewScoreService().score()
         }
 
-        func indicator(_ key: IndicatorKey) async throws -> IndicatorDetail {
-            try await PreviewScoreService().indicator(key)
+        func indicator(_ key: IndicatorKey) throws -> IndicatorDetail {
+            try PreviewScoreService().indicator(key)
         }
 
         func history(_: ScoreHistoryRange) throws -> ScoreHistory? {
@@ -33,7 +33,7 @@
             return history
         }
 
-        func includesHistory() -> Bool { true }
+        func includesPlus() -> Bool { true }
     }
 
     extension ScoreHistory {

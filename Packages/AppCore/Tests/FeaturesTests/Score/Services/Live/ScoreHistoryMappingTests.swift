@@ -64,12 +64,12 @@ struct ScoreHistoryMappingTests {
     }
 
     @Test("Kira Plus includes the history, Gratis and Muda do not; an unreadable GET /me leaves it to the history")
-    func includesHistory() async {
+    func includesPlus() async {
         for (plan, expected) in [("plus", true), ("free", false), ("young", false)] {
             let json = meJSON(plan: #"{"id":"\#(plan)","source":null,"renewsOn":null}"#)
             let (api, _) = KiraAPI.routed(["GET /api/me": ok(json)])
-            #expect(await LiveScoreService(api: api).includesHistory() == expected)
+            #expect(await LiveScoreService(api: api).includesPlus() == expected)
         }
-        #expect(await LiveScoreService(api: .offline).includesHistory())
+        #expect(await LiveScoreService(api: .offline).includesPlus())
     }
 }

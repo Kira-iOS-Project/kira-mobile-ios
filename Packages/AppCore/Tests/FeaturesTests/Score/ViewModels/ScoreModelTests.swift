@@ -18,7 +18,7 @@ private struct FakeScoreService: ScoreService {
     }
     func history(_: ScoreHistoryRange) throws -> ScoreHistory? { nil }
     var plus = true
-    func includesHistory() -> Bool { plus }
+    func includesPlus() -> Bool { plus }
 }
 
 private struct OtherError: Error {}
@@ -28,7 +28,7 @@ private struct BrokenScoreService: ScoreService {
     func score() throws -> ScoreReport? { throw OtherError() }
     func indicator(_: IndicatorKey) throws -> IndicatorDetail { throw OtherError() }
     func history(_: ScoreHistoryRange) throws -> ScoreHistory? { throw OtherError() }
-    func includesHistory() -> Bool { true }
+    func includesPlus() -> Bool { true }
 }
 
 @MainActor

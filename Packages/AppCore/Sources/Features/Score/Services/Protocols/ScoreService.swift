@@ -19,8 +19,9 @@ package protocol ScoreService: Sendable {
     func history(_ range: ScoreHistoryRange) async throws -> ScoreHistory?
 
     /**
-     Whether the plan includes Riwayat Kira Score (Kira Plus: "Kira Score Otomatis tiap Bulan"),
-     from `GET /me`; true when that cannot be read, so the history's own answer decides.
+     Whether the plan is Kira Plus, from `GET /me`: Riwayat Kira Score ("Kira Score Otomatis tiap
+     Bulan") and Portofolio need it. True when that cannot be read, so the feature's own answer
+     (403 PLAN_FEATURE_UNAVAILABLE) decides.
      */
-    func includesHistory() async -> Bool
+    func includesPlus() async -> Bool
 }
