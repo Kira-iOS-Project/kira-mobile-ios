@@ -85,7 +85,7 @@ struct LiveCareToolsServiceTests {
     }
 
     @Test(
-        "an undocumented answer is a problem without a code",
+        "a 500 without a problem body reads as the service being unavailable",
         arguments: ["GET /api/debts", "PUT /api/care/safety-plan"])
     func undocumented(route: String) async {
         let reply = RoutedTransport.Reply(status: 500, body: "{}", contentType: "application/json")
@@ -97,7 +97,7 @@ struct LiveCareToolsServiceTests {
                 _ = try await service.saveSafetyPlan(.empty)
             }
         }
-        #expect(error.map(careProblem) == AppProblem())
+        #expect(error.map(careProblem) == .serviceUnavailable)
         let (unauthorized, _) = self.service(["GET /api/debts": problem("AUTH_UNAUTHENTICATED", status: 401)])
         await #expect(throws: AppProblem.self) { try await unauthorized.debts() }
         let (plan, _) = self.service(["GET /api/care/safety-plan": RoutedTransport.Reply(status: 500, body: "{}")])
