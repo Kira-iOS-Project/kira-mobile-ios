@@ -1,7 +1,9 @@
 /**
- Rencanaku (SKR-04): the plan the person made, how far it has come, the payment to make next
- ("Tandai Sudah Bayar") and the accounts with their tags. The payment that settles an account opens
- Perayaan Lunas (SKR-05) over the page, once. Pushed from "Jadikan Rencanaku".
+ Rencanaku (SKR-04, board PelunasanAktif): the account being paid off on the hero, the payment to
+ make next with Tandai Sudah Bayar, every account with its tag, and Ubah Rencana back to Rencana
+ Pelunasan. The payment that settles an account opens Perayaan Lunas (SKR-05) over the page, once.
+ A payment or a move that fails shows the failure dialog: Coba Lagi sends it again, Tutup leaves the
+ plan as it was.
  */
 import APIClient
 import Domain
@@ -10,6 +12,8 @@ import SwiftUI
 
 struct PayoffPlanScreen: View {
     @State private var model: PayoffPlanModel
+    /** Where the celebration leads once it has gone. */
+    @State private var exit: CelebrationExit?
     private let onOpen: (AppRoute) -> Void
     @Environment(\.dismiss) private var dismiss
 
@@ -36,20 +40,31 @@ struct PayoffPlanScreen: View {
         .background(.surface)
         .toolbar(.hidden, for: .navigationBar)
         .task { await model.load() }
-        .kiraSheet(isPresented: celebrating, title: "plan.celebrate.sheet") {
-            if let payment = model.celebration {
-                PayoffCelebration(payment: payment, name: model.celebratedName ?? "") { destination in
-                    model.dismissCelebration()
-                    if let destination { onOpen(destination) }
-                }
+        .fullScreenCover(item: $model.celebration, onDismiss: leaveCelebration) { paid in
+            PayoffCelebration(paid: paid) { chosen in
+                exit = chosen
+                model.dismissCelebration()
             }
+        }
+        .kiraDialog(isPresented: failing) {
+            PayoffPlanFailureDialog.make(model.failure) { failed in Task { await model.retry(failed) } }
         }
     }
 
-    private var celebrating: Binding<Bool> {
-        Binding(
-            get: { model.celebration != nil },
-            set: { if !$0 { model.dismissCelebration() } })
+    private var failing: Binding<Bool> {
+        Binding(get: { model.failure != nil }, set: { if !$0 { model.failure = nil } })
+    }
+
+    /** Runs once the celebration is down, so the move's own failure dialog never meets it on its way. */
+    private func leaveCelebration() {
+        let chosen = exit
+        exit = nil
+        switch chosen {
+        case .next(let paid): Task { await model.continueToNext(after: paid) }
+        case .home: onOpen(.home)
+        case .score: onOpen(.score)
+        case nil: break
+        }
     }
 }
 
@@ -62,52 +77,35 @@ private struct PayoffPlanContent: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: KiraSpacing.space5) {
-                PayoffPlanHeader(onOpen: onOpen, onBack: onBack)
-                KiraProgressRibbon(value: Double(plan.progressPercent), target: 100, label: "plan.progress.label")
-                    .caption(PayoffPlanCopy.caption(method: plan.method, extraPayment: plan.extraPayment))
-                if let problem = model.actionProblem {
-                    KiraNotice(.warning, title: "plan.action.failed", message: problem.message)
+            VStack(alignment: .leading, spacing: KiraSpacing.space4) {
+                KiraNavBar("plan.title", subtitle: PayoffPlanCopy.subtitle(plan), leading: .back("plan.back", onBack)) {
+                    KiraHelpButton(.icon) { onOpen(.care) }
+                }
+                if let focus = plan.focus {
+                    PayoffPlanHero(plan: plan, account: focus)
                 }
                 if let next = plan.nextPayment {
-                    PayoffNextPaymentCard(payment: next, isWorking: model.isWorking) { Task { await model.markPaid() } }
+                    PayoffNextPaymentCard(
+                        payment: next, category: plan.account(next.debtId)?.kind.category ?? .paylater,
+                        isWorking: model.isWorking
+                    ) { Task { await model.markPaid() } }
                 } else {
                     PayoffPlanDoneCard { onOpen(.score) }
                 }
-                PayoffPlanAccounts(model: model, plan: plan)
-                if !plan.ongoingAccounts.isEmpty {
-                    PayoffOngoingList(accounts: plan.ongoingAccounts)
-                }
+                PayoffPlanAccounts(plan: plan) { _ in onOpen(.unavailable(.debtDetail)) }
+                KiraButton("plan.edit", variant: .secondary) { onOpen(.payoffSimulation) }.icon(.pencil).block()
             }
             .padding(.horizontal, KiraSpacing.screen)
-            .padding(.top, 3)
-            .padding(.bottom, KiraSpacing.space10)
+            .padding(.top, KiraSpacing.space2)
+            .padding(.bottom, KiraSpacing.space8)
+            .frame(maxWidth: .infinity, alignment: .top)
+            .background(alignment: .topTrailing) {
+                KiraLeaf(.twig, tone: .soft, size: 130, isFlipped: true)
+                    .offset(x: 38, y: -28)
+                    .accessibilityHidden(true)
+            }
         }
         .kiraScrollEdges()
-    }
-}
-
-/** The back button and Kira Peduli, the title and what the page does. */
-private struct PayoffPlanHeader: View {
-    let onOpen: (AppRoute) -> Void
-    let onBack: () -> Void
-    @Environment(\.dynamicTypeSize) private var typeSize
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: KiraSpacing.space1) {
-            HStack {
-                KiraIconButton.back("plan.back", action: onBack)
-                Spacer(minLength: KiraSpacing.space2)
-                KiraHelpButton { onOpen(.care) }
-                    /** At accessibility sizes it wraps rather than widen the page. */
-                    .fixedSize(horizontal: !typeSize.isAccessibilitySize, vertical: true)
-            }
-            .frame(minHeight: KiraSize.tap)
-            Text("plan.title").kiraFont(.largeTitle).foregroundStyle(.ink).accessibilityAddTraits(.isHeader)
-            Text("plan.subtitle")
-                .font(.footnote.weight(.medium)).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
-        }
-        .padding(.bottom, KiraSpacing.space3)
     }
 }
 
@@ -118,7 +116,9 @@ private struct PayoffPlanEmptyView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: KiraSpacing.space4) {
-            KiraIconButton.back("plan.back", action: onBack)
+            KiraNavBar("plan.title", leading: .back("plan.back", onBack)) {
+                KiraHelpButton(.icon) { onOpen(.care) }
+            }
             Spacer()
             VStack(spacing: KiraSpacing.space3) {
                 KiraIllustration(.cardPaidOff, size: 128)
@@ -130,6 +130,35 @@ private struct PayoffPlanEmptyView: View {
             .frame(maxWidth: .infinity)
             Spacer()
         }
-        .padding(KiraSpacing.screen)
+        .padding(.horizontal, KiraSpacing.screen)
+        .padding(.vertical, KiraSpacing.space2)
+    }
+}
+
+/** The failure dialog of a payment or a move (the sheet-failure pattern's dialog). */
+enum PayoffPlanFailureDialog {
+    static func make(_ failure: PayoffPlanModel.Failure?, retry: @escaping (PayoffPlanModel.Failure) -> Void)
+        -> KiraDialog
+    {
+        let title: LocalizedStringResource =
+            switch failure {
+            case .focus: "plan.failure.focus"
+            default: "plan.failure.payment"
+            }
+        return KiraDialog(
+            title, message: message(failure?.problem), art: .illustration(.umbrella),
+            primary: KiraButton("plan.failure.retry") { if let failure { retry(failure) } },
+            secondary: KiraButton("plan.failure.close", variant: .secondary) {})
+    }
+
+    /**
+     The connection's sentence for a request that got no answer, the reference for an unknown
+     problem, else the problem's.
+     */
+    private static func message(_ problem: AppProblem?) -> LocalizedStringResource {
+        guard let problem else { return "problem.connection" }
+        if problem.isConnectionLoss { return "problem.connection" }
+        if problem.showsReference { return "sheet.failure.reference \(problem.reference)" }
+        return problem.message
     }
 }

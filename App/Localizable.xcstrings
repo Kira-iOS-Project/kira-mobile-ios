@@ -11032,22 +11032,22 @@
         }
       }
     },
-    "indicator.next.consumerDebtOne" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lunasi satu per satu, utang terkecil dulu, sampai tinggal satu platform."
-          }
-        }
-      }
-    },
     "indicator.next.consumerDebtOnTime" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bayar tepat waktu, lalu kurangi sampai tiga platform atau kurang."
+          }
+        }
+      }
+    },
+    "indicator.next.consumerDebtOne" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lunasi satu per satu, utang terkecil dulu, sampai tinggal satu platform."
           }
         }
       }
@@ -15908,22 +15908,22 @@
         }
       }
     },
-    "plan.account.progress %lld" : {
+    "plan.account.payoff %@" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld%% terlunasi"
+            "value" : "Lunas %@"
           }
         }
       }
     },
-    "plan.accounts.footer" : {
+    "plan.account.remaining %@" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ketuk akun berikutnya untuk memindahkannya jadi yang dilunasi lebih dulu."
+            "value" : "Sisa %@"
           }
         }
       }
@@ -15933,17 +15933,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Urutan Pelunasan"
-          }
-        }
-      }
-    },
-    "plan.action.failed" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Belum Berhasil"
+            "value" : "Semua Akun"
           }
         }
       }
@@ -15953,87 +15943,77 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kembali"
+            "value" : "Kembali ke Beranda"
           }
         }
       }
     },
-    "plan.caption.avalanche" : {
+    "plan.celebrate.body %@" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avalanche"
+            "value" : "Satu akun selesai. Cicilanmu turun %@ per bulan."
           }
         }
       }
     },
-    "plan.caption.avalanche.extra %@" : {
+    "plan.celebrate.close" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avalanche · tambahan %@ per bulan"
+            "value" : "Tutup, ke Beranda"
           }
         }
       }
     },
-    "plan.caption.snowball" : {
+    "plan.celebrate.continue %@" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Snowball"
+            "value" : "Lanjut ke %@"
           }
         }
       }
     },
-    "plan.caption.snowball.extra %@" : {
+    "plan.celebrate.home" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Snowball · tambahan %@ per bulan"
+            "value" : "Ke Beranda"
           }
         }
       }
     },
-    "plan.celebrate.continue" : {
+    "plan.celebrate.note" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lanjut"
+            "value" : "pelan-pelan tapi pasti"
           }
         }
       }
     },
-    "plan.celebrate.estimate" : {
+    "plan.celebrate.points %lld" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ini perkiraan, bukan angka resmi."
+            "value" : "+%lld Poin"
           }
         }
       }
     },
-    "plan.celebrate.later" : {
+    "plan.celebrate.position %lld %lld" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nanti Saja"
-          }
-        }
-      }
-    },
-    "plan.celebrate.next %@" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Berikutnya kita lunasi %@."
+            "value" : "Akun %1$lld dari %2$lld selesai"
           }
         }
       }
@@ -16043,7 +16023,27 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Perkiraan Kira Score: %1$lld → %2$lld"
+            "value" : "%1$lld → %2$lld"
+          }
+        }
+      }
+    },
+    "plan.celebrate.score.same %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kira Score tetap %lld"
+          }
+        }
+      }
+    },
+    "plan.celebrate.score.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perkiraan Kira Score"
           }
         }
       }
@@ -16054,16 +16054,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lihat Kira Score"
-          }
-        }
-      }
-    },
-    "plan.celebrate.sheet" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lunas"
           }
         }
       }
@@ -16108,6 +16098,16 @@
         }
       }
     },
+    "plan.edit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah Rencana"
+          }
+        }
+      }
+    },
     "plan.empty.body" : {
       "localizations" : {
         "id" : {
@@ -16148,12 +16148,182 @@
         }
       }
     },
-    "plan.next.in %@ %lld" : {
+    "plan.failure.close" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jatuh tempo %1$@ · %2$lld hari lagi"
+            "value" : "Tutup"
+          }
+        }
+      }
+    },
+    "plan.failure.focus" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rencana Belum Berpindah"
+          }
+        }
+      }
+    },
+    "plan.failure.payment" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pembayaran Belum Tercatat"
+          }
+        }
+      }
+    },
+    "plan.failure.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
+          }
+        }
+      }
+    },
+    "plan.hero.caption %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ dari %2$@"
+          }
+        }
+      }
+    },
+    "plan.hero.days %@ %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ lunas dalam %2$lld hari"
+          }
+        }
+      }
+    },
+    "plan.hero.label" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akun yang sedang dilunasi"
+          }
+        }
+      }
+    },
+    "plan.hero.note" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "satu per satu, ya"
+          }
+        }
+      }
+    },
+    "plan.hero.on %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ lunas %2$@"
+          }
+        }
+      }
+    },
+    "plan.hero.paid" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah dibayar"
+          }
+        }
+      }
+    },
+    "plan.hero.percent %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%%"
+          }
+        }
+      }
+    },
+    "plan.hero.position %lld %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akun %1$lld dari %2$lld"
+          }
+        }
+      }
+    },
+    "plan.hero.today %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ lunas hari ini"
+          }
+        }
+      }
+    },
+    "plan.hero.unknown %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ sedang dilunasi"
+          }
+        }
+      }
+    },
+    "plan.next.dated %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "plan.next.daysLeft %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Hari Lagi"
+          }
+        }
+      }
+    },
+    "plan.next.extra" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambahan"
+          }
+        }
+      }
+    },
+    "plan.next.instalment" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan"
           }
         }
       }
@@ -16163,7 +16333,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cicilan Berikutnya"
+            "value" : "Pembayaran Berikutnya"
           }
         }
       }
@@ -16173,27 +16343,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jatuh tempo hari ini"
-          }
-        }
-      }
-    },
-    "plan.ongoing.footer" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cicilan produktif tidak masuk rencana ini."
-          }
-        }
-      }
-    },
-    "plan.ongoing.title" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dibayar Seperti Biasa"
+            "value" : "Hari Ini"
           }
         }
       }
@@ -16208,22 +16358,22 @@
         }
       }
     },
-    "plan.progress.label" : {
+    "plan.subtitle.avalanche %@" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sudah Terlunasi"
+            "value" : "Avalanche · mulai %@"
           }
         }
       }
     },
-    "plan.subtitle" : {
+    "plan.subtitle.snowball %@" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Satu cicilan lunas, satu langkah lebih ringan."
+            "value" : "Snowball · mulai %@"
           }
         }
       }
@@ -16248,12 +16398,32 @@
         }
       }
     },
+    "plan.tag.next.month %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berikutnya · %@"
+          }
+        }
+      }
+    },
     "plan.tag.ongoing" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jalan Terus"
+          }
+        }
+      }
+    },
+    "plan.tag.paidOff" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lunas"
           }
         }
       }
@@ -17267,17 +17437,6 @@
         }
       }
     },
-    "problem.connection" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Koneksi terputus. Cek internetmu, lalu coba lagi."
-          }
-        }
-      }
-    },
     "problem.EMAIL_DELIVERY_FAILED" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -17432,17 +17591,6 @@
         }
       }
     },
-    "problem.rateLimited" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Permintaanmu terlalu sering. Tunggu sebentar, lalu coba lagi."
-          }
-        }
-      }
-    },
     "problem.RECEIPT_TOTAL_MISMATCH" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -17450,17 +17598,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Jumlah item belum sama dengan totalnya. Periksa lagi, ya."
-          }
-        }
-      }
-    },
-    "problem.reference %@" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kode bantuan: %@"
           }
         }
       }
@@ -17542,17 +17679,6 @@
         }
       }
     },
-    "problem.serviceUnavailable" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Layanan Kira sedang tidak bisa dihubungi. Coba lagi sebentar lagi."
-          }
-        }
-      }
-    },
     "problem.SUBSCRIPTION_NOT_CANCELLABLE" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -17619,17 +17745,6 @@
         }
       }
     },
-    "problem.unknown" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ada yang tidak beres. Coba lagi sebentar lagi."
-          }
-        }
-      }
-    },
     "problem.VALIDATION_FAILED" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -17637,6 +17752,61 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ada isian yang belum sesuai. Periksa lagi, ya."
+          }
+        }
+      }
+    },
+    "problem.connection" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koneksi terputus. Cek internetmu, lalu coba lagi."
+          }
+        }
+      }
+    },
+    "problem.rateLimited" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permintaanmu terlalu sering. Tunggu sebentar, lalu coba lagi."
+          }
+        }
+      }
+    },
+    "problem.reference %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kode bantuan: %@"
+          }
+        }
+      }
+    },
+    "problem.serviceUnavailable" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Layanan Kira sedang tidak bisa dihubungi. Coba lagi sebentar lagi."
+          }
+        }
+      }
+    },
+    "problem.unknown" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ada yang tidak beres. Coba lagi sebentar lagi."
           }
         }
       }
@@ -18421,6 +18591,16 @@
         }
       }
     },
+    "record.manual.saveIncome" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Pemasukan"
+          }
+        }
+      }
+    },
     "record.manual.savedBody" : {
       "localizations" : {
         "id" : {
@@ -18437,16 +18617,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transaksi Tersimpan"
-          }
-        }
-      }
-    },
-    "record.manual.saveIncome" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Simpan Pemasukan"
           }
         }
       }

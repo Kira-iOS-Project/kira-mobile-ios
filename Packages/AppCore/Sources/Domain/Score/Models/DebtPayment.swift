@@ -40,6 +40,8 @@ package struct DebtPayment: Hashable, Sendable {
     package let paid: Int
     /** What is left. */
     package let remaining: Int
+    /** The account's monthly instalment, which a payoff takes off the month ("Cicilanmu turun"). */
+    package let monthlyInstalment: Int
     /** Paid so far over the original balance, 0 to 100. */
     package let progressPercent: Int
     /** True only for the payment that settled the account: the celebration shows once. */
@@ -51,12 +53,14 @@ package struct DebtPayment: Hashable, Sendable {
 
     /** A payment with every field given. */
     package init(
-        debtId: String, paid: Int, remaining: Int, progressPercent: Int, paidOff: Bool, nextAccount: NextAccount?,
+        debtId: String, paid: Int, remaining: Int, monthlyInstalment: Int, progressPercent: Int, paidOff: Bool,
+        nextAccount: NextAccount?,
         scoreEstimate: ScoreEstimate?
     ) {
         self.debtId = debtId
         self.paid = paid
         self.remaining = remaining
+        self.monthlyInstalment = monthlyInstalment
         self.progressPercent = progressPercent
         self.paidOff = paidOff
         self.nextAccount = nextAccount

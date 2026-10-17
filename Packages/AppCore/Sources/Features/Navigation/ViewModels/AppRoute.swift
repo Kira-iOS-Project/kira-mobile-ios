@@ -128,6 +128,8 @@ package enum UnavailableArea: String, CaseIterable, Hashable, Sendable {
     case scoreHistory
     /** SKR: SLIK, the credit report. */
     case creditReport
+    /** SKR: Detail Utang, one debt account's detail (Rencanaku's account rows). */
+    case debtDetail
     /** REN: the Rencana tab. */
     case plan
 }
