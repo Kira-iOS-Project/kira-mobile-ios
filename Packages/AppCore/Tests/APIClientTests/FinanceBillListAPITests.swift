@@ -20,7 +20,8 @@ struct FinanceBillListAPITests {
         #expect(bills[0].isDueSoon && !bills[0].isPaidThisPeriod)
         #expect(bills[1].kind == .debtInstallment && bills[1].installmentsRemaining == 2)
         #expect(bills[1].linkedDebtAccountID == "account-1" && bills[1].isPaidThisPeriod)
-        #expect(await transport.request?.path == "/api/bills")
+        let request = await transport.request
+        #expect(request?.path == "/api/bills")
     }
 
     @Test("preserves the documented authentication error and maps unknown statuses")
