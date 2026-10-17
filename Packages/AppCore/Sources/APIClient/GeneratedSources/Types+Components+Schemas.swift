@@ -7081,7 +7081,7 @@ extension Components {
                 internal enum _TypePayload: String, Codable, Hashable, Sendable, CaseIterable {
                     case creditCard = "credit_card"
                     case paylater = "paylater"
-                    case pinjol = "pinjol"
+                    case onlineLoan = "pinjol"
                 }
                 /// - Remark: Generated from `#/components/schemas/CreateWalletInput/value2/type`.
                 internal var _type: Components.Schemas.CreateWalletInput.Value2Payload._TypePayload
@@ -7175,7 +7175,7 @@ extension Components {
             internal enum KindPayload: String, Codable, Hashable, Sendable, CaseIterable {
                 case creditCard = "credit_card"
                 case paylater = "paylater"
-                case pinjol = "pinjol"
+                case onlineLoan = "pinjol"
                 case onlineLoan = "online_loan"
             }
             /// - Remark: Generated from `#/components/schemas/CreateDebtInput/kind`.

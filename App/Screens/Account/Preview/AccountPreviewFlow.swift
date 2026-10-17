@@ -25,7 +25,6 @@
         }
 
         private func open(_ route: AppRoute) {
-            if case .unavailable = route { return }
             path.append(route)
         }
 

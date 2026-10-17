@@ -19,7 +19,7 @@ extension Components.Schemas.CreateWalletInput {
         switch draft.type {
         case .creditCard: self.init(value2: .init(name: draft.name, _type: .creditCard, remainingDebt: draft.amount))
         case .paylater: self.init(value2: .init(name: draft.name, _type: .paylater, remainingDebt: draft.amount))
-        case .onlineLoan: self.init(value2: .init(name: draft.name, _type: .pinjol, remainingDebt: draft.amount))
+        case .onlineLoan: self.init(value2: .init(name: draft.name, _type: .onlineLoan, remainingDebt: draft.amount))
         case .bank: self.init(value1: .init(name: draft.name, _type: .bank, balance: draft.amount))
         case .ewallet: self.init(value1: .init(name: draft.name, _type: .ewallet, balance: draft.amount))
         case .cash: self.init(value1: .init(name: draft.name, _type: .cash, balance: draft.amount))
