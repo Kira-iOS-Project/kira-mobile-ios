@@ -30,8 +30,7 @@ struct PayoffHero: View {
             .padding(.top, 14)
         }
         .foregroundStyle(.onHero)
-        /** The board's 22 pt at the bottom puts the last line on the hills; 64, as SubscriptionHero, keeps it clear. */
-        .padding(EdgeInsets(top: 20, leading: 20, bottom: 64, trailing: 20))
+        .padding(EdgeInsets(top: 20, leading: 20, bottom: 22, trailing: 20))
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(alignment: .bottom) { KiraScenery(tone: .hero, height: 92).accessibilityHidden(true) }
         .background(.hero)
