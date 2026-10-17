@@ -17,7 +17,8 @@
                 case .billEdit:
                     EditBillScreen(
                         id: "internet", values: .internet, editor: PreviewBillEditorService(),
-                        wallets: PreviewWalletService()) { _ in }
+                        wallets: PreviewWalletService()
+                    ) { _ in }
                 case .billAddSaved: form(PreviewBillEditorService())
                 case .billAddFailing: form(PreviewBillEditorService(fails: true))
                 default:

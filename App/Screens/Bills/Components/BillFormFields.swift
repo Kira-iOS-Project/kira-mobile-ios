@@ -66,7 +66,8 @@ private struct BillCategoryTiles: View {
             .frame(maxWidth: .infinity)
             .background(
                 isOn ? Color.pandanSoft : .clear,
-                in: RoundedRectangle(cornerRadius: KiraRadius.medium, style: .continuous))
+                in: RoundedRectangle(cornerRadius: KiraRadius.medium, style: .continuous)
+            )
             .overlay {
                 RoundedRectangle(cornerRadius: KiraRadius.medium, style: .continuous)
                     .strokeBorder(isOn ? Color.pandan : .clear, lineWidth: 1.5)

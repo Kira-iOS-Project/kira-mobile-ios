@@ -22,8 +22,9 @@ struct DebtSummaryCard: View {
             Divider().overlay(Color.hairline)
             KiraProgressRibbon(
                 value: Double(debt.paidAmount), target: Double(debt.totalAmount), label: "debt.detail.paid",
-                valueLabel: paidLabel)
-                .caption(caption)
+                valueLabel: paidLabel
+            )
+            .caption(caption)
         }
         .padding(20)
         .kiraCard(cornerRadius: KiraRadius.extraLarge)

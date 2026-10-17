@@ -55,9 +55,11 @@ struct BillFormModelGuardTests {
             id: "b-1", name: "Internet Rumah", kind: .bill, category: "entertainment", amount: 350_000,
             repeats: .yearly, dueOn: day, dueDay: 22, nextDueOn: day, debtId: "debt-1")
         let values = BillFormValues(bill: bill)
-        #expect(values == BillFormValues(
-            name: "Internet Rumah", amount: 350_000, category: .entertainment, repeats: .yearly, dueOn: day,
-            debtId: "debt-1"))
+        #expect(
+            values
+                == BillFormValues(
+                    name: "Internet Rumah", amount: 350_000, category: .entertainment, repeats: .yearly, dueOn: day,
+                    debtId: "debt-1"))
         let household = Bill(
             id: "b-2", name: "Air", kind: .bill, category: "household", amount: 90_000, dueOn: day, dueDay: 22,
             nextDueOn: day)
