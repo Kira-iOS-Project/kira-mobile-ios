@@ -127,7 +127,7 @@ private struct PaidOffScoreCard: View {
                 Text("plan.celebrate.score.title")
                     .font(.footnote.weight(.semibold)).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
                 Text(scoreLine)
-                    .font(KiraFont.display(26, axisWeight: 800, relativeTo: .title, typeSize: typeSize))
+                    .font(KiraFont.display(26, axisWeight: 800, relativeTo: .title1, typeSize: typeSize))
                     .kiraLineHeight(32, size: 26, relativeTo: .title)
                     .tracking(-0.52)
                     .monospacedDigit()
