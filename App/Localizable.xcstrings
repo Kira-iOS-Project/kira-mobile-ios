@@ -16798,6 +16798,26 @@
         }
       }
     },
+    "plan.home.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rencana Belum Bisa Dibuka"
+          }
+        }
+      }
+    },
+    "plan.home.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rencana"
+          }
+        }
+      }
+    },
     "plan.next.dated %@ %@" : {
       "localizations" : {
         "id" : {
@@ -17384,16 +17404,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tujuan dan belajar"
-          }
-        }
-      }
-    },
-    "plan.failed" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rencana Belum Bisa Dibuka"
           }
         }
       }
@@ -19324,16 +19334,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld tahun lagi"
-          }
-        }
-      }
-    },
-    "plan.title" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rencana"
           }
         }
       }

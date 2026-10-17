@@ -57,7 +57,7 @@ private final class Ids: @unchecked Sendable {
 @Suite("GoalDetailModel")
 struct GoalDetailModelTests {
     /** 17 Oktober 2026, 10.00 WIB. */
-    private static let now = Date(timeIntervalSince1970: 1_792_206_000)
+    nonisolated private static let now = Date(timeIntervalSince1970: 1_792_206_000)
 
     private func model(_ stub: DetailStub, ids: Ids = Ids()) -> GoalDetailModel {
         GoalDetailModel(id: "emergency", service: stub, now: { Self.now }, makeId: { ids.make() })
