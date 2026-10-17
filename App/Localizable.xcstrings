@@ -16218,22 +16218,22 @@
         }
       }
     },
-    "plan.hero.months %@ %lld" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$@ lunas dalam %2$lld bulan"
-          }
-        }
-      }
-    },
     "plan.hero.note" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "satu per satu, ya"
+          }
+        }
+      }
+    },
+    "plan.hero.on %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ lunas %2$@"
           }
         }
       }

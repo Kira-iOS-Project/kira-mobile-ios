@@ -31,4 +31,22 @@ package struct PaidOffAccount: Hashable, Identifiable, Sendable {
         scoreEstimate = payment.scoreEstimate
         nextAccount = payment.nextAccount
     }
+
+    /**
+     The account `debtId` as `after` shows it paid off, when the payment's own answer was lost (a
+     retry answered `PAYOFF_PAYMENT_ALREADY_RECORDED`): nil unless `before` listed it open and
+     `after` lists it paid. With no answer there is no score estimate; the plan's new focus is next.
+     */
+    package init?(debtId: String, before: ActivePayoffPlan, after: ActivePayoffPlan) {
+        guard let was = before.account(debtId), was.status != .paidOff,
+            let now = after.account(debtId), now.status == .paidOff
+        else { return nil }
+        id = debtId
+        name = now.name
+        position = before.position(of: debtId)
+        total = before.accounts.count
+        monthlyInstalment = was.monthlyInstalment
+        scoreEstimate = nil
+        nextAccount = after.focus.map { NextAccount(id: $0.id, name: $0.name) }
+    }
 }

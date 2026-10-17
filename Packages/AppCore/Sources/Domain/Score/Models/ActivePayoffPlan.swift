@@ -97,21 +97,20 @@ package struct NextPayment: Hashable, Sendable {
     }
 }
 
-/** How far the account in progress is from being paid off. */
+/** When the account in progress is paid off, as the API says it: no date is worked out on the device. */
 package enum PayoffCountdown: Hashable, Sendable {
-    /** Within a month: in this many days (0 is today). */
+    /** The next payment settles it, due in this many days (0 is today). */
     case days(Int)
-    /** Further: in this many months. */
-    case months(Int)
+    /** On this due date (`YYYY-MM-DD`). */
+    case date(String)
+    /** In this month (`YYYY-MM`), the account having no due day. */
+    case month(String)
     /** The plan cannot say. */
     case unknown
 }
 
 /** The plan the person made: Rencanaku. */
 package struct ActivePayoffPlan: Hashable, Sendable {
-    /** Up to this many days, the countdown counts days; past it, months. */
-    package static let daysCountdownLimit = 31
-
     /** The plan's id. */
     package let id: String
     /** Its method. */
@@ -152,23 +151,16 @@ package struct ActivePayoffPlan: Hashable, Sendable {
     }
 
     /**
-     How long until the account in progress is paid off, counted from `today`: by its last due date
-     when there is one, else by its month.
+     When the account in progress is paid off: in the next payment's days left when that payment
+     settles it, else on its last due date, else in its month.
      */
-    package func focusCountdown(today: CalendarDay) -> PayoffCountdown {
+    package var focusCountdown: PayoffCountdown {
         guard let focus else { return .unknown }
-        if let iso = focus.payoffDate, let day = CalendarDay(iso: iso) {
-            let days = max(0, today.days(to: day))
-            if days <= Self.daysCountdownLimit { return .days(days) }
-            return .months(max(1, Self.months(from: today, to: day)))
+        if let next = nextPayment, next.debtId == focus.id, next.amount >= focus.remaining, let left = next.daysLeft {
+            return .days(max(0, left))
         }
-        if let iso = focus.payoffMonth, let day = CalendarDay(iso: "\(iso)-01") {
-            return .months(max(1, Self.months(from: today, to: day)))
-        }
+        if let date = focus.payoffDate { return .date(date) }
+        if let month = focus.payoffMonth { return .month(month) }
         return .unknown
-    }
-
-    private static func months(from start: CalendarDay, to end: CalendarDay) -> Int {
-        max(0, (end.year - start.year) * 12 + end.month - start.month)
     }
 }

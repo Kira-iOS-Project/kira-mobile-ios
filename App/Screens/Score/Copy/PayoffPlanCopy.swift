@@ -18,9 +18,16 @@ enum PayoffPlanCopy {
         switch countdown {
         case .days(0): "plan.hero.today \(account.name)"
         case .days(let days): "plan.hero.days \(account.name) \(days)"
-        case .months(let months): "plan.hero.months \(account.name) \(months)"
+        case .date(let iso): when(account, date(iso))
+        case .month(let iso): when(account, PayoffCopy.month(iso))
         case .unknown: "plan.hero.unknown \(account.name)"
         }
+    }
+
+    /** "Paylater B lunas 5 Januari 2027"; the plain line when the date cannot be read. */
+    private static func when(_ account: PlanAccount, _ text: String?) -> LocalizedStringResource {
+        guard let text else { return "plan.hero.unknown \(account.name)" }
+        return "plan.hero.on \(account.name) \(text)"
     }
 
     /** "Rp840.000,00 dari Rp1.260.000,00", under the hero's ribbon. */

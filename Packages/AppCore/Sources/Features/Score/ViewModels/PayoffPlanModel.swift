@@ -74,6 +74,7 @@ package final class PayoffPlanModel {
         isWorking = true
         failure = nil
         defer { isWorking = false }
+        var alreadyRecorded = false
         do {
             let payment = try await service.recordPayment(
                 debtId: next.debtId, amount: next.amount, paymentId: paymentId)
@@ -86,9 +87,15 @@ package final class PayoffPlanModel {
                 failure = .payment(paymentId: paymentId, problem)
                 return
             }
+            alreadyRecorded = true
         }
         do {
-            phase = .loaded(try await service.active())
+            let reloaded = try await service.active()
+            phase = .loaded(reloaded)
+            /** The lost answer may have been the one that settled the account: the plan says so. */
+            if alreadyRecorded {
+                celebration = PaidOffAccount(debtId: next.debtId, before: plan, after: reloaded)
+            }
         } catch {
             phase = .failed(AppProblem(error))
         }
