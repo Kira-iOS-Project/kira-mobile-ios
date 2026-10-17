@@ -37,4 +37,17 @@ struct PaidOffAccountTests {
         let paid = PaidOffAccount(payment: payment, plan: PayoffPlanFixtures.plan(), name: "Akun Lama")
         #expect(paid.position == nil && paid.total == 3 && paid.nextAccount == nil && paid.scoreEstimate == nil)
     }
+
+    @Test("from the plans before and after a lost answer: only an account that went from open to paid off")
+    func fromPlans() throws {
+        let before = PayoffPlanFixtures.plan()
+        let paid = try #require(
+            PaidOffAccount(debtId: "a-1", before: before, after: PayoffPlanFixtures.planAfterPayoff))
+        #expect(paid.name == "Akun a-1" && paid.position == 1 && paid.total == 3 && paid.monthlyInstalment == 210_000)
+        #expect(paid.scoreEstimate == nil && paid.nextAccount == NextAccount(id: "a-2", name: "Akun a-2"))
+        #expect(PaidOffAccount(debtId: "a-1", before: before, after: before) == nil)
+        #expect(PaidOffAccount(debtId: "x", before: before, after: PayoffPlanFixtures.planAfterPayoff) == nil)
+        let afterNoFocus = PayoffPlanFixtures.donePlan
+        #expect(PaidOffAccount(debtId: "a-1", before: PayoffPlanFixtures.planAfterPayoff, after: afterNoFocus) == nil)
+    }
 }

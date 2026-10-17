@@ -61,6 +61,20 @@ struct PayoffPlanModelFailureTests {
         #expect(await service.calls.suffix(2) == ["pay a-1 210000 p1", "active"])
     }
 
+    @Test("a retry the API already recorded opens the celebration when the reloaded plan shows the account paid off")
+    func alreadyRecordedPayoff() async throws {
+        await service.answersPayment(.failure(URLError(.networkConnectionLost)))
+        let model = await loadedModel()
+        await model.markPaid()
+        let failed = try #require(model.failure)
+        await service.answersPayment(.failure(AppProblem(code: "PAYOFF_PAYMENT_ALREADY_RECORDED")))
+        await service.answersActive(.success(PayoffPlanFixtures.planAfterPayoff))
+        await model.retry(failed)
+        let paid = try #require(model.celebration)
+        #expect(model.failure == nil && paid.id == "a-1" && paid.position == 1 && paid.total == 3)
+        #expect(paid.scoreEstimate == nil && paid.nextAccount == NextAccount(id: "a-2", name: "Akun a-2"))
+    }
+
     @Test("when only the reload after a payment fails, the page shows the failure, never the old plan")
     func reloadFails() async {
         let model = await loadedModel()
