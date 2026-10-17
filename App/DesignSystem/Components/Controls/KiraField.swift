@@ -20,6 +20,7 @@ struct KiraField: View {
     private var iconName: KiraIconName?
     private var minimumLines = 1
     private var groupsDigits = false
+    private var wrapsText = false
     @FocusState private var isFocused: Bool
     /** Whether an `.amount()` field's UIKit text field is being typed in. */
     @State private var isEditingAmount = false
@@ -86,7 +87,7 @@ struct KiraField: View {
     }
 
     private var textField: some View {
-        TextField(text: $text, prompt: systemPrompt, axis: isSingleLine ? .horizontal : .vertical) {
+        TextField(text: $text, prompt: systemPrompt, axis: isSingleLine && !wrapsText ? .horizontal : .vertical) {
             Text(label)
         }
         .lineLimit(minimumLines...max(minimumLines, 6))
@@ -137,6 +138,12 @@ struct KiraField: View {
 
     /** The same field, growing to show at least `lines` lines. */
     func multiline(_ lines: Int) -> Self { copy { $0.minimumLines = lines } }
+
+    /**
+     The same field, one line when empty, wrapping onto more lines as a long value grows (a contact's
+     name), instead of scrolling it out of view at large text sizes.
+     */
+    func wraps() -> Self { copy { $0.wrapsText = true } }
 
     private func copy(_ change: (inout Self) -> Void) -> Self {
         var field = self
