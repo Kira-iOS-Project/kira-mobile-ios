@@ -11,6 +11,8 @@ package enum AppRoute: Hashable, Sendable {
     case bills
     /** UNG-07: create a recurring bill or link it to an owned debt account. */
     case billCreate
+    /** UNG-07c: edit a recurring bill's future schedule. */
+    case billEdit(id: String)
     /** SKR-01: Kira Score. */
     case score
     /** SKR-02: one indicator's detail. */

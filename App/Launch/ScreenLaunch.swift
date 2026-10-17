@@ -39,7 +39,7 @@
         case result, pin
         /** BRD and SKR. */
         case home, homeFirstSteps, homeDebtPlan, score
-        case billList, billCreate
+        case billList, billCreate, billEdit
         case emergencyFund, savingsRatio, instalmentRatio, consumerDebt, debtToAsset, protectionCover
         /** AKN: Profil and the screens it opens. */
         case profile, wallets, security, privacy, about, terms, privacyPolicy, complaints
@@ -61,7 +61,8 @@
             case .splash, .intro, .signUp, .signIn, .code, .consent, .focus, .income, .expenses, .debts, .savings,
                 .assets, .protection, .result, .pin:
                 .onboarding
-            case .home, .homeFirstSteps, .homeDebtPlan, .billList, .billCreate, .score, .emergencyFund, .savingsRatio,
+            case .home, .homeFirstSteps, .homeDebtPlan, .billList, .billCreate, .billEdit, .score, .emergencyFund,
+                .savingsRatio,
                 .instalmentRatio,
                 .consumerDebt, .debtToAsset, .protectionCover:
                 .home

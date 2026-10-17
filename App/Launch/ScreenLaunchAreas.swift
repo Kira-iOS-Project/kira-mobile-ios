@@ -58,6 +58,8 @@
                             onOpenCreate: { showsBillCreate = true })
                     case .billCreate:
                         BillCreateScreen(service: PreviewBillsService(), onOpenHelp: {})
+                    case .billEdit:
+                        BillEditScreen(id: "internet", service: PreviewBillEditService(), onOpenHelp: {})
                     case .homeFirstSteps: HomeScreen(service: PreviewHomeService(.sampleFirstSteps)) { _ in }
                     case .homeDebtPlan: HomeScreen(service: PreviewHomeService(.sampleDebtPlan)) { _ in }
                     case .score: ScoreScreen(service: PreviewScoreService()) { _ in }

@@ -33,10 +33,16 @@ struct RouteSlot: View {
             BillsScreen(
                 service: services.bills,
                 onOpenBill: { bill in
-                    if let id = bill.linkedDebtAccountID { onOpen(.debtDetail(id: id)) }
+                    if let id = bill.linkedDebtAccountID {
+                        onOpen(.debtDetail(id: id))
+                    } else if bill.kind == .bill {
+                        onOpen(.billEdit(id: bill.id))
+                    }
                 }, onOpenCreate: { onOpen(.billCreate) })
         case .billCreate:
             BillCreateScreen(service: services.bills, onOpenHelp: { onOpen(.unavailable(.care)) })
+        case .billEdit(let id):
+            BillEditScreen(id: id, service: services.billEdit, onOpenHelp: { onOpen(.unavailable(.care)) })
         case .security, .changePin:
             SecurityScreen(service: services.account, settings: services.security, onOpen: onOpen)
         case .privacy, .deleteAccount:

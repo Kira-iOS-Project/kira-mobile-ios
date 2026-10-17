@@ -46,7 +46,7 @@ struct BillsScreen: View {
         .background(.surface)
         .kiraScrollEdges()
         .toolbar(.hidden, for: .navigationBar)
-        .task { await model.load() }
+        .onAppear { Task { await model.load() } }
     }
 
     private var navBar: some View {
