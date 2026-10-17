@@ -29,10 +29,15 @@ struct GoalDetailScreen: View {
             .padding(.horizontal, KiraSpacing.screen)
             .padding(.top, 62 - 59)
             .padding(.bottom, KiraSpacing.space8)
-        }
-        .background(alignment: .topTrailing) {
-            KiraLeaf(.twig, tone: .soft, size: 136, isFlipped: true).offset(x: 40, y: 24 - 59)
-                .accessibilityHidden(true)
+            /**
+             The twig in the scrolled content's background, as PlanScreenFrame draws it: on the scroll
+             view's own background VoiceOver still found it ("Element has no description").
+             */
+            .background(alignment: .top) {
+                KiraLeaf(.twig, tone: .soft, size: 136, isFlipped: true)
+                    .frame(maxWidth: .infinity, alignment: .trailing).offset(x: 40, y: 24 - 59)
+                    .accessibilityHidden(true)
+            }
         }
         .background(.surface)
         .kiraScrollEdges()

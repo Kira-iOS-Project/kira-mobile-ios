@@ -52,7 +52,8 @@ nonisolated final class PlanAuditTests: XCTestCase {
         try auditScreen(
             "goalGone",
             prepare: { app in
-                XCTAssertTrue(app.staticTexts["Tujuan ini sudah tidak ada."].waitForExistence(timeout: 10))
+                let gone = app.staticTexts["Tujuan ini tidak ditemukan. Mungkin sudah dihapus."]
+                XCTAssertTrue(gone.waitForExistence(timeout: 10))
                 XCTAssertFalse(app.buttons["Coba Lagi"].exists)
             })
     }
