@@ -15,7 +15,8 @@ struct FinanceAPIBillsTests {
         let json = """
             {"count":0,"monthlyTotal":0,"sections":[\
             {"group":"next7Days","bills":[]},{"group":"thisMonth","bills":[]},\
-            {"group":"nextMonth","bills":[\(bill(next: "null")),\(bill(next: #""2026-11-01""#))]},{"group":"later","bills":[]}]}
+            {"group":"nextMonth","bills":[\(bill(next: "null")),\(bill(next: #""2026-11-01""#))]},\
+            {"group":"later","bills":[]}]}
             """
         let (api, _) = KiraAPI.canned(json: json)
         let overview = try await api.listBills()
