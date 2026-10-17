@@ -90,4 +90,17 @@ struct BudgetSettingsModelTests {
         full.amounts[.food] = "9.000.000"
         #expect(full.unallocated == 0)
     }
+
+    @Test("an empty amount counts as nothing; a category missing from the form is saved as 0; today is the clock's")
+    func gaps() async throws {
+        let service = FakeBudgetSettingsService()
+        let model = BudgetSettingsModel(service: service)
+        await model.load()
+        model.amounts[.food] = ""
+        #expect(model.allocated == 3_400_000)
+        model.amounts[.transport] = nil
+        await model.save()
+        #expect(try #require(await service.saved.first).allocations[.transport] == 0)
+        #expect(model.period.start < model.period.end)
+    }
 }
