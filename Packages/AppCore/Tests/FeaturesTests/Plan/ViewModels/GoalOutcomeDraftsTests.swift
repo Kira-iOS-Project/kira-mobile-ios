@@ -94,4 +94,3 @@ struct GoalOutcomeDraftsTests {
         #expect(try #require(model.outcome).draft(today: today).inputs["annualReturn"] == .empty)
     }
 }
-

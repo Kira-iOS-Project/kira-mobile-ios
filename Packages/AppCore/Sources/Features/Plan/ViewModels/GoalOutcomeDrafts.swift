@@ -72,8 +72,8 @@ extension EducationGoalOutcome {
         }
         return GoalDraft(
             kind: .education, name: "Pendidikan \(childName)", inputs: inputs, initialAmount: plan.present,
-            monthlyDeposit: plan.deposit, targetAmount: plan.target(), targetDate: today.adding(years: plan.yearsInvesting),
-            inBudget: true)
+            monthlyDeposit: plan.deposit, targetAmount: plan.target(),
+            targetDate: today.adding(years: plan.yearsInvesting), inBudget: true)
     }
 }
 
