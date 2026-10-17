@@ -34,7 +34,7 @@ struct WalletsModelTests {
         if case .empty = empty.phase {} else { Issue.record("Expected empty accounts") }
 
         let broken = FakeWalletService()
-        await broken.configure(failures: [.debts])
+        await broken.configure(failures: [.overview])
         let failed = WalletsModel(service: broken)
         await failed.load()
         guard case .failed(let problem) = failed.phase else {
@@ -49,7 +49,7 @@ struct WalletsModelTests {
         let service = FakeWalletService(wallets: [bank])
         let refreshing = WalletsModel(service: service)
         await refreshing.load()
-        await service.configure(failures: [.wallets])
+        await service.configure(failures: [.overview])
         await refreshing.load()
         #expect(refreshing.phase.value?.wallets == [bank])
     }

@@ -3697,6 +3697,398 @@ internal enum Operations {
             }
         }
     }
+    /// Riwayat Kira Score
+    ///
+    /// The score now against last month, a point per month (taken on the 25th, WIB, and at the first health check) and the indicators that changed. Kira Plus only: other plans get 403 PLAN_FEATURE_UNAVAILABLE.
+    ///
+    /// - Remark: HTTP `GET /api/score/history`.
+    /// - Remark: Generated from `#/paths//api/score/history/get(getScoreHistory)`.
+    internal enum GetScoreHistory {
+        internal static let id: Swift.String = "getScoreHistory"
+        internal struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/api/score/history/GET/query`.
+            internal struct Query: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/score/history/GET/query/range`.
+                internal enum RangePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                    case _6m = "6m"
+                    case _1y = "1y"
+                }
+                /// - Remark: Generated from `#/paths/api/score/history/GET/query/range`.
+                internal var range: Operations.GetScoreHistory.Input.Query.RangePayload?
+                /// Creates a new `Query`.
+                ///
+                /// - Parameters:
+                ///   - range:
+                internal init(range: Operations.GetScoreHistory.Input.Query.RangePayload? = nil) {
+                    self.range = range
+                }
+            }
+            internal var query: Operations.GetScoreHistory.Input.Query
+            /// - Remark: Generated from `#/paths/api/score/history/GET/header`.
+            internal struct Headers: Sendable, Hashable {
+                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetScoreHistory.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetScoreHistory.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            internal var headers: Operations.GetScoreHistory.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - query:
+            ///   - headers:
+            internal init(
+                query: Operations.GetScoreHistory.Input.Query = .init(),
+                headers: Operations.GetScoreHistory.Input.Headers = .init()
+            ) {
+                self.query = query
+                self.headers = headers
+            }
+        }
+        internal enum Output: Sendable, Hashable {
+            internal struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/score/history/GET/responses/200/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/score/history/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.ScoreHistory)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    internal var json: Components.Schemas.ScoreHistory {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetScoreHistory.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetScoreHistory.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// The score history over the range
+            ///
+            /// - Remark: Generated from `#/paths//api/score/history/get(getScoreHistory)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.GetScoreHistory.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            internal var ok: Operations.GetScoreHistory.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Unauthorized: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/score/history/GET/responses/401/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/score/history/GET/responses/401/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetScoreHistory.Output.Unauthorized.Body
+                /// Creates a new `Unauthorized`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetScoreHistory.Output.Unauthorized.Body) {
+                    self.body = body
+                }
+            }
+            /// No valid session
+            ///
+            /// - Remark: Generated from `#/paths//api/score/history/get(getScoreHistory)/responses/401`.
+            ///
+            /// HTTP response code: `401 unauthorized`.
+            case unauthorized(Operations.GetScoreHistory.Output.Unauthorized)
+            /// The associated value of the enum case if `self` is `.unauthorized`.
+            ///
+            /// - Throws: An error if `self` is not `.unauthorized`.
+            /// - SeeAlso: `.unauthorized`.
+            internal var unauthorized: Operations.GetScoreHistory.Output.Unauthorized {
+                get throws {
+                    switch self {
+                    case let .unauthorized(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unauthorized",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Forbidden: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/score/history/GET/responses/403/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/score/history/GET/responses/403/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetScoreHistory.Output.Forbidden.Body
+                /// Creates a new `Forbidden`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetScoreHistory.Output.Forbidden.Body) {
+                    self.body = body
+                }
+            }
+            /// Action not allowed
+            ///
+            /// - Remark: Generated from `#/paths//api/score/history/get(getScoreHistory)/responses/403`.
+            ///
+            /// HTTP response code: `403 forbidden`.
+            case forbidden(Operations.GetScoreHistory.Output.Forbidden)
+            /// The associated value of the enum case if `self` is `.forbidden`.
+            ///
+            /// - Throws: An error if `self` is not `.forbidden`.
+            /// - SeeAlso: `.forbidden`.
+            internal var forbidden: Operations.GetScoreHistory.Output.Forbidden {
+                get throws {
+                    switch self {
+                    case let .forbidden(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "forbidden",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct NotFound: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/score/history/GET/responses/404/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/score/history/GET/responses/404/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetScoreHistory.Output.NotFound.Body
+                /// Creates a new `NotFound`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetScoreHistory.Output.NotFound.Body) {
+                    self.body = body
+                }
+            }
+            /// Resource not found
+            ///
+            /// - Remark: Generated from `#/paths//api/score/history/get(getScoreHistory)/responses/404`.
+            ///
+            /// HTTP response code: `404 notFound`.
+            case notFound(Operations.GetScoreHistory.Output.NotFound)
+            /// The associated value of the enum case if `self` is `.notFound`.
+            ///
+            /// - Throws: An error if `self` is not `.notFound`.
+            /// - SeeAlso: `.notFound`.
+            internal var notFound: Operations.GetScoreHistory.Output.NotFound {
+                get throws {
+                    switch self {
+                    case let .notFound(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "notFound",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct UnprocessableContent: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/score/history/GET/responses/422/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/score/history/GET/responses/422/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetScoreHistory.Output.UnprocessableContent.Body
+                /// Creates a new `UnprocessableContent`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetScoreHistory.Output.UnprocessableContent.Body) {
+                    self.body = body
+                }
+            }
+            /// Request schema validation failed
+            ///
+            /// - Remark: Generated from `#/paths//api/score/history/get(getScoreHistory)/responses/422`.
+            ///
+            /// HTTP response code: `422 unprocessableContent`.
+            case unprocessableContent(Operations.GetScoreHistory.Output.UnprocessableContent)
+            /// The associated value of the enum case if `self` is `.unprocessableContent`.
+            ///
+            /// - Throws: An error if `self` is not `.unprocessableContent`.
+            /// - SeeAlso: `.unprocessableContent`.
+            internal var unprocessableContent: Operations.GetScoreHistory.Output.UnprocessableContent {
+                get throws {
+                    switch self {
+                    case let .unprocessableContent(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unprocessableContent",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/score/history/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/score/history/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetScoreHistory.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetScoreHistory.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
+            ///
+            /// - Remark: Generated from `#/paths//api/score/history/get(getScoreHistory)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.GetScoreHistory.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.GetScoreHistory.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
+        }
+        internal enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case applicationProblemJson
+            case other(Swift.String)
+            internal init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                case "application/problem+json":
+                    self = .applicationProblemJson
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            internal var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                case .applicationProblemJson:
+                    return "application/problem+json"
+                }
+            }
+            internal static var allCases: [Self] {
+                [
+                    .json,
+                    .applicationProblemJson
+                ]
+            }
+        }
+    }
     /// One indicator in detail
     ///
     /// Its scoring ladder in rupiah, the next rung and the milestones of its ribbon.
@@ -3997,6 +4389,2697 @@ internal enum Operations {
             /// - Throws: An error if `self` is not `.`default``.
             /// - SeeAlso: `.`default``.
             internal var `default`: Operations.GetScoreIndicator.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
+        }
+        internal enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case applicationProblemJson
+            case other(Swift.String)
+            internal init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                case "application/problem+json":
+                    self = .applicationProblemJson
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            internal var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                case .applicationProblemJson:
+                    return "application/problem+json"
+                }
+            }
+            internal static var allCases: [Self] {
+                [
+                    .json,
+                    .applicationProblemJson
+                ]
+            }
+        }
+    }
+    /// Simulate a debt payoff plan
+    ///
+    /// Orders the consumer debts by snowball or avalanche and returns the month and interest of each, set against the other method. Nothing is saved.
+    ///
+    /// - Remark: HTTP `POST /api/payoff/simulate`.
+    /// - Remark: Generated from `#/paths//api/payoff/simulate/post(simulatePayoff)`.
+    internal enum SimulatePayoff {
+        internal static let id: Swift.String = "simulatePayoff"
+        internal struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/api/payoff/simulate/POST/header`.
+            internal struct Headers: Sendable, Hashable {
+                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.SimulatePayoff.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.SimulatePayoff.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            internal var headers: Operations.SimulatePayoff.Input.Headers
+            /// - Remark: Generated from `#/paths/api/payoff/simulate/POST/requestBody`.
+            internal enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/simulate/POST/requestBody/content/application\/json`.
+                case json(Components.Schemas.SimulatePayoff)
+            }
+            internal var body: Operations.SimulatePayoff.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            ///   - body:
+            internal init(
+                headers: Operations.SimulatePayoff.Input.Headers = .init(),
+                body: Operations.SimulatePayoff.Input.Body
+            ) {
+                self.headers = headers
+                self.body = body
+            }
+        }
+        internal enum Output: Sendable, Hashable {
+            internal struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/simulate/POST/responses/200/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/simulate/POST/responses/200/content/application\/json`.
+                    case json(Components.Schemas.PayoffPlan)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    internal var json: Components.Schemas.PayoffPlan {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SimulatePayoff.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SimulatePayoff.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// The simulated plan
+            ///
+            /// - Remark: Generated from `#/paths//api/payoff/simulate/post(simulatePayoff)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.SimulatePayoff.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            internal var ok: Operations.SimulatePayoff.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct BadRequest: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/simulate/POST/responses/400/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/simulate/POST/responses/400/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SimulatePayoff.Output.BadRequest.Body
+                /// Creates a new `BadRequest`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SimulatePayoff.Output.BadRequest.Body) {
+                    self.body = body
+                }
+            }
+            /// A business rule refused the request
+            ///
+            /// - Remark: Generated from `#/paths//api/payoff/simulate/post(simulatePayoff)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Operations.SimulatePayoff.Output.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            internal var badRequest: Operations.SimulatePayoff.Output.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Unauthorized: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/simulate/POST/responses/401/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/simulate/POST/responses/401/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SimulatePayoff.Output.Unauthorized.Body
+                /// Creates a new `Unauthorized`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SimulatePayoff.Output.Unauthorized.Body) {
+                    self.body = body
+                }
+            }
+            /// No valid session
+            ///
+            /// - Remark: Generated from `#/paths//api/payoff/simulate/post(simulatePayoff)/responses/401`.
+            ///
+            /// HTTP response code: `401 unauthorized`.
+            case unauthorized(Operations.SimulatePayoff.Output.Unauthorized)
+            /// The associated value of the enum case if `self` is `.unauthorized`.
+            ///
+            /// - Throws: An error if `self` is not `.unauthorized`.
+            /// - SeeAlso: `.unauthorized`.
+            internal var unauthorized: Operations.SimulatePayoff.Output.Unauthorized {
+                get throws {
+                    switch self {
+                    case let .unauthorized(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unauthorized",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct UnprocessableContent: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/simulate/POST/responses/422/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/simulate/POST/responses/422/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SimulatePayoff.Output.UnprocessableContent.Body
+                /// Creates a new `UnprocessableContent`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SimulatePayoff.Output.UnprocessableContent.Body) {
+                    self.body = body
+                }
+            }
+            /// Request schema validation failed
+            ///
+            /// - Remark: Generated from `#/paths//api/payoff/simulate/post(simulatePayoff)/responses/422`.
+            ///
+            /// HTTP response code: `422 unprocessableContent`.
+            case unprocessableContent(Operations.SimulatePayoff.Output.UnprocessableContent)
+            /// The associated value of the enum case if `self` is `.unprocessableContent`.
+            ///
+            /// - Throws: An error if `self` is not `.unprocessableContent`.
+            /// - SeeAlso: `.unprocessableContent`.
+            internal var unprocessableContent: Operations.SimulatePayoff.Output.UnprocessableContent {
+                get throws {
+                    switch self {
+                    case let .unprocessableContent(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unprocessableContent",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/simulate/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/simulate/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SimulatePayoff.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SimulatePayoff.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
+            ///
+            /// - Remark: Generated from `#/paths//api/payoff/simulate/post(simulatePayoff)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.SimulatePayoff.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.SimulatePayoff.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
+        }
+        internal enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case applicationProblemJson
+            case other(Swift.String)
+            internal init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                case "application/problem+json":
+                    self = .applicationProblemJson
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            internal var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                case .applicationProblemJson:
+                    return "application/problem+json"
+                }
+            }
+            internal static var allCases: [Self] {
+                [
+                    .json,
+                    .applicationProblemJson
+                ]
+            }
+        }
+    }
+    /// Make this the plan (Jadikan Rencanaku)
+    ///
+    /// Ends the active plan, if any, and starts one on the first consumer account of the method. The extra payment may not exceed the money left this payday period.
+    ///
+    /// - Remark: HTTP `POST /api/payoff/plans`.
+    /// - Remark: Generated from `#/paths//api/payoff/plans/post(createPayoffPlan)`.
+    internal enum CreatePayoffPlan {
+        internal static let id: Swift.String = "createPayoffPlan"
+        internal struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/api/payoff/plans/POST/header`.
+            internal struct Headers: Sendable, Hashable {
+                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.CreatePayoffPlan.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.CreatePayoffPlan.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            internal var headers: Operations.CreatePayoffPlan.Input.Headers
+            /// - Remark: Generated from `#/paths/api/payoff/plans/POST/requestBody`.
+            internal enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/plans/POST/requestBody/content/application\/json`.
+                case json(Components.Schemas.CreatePayoffPlan)
+            }
+            internal var body: Operations.CreatePayoffPlan.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            ///   - body:
+            internal init(
+                headers: Operations.CreatePayoffPlan.Input.Headers = .init(),
+                body: Operations.CreatePayoffPlan.Input.Body
+            ) {
+                self.headers = headers
+                self.body = body
+            }
+        }
+        internal enum Output: Sendable, Hashable {
+            internal struct Created: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/plans/POST/responses/201/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/plans/POST/responses/201/content/application\/json`.
+                    case json(Components.Schemas.PayoffActivePlan)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    internal var json: Components.Schemas.PayoffActivePlan {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.CreatePayoffPlan.Output.Created.Body
+                /// Creates a new `Created`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.CreatePayoffPlan.Output.Created.Body) {
+                    self.body = body
+                }
+            }
+            /// The new active plan
+            ///
+            /// - Remark: Generated from `#/paths//api/payoff/plans/post(createPayoffPlan)/responses/201`.
+            ///
+            /// HTTP response code: `201 created`.
+            case created(Operations.CreatePayoffPlan.Output.Created)
+            /// The associated value of the enum case if `self` is `.created`.
+            ///
+            /// - Throws: An error if `self` is not `.created`.
+            /// - SeeAlso: `.created`.
+            internal var created: Operations.CreatePayoffPlan.Output.Created {
+                get throws {
+                    switch self {
+                    case let .created(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "created",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct BadRequest: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/plans/POST/responses/400/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/plans/POST/responses/400/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.CreatePayoffPlan.Output.BadRequest.Body
+                /// Creates a new `BadRequest`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.CreatePayoffPlan.Output.BadRequest.Body) {
+                    self.body = body
+                }
+            }
+            /// A business rule refused the request
+            ///
+            /// - Remark: Generated from `#/paths//api/payoff/plans/post(createPayoffPlan)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Operations.CreatePayoffPlan.Output.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            internal var badRequest: Operations.CreatePayoffPlan.Output.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Unauthorized: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/plans/POST/responses/401/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/plans/POST/responses/401/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.CreatePayoffPlan.Output.Unauthorized.Body
+                /// Creates a new `Unauthorized`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.CreatePayoffPlan.Output.Unauthorized.Body) {
+                    self.body = body
+                }
+            }
+            /// No valid session
+            ///
+            /// - Remark: Generated from `#/paths//api/payoff/plans/post(createPayoffPlan)/responses/401`.
+            ///
+            /// HTTP response code: `401 unauthorized`.
+            case unauthorized(Operations.CreatePayoffPlan.Output.Unauthorized)
+            /// The associated value of the enum case if `self` is `.unauthorized`.
+            ///
+            /// - Throws: An error if `self` is not `.unauthorized`.
+            /// - SeeAlso: `.unauthorized`.
+            internal var unauthorized: Operations.CreatePayoffPlan.Output.Unauthorized {
+                get throws {
+                    switch self {
+                    case let .unauthorized(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unauthorized",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct UnprocessableContent: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/plans/POST/responses/422/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/plans/POST/responses/422/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.CreatePayoffPlan.Output.UnprocessableContent.Body
+                /// Creates a new `UnprocessableContent`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.CreatePayoffPlan.Output.UnprocessableContent.Body) {
+                    self.body = body
+                }
+            }
+            /// Request schema validation failed
+            ///
+            /// - Remark: Generated from `#/paths//api/payoff/plans/post(createPayoffPlan)/responses/422`.
+            ///
+            /// HTTP response code: `422 unprocessableContent`.
+            case unprocessableContent(Operations.CreatePayoffPlan.Output.UnprocessableContent)
+            /// The associated value of the enum case if `self` is `.unprocessableContent`.
+            ///
+            /// - Throws: An error if `self` is not `.unprocessableContent`.
+            /// - SeeAlso: `.unprocessableContent`.
+            internal var unprocessableContent: Operations.CreatePayoffPlan.Output.UnprocessableContent {
+                get throws {
+                    switch self {
+                    case let .unprocessableContent(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unprocessableContent",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/plans/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/plans/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.CreatePayoffPlan.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.CreatePayoffPlan.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
+            ///
+            /// - Remark: Generated from `#/paths//api/payoff/plans/post(createPayoffPlan)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.CreatePayoffPlan.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.CreatePayoffPlan.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
+        }
+        internal enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case applicationProblemJson
+            case other(Swift.String)
+            internal init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                case "application/problem+json":
+                    self = .applicationProblemJson
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            internal var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                case .applicationProblemJson:
+                    return "application/problem+json"
+                }
+            }
+            internal static var allCases: [Self] {
+                [
+                    .json,
+                    .applicationProblemJson
+                ]
+            }
+        }
+    }
+    /// Rencanaku
+    ///
+    /// The active plan: every account with its progress and tag, and the next payment with the days left.
+    ///
+    /// - Remark: HTTP `GET /api/payoff/plans/active`.
+    /// - Remark: Generated from `#/paths//api/payoff/plans/active/get(getActivePayoffPlan)`.
+    internal enum GetActivePayoffPlan {
+        internal static let id: Swift.String = "getActivePayoffPlan"
+        internal struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/api/payoff/plans/active/GET/header`.
+            internal struct Headers: Sendable, Hashable {
+                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetActivePayoffPlan.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetActivePayoffPlan.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            internal var headers: Operations.GetActivePayoffPlan.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            internal init(headers: Operations.GetActivePayoffPlan.Input.Headers = .init()) {
+                self.headers = headers
+            }
+        }
+        internal enum Output: Sendable, Hashable {
+            internal struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/plans/active/GET/responses/200/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/plans/active/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.PayoffActivePlan)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    internal var json: Components.Schemas.PayoffActivePlan {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetActivePayoffPlan.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetActivePayoffPlan.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// The active plan
+            ///
+            /// - Remark: Generated from `#/paths//api/payoff/plans/active/get(getActivePayoffPlan)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.GetActivePayoffPlan.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            internal var ok: Operations.GetActivePayoffPlan.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Unauthorized: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/plans/active/GET/responses/401/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/plans/active/GET/responses/401/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetActivePayoffPlan.Output.Unauthorized.Body
+                /// Creates a new `Unauthorized`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetActivePayoffPlan.Output.Unauthorized.Body) {
+                    self.body = body
+                }
+            }
+            /// No valid session
+            ///
+            /// - Remark: Generated from `#/paths//api/payoff/plans/active/get(getActivePayoffPlan)/responses/401`.
+            ///
+            /// HTTP response code: `401 unauthorized`.
+            case unauthorized(Operations.GetActivePayoffPlan.Output.Unauthorized)
+            /// The associated value of the enum case if `self` is `.unauthorized`.
+            ///
+            /// - Throws: An error if `self` is not `.unauthorized`.
+            /// - SeeAlso: `.unauthorized`.
+            internal var unauthorized: Operations.GetActivePayoffPlan.Output.Unauthorized {
+                get throws {
+                    switch self {
+                    case let .unauthorized(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unauthorized",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct NotFound: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/plans/active/GET/responses/404/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/plans/active/GET/responses/404/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetActivePayoffPlan.Output.NotFound.Body
+                /// Creates a new `NotFound`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetActivePayoffPlan.Output.NotFound.Body) {
+                    self.body = body
+                }
+            }
+            /// Resource not found
+            ///
+            /// - Remark: Generated from `#/paths//api/payoff/plans/active/get(getActivePayoffPlan)/responses/404`.
+            ///
+            /// HTTP response code: `404 notFound`.
+            case notFound(Operations.GetActivePayoffPlan.Output.NotFound)
+            /// The associated value of the enum case if `self` is `.notFound`.
+            ///
+            /// - Throws: An error if `self` is not `.notFound`.
+            /// - SeeAlso: `.notFound`.
+            internal var notFound: Operations.GetActivePayoffPlan.Output.NotFound {
+                get throws {
+                    switch self {
+                    case let .notFound(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "notFound",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/plans/active/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/plans/active/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetActivePayoffPlan.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetActivePayoffPlan.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
+            ///
+            /// - Remark: Generated from `#/paths//api/payoff/plans/active/get(getActivePayoffPlan)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.GetActivePayoffPlan.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.GetActivePayoffPlan.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
+        }
+        internal enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case applicationProblemJson
+            case other(Swift.String)
+            internal init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                case "application/problem+json":
+                    self = .applicationProblemJson
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            internal var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                case .applicationProblemJson:
+                    return "application/problem+json"
+                }
+            }
+            internal static var allCases: [Self] {
+                [
+                    .json,
+                    .applicationProblemJson
+                ]
+            }
+        }
+    }
+    /// Move the plan to another account
+    ///
+    /// Moves the focus of the active plan to an open consumer account ("Lanjut ke Paylater B").
+    ///
+    /// - Remark: HTTP `PATCH /api/payoff/plans/active`.
+    /// - Remark: Generated from `#/paths//api/payoff/plans/active/patch(setPayoffFocus)`.
+    internal enum SetPayoffFocus {
+        internal static let id: Swift.String = "setPayoffFocus"
+        internal struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/api/payoff/plans/active/PATCH/header`.
+            internal struct Headers: Sendable, Hashable {
+                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.SetPayoffFocus.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.SetPayoffFocus.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            internal var headers: Operations.SetPayoffFocus.Input.Headers
+            /// - Remark: Generated from `#/paths/api/payoff/plans/active/PATCH/requestBody`.
+            internal enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/plans/active/PATCH/requestBody/content/application\/json`.
+                case json(Components.Schemas.SetPayoffFocus)
+            }
+            internal var body: Operations.SetPayoffFocus.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            ///   - body:
+            internal init(
+                headers: Operations.SetPayoffFocus.Input.Headers = .init(),
+                body: Operations.SetPayoffFocus.Input.Body
+            ) {
+                self.headers = headers
+                self.body = body
+            }
+        }
+        internal enum Output: Sendable, Hashable {
+            internal struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/plans/active/PATCH/responses/200/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/plans/active/PATCH/responses/200/content/application\/json`.
+                    case json(Components.Schemas.PayoffActivePlan)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    internal var json: Components.Schemas.PayoffActivePlan {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SetPayoffFocus.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SetPayoffFocus.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// The plan with its new focus
+            ///
+            /// - Remark: Generated from `#/paths//api/payoff/plans/active/patch(setPayoffFocus)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.SetPayoffFocus.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            internal var ok: Operations.SetPayoffFocus.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Unauthorized: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/plans/active/PATCH/responses/401/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/plans/active/PATCH/responses/401/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SetPayoffFocus.Output.Unauthorized.Body
+                /// Creates a new `Unauthorized`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SetPayoffFocus.Output.Unauthorized.Body) {
+                    self.body = body
+                }
+            }
+            /// No valid session
+            ///
+            /// - Remark: Generated from `#/paths//api/payoff/plans/active/patch(setPayoffFocus)/responses/401`.
+            ///
+            /// HTTP response code: `401 unauthorized`.
+            case unauthorized(Operations.SetPayoffFocus.Output.Unauthorized)
+            /// The associated value of the enum case if `self` is `.unauthorized`.
+            ///
+            /// - Throws: An error if `self` is not `.unauthorized`.
+            /// - SeeAlso: `.unauthorized`.
+            internal var unauthorized: Operations.SetPayoffFocus.Output.Unauthorized {
+                get throws {
+                    switch self {
+                    case let .unauthorized(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unauthorized",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct NotFound: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/plans/active/PATCH/responses/404/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/plans/active/PATCH/responses/404/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SetPayoffFocus.Output.NotFound.Body
+                /// Creates a new `NotFound`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SetPayoffFocus.Output.NotFound.Body) {
+                    self.body = body
+                }
+            }
+            /// Resource not found
+            ///
+            /// - Remark: Generated from `#/paths//api/payoff/plans/active/patch(setPayoffFocus)/responses/404`.
+            ///
+            /// HTTP response code: `404 notFound`.
+            case notFound(Operations.SetPayoffFocus.Output.NotFound)
+            /// The associated value of the enum case if `self` is `.notFound`.
+            ///
+            /// - Throws: An error if `self` is not `.notFound`.
+            /// - SeeAlso: `.notFound`.
+            internal var notFound: Operations.SetPayoffFocus.Output.NotFound {
+                get throws {
+                    switch self {
+                    case let .notFound(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "notFound",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct UnprocessableContent: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/plans/active/PATCH/responses/422/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/plans/active/PATCH/responses/422/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SetPayoffFocus.Output.UnprocessableContent.Body
+                /// Creates a new `UnprocessableContent`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SetPayoffFocus.Output.UnprocessableContent.Body) {
+                    self.body = body
+                }
+            }
+            /// Request schema validation failed
+            ///
+            /// - Remark: Generated from `#/paths//api/payoff/plans/active/patch(setPayoffFocus)/responses/422`.
+            ///
+            /// HTTP response code: `422 unprocessableContent`.
+            case unprocessableContent(Operations.SetPayoffFocus.Output.UnprocessableContent)
+            /// The associated value of the enum case if `self` is `.unprocessableContent`.
+            ///
+            /// - Throws: An error if `self` is not `.unprocessableContent`.
+            /// - SeeAlso: `.unprocessableContent`.
+            internal var unprocessableContent: Operations.SetPayoffFocus.Output.UnprocessableContent {
+                get throws {
+                    switch self {
+                    case let .unprocessableContent(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unprocessableContent",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/payoff/plans/active/PATCH/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/payoff/plans/active/PATCH/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SetPayoffFocus.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SetPayoffFocus.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
+            ///
+            /// - Remark: Generated from `#/paths//api/payoff/plans/active/patch(setPayoffFocus)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.SetPayoffFocus.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.SetPayoffFocus.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
+        }
+        internal enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case applicationProblemJson
+            case other(Swift.String)
+            internal init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                case "application/problem+json":
+                    self = .applicationProblemJson
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            internal var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                case .applicationProblemJson:
+                    return "application/problem+json"
+                }
+            }
+            internal static var allCases: [Self] {
+                [
+                    .json,
+                    .applicationProblemJson
+                ]
+            }
+        }
+    }
+    /// Mark a payment (Tandai Sudah Bayar)
+    ///
+    /// Records a payment against an open debt account. When it settles the account the response says so once, with the score the engine expects and the account the plan moves to next. A repeat of the same paymentId (double tap, retry) answers 409 PAYOFF_PAYMENT_ALREADY_RECORDED: the payment is already saved.
+    ///
+    /// - Remark: HTTP `POST /api/debts/{id}/payments`.
+    /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)`.
+    internal enum RecordDebtPayment {
+        internal static let id: Swift.String = "recordDebtPayment"
+        internal struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/path`.
+            internal struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/path/id`.
+                internal var id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - id:
+                internal init(id: Swift.String) {
+                    self.id = id
+                }
+            }
+            internal var path: Operations.RecordDebtPayment.Input.Path
+            /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/header`.
+            internal struct Headers: Sendable, Hashable {
+                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.RecordDebtPayment.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.RecordDebtPayment.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            internal var headers: Operations.RecordDebtPayment.Input.Headers
+            /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/requestBody`.
+            internal enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/requestBody/content/application\/json`.
+                case json(Components.Schemas.RecordDebtPayment)
+            }
+            internal var body: Operations.RecordDebtPayment.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            ///   - body:
+            internal init(
+                path: Operations.RecordDebtPayment.Input.Path,
+                headers: Operations.RecordDebtPayment.Input.Headers = .init(),
+                body: Operations.RecordDebtPayment.Input.Body
+            ) {
+                self.path = path
+                self.headers = headers
+                self.body = body
+            }
+        }
+        internal enum Output: Sendable, Hashable {
+            internal struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/200/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/200/content/application\/json`.
+                    case json(Components.Schemas.DebtPaymentResult)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    internal var json: Components.Schemas.DebtPaymentResult {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.RecordDebtPayment.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.RecordDebtPayment.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// The account after the payment
+            ///
+            /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.RecordDebtPayment.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            internal var ok: Operations.RecordDebtPayment.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct BadRequest: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/400/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/400/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.RecordDebtPayment.Output.BadRequest.Body
+                /// Creates a new `BadRequest`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.RecordDebtPayment.Output.BadRequest.Body) {
+                    self.body = body
+                }
+            }
+            /// A business rule refused the request
+            ///
+            /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)/responses/400`.
+            ///
+            /// HTTP response code: `400 badRequest`.
+            case badRequest(Operations.RecordDebtPayment.Output.BadRequest)
+            /// The associated value of the enum case if `self` is `.badRequest`.
+            ///
+            /// - Throws: An error if `self` is not `.badRequest`.
+            /// - SeeAlso: `.badRequest`.
+            internal var badRequest: Operations.RecordDebtPayment.Output.BadRequest {
+                get throws {
+                    switch self {
+                    case let .badRequest(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "badRequest",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Unauthorized: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/401/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/401/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.RecordDebtPayment.Output.Unauthorized.Body
+                /// Creates a new `Unauthorized`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.RecordDebtPayment.Output.Unauthorized.Body) {
+                    self.body = body
+                }
+            }
+            /// No valid session
+            ///
+            /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)/responses/401`.
+            ///
+            /// HTTP response code: `401 unauthorized`.
+            case unauthorized(Operations.RecordDebtPayment.Output.Unauthorized)
+            /// The associated value of the enum case if `self` is `.unauthorized`.
+            ///
+            /// - Throws: An error if `self` is not `.unauthorized`.
+            /// - SeeAlso: `.unauthorized`.
+            internal var unauthorized: Operations.RecordDebtPayment.Output.Unauthorized {
+                get throws {
+                    switch self {
+                    case let .unauthorized(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unauthorized",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct NotFound: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/404/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/404/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.RecordDebtPayment.Output.NotFound.Body
+                /// Creates a new `NotFound`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.RecordDebtPayment.Output.NotFound.Body) {
+                    self.body = body
+                }
+            }
+            /// Resource not found
+            ///
+            /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)/responses/404`.
+            ///
+            /// HTTP response code: `404 notFound`.
+            case notFound(Operations.RecordDebtPayment.Output.NotFound)
+            /// The associated value of the enum case if `self` is `.notFound`.
+            ///
+            /// - Throws: An error if `self` is not `.notFound`.
+            /// - SeeAlso: `.notFound`.
+            internal var notFound: Operations.RecordDebtPayment.Output.NotFound {
+                get throws {
+                    switch self {
+                    case let .notFound(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "notFound",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Conflict: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/409/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/409/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.RecordDebtPayment.Output.Conflict.Body
+                /// Creates a new `Conflict`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.RecordDebtPayment.Output.Conflict.Body) {
+                    self.body = body
+                }
+            }
+            /// Resource conflict
+            ///
+            /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)/responses/409`.
+            ///
+            /// HTTP response code: `409 conflict`.
+            case conflict(Operations.RecordDebtPayment.Output.Conflict)
+            /// The associated value of the enum case if `self` is `.conflict`.
+            ///
+            /// - Throws: An error if `self` is not `.conflict`.
+            /// - SeeAlso: `.conflict`.
+            internal var conflict: Operations.RecordDebtPayment.Output.Conflict {
+                get throws {
+                    switch self {
+                    case let .conflict(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "conflict",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct UnprocessableContent: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/422/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/422/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.RecordDebtPayment.Output.UnprocessableContent.Body
+                /// Creates a new `UnprocessableContent`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.RecordDebtPayment.Output.UnprocessableContent.Body) {
+                    self.body = body
+                }
+            }
+            /// Request schema validation failed
+            ///
+            /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)/responses/422`.
+            ///
+            /// HTTP response code: `422 unprocessableContent`.
+            case unprocessableContent(Operations.RecordDebtPayment.Output.UnprocessableContent)
+            /// The associated value of the enum case if `self` is `.unprocessableContent`.
+            ///
+            /// - Throws: An error if `self` is not `.unprocessableContent`.
+            /// - SeeAlso: `.unprocessableContent`.
+            internal var unprocessableContent: Operations.RecordDebtPayment.Output.UnprocessableContent {
+                get throws {
+                    switch self {
+                    case let .unprocessableContent(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unprocessableContent",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.RecordDebtPayment.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.RecordDebtPayment.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
+            ///
+            /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.RecordDebtPayment.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.RecordDebtPayment.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
+        }
+        internal enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case applicationProblemJson
+            case other(Swift.String)
+            internal init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                case "application/problem+json":
+                    self = .applicationProblemJson
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            internal var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                case .applicationProblemJson:
+                    return "application/problem+json"
+                }
+            }
+            internal static var allCases: [Self] {
+                [
+                    .json,
+                    .applicationProblemJson
+                ]
+            }
+        }
+    }
+    /// Portofolio Manual
+    ///
+    /// The assets, newest value first, their total, and Utang terhadap Aset with them.
+    ///
+    /// - Remark: HTTP `GET /api/assets`.
+    /// - Remark: Generated from `#/paths//api/assets/get(listAssets)`.
+    internal enum ListAssets {
+        internal static let id: Swift.String = "listAssets"
+        internal struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/api/assets/GET/header`.
+            internal struct Headers: Sendable, Hashable {
+                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.ListAssets.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.ListAssets.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            internal var headers: Operations.ListAssets.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            internal init(headers: Operations.ListAssets.Input.Headers = .init()) {
+                self.headers = headers
+            }
+        }
+        internal enum Output: Sendable, Hashable {
+            internal struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/assets/GET/responses/200/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/assets/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.Portfolio)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    internal var json: Components.Schemas.Portfolio {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.ListAssets.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.ListAssets.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// The portfolio
+            ///
+            /// - Remark: Generated from `#/paths//api/assets/get(listAssets)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.ListAssets.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            internal var ok: Operations.ListAssets.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Unauthorized: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/assets/GET/responses/401/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/assets/GET/responses/401/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.ListAssets.Output.Unauthorized.Body
+                /// Creates a new `Unauthorized`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.ListAssets.Output.Unauthorized.Body) {
+                    self.body = body
+                }
+            }
+            /// No valid session
+            ///
+            /// - Remark: Generated from `#/paths//api/assets/get(listAssets)/responses/401`.
+            ///
+            /// HTTP response code: `401 unauthorized`.
+            case unauthorized(Operations.ListAssets.Output.Unauthorized)
+            /// The associated value of the enum case if `self` is `.unauthorized`.
+            ///
+            /// - Throws: An error if `self` is not `.unauthorized`.
+            /// - SeeAlso: `.unauthorized`.
+            internal var unauthorized: Operations.ListAssets.Output.Unauthorized {
+                get throws {
+                    switch self {
+                    case let .unauthorized(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unauthorized",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Forbidden: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/assets/GET/responses/403/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/assets/GET/responses/403/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.ListAssets.Output.Forbidden.Body
+                /// Creates a new `Forbidden`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.ListAssets.Output.Forbidden.Body) {
+                    self.body = body
+                }
+            }
+            /// Action not allowed
+            ///
+            /// - Remark: Generated from `#/paths//api/assets/get(listAssets)/responses/403`.
+            ///
+            /// HTTP response code: `403 forbidden`.
+            case forbidden(Operations.ListAssets.Output.Forbidden)
+            /// The associated value of the enum case if `self` is `.forbidden`.
+            ///
+            /// - Throws: An error if `self` is not `.forbidden`.
+            /// - SeeAlso: `.forbidden`.
+            internal var forbidden: Operations.ListAssets.Output.Forbidden {
+                get throws {
+                    switch self {
+                    case let .forbidden(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "forbidden",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/assets/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/assets/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.ListAssets.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.ListAssets.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
+            ///
+            /// - Remark: Generated from `#/paths//api/assets/get(listAssets)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.ListAssets.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.ListAssets.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
+        }
+        internal enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case applicationProblemJson
+            case other(Swift.String)
+            internal init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                case "application/problem+json":
+                    self = .applicationProblemJson
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            internal var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                case .applicationProblemJson:
+                    return "application/problem+json"
+                }
+            }
+            internal static var allCases: [Self] {
+                [
+                    .json,
+                    .applicationProblemJson
+                ]
+            }
+        }
+    }
+    /// Tambah Aset
+    ///
+    /// The score reads the new total on its next request.
+    ///
+    /// - Remark: HTTP `POST /api/assets`.
+    /// - Remark: Generated from `#/paths//api/assets/post(createAsset)`.
+    internal enum CreateAsset {
+        internal static let id: Swift.String = "createAsset"
+        internal struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/api/assets/POST/header`.
+            internal struct Headers: Sendable, Hashable {
+                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.CreateAsset.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.CreateAsset.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            internal var headers: Operations.CreateAsset.Input.Headers
+            /// - Remark: Generated from `#/paths/api/assets/POST/requestBody`.
+            internal enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/assets/POST/requestBody/content/application\/json`.
+                case json(Components.Schemas.AssetInput)
+            }
+            internal var body: Operations.CreateAsset.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            ///   - body:
+            internal init(
+                headers: Operations.CreateAsset.Input.Headers = .init(),
+                body: Operations.CreateAsset.Input.Body
+            ) {
+                self.headers = headers
+                self.body = body
+            }
+        }
+        internal enum Output: Sendable, Hashable {
+            internal struct Created: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/assets/POST/responses/201/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/assets/POST/responses/201/content/application\/json`.
+                    case json(Components.Schemas.Asset)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    internal var json: Components.Schemas.Asset {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.CreateAsset.Output.Created.Body
+                /// Creates a new `Created`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.CreateAsset.Output.Created.Body) {
+                    self.body = body
+                }
+            }
+            /// Saved
+            ///
+            /// - Remark: Generated from `#/paths//api/assets/post(createAsset)/responses/201`.
+            ///
+            /// HTTP response code: `201 created`.
+            case created(Operations.CreateAsset.Output.Created)
+            /// The associated value of the enum case if `self` is `.created`.
+            ///
+            /// - Throws: An error if `self` is not `.created`.
+            /// - SeeAlso: `.created`.
+            internal var created: Operations.CreateAsset.Output.Created {
+                get throws {
+                    switch self {
+                    case let .created(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "created",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Unauthorized: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/assets/POST/responses/401/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/assets/POST/responses/401/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.CreateAsset.Output.Unauthorized.Body
+                /// Creates a new `Unauthorized`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.CreateAsset.Output.Unauthorized.Body) {
+                    self.body = body
+                }
+            }
+            /// No valid session
+            ///
+            /// - Remark: Generated from `#/paths//api/assets/post(createAsset)/responses/401`.
+            ///
+            /// HTTP response code: `401 unauthorized`.
+            case unauthorized(Operations.CreateAsset.Output.Unauthorized)
+            /// The associated value of the enum case if `self` is `.unauthorized`.
+            ///
+            /// - Throws: An error if `self` is not `.unauthorized`.
+            /// - SeeAlso: `.unauthorized`.
+            internal var unauthorized: Operations.CreateAsset.Output.Unauthorized {
+                get throws {
+                    switch self {
+                    case let .unauthorized(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unauthorized",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Forbidden: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/assets/POST/responses/403/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/assets/POST/responses/403/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.CreateAsset.Output.Forbidden.Body
+                /// Creates a new `Forbidden`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.CreateAsset.Output.Forbidden.Body) {
+                    self.body = body
+                }
+            }
+            /// Action not allowed
+            ///
+            /// - Remark: Generated from `#/paths//api/assets/post(createAsset)/responses/403`.
+            ///
+            /// HTTP response code: `403 forbidden`.
+            case forbidden(Operations.CreateAsset.Output.Forbidden)
+            /// The associated value of the enum case if `self` is `.forbidden`.
+            ///
+            /// - Throws: An error if `self` is not `.forbidden`.
+            /// - SeeAlso: `.forbidden`.
+            internal var forbidden: Operations.CreateAsset.Output.Forbidden {
+                get throws {
+                    switch self {
+                    case let .forbidden(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "forbidden",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct UnprocessableContent: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/assets/POST/responses/422/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/assets/POST/responses/422/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.CreateAsset.Output.UnprocessableContent.Body
+                /// Creates a new `UnprocessableContent`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.CreateAsset.Output.UnprocessableContent.Body) {
+                    self.body = body
+                }
+            }
+            /// Request schema validation failed
+            ///
+            /// - Remark: Generated from `#/paths//api/assets/post(createAsset)/responses/422`.
+            ///
+            /// HTTP response code: `422 unprocessableContent`.
+            case unprocessableContent(Operations.CreateAsset.Output.UnprocessableContent)
+            /// The associated value of the enum case if `self` is `.unprocessableContent`.
+            ///
+            /// - Throws: An error if `self` is not `.unprocessableContent`.
+            /// - SeeAlso: `.unprocessableContent`.
+            internal var unprocessableContent: Operations.CreateAsset.Output.UnprocessableContent {
+                get throws {
+                    switch self {
+                    case let .unprocessableContent(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unprocessableContent",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/assets/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/assets/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.CreateAsset.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.CreateAsset.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
+            ///
+            /// - Remark: Generated from `#/paths//api/assets/post(createAsset)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.CreateAsset.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.CreateAsset.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
+        }
+        internal enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case applicationProblemJson
+            case other(Swift.String)
+            internal init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                case "application/problem+json":
+                    self = .applicationProblemJson
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            internal var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                case .applicationProblemJson:
+                    return "application/problem+json"
+                }
+            }
+            internal static var allCases: [Self] {
+                [
+                    .json,
+                    .applicationProblemJson
+                ]
+            }
+        }
+    }
+    /// Change an asset
+    ///
+    /// - Remark: HTTP `PATCH /api/assets/{id}`.
+    /// - Remark: Generated from `#/paths//api/assets/{id}/patch(updateAsset)`.
+    internal enum UpdateAsset {
+        internal static let id: Swift.String = "updateAsset"
+        internal struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/api/assets/{id}/PATCH/path`.
+            internal struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/assets/{id}/PATCH/path/id`.
+                internal var id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - id:
+                internal init(id: Swift.String) {
+                    self.id = id
+                }
+            }
+            internal var path: Operations.UpdateAsset.Input.Path
+            /// - Remark: Generated from `#/paths/api/assets/{id}/PATCH/header`.
+            internal struct Headers: Sendable, Hashable {
+                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.UpdateAsset.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.UpdateAsset.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            internal var headers: Operations.UpdateAsset.Input.Headers
+            /// - Remark: Generated from `#/paths/api/assets/{id}/PATCH/requestBody`.
+            internal enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/assets/{id}/PATCH/requestBody/content/application\/json`.
+                case json(Components.Schemas.AssetUpdate)
+            }
+            internal var body: Operations.UpdateAsset.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            ///   - body:
+            internal init(
+                path: Operations.UpdateAsset.Input.Path,
+                headers: Operations.UpdateAsset.Input.Headers = .init(),
+                body: Operations.UpdateAsset.Input.Body
+            ) {
+                self.path = path
+                self.headers = headers
+                self.body = body
+            }
+        }
+        internal enum Output: Sendable, Hashable {
+            internal struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/assets/{id}/PATCH/responses/200/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/assets/{id}/PATCH/responses/200/content/application\/json`.
+                    case json(Components.Schemas.Asset)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    internal var json: Components.Schemas.Asset {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.UpdateAsset.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.UpdateAsset.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// The changed asset
+            ///
+            /// - Remark: Generated from `#/paths//api/assets/{id}/patch(updateAsset)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.UpdateAsset.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            internal var ok: Operations.UpdateAsset.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Unauthorized: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/assets/{id}/PATCH/responses/401/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/assets/{id}/PATCH/responses/401/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.UpdateAsset.Output.Unauthorized.Body
+                /// Creates a new `Unauthorized`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.UpdateAsset.Output.Unauthorized.Body) {
+                    self.body = body
+                }
+            }
+            /// No valid session
+            ///
+            /// - Remark: Generated from `#/paths//api/assets/{id}/patch(updateAsset)/responses/401`.
+            ///
+            /// HTTP response code: `401 unauthorized`.
+            case unauthorized(Operations.UpdateAsset.Output.Unauthorized)
+            /// The associated value of the enum case if `self` is `.unauthorized`.
+            ///
+            /// - Throws: An error if `self` is not `.unauthorized`.
+            /// - SeeAlso: `.unauthorized`.
+            internal var unauthorized: Operations.UpdateAsset.Output.Unauthorized {
+                get throws {
+                    switch self {
+                    case let .unauthorized(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unauthorized",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Forbidden: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/assets/{id}/PATCH/responses/403/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/assets/{id}/PATCH/responses/403/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.UpdateAsset.Output.Forbidden.Body
+                /// Creates a new `Forbidden`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.UpdateAsset.Output.Forbidden.Body) {
+                    self.body = body
+                }
+            }
+            /// Action not allowed
+            ///
+            /// - Remark: Generated from `#/paths//api/assets/{id}/patch(updateAsset)/responses/403`.
+            ///
+            /// HTTP response code: `403 forbidden`.
+            case forbidden(Operations.UpdateAsset.Output.Forbidden)
+            /// The associated value of the enum case if `self` is `.forbidden`.
+            ///
+            /// - Throws: An error if `self` is not `.forbidden`.
+            /// - SeeAlso: `.forbidden`.
+            internal var forbidden: Operations.UpdateAsset.Output.Forbidden {
+                get throws {
+                    switch self {
+                    case let .forbidden(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "forbidden",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct NotFound: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/assets/{id}/PATCH/responses/404/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/assets/{id}/PATCH/responses/404/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.UpdateAsset.Output.NotFound.Body
+                /// Creates a new `NotFound`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.UpdateAsset.Output.NotFound.Body) {
+                    self.body = body
+                }
+            }
+            /// Resource not found
+            ///
+            /// - Remark: Generated from `#/paths//api/assets/{id}/patch(updateAsset)/responses/404`.
+            ///
+            /// HTTP response code: `404 notFound`.
+            case notFound(Operations.UpdateAsset.Output.NotFound)
+            /// The associated value of the enum case if `self` is `.notFound`.
+            ///
+            /// - Throws: An error if `self` is not `.notFound`.
+            /// - SeeAlso: `.notFound`.
+            internal var notFound: Operations.UpdateAsset.Output.NotFound {
+                get throws {
+                    switch self {
+                    case let .notFound(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "notFound",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct UnprocessableContent: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/assets/{id}/PATCH/responses/422/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/assets/{id}/PATCH/responses/422/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.UpdateAsset.Output.UnprocessableContent.Body
+                /// Creates a new `UnprocessableContent`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.UpdateAsset.Output.UnprocessableContent.Body) {
+                    self.body = body
+                }
+            }
+            /// Request schema validation failed
+            ///
+            /// - Remark: Generated from `#/paths//api/assets/{id}/patch(updateAsset)/responses/422`.
+            ///
+            /// HTTP response code: `422 unprocessableContent`.
+            case unprocessableContent(Operations.UpdateAsset.Output.UnprocessableContent)
+            /// The associated value of the enum case if `self` is `.unprocessableContent`.
+            ///
+            /// - Throws: An error if `self` is not `.unprocessableContent`.
+            /// - SeeAlso: `.unprocessableContent`.
+            internal var unprocessableContent: Operations.UpdateAsset.Output.UnprocessableContent {
+                get throws {
+                    switch self {
+                    case let .unprocessableContent(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unprocessableContent",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/assets/{id}/PATCH/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/assets/{id}/PATCH/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.UpdateAsset.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.UpdateAsset.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
+            ///
+            /// - Remark: Generated from `#/paths//api/assets/{id}/patch(updateAsset)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.UpdateAsset.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.UpdateAsset.Output.Default {
                 get throws {
                     switch self {
                     case let .`default`(_, response):
@@ -11070,36 +14153,36 @@ internal enum Operations {
     }
     /// The health check’s debts that are not paid off
     ///
-    /// - Remark: HTTP `GET /api/care/debts`.
-    /// - Remark: Generated from `#/paths//api/care/debts/get(listHealthCheckDebts)`.
-    internal enum ListHealthCheckDebts {
-        internal static let id: Swift.String = "listHealthCheckDebts"
+    /// - Remark: HTTP `GET /api/debts`.
+    /// - Remark: Generated from `#/paths//api/debts/get(listDebts)`.
+    internal enum ListDebts {
+        internal static let id: Swift.String = "listDebts"
         internal struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/care/debts/GET/header`.
+            /// - Remark: Generated from `#/paths/api/debts/GET/header`.
             internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.ListHealthCheckDebts.AcceptableContentType>]
+                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.ListDebts.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.ListHealthCheckDebts.AcceptableContentType>] = .defaultValues()) {
+                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.ListDebts.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            internal var headers: Operations.ListHealthCheckDebts.Input.Headers
+            internal var headers: Operations.ListDebts.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - headers:
-            internal init(headers: Operations.ListHealthCheckDebts.Input.Headers = .init()) {
+            internal init(headers: Operations.ListDebts.Input.Headers = .init()) {
                 self.headers = headers
             }
         }
         internal enum Output: Sendable, Hashable {
             internal struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/care/debts/GET/responses/200/content`.
+                /// - Remark: Generated from `#/paths/api/debts/GET/responses/200/content`.
                 internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/care/debts/GET/responses/200/content/application\/json`.
+                    /// - Remark: Generated from `#/paths/api/debts/GET/responses/200/content/application\/json`.
                     case json(Components.Schemas.Debts)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
@@ -11115,26 +14198,26 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                internal var body: Operations.ListHealthCheckDebts.Output.Ok.Body
+                internal var body: Operations.ListDebts.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                internal init(body: Operations.ListHealthCheckDebts.Output.Ok.Body) {
+                internal init(body: Operations.ListDebts.Output.Ok.Body) {
                     self.body = body
                 }
             }
             /// Debts
             ///
-            /// - Remark: Generated from `#/paths//api/care/debts/get(listHealthCheckDebts)/responses/200`.
+            /// - Remark: Generated from `#/paths//api/debts/get(listDebts)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.ListHealthCheckDebts.Output.Ok)
+            case ok(Operations.ListDebts.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            internal var ok: Operations.ListHealthCheckDebts.Output.Ok {
+            internal var ok: Operations.ListDebts.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -11148,9 +14231,9 @@ internal enum Operations {
                 }
             }
             internal struct Unauthorized: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/care/debts/GET/responses/401/content`.
+                /// - Remark: Generated from `#/paths/api/debts/GET/responses/401/content`.
                 internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/care/debts/GET/responses/401/content/application\/problem+json`.
+                    /// - Remark: Generated from `#/paths/api/debts/GET/responses/401/content/application\/problem+json`.
                     case applicationProblemJson(Components.Schemas.Problem)
                     /// The associated value of the enum case if `self` is `.applicationProblemJson`.
                     ///
@@ -11166,26 +14249,26 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                internal var body: Operations.ListHealthCheckDebts.Output.Unauthorized.Body
+                internal var body: Operations.ListDebts.Output.Unauthorized.Body
                 /// Creates a new `Unauthorized`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                internal init(body: Operations.ListHealthCheckDebts.Output.Unauthorized.Body) {
+                internal init(body: Operations.ListDebts.Output.Unauthorized.Body) {
                     self.body = body
                 }
             }
             /// No valid session
             ///
-            /// - Remark: Generated from `#/paths//api/care/debts/get(listHealthCheckDebts)/responses/401`.
+            /// - Remark: Generated from `#/paths//api/debts/get(listDebts)/responses/401`.
             ///
             /// HTTP response code: `401 unauthorized`.
-            case unauthorized(Operations.ListHealthCheckDebts.Output.Unauthorized)
+            case unauthorized(Operations.ListDebts.Output.Unauthorized)
             /// The associated value of the enum case if `self` is `.unauthorized`.
             ///
             /// - Throws: An error if `self` is not `.unauthorized`.
             /// - SeeAlso: `.unauthorized`.
-            internal var unauthorized: Operations.ListHealthCheckDebts.Output.Unauthorized {
+            internal var unauthorized: Operations.ListDebts.Output.Unauthorized {
                 get throws {
                     switch self {
                     case let .unauthorized(response):
@@ -11199,9 +14282,9 @@ internal enum Operations {
                 }
             }
             internal struct Default: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/care/debts/GET/responses/default/content`.
+                /// - Remark: Generated from `#/paths/api/debts/GET/responses/default/content`.
                 internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/care/debts/GET/responses/default/content/application\/problem+json`.
+                    /// - Remark: Generated from `#/paths/api/debts/GET/responses/default/content/application\/problem+json`.
                     case applicationProblemJson(Components.Schemas.Problem)
                     /// The associated value of the enum case if `self` is `.applicationProblemJson`.
                     ///
@@ -11217,26 +14300,26 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                internal var body: Operations.ListHealthCheckDebts.Output.Default.Body
+                internal var body: Operations.ListDebts.Output.Default.Body
                 /// Creates a new `Default`.
                 ///
                 /// - Parameters:
                 ///   - body: Received HTTP response body
-                internal init(body: Operations.ListHealthCheckDebts.Output.Default.Body) {
+                internal init(body: Operations.ListDebts.Output.Default.Body) {
                     self.body = body
                 }
             }
             /// Any other problem: a server failure, a timeout, a body too large
             ///
-            /// - Remark: Generated from `#/paths//api/care/debts/get(listHealthCheckDebts)/responses/default`.
+            /// - Remark: Generated from `#/paths//api/debts/get(listDebts)/responses/default`.
             ///
             /// HTTP response code: `default`.
-            case `default`(statusCode: Swift.Int, Operations.ListHealthCheckDebts.Output.Default)
+            case `default`(statusCode: Swift.Int, Operations.ListDebts.Output.Default)
             /// The associated value of the enum case if `self` is `.`default``.
             ///
             /// - Throws: An error if `self` is not `.`default``.
             /// - SeeAlso: `.`default``.
-            internal var `default`: Operations.ListHealthCheckDebts.Output.Default {
+            internal var `default`: Operations.ListDebts.Output.Default {
                 get throws {
                     switch self {
                     case let .`default`(_, response):
@@ -11778,6 +14861,2353 @@ internal enum Operations {
             /// - Throws: An error if `self` is not `.`default``.
             /// - SeeAlso: `.`default``.
             internal var `default`: Operations.SaveSafetyPlan.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
+        }
+        internal enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case applicationProblemJson
+            case other(Swift.String)
+            internal init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                case "application/problem+json":
+                    self = .applicationProblemJson
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            internal var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                case .applicationProblemJson:
+                    return "application/problem+json"
+                }
+            }
+            internal static var allCases: [Self] {
+                [
+                    .json,
+                    .applicationProblemJson
+                ]
+            }
+        }
+    }
+    /// Rencana
+    ///
+    /// Tangga Keuanganmu from the Kira Score engine, the goals, the risk profile and what the calculators start from.
+    ///
+    /// - Remark: HTTP `GET /api/plan`.
+    /// - Remark: Generated from `#/paths//api/plan/get(getPlan)`.
+    internal enum GetPlan {
+        internal static let id: Swift.String = "getPlan"
+        internal struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/api/plan/GET/header`.
+            internal struct Headers: Sendable, Hashable {
+                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetPlan.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetPlan.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            internal var headers: Operations.GetPlan.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            internal init(headers: Operations.GetPlan.Input.Headers = .init()) {
+                self.headers = headers
+            }
+        }
+        internal enum Output: Sendable, Hashable {
+            internal struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/plan/GET/responses/200/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/plan/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.PlanOverview)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    internal var json: Components.Schemas.PlanOverview {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetPlan.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetPlan.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// The plan
+            ///
+            /// - Remark: Generated from `#/paths//api/plan/get(getPlan)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.GetPlan.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            internal var ok: Operations.GetPlan.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Unauthorized: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/plan/GET/responses/401/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/plan/GET/responses/401/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetPlan.Output.Unauthorized.Body
+                /// Creates a new `Unauthorized`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetPlan.Output.Unauthorized.Body) {
+                    self.body = body
+                }
+            }
+            /// No valid session
+            ///
+            /// - Remark: Generated from `#/paths//api/plan/get(getPlan)/responses/401`.
+            ///
+            /// HTTP response code: `401 unauthorized`.
+            case unauthorized(Operations.GetPlan.Output.Unauthorized)
+            /// The associated value of the enum case if `self` is `.unauthorized`.
+            ///
+            /// - Throws: An error if `self` is not `.unauthorized`.
+            /// - SeeAlso: `.unauthorized`.
+            internal var unauthorized: Operations.GetPlan.Output.Unauthorized {
+                get throws {
+                    switch self {
+                    case let .unauthorized(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unauthorized",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/plan/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/plan/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetPlan.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetPlan.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
+            ///
+            /// - Remark: Generated from `#/paths//api/plan/get(getPlan)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.GetPlan.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.GetPlan.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
+        }
+        internal enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case applicationProblemJson
+            case other(Swift.String)
+            internal init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                case "application/problem+json":
+                    self = .applicationProblemJson
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            internal var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                case .applicationProblemJson:
+                    return "application/problem+json"
+                }
+            }
+            internal static var allCases: [Self] {
+                [
+                    .json,
+                    .applicationProblemJson
+                ]
+            }
+        }
+    }
+    /// The goals
+    ///
+    /// Every goal, the emergency fund first, then the newest.
+    ///
+    /// - Remark: HTTP `GET /api/goals`.
+    /// - Remark: Generated from `#/paths//api/goals/get(listGoals)`.
+    internal enum ListGoals {
+        internal static let id: Swift.String = "listGoals"
+        internal struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/api/goals/GET/header`.
+            internal struct Headers: Sendable, Hashable {
+                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.ListGoals.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.ListGoals.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            internal var headers: Operations.ListGoals.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            internal init(headers: Operations.ListGoals.Input.Headers = .init()) {
+                self.headers = headers
+            }
+        }
+        internal enum Output: Sendable, Hashable {
+            internal struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/GET/responses/200/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/GET/responses/200/content/json`.
+                    internal struct JsonPayload: Codable, Hashable, Sendable {
+                        /// - Remark: Generated from `#/paths/api/goals/GET/responses/200/content/json/goals`.
+                        internal var goals: [Components.Schemas.GoalSummary]
+                        /// Creates a new `JsonPayload`.
+                        ///
+                        /// - Parameters:
+                        ///   - goals:
+                        internal init(goals: [Components.Schemas.GoalSummary]) {
+                            self.goals = goals
+                        }
+                        internal enum CodingKeys: String, CodingKey {
+                            case goals
+                        }
+                    }
+                    /// - Remark: Generated from `#/paths/api/goals/GET/responses/200/content/application\/json`.
+                    case json(Operations.ListGoals.Output.Ok.Body.JsonPayload)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    internal var json: Operations.ListGoals.Output.Ok.Body.JsonPayload {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.ListGoals.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.ListGoals.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// The goals
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/get(listGoals)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.ListGoals.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            internal var ok: Operations.ListGoals.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Unauthorized: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/GET/responses/401/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/GET/responses/401/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.ListGoals.Output.Unauthorized.Body
+                /// Creates a new `Unauthorized`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.ListGoals.Output.Unauthorized.Body) {
+                    self.body = body
+                }
+            }
+            /// No valid session
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/get(listGoals)/responses/401`.
+            ///
+            /// HTTP response code: `401 unauthorized`.
+            case unauthorized(Operations.ListGoals.Output.Unauthorized)
+            /// The associated value of the enum case if `self` is `.unauthorized`.
+            ///
+            /// - Throws: An error if `self` is not `.unauthorized`.
+            /// - SeeAlso: `.unauthorized`.
+            internal var unauthorized: Operations.ListGoals.Output.Unauthorized {
+                get throws {
+                    switch self {
+                    case let .unauthorized(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unauthorized",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.ListGoals.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.ListGoals.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/get(listGoals)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.ListGoals.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.ListGoals.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
+        }
+        internal enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case applicationProblemJson
+            case other(Swift.String)
+            internal init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                case "application/problem+json":
+                    self = .applicationProblemJson
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            internal var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                case .applicationProblemJson:
+                    return "application/problem+json"
+                }
+            }
+            internal static var allCases: [Self] {
+                [
+                    .json,
+                    .applicationProblemJson
+                ]
+            }
+        }
+    }
+    /// Simpan Tujuan
+    ///
+    /// Stores the goal as the app's calculator computed it, after checking its ranges; one emergency fund per person.
+    ///
+    /// - Remark: HTTP `POST /api/goals`.
+    /// - Remark: Generated from `#/paths//api/goals/post(createGoal)`.
+    internal enum CreateGoal {
+        internal static let id: Swift.String = "createGoal"
+        internal struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/api/goals/POST/header`.
+            internal struct Headers: Sendable, Hashable {
+                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.CreateGoal.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.CreateGoal.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            internal var headers: Operations.CreateGoal.Input.Headers
+            /// - Remark: Generated from `#/paths/api/goals/POST/requestBody`.
+            internal enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/POST/requestBody/content/application\/json`.
+                case json(Components.Schemas.CreateGoal)
+            }
+            internal var body: Operations.CreateGoal.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            ///   - body:
+            internal init(
+                headers: Operations.CreateGoal.Input.Headers = .init(),
+                body: Operations.CreateGoal.Input.Body
+            ) {
+                self.headers = headers
+                self.body = body
+            }
+        }
+        internal enum Output: Sendable, Hashable {
+            internal struct Created: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/POST/responses/201/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/POST/responses/201/content/application\/json`.
+                    case json(Components.Schemas.Goal)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    internal var json: Components.Schemas.Goal {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.CreateGoal.Output.Created.Body
+                /// Creates a new `Created`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.CreateGoal.Output.Created.Body) {
+                    self.body = body
+                }
+            }
+            /// Saved
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/post(createGoal)/responses/201`.
+            ///
+            /// HTTP response code: `201 created`.
+            case created(Operations.CreateGoal.Output.Created)
+            /// The associated value of the enum case if `self` is `.created`.
+            ///
+            /// - Throws: An error if `self` is not `.created`.
+            /// - SeeAlso: `.created`.
+            internal var created: Operations.CreateGoal.Output.Created {
+                get throws {
+                    switch self {
+                    case let .created(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "created",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Unauthorized: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/POST/responses/401/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/POST/responses/401/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.CreateGoal.Output.Unauthorized.Body
+                /// Creates a new `Unauthorized`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.CreateGoal.Output.Unauthorized.Body) {
+                    self.body = body
+                }
+            }
+            /// No valid session
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/post(createGoal)/responses/401`.
+            ///
+            /// HTTP response code: `401 unauthorized`.
+            case unauthorized(Operations.CreateGoal.Output.Unauthorized)
+            /// The associated value of the enum case if `self` is `.unauthorized`.
+            ///
+            /// - Throws: An error if `self` is not `.unauthorized`.
+            /// - SeeAlso: `.unauthorized`.
+            internal var unauthorized: Operations.CreateGoal.Output.Unauthorized {
+                get throws {
+                    switch self {
+                    case let .unauthorized(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unauthorized",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Conflict: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/POST/responses/409/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/POST/responses/409/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.CreateGoal.Output.Conflict.Body
+                /// Creates a new `Conflict`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.CreateGoal.Output.Conflict.Body) {
+                    self.body = body
+                }
+            }
+            /// Resource conflict
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/post(createGoal)/responses/409`.
+            ///
+            /// HTTP response code: `409 conflict`.
+            case conflict(Operations.CreateGoal.Output.Conflict)
+            /// The associated value of the enum case if `self` is `.conflict`.
+            ///
+            /// - Throws: An error if `self` is not `.conflict`.
+            /// - SeeAlso: `.conflict`.
+            internal var conflict: Operations.CreateGoal.Output.Conflict {
+                get throws {
+                    switch self {
+                    case let .conflict(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "conflict",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct UnprocessableContent: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/POST/responses/422/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/POST/responses/422/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.CreateGoal.Output.UnprocessableContent.Body
+                /// Creates a new `UnprocessableContent`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.CreateGoal.Output.UnprocessableContent.Body) {
+                    self.body = body
+                }
+            }
+            /// Request schema validation failed
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/post(createGoal)/responses/422`.
+            ///
+            /// HTTP response code: `422 unprocessableContent`.
+            case unprocessableContent(Operations.CreateGoal.Output.UnprocessableContent)
+            /// The associated value of the enum case if `self` is `.unprocessableContent`.
+            ///
+            /// - Throws: An error if `self` is not `.unprocessableContent`.
+            /// - SeeAlso: `.unprocessableContent`.
+            internal var unprocessableContent: Operations.CreateGoal.Output.UnprocessableContent {
+                get throws {
+                    switch self {
+                    case let .unprocessableContent(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unprocessableContent",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.CreateGoal.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.CreateGoal.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/post(createGoal)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.CreateGoal.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.CreateGoal.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
+        }
+        internal enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case applicationProblemJson
+            case other(Swift.String)
+            internal init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                case "application/problem+json":
+                    self = .applicationProblemJson
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            internal var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                case .applicationProblemJson:
+                    return "application/problem+json"
+                }
+            }
+            internal static var allCases: [Self] {
+                [
+                    .json,
+                    .applicationProblemJson
+                ]
+            }
+        }
+    }
+    /// Detail Tujuan
+    ///
+    /// The goal, its deposits newest first and, for the emergency fund, its milestones.
+    ///
+    /// - Remark: HTTP `GET /api/goals/{id}`.
+    /// - Remark: Generated from `#/paths//api/goals/{id}/get(getGoal)`.
+    internal enum GetGoal {
+        internal static let id: Swift.String = "getGoal"
+        internal struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/api/goals/{id}/GET/path`.
+            internal struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/GET/path/id`.
+                internal var id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - id:
+                internal init(id: Swift.String) {
+                    self.id = id
+                }
+            }
+            internal var path: Operations.GetGoal.Input.Path
+            /// - Remark: Generated from `#/paths/api/goals/{id}/GET/header`.
+            internal struct Headers: Sendable, Hashable {
+                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetGoal.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetGoal.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            internal var headers: Operations.GetGoal.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            internal init(
+                path: Operations.GetGoal.Input.Path,
+                headers: Operations.GetGoal.Input.Headers = .init()
+            ) {
+                self.path = path
+                self.headers = headers
+            }
+        }
+        internal enum Output: Sendable, Hashable {
+            internal struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/GET/responses/200/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/{id}/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.GoalDetail)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    internal var json: Components.Schemas.GoalDetail {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetGoal.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetGoal.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// The goal
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/get(getGoal)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.GetGoal.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            internal var ok: Operations.GetGoal.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Unauthorized: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/GET/responses/401/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/{id}/GET/responses/401/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetGoal.Output.Unauthorized.Body
+                /// Creates a new `Unauthorized`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetGoal.Output.Unauthorized.Body) {
+                    self.body = body
+                }
+            }
+            /// No valid session
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/get(getGoal)/responses/401`.
+            ///
+            /// HTTP response code: `401 unauthorized`.
+            case unauthorized(Operations.GetGoal.Output.Unauthorized)
+            /// The associated value of the enum case if `self` is `.unauthorized`.
+            ///
+            /// - Throws: An error if `self` is not `.unauthorized`.
+            /// - SeeAlso: `.unauthorized`.
+            internal var unauthorized: Operations.GetGoal.Output.Unauthorized {
+                get throws {
+                    switch self {
+                    case let .unauthorized(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unauthorized",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct NotFound: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/GET/responses/404/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/{id}/GET/responses/404/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetGoal.Output.NotFound.Body
+                /// Creates a new `NotFound`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetGoal.Output.NotFound.Body) {
+                    self.body = body
+                }
+            }
+            /// Resource not found
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/get(getGoal)/responses/404`.
+            ///
+            /// HTTP response code: `404 notFound`.
+            case notFound(Operations.GetGoal.Output.NotFound)
+            /// The associated value of the enum case if `self` is `.notFound`.
+            ///
+            /// - Throws: An error if `self` is not `.notFound`.
+            /// - SeeAlso: `.notFound`.
+            internal var notFound: Operations.GetGoal.Output.NotFound {
+                get throws {
+                    switch self {
+                    case let .notFound(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "notFound",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct UnprocessableContent: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/GET/responses/422/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/{id}/GET/responses/422/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetGoal.Output.UnprocessableContent.Body
+                /// Creates a new `UnprocessableContent`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetGoal.Output.UnprocessableContent.Body) {
+                    self.body = body
+                }
+            }
+            /// Request schema validation failed
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/get(getGoal)/responses/422`.
+            ///
+            /// HTTP response code: `422 unprocessableContent`.
+            case unprocessableContent(Operations.GetGoal.Output.UnprocessableContent)
+            /// The associated value of the enum case if `self` is `.unprocessableContent`.
+            ///
+            /// - Throws: An error if `self` is not `.unprocessableContent`.
+            /// - SeeAlso: `.unprocessableContent`.
+            internal var unprocessableContent: Operations.GetGoal.Output.UnprocessableContent {
+                get throws {
+                    switch self {
+                    case let .unprocessableContent(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unprocessableContent",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/{id}/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetGoal.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetGoal.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/get(getGoal)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.GetGoal.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.GetGoal.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
+        }
+        internal enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case applicationProblemJson
+            case other(Swift.String)
+            internal init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                case "application/problem+json":
+                    self = .applicationProblemJson
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            internal var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                case .applicationProblemJson:
+                    return "application/problem+json"
+                }
+            }
+            internal static var allCases: [Self] {
+                [
+                    .json,
+                    .applicationProblemJson
+                ]
+            }
+        }
+    }
+    /// Ubah Tujuan
+    ///
+    /// Changes any of the goal's figures; an emergency fund's inputs must keep a positive essentialExpense (422).
+    ///
+    /// - Remark: HTTP `PATCH /api/goals/{id}`.
+    /// - Remark: Generated from `#/paths//api/goals/{id}/patch(updateGoal)`.
+    internal enum UpdateGoal {
+        internal static let id: Swift.String = "updateGoal"
+        internal struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/api/goals/{id}/PATCH/path`.
+            internal struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/PATCH/path/id`.
+                internal var id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - id:
+                internal init(id: Swift.String) {
+                    self.id = id
+                }
+            }
+            internal var path: Operations.UpdateGoal.Input.Path
+            /// - Remark: Generated from `#/paths/api/goals/{id}/PATCH/header`.
+            internal struct Headers: Sendable, Hashable {
+                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.UpdateGoal.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.UpdateGoal.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            internal var headers: Operations.UpdateGoal.Input.Headers
+            /// - Remark: Generated from `#/paths/api/goals/{id}/PATCH/requestBody`.
+            internal enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/PATCH/requestBody/content/application\/json`.
+                case json(Components.Schemas.UpdateGoal)
+            }
+            internal var body: Operations.UpdateGoal.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            ///   - body:
+            internal init(
+                path: Operations.UpdateGoal.Input.Path,
+                headers: Operations.UpdateGoal.Input.Headers = .init(),
+                body: Operations.UpdateGoal.Input.Body
+            ) {
+                self.path = path
+                self.headers = headers
+                self.body = body
+            }
+        }
+        internal enum Output: Sendable, Hashable {
+            internal struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/PATCH/responses/200/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/{id}/PATCH/responses/200/content/application\/json`.
+                    case json(Components.Schemas.Goal)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    internal var json: Components.Schemas.Goal {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.UpdateGoal.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.UpdateGoal.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// The changed goal
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/patch(updateGoal)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.UpdateGoal.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            internal var ok: Operations.UpdateGoal.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Unauthorized: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/PATCH/responses/401/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/{id}/PATCH/responses/401/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.UpdateGoal.Output.Unauthorized.Body
+                /// Creates a new `Unauthorized`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.UpdateGoal.Output.Unauthorized.Body) {
+                    self.body = body
+                }
+            }
+            /// No valid session
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/patch(updateGoal)/responses/401`.
+            ///
+            /// HTTP response code: `401 unauthorized`.
+            case unauthorized(Operations.UpdateGoal.Output.Unauthorized)
+            /// The associated value of the enum case if `self` is `.unauthorized`.
+            ///
+            /// - Throws: An error if `self` is not `.unauthorized`.
+            /// - SeeAlso: `.unauthorized`.
+            internal var unauthorized: Operations.UpdateGoal.Output.Unauthorized {
+                get throws {
+                    switch self {
+                    case let .unauthorized(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unauthorized",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct NotFound: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/PATCH/responses/404/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/{id}/PATCH/responses/404/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.UpdateGoal.Output.NotFound.Body
+                /// Creates a new `NotFound`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.UpdateGoal.Output.NotFound.Body) {
+                    self.body = body
+                }
+            }
+            /// Resource not found
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/patch(updateGoal)/responses/404`.
+            ///
+            /// HTTP response code: `404 notFound`.
+            case notFound(Operations.UpdateGoal.Output.NotFound)
+            /// The associated value of the enum case if `self` is `.notFound`.
+            ///
+            /// - Throws: An error if `self` is not `.notFound`.
+            /// - SeeAlso: `.notFound`.
+            internal var notFound: Operations.UpdateGoal.Output.NotFound {
+                get throws {
+                    switch self {
+                    case let .notFound(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "notFound",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct UnprocessableContent: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/PATCH/responses/422/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/{id}/PATCH/responses/422/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.UpdateGoal.Output.UnprocessableContent.Body
+                /// Creates a new `UnprocessableContent`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.UpdateGoal.Output.UnprocessableContent.Body) {
+                    self.body = body
+                }
+            }
+            /// Request schema validation failed
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/patch(updateGoal)/responses/422`.
+            ///
+            /// HTTP response code: `422 unprocessableContent`.
+            case unprocessableContent(Operations.UpdateGoal.Output.UnprocessableContent)
+            /// The associated value of the enum case if `self` is `.unprocessableContent`.
+            ///
+            /// - Throws: An error if `self` is not `.unprocessableContent`.
+            /// - SeeAlso: `.unprocessableContent`.
+            internal var unprocessableContent: Operations.UpdateGoal.Output.UnprocessableContent {
+                get throws {
+                    switch self {
+                    case let .unprocessableContent(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unprocessableContent",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/PATCH/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/{id}/PATCH/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.UpdateGoal.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.UpdateGoal.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/patch(updateGoal)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.UpdateGoal.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.UpdateGoal.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
+        }
+        internal enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case applicationProblemJson
+            case other(Swift.String)
+            internal init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                case "application/problem+json":
+                    self = .applicationProblemJson
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            internal var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                case .applicationProblemJson:
+                    return "application/problem+json"
+                }
+            }
+            internal static var allCases: [Self] {
+                [
+                    .json,
+                    .applicationProblemJson
+                ]
+            }
+        }
+    }
+    /// Tambah Setoran
+    ///
+    /// Records a deposit. The same depositId again on this goal answers the stored deposit as it was first recorded (whatever amount the retry carries) and adds nothing; one used on another goal is refused, and a day before the goal was made answers 422.
+    ///
+    /// - Remark: HTTP `POST /api/goals/{id}/deposits`.
+    /// - Remark: Generated from `#/paths//api/goals/{id}/deposits/post(addGoalDeposit)`.
+    internal enum AddGoalDeposit {
+        internal static let id: Swift.String = "addGoalDeposit"
+        internal struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/api/goals/{id}/deposits/POST/path`.
+            internal struct Path: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/deposits/POST/path/id`.
+                internal var id: Swift.String
+                /// Creates a new `Path`.
+                ///
+                /// - Parameters:
+                ///   - id:
+                internal init(id: Swift.String) {
+                    self.id = id
+                }
+            }
+            internal var path: Operations.AddGoalDeposit.Input.Path
+            /// - Remark: Generated from `#/paths/api/goals/{id}/deposits/POST/header`.
+            internal struct Headers: Sendable, Hashable {
+                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.AddGoalDeposit.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.AddGoalDeposit.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            internal var headers: Operations.AddGoalDeposit.Input.Headers
+            /// - Remark: Generated from `#/paths/api/goals/{id}/deposits/POST/requestBody`.
+            internal enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/deposits/POST/requestBody/content/application\/json`.
+                case json(Components.Schemas.GoalDepositInput)
+            }
+            internal var body: Operations.AddGoalDeposit.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - path:
+            ///   - headers:
+            ///   - body:
+            internal init(
+                path: Operations.AddGoalDeposit.Input.Path,
+                headers: Operations.AddGoalDeposit.Input.Headers = .init(),
+                body: Operations.AddGoalDeposit.Input.Body
+            ) {
+                self.path = path
+                self.headers = headers
+                self.body = body
+            }
+        }
+        internal enum Output: Sendable, Hashable {
+            internal struct Created: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/deposits/POST/responses/201/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/{id}/deposits/POST/responses/201/content/application\/json`.
+                    case json(Components.Schemas.GoalDeposit)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    internal var json: Components.Schemas.GoalDeposit {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.AddGoalDeposit.Output.Created.Body
+                /// Creates a new `Created`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.AddGoalDeposit.Output.Created.Body) {
+                    self.body = body
+                }
+            }
+            /// Recorded
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/deposits/post(addGoalDeposit)/responses/201`.
+            ///
+            /// HTTP response code: `201 created`.
+            case created(Operations.AddGoalDeposit.Output.Created)
+            /// The associated value of the enum case if `self` is `.created`.
+            ///
+            /// - Throws: An error if `self` is not `.created`.
+            /// - SeeAlso: `.created`.
+            internal var created: Operations.AddGoalDeposit.Output.Created {
+                get throws {
+                    switch self {
+                    case let .created(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "created",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Unauthorized: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/deposits/POST/responses/401/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/{id}/deposits/POST/responses/401/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.AddGoalDeposit.Output.Unauthorized.Body
+                /// Creates a new `Unauthorized`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.AddGoalDeposit.Output.Unauthorized.Body) {
+                    self.body = body
+                }
+            }
+            /// No valid session
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/deposits/post(addGoalDeposit)/responses/401`.
+            ///
+            /// HTTP response code: `401 unauthorized`.
+            case unauthorized(Operations.AddGoalDeposit.Output.Unauthorized)
+            /// The associated value of the enum case if `self` is `.unauthorized`.
+            ///
+            /// - Throws: An error if `self` is not `.unauthorized`.
+            /// - SeeAlso: `.unauthorized`.
+            internal var unauthorized: Operations.AddGoalDeposit.Output.Unauthorized {
+                get throws {
+                    switch self {
+                    case let .unauthorized(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unauthorized",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct NotFound: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/deposits/POST/responses/404/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/{id}/deposits/POST/responses/404/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.AddGoalDeposit.Output.NotFound.Body
+                /// Creates a new `NotFound`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.AddGoalDeposit.Output.NotFound.Body) {
+                    self.body = body
+                }
+            }
+            /// Resource not found
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/deposits/post(addGoalDeposit)/responses/404`.
+            ///
+            /// HTTP response code: `404 notFound`.
+            case notFound(Operations.AddGoalDeposit.Output.NotFound)
+            /// The associated value of the enum case if `self` is `.notFound`.
+            ///
+            /// - Throws: An error if `self` is not `.notFound`.
+            /// - SeeAlso: `.notFound`.
+            internal var notFound: Operations.AddGoalDeposit.Output.NotFound {
+                get throws {
+                    switch self {
+                    case let .notFound(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "notFound",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Conflict: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/deposits/POST/responses/409/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/{id}/deposits/POST/responses/409/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.AddGoalDeposit.Output.Conflict.Body
+                /// Creates a new `Conflict`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.AddGoalDeposit.Output.Conflict.Body) {
+                    self.body = body
+                }
+            }
+            /// Resource conflict
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/deposits/post(addGoalDeposit)/responses/409`.
+            ///
+            /// HTTP response code: `409 conflict`.
+            case conflict(Operations.AddGoalDeposit.Output.Conflict)
+            /// The associated value of the enum case if `self` is `.conflict`.
+            ///
+            /// - Throws: An error if `self` is not `.conflict`.
+            /// - SeeAlso: `.conflict`.
+            internal var conflict: Operations.AddGoalDeposit.Output.Conflict {
+                get throws {
+                    switch self {
+                    case let .conflict(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "conflict",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct UnprocessableContent: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/deposits/POST/responses/422/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/{id}/deposits/POST/responses/422/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.AddGoalDeposit.Output.UnprocessableContent.Body
+                /// Creates a new `UnprocessableContent`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.AddGoalDeposit.Output.UnprocessableContent.Body) {
+                    self.body = body
+                }
+            }
+            /// Request schema validation failed
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/deposits/post(addGoalDeposit)/responses/422`.
+            ///
+            /// HTTP response code: `422 unprocessableContent`.
+            case unprocessableContent(Operations.AddGoalDeposit.Output.UnprocessableContent)
+            /// The associated value of the enum case if `self` is `.unprocessableContent`.
+            ///
+            /// - Throws: An error if `self` is not `.unprocessableContent`.
+            /// - SeeAlso: `.unprocessableContent`.
+            internal var unprocessableContent: Operations.AddGoalDeposit.Output.UnprocessableContent {
+                get throws {
+                    switch self {
+                    case let .unprocessableContent(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unprocessableContent",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/goals/{id}/deposits/POST/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/goals/{id}/deposits/POST/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.AddGoalDeposit.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.AddGoalDeposit.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
+            ///
+            /// - Remark: Generated from `#/paths//api/goals/{id}/deposits/post(addGoalDeposit)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.AddGoalDeposit.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.AddGoalDeposit.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
+        }
+        internal enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case applicationProblemJson
+            case other(Swift.String)
+            internal init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                case "application/problem+json":
+                    self = .applicationProblemJson
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            internal var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                case .applicationProblemJson:
+                    return "application/problem+json"
+                }
+            }
+            internal static var allCases: [Self] {
+                [
+                    .json,
+                    .applicationProblemJson
+                ]
+            }
+        }
+    }
+    /// Hasil Risiko
+    ///
+    /// The saved profile and answers; every field null before the quiz.
+    ///
+    /// - Remark: HTTP `GET /api/risk-profile`.
+    /// - Remark: Generated from `#/paths//api/risk-profile/get(getRiskProfile)`.
+    internal enum GetRiskProfile {
+        internal static let id: Swift.String = "getRiskProfile"
+        internal struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/api/risk-profile/GET/header`.
+            internal struct Headers: Sendable, Hashable {
+                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetRiskProfile.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetRiskProfile.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            internal var headers: Operations.GetRiskProfile.Input.Headers
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            internal init(headers: Operations.GetRiskProfile.Input.Headers = .init()) {
+                self.headers = headers
+            }
+        }
+        internal enum Output: Sendable, Hashable {
+            internal struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/risk-profile/GET/responses/200/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/risk-profile/GET/responses/200/content/application\/json`.
+                    case json(Components.Schemas.RiskProfile)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    internal var json: Components.Schemas.RiskProfile {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetRiskProfile.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetRiskProfile.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// The profile
+            ///
+            /// - Remark: Generated from `#/paths//api/risk-profile/get(getRiskProfile)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.GetRiskProfile.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            internal var ok: Operations.GetRiskProfile.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Unauthorized: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/risk-profile/GET/responses/401/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/risk-profile/GET/responses/401/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetRiskProfile.Output.Unauthorized.Body
+                /// Creates a new `Unauthorized`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetRiskProfile.Output.Unauthorized.Body) {
+                    self.body = body
+                }
+            }
+            /// No valid session
+            ///
+            /// - Remark: Generated from `#/paths//api/risk-profile/get(getRiskProfile)/responses/401`.
+            ///
+            /// HTTP response code: `401 unauthorized`.
+            case unauthorized(Operations.GetRiskProfile.Output.Unauthorized)
+            /// The associated value of the enum case if `self` is `.unauthorized`.
+            ///
+            /// - Throws: An error if `self` is not `.unauthorized`.
+            /// - SeeAlso: `.unauthorized`.
+            internal var unauthorized: Operations.GetRiskProfile.Output.Unauthorized {
+                get throws {
+                    switch self {
+                    case let .unauthorized(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unauthorized",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/risk-profile/GET/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/risk-profile/GET/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.GetRiskProfile.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.GetRiskProfile.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
+            ///
+            /// - Remark: Generated from `#/paths//api/risk-profile/get(getRiskProfile)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.GetRiskProfile.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.GetRiskProfile.Output.Default {
+                get throws {
+                    switch self {
+                    case let .`default`(_, response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "default",
+                            response: self
+                        )
+                    }
+                }
+            }
+        }
+        internal enum AcceptableContentType: AcceptableProtocol {
+            case json
+            case applicationProblemJson
+            case other(Swift.String)
+            internal init?(rawValue: Swift.String) {
+                switch rawValue.lowercased() {
+                case "application/json":
+                    self = .json
+                case "application/problem+json":
+                    self = .applicationProblemJson
+                default:
+                    self = .other(rawValue)
+                }
+            }
+            internal var rawValue: Swift.String {
+                switch self {
+                case let .other(string):
+                    return string
+                case .json:
+                    return "application/json"
+                case .applicationProblemJson:
+                    return "application/problem+json"
+                }
+            }
+            internal static var allCases: [Self] {
+                [
+                    .json,
+                    .applicationProblemJson
+                ]
+            }
+        }
+    }
+    /// Kenali Profil Risikomu
+    ///
+    /// The five answers and the profile the server's fixed table gives them.
+    ///
+    /// - Remark: HTTP `PUT /api/risk-profile`.
+    /// - Remark: Generated from `#/paths//api/risk-profile/put(saveRiskProfile)`.
+    internal enum SaveRiskProfile {
+        internal static let id: Swift.String = "saveRiskProfile"
+        internal struct Input: Sendable, Hashable {
+            /// - Remark: Generated from `#/paths/api/risk-profile/PUT/header`.
+            internal struct Headers: Sendable, Hashable {
+                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.SaveRiskProfile.AcceptableContentType>]
+                /// Creates a new `Headers`.
+                ///
+                /// - Parameters:
+                ///   - accept:
+                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.SaveRiskProfile.AcceptableContentType>] = .defaultValues()) {
+                    self.accept = accept
+                }
+            }
+            internal var headers: Operations.SaveRiskProfile.Input.Headers
+            /// - Remark: Generated from `#/paths/api/risk-profile/PUT/requestBody`.
+            internal enum Body: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/risk-profile/PUT/requestBody/content/application\/json`.
+                case json(Components.Schemas.RiskProfileAnswers)
+            }
+            internal var body: Operations.SaveRiskProfile.Input.Body
+            /// Creates a new `Input`.
+            ///
+            /// - Parameters:
+            ///   - headers:
+            ///   - body:
+            internal init(
+                headers: Operations.SaveRiskProfile.Input.Headers = .init(),
+                body: Operations.SaveRiskProfile.Input.Body
+            ) {
+                self.headers = headers
+                self.body = body
+            }
+        }
+        internal enum Output: Sendable, Hashable {
+            internal struct Ok: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/risk-profile/PUT/responses/200/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/risk-profile/PUT/responses/200/content/application\/json`.
+                    case json(Components.Schemas.RiskProfile)
+                    /// The associated value of the enum case if `self` is `.json`.
+                    ///
+                    /// - Throws: An error if `self` is not `.json`.
+                    /// - SeeAlso: `.json`.
+                    internal var json: Components.Schemas.RiskProfile {
+                        get throws {
+                            switch self {
+                            case let .json(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SaveRiskProfile.Output.Ok.Body
+                /// Creates a new `Ok`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SaveRiskProfile.Output.Ok.Body) {
+                    self.body = body
+                }
+            }
+            /// The profile
+            ///
+            /// - Remark: Generated from `#/paths//api/risk-profile/put(saveRiskProfile)/responses/200`.
+            ///
+            /// HTTP response code: `200 ok`.
+            case ok(Operations.SaveRiskProfile.Output.Ok)
+            /// The associated value of the enum case if `self` is `.ok`.
+            ///
+            /// - Throws: An error if `self` is not `.ok`.
+            /// - SeeAlso: `.ok`.
+            internal var ok: Operations.SaveRiskProfile.Output.Ok {
+                get throws {
+                    switch self {
+                    case let .ok(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "ok",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Unauthorized: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/risk-profile/PUT/responses/401/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/risk-profile/PUT/responses/401/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SaveRiskProfile.Output.Unauthorized.Body
+                /// Creates a new `Unauthorized`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SaveRiskProfile.Output.Unauthorized.Body) {
+                    self.body = body
+                }
+            }
+            /// No valid session
+            ///
+            /// - Remark: Generated from `#/paths//api/risk-profile/put(saveRiskProfile)/responses/401`.
+            ///
+            /// HTTP response code: `401 unauthorized`.
+            case unauthorized(Operations.SaveRiskProfile.Output.Unauthorized)
+            /// The associated value of the enum case if `self` is `.unauthorized`.
+            ///
+            /// - Throws: An error if `self` is not `.unauthorized`.
+            /// - SeeAlso: `.unauthorized`.
+            internal var unauthorized: Operations.SaveRiskProfile.Output.Unauthorized {
+                get throws {
+                    switch self {
+                    case let .unauthorized(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unauthorized",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct UnprocessableContent: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/risk-profile/PUT/responses/422/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/risk-profile/PUT/responses/422/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SaveRiskProfile.Output.UnprocessableContent.Body
+                /// Creates a new `UnprocessableContent`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SaveRiskProfile.Output.UnprocessableContent.Body) {
+                    self.body = body
+                }
+            }
+            /// Request schema validation failed
+            ///
+            /// - Remark: Generated from `#/paths//api/risk-profile/put(saveRiskProfile)/responses/422`.
+            ///
+            /// HTTP response code: `422 unprocessableContent`.
+            case unprocessableContent(Operations.SaveRiskProfile.Output.UnprocessableContent)
+            /// The associated value of the enum case if `self` is `.unprocessableContent`.
+            ///
+            /// - Throws: An error if `self` is not `.unprocessableContent`.
+            /// - SeeAlso: `.unprocessableContent`.
+            internal var unprocessableContent: Operations.SaveRiskProfile.Output.UnprocessableContent {
+                get throws {
+                    switch self {
+                    case let .unprocessableContent(response):
+                        return response
+                    default:
+                        try throwUnexpectedResponseStatus(
+                            expectedStatus: "unprocessableContent",
+                            response: self
+                        )
+                    }
+                }
+            }
+            internal struct Default: Sendable, Hashable {
+                /// - Remark: Generated from `#/paths/api/risk-profile/PUT/responses/default/content`.
+                internal enum Body: Sendable, Hashable {
+                    /// - Remark: Generated from `#/paths/api/risk-profile/PUT/responses/default/content/application\/problem+json`.
+                    case applicationProblemJson(Components.Schemas.Problem)
+                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
+                    ///
+                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
+                    /// - SeeAlso: `.applicationProblemJson`.
+                    internal var applicationProblemJson: Components.Schemas.Problem {
+                        get throws {
+                            switch self {
+                            case let .applicationProblemJson(body):
+                                return body
+                            }
+                        }
+                    }
+                }
+                /// Received HTTP response body
+                internal var body: Operations.SaveRiskProfile.Output.Default.Body
+                /// Creates a new `Default`.
+                ///
+                /// - Parameters:
+                ///   - body: Received HTTP response body
+                internal init(body: Operations.SaveRiskProfile.Output.Default.Body) {
+                    self.body = body
+                }
+            }
+            /// Any other problem: a server failure, a timeout, a body too large
+            ///
+            /// - Remark: Generated from `#/paths//api/risk-profile/put(saveRiskProfile)/responses/default`.
+            ///
+            /// HTTP response code: `default`.
+            case `default`(statusCode: Swift.Int, Operations.SaveRiskProfile.Output.Default)
+            /// The associated value of the enum case if `self` is `.`default``.
+            ///
+            /// - Throws: An error if `self` is not `.`default``.
+            /// - SeeAlso: `.`default``.
+            internal var `default`: Operations.SaveRiskProfile.Output.Default {
                 get throws {
                     switch self {
                     case let .`default`(_, response):
@@ -16307,4793 +21737,6 @@ internal enum Operations {
             /// - Throws: An error if `self` is not `.`default``.
             /// - SeeAlso: `.`default``.
             internal var `default`: Operations.ListWallets.Output.Default {
-                get throws {
-                    switch self {
-                    case let .`default`(_, response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "default",
-                            response: self
-                        )
-                    }
-                }
-            }
-        }
-        internal enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case applicationProblemJson
-            case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                case "application/problem+json":
-                    self = .applicationProblemJson
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            internal var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                case .applicationProblemJson:
-                    return "application/problem+json"
-                }
-            }
-            internal static var allCases: [Self] {
-                [
-                    .json,
-                    .applicationProblemJson
-                ]
-            }
-        }
-    }
-    /// Add a wallet or a debt account
-    ///
-    /// - Remark: HTTP `POST /api/wallets`.
-    /// - Remark: Generated from `#/paths//api/wallets/post(createWallet)`.
-    internal enum CreateWallet {
-        internal static let id: Swift.String = "createWallet"
-        internal struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/wallets/POST/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.CreateWallet.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.CreateWallet.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            internal var headers: Operations.CreateWallet.Input.Headers
-            /// - Remark: Generated from `#/paths/api/wallets/POST/requestBody`.
-            internal enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/wallets/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.CreateWalletInput)
-            }
-            internal var body: Operations.CreateWallet.Input.Body
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - headers:
-            ///   - body:
-            internal init(
-                headers: Operations.CreateWallet.Input.Headers = .init(),
-                body: Operations.CreateWallet.Input.Body
-            ) {
-                self.headers = headers
-                self.body = body
-            }
-        }
-        internal enum Output: Sendable, Hashable {
-            internal struct Created: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/wallets/POST/responses/201/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/wallets/POST/responses/201/content/application\/json`.
-                    case json(Components.Schemas.CreatedWalletOrDebt)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    internal var json: Components.Schemas.CreatedWalletOrDebt {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.CreateWallet.Output.Created.Body
-                /// Creates a new `Created`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.CreateWallet.Output.Created.Body) {
-                    self.body = body
-                }
-            }
-            /// Created wallet or debt account
-            ///
-            /// - Remark: Generated from `#/paths//api/wallets/post(createWallet)/responses/201`.
-            ///
-            /// HTTP response code: `201 created`.
-            case created(Operations.CreateWallet.Output.Created)
-            /// The associated value of the enum case if `self` is `.created`.
-            ///
-            /// - Throws: An error if `self` is not `.created`.
-            /// - SeeAlso: `.created`.
-            internal var created: Operations.CreateWallet.Output.Created {
-                get throws {
-                    switch self {
-                    case let .created(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "created",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Unauthorized: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/wallets/POST/responses/401/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/wallets/POST/responses/401/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.CreateWallet.Output.Unauthorized.Body
-                /// Creates a new `Unauthorized`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.CreateWallet.Output.Unauthorized.Body) {
-                    self.body = body
-                }
-            }
-            /// No valid session
-            ///
-            /// - Remark: Generated from `#/paths//api/wallets/post(createWallet)/responses/401`.
-            ///
-            /// HTTP response code: `401 unauthorized`.
-            case unauthorized(Operations.CreateWallet.Output.Unauthorized)
-            /// The associated value of the enum case if `self` is `.unauthorized`.
-            ///
-            /// - Throws: An error if `self` is not `.unauthorized`.
-            /// - SeeAlso: `.unauthorized`.
-            internal var unauthorized: Operations.CreateWallet.Output.Unauthorized {
-                get throws {
-                    switch self {
-                    case let .unauthorized(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unauthorized",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct UnprocessableContent: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/wallets/POST/responses/422/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/wallets/POST/responses/422/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.CreateWallet.Output.UnprocessableContent.Body
-                /// Creates a new `UnprocessableContent`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.CreateWallet.Output.UnprocessableContent.Body) {
-                    self.body = body
-                }
-            }
-            /// Request schema validation failed
-            ///
-            /// - Remark: Generated from `#/paths//api/wallets/post(createWallet)/responses/422`.
-            ///
-            /// HTTP response code: `422 unprocessableContent`.
-            case unprocessableContent(Operations.CreateWallet.Output.UnprocessableContent)
-            /// The associated value of the enum case if `self` is `.unprocessableContent`.
-            ///
-            /// - Throws: An error if `self` is not `.unprocessableContent`.
-            /// - SeeAlso: `.unprocessableContent`.
-            internal var unprocessableContent: Operations.CreateWallet.Output.UnprocessableContent {
-                get throws {
-                    switch self {
-                    case let .unprocessableContent(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unprocessableContent",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Default: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/wallets/POST/responses/default/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/wallets/POST/responses/default/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.CreateWallet.Output.Default.Body
-                /// Creates a new `Default`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.CreateWallet.Output.Default.Body) {
-                    self.body = body
-                }
-            }
-            /// Any other problem: a server failure, a timeout, a body too large
-            ///
-            /// - Remark: Generated from `#/paths//api/wallets/post(createWallet)/responses/default`.
-            ///
-            /// HTTP response code: `default`.
-            case `default`(statusCode: Swift.Int, Operations.CreateWallet.Output.Default)
-            /// The associated value of the enum case if `self` is `.`default``.
-            ///
-            /// - Throws: An error if `self` is not `.`default``.
-            /// - SeeAlso: `.`default``.
-            internal var `default`: Operations.CreateWallet.Output.Default {
-                get throws {
-                    switch self {
-                    case let .`default`(_, response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "default",
-                            response: self
-                        )
-                    }
-                }
-            }
-        }
-        internal enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case applicationProblemJson
-            case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                case "application/problem+json":
-                    self = .applicationProblemJson
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            internal var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                case .applicationProblemJson:
-                    return "application/problem+json"
-                }
-            }
-            internal static var allCases: [Self] {
-                [
-                    .json,
-                    .applicationProblemJson
-                ]
-            }
-        }
-    }
-    /// Debt accounts and upcoming installments
-    ///
-    /// - Remark: HTTP `GET /api/debts`.
-    /// - Remark: Generated from `#/paths//api/debts/get(listDebts)`.
-    internal enum ListDebts {
-        internal static let id: Swift.String = "listDebts"
-        internal struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/debts/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.ListDebts.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.ListDebts.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            internal var headers: Operations.ListDebts.Input.Headers
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - headers:
-            internal init(headers: Operations.ListDebts.Input.Headers = .init()) {
-                self.headers = headers
-            }
-        }
-        internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/GET/responses/200/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/debts/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.DebtList)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    internal var json: Components.Schemas.DebtList {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.ListDebts.Output.Ok.Body
-                /// Creates a new `Ok`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.ListDebts.Output.Ok.Body) {
-                    self.body = body
-                }
-            }
-            /// Owned debts
-            ///
-            /// - Remark: Generated from `#/paths//api/debts/get(listDebts)/responses/200`.
-            ///
-            /// HTTP response code: `200 ok`.
-            case ok(Operations.ListDebts.Output.Ok)
-            /// The associated value of the enum case if `self` is `.ok`.
-            ///
-            /// - Throws: An error if `self` is not `.ok`.
-            /// - SeeAlso: `.ok`.
-            internal var ok: Operations.ListDebts.Output.Ok {
-                get throws {
-                    switch self {
-                    case let .ok(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "ok",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Unauthorized: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/GET/responses/401/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/debts/GET/responses/401/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.ListDebts.Output.Unauthorized.Body
-                /// Creates a new `Unauthorized`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.ListDebts.Output.Unauthorized.Body) {
-                    self.body = body
-                }
-            }
-            /// No valid session
-            ///
-            /// - Remark: Generated from `#/paths//api/debts/get(listDebts)/responses/401`.
-            ///
-            /// HTTP response code: `401 unauthorized`.
-            case unauthorized(Operations.ListDebts.Output.Unauthorized)
-            /// The associated value of the enum case if `self` is `.unauthorized`.
-            ///
-            /// - Throws: An error if `self` is not `.unauthorized`.
-            /// - SeeAlso: `.unauthorized`.
-            internal var unauthorized: Operations.ListDebts.Output.Unauthorized {
-                get throws {
-                    switch self {
-                    case let .unauthorized(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unauthorized",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Default: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/GET/responses/default/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/debts/GET/responses/default/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.ListDebts.Output.Default.Body
-                /// Creates a new `Default`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.ListDebts.Output.Default.Body) {
-                    self.body = body
-                }
-            }
-            /// Any other problem: a server failure, a timeout, a body too large
-            ///
-            /// - Remark: Generated from `#/paths//api/debts/get(listDebts)/responses/default`.
-            ///
-            /// HTTP response code: `default`.
-            case `default`(statusCode: Swift.Int, Operations.ListDebts.Output.Default)
-            /// The associated value of the enum case if `self` is `.`default``.
-            ///
-            /// - Throws: An error if `self` is not `.`default``.
-            /// - SeeAlso: `.`default``.
-            internal var `default`: Operations.ListDebts.Output.Default {
-                get throws {
-                    switch self {
-                    case let .`default`(_, response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "default",
-                            response: self
-                        )
-                    }
-                }
-            }
-        }
-        internal enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case applicationProblemJson
-            case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                case "application/problem+json":
-                    self = .applicationProblemJson
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            internal var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                case .applicationProblemJson:
-                    return "application/problem+json"
-                }
-            }
-            internal static var allCases: [Self] {
-                [
-                    .json,
-                    .applicationProblemJson
-                ]
-            }
-        }
-    }
-    /// Add a debt account
-    ///
-    /// - Remark: HTTP `POST /api/debts`.
-    /// - Remark: Generated from `#/paths//api/debts/post(createDebt)`.
-    internal enum CreateDebt {
-        internal static let id: Swift.String = "createDebt"
-        internal struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/debts/POST/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.CreateDebt.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.CreateDebt.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            internal var headers: Operations.CreateDebt.Input.Headers
-            /// - Remark: Generated from `#/paths/api/debts/POST/requestBody`.
-            internal enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.CreateDebtInput)
-            }
-            internal var body: Operations.CreateDebt.Input.Body
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - headers:
-            ///   - body:
-            internal init(
-                headers: Operations.CreateDebt.Input.Headers = .init(),
-                body: Operations.CreateDebt.Input.Body
-            ) {
-                self.headers = headers
-                self.body = body
-            }
-        }
-        internal enum Output: Sendable, Hashable {
-            internal struct Created: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/POST/responses/201/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/debts/POST/responses/201/content/application\/json`.
-                    case json(Components.Schemas.DebtSummary)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    internal var json: Components.Schemas.DebtSummary {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.CreateDebt.Output.Created.Body
-                /// Creates a new `Created`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.CreateDebt.Output.Created.Body) {
-                    self.body = body
-                }
-            }
-            /// Created debt account
-            ///
-            /// - Remark: Generated from `#/paths//api/debts/post(createDebt)/responses/201`.
-            ///
-            /// HTTP response code: `201 created`.
-            case created(Operations.CreateDebt.Output.Created)
-            /// The associated value of the enum case if `self` is `.created`.
-            ///
-            /// - Throws: An error if `self` is not `.created`.
-            /// - SeeAlso: `.created`.
-            internal var created: Operations.CreateDebt.Output.Created {
-                get throws {
-                    switch self {
-                    case let .created(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "created",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Unauthorized: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/POST/responses/401/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/debts/POST/responses/401/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.CreateDebt.Output.Unauthorized.Body
-                /// Creates a new `Unauthorized`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.CreateDebt.Output.Unauthorized.Body) {
-                    self.body = body
-                }
-            }
-            /// No valid session
-            ///
-            /// - Remark: Generated from `#/paths//api/debts/post(createDebt)/responses/401`.
-            ///
-            /// HTTP response code: `401 unauthorized`.
-            case unauthorized(Operations.CreateDebt.Output.Unauthorized)
-            /// The associated value of the enum case if `self` is `.unauthorized`.
-            ///
-            /// - Throws: An error if `self` is not `.unauthorized`.
-            /// - SeeAlso: `.unauthorized`.
-            internal var unauthorized: Operations.CreateDebt.Output.Unauthorized {
-                get throws {
-                    switch self {
-                    case let .unauthorized(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unauthorized",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct UnprocessableContent: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/POST/responses/422/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/debts/POST/responses/422/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.CreateDebt.Output.UnprocessableContent.Body
-                /// Creates a new `UnprocessableContent`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.CreateDebt.Output.UnprocessableContent.Body) {
-                    self.body = body
-                }
-            }
-            /// Request schema validation failed
-            ///
-            /// - Remark: Generated from `#/paths//api/debts/post(createDebt)/responses/422`.
-            ///
-            /// HTTP response code: `422 unprocessableContent`.
-            case unprocessableContent(Operations.CreateDebt.Output.UnprocessableContent)
-            /// The associated value of the enum case if `self` is `.unprocessableContent`.
-            ///
-            /// - Throws: An error if `self` is not `.unprocessableContent`.
-            /// - SeeAlso: `.unprocessableContent`.
-            internal var unprocessableContent: Operations.CreateDebt.Output.UnprocessableContent {
-                get throws {
-                    switch self {
-                    case let .unprocessableContent(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unprocessableContent",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Default: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/POST/responses/default/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/debts/POST/responses/default/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.CreateDebt.Output.Default.Body
-                /// Creates a new `Default`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.CreateDebt.Output.Default.Body) {
-                    self.body = body
-                }
-            }
-            /// Any other problem: a server failure, a timeout, a body too large
-            ///
-            /// - Remark: Generated from `#/paths//api/debts/post(createDebt)/responses/default`.
-            ///
-            /// HTTP response code: `default`.
-            case `default`(statusCode: Swift.Int, Operations.CreateDebt.Output.Default)
-            /// The associated value of the enum case if `self` is `.`default``.
-            ///
-            /// - Throws: An error if `self` is not `.`default``.
-            /// - SeeAlso: `.`default``.
-            internal var `default`: Operations.CreateDebt.Output.Default {
-                get throws {
-                    switch self {
-                    case let .`default`(_, response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "default",
-                            response: self
-                        )
-                    }
-                }
-            }
-        }
-        internal enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case applicationProblemJson
-            case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                case "application/problem+json":
-                    self = .applicationProblemJson
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            internal var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                case .applicationProblemJson:
-                    return "application/problem+json"
-                }
-            }
-            internal static var allCases: [Self] {
-                [
-                    .json,
-                    .applicationProblemJson
-                ]
-            }
-        }
-    }
-    /// Debt details and payment history
-    ///
-    /// - Remark: HTTP `GET /api/debts/{id}`.
-    /// - Remark: Generated from `#/paths//api/debts/{id}/get(getDebt)`.
-    internal enum GetDebt {
-        internal static let id: Swift.String = "getDebt"
-        internal struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/debts/{id}/GET/path`.
-            internal struct Path: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/{id}/GET/path/id`.
-                internal var id: Swift.String
-                /// Creates a new `Path`.
-                ///
-                /// - Parameters:
-                ///   - id:
-                internal init(id: Swift.String) {
-                    self.id = id
-                }
-            }
-            internal var path: Operations.GetDebt.Input.Path
-            /// - Remark: Generated from `#/paths/api/debts/{id}/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetDebt.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetDebt.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            internal var headers: Operations.GetDebt.Input.Headers
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - path:
-            ///   - headers:
-            internal init(
-                path: Operations.GetDebt.Input.Path,
-                headers: Operations.GetDebt.Input.Headers = .init()
-            ) {
-                self.path = path
-                self.headers = headers
-            }
-        }
-        internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/{id}/GET/responses/200/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/debts/{id}/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.DebtDetail)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    internal var json: Components.Schemas.DebtDetail {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetDebt.Output.Ok.Body
-                /// Creates a new `Ok`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetDebt.Output.Ok.Body) {
-                    self.body = body
-                }
-            }
-            /// Debt detail
-            ///
-            /// - Remark: Generated from `#/paths//api/debts/{id}/get(getDebt)/responses/200`.
-            ///
-            /// HTTP response code: `200 ok`.
-            case ok(Operations.GetDebt.Output.Ok)
-            /// The associated value of the enum case if `self` is `.ok`.
-            ///
-            /// - Throws: An error if `self` is not `.ok`.
-            /// - SeeAlso: `.ok`.
-            internal var ok: Operations.GetDebt.Output.Ok {
-                get throws {
-                    switch self {
-                    case let .ok(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "ok",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Unauthorized: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/{id}/GET/responses/401/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/debts/{id}/GET/responses/401/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetDebt.Output.Unauthorized.Body
-                /// Creates a new `Unauthorized`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetDebt.Output.Unauthorized.Body) {
-                    self.body = body
-                }
-            }
-            /// No valid session
-            ///
-            /// - Remark: Generated from `#/paths//api/debts/{id}/get(getDebt)/responses/401`.
-            ///
-            /// HTTP response code: `401 unauthorized`.
-            case unauthorized(Operations.GetDebt.Output.Unauthorized)
-            /// The associated value of the enum case if `self` is `.unauthorized`.
-            ///
-            /// - Throws: An error if `self` is not `.unauthorized`.
-            /// - SeeAlso: `.unauthorized`.
-            internal var unauthorized: Operations.GetDebt.Output.Unauthorized {
-                get throws {
-                    switch self {
-                    case let .unauthorized(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unauthorized",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct NotFound: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/{id}/GET/responses/404/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/debts/{id}/GET/responses/404/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetDebt.Output.NotFound.Body
-                /// Creates a new `NotFound`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetDebt.Output.NotFound.Body) {
-                    self.body = body
-                }
-            }
-            /// Resource not found
-            ///
-            /// - Remark: Generated from `#/paths//api/debts/{id}/get(getDebt)/responses/404`.
-            ///
-            /// HTTP response code: `404 notFound`.
-            case notFound(Operations.GetDebt.Output.NotFound)
-            /// The associated value of the enum case if `self` is `.notFound`.
-            ///
-            /// - Throws: An error if `self` is not `.notFound`.
-            /// - SeeAlso: `.notFound`.
-            internal var notFound: Operations.GetDebt.Output.NotFound {
-                get throws {
-                    switch self {
-                    case let .notFound(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "notFound",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct UnprocessableContent: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/{id}/GET/responses/422/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/debts/{id}/GET/responses/422/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetDebt.Output.UnprocessableContent.Body
-                /// Creates a new `UnprocessableContent`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetDebt.Output.UnprocessableContent.Body) {
-                    self.body = body
-                }
-            }
-            /// Request schema validation failed
-            ///
-            /// - Remark: Generated from `#/paths//api/debts/{id}/get(getDebt)/responses/422`.
-            ///
-            /// HTTP response code: `422 unprocessableContent`.
-            case unprocessableContent(Operations.GetDebt.Output.UnprocessableContent)
-            /// The associated value of the enum case if `self` is `.unprocessableContent`.
-            ///
-            /// - Throws: An error if `self` is not `.unprocessableContent`.
-            /// - SeeAlso: `.unprocessableContent`.
-            internal var unprocessableContent: Operations.GetDebt.Output.UnprocessableContent {
-                get throws {
-                    switch self {
-                    case let .unprocessableContent(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unprocessableContent",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Default: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/{id}/GET/responses/default/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/debts/{id}/GET/responses/default/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetDebt.Output.Default.Body
-                /// Creates a new `Default`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetDebt.Output.Default.Body) {
-                    self.body = body
-                }
-            }
-            /// Any other problem: a server failure, a timeout, a body too large
-            ///
-            /// - Remark: Generated from `#/paths//api/debts/{id}/get(getDebt)/responses/default`.
-            ///
-            /// HTTP response code: `default`.
-            case `default`(statusCode: Swift.Int, Operations.GetDebt.Output.Default)
-            /// The associated value of the enum case if `self` is `.`default``.
-            ///
-            /// - Throws: An error if `self` is not `.`default``.
-            /// - SeeAlso: `.`default``.
-            internal var `default`: Operations.GetDebt.Output.Default {
-                get throws {
-                    switch self {
-                    case let .`default`(_, response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "default",
-                            response: self
-                        )
-                    }
-                }
-            }
-        }
-        internal enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case applicationProblemJson
-            case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                case "application/problem+json":
-                    self = .applicationProblemJson
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            internal var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                case .applicationProblemJson:
-                    return "application/problem+json"
-                }
-            }
-            internal static var allCases: [Self] {
-                [
-                    .json,
-                    .applicationProblemJson
-                ]
-            }
-        }
-    }
-    /// Pay down a debt and save a transaction
-    ///
-    /// - Remark: HTTP `POST /api/debts/{id}/payments`.
-    /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)`.
-    internal enum RecordDebtPayment {
-        internal static let id: Swift.String = "recordDebtPayment"
-        internal struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/path`.
-            internal struct Path: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/path/id`.
-                internal var id: Swift.String
-                /// Creates a new `Path`.
-                ///
-                /// - Parameters:
-                ///   - id:
-                internal init(id: Swift.String) {
-                    self.id = id
-                }
-            }
-            internal var path: Operations.RecordDebtPayment.Input.Path
-            /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.RecordDebtPayment.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.RecordDebtPayment.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            internal var headers: Operations.RecordDebtPayment.Input.Headers
-            /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/requestBody`.
-            internal enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.DebtPaymentInput)
-            }
-            internal var body: Operations.RecordDebtPayment.Input.Body
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - path:
-            ///   - headers:
-            ///   - body:
-            internal init(
-                path: Operations.RecordDebtPayment.Input.Path,
-                headers: Operations.RecordDebtPayment.Input.Headers = .init(),
-                body: Operations.RecordDebtPayment.Input.Body
-            ) {
-                self.path = path
-                self.headers = headers
-                self.body = body
-            }
-        }
-        internal enum Output: Sendable, Hashable {
-            internal struct Created: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/201/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/201/content/application\/json`.
-                    case json(Components.Schemas.DebtPayment)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    internal var json: Components.Schemas.DebtPayment {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.RecordDebtPayment.Output.Created.Body
-                /// Creates a new `Created`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.RecordDebtPayment.Output.Created.Body) {
-                    self.body = body
-                }
-            }
-            /// Payment and updated debt balance
-            ///
-            /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)/responses/201`.
-            ///
-            /// HTTP response code: `201 created`.
-            case created(Operations.RecordDebtPayment.Output.Created)
-            /// The associated value of the enum case if `self` is `.created`.
-            ///
-            /// - Throws: An error if `self` is not `.created`.
-            /// - SeeAlso: `.created`.
-            internal var created: Operations.RecordDebtPayment.Output.Created {
-                get throws {
-                    switch self {
-                    case let .created(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "created",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Unauthorized: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/401/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/401/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.RecordDebtPayment.Output.Unauthorized.Body
-                /// Creates a new `Unauthorized`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.RecordDebtPayment.Output.Unauthorized.Body) {
-                    self.body = body
-                }
-            }
-            /// No valid session
-            ///
-            /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)/responses/401`.
-            ///
-            /// HTTP response code: `401 unauthorized`.
-            case unauthorized(Operations.RecordDebtPayment.Output.Unauthorized)
-            /// The associated value of the enum case if `self` is `.unauthorized`.
-            ///
-            /// - Throws: An error if `self` is not `.unauthorized`.
-            /// - SeeAlso: `.unauthorized`.
-            internal var unauthorized: Operations.RecordDebtPayment.Output.Unauthorized {
-                get throws {
-                    switch self {
-                    case let .unauthorized(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unauthorized",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct NotFound: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/404/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/404/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.RecordDebtPayment.Output.NotFound.Body
-                /// Creates a new `NotFound`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.RecordDebtPayment.Output.NotFound.Body) {
-                    self.body = body
-                }
-            }
-            /// Resource not found
-            ///
-            /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)/responses/404`.
-            ///
-            /// HTTP response code: `404 notFound`.
-            case notFound(Operations.RecordDebtPayment.Output.NotFound)
-            /// The associated value of the enum case if `self` is `.notFound`.
-            ///
-            /// - Throws: An error if `self` is not `.notFound`.
-            /// - SeeAlso: `.notFound`.
-            internal var notFound: Operations.RecordDebtPayment.Output.NotFound {
-                get throws {
-                    switch self {
-                    case let .notFound(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "notFound",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Conflict: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/409/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/409/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.RecordDebtPayment.Output.Conflict.Body
-                /// Creates a new `Conflict`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.RecordDebtPayment.Output.Conflict.Body) {
-                    self.body = body
-                }
-            }
-            /// Resource conflict
-            ///
-            /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)/responses/409`.
-            ///
-            /// HTTP response code: `409 conflict`.
-            case conflict(Operations.RecordDebtPayment.Output.Conflict)
-            /// The associated value of the enum case if `self` is `.conflict`.
-            ///
-            /// - Throws: An error if `self` is not `.conflict`.
-            /// - SeeAlso: `.conflict`.
-            internal var conflict: Operations.RecordDebtPayment.Output.Conflict {
-                get throws {
-                    switch self {
-                    case let .conflict(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "conflict",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct UnprocessableContent: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/422/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/422/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.RecordDebtPayment.Output.UnprocessableContent.Body
-                /// Creates a new `UnprocessableContent`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.RecordDebtPayment.Output.UnprocessableContent.Body) {
-                    self.body = body
-                }
-            }
-            /// Request schema validation failed
-            ///
-            /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)/responses/422`.
-            ///
-            /// HTTP response code: `422 unprocessableContent`.
-            case unprocessableContent(Operations.RecordDebtPayment.Output.UnprocessableContent)
-            /// The associated value of the enum case if `self` is `.unprocessableContent`.
-            ///
-            /// - Throws: An error if `self` is not `.unprocessableContent`.
-            /// - SeeAlso: `.unprocessableContent`.
-            internal var unprocessableContent: Operations.RecordDebtPayment.Output.UnprocessableContent {
-                get throws {
-                    switch self {
-                    case let .unprocessableContent(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unprocessableContent",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Default: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/default/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/debts/{id}/payments/POST/responses/default/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.RecordDebtPayment.Output.Default.Body
-                /// Creates a new `Default`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.RecordDebtPayment.Output.Default.Body) {
-                    self.body = body
-                }
-            }
-            /// Any other problem: a server failure, a timeout, a body too large
-            ///
-            /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)/responses/default`.
-            ///
-            /// HTTP response code: `default`.
-            case `default`(statusCode: Swift.Int, Operations.RecordDebtPayment.Output.Default)
-            /// The associated value of the enum case if `self` is `.`default``.
-            ///
-            /// - Throws: An error if `self` is not `.`default``.
-            /// - SeeAlso: `.`default``.
-            internal var `default`: Operations.RecordDebtPayment.Output.Default {
-                get throws {
-                    switch self {
-                    case let .`default`(_, response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "default",
-                            response: self
-                        )
-                    }
-                }
-            }
-        }
-        internal enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case applicationProblemJson
-            case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                case "application/problem+json":
-                    self = .applicationProblemJson
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            internal var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                case .applicationProblemJson:
-                    return "application/problem+json"
-                }
-            }
-            internal static var allCases: [Self] {
-                [
-                    .json,
-                    .applicationProblemJson
-                ]
-            }
-        }
-    }
-    /// Current budget and adjusted payday
-    ///
-    /// - Remark: HTTP `GET /api/budgets/current`.
-    /// - Remark: Generated from `#/paths//api/budgets/current/get(getCurrentBudget)`.
-    internal enum GetCurrentBudget {
-        internal static let id: Swift.String = "getCurrentBudget"
-        internal struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/budgets/current/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetCurrentBudget.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetCurrentBudget.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            internal var headers: Operations.GetCurrentBudget.Input.Headers
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - headers:
-            internal init(headers: Operations.GetCurrentBudget.Input.Headers = .init()) {
-                self.headers = headers
-            }
-        }
-        internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/budgets/current/GET/responses/200/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/budgets/current/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.CurrentBudget)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    internal var json: Components.Schemas.CurrentBudget {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetCurrentBudget.Output.Ok.Body
-                /// Creates a new `Ok`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetCurrentBudget.Output.Ok.Body) {
-                    self.body = body
-                }
-            }
-            /// Current budget
-            ///
-            /// - Remark: Generated from `#/paths//api/budgets/current/get(getCurrentBudget)/responses/200`.
-            ///
-            /// HTTP response code: `200 ok`.
-            case ok(Operations.GetCurrentBudget.Output.Ok)
-            /// The associated value of the enum case if `self` is `.ok`.
-            ///
-            /// - Throws: An error if `self` is not `.ok`.
-            /// - SeeAlso: `.ok`.
-            internal var ok: Operations.GetCurrentBudget.Output.Ok {
-                get throws {
-                    switch self {
-                    case let .ok(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "ok",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Unauthorized: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/budgets/current/GET/responses/401/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/budgets/current/GET/responses/401/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetCurrentBudget.Output.Unauthorized.Body
-                /// Creates a new `Unauthorized`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetCurrentBudget.Output.Unauthorized.Body) {
-                    self.body = body
-                }
-            }
-            /// No valid session
-            ///
-            /// - Remark: Generated from `#/paths//api/budgets/current/get(getCurrentBudget)/responses/401`.
-            ///
-            /// HTTP response code: `401 unauthorized`.
-            case unauthorized(Operations.GetCurrentBudget.Output.Unauthorized)
-            /// The associated value of the enum case if `self` is `.unauthorized`.
-            ///
-            /// - Throws: An error if `self` is not `.unauthorized`.
-            /// - SeeAlso: `.unauthorized`.
-            internal var unauthorized: Operations.GetCurrentBudget.Output.Unauthorized {
-                get throws {
-                    switch self {
-                    case let .unauthorized(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unauthorized",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Default: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/budgets/current/GET/responses/default/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/budgets/current/GET/responses/default/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetCurrentBudget.Output.Default.Body
-                /// Creates a new `Default`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetCurrentBudget.Output.Default.Body) {
-                    self.body = body
-                }
-            }
-            /// Any other problem: a server failure, a timeout, a body too large
-            ///
-            /// - Remark: Generated from `#/paths//api/budgets/current/get(getCurrentBudget)/responses/default`.
-            ///
-            /// HTTP response code: `default`.
-            case `default`(statusCode: Swift.Int, Operations.GetCurrentBudget.Output.Default)
-            /// The associated value of the enum case if `self` is `.`default``.
-            ///
-            /// - Throws: An error if `self` is not `.`default``.
-            /// - SeeAlso: `.`default``.
-            internal var `default`: Operations.GetCurrentBudget.Output.Default {
-                get throws {
-                    switch self {
-                    case let .`default`(_, response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "default",
-                            response: self
-                        )
-                    }
-                }
-            }
-        }
-        internal enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case applicationProblemJson
-            case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                case "application/problem+json":
-                    self = .applicationProblemJson
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            internal var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                case .applicationProblemJson:
-                    return "application/problem+json"
-                }
-            }
-            internal static var allCases: [Self] {
-                [
-                    .json,
-                    .applicationProblemJson
-                ]
-            }
-        }
-    }
-    /// Set budget allocations and payday
-    ///
-    /// - Remark: HTTP `PUT /api/budgets/current`.
-    /// - Remark: Generated from `#/paths//api/budgets/current/put(updateCurrentBudget)`.
-    internal enum UpdateCurrentBudget {
-        internal static let id: Swift.String = "updateCurrentBudget"
-        internal struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/budgets/current/PUT/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.UpdateCurrentBudget.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.UpdateCurrentBudget.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            internal var headers: Operations.UpdateCurrentBudget.Input.Headers
-            /// - Remark: Generated from `#/paths/api/budgets/current/PUT/requestBody`.
-            internal enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/budgets/current/PUT/requestBody/content/application\/json`.
-                case json(Components.Schemas.UpdateCurrentBudgetInput)
-            }
-            internal var body: Operations.UpdateCurrentBudget.Input.Body
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - headers:
-            ///   - body:
-            internal init(
-                headers: Operations.UpdateCurrentBudget.Input.Headers = .init(),
-                body: Operations.UpdateCurrentBudget.Input.Body
-            ) {
-                self.headers = headers
-                self.body = body
-            }
-        }
-        internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/budgets/current/PUT/responses/200/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/budgets/current/PUT/responses/200/content/application\/json`.
-                    case json(Components.Schemas.CurrentBudget)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    internal var json: Components.Schemas.CurrentBudget {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.UpdateCurrentBudget.Output.Ok.Body
-                /// Creates a new `Ok`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.UpdateCurrentBudget.Output.Ok.Body) {
-                    self.body = body
-                }
-            }
-            /// Saved budget and adjusted payday
-            ///
-            /// - Remark: Generated from `#/paths//api/budgets/current/put(updateCurrentBudget)/responses/200`.
-            ///
-            /// HTTP response code: `200 ok`.
-            case ok(Operations.UpdateCurrentBudget.Output.Ok)
-            /// The associated value of the enum case if `self` is `.ok`.
-            ///
-            /// - Throws: An error if `self` is not `.ok`.
-            /// - SeeAlso: `.ok`.
-            internal var ok: Operations.UpdateCurrentBudget.Output.Ok {
-                get throws {
-                    switch self {
-                    case let .ok(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "ok",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Unauthorized: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/budgets/current/PUT/responses/401/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/budgets/current/PUT/responses/401/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.UpdateCurrentBudget.Output.Unauthorized.Body
-                /// Creates a new `Unauthorized`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.UpdateCurrentBudget.Output.Unauthorized.Body) {
-                    self.body = body
-                }
-            }
-            /// No valid session
-            ///
-            /// - Remark: Generated from `#/paths//api/budgets/current/put(updateCurrentBudget)/responses/401`.
-            ///
-            /// HTTP response code: `401 unauthorized`.
-            case unauthorized(Operations.UpdateCurrentBudget.Output.Unauthorized)
-            /// The associated value of the enum case if `self` is `.unauthorized`.
-            ///
-            /// - Throws: An error if `self` is not `.unauthorized`.
-            /// - SeeAlso: `.unauthorized`.
-            internal var unauthorized: Operations.UpdateCurrentBudget.Output.Unauthorized {
-                get throws {
-                    switch self {
-                    case let .unauthorized(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unauthorized",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct UnprocessableContent: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/budgets/current/PUT/responses/422/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/budgets/current/PUT/responses/422/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.UpdateCurrentBudget.Output.UnprocessableContent.Body
-                /// Creates a new `UnprocessableContent`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.UpdateCurrentBudget.Output.UnprocessableContent.Body) {
-                    self.body = body
-                }
-            }
-            /// Request schema validation failed
-            ///
-            /// - Remark: Generated from `#/paths//api/budgets/current/put(updateCurrentBudget)/responses/422`.
-            ///
-            /// HTTP response code: `422 unprocessableContent`.
-            case unprocessableContent(Operations.UpdateCurrentBudget.Output.UnprocessableContent)
-            /// The associated value of the enum case if `self` is `.unprocessableContent`.
-            ///
-            /// - Throws: An error if `self` is not `.unprocessableContent`.
-            /// - SeeAlso: `.unprocessableContent`.
-            internal var unprocessableContent: Operations.UpdateCurrentBudget.Output.UnprocessableContent {
-                get throws {
-                    switch self {
-                    case let .unprocessableContent(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unprocessableContent",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Default: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/budgets/current/PUT/responses/default/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/budgets/current/PUT/responses/default/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.UpdateCurrentBudget.Output.Default.Body
-                /// Creates a new `Default`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.UpdateCurrentBudget.Output.Default.Body) {
-                    self.body = body
-                }
-            }
-            /// Any other problem: a server failure, a timeout, a body too large
-            ///
-            /// - Remark: Generated from `#/paths//api/budgets/current/put(updateCurrentBudget)/responses/default`.
-            ///
-            /// HTTP response code: `default`.
-            case `default`(statusCode: Swift.Int, Operations.UpdateCurrentBudget.Output.Default)
-            /// The associated value of the enum case if `self` is `.`default``.
-            ///
-            /// - Throws: An error if `self` is not `.`default``.
-            /// - SeeAlso: `.`default``.
-            internal var `default`: Operations.UpdateCurrentBudget.Output.Default {
-                get throws {
-                    switch self {
-                    case let .`default`(_, response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "default",
-                            response: self
-                        )
-                    }
-                }
-            }
-        }
-        internal enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case applicationProblemJson
-            case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                case "application/problem+json":
-                    self = .applicationProblemJson
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            internal var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                case .applicationProblemJson:
-                    return "application/problem+json"
-                }
-            }
-            internal static var allCases: [Self] {
-                [
-                    .json,
-                    .applicationProblemJson
-                ]
-            }
-        }
-    }
-    /// Budget editor with up to three prior-period averages
-    ///
-    /// - Remark: HTTP `GET /api/budgets/current/edit`.
-    /// - Remark: Generated from `#/paths//api/budgets/current/edit/get(getCurrentBudgetEdit)`.
-    internal enum GetCurrentBudgetEdit {
-        internal static let id: Swift.String = "getCurrentBudgetEdit"
-        internal struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/budgets/current/edit/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetCurrentBudgetEdit.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetCurrentBudgetEdit.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            internal var headers: Operations.GetCurrentBudgetEdit.Input.Headers
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - headers:
-            internal init(headers: Operations.GetCurrentBudgetEdit.Input.Headers = .init()) {
-                self.headers = headers
-            }
-        }
-        internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/budgets/current/edit/GET/responses/200/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/budgets/current/edit/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.BudgetEdit)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    internal var json: Components.Schemas.BudgetEdit {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetCurrentBudgetEdit.Output.Ok.Body
-                /// Creates a new `Ok`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetCurrentBudgetEdit.Output.Ok.Body) {
-                    self.body = body
-                }
-            }
-            /// Budget, goal posts and spending averages
-            ///
-            /// - Remark: Generated from `#/paths//api/budgets/current/edit/get(getCurrentBudgetEdit)/responses/200`.
-            ///
-            /// HTTP response code: `200 ok`.
-            case ok(Operations.GetCurrentBudgetEdit.Output.Ok)
-            /// The associated value of the enum case if `self` is `.ok`.
-            ///
-            /// - Throws: An error if `self` is not `.ok`.
-            /// - SeeAlso: `.ok`.
-            internal var ok: Operations.GetCurrentBudgetEdit.Output.Ok {
-                get throws {
-                    switch self {
-                    case let .ok(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "ok",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Unauthorized: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/budgets/current/edit/GET/responses/401/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/budgets/current/edit/GET/responses/401/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetCurrentBudgetEdit.Output.Unauthorized.Body
-                /// Creates a new `Unauthorized`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetCurrentBudgetEdit.Output.Unauthorized.Body) {
-                    self.body = body
-                }
-            }
-            /// No valid session
-            ///
-            /// - Remark: Generated from `#/paths//api/budgets/current/edit/get(getCurrentBudgetEdit)/responses/401`.
-            ///
-            /// HTTP response code: `401 unauthorized`.
-            case unauthorized(Operations.GetCurrentBudgetEdit.Output.Unauthorized)
-            /// The associated value of the enum case if `self` is `.unauthorized`.
-            ///
-            /// - Throws: An error if `self` is not `.unauthorized`.
-            /// - SeeAlso: `.unauthorized`.
-            internal var unauthorized: Operations.GetCurrentBudgetEdit.Output.Unauthorized {
-                get throws {
-                    switch self {
-                    case let .unauthorized(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unauthorized",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Default: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/budgets/current/edit/GET/responses/default/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/budgets/current/edit/GET/responses/default/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetCurrentBudgetEdit.Output.Default.Body
-                /// Creates a new `Default`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetCurrentBudgetEdit.Output.Default.Body) {
-                    self.body = body
-                }
-            }
-            /// Any other problem: a server failure, a timeout, a body too large
-            ///
-            /// - Remark: Generated from `#/paths//api/budgets/current/edit/get(getCurrentBudgetEdit)/responses/default`.
-            ///
-            /// HTTP response code: `default`.
-            case `default`(statusCode: Swift.Int, Operations.GetCurrentBudgetEdit.Output.Default)
-            /// The associated value of the enum case if `self` is `.`default``.
-            ///
-            /// - Throws: An error if `self` is not `.`default``.
-            /// - SeeAlso: `.`default``.
-            internal var `default`: Operations.GetCurrentBudgetEdit.Output.Default {
-                get throws {
-                    switch self {
-                    case let .`default`(_, response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "default",
-                            response: self
-                        )
-                    }
-                }
-            }
-        }
-        internal enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case applicationProblemJson
-            case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                case "application/problem+json":
-                    self = .applicationProblemJson
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            internal var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                case .applicationProblemJson:
-                    return "application/problem+json"
-                }
-            }
-            internal static var allCases: [Self] {
-                [
-                    .json,
-                    .applicationProblemJson
-                ]
-            }
-        }
-    }
-    /// Recurring bills and debt installments by due date
-    ///
-    /// - Remark: HTTP `GET /api/bills`.
-    /// - Remark: Generated from `#/paths//api/bills/get(listBills)`.
-    internal enum ListBills {
-        internal static let id: Swift.String = "listBills"
-        internal struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/bills/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.ListBills.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.ListBills.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            internal var headers: Operations.ListBills.Input.Headers
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - headers:
-            internal init(headers: Operations.ListBills.Input.Headers = .init()) {
-                self.headers = headers
-            }
-        }
-        internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/GET/responses/200/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.BillList)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    internal var json: Components.Schemas.BillList {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.ListBills.Output.Ok.Body
-                /// Creates a new `Ok`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.ListBills.Output.Ok.Body) {
-                    self.body = body
-                }
-            }
-            /// Upcoming bill schedule
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/get(listBills)/responses/200`.
-            ///
-            /// HTTP response code: `200 ok`.
-            case ok(Operations.ListBills.Output.Ok)
-            /// The associated value of the enum case if `self` is `.ok`.
-            ///
-            /// - Throws: An error if `self` is not `.ok`.
-            /// - SeeAlso: `.ok`.
-            internal var ok: Operations.ListBills.Output.Ok {
-                get throws {
-                    switch self {
-                    case let .ok(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "ok",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Unauthorized: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/GET/responses/401/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/GET/responses/401/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.ListBills.Output.Unauthorized.Body
-                /// Creates a new `Unauthorized`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.ListBills.Output.Unauthorized.Body) {
-                    self.body = body
-                }
-            }
-            /// No valid session
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/get(listBills)/responses/401`.
-            ///
-            /// HTTP response code: `401 unauthorized`.
-            case unauthorized(Operations.ListBills.Output.Unauthorized)
-            /// The associated value of the enum case if `self` is `.unauthorized`.
-            ///
-            /// - Throws: An error if `self` is not `.unauthorized`.
-            /// - SeeAlso: `.unauthorized`.
-            internal var unauthorized: Operations.ListBills.Output.Unauthorized {
-                get throws {
-                    switch self {
-                    case let .unauthorized(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unauthorized",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Default: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/GET/responses/default/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/GET/responses/default/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.ListBills.Output.Default.Body
-                /// Creates a new `Default`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.ListBills.Output.Default.Body) {
-                    self.body = body
-                }
-            }
-            /// Any other problem: a server failure, a timeout, a body too large
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/get(listBills)/responses/default`.
-            ///
-            /// HTTP response code: `default`.
-            case `default`(statusCode: Swift.Int, Operations.ListBills.Output.Default)
-            /// The associated value of the enum case if `self` is `.`default``.
-            ///
-            /// - Throws: An error if `self` is not `.`default``.
-            /// - SeeAlso: `.`default``.
-            internal var `default`: Operations.ListBills.Output.Default {
-                get throws {
-                    switch self {
-                    case let .`default`(_, response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "default",
-                            response: self
-                        )
-                    }
-                }
-            }
-        }
-        internal enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case applicationProblemJson
-            case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                case "application/problem+json":
-                    self = .applicationProblemJson
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            internal var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                case .applicationProblemJson:
-                    return "application/problem+json"
-                }
-            }
-            internal static var allCases: [Self] {
-                [
-                    .json,
-                    .applicationProblemJson
-                ]
-            }
-        }
-    }
-    /// Add a recurring bill or linked debt installment
-    ///
-    /// - Remark: HTTP `POST /api/bills`.
-    /// - Remark: Generated from `#/paths//api/bills/post(createBill)`.
-    internal enum CreateBill {
-        internal static let id: Swift.String = "createBill"
-        internal struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/bills/POST/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.CreateBill.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.CreateBill.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            internal var headers: Operations.CreateBill.Input.Headers
-            /// - Remark: Generated from `#/paths/api/bills/POST/requestBody`.
-            internal enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/POST/requestBody/json`.
-                internal struct JsonPayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/paths/api/bills/POST/requestBody/json/name`.
-                    internal var name: Swift.String
-                    /// - Remark: Generated from `#/paths/api/bills/POST/requestBody/json/amount`.
-                    internal var amount: Swift.Int
-                    /// - Remark: Generated from `#/paths/api/bills/POST/requestBody/json/category`.
-                    internal enum CategoryPayload: String, Codable, Hashable, Sendable, CaseIterable {
-                        case food = "food"
-                        case coffee = "coffee"
-                        case transport = "transport"
-                        case shopping = "shopping"
-                        case bills = "bills"
-                        case paylaterInstalment = "paylater_instalment"
-                        case savingsDeposit = "savings_deposit"
-                        case insurance = "insurance"
-                        case entertainment = "entertainment"
-                        case health = "health"
-                        case education = "education"
-                        case household = "household"
-                        case otherExpense = "other_expense"
-                    }
-                    /// - Remark: Generated from `#/paths/api/bills/POST/requestBody/json/category`.
-                    internal var category: Operations.CreateBill.Input.Body.JsonPayload.CategoryPayload
-                    /// - Remark: Generated from `#/paths/api/bills/POST/requestBody/json/nextDueDate`.
-                    internal var nextDueDate: Swift.String
-                    /// - Remark: Generated from `#/paths/api/bills/POST/requestBody/json/repeatInterval`.
-                    internal enum RepeatIntervalPayload: String, Codable, Hashable, Sendable, CaseIterable {
-                        case weekly = "weekly"
-                        case monthly = "monthly"
-                        case yearly = "yearly"
-                    }
-                    /// - Remark: Generated from `#/paths/api/bills/POST/requestBody/json/repeatInterval`.
-                    internal var repeatInterval: Operations.CreateBill.Input.Body.JsonPayload.RepeatIntervalPayload
-                    /// - Remark: Generated from `#/paths/api/bills/POST/requestBody/json/installmentsTotal`.
-                    internal var installmentsTotal: Swift.Int?
-                    /// - Remark: Generated from `#/paths/api/bills/POST/requestBody/json/installmentsRemaining`.
-                    internal var installmentsRemaining: Swift.Int?
-                    /// - Remark: Generated from `#/paths/api/bills/POST/requestBody/json/linkedDebtAccountId`.
-                    internal var linkedDebtAccountId: Swift.String?
-                    /// - Remark: Generated from `#/paths/api/bills/POST/requestBody/json/clientId`.
-                    internal var clientId: Swift.String
-                    /// Creates a new `JsonPayload`.
-                    ///
-                    /// - Parameters:
-                    ///   - name:
-                    ///   - amount:
-                    ///   - category:
-                    ///   - nextDueDate:
-                    ///   - repeatInterval:
-                    ///   - installmentsTotal:
-                    ///   - installmentsRemaining:
-                    ///   - linkedDebtAccountId:
-                    ///   - clientId:
-                    internal init(
-                        name: Swift.String,
-                        amount: Swift.Int,
-                        category: Operations.CreateBill.Input.Body.JsonPayload.CategoryPayload,
-                        nextDueDate: Swift.String,
-                        repeatInterval: Operations.CreateBill.Input.Body.JsonPayload.RepeatIntervalPayload,
-                        installmentsTotal: Swift.Int? = nil,
-                        installmentsRemaining: Swift.Int? = nil,
-                        linkedDebtAccountId: Swift.String? = nil,
-                        clientId: Swift.String
-                    ) {
-                        self.name = name
-                        self.amount = amount
-                        self.category = category
-                        self.nextDueDate = nextDueDate
-                        self.repeatInterval = repeatInterval
-                        self.installmentsTotal = installmentsTotal
-                        self.installmentsRemaining = installmentsRemaining
-                        self.linkedDebtAccountId = linkedDebtAccountId
-                        self.clientId = clientId
-                    }
-                    internal enum CodingKeys: String, CodingKey {
-                        case name
-                        case amount
-                        case category
-                        case nextDueDate
-                        case repeatInterval
-                        case installmentsTotal
-                        case installmentsRemaining
-                        case linkedDebtAccountId
-                        case clientId
-                    }
-                }
-                /// - Remark: Generated from `#/paths/api/bills/POST/requestBody/content/application\/json`.
-                case json(Operations.CreateBill.Input.Body.JsonPayload)
-            }
-            internal var body: Operations.CreateBill.Input.Body
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - headers:
-            ///   - body:
-            internal init(
-                headers: Operations.CreateBill.Input.Headers = .init(),
-                body: Operations.CreateBill.Input.Body
-            ) {
-                self.headers = headers
-                self.body = body
-            }
-        }
-        internal enum Output: Sendable, Hashable {
-            internal struct Created: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/POST/responses/201/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/POST/responses/201/content/application\/json`.
-                    case json(Components.Schemas.Bill)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    internal var json: Components.Schemas.Bill {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.CreateBill.Output.Created.Body
-                /// Creates a new `Created`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.CreateBill.Output.Created.Body) {
-                    self.body = body
-                }
-            }
-            /// Created schedule
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/post(createBill)/responses/201`.
-            ///
-            /// HTTP response code: `201 created`.
-            case created(Operations.CreateBill.Output.Created)
-            /// The associated value of the enum case if `self` is `.created`.
-            ///
-            /// - Throws: An error if `self` is not `.created`.
-            /// - SeeAlso: `.created`.
-            internal var created: Operations.CreateBill.Output.Created {
-                get throws {
-                    switch self {
-                    case let .created(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "created",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Unauthorized: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/POST/responses/401/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/POST/responses/401/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.CreateBill.Output.Unauthorized.Body
-                /// Creates a new `Unauthorized`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.CreateBill.Output.Unauthorized.Body) {
-                    self.body = body
-                }
-            }
-            /// No valid session
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/post(createBill)/responses/401`.
-            ///
-            /// HTTP response code: `401 unauthorized`.
-            case unauthorized(Operations.CreateBill.Output.Unauthorized)
-            /// The associated value of the enum case if `self` is `.unauthorized`.
-            ///
-            /// - Throws: An error if `self` is not `.unauthorized`.
-            /// - SeeAlso: `.unauthorized`.
-            internal var unauthorized: Operations.CreateBill.Output.Unauthorized {
-                get throws {
-                    switch self {
-                    case let .unauthorized(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unauthorized",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct NotFound: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/POST/responses/404/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/POST/responses/404/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.CreateBill.Output.NotFound.Body
-                /// Creates a new `NotFound`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.CreateBill.Output.NotFound.Body) {
-                    self.body = body
-                }
-            }
-            /// Resource not found
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/post(createBill)/responses/404`.
-            ///
-            /// HTTP response code: `404 notFound`.
-            case notFound(Operations.CreateBill.Output.NotFound)
-            /// The associated value of the enum case if `self` is `.notFound`.
-            ///
-            /// - Throws: An error if `self` is not `.notFound`.
-            /// - SeeAlso: `.notFound`.
-            internal var notFound: Operations.CreateBill.Output.NotFound {
-                get throws {
-                    switch self {
-                    case let .notFound(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "notFound",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct UnprocessableContent: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/POST/responses/422/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/POST/responses/422/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.CreateBill.Output.UnprocessableContent.Body
-                /// Creates a new `UnprocessableContent`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.CreateBill.Output.UnprocessableContent.Body) {
-                    self.body = body
-                }
-            }
-            /// Request schema validation failed
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/post(createBill)/responses/422`.
-            ///
-            /// HTTP response code: `422 unprocessableContent`.
-            case unprocessableContent(Operations.CreateBill.Output.UnprocessableContent)
-            /// The associated value of the enum case if `self` is `.unprocessableContent`.
-            ///
-            /// - Throws: An error if `self` is not `.unprocessableContent`.
-            /// - SeeAlso: `.unprocessableContent`.
-            internal var unprocessableContent: Operations.CreateBill.Output.UnprocessableContent {
-                get throws {
-                    switch self {
-                    case let .unprocessableContent(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unprocessableContent",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Default: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/POST/responses/default/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/POST/responses/default/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.CreateBill.Output.Default.Body
-                /// Creates a new `Default`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.CreateBill.Output.Default.Body) {
-                    self.body = body
-                }
-            }
-            /// Any other problem: a server failure, a timeout, a body too large
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/post(createBill)/responses/default`.
-            ///
-            /// HTTP response code: `default`.
-            case `default`(statusCode: Swift.Int, Operations.CreateBill.Output.Default)
-            /// The associated value of the enum case if `self` is `.`default``.
-            ///
-            /// - Throws: An error if `self` is not `.`default``.
-            /// - SeeAlso: `.`default``.
-            internal var `default`: Operations.CreateBill.Output.Default {
-                get throws {
-                    switch self {
-                    case let .`default`(_, response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "default",
-                            response: self
-                        )
-                    }
-                }
-            }
-        }
-        internal enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case applicationProblemJson
-            case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                case "application/problem+json":
-                    self = .applicationProblemJson
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            internal var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                case .applicationProblemJson:
-                    return "application/problem+json"
-                }
-            }
-            internal static var allCases: [Self] {
-                [
-                    .json,
-                    .applicationProblemJson
-                ]
-            }
-        }
-    }
-    /// Recurring bill details
-    ///
-    /// - Remark: HTTP `GET /api/bills/{id}`.
-    /// - Remark: Generated from `#/paths//api/bills/{id}/get(getBill)`.
-    internal enum GetBill {
-        internal static let id: Swift.String = "getBill"
-        internal struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/bills/{id}/GET/path`.
-            internal struct Path: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/GET/path/id`.
-                internal var id: Swift.String
-                /// Creates a new `Path`.
-                ///
-                /// - Parameters:
-                ///   - id:
-                internal init(id: Swift.String) {
-                    self.id = id
-                }
-            }
-            internal var path: Operations.GetBill.Input.Path
-            /// - Remark: Generated from `#/paths/api/bills/{id}/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetBill.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetBill.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            internal var headers: Operations.GetBill.Input.Headers
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - path:
-            ///   - headers:
-            internal init(
-                path: Operations.GetBill.Input.Path,
-                headers: Operations.GetBill.Input.Headers = .init()
-            ) {
-                self.path = path
-                self.headers = headers
-            }
-        }
-        internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/GET/responses/200/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.Bill)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    internal var json: Components.Schemas.Bill {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetBill.Output.Ok.Body
-                /// Creates a new `Ok`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetBill.Output.Ok.Body) {
-                    self.body = body
-                }
-            }
-            /// Bill
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/get(getBill)/responses/200`.
-            ///
-            /// HTTP response code: `200 ok`.
-            case ok(Operations.GetBill.Output.Ok)
-            /// The associated value of the enum case if `self` is `.ok`.
-            ///
-            /// - Throws: An error if `self` is not `.ok`.
-            /// - SeeAlso: `.ok`.
-            internal var ok: Operations.GetBill.Output.Ok {
-                get throws {
-                    switch self {
-                    case let .ok(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "ok",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Unauthorized: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/GET/responses/401/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/GET/responses/401/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetBill.Output.Unauthorized.Body
-                /// Creates a new `Unauthorized`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetBill.Output.Unauthorized.Body) {
-                    self.body = body
-                }
-            }
-            /// No valid session
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/get(getBill)/responses/401`.
-            ///
-            /// HTTP response code: `401 unauthorized`.
-            case unauthorized(Operations.GetBill.Output.Unauthorized)
-            /// The associated value of the enum case if `self` is `.unauthorized`.
-            ///
-            /// - Throws: An error if `self` is not `.unauthorized`.
-            /// - SeeAlso: `.unauthorized`.
-            internal var unauthorized: Operations.GetBill.Output.Unauthorized {
-                get throws {
-                    switch self {
-                    case let .unauthorized(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unauthorized",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct NotFound: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/GET/responses/404/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/GET/responses/404/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetBill.Output.NotFound.Body
-                /// Creates a new `NotFound`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetBill.Output.NotFound.Body) {
-                    self.body = body
-                }
-            }
-            /// Resource not found
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/get(getBill)/responses/404`.
-            ///
-            /// HTTP response code: `404 notFound`.
-            case notFound(Operations.GetBill.Output.NotFound)
-            /// The associated value of the enum case if `self` is `.notFound`.
-            ///
-            /// - Throws: An error if `self` is not `.notFound`.
-            /// - SeeAlso: `.notFound`.
-            internal var notFound: Operations.GetBill.Output.NotFound {
-                get throws {
-                    switch self {
-                    case let .notFound(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "notFound",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct UnprocessableContent: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/GET/responses/422/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/GET/responses/422/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetBill.Output.UnprocessableContent.Body
-                /// Creates a new `UnprocessableContent`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetBill.Output.UnprocessableContent.Body) {
-                    self.body = body
-                }
-            }
-            /// Request schema validation failed
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/get(getBill)/responses/422`.
-            ///
-            /// HTTP response code: `422 unprocessableContent`.
-            case unprocessableContent(Operations.GetBill.Output.UnprocessableContent)
-            /// The associated value of the enum case if `self` is `.unprocessableContent`.
-            ///
-            /// - Throws: An error if `self` is not `.unprocessableContent`.
-            /// - SeeAlso: `.unprocessableContent`.
-            internal var unprocessableContent: Operations.GetBill.Output.UnprocessableContent {
-                get throws {
-                    switch self {
-                    case let .unprocessableContent(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unprocessableContent",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Default: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/GET/responses/default/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/GET/responses/default/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetBill.Output.Default.Body
-                /// Creates a new `Default`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetBill.Output.Default.Body) {
-                    self.body = body
-                }
-            }
-            /// Any other problem: a server failure, a timeout, a body too large
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/get(getBill)/responses/default`.
-            ///
-            /// HTTP response code: `default`.
-            case `default`(statusCode: Swift.Int, Operations.GetBill.Output.Default)
-            /// The associated value of the enum case if `self` is `.`default``.
-            ///
-            /// - Throws: An error if `self` is not `.`default``.
-            /// - SeeAlso: `.`default``.
-            internal var `default`: Operations.GetBill.Output.Default {
-                get throws {
-                    switch self {
-                    case let .`default`(_, response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "default",
-                            response: self
-                        )
-                    }
-                }
-            }
-        }
-        internal enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case applicationProblemJson
-            case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                case "application/problem+json":
-                    self = .applicationProblemJson
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            internal var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                case .applicationProblemJson:
-                    return "application/problem+json"
-                }
-            }
-            internal static var allCases: [Self] {
-                [
-                    .json,
-                    .applicationProblemJson
-                ]
-            }
-        }
-    }
-    /// Update future bill schedule
-    ///
-    /// Only the future schedule changes; saved payment transactions remain intact.
-    ///
-    /// - Remark: HTTP `PATCH /api/bills/{id}`.
-    /// - Remark: Generated from `#/paths//api/bills/{id}/patch(updateBill)`.
-    internal enum UpdateBill {
-        internal static let id: Swift.String = "updateBill"
-        internal struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/path`.
-            internal struct Path: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/path/id`.
-                internal var id: Swift.String
-                /// Creates a new `Path`.
-                ///
-                /// - Parameters:
-                ///   - id:
-                internal init(id: Swift.String) {
-                    self.id = id
-                }
-            }
-            internal var path: Operations.UpdateBill.Input.Path
-            /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.UpdateBill.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.UpdateBill.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            internal var headers: Operations.UpdateBill.Input.Headers
-            /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/requestBody`.
-            internal enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/requestBody/json`.
-                internal struct JsonPayload: Codable, Hashable, Sendable {
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/requestBody/json/name`.
-                    internal var name: Swift.String?
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/requestBody/json/amount`.
-                    internal var amount: Swift.Int?
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/requestBody/json/category`.
-                    internal enum CategoryPayload: String, Codable, Hashable, Sendable, CaseIterable {
-                        case food = "food"
-                        case coffee = "coffee"
-                        case transport = "transport"
-                        case shopping = "shopping"
-                        case bills = "bills"
-                        case paylaterInstalment = "paylater_instalment"
-                        case savingsDeposit = "savings_deposit"
-                        case insurance = "insurance"
-                        case entertainment = "entertainment"
-                        case health = "health"
-                        case education = "education"
-                        case household = "household"
-                        case otherExpense = "other_expense"
-                    }
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/requestBody/json/category`.
-                    internal var category: Operations.UpdateBill.Input.Body.JsonPayload.CategoryPayload?
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/requestBody/json/nextDueDate`.
-                    internal var nextDueDate: Swift.String?
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/requestBody/json/repeatInterval`.
-                    internal enum RepeatIntervalPayload: String, Codable, Hashable, Sendable, CaseIterable {
-                        case weekly = "weekly"
-                        case monthly = "monthly"
-                        case yearly = "yearly"
-                    }
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/requestBody/json/repeatInterval`.
-                    internal var repeatInterval: Operations.UpdateBill.Input.Body.JsonPayload.RepeatIntervalPayload?
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/requestBody/json/installmentsTotal`.
-                    internal var installmentsTotal: Swift.Int?
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/requestBody/json/installmentsRemaining`.
-                    internal var installmentsRemaining: Swift.Int?
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/requestBody/json/linkedDebtAccountId`.
-                    internal var linkedDebtAccountId: Swift.String?
-                    /// Creates a new `JsonPayload`.
-                    ///
-                    /// - Parameters:
-                    ///   - name:
-                    ///   - amount:
-                    ///   - category:
-                    ///   - nextDueDate:
-                    ///   - repeatInterval:
-                    ///   - installmentsTotal:
-                    ///   - installmentsRemaining:
-                    ///   - linkedDebtAccountId:
-                    internal init(
-                        name: Swift.String? = nil,
-                        amount: Swift.Int? = nil,
-                        category: Operations.UpdateBill.Input.Body.JsonPayload.CategoryPayload? = nil,
-                        nextDueDate: Swift.String? = nil,
-                        repeatInterval: Operations.UpdateBill.Input.Body.JsonPayload.RepeatIntervalPayload? = nil,
-                        installmentsTotal: Swift.Int? = nil,
-                        installmentsRemaining: Swift.Int? = nil,
-                        linkedDebtAccountId: Swift.String? = nil
-                    ) {
-                        self.name = name
-                        self.amount = amount
-                        self.category = category
-                        self.nextDueDate = nextDueDate
-                        self.repeatInterval = repeatInterval
-                        self.installmentsTotal = installmentsTotal
-                        self.installmentsRemaining = installmentsRemaining
-                        self.linkedDebtAccountId = linkedDebtAccountId
-                    }
-                    internal enum CodingKeys: String, CodingKey {
-                        case name
-                        case amount
-                        case category
-                        case nextDueDate
-                        case repeatInterval
-                        case installmentsTotal
-                        case installmentsRemaining
-                        case linkedDebtAccountId
-                    }
-                }
-                /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/requestBody/content/application\/json`.
-                case json(Operations.UpdateBill.Input.Body.JsonPayload)
-            }
-            internal var body: Operations.UpdateBill.Input.Body
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - path:
-            ///   - headers:
-            ///   - body:
-            internal init(
-                path: Operations.UpdateBill.Input.Path,
-                headers: Operations.UpdateBill.Input.Headers = .init(),
-                body: Operations.UpdateBill.Input.Body
-            ) {
-                self.path = path
-                self.headers = headers
-                self.body = body
-            }
-        }
-        internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/responses/200/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/responses/200/content/application\/json`.
-                    case json(Components.Schemas.Bill)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    internal var json: Components.Schemas.Bill {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.UpdateBill.Output.Ok.Body
-                /// Creates a new `Ok`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.UpdateBill.Output.Ok.Body) {
-                    self.body = body
-                }
-            }
-            /// Updated schedule
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/patch(updateBill)/responses/200`.
-            ///
-            /// HTTP response code: `200 ok`.
-            case ok(Operations.UpdateBill.Output.Ok)
-            /// The associated value of the enum case if `self` is `.ok`.
-            ///
-            /// - Throws: An error if `self` is not `.ok`.
-            /// - SeeAlso: `.ok`.
-            internal var ok: Operations.UpdateBill.Output.Ok {
-                get throws {
-                    switch self {
-                    case let .ok(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "ok",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Unauthorized: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/responses/401/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/responses/401/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.UpdateBill.Output.Unauthorized.Body
-                /// Creates a new `Unauthorized`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.UpdateBill.Output.Unauthorized.Body) {
-                    self.body = body
-                }
-            }
-            /// No valid session
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/patch(updateBill)/responses/401`.
-            ///
-            /// HTTP response code: `401 unauthorized`.
-            case unauthorized(Operations.UpdateBill.Output.Unauthorized)
-            /// The associated value of the enum case if `self` is `.unauthorized`.
-            ///
-            /// - Throws: An error if `self` is not `.unauthorized`.
-            /// - SeeAlso: `.unauthorized`.
-            internal var unauthorized: Operations.UpdateBill.Output.Unauthorized {
-                get throws {
-                    switch self {
-                    case let .unauthorized(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unauthorized",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct NotFound: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/responses/404/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/responses/404/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.UpdateBill.Output.NotFound.Body
-                /// Creates a new `NotFound`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.UpdateBill.Output.NotFound.Body) {
-                    self.body = body
-                }
-            }
-            /// Resource not found
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/patch(updateBill)/responses/404`.
-            ///
-            /// HTTP response code: `404 notFound`.
-            case notFound(Operations.UpdateBill.Output.NotFound)
-            /// The associated value of the enum case if `self` is `.notFound`.
-            ///
-            /// - Throws: An error if `self` is not `.notFound`.
-            /// - SeeAlso: `.notFound`.
-            internal var notFound: Operations.UpdateBill.Output.NotFound {
-                get throws {
-                    switch self {
-                    case let .notFound(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "notFound",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct UnprocessableContent: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/responses/422/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/responses/422/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.UpdateBill.Output.UnprocessableContent.Body
-                /// Creates a new `UnprocessableContent`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.UpdateBill.Output.UnprocessableContent.Body) {
-                    self.body = body
-                }
-            }
-            /// Request schema validation failed
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/patch(updateBill)/responses/422`.
-            ///
-            /// HTTP response code: `422 unprocessableContent`.
-            case unprocessableContent(Operations.UpdateBill.Output.UnprocessableContent)
-            /// The associated value of the enum case if `self` is `.unprocessableContent`.
-            ///
-            /// - Throws: An error if `self` is not `.unprocessableContent`.
-            /// - SeeAlso: `.unprocessableContent`.
-            internal var unprocessableContent: Operations.UpdateBill.Output.UnprocessableContent {
-                get throws {
-                    switch self {
-                    case let .unprocessableContent(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unprocessableContent",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Default: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/responses/default/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/PATCH/responses/default/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.UpdateBill.Output.Default.Body
-                /// Creates a new `Default`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.UpdateBill.Output.Default.Body) {
-                    self.body = body
-                }
-            }
-            /// Any other problem: a server failure, a timeout, a body too large
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/patch(updateBill)/responses/default`.
-            ///
-            /// HTTP response code: `default`.
-            case `default`(statusCode: Swift.Int, Operations.UpdateBill.Output.Default)
-            /// The associated value of the enum case if `self` is `.`default``.
-            ///
-            /// - Throws: An error if `self` is not `.`default``.
-            /// - SeeAlso: `.`default``.
-            internal var `default`: Operations.UpdateBill.Output.Default {
-                get throws {
-                    switch self {
-                    case let .`default`(_, response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "default",
-                            response: self
-                        )
-                    }
-                }
-            }
-        }
-        internal enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case applicationProblemJson
-            case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                case "application/problem+json":
-                    self = .applicationProblemJson
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            internal var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                case .applicationProblemJson:
-                    return "application/problem+json"
-                }
-            }
-            internal static var allCases: [Self] {
-                [
-                    .json,
-                    .applicationProblemJson
-                ]
-            }
-        }
-    }
-    /// Stop a bill schedule
-    ///
-    /// Archives future occurrences and preserves all historical transactions.
-    ///
-    /// - Remark: HTTP `DELETE /api/bills/{id}`.
-    /// - Remark: Generated from `#/paths//api/bills/{id}/delete(deleteBill)`.
-    internal enum DeleteBill {
-        internal static let id: Swift.String = "deleteBill"
-        internal struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/bills/{id}/DELETE/path`.
-            internal struct Path: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/DELETE/path/id`.
-                internal var id: Swift.String
-                /// Creates a new `Path`.
-                ///
-                /// - Parameters:
-                ///   - id:
-                internal init(id: Swift.String) {
-                    self.id = id
-                }
-            }
-            internal var path: Operations.DeleteBill.Input.Path
-            /// - Remark: Generated from `#/paths/api/bills/{id}/DELETE/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.DeleteBill.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.DeleteBill.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            internal var headers: Operations.DeleteBill.Input.Headers
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - path:
-            ///   - headers:
-            internal init(
-                path: Operations.DeleteBill.Input.Path,
-                headers: Operations.DeleteBill.Input.Headers = .init()
-            ) {
-                self.path = path
-                self.headers = headers
-            }
-        }
-        internal enum Output: Sendable, Hashable {
-            internal struct NoContent: Sendable, Hashable {
-                /// Creates a new `NoContent`.
-                internal init() {}
-            }
-            /// Schedule archived
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/delete(deleteBill)/responses/204`.
-            ///
-            /// HTTP response code: `204 noContent`.
-            case noContent(Operations.DeleteBill.Output.NoContent)
-            /// Schedule archived
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/delete(deleteBill)/responses/204`.
-            ///
-            /// HTTP response code: `204 noContent`.
-            internal static var noContent: Self {
-                .noContent(.init())
-            }
-            /// The associated value of the enum case if `self` is `.noContent`.
-            ///
-            /// - Throws: An error if `self` is not `.noContent`.
-            /// - SeeAlso: `.noContent`.
-            internal var noContent: Operations.DeleteBill.Output.NoContent {
-                get throws {
-                    switch self {
-                    case let .noContent(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "noContent",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Unauthorized: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/DELETE/responses/401/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/DELETE/responses/401/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.DeleteBill.Output.Unauthorized.Body
-                /// Creates a new `Unauthorized`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.DeleteBill.Output.Unauthorized.Body) {
-                    self.body = body
-                }
-            }
-            /// No valid session
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/delete(deleteBill)/responses/401`.
-            ///
-            /// HTTP response code: `401 unauthorized`.
-            case unauthorized(Operations.DeleteBill.Output.Unauthorized)
-            /// The associated value of the enum case if `self` is `.unauthorized`.
-            ///
-            /// - Throws: An error if `self` is not `.unauthorized`.
-            /// - SeeAlso: `.unauthorized`.
-            internal var unauthorized: Operations.DeleteBill.Output.Unauthorized {
-                get throws {
-                    switch self {
-                    case let .unauthorized(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unauthorized",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct NotFound: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/DELETE/responses/404/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/DELETE/responses/404/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.DeleteBill.Output.NotFound.Body
-                /// Creates a new `NotFound`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.DeleteBill.Output.NotFound.Body) {
-                    self.body = body
-                }
-            }
-            /// Resource not found
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/delete(deleteBill)/responses/404`.
-            ///
-            /// HTTP response code: `404 notFound`.
-            case notFound(Operations.DeleteBill.Output.NotFound)
-            /// The associated value of the enum case if `self` is `.notFound`.
-            ///
-            /// - Throws: An error if `self` is not `.notFound`.
-            /// - SeeAlso: `.notFound`.
-            internal var notFound: Operations.DeleteBill.Output.NotFound {
-                get throws {
-                    switch self {
-                    case let .notFound(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "notFound",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct UnprocessableContent: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/DELETE/responses/422/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/DELETE/responses/422/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.DeleteBill.Output.UnprocessableContent.Body
-                /// Creates a new `UnprocessableContent`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.DeleteBill.Output.UnprocessableContent.Body) {
-                    self.body = body
-                }
-            }
-            /// Request schema validation failed
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/delete(deleteBill)/responses/422`.
-            ///
-            /// HTTP response code: `422 unprocessableContent`.
-            case unprocessableContent(Operations.DeleteBill.Output.UnprocessableContent)
-            /// The associated value of the enum case if `self` is `.unprocessableContent`.
-            ///
-            /// - Throws: An error if `self` is not `.unprocessableContent`.
-            /// - SeeAlso: `.unprocessableContent`.
-            internal var unprocessableContent: Operations.DeleteBill.Output.UnprocessableContent {
-                get throws {
-                    switch self {
-                    case let .unprocessableContent(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unprocessableContent",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Default: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/DELETE/responses/default/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/DELETE/responses/default/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.DeleteBill.Output.Default.Body
-                /// Creates a new `Default`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.DeleteBill.Output.Default.Body) {
-                    self.body = body
-                }
-            }
-            /// Any other problem: a server failure, a timeout, a body too large
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/delete(deleteBill)/responses/default`.
-            ///
-            /// HTTP response code: `default`.
-            case `default`(statusCode: Swift.Int, Operations.DeleteBill.Output.Default)
-            /// The associated value of the enum case if `self` is `.`default``.
-            ///
-            /// - Throws: An error if `self` is not `.`default``.
-            /// - SeeAlso: `.`default``.
-            internal var `default`: Operations.DeleteBill.Output.Default {
-                get throws {
-                    switch self {
-                    case let .`default`(_, response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "default",
-                            response: self
-                        )
-                    }
-                }
-            }
-        }
-        internal enum AcceptableContentType: AcceptableProtocol {
-            case applicationProblemJson
-            case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/problem+json":
-                    self = .applicationProblemJson
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            internal var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .applicationProblemJson:
-                    return "application/problem+json"
-                }
-            }
-            internal static var allCases: [Self] {
-                [
-                    .applicationProblemJson
-                ]
-            }
-        }
-    }
-    /// Mark a bill occurrence paid and save a transaction
-    ///
-    /// - Remark: HTTP `POST /api/bills/{id}/payments`.
-    /// - Remark: Generated from `#/paths//api/bills/{id}/payments/post(recordBillPayment)`.
-    internal enum RecordBillPayment {
-        internal static let id: Swift.String = "recordBillPayment"
-        internal struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/bills/{id}/payments/POST/path`.
-            internal struct Path: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/payments/POST/path/id`.
-                internal var id: Swift.String
-                /// Creates a new `Path`.
-                ///
-                /// - Parameters:
-                ///   - id:
-                internal init(id: Swift.String) {
-                    self.id = id
-                }
-            }
-            internal var path: Operations.RecordBillPayment.Input.Path
-            /// - Remark: Generated from `#/paths/api/bills/{id}/payments/POST/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.RecordBillPayment.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.RecordBillPayment.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            internal var headers: Operations.RecordBillPayment.Input.Headers
-            /// - Remark: Generated from `#/paths/api/bills/{id}/payments/POST/requestBody`.
-            internal enum Body: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/payments/POST/requestBody/content/application\/json`.
-                case json(Components.Schemas.BillPaymentInput)
-            }
-            internal var body: Operations.RecordBillPayment.Input.Body
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - path:
-            ///   - headers:
-            ///   - body:
-            internal init(
-                path: Operations.RecordBillPayment.Input.Path,
-                headers: Operations.RecordBillPayment.Input.Headers = .init(),
-                body: Operations.RecordBillPayment.Input.Body
-            ) {
-                self.path = path
-                self.headers = headers
-                self.body = body
-            }
-        }
-        internal enum Output: Sendable, Hashable {
-            internal struct NoContent: Sendable, Hashable {
-                /// Creates a new `NoContent`.
-                internal init() {}
-            }
-            /// Payment recorded
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/payments/post(recordBillPayment)/responses/204`.
-            ///
-            /// HTTP response code: `204 noContent`.
-            case noContent(Operations.RecordBillPayment.Output.NoContent)
-            /// Payment recorded
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/payments/post(recordBillPayment)/responses/204`.
-            ///
-            /// HTTP response code: `204 noContent`.
-            internal static var noContent: Self {
-                .noContent(.init())
-            }
-            /// The associated value of the enum case if `self` is `.noContent`.
-            ///
-            /// - Throws: An error if `self` is not `.noContent`.
-            /// - SeeAlso: `.noContent`.
-            internal var noContent: Operations.RecordBillPayment.Output.NoContent {
-                get throws {
-                    switch self {
-                    case let .noContent(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "noContent",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Unauthorized: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/payments/POST/responses/401/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/payments/POST/responses/401/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.RecordBillPayment.Output.Unauthorized.Body
-                /// Creates a new `Unauthorized`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.RecordBillPayment.Output.Unauthorized.Body) {
-                    self.body = body
-                }
-            }
-            /// No valid session
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/payments/post(recordBillPayment)/responses/401`.
-            ///
-            /// HTTP response code: `401 unauthorized`.
-            case unauthorized(Operations.RecordBillPayment.Output.Unauthorized)
-            /// The associated value of the enum case if `self` is `.unauthorized`.
-            ///
-            /// - Throws: An error if `self` is not `.unauthorized`.
-            /// - SeeAlso: `.unauthorized`.
-            internal var unauthorized: Operations.RecordBillPayment.Output.Unauthorized {
-                get throws {
-                    switch self {
-                    case let .unauthorized(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unauthorized",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct NotFound: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/payments/POST/responses/404/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/payments/POST/responses/404/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.RecordBillPayment.Output.NotFound.Body
-                /// Creates a new `NotFound`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.RecordBillPayment.Output.NotFound.Body) {
-                    self.body = body
-                }
-            }
-            /// Resource not found
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/payments/post(recordBillPayment)/responses/404`.
-            ///
-            /// HTTP response code: `404 notFound`.
-            case notFound(Operations.RecordBillPayment.Output.NotFound)
-            /// The associated value of the enum case if `self` is `.notFound`.
-            ///
-            /// - Throws: An error if `self` is not `.notFound`.
-            /// - SeeAlso: `.notFound`.
-            internal var notFound: Operations.RecordBillPayment.Output.NotFound {
-                get throws {
-                    switch self {
-                    case let .notFound(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "notFound",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct UnprocessableContent: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/payments/POST/responses/422/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/payments/POST/responses/422/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.RecordBillPayment.Output.UnprocessableContent.Body
-                /// Creates a new `UnprocessableContent`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.RecordBillPayment.Output.UnprocessableContent.Body) {
-                    self.body = body
-                }
-            }
-            /// Request schema validation failed
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/payments/post(recordBillPayment)/responses/422`.
-            ///
-            /// HTTP response code: `422 unprocessableContent`.
-            case unprocessableContent(Operations.RecordBillPayment.Output.UnprocessableContent)
-            /// The associated value of the enum case if `self` is `.unprocessableContent`.
-            ///
-            /// - Throws: An error if `self` is not `.unprocessableContent`.
-            /// - SeeAlso: `.unprocessableContent`.
-            internal var unprocessableContent: Operations.RecordBillPayment.Output.UnprocessableContent {
-                get throws {
-                    switch self {
-                    case let .unprocessableContent(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unprocessableContent",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Default: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/bills/{id}/payments/POST/responses/default/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/bills/{id}/payments/POST/responses/default/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.RecordBillPayment.Output.Default.Body
-                /// Creates a new `Default`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.RecordBillPayment.Output.Default.Body) {
-                    self.body = body
-                }
-            }
-            /// Any other problem: a server failure, a timeout, a body too large
-            ///
-            /// - Remark: Generated from `#/paths//api/bills/{id}/payments/post(recordBillPayment)/responses/default`.
-            ///
-            /// HTTP response code: `default`.
-            case `default`(statusCode: Swift.Int, Operations.RecordBillPayment.Output.Default)
-            /// The associated value of the enum case if `self` is `.`default``.
-            ///
-            /// - Throws: An error if `self` is not `.`default``.
-            /// - SeeAlso: `.`default``.
-            internal var `default`: Operations.RecordBillPayment.Output.Default {
-                get throws {
-                    switch self {
-                    case let .`default`(_, response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "default",
-                            response: self
-                        )
-                    }
-                }
-            }
-        }
-        internal enum AcceptableContentType: AcceptableProtocol {
-            case applicationProblemJson
-            case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/problem+json":
-                    self = .applicationProblemJson
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            internal var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .applicationProblemJson:
-                    return "application/problem+json"
-                }
-            }
-            internal static var allCases: [Self] {
-                [
-                    .applicationProblemJson
-                ]
-            }
-        }
-    }
-    /// Weekly Thursday to Wednesday money summary
-    ///
-    /// - Remark: HTTP `GET /api/weekly-summary`.
-    /// - Remark: Generated from `#/paths//api/weekly-summary/get(getWeeklySummary)`.
-    internal enum GetWeeklySummary {
-        internal static let id: Swift.String = "getWeeklySummary"
-        internal struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/weekly-summary/GET/query`.
-            internal struct Query: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/weekly-summary/GET/query/weekStart`.
-                internal var weekStart: Swift.String
-                /// Creates a new `Query`.
-                ///
-                /// - Parameters:
-                ///   - weekStart:
-                internal init(weekStart: Swift.String) {
-                    self.weekStart = weekStart
-                }
-            }
-            internal var query: Operations.GetWeeklySummary.Input.Query
-            /// - Remark: Generated from `#/paths/api/weekly-summary/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetWeeklySummary.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetWeeklySummary.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            internal var headers: Operations.GetWeeklySummary.Input.Headers
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - query:
-            ///   - headers:
-            internal init(
-                query: Operations.GetWeeklySummary.Input.Query,
-                headers: Operations.GetWeeklySummary.Input.Headers = .init()
-            ) {
-                self.query = query
-                self.headers = headers
-            }
-        }
-        internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/weekly-summary/GET/responses/200/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/weekly-summary/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.WeeklySummary)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    internal var json: Components.Schemas.WeeklySummary {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetWeeklySummary.Output.Ok.Body
-                /// Creates a new `Ok`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetWeeklySummary.Output.Ok.Body) {
-                    self.body = body
-                }
-            }
-            /// Weekly summary and prior-week comparison
-            ///
-            /// - Remark: Generated from `#/paths//api/weekly-summary/get(getWeeklySummary)/responses/200`.
-            ///
-            /// HTTP response code: `200 ok`.
-            case ok(Operations.GetWeeklySummary.Output.Ok)
-            /// The associated value of the enum case if `self` is `.ok`.
-            ///
-            /// - Throws: An error if `self` is not `.ok`.
-            /// - SeeAlso: `.ok`.
-            internal var ok: Operations.GetWeeklySummary.Output.Ok {
-                get throws {
-                    switch self {
-                    case let .ok(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "ok",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Unauthorized: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/weekly-summary/GET/responses/401/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/weekly-summary/GET/responses/401/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetWeeklySummary.Output.Unauthorized.Body
-                /// Creates a new `Unauthorized`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetWeeklySummary.Output.Unauthorized.Body) {
-                    self.body = body
-                }
-            }
-            /// No valid session
-            ///
-            /// - Remark: Generated from `#/paths//api/weekly-summary/get(getWeeklySummary)/responses/401`.
-            ///
-            /// HTTP response code: `401 unauthorized`.
-            case unauthorized(Operations.GetWeeklySummary.Output.Unauthorized)
-            /// The associated value of the enum case if `self` is `.unauthorized`.
-            ///
-            /// - Throws: An error if `self` is not `.unauthorized`.
-            /// - SeeAlso: `.unauthorized`.
-            internal var unauthorized: Operations.GetWeeklySummary.Output.Unauthorized {
-                get throws {
-                    switch self {
-                    case let .unauthorized(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unauthorized",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct UnprocessableContent: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/weekly-summary/GET/responses/422/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/weekly-summary/GET/responses/422/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetWeeklySummary.Output.UnprocessableContent.Body
-                /// Creates a new `UnprocessableContent`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetWeeklySummary.Output.UnprocessableContent.Body) {
-                    self.body = body
-                }
-            }
-            /// Request schema validation failed
-            ///
-            /// - Remark: Generated from `#/paths//api/weekly-summary/get(getWeeklySummary)/responses/422`.
-            ///
-            /// HTTP response code: `422 unprocessableContent`.
-            case unprocessableContent(Operations.GetWeeklySummary.Output.UnprocessableContent)
-            /// The associated value of the enum case if `self` is `.unprocessableContent`.
-            ///
-            /// - Throws: An error if `self` is not `.unprocessableContent`.
-            /// - SeeAlso: `.unprocessableContent`.
-            internal var unprocessableContent: Operations.GetWeeklySummary.Output.UnprocessableContent {
-                get throws {
-                    switch self {
-                    case let .unprocessableContent(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unprocessableContent",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Default: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/weekly-summary/GET/responses/default/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/weekly-summary/GET/responses/default/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetWeeklySummary.Output.Default.Body
-                /// Creates a new `Default`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetWeeklySummary.Output.Default.Body) {
-                    self.body = body
-                }
-            }
-            /// Any other problem: a server failure, a timeout, a body too large
-            ///
-            /// - Remark: Generated from `#/paths//api/weekly-summary/get(getWeeklySummary)/responses/default`.
-            ///
-            /// HTTP response code: `default`.
-            case `default`(statusCode: Swift.Int, Operations.GetWeeklySummary.Output.Default)
-            /// The associated value of the enum case if `self` is `.`default``.
-            ///
-            /// - Throws: An error if `self` is not `.`default``.
-            /// - SeeAlso: `.`default``.
-            internal var `default`: Operations.GetWeeklySummary.Output.Default {
-                get throws {
-                    switch self {
-                    case let .`default`(_, response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "default",
-                            response: self
-                        )
-                    }
-                }
-            }
-        }
-        internal enum AcceptableContentType: AcceptableProtocol {
-            case json
-            case applicationProblemJson
-            case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
-                switch rawValue.lowercased() {
-                case "application/json":
-                    self = .json
-                case "application/problem+json":
-                    self = .applicationProblemJson
-                default:
-                    self = .other(rawValue)
-                }
-            }
-            internal var rawValue: Swift.String {
-                switch self {
-                case let .other(string):
-                    return string
-                case .json:
-                    return "application/json"
-                case .applicationProblemJson:
-                    return "application/problem+json"
-                }
-            }
-            internal static var allCases: [Self] {
-                [
-                    .json,
-                    .applicationProblemJson
-                ]
-            }
-        }
-    }
-    /// Weekly Thursday to Wednesday money summary
-    ///
-    /// - Remark: HTTP `GET /api/summaries/weekly`.
-    /// - Remark: Generated from `#/paths//api/summaries/weekly/get(getWeeklySummaryByWeek)`.
-    internal enum GetWeeklySummaryByWeek {
-        internal static let id: Swift.String = "getWeeklySummaryByWeek"
-        internal struct Input: Sendable, Hashable {
-            /// - Remark: Generated from `#/paths/api/summaries/weekly/GET/query`.
-            internal struct Query: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/summaries/weekly/GET/query/week`.
-                internal var week: Swift.String
-                /// Creates a new `Query`.
-                ///
-                /// - Parameters:
-                ///   - week:
-                internal init(week: Swift.String) {
-                    self.week = week
-                }
-            }
-            internal var query: Operations.GetWeeklySummaryByWeek.Input.Query
-            /// - Remark: Generated from `#/paths/api/summaries/weekly/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetWeeklySummaryByWeek.AcceptableContentType>]
-                /// Creates a new `Headers`.
-                ///
-                /// - Parameters:
-                ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.GetWeeklySummaryByWeek.AcceptableContentType>] = .defaultValues()) {
-                    self.accept = accept
-                }
-            }
-            internal var headers: Operations.GetWeeklySummaryByWeek.Input.Headers
-            /// Creates a new `Input`.
-            ///
-            /// - Parameters:
-            ///   - query:
-            ///   - headers:
-            internal init(
-                query: Operations.GetWeeklySummaryByWeek.Input.Query,
-                headers: Operations.GetWeeklySummaryByWeek.Input.Headers = .init()
-            ) {
-                self.query = query
-                self.headers = headers
-            }
-        }
-        internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/summaries/weekly/GET/responses/200/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/summaries/weekly/GET/responses/200/content/application\/json`.
-                    case json(Components.Schemas.WeeklySummary)
-                    /// The associated value of the enum case if `self` is `.json`.
-                    ///
-                    /// - Throws: An error if `self` is not `.json`.
-                    /// - SeeAlso: `.json`.
-                    internal var json: Components.Schemas.WeeklySummary {
-                        get throws {
-                            switch self {
-                            case let .json(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetWeeklySummaryByWeek.Output.Ok.Body
-                /// Creates a new `Ok`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetWeeklySummaryByWeek.Output.Ok.Body) {
-                    self.body = body
-                }
-            }
-            /// Weekly summary and prior-week comparison
-            ///
-            /// - Remark: Generated from `#/paths//api/summaries/weekly/get(getWeeklySummaryByWeek)/responses/200`.
-            ///
-            /// HTTP response code: `200 ok`.
-            case ok(Operations.GetWeeklySummaryByWeek.Output.Ok)
-            /// The associated value of the enum case if `self` is `.ok`.
-            ///
-            /// - Throws: An error if `self` is not `.ok`.
-            /// - SeeAlso: `.ok`.
-            internal var ok: Operations.GetWeeklySummaryByWeek.Output.Ok {
-                get throws {
-                    switch self {
-                    case let .ok(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "ok",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Unauthorized: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/summaries/weekly/GET/responses/401/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/summaries/weekly/GET/responses/401/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetWeeklySummaryByWeek.Output.Unauthorized.Body
-                /// Creates a new `Unauthorized`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetWeeklySummaryByWeek.Output.Unauthorized.Body) {
-                    self.body = body
-                }
-            }
-            /// No valid session
-            ///
-            /// - Remark: Generated from `#/paths//api/summaries/weekly/get(getWeeklySummaryByWeek)/responses/401`.
-            ///
-            /// HTTP response code: `401 unauthorized`.
-            case unauthorized(Operations.GetWeeklySummaryByWeek.Output.Unauthorized)
-            /// The associated value of the enum case if `self` is `.unauthorized`.
-            ///
-            /// - Throws: An error if `self` is not `.unauthorized`.
-            /// - SeeAlso: `.unauthorized`.
-            internal var unauthorized: Operations.GetWeeklySummaryByWeek.Output.Unauthorized {
-                get throws {
-                    switch self {
-                    case let .unauthorized(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unauthorized",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct UnprocessableContent: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/summaries/weekly/GET/responses/422/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/summaries/weekly/GET/responses/422/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetWeeklySummaryByWeek.Output.UnprocessableContent.Body
-                /// Creates a new `UnprocessableContent`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetWeeklySummaryByWeek.Output.UnprocessableContent.Body) {
-                    self.body = body
-                }
-            }
-            /// Request schema validation failed
-            ///
-            /// - Remark: Generated from `#/paths//api/summaries/weekly/get(getWeeklySummaryByWeek)/responses/422`.
-            ///
-            /// HTTP response code: `422 unprocessableContent`.
-            case unprocessableContent(Operations.GetWeeklySummaryByWeek.Output.UnprocessableContent)
-            /// The associated value of the enum case if `self` is `.unprocessableContent`.
-            ///
-            /// - Throws: An error if `self` is not `.unprocessableContent`.
-            /// - SeeAlso: `.unprocessableContent`.
-            internal var unprocessableContent: Operations.GetWeeklySummaryByWeek.Output.UnprocessableContent {
-                get throws {
-                    switch self {
-                    case let .unprocessableContent(response):
-                        return response
-                    default:
-                        try throwUnexpectedResponseStatus(
-                            expectedStatus: "unprocessableContent",
-                            response: self
-                        )
-                    }
-                }
-            }
-            internal struct Default: Sendable, Hashable {
-                /// - Remark: Generated from `#/paths/api/summaries/weekly/GET/responses/default/content`.
-                internal enum Body: Sendable, Hashable {
-                    /// - Remark: Generated from `#/paths/api/summaries/weekly/GET/responses/default/content/application\/problem+json`.
-                    case applicationProblemJson(Components.Schemas.Problem)
-                    /// The associated value of the enum case if `self` is `.applicationProblemJson`.
-                    ///
-                    /// - Throws: An error if `self` is not `.applicationProblemJson`.
-                    /// - SeeAlso: `.applicationProblemJson`.
-                    internal var applicationProblemJson: Components.Schemas.Problem {
-                        get throws {
-                            switch self {
-                            case let .applicationProblemJson(body):
-                                return body
-                            }
-                        }
-                    }
-                }
-                /// Received HTTP response body
-                internal var body: Operations.GetWeeklySummaryByWeek.Output.Default.Body
-                /// Creates a new `Default`.
-                ///
-                /// - Parameters:
-                ///   - body: Received HTTP response body
-                internal init(body: Operations.GetWeeklySummaryByWeek.Output.Default.Body) {
-                    self.body = body
-                }
-            }
-            /// Any other problem: a server failure, a timeout, a body too large
-            ///
-            /// - Remark: Generated from `#/paths//api/summaries/weekly/get(getWeeklySummaryByWeek)/responses/default`.
-            ///
-            /// HTTP response code: `default`.
-            case `default`(statusCode: Swift.Int, Operations.GetWeeklySummaryByWeek.Output.Default)
-            /// The associated value of the enum case if `self` is `.`default``.
-            ///
-            /// - Throws: An error if `self` is not `.`default``.
-            /// - SeeAlso: `.`default``.
-            internal var `default`: Operations.GetWeeklySummaryByWeek.Output.Default {
                 get throws {
                     switch self {
                     case let .`default`(_, response):

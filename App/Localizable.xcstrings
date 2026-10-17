@@ -12013,6 +12013,12 @@
         "id" : { "stringUnit" : { "state" : "translated", "value" : "Ekspor data terlalu sering. Coba lagi nanti." } }
       }
     },
+    "problem.ASSET_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : { "stringUnit" : { "state" : "translated", "value" : "Aset tidak ditemukan." } }
+      }
+    },
     "problem.AUTH_CODE_ATTEMPTS_EXCEEDED" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -12160,6 +12166,24 @@
         "id" : { "stringUnit" : { "state" : "translated", "value" : "Setujui aturan komunitas untuk melanjutkan." } }
       }
     },
+    "problem.GOAL_DEPOSIT_CONFLICT" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : { "stringUnit" : { "state" : "translated", "value" : "ID setoran ini sudah pernah digunakan." } }
+      }
+    },
+    "problem.GOAL_EMERGENCY_EXISTS" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : { "stringUnit" : { "state" : "translated", "value" : "Dana darurat sudah dibuat." } }
+      }
+    },
+    "problem.GOAL_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : { "stringUnit" : { "state" : "translated", "value" : "Tujuan keuangan tidak ditemukan." } }
+      }
+    },
     "problem.EMAIL_DELIVERY_FAILED" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -12169,18 +12193,6 @@
             "value" : "Email belum bisa dikirim sekarang. Coba lagi sebentar lagi."
           }
         }
-      }
-    },
-    "problem.FINANCE_ITEM_NOT_FOUND" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "id" : { "stringUnit" : { "state" : "translated", "value" : "Data keuangan tidak ditemukan." } }
-      }
-    },
-    "problem.FINANCE_PAYMENT_EXCEEDS_BALANCE" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "id" : { "stringUnit" : { "state" : "translated", "value" : "Pembayaran melebihi sisa saldo." } }
       }
     },
     "problem.HTTP_ERROR" : {
@@ -12247,6 +12259,42 @@
             "value" : "Kira sedang tidak bisa dihubungi. Coba lagi sebentar lagi."
           }
         }
+      }
+    },
+    "problem.PAYOFF_DEBT_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : { "stringUnit" : { "state" : "translated", "value" : "Utang ini tidak lagi tersedia untuk rencana pelunasan." } }
+      }
+    },
+    "problem.PAYOFF_EXTRA_TOO_HIGH" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : { "stringUnit" : { "state" : "translated", "value" : "Pembayaran tambahan melebihi dana yang tersedia." } }
+      }
+    },
+    "problem.PAYOFF_NOTHING_TO_PLAN" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : { "stringUnit" : { "state" : "translated", "value" : "Belum ada utang konsumtif yang bisa dibuatkan rencana." } }
+      }
+    },
+    "problem.PAYOFF_PAYMENT_ALREADY_RECORDED" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : { "stringUnit" : { "state" : "translated", "value" : "Pembayaran ini sudah tercatat." } }
+      }
+    },
+    "problem.PAYOFF_PAYMENT_TOO_HIGH" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : { "stringUnit" : { "state" : "translated", "value" : "Jumlah pembayaran melebihi sisa utang." } }
+      }
+    },
+    "problem.PAYOFF_PLAN_NOT_FOUND" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "id" : { "stringUnit" : { "state" : "translated", "value" : "Rencana pelunasan belum tersedia." } }
       }
     },
     "problem.PLAN_FEATURE_UNAVAILABLE" : {

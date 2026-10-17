@@ -97,6 +97,13 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `GET /api/score`.
     /// - Remark: Generated from `#/paths//api/score/get(getScore)`.
     func getScore(_ input: Operations.GetScore.Input) async throws -> Operations.GetScore.Output
+    /// Riwayat Kira Score
+    ///
+    /// The score now against last month, a point per month (taken on the 25th, WIB, and at the first health check) and the indicators that changed. Kira Plus only: other plans get 403 PLAN_FEATURE_UNAVAILABLE.
+    ///
+    /// - Remark: HTTP `GET /api/score/history`.
+    /// - Remark: Generated from `#/paths//api/score/history/get(getScoreHistory)`.
+    func getScoreHistory(_ input: Operations.GetScoreHistory.Input) async throws -> Operations.GetScoreHistory.Output
     /// One indicator in detail
     ///
     /// Its scoring ladder in rupiah, the next rung and the milestones of its ribbon.
@@ -104,6 +111,60 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `GET /api/score/indicators/{key}`.
     /// - Remark: Generated from `#/paths//api/score/indicators/{key}/get(getScoreIndicator)`.
     func getScoreIndicator(_ input: Operations.GetScoreIndicator.Input) async throws -> Operations.GetScoreIndicator.Output
+    /// Simulate a debt payoff plan
+    ///
+    /// Orders the consumer debts by snowball or avalanche and returns the month and interest of each, set against the other method. Nothing is saved.
+    ///
+    /// - Remark: HTTP `POST /api/payoff/simulate`.
+    /// - Remark: Generated from `#/paths//api/payoff/simulate/post(simulatePayoff)`.
+    func simulatePayoff(_ input: Operations.SimulatePayoff.Input) async throws -> Operations.SimulatePayoff.Output
+    /// Make this the plan (Jadikan Rencanaku)
+    ///
+    /// Ends the active plan, if any, and starts one on the first consumer account of the method. The extra payment may not exceed the money left this payday period.
+    ///
+    /// - Remark: HTTP `POST /api/payoff/plans`.
+    /// - Remark: Generated from `#/paths//api/payoff/plans/post(createPayoffPlan)`.
+    func createPayoffPlan(_ input: Operations.CreatePayoffPlan.Input) async throws -> Operations.CreatePayoffPlan.Output
+    /// Rencanaku
+    ///
+    /// The active plan: every account with its progress and tag, and the next payment with the days left.
+    ///
+    /// - Remark: HTTP `GET /api/payoff/plans/active`.
+    /// - Remark: Generated from `#/paths//api/payoff/plans/active/get(getActivePayoffPlan)`.
+    func getActivePayoffPlan(_ input: Operations.GetActivePayoffPlan.Input) async throws -> Operations.GetActivePayoffPlan.Output
+    /// Move the plan to another account
+    ///
+    /// Moves the focus of the active plan to an open consumer account ("Lanjut ke Paylater B").
+    ///
+    /// - Remark: HTTP `PATCH /api/payoff/plans/active`.
+    /// - Remark: Generated from `#/paths//api/payoff/plans/active/patch(setPayoffFocus)`.
+    func setPayoffFocus(_ input: Operations.SetPayoffFocus.Input) async throws -> Operations.SetPayoffFocus.Output
+    /// Mark a payment (Tandai Sudah Bayar)
+    ///
+    /// Records a payment against an open debt account. When it settles the account the response says so once, with the score the engine expects and the account the plan moves to next. A repeat of the same paymentId (double tap, retry) answers 409 PAYOFF_PAYMENT_ALREADY_RECORDED: the payment is already saved.
+    ///
+    /// - Remark: HTTP `POST /api/debts/{id}/payments`.
+    /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)`.
+    func recordDebtPayment(_ input: Operations.RecordDebtPayment.Input) async throws -> Operations.RecordDebtPayment.Output
+    /// Portofolio Manual
+    ///
+    /// The assets, newest value first, their total, and Utang terhadap Aset with them.
+    ///
+    /// - Remark: HTTP `GET /api/assets`.
+    /// - Remark: Generated from `#/paths//api/assets/get(listAssets)`.
+    func listAssets(_ input: Operations.ListAssets.Input) async throws -> Operations.ListAssets.Output
+    /// Tambah Aset
+    ///
+    /// The score reads the new total on its next request.
+    ///
+    /// - Remark: HTTP `POST /api/assets`.
+    /// - Remark: Generated from `#/paths//api/assets/post(createAsset)`.
+    func createAsset(_ input: Operations.CreateAsset.Input) async throws -> Operations.CreateAsset.Output
+    /// Change an asset
+    ///
+    /// - Remark: HTTP `PATCH /api/assets/{id}`.
+    /// - Remark: Generated from `#/paths//api/assets/{id}/patch(updateAsset)`.
+    func updateAsset(_ input: Operations.UpdateAsset.Input) async throws -> Operations.UpdateAsset.Output
     /// Beranda
     ///
     /// The layout to show (first steps, overview or debt plan) and its numbers: money left this payday period, the next step, the Kira Score, the checklist, the debt plan and the micro target.
@@ -243,9 +304,9 @@ internal protocol APIProtocol: Sendable {
     func activateDebtEmergency(_ input: Operations.ActivateDebtEmergency.Input) async throws -> Operations.ActivateDebtEmergency.Output
     /// The health check’s debts that are not paid off
     ///
-    /// - Remark: HTTP `GET /api/care/debts`.
-    /// - Remark: Generated from `#/paths//api/care/debts/get(listHealthCheckDebts)`.
-    func listHealthCheckDebts(_ input: Operations.ListHealthCheckDebts.Input) async throws -> Operations.ListHealthCheckDebts.Output
+    /// - Remark: HTTP `GET /api/debts`.
+    /// - Remark: Generated from `#/paths//api/debts/get(listDebts)`.
+    func listDebts(_ input: Operations.ListDebts.Input) async throws -> Operations.ListDebts.Output
     /// The person’s safety plan
     ///
     /// - Remark: HTTP `GET /api/care/safety-plan`.
@@ -256,6 +317,62 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `PUT /api/care/safety-plan`.
     /// - Remark: Generated from `#/paths//api/care/safety-plan/put(saveSafetyPlan)`.
     func saveSafetyPlan(_ input: Operations.SaveSafetyPlan.Input) async throws -> Operations.SaveSafetyPlan.Output
+    /// Rencana
+    ///
+    /// Tangga Keuanganmu from the Kira Score engine, the goals, the risk profile and what the calculators start from.
+    ///
+    /// - Remark: HTTP `GET /api/plan`.
+    /// - Remark: Generated from `#/paths//api/plan/get(getPlan)`.
+    func getPlan(_ input: Operations.GetPlan.Input) async throws -> Operations.GetPlan.Output
+    /// The goals
+    ///
+    /// Every goal, the emergency fund first, then the newest.
+    ///
+    /// - Remark: HTTP `GET /api/goals`.
+    /// - Remark: Generated from `#/paths//api/goals/get(listGoals)`.
+    func listGoals(_ input: Operations.ListGoals.Input) async throws -> Operations.ListGoals.Output
+    /// Simpan Tujuan
+    ///
+    /// Stores the goal as the app's calculator computed it, after checking its ranges; one emergency fund per person.
+    ///
+    /// - Remark: HTTP `POST /api/goals`.
+    /// - Remark: Generated from `#/paths//api/goals/post(createGoal)`.
+    func createGoal(_ input: Operations.CreateGoal.Input) async throws -> Operations.CreateGoal.Output
+    /// Detail Tujuan
+    ///
+    /// The goal, its deposits newest first and, for the emergency fund, its milestones.
+    ///
+    /// - Remark: HTTP `GET /api/goals/{id}`.
+    /// - Remark: Generated from `#/paths//api/goals/{id}/get(getGoal)`.
+    func getGoal(_ input: Operations.GetGoal.Input) async throws -> Operations.GetGoal.Output
+    /// Ubah Tujuan
+    ///
+    /// Changes any of the goal's figures; an emergency fund's inputs must keep a positive essentialExpense (422).
+    ///
+    /// - Remark: HTTP `PATCH /api/goals/{id}`.
+    /// - Remark: Generated from `#/paths//api/goals/{id}/patch(updateGoal)`.
+    func updateGoal(_ input: Operations.UpdateGoal.Input) async throws -> Operations.UpdateGoal.Output
+    /// Tambah Setoran
+    ///
+    /// Records a deposit. The same depositId again on this goal answers the stored deposit as it was first recorded (whatever amount the retry carries) and adds nothing; one used on another goal is refused, and a day before the goal was made answers 422.
+    ///
+    /// - Remark: HTTP `POST /api/goals/{id}/deposits`.
+    /// - Remark: Generated from `#/paths//api/goals/{id}/deposits/post(addGoalDeposit)`.
+    func addGoalDeposit(_ input: Operations.AddGoalDeposit.Input) async throws -> Operations.AddGoalDeposit.Output
+    /// Hasil Risiko
+    ///
+    /// The saved profile and answers; every field null before the quiz.
+    ///
+    /// - Remark: HTTP `GET /api/risk-profile`.
+    /// - Remark: Generated from `#/paths//api/risk-profile/get(getRiskProfile)`.
+    func getRiskProfile(_ input: Operations.GetRiskProfile.Input) async throws -> Operations.GetRiskProfile.Output
+    /// Kenali Profil Risikomu
+    ///
+    /// The five answers and the profile the server's fixed table gives them.
+    ///
+    /// - Remark: HTTP `PUT /api/risk-profile`.
+    /// - Remark: Generated from `#/paths//api/risk-profile/put(saveRiskProfile)`.
+    func saveRiskProfile(_ input: Operations.SaveRiskProfile.Input) async throws -> Operations.SaveRiskProfile.Output
     /// This period’s quota usage
     ///
     /// AI messages, receipts and voice seconds used against the plan, and the date they reset.
@@ -342,90 +459,6 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `GET /api/wallets`.
     /// - Remark: Generated from `#/paths//api/wallets/get(listWallets)`.
     func listWallets(_ input: Operations.ListWallets.Input) async throws -> Operations.ListWallets.Output
-    /// Add a wallet or a debt account
-    ///
-    /// - Remark: HTTP `POST /api/wallets`.
-    /// - Remark: Generated from `#/paths//api/wallets/post(createWallet)`.
-    func createWallet(_ input: Operations.CreateWallet.Input) async throws -> Operations.CreateWallet.Output
-    /// Debt accounts and upcoming installments
-    ///
-    /// - Remark: HTTP `GET /api/debts`.
-    /// - Remark: Generated from `#/paths//api/debts/get(listDebts)`.
-    func listDebts(_ input: Operations.ListDebts.Input) async throws -> Operations.ListDebts.Output
-    /// Add a debt account
-    ///
-    /// - Remark: HTTP `POST /api/debts`.
-    /// - Remark: Generated from `#/paths//api/debts/post(createDebt)`.
-    func createDebt(_ input: Operations.CreateDebt.Input) async throws -> Operations.CreateDebt.Output
-    /// Debt details and payment history
-    ///
-    /// - Remark: HTTP `GET /api/debts/{id}`.
-    /// - Remark: Generated from `#/paths//api/debts/{id}/get(getDebt)`.
-    func getDebt(_ input: Operations.GetDebt.Input) async throws -> Operations.GetDebt.Output
-    /// Pay down a debt and save a transaction
-    ///
-    /// - Remark: HTTP `POST /api/debts/{id}/payments`.
-    /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)`.
-    func recordDebtPayment(_ input: Operations.RecordDebtPayment.Input) async throws -> Operations.RecordDebtPayment.Output
-    /// Current budget and adjusted payday
-    ///
-    /// - Remark: HTTP `GET /api/budgets/current`.
-    /// - Remark: Generated from `#/paths//api/budgets/current/get(getCurrentBudget)`.
-    func getCurrentBudget(_ input: Operations.GetCurrentBudget.Input) async throws -> Operations.GetCurrentBudget.Output
-    /// Set budget allocations and payday
-    ///
-    /// - Remark: HTTP `PUT /api/budgets/current`.
-    /// - Remark: Generated from `#/paths//api/budgets/current/put(updateCurrentBudget)`.
-    func updateCurrentBudget(_ input: Operations.UpdateCurrentBudget.Input) async throws -> Operations.UpdateCurrentBudget.Output
-    /// Budget editor with up to three prior-period averages
-    ///
-    /// - Remark: HTTP `GET /api/budgets/current/edit`.
-    /// - Remark: Generated from `#/paths//api/budgets/current/edit/get(getCurrentBudgetEdit)`.
-    func getCurrentBudgetEdit(_ input: Operations.GetCurrentBudgetEdit.Input) async throws -> Operations.GetCurrentBudgetEdit.Output
-    /// Recurring bills and debt installments by due date
-    ///
-    /// - Remark: HTTP `GET /api/bills`.
-    /// - Remark: Generated from `#/paths//api/bills/get(listBills)`.
-    func listBills(_ input: Operations.ListBills.Input) async throws -> Operations.ListBills.Output
-    /// Add a recurring bill or linked debt installment
-    ///
-    /// - Remark: HTTP `POST /api/bills`.
-    /// - Remark: Generated from `#/paths//api/bills/post(createBill)`.
-    func createBill(_ input: Operations.CreateBill.Input) async throws -> Operations.CreateBill.Output
-    /// Recurring bill details
-    ///
-    /// - Remark: HTTP `GET /api/bills/{id}`.
-    /// - Remark: Generated from `#/paths//api/bills/{id}/get(getBill)`.
-    func getBill(_ input: Operations.GetBill.Input) async throws -> Operations.GetBill.Output
-    /// Update future bill schedule
-    ///
-    /// Only the future schedule changes; saved payment transactions remain intact.
-    ///
-    /// - Remark: HTTP `PATCH /api/bills/{id}`.
-    /// - Remark: Generated from `#/paths//api/bills/{id}/patch(updateBill)`.
-    func updateBill(_ input: Operations.UpdateBill.Input) async throws -> Operations.UpdateBill.Output
-    /// Stop a bill schedule
-    ///
-    /// Archives future occurrences and preserves all historical transactions.
-    ///
-    /// - Remark: HTTP `DELETE /api/bills/{id}`.
-    /// - Remark: Generated from `#/paths//api/bills/{id}/delete(deleteBill)`.
-    func deleteBill(_ input: Operations.DeleteBill.Input) async throws -> Operations.DeleteBill.Output
-    /// Mark a bill occurrence paid and save a transaction
-    ///
-    /// - Remark: HTTP `POST /api/bills/{id}/payments`.
-    /// - Remark: Generated from `#/paths//api/bills/{id}/payments/post(recordBillPayment)`.
-    func recordBillPayment(_ input: Operations.RecordBillPayment.Input) async throws -> Operations.RecordBillPayment.Output
-    /// Weekly Thursday to Wednesday money summary
-    ///
-    /// - Remark: HTTP `GET /api/weekly-summary`.
-    /// - Remark: Generated from `#/paths//api/weekly-summary/get(getWeeklySummary)`.
-    func getWeeklySummary(_ input: Operations.GetWeeklySummary.Input) async throws -> Operations.GetWeeklySummary.Output
-    /// Weekly Thursday to Wednesday money summary
-    ///
-    /// - Remark: HTTP `GET /api/summaries/weekly`.
-    /// - Remark: Generated from `#/paths//api/summaries/weekly/get(getWeeklySummaryByWeek)`.
-    func getWeeklySummaryByWeek(_ input: Operations.GetWeeklySummaryByWeek.Input) async throws -> Operations.GetWeeklySummaryByWeek.Output
     /// Keep a parsed bank statement for review (Kira Plus)
     ///
     /// At most three months per file; rows already recorded are flagged `isDuplicate`.
@@ -600,6 +633,21 @@ extension APIProtocol {
     internal func getScore(headers: Operations.GetScore.Input.Headers = .init()) async throws -> Operations.GetScore.Output {
         try await getScore(Operations.GetScore.Input(headers: headers))
     }
+    /// Riwayat Kira Score
+    ///
+    /// The score now against last month, a point per month (taken on the 25th, WIB, and at the first health check) and the indicators that changed. Kira Plus only: other plans get 403 PLAN_FEATURE_UNAVAILABLE.
+    ///
+    /// - Remark: HTTP `GET /api/score/history`.
+    /// - Remark: Generated from `#/paths//api/score/history/get(getScoreHistory)`.
+    internal func getScoreHistory(
+        query: Operations.GetScoreHistory.Input.Query = .init(),
+        headers: Operations.GetScoreHistory.Input.Headers = .init()
+    ) async throws -> Operations.GetScoreHistory.Output {
+        try await getScoreHistory(Operations.GetScoreHistory.Input(
+            query: query,
+            headers: headers
+        ))
+    }
     /// One indicator in detail
     ///
     /// Its scoring ladder in rupiah, the next rung and the milestones of its ribbon.
@@ -613,6 +661,116 @@ extension APIProtocol {
         try await getScoreIndicator(Operations.GetScoreIndicator.Input(
             path: path,
             headers: headers
+        ))
+    }
+    /// Simulate a debt payoff plan
+    ///
+    /// Orders the consumer debts by snowball or avalanche and returns the month and interest of each, set against the other method. Nothing is saved.
+    ///
+    /// - Remark: HTTP `POST /api/payoff/simulate`.
+    /// - Remark: Generated from `#/paths//api/payoff/simulate/post(simulatePayoff)`.
+    internal func simulatePayoff(
+        headers: Operations.SimulatePayoff.Input.Headers = .init(),
+        body: Operations.SimulatePayoff.Input.Body
+    ) async throws -> Operations.SimulatePayoff.Output {
+        try await simulatePayoff(Operations.SimulatePayoff.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Make this the plan (Jadikan Rencanaku)
+    ///
+    /// Ends the active plan, if any, and starts one on the first consumer account of the method. The extra payment may not exceed the money left this payday period.
+    ///
+    /// - Remark: HTTP `POST /api/payoff/plans`.
+    /// - Remark: Generated from `#/paths//api/payoff/plans/post(createPayoffPlan)`.
+    internal func createPayoffPlan(
+        headers: Operations.CreatePayoffPlan.Input.Headers = .init(),
+        body: Operations.CreatePayoffPlan.Input.Body
+    ) async throws -> Operations.CreatePayoffPlan.Output {
+        try await createPayoffPlan(Operations.CreatePayoffPlan.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Rencanaku
+    ///
+    /// The active plan: every account with its progress and tag, and the next payment with the days left.
+    ///
+    /// - Remark: HTTP `GET /api/payoff/plans/active`.
+    /// - Remark: Generated from `#/paths//api/payoff/plans/active/get(getActivePayoffPlan)`.
+    internal func getActivePayoffPlan(headers: Operations.GetActivePayoffPlan.Input.Headers = .init()) async throws -> Operations.GetActivePayoffPlan.Output {
+        try await getActivePayoffPlan(Operations.GetActivePayoffPlan.Input(headers: headers))
+    }
+    /// Move the plan to another account
+    ///
+    /// Moves the focus of the active plan to an open consumer account ("Lanjut ke Paylater B").
+    ///
+    /// - Remark: HTTP `PATCH /api/payoff/plans/active`.
+    /// - Remark: Generated from `#/paths//api/payoff/plans/active/patch(setPayoffFocus)`.
+    internal func setPayoffFocus(
+        headers: Operations.SetPayoffFocus.Input.Headers = .init(),
+        body: Operations.SetPayoffFocus.Input.Body
+    ) async throws -> Operations.SetPayoffFocus.Output {
+        try await setPayoffFocus(Operations.SetPayoffFocus.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Mark a payment (Tandai Sudah Bayar)
+    ///
+    /// Records a payment against an open debt account. When it settles the account the response says so once, with the score the engine expects and the account the plan moves to next. A repeat of the same paymentId (double tap, retry) answers 409 PAYOFF_PAYMENT_ALREADY_RECORDED: the payment is already saved.
+    ///
+    /// - Remark: HTTP `POST /api/debts/{id}/payments`.
+    /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)`.
+    internal func recordDebtPayment(
+        path: Operations.RecordDebtPayment.Input.Path,
+        headers: Operations.RecordDebtPayment.Input.Headers = .init(),
+        body: Operations.RecordDebtPayment.Input.Body
+    ) async throws -> Operations.RecordDebtPayment.Output {
+        try await recordDebtPayment(Operations.RecordDebtPayment.Input(
+            path: path,
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Portofolio Manual
+    ///
+    /// The assets, newest value first, their total, and Utang terhadap Aset with them.
+    ///
+    /// - Remark: HTTP `GET /api/assets`.
+    /// - Remark: Generated from `#/paths//api/assets/get(listAssets)`.
+    internal func listAssets(headers: Operations.ListAssets.Input.Headers = .init()) async throws -> Operations.ListAssets.Output {
+        try await listAssets(Operations.ListAssets.Input(headers: headers))
+    }
+    /// Tambah Aset
+    ///
+    /// The score reads the new total on its next request.
+    ///
+    /// - Remark: HTTP `POST /api/assets`.
+    /// - Remark: Generated from `#/paths//api/assets/post(createAsset)`.
+    internal func createAsset(
+        headers: Operations.CreateAsset.Input.Headers = .init(),
+        body: Operations.CreateAsset.Input.Body
+    ) async throws -> Operations.CreateAsset.Output {
+        try await createAsset(Operations.CreateAsset.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Change an asset
+    ///
+    /// - Remark: HTTP `PATCH /api/assets/{id}`.
+    /// - Remark: Generated from `#/paths//api/assets/{id}/patch(updateAsset)`.
+    internal func updateAsset(
+        path: Operations.UpdateAsset.Input.Path,
+        headers: Operations.UpdateAsset.Input.Headers = .init(),
+        body: Operations.UpdateAsset.Input.Body
+    ) async throws -> Operations.UpdateAsset.Output {
+        try await updateAsset(Operations.UpdateAsset.Input(
+            path: path,
+            headers: headers,
+            body: body
         ))
     }
     /// Beranda
@@ -896,10 +1054,10 @@ extension APIProtocol {
     }
     /// The health check’s debts that are not paid off
     ///
-    /// - Remark: HTTP `GET /api/care/debts`.
-    /// - Remark: Generated from `#/paths//api/care/debts/get(listHealthCheckDebts)`.
-    internal func listHealthCheckDebts(headers: Operations.ListHealthCheckDebts.Input.Headers = .init()) async throws -> Operations.ListHealthCheckDebts.Output {
-        try await listHealthCheckDebts(Operations.ListHealthCheckDebts.Input(headers: headers))
+    /// - Remark: HTTP `GET /api/debts`.
+    /// - Remark: Generated from `#/paths//api/debts/get(listDebts)`.
+    internal func listDebts(headers: Operations.ListDebts.Input.Headers = .init()) async throws -> Operations.ListDebts.Output {
+        try await listDebts(Operations.ListDebts.Input(headers: headers))
     }
     /// The person’s safety plan
     ///
@@ -917,6 +1075,112 @@ extension APIProtocol {
         body: Operations.SaveSafetyPlan.Input.Body
     ) async throws -> Operations.SaveSafetyPlan.Output {
         try await saveSafetyPlan(Operations.SaveSafetyPlan.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Rencana
+    ///
+    /// Tangga Keuanganmu from the Kira Score engine, the goals, the risk profile and what the calculators start from.
+    ///
+    /// - Remark: HTTP `GET /api/plan`.
+    /// - Remark: Generated from `#/paths//api/plan/get(getPlan)`.
+    internal func getPlan(headers: Operations.GetPlan.Input.Headers = .init()) async throws -> Operations.GetPlan.Output {
+        try await getPlan(Operations.GetPlan.Input(headers: headers))
+    }
+    /// The goals
+    ///
+    /// Every goal, the emergency fund first, then the newest.
+    ///
+    /// - Remark: HTTP `GET /api/goals`.
+    /// - Remark: Generated from `#/paths//api/goals/get(listGoals)`.
+    internal func listGoals(headers: Operations.ListGoals.Input.Headers = .init()) async throws -> Operations.ListGoals.Output {
+        try await listGoals(Operations.ListGoals.Input(headers: headers))
+    }
+    /// Simpan Tujuan
+    ///
+    /// Stores the goal as the app's calculator computed it, after checking its ranges; one emergency fund per person.
+    ///
+    /// - Remark: HTTP `POST /api/goals`.
+    /// - Remark: Generated from `#/paths//api/goals/post(createGoal)`.
+    internal func createGoal(
+        headers: Operations.CreateGoal.Input.Headers = .init(),
+        body: Operations.CreateGoal.Input.Body
+    ) async throws -> Operations.CreateGoal.Output {
+        try await createGoal(Operations.CreateGoal.Input(
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Detail Tujuan
+    ///
+    /// The goal, its deposits newest first and, for the emergency fund, its milestones.
+    ///
+    /// - Remark: HTTP `GET /api/goals/{id}`.
+    /// - Remark: Generated from `#/paths//api/goals/{id}/get(getGoal)`.
+    internal func getGoal(
+        path: Operations.GetGoal.Input.Path,
+        headers: Operations.GetGoal.Input.Headers = .init()
+    ) async throws -> Operations.GetGoal.Output {
+        try await getGoal(Operations.GetGoal.Input(
+            path: path,
+            headers: headers
+        ))
+    }
+    /// Ubah Tujuan
+    ///
+    /// Changes any of the goal's figures; an emergency fund's inputs must keep a positive essentialExpense (422).
+    ///
+    /// - Remark: HTTP `PATCH /api/goals/{id}`.
+    /// - Remark: Generated from `#/paths//api/goals/{id}/patch(updateGoal)`.
+    internal func updateGoal(
+        path: Operations.UpdateGoal.Input.Path,
+        headers: Operations.UpdateGoal.Input.Headers = .init(),
+        body: Operations.UpdateGoal.Input.Body
+    ) async throws -> Operations.UpdateGoal.Output {
+        try await updateGoal(Operations.UpdateGoal.Input(
+            path: path,
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Tambah Setoran
+    ///
+    /// Records a deposit. The same depositId again on this goal answers the stored deposit as it was first recorded (whatever amount the retry carries) and adds nothing; one used on another goal is refused, and a day before the goal was made answers 422.
+    ///
+    /// - Remark: HTTP `POST /api/goals/{id}/deposits`.
+    /// - Remark: Generated from `#/paths//api/goals/{id}/deposits/post(addGoalDeposit)`.
+    internal func addGoalDeposit(
+        path: Operations.AddGoalDeposit.Input.Path,
+        headers: Operations.AddGoalDeposit.Input.Headers = .init(),
+        body: Operations.AddGoalDeposit.Input.Body
+    ) async throws -> Operations.AddGoalDeposit.Output {
+        try await addGoalDeposit(Operations.AddGoalDeposit.Input(
+            path: path,
+            headers: headers,
+            body: body
+        ))
+    }
+    /// Hasil Risiko
+    ///
+    /// The saved profile and answers; every field null before the quiz.
+    ///
+    /// - Remark: HTTP `GET /api/risk-profile`.
+    /// - Remark: Generated from `#/paths//api/risk-profile/get(getRiskProfile)`.
+    internal func getRiskProfile(headers: Operations.GetRiskProfile.Input.Headers = .init()) async throws -> Operations.GetRiskProfile.Output {
+        try await getRiskProfile(Operations.GetRiskProfile.Input(headers: headers))
+    }
+    /// Kenali Profil Risikomu
+    ///
+    /// The five answers and the profile the server's fixed table gives them.
+    ///
+    /// - Remark: HTTP `PUT /api/risk-profile`.
+    /// - Remark: Generated from `#/paths//api/risk-profile/put(saveRiskProfile)`.
+    internal func saveRiskProfile(
+        headers: Operations.SaveRiskProfile.Input.Headers = .init(),
+        body: Operations.SaveRiskProfile.Input.Body
+    ) async throws -> Operations.SaveRiskProfile.Output {
+        try await saveRiskProfile(Operations.SaveRiskProfile.Input(
             headers: headers,
             body: body
         ))
@@ -1110,200 +1374,6 @@ extension APIProtocol {
     /// - Remark: Generated from `#/paths//api/wallets/get(listWallets)`.
     internal func listWallets(headers: Operations.ListWallets.Input.Headers = .init()) async throws -> Operations.ListWallets.Output {
         try await listWallets(Operations.ListWallets.Input(headers: headers))
-    }
-    /// Add a wallet or a debt account
-    ///
-    /// - Remark: HTTP `POST /api/wallets`.
-    /// - Remark: Generated from `#/paths//api/wallets/post(createWallet)`.
-    internal func createWallet(
-        headers: Operations.CreateWallet.Input.Headers = .init(),
-        body: Operations.CreateWallet.Input.Body
-    ) async throws -> Operations.CreateWallet.Output {
-        try await createWallet(Operations.CreateWallet.Input(
-            headers: headers,
-            body: body
-        ))
-    }
-    /// Debt accounts and upcoming installments
-    ///
-    /// - Remark: HTTP `GET /api/debts`.
-    /// - Remark: Generated from `#/paths//api/debts/get(listDebts)`.
-    internal func listDebts(headers: Operations.ListDebts.Input.Headers = .init()) async throws -> Operations.ListDebts.Output {
-        try await listDebts(Operations.ListDebts.Input(headers: headers))
-    }
-    /// Add a debt account
-    ///
-    /// - Remark: HTTP `POST /api/debts`.
-    /// - Remark: Generated from `#/paths//api/debts/post(createDebt)`.
-    internal func createDebt(
-        headers: Operations.CreateDebt.Input.Headers = .init(),
-        body: Operations.CreateDebt.Input.Body
-    ) async throws -> Operations.CreateDebt.Output {
-        try await createDebt(Operations.CreateDebt.Input(
-            headers: headers,
-            body: body
-        ))
-    }
-    /// Debt details and payment history
-    ///
-    /// - Remark: HTTP `GET /api/debts/{id}`.
-    /// - Remark: Generated from `#/paths//api/debts/{id}/get(getDebt)`.
-    internal func getDebt(
-        path: Operations.GetDebt.Input.Path,
-        headers: Operations.GetDebt.Input.Headers = .init()
-    ) async throws -> Operations.GetDebt.Output {
-        try await getDebt(Operations.GetDebt.Input(
-            path: path,
-            headers: headers
-        ))
-    }
-    /// Pay down a debt and save a transaction
-    ///
-    /// - Remark: HTTP `POST /api/debts/{id}/payments`.
-    /// - Remark: Generated from `#/paths//api/debts/{id}/payments/post(recordDebtPayment)`.
-    internal func recordDebtPayment(
-        path: Operations.RecordDebtPayment.Input.Path,
-        headers: Operations.RecordDebtPayment.Input.Headers = .init(),
-        body: Operations.RecordDebtPayment.Input.Body
-    ) async throws -> Operations.RecordDebtPayment.Output {
-        try await recordDebtPayment(Operations.RecordDebtPayment.Input(
-            path: path,
-            headers: headers,
-            body: body
-        ))
-    }
-    /// Current budget and adjusted payday
-    ///
-    /// - Remark: HTTP `GET /api/budgets/current`.
-    /// - Remark: Generated from `#/paths//api/budgets/current/get(getCurrentBudget)`.
-    internal func getCurrentBudget(headers: Operations.GetCurrentBudget.Input.Headers = .init()) async throws -> Operations.GetCurrentBudget.Output {
-        try await getCurrentBudget(Operations.GetCurrentBudget.Input(headers: headers))
-    }
-    /// Set budget allocations and payday
-    ///
-    /// - Remark: HTTP `PUT /api/budgets/current`.
-    /// - Remark: Generated from `#/paths//api/budgets/current/put(updateCurrentBudget)`.
-    internal func updateCurrentBudget(
-        headers: Operations.UpdateCurrentBudget.Input.Headers = .init(),
-        body: Operations.UpdateCurrentBudget.Input.Body
-    ) async throws -> Operations.UpdateCurrentBudget.Output {
-        try await updateCurrentBudget(Operations.UpdateCurrentBudget.Input(
-            headers: headers,
-            body: body
-        ))
-    }
-    /// Budget editor with up to three prior-period averages
-    ///
-    /// - Remark: HTTP `GET /api/budgets/current/edit`.
-    /// - Remark: Generated from `#/paths//api/budgets/current/edit/get(getCurrentBudgetEdit)`.
-    internal func getCurrentBudgetEdit(headers: Operations.GetCurrentBudgetEdit.Input.Headers = .init()) async throws -> Operations.GetCurrentBudgetEdit.Output {
-        try await getCurrentBudgetEdit(Operations.GetCurrentBudgetEdit.Input(headers: headers))
-    }
-    /// Recurring bills and debt installments by due date
-    ///
-    /// - Remark: HTTP `GET /api/bills`.
-    /// - Remark: Generated from `#/paths//api/bills/get(listBills)`.
-    internal func listBills(headers: Operations.ListBills.Input.Headers = .init()) async throws -> Operations.ListBills.Output {
-        try await listBills(Operations.ListBills.Input(headers: headers))
-    }
-    /// Add a recurring bill or linked debt installment
-    ///
-    /// - Remark: HTTP `POST /api/bills`.
-    /// - Remark: Generated from `#/paths//api/bills/post(createBill)`.
-    internal func createBill(
-        headers: Operations.CreateBill.Input.Headers = .init(),
-        body: Operations.CreateBill.Input.Body
-    ) async throws -> Operations.CreateBill.Output {
-        try await createBill(Operations.CreateBill.Input(
-            headers: headers,
-            body: body
-        ))
-    }
-    /// Recurring bill details
-    ///
-    /// - Remark: HTTP `GET /api/bills/{id}`.
-    /// - Remark: Generated from `#/paths//api/bills/{id}/get(getBill)`.
-    internal func getBill(
-        path: Operations.GetBill.Input.Path,
-        headers: Operations.GetBill.Input.Headers = .init()
-    ) async throws -> Operations.GetBill.Output {
-        try await getBill(Operations.GetBill.Input(
-            path: path,
-            headers: headers
-        ))
-    }
-    /// Update future bill schedule
-    ///
-    /// Only the future schedule changes; saved payment transactions remain intact.
-    ///
-    /// - Remark: HTTP `PATCH /api/bills/{id}`.
-    /// - Remark: Generated from `#/paths//api/bills/{id}/patch(updateBill)`.
-    internal func updateBill(
-        path: Operations.UpdateBill.Input.Path,
-        headers: Operations.UpdateBill.Input.Headers = .init(),
-        body: Operations.UpdateBill.Input.Body
-    ) async throws -> Operations.UpdateBill.Output {
-        try await updateBill(Operations.UpdateBill.Input(
-            path: path,
-            headers: headers,
-            body: body
-        ))
-    }
-    /// Stop a bill schedule
-    ///
-    /// Archives future occurrences and preserves all historical transactions.
-    ///
-    /// - Remark: HTTP `DELETE /api/bills/{id}`.
-    /// - Remark: Generated from `#/paths//api/bills/{id}/delete(deleteBill)`.
-    internal func deleteBill(
-        path: Operations.DeleteBill.Input.Path,
-        headers: Operations.DeleteBill.Input.Headers = .init()
-    ) async throws -> Operations.DeleteBill.Output {
-        try await deleteBill(Operations.DeleteBill.Input(
-            path: path,
-            headers: headers
-        ))
-    }
-    /// Mark a bill occurrence paid and save a transaction
-    ///
-    /// - Remark: HTTP `POST /api/bills/{id}/payments`.
-    /// - Remark: Generated from `#/paths//api/bills/{id}/payments/post(recordBillPayment)`.
-    internal func recordBillPayment(
-        path: Operations.RecordBillPayment.Input.Path,
-        headers: Operations.RecordBillPayment.Input.Headers = .init(),
-        body: Operations.RecordBillPayment.Input.Body
-    ) async throws -> Operations.RecordBillPayment.Output {
-        try await recordBillPayment(Operations.RecordBillPayment.Input(
-            path: path,
-            headers: headers,
-            body: body
-        ))
-    }
-    /// Weekly Thursday to Wednesday money summary
-    ///
-    /// - Remark: HTTP `GET /api/weekly-summary`.
-    /// - Remark: Generated from `#/paths//api/weekly-summary/get(getWeeklySummary)`.
-    internal func getWeeklySummary(
-        query: Operations.GetWeeklySummary.Input.Query,
-        headers: Operations.GetWeeklySummary.Input.Headers = .init()
-    ) async throws -> Operations.GetWeeklySummary.Output {
-        try await getWeeklySummary(Operations.GetWeeklySummary.Input(
-            query: query,
-            headers: headers
-        ))
-    }
-    /// Weekly Thursday to Wednesday money summary
-    ///
-    /// - Remark: HTTP `GET /api/summaries/weekly`.
-    /// - Remark: Generated from `#/paths//api/summaries/weekly/get(getWeeklySummaryByWeek)`.
-    internal func getWeeklySummaryByWeek(
-        query: Operations.GetWeeklySummaryByWeek.Input.Query,
-        headers: Operations.GetWeeklySummaryByWeek.Input.Headers = .init()
-    ) async throws -> Operations.GetWeeklySummaryByWeek.Output {
-        try await getWeeklySummaryByWeek(Operations.GetWeeklySummaryByWeek.Input(
-            query: query,
-            headers: headers
-        ))
     }
     /// Keep a parsed bank statement for review (Kira Plus)
     ///

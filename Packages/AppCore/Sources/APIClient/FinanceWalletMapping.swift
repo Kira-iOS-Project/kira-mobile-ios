@@ -1,22 +1,15 @@
 import Domain
 
 extension Operations.ListWallets.Output {
-    func wallets() throws -> [Wallet] {
+    func walletOverview() throws -> WalletOverview {
         switch self {
         case .ok(let response):
-            try response.body.json.items.map {
+            let result = try response.body.json
+            let wallets = try result.items.map {
                 Wallet(id: $0.id, name: $0.name, type: try walletType($0._type.rawValue), balance: $0.balance)
             }
-        case .unauthorized(let response): throw try response.body.applicationProblemJson
-        case .default: throw AppProblem()
-        }
-    }
-}
-
-extension Operations.ListDebts.Output {
-    func debts() throws -> [Wallet] {
-        switch self {
-        case .ok(let response): try response.body.json.items.map(mapDebtWallet)
+            let debts = try result.debts.map(mapDebtWallet)
+            return WalletOverview(accounts: wallets + debts)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
         case .default: throw AppProblem()
         }

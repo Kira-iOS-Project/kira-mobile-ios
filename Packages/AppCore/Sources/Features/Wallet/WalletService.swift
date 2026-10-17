@@ -2,8 +2,6 @@
 import Domain
 
 package protocol WalletService: Sendable {
-    /** `GET /api/wallets`: bank accounts, e-wallets and cash. */
-    func wallets() async throws -> [Wallet]
-    /** `GET /api/debts`: credit card, paylater and pinjol accounts. */
-    func debts() async throws -> [Wallet]
+    /** `GET /api/wallets`: held-money and debt accounts in one owner-scoped response. */
+    func overview() async throws -> WalletOverview
 }

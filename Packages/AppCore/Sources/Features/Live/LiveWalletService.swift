@@ -10,13 +10,8 @@ package struct LiveWalletService: WalletService {
         self.api = api
     }
 
-    /** The owner's held-money accounts. */
-    package func wallets() async throws -> [Wallet] {
-        try await api.getWallets()
-    }
-
-    /** The owner's debt accounts with server-calculated remaining balances and due dates. */
-    package func debts() async throws -> [Wallet] {
-        try await api.getDebts()
+    /** The owner's held-money and debt accounts, loaded in one request. */
+    package func overview() async throws -> WalletOverview {
+        try await api.getWalletOverview()
     }
 }

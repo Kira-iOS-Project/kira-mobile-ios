@@ -25,10 +25,8 @@ package final class WalletsModel {
     /** Loads the user's wallets and liabilities together. */
     package func load() async {
         do {
-            async let wallets = service.wallets()
-            async let debts = service.debts()
-            let accounts = try await (wallets + debts)
-            phase = accounts.isEmpty ? .empty : .loaded(WalletOverview(accounts: accounts))
+            let overview = try await service.overview()
+            phase = overview.accounts.isEmpty ? .empty : .loaded(overview)
         } catch {
             if phase.value == nil { phase = .failed(walletProblem(error)) }
         }

@@ -4,7 +4,7 @@ import Features
 import Foundation
 
 actor FakeWalletService: WalletService {
-    enum Failure: Hashable, Sendable { case wallets, debts }
+    enum Failure: Hashable, Sendable { case overview }
 
     private var walletRows: [Wallet]
     private var debtRows: [Wallet]
@@ -21,14 +21,9 @@ actor FakeWalletService: WalletService {
         self.delay = delay
     }
 
-    func wallets() async throws -> [Wallet] {
-        try await waitAndFail(.wallets)
-        return walletRows
-    }
-
-    func debts() async throws -> [Wallet] {
-        try await waitAndFail(.debts)
-        return debtRows
+    func overview() async throws -> WalletOverview {
+        try await waitAndFail(.overview)
+        return WalletOverview(accounts: walletRows + debtRows)
     }
 
     private func waitAndFail(_ operation: Failure) async throws {

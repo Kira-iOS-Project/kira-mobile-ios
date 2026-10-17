@@ -5,14 +5,9 @@ import Foundation
 actor PreviewWalletService: WalletService {
     private let accounts = WalletPreviewData.accounts
 
-    func wallets() async throws -> [Wallet] {
+    func overview() async throws -> WalletOverview {
         try await pause()
-        return accounts.filter { !$0.type.isDebt }
-    }
-
-    func debts() async throws -> [Wallet] {
-        try await pause()
-        return accounts.filter { $0.type.isDebt }
+        return WalletOverview(accounts: accounts)
     }
 
     private func pause() async throws {

@@ -144,6 +144,8 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case scholarshipApplicationNotFound = "SCHOLARSHIP_APPLICATION_NOT_FOUND"
     /** A requested account data export is temporarily rate limited. */
     case accountExportRateLimited = "ACCOUNT_EXPORT_RATE_LIMITED"
+    /** A requested asset does not belong to this person or no longer exists. */
+    case assetNotFound = "ASSET_NOT_FOUND"
     /** Too many account verification attempts were made. */
     case authVerifyRateLimited = "AUTH_VERIFY_RATE_LIMITED"
     /** The requested care check-in does not exist. */
@@ -160,10 +162,24 @@ package enum ProblemCode: String, CaseIterable, Sendable {
     case communityReportDuplicate = "COMMUNITY_REPORT_DUPLICATE"
     /** Community rules must be accepted before continuing. */
     case communityRulesNotAccepted = "COMMUNITY_RULES_NOT_ACCEPTED"
-    /** The requested finance item does not exist. */
-    case financeItemNotFound = "FINANCE_ITEM_NOT_FOUND"
-    /** The payment is larger than the remaining balance. */
-    case financePaymentExceedsBalance = "FINANCE_PAYMENT_EXCEEDS_BALANCE"
+    /** The requested savings goal does not exist. */
+    case goalNotFound = "GOAL_NOT_FOUND"
+    /** A second emergency fund cannot be created. */
+    case goalEmergencyExists = "GOAL_EMERGENCY_EXISTS"
+    /** This deposit id was already used. */
+    case goalDepositConflict = "GOAL_DEPOSIT_CONFLICT"
+    /** This debt is not open for a payoff plan. */
+    case payoffDebtNotFound = "PAYOFF_DEBT_NOT_FOUND"
+    /** The extra payment exceeds available money. */
+    case payoffExtraTooHigh = "PAYOFF_EXTRA_TOO_HIGH"
+    /** There is no consumer debt to plan. */
+    case payoffNothingToPlan = "PAYOFF_NOTHING_TO_PLAN"
+    /** The payment was already recorded. */
+    case payoffPaymentAlreadyRecorded = "PAYOFF_PAYMENT_ALREADY_RECORDED"
+    /** The payment exceeds the remaining debt. */
+    case payoffPaymentTooHigh = "PAYOFF_PAYMENT_TOO_HIGH"
+    /** No active payoff plan exists. */
+    case payoffPlanNotFound = "PAYOFF_PLAN_NOT_FOUND"
     /** Emergency debt information is required for this scholarship application. */
     case scholarshipDebtEmergencyRequired = "SCHOLARSHIP_DEBT_EMERGENCY_REQUIRED"
     /** The subscription payment has not been recorded. */
