@@ -464,6 +464,11 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `GET /api/budgets/current`.
     /// - Remark: Generated from `#/paths//api/budgets/current/get(getCurrentBudget)`.
     func getCurrentBudget(_ input: Operations.GetCurrentBudget.Input) async throws -> Operations.GetCurrentBudget.Output
+    /// Set budget allocations and payday
+    ///
+    /// - Remark: HTTP `PUT /api/budgets/current`.
+    /// - Remark: Generated from `#/paths//api/budgets/current/put(updateCurrentBudget)`.
+    func updateCurrentBudget(_ input: Operations.UpdateCurrentBudget.Input) async throws -> Operations.UpdateCurrentBudget.Output
     /// Keep a parsed bank statement for review (Kira Plus)
     ///
     /// At most three months per file; rows already recorded are flagged `isDuplicate`.
@@ -478,6 +483,11 @@ internal protocol APIProtocol: Sendable {
     /// - Remark: HTTP `POST /api/imports/{id}/commit`.
     /// - Remark: Generated from `#/paths//api/imports/{id}/commit/post(commitBankImport)`.
     func commitBankImport(_ input: Operations.CommitBankImport.Input) async throws -> Operations.CommitBankImport.Output
+    /// Budget editor with up to three prior-period averages
+    ///
+    /// - Remark: HTTP `GET /api/budgets/current/edit`.
+    /// - Remark: Generated from `#/paths//api/budgets/current/edit/get(getCurrentBudgetEdit)`.
+    func getCurrentBudgetEdit(_ input: Operations.GetCurrentBudgetEdit.Input) async throws -> Operations.GetCurrentBudgetEdit.Output
 }
 
 /// Convenience overloads for operation inputs.
@@ -1387,6 +1397,19 @@ extension APIProtocol {
     internal func getCurrentBudget(headers: Operations.GetCurrentBudget.Input.Headers = .init()) async throws -> Operations.GetCurrentBudget.Output {
         try await getCurrentBudget(Operations.GetCurrentBudget.Input(headers: headers))
     }
+    /// Set budget allocations and payday
+    ///
+    /// - Remark: HTTP `PUT /api/budgets/current`.
+    /// - Remark: Generated from `#/paths//api/budgets/current/put(updateCurrentBudget)`.
+    internal func updateCurrentBudget(
+        headers: Operations.UpdateCurrentBudget.Input.Headers = .init(),
+        body: Operations.UpdateCurrentBudget.Input.Body
+    ) async throws -> Operations.UpdateCurrentBudget.Output {
+        try await updateCurrentBudget(Operations.UpdateCurrentBudget.Input(
+            headers: headers,
+            body: body
+        ))
+    }
     /// Keep a parsed bank statement for review (Kira Plus)
     ///
     /// At most three months per file; rows already recorded are flagged `isDuplicate`.
@@ -1418,6 +1441,13 @@ extension APIProtocol {
             headers: headers,
             body: body
         ))
+    }
+    /// Budget editor with up to three prior-period averages
+    ///
+    /// - Remark: HTTP `GET /api/budgets/current/edit`.
+    /// - Remark: Generated from `#/paths//api/budgets/current/edit/get(getCurrentBudgetEdit)`.
+    internal func getCurrentBudgetEdit(headers: Operations.GetCurrentBudgetEdit.Input.Headers = .init()) async throws -> Operations.GetCurrentBudgetEdit.Output {
+        try await getCurrentBudgetEdit(Operations.GetCurrentBudgetEdit.Input(headers: headers))
     }
 }
 

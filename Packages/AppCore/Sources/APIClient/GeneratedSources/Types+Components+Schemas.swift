@@ -7005,5 +7005,247 @@ extension Components {
                 case rows
             }
         }
+        /// - Remark: Generated from `#/components/schemas/BudgetEdit`.
+        internal struct BudgetEdit: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/BudgetEdit/value1`.
+            internal var value1: Components.Schemas.CurrentBudget
+            /// - Remark: Generated from `#/components/schemas/BudgetEdit/value2`.
+            internal struct Value2Payload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/BudgetEdit/value2/averagePeriods`.
+                internal var averagePeriods: Swift.Int
+                /// - Remark: Generated from `#/components/schemas/BudgetEdit/value2/AveragesPayload`.
+                internal struct AveragesPayloadPayload: Codable, Hashable, Sendable {
+                    /// - Remark: Generated from `#/components/schemas/BudgetEdit/value2/AveragesPayload/category`.
+                    internal enum CategoryPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                        case food = "food"
+                        case coffee = "coffee"
+                        case transport = "transport"
+                        case shopping = "shopping"
+                        case bills = "bills"
+                        case paylaterInstalment = "paylater_instalment"
+                        case savingsDeposit = "savings_deposit"
+                        case insurance = "insurance"
+                        case entertainment = "entertainment"
+                        case health = "health"
+                        case education = "education"
+                        case household = "household"
+                        case otherExpense = "other_expense"
+                    }
+                    /// - Remark: Generated from `#/components/schemas/BudgetEdit/value2/AveragesPayload/category`.
+                    internal var category: Components.Schemas.BudgetEdit.Value2Payload.AveragesPayloadPayload.CategoryPayload
+                    /// - Remark: Generated from `#/components/schemas/BudgetEdit/value2/AveragesPayload/amount`.
+                    internal var amount: Swift.Int
+                    /// Creates a new `AveragesPayloadPayload`.
+                    ///
+                    /// - Parameters:
+                    ///   - category:
+                    ///   - amount:
+                    internal init(
+                        category: Components.Schemas.BudgetEdit.Value2Payload.AveragesPayloadPayload.CategoryPayload,
+                        amount: Swift.Int
+                    ) {
+                        self.category = category
+                        self.amount = amount
+                    }
+                    internal enum CodingKeys: String, CodingKey {
+                        case category
+                        case amount
+                    }
+                }
+                /// - Remark: Generated from `#/components/schemas/BudgetEdit/value2/averages`.
+                internal typealias AveragesPayload = [Components.Schemas.BudgetEdit.Value2Payload.AveragesPayloadPayload]
+                /// - Remark: Generated from `#/components/schemas/BudgetEdit/value2/averages`.
+                internal var averages: Components.Schemas.BudgetEdit.Value2Payload.AveragesPayload
+                /// Creates a new `Value2Payload`.
+                ///
+                /// - Parameters:
+                ///   - averagePeriods:
+                ///   - averages:
+                internal init(
+                    averagePeriods: Swift.Int,
+                    averages: Components.Schemas.BudgetEdit.Value2Payload.AveragesPayload
+                ) {
+                    self.averagePeriods = averagePeriods
+                    self.averages = averages
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case averagePeriods
+                    case averages
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/BudgetEdit/value2`.
+            internal var value2: Components.Schemas.BudgetEdit.Value2Payload
+            /// Creates a new `BudgetEdit`.
+            ///
+            /// - Parameters:
+            ///   - value1:
+            ///   - value2:
+            internal init(
+                value1: Components.Schemas.CurrentBudget,
+                value2: Components.Schemas.BudgetEdit.Value2Payload
+            ) {
+                self.value1 = value1
+                self.value2 = value2
+            }
+            internal init(from decoder: any Swift.Decoder) throws {
+                self.value1 = try .init(from: decoder)
+                self.value2 = try .init(from: decoder)
+            }
+            internal func encode(to encoder: any Swift.Encoder) throws {
+                try self.value1.encode(to: encoder)
+                try self.value2.encode(to: encoder)
+            }
+        }
+        /// - Remark: Generated from `#/components/schemas/UpdateCurrentBudgetInput`.
+        internal struct UpdateCurrentBudgetInput: Codable, Hashable, Sendable {
+            /// - Remark: Generated from `#/components/schemas/UpdateCurrentBudgetInput/income`.
+            internal var income: Swift.Int
+            /// - Remark: Generated from `#/components/schemas/UpdateCurrentBudgetInput/AllocationsPayload`.
+            internal struct AllocationsPayloadPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/UpdateCurrentBudgetInput/AllocationsPayload/category`.
+                internal enum CategoryPayload: String, Codable, Hashable, Sendable, CaseIterable {
+                    case food = "food"
+                    case coffee = "coffee"
+                    case transport = "transport"
+                    case shopping = "shopping"
+                    case bills = "bills"
+                    case paylaterInstalment = "paylater_instalment"
+                    case savingsDeposit = "savings_deposit"
+                    case insurance = "insurance"
+                    case entertainment = "entertainment"
+                    case health = "health"
+                    case education = "education"
+                    case household = "household"
+                    case otherExpense = "other_expense"
+                }
+                /// - Remark: Generated from `#/components/schemas/UpdateCurrentBudgetInput/AllocationsPayload/category`.
+                internal var category: Components.Schemas.UpdateCurrentBudgetInput.AllocationsPayloadPayload.CategoryPayload
+                /// - Remark: Generated from `#/components/schemas/UpdateCurrentBudgetInput/AllocationsPayload/amount`.
+                internal var amount: Swift.Int
+                /// Creates a new `AllocationsPayloadPayload`.
+                ///
+                /// - Parameters:
+                ///   - category:
+                ///   - amount:
+                internal init(
+                    category: Components.Schemas.UpdateCurrentBudgetInput.AllocationsPayloadPayload.CategoryPayload,
+                    amount: Swift.Int
+                ) {
+                    self.category = category
+                    self.amount = amount
+                }
+                internal enum CodingKeys: String, CodingKey {
+                    case category
+                    case amount
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/UpdateCurrentBudgetInput/allocations`.
+            internal typealias AllocationsPayload = [Components.Schemas.UpdateCurrentBudgetInput.AllocationsPayloadPayload]
+            /// - Remark: Generated from `#/components/schemas/UpdateCurrentBudgetInput/allocations`.
+            internal var allocations: Components.Schemas.UpdateCurrentBudgetInput.AllocationsPayload
+            /// - Remark: Generated from `#/components/schemas/UpdateCurrentBudgetInput/payday`.
+            internal enum PaydayPayload: Codable, Hashable, Sendable {
+                /// - Remark: Generated from `#/components/schemas/UpdateCurrentBudgetInput/payday/case1`.
+                internal struct Case1Payload: Codable, Hashable, Sendable {
+                    /// - Remark: Generated from `#/components/schemas/UpdateCurrentBudgetInput/payday/case1/type`.
+                    internal enum _TypePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                        case day = "day"
+                    }
+                    /// - Remark: Generated from `#/components/schemas/UpdateCurrentBudgetInput/payday/case1/type`.
+                    internal var _type: Components.Schemas.UpdateCurrentBudgetInput.PaydayPayload.Case1Payload._TypePayload
+                    /// - Remark: Generated from `#/components/schemas/UpdateCurrentBudgetInput/payday/case1/day`.
+                    internal var day: Swift.Int
+                    /// Creates a new `Case1Payload`.
+                    ///
+                    /// - Parameters:
+                    ///   - _type:
+                    ///   - day:
+                    internal init(
+                        _type: Components.Schemas.UpdateCurrentBudgetInput.PaydayPayload.Case1Payload._TypePayload,
+                        day: Swift.Int
+                    ) {
+                        self._type = _type
+                        self.day = day
+                    }
+                    internal enum CodingKeys: String, CodingKey {
+                        case _type = "type"
+                        case day
+                    }
+                }
+                /// - Remark: Generated from `#/components/schemas/UpdateCurrentBudgetInput/payday/case1`.
+                case case1(Components.Schemas.UpdateCurrentBudgetInput.PaydayPayload.Case1Payload)
+                /// - Remark: Generated from `#/components/schemas/UpdateCurrentBudgetInput/payday/case2`.
+                internal struct Case2Payload: Codable, Hashable, Sendable {
+                    /// - Remark: Generated from `#/components/schemas/UpdateCurrentBudgetInput/payday/case2/type`.
+                    internal enum _TypePayload: String, Codable, Hashable, Sendable, CaseIterable {
+                        case endOfMonth = "endOfMonth"
+                    }
+                    /// - Remark: Generated from `#/components/schemas/UpdateCurrentBudgetInput/payday/case2/type`.
+                    internal var _type: Components.Schemas.UpdateCurrentBudgetInput.PaydayPayload.Case2Payload._TypePayload
+                    /// Creates a new `Case2Payload`.
+                    ///
+                    /// - Parameters:
+                    ///   - _type:
+                    internal init(_type: Components.Schemas.UpdateCurrentBudgetInput.PaydayPayload.Case2Payload._TypePayload) {
+                        self._type = _type
+                    }
+                    internal enum CodingKeys: String, CodingKey {
+                        case _type = "type"
+                    }
+                }
+                /// - Remark: Generated from `#/components/schemas/UpdateCurrentBudgetInput/payday/case2`.
+                case case2(Components.Schemas.UpdateCurrentBudgetInput.PaydayPayload.Case2Payload)
+                internal init(from decoder: any Swift.Decoder) throws {
+                    var errors: [any Swift.Error] = []
+                    do {
+                        self = .case1(try .init(from: decoder))
+                        return
+                    } catch {
+                        errors.append(error)
+                    }
+                    do {
+                        self = .case2(try .init(from: decoder))
+                        return
+                    } catch {
+                        errors.append(error)
+                    }
+                    throw Swift.DecodingError.failedToDecodeOneOfSchema(
+                        type: Self.self,
+                        codingPath: decoder.codingPath,
+                        errors: errors
+                    )
+                }
+                internal func encode(to encoder: any Swift.Encoder) throws {
+                    switch self {
+                    case let .case1(value):
+                        try value.encode(to: encoder)
+                    case let .case2(value):
+                        try value.encode(to: encoder)
+                    }
+                }
+            }
+            /// - Remark: Generated from `#/components/schemas/UpdateCurrentBudgetInput/payday`.
+            internal var payday: Components.Schemas.UpdateCurrentBudgetInput.PaydayPayload
+            /// Creates a new `UpdateCurrentBudgetInput`.
+            ///
+            /// - Parameters:
+            ///   - income:
+            ///   - allocations:
+            ///   - payday:
+            internal init(
+                income: Swift.Int,
+                allocations: Components.Schemas.UpdateCurrentBudgetInput.AllocationsPayload,
+                payday: Components.Schemas.UpdateCurrentBudgetInput.PaydayPayload
+            ) {
+                self.income = income
+                self.allocations = allocations
+                self.payday = payday
+            }
+            internal enum CodingKeys: String, CodingKey {
+                case income
+                case allocations
+                case payday
+            }
+        }
     }
 }
