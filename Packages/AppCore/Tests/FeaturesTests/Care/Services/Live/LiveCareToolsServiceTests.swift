@@ -67,13 +67,17 @@ struct LiveCareToolsServiceTests {
     func save() async throws {
         let (service, transport) = service(["PUT /api/care/safety-plan": ok(planJSON)])
         let plan = SafetyPlan(
-            warningSigns: "susah tidur", people: [SafetyContact(name: "Ibu", phone: "0812-3456")], safePlace: "rumah")
+            warningSigns: "susah tidur", people: [SafetyContact(name: "Ibu", phone: "0812-3456")],
+            professionals: [SafetyContact(name: "Healing119", phone: "119 ekstensi 8")], safePlace: "rumah")
         let stored = try await service.saveSafetyPlan(plan)
         #expect(stored.calmingThings == "jalan sore")
         let sent = try #require(await transport.sent.first?.json)
         #expect(sent["warningSigns"] == .string("susah tidur") && sent["safePlace"] == .string("rumah"))
         #expect(sent["people"] == .array([.object(["name": .string("Ibu"), "phone": .string("0812-3456")])]))
-        #expect(sent["professionals"] == .array([]) && sent["updatedAt"] == nil)
+        #expect(
+            sent["professionals"]
+                == .array([.object(["name": .string("Healing119"), "phone": .string("119 ekstensi 8")])]))
+        #expect(sent["updatedAt"] == nil)
     }
 
     @Test(

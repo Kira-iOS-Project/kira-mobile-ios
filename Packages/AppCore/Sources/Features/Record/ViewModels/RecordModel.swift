@@ -91,11 +91,10 @@ package final class RecordModel {
             nextCursor = loadedPage.nextCursor
             usage = loadedProfile.usage
             phase = .loaded(loadedProfile)
+            await care.opened(name: loadedProfile.displayName)
         } catch {
             phase = .failed(AppProblem(error))
-            return
         }
-        await care.opened(name: profile?.displayName ?? "")
     }
 
     /** The page before the oldest message, when the person scrolls to the top. */
