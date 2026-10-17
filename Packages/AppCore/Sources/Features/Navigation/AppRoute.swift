@@ -35,6 +35,8 @@ package enum AppRoute: Hashable, Sendable {
     case profile
     /** UNG-01: Dompet & Akun Utang, opened from Profil. */
     case wallets
+    /** UNG-03: one debt account's detail, opened from Dompet. */
+    case debtDetail(id: String)
     /** AKN-03: Keamanan. */
     case security
     /** AKN-03: Ganti PIN. */
