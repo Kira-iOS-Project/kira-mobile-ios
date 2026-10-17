@@ -3,11 +3,15 @@
 Kira is MVVM, and its folders say which layer a file belongs to. Every layer uses the same area
 names, so a feature's files are found in the same place in each layer:
 
-Onboarding, Home, Score, Record, History, Import, Account, Plans, Lock, Community, Care, Navigation,
-Session, Shared.
+Onboarding, Home, Score, Record, History, Import, Account, Plans, Lock, Community, Care, Budget,
+Bills, Navigation, Session, Shared.
 
-`Shared` holds what several areas use (money, dates, transactions, the six-digit code). An area
-folder is created only when it has a file.
+`Shared` holds what several areas use (money, dates, transactions, the six-digit code, the payday
+sheet). An area folder is created only when it has a file.
+
+Dompet, Budget & Tagihan (UNG) is split by feature like the others: `Budget` (Atur Budget, UNG-05)
+and `Bills` (Tagihan & Cicilan, UNG-07) now, and `Wallets` (Dompet) and `WeeklySummary` (Ringkasan
+Mingguan) when their screens land.
 
 ## Layers
 

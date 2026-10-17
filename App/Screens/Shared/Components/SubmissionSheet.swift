@@ -41,8 +41,11 @@ private struct SheetHeader {
     let leaf: KiraLeaf?
 }
 
-/** The failure dialog's words. */
-private struct SheetFailureText {
+/**
+ The failure dialog's words: also those of a screen's own save that failed (Atur Budget), so every
+ failed submit reads the same way.
+ */
+struct SheetFailureText {
     let title: LocalizedStringResource
     let connection: LocalizedStringResource
 
