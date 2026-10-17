@@ -74,7 +74,7 @@ package final class AssetFormModel {
         guard let assetId, phase.value == nil else { return }
         do {
             guard let asset = try await service.portfolio().asset(id: assetId) else {
-                phase = .failed(AppProblem(code: Self.assetNotFound))
+                phase = .failed(AppProblem(code: ProblemCode.assetNotFound.rawValue))
                 return
             }
             assetClass = asset.assetClass
@@ -138,9 +138,6 @@ package final class AssetFormModel {
         showsSaved = false
         isClosed = true
     }
-
-    /** The API's code for an asset that is gone; the screen reads it as a problem it knows once the spec lists it. */
-    static let assetNotFound = "ASSET_NOT_FOUND"
 
     /** The form's fields, for the issue shown under each. */
     package enum Field: Sendable {
