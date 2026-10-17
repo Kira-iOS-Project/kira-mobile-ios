@@ -1681,6 +1681,226 @@
         }
       }
     },
+    "budget.allocated" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Alokasi"
+          }
+        }
+      }
+    },
+    "budget.categories" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alokasi per Kategori"
+          }
+        }
+      }
+    },
+    "budget.categories.empty" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum ada alokasi kategori."
+          }
+        }
+      }
+    },
+    "budget.category.allocation" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Batas Alokasi"
+          }
+        }
+      }
+    },
+    "budget.category.nearLimit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mendekati Batas"
+          }
+        }
+      }
+    },
+    "budget.category.spent" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terpakai"
+          }
+        }
+      }
+    },
+    "budget.empty" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Budget belum tersedia."
+          }
+        }
+      }
+    },
+    "budget.failed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Budget belum bisa dibuka"
+          }
+        }
+      }
+    },
+    "budget.goal.current" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terkumpul"
+          }
+        }
+      }
+    },
+    "budget.goal.progress" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Progres tabungan"
+          }
+        }
+      }
+    },
+    "budget.goal.separator" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dari"
+          }
+        }
+      }
+    },
+    "budget.goals" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Target Tabungan"
+          }
+        }
+      }
+    },
+    "budget.income" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Penghasilan Bulanan"
+          }
+        }
+      }
+    },
+    "budget.overallocated.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jumlah alokasi lebih besar dari penghasilan bulanan. Kamu tetap bisa menyimpan budget."
+          }
+        }
+      }
+    },
+    "budget.overallocated.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total alokasi melebihi penghasilan"
+          }
+        }
+      }
+    },
+    "budget.period %@ %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Periode %1$@ – %2$@"
+          }
+        }
+      }
+    },
+    "budget.remaining" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sisa Penghasilan"
+          }
+        }
+      }
+    },
+    "budget.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muat Ulang"
+          }
+        }
+      }
+    },
+    "budget.setup.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tentukan batas pengeluaran per kategori agar kamu bisa memantau pemakaian selama periode gajian."
+          }
+        }
+      }
+    },
+    "budget.setup.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mulai Atur Budget"
+          }
+        }
+      }
+    },
+    "budget.spent" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terpakai"
+          }
+        }
+      }
+    },
+    "budget.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Budget Bulanan"
+          }
+        }
+      }
+    },
     "checkout.back" : {
       "localizations" : {
         "id" : {
