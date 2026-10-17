@@ -75,12 +75,12 @@ package final class EducationGoalModel {
     package var outcome: EducationGoalOutcome? {
         let name = childName.trimmingCharacters(in: .whitespaces)
         guard !name.isEmpty, let age = Int(childAge.filter(\.isNumber)), age >= 0, age < EducationStage.bachelor.entryAge,
-            let income = GoalInput.rupiah(income), income > 0, let inflation = GoalInput.percent(inflation),
-            let deposit = GoalInput.rupiah(deposit)
+            let income = EducationInput.rupiah(income), income > 0, let inflation = EducationInput.percent(inflation),
+            let deposit = EducationInput.rupiah(deposit)
         else { return nil }
         let rate: Double?
         if knowsWhere {
-            guard let typed = GoalInput.percent(annualReturn) else { return nil }
+            guard let typed = EducationInput.percent(annualReturn) else { return nil }
             rate = typed
         } else {
             rate = nil
@@ -92,7 +92,7 @@ package final class EducationGoalModel {
         }
         let plan = EducationPlan(
             childAge: age, levels: levels, inflation: inflation, income: income,
-            present: GoalInput.rupiah(present) ?? 0, deposit: deposit, annualReturn: rate)
+            present: EducationInput.rupiah(present) ?? 0, deposit: deposit, annualReturn: rate)
         return EducationGoalOutcome(
             childName: name, plan: plan, details: stages.map { values(for: $0) })
     }
@@ -153,8 +153,8 @@ package struct EducationStageValues: Equatable, Sendable {
 
     /** The engine's stage; nil while a figure is missing or out of range. */
     package func level(_ stage: EducationStage) -> EducationLevel? {
-        guard let entry = GoalInput.rupiah(entryFee), let fee = GoalInput.rupiah(fee),
-            let other = GoalInput.percent(otherRate)
+        guard let entry = EducationInput.rupiah(entryFee), let fee = EducationInput.rupiah(fee),
+            let other = EducationInput.percent(otherRate)
         else { return nil }
         return EducationLevel(stage: stage, entryFee: entry, fee: fee, feePeriod: feePeriod, otherRate: other)
     }
@@ -181,4 +181,19 @@ package struct EducationGoalOutcome: Equatable, Sendable {
 extension EducationStage {
     /** Its place from SD / MI (0) to S1 / D4 (3). */
     package var order: Int { Self.allCases.firstIndex(of: self) ?? 0 }
+}
+
+/** Reads the form's text: whole rupiah (grouped while typing) and a percent with a comma or a dot. */
+private enum EducationInput {
+    /** Whole rupiah; nil when nothing is typed. */
+    static func rupiah(_ text: String) -> Int? {
+        AmountInput.value(of: text)
+    }
+
+    /** A percent as a fraction, from 0 to 100%; nil otherwise. */
+    static func percent(_ text: String) -> Double? {
+        let normalized = text.trimmingCharacters(in: .whitespaces).replacingOccurrences(of: ",", with: ".")
+        guard let value = Double(normalized), value >= 0, value <= 100 else { return nil }
+        return value / 100
+    }
 }
