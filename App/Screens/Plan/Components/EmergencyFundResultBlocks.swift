@@ -3,6 +3,7 @@
  HasilSimulasiTerbuka, REN-04b, its working open): the working of Gimana Ngitungnya? (the multiplier,
  the target and the investment's result) and Tempat Menyimpannya, the target split in two.
  */
+import Domain
 import Features
 import SwiftUI
 

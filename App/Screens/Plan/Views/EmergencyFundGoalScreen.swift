@@ -47,8 +47,8 @@ private struct EmergencyFundFields: View {
     var body: some View {
         KiraSectionTitle("plan.emergency.form.needs").padding(.top, KiraSpacing.space2)
         KiraField("plan.emergency.form.essential", text: $model.essential)
-            .prefix("plan.goal.currency").suffix("plan.goal.cents").amount().keyboardType(.numberPad)
-            .hint("plan.emergency.form.essential.hint")
+            .prefix("plan.goal.currency").suffix("plan.goal.cents").hint("plan.emergency.form.essential.hint").amount()
+            .keyboardType(.numberPad)
         WeightedRow(weights: [1, 1], spacing: 10) {
             VStack(alignment: .leading, spacing: 6) {
                 Text("plan.emergency.form.married").font(.footnote.weight(.semibold)).kiraLineHeight(18, size: 13)
@@ -75,8 +75,8 @@ private struct EmergencyFundFields: View {
         KiraField("plan.price.duration", text: $model.months).suffix("plan.emergency.form.monthsAhead")
             .keyboardType(.numberPad)
         KiraField("plan.emergency.form.present", text: $model.present)
-            .prefix("plan.goal.currency").suffix("plan.goal.cents").amount().keyboardType(.numberPad)
-            .hint("plan.emergency.form.present.hint")
+            .prefix("plan.goal.currency").suffix("plan.goal.cents").hint("plan.emergency.form.present.hint").amount()
+            .keyboardType(.numberPad)
         KiraSectionTitle("plan.goal.strategy").padding(.top, KiraSpacing.space2)
         KiraField("plan.goal.deposit", text: $model.deposit)
             .prefix("plan.goal.currency").suffix("plan.goal.cents").amount().keyboardType(.numberPad)

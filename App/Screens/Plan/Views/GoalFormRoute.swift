@@ -51,8 +51,8 @@ struct GoalFormRoute: View {
         case .emergencyFund:
             EmergencyFundGoalScreen(
                 model: EmergencyFundGoalModel(), onOpen: onOpen,
-                prefill: { [service] in try? await service.plan().prefill }
-            ) { save($0.draft(today: today)) }
+                prefill: { [service] in try? await service.plan().prefill },
+                onBudget: { save($0.draft(today: today)) })
         }
     }
 
