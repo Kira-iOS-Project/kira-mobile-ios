@@ -29,6 +29,7 @@ struct AssetFormModelTests {
         let model = form(service)
         #expect(model.phase.value != nil && !model.isUpdate && model.assetClass == nil && model.value == nil)
         #expect(CalendarDay(model.valuedOn) == CalendarDay(now) && model.latestDay == now)
+        #expect(AssetFormModel(service: service).latestDay.timeIntervalSinceNow < 1)
         await model.load()
         await model.save()
         #expect(model.issues == [.noClass, .noName, .noValue])

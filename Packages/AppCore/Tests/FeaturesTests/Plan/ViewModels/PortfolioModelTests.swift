@@ -10,7 +10,7 @@ struct PortfolioModelTests {
     @Test("loads the assets with their shares and the composition, and the eye hides the amounts")
     func loads() async {
         let model = PortfolioModel(service: FakePortfolioService())
-        #expect(model.phase.value == nil && model.assetShares.isEmpty)
+        #expect(model.phase.value == nil && model.assetShares.isEmpty && model.classShares.isEmpty)
         await model.load()
         #expect(model.phase.value?.total == 2_400_000)
         #expect(model.assetShares == ["gold": 100])

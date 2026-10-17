@@ -38,9 +38,10 @@ package enum AssetCheck {
         } else if trimmed.count > maximumNameLength {
             issues.append(.nameTooLong)
         }
-        if (value ?? 0) <= 0 {
+        let amount = value ?? 0
+        if amount <= 0 {
             issues.append(.noValue)
-        } else if (value ?? 0) > maximumValue {
+        } else if amount > maximumValue {
             issues.append(.valueTooLarge)
         }
         if today < valuedOn { issues.append(.futureDay) }
