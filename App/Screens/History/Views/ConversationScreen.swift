@@ -27,7 +27,7 @@ struct ConversationScreen: View {
                 ScrollView {
                     content
                         .padding(.horizontal, KiraSpacing.screen)
-                        .padding(.bottom, KiraSpacing.space10)
+                        .padding(.bottom, KiraSpacing.space10 + KiraSpacing.dockReserve)
                 }
                 .onChange(of: model.sourceBlockId) { _, id in
                     if let id { reader.scrollTo(id, anchor: .center) }

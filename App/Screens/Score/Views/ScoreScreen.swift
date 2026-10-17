@@ -64,7 +64,7 @@ private struct ScoreContent: View {
             .padding(.horizontal, KiraSpacing.screen)
             /** The board's 62 pt from the top of the screen, and its scenery at 96 pt. */
             .padding(.top, 62 - 59)
-            .padding(.bottom, KiraSpacing.space10)
+            .padding(.bottom, KiraSpacing.space10 + KiraSpacing.dockReserve)
             .background(alignment: .top) {
                 KiraScenery(hasSun: true, height: 150).offset(y: 96 - 59).accessibilityHidden(true)
             }

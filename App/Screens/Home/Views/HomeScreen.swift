@@ -63,7 +63,7 @@ private struct HomeContent: View {
             .padding(.horizontal, KiraSpacing.screen)
             /** The boards start the header at 54 pt, the foot of the status bar, 5 pt above the safe area. */
             .padding(.top, 54 - 59)
-            .padding(.bottom, KiraSpacing.space10)
+            .padding(.bottom, KiraSpacing.space10 + KiraSpacing.dockReserve)
             .background(alignment: .topTrailing) {
                 KiraLeaf(.twig, tone: .soft, size: 150, isFlipped: true)
                     /** 30 pt from the top of the screen, as on the boards. */
