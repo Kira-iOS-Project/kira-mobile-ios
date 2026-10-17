@@ -13,6 +13,8 @@ package final class BillEditModel {
     package var draft: BillEditDraft?
     /** Whether a save request is in flight. */
     package private(set) var isSaving = false
+    /** Whether the person has tried to save the current form. */
+    package private(set) var showsFieldErrors = false
     /** The API problem from the latest failed save. */
     package private(set) var saveProblem: AppProblem?
     /** Whether the latest save succeeded. */
@@ -47,6 +49,7 @@ package final class BillEditModel {
 
     /** Saves a valid form while preserving the draft after a server refusal. */
     package func save() async {
+        showsFieldErrors = true
         guard let draft, let update = draft.update, !isSaving else { return }
         isSaving = true
         saveProblem = nil
@@ -65,5 +68,24 @@ package final class BillEditModel {
     /** Whether the current draft can be sent. */
     package var canSave: Bool {
         phase.value != nil && draft?.update != nil && !isSaving
+    }
+
+    /** Expense categories offered by the recurring-bill form. */
+    package var categories: [TransactionCategory] {
+        TransactionCategory.allCases.filter { $0.type == .expense }
+    }
+
+    /** A required-name or length message after a save attempt. */
+    package var nameError: LocalizedStringResource? {
+        guard showsFieldErrors, let draft else { return nil }
+        let name = draft.name.trimmingCharacters(in: .whitespacesAndNewlines)
+        if name.isEmpty { return "bills.edit.name.required" }
+        return name.count > 80 ? "bills.edit.name.tooLong" : nil
+    }
+
+    /** A positive-rupiah message after a save attempt. */
+    package var amountError: LocalizedStringResource? {
+        guard showsFieldErrors, let draft else { return nil }
+        return AmountInput.amount(draft.amountText) == nil ? "bills.edit.amount.required" : nil
     }
 }

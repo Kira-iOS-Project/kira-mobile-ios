@@ -52,7 +52,8 @@ struct BillEditModelTests {
         let installment = RecurringBill(
             id: "debt-1", name: "Cicilan", amount: 100, category: "paylater_instalment",
             nextDueDate: CalendarDay(year: 2026, month: 10, day: 22), repeatInterval: "monthly", kind: .debtInstallment)
-        let model = BillEditModel(id: installment.id, service: FakeBillEditService(bill: .success(installment)))
+        let service = FakeBillEditService(bill: .success(installment))
+        let model = BillEditModel(id: installment.id, service: service)
         await model.load()
         guard case .empty = model.phase else {
             Issue.record("expected unsupported schedule to be empty")
@@ -60,7 +61,7 @@ struct BillEditModelTests {
         }
         #expect(model.draft == nil && !model.canSave)
         await model.save()
-        #expect(await FakeBillEditService(bill: .success(installment)).calls().updates.isEmpty)
+        #expect(await service.calls().updates.isEmpty)
     }
 
     @Test("maps load errors and refuses invalid form values")
@@ -75,12 +76,22 @@ struct BillEditModelTests {
         #expect(problem == BillEditFixtures.problem)
         await model.save()
         #expect(!model.canSave && !model.hasSaved)
+        #expect(model.showsFieldErrors && model.nameError == nil && model.amountError == nil)
 
         let ready = BillEditModel(id: "bill-1", service: FakeBillEditService())
         await ready.load()
+        #expect(ready.nameError == nil && ready.amountError == nil)
+        #expect(ready.categories.allSatisfy { $0.type == .expense })
+        ready.draft?.name = " "
         ready.draft?.amountText = "0"
         await ready.save()
         #expect(!ready.canSave && ready.saveProblem == nil)
+        #expect(ready.nameError != nil && ready.amountError != nil)
+        ready.draft?.name = String(repeating: "x", count: 81)
+        ready.draft?.amountText = "1000"
+        #expect(ready.nameError != nil && ready.amountError == nil)
+        ready.draft?.name = "Nama valid"
+        #expect(ready.nameError == nil)
         #expect(await service.calls().updates.isEmpty)
     }
 

@@ -30,7 +30,11 @@ struct BillEditDraftTests {
         draft.name = " Internet baru "
         draft.amountText = "0"
         #expect(draft.update == nil)
+        draft.name = String(repeating: "x", count: 81)
+        draft.amountText = "480000"
+        #expect(draft.update == nil)
         draft.amountText = "Rp 480.000"
+        draft.name = " Internet baru "
         draft.category = .salary
         #expect(draft.update == nil)
         draft.category = .bills

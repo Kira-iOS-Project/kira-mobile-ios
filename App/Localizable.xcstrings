@@ -2026,6 +2026,256 @@
         }
       }
     },
+    "bills.edit.amount" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jumlah Tagihan"
+          }
+        }
+      }
+    },
+    "bills.edit.amount.prompt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contoh: 350.000"
+          }
+        }
+      }
+    },
+    "bills.edit.amount.required" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masukkan jumlah lebih dari Rp0."
+          }
+        }
+      }
+    },
+    "bills.edit.category" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kategori"
+          }
+        }
+      }
+    },
+    "bills.edit.close" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tutup"
+          }
+        }
+      }
+    },
+    "bills.edit.date" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tanggal Berikutnya"
+          }
+        }
+      }
+    },
+    "bills.edit.lede" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perubahan berlaku untuk jadwal berikutnya. Transaksi yang sudah tercatat tetap tersimpan."
+          }
+        }
+      }
+    },
+    "bills.edit.loadFailed" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan Belum Berhasil Dibuka"
+          }
+        }
+      }
+    },
+    "bills.edit.name" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama Tagihan"
+          }
+        }
+      }
+    },
+    "bills.edit.name.prompt" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contoh: Internet Rumah"
+          }
+        }
+      }
+    },
+    "bills.edit.name.required" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masukkan nama tagihan."
+          }
+        }
+      }
+    },
+    "bills.edit.name.tooLong" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama tagihan maksimal 80 karakter."
+          }
+        }
+      }
+    },
+    "bills.edit.repeat" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jadwal Berulang"
+          }
+        }
+      }
+    },
+    "bills.edit.repeat.monthly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bulanan"
+          }
+        }
+      }
+    },
+    "bills.edit.repeat.weekly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mingguan"
+          }
+        }
+      }
+    },
+    "bills.edit.repeat.yearly" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tahunan"
+          }
+        }
+      }
+    },
+    "bills.edit.retry" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba Lagi"
+          }
+        }
+      }
+    },
+    "bills.edit.save" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Perubahan"
+          }
+        }
+      }
+    },
+    "bills.edit.saveFailed.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coba simpan lagi. Perubahan yang belum tersimpan tetap ada di formulir."
+          }
+        }
+      }
+    },
+    "bills.edit.saveFailed.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum Berhasil Menyimpan"
+          }
+        }
+      }
+    },
+    "bills.edit.saved.body" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jadwal tagihan berikutnya sudah diperbarui."
+          }
+        }
+      }
+    },
+    "bills.edit.saved.done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kembali ke Tagihan"
+          }
+        }
+      }
+    },
+    "bills.edit.saved.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tagihan Diperbarui"
+          }
+        }
+      }
+    },
+    "bills.edit.title" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah Tagihan"
+          }
+        }
+      }
+    },
+    "bills.edit.unsupported" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cicilan utang dikelola dari detail utang."
+          }
+        }
+      }
+    },
     "bills.empty.body" : {
       "localizations" : {
         "id" : {

@@ -42,7 +42,9 @@ package struct BillEditDraft: Hashable, Sendable {
     /** The complete future schedule sent by PATCH, or nil for invalid form values. */
     package var update: BillScheduleUpdate? {
         let trimmedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmedName.isEmpty, let amount = AmountInput.amount(amountText), category.type == .expense else {
+        guard !trimmedName.isEmpty, trimmedName.count <= 80,
+            let amount = AmountInput.amount(amountText), category.type == .expense
+        else {
             return nil
         }
         return BillScheduleUpdate(
