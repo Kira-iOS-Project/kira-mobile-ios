@@ -29,7 +29,16 @@ struct AmountTextField: UIViewRepresentable {
         field.tintColor = UIColor(resource: .pandan)
         field.setContentHuggingPriority(.defaultLow, for: .horizontal)
         field.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        /** One line tall, never stretched by a container that offers more height (a sheet, a VStack). */
+        field.setContentHuggingPriority(.required, for: .vertical)
+        field.setContentCompressionResistancePriority(.required, for: .vertical)
         return field
+    }
+
+    /** The width offered, and the height of one line of its font: what a SwiftUI TextField takes. */
+    func sizeThatFits(_ proposal: ProposedViewSize, uiView field: UITextField, context _: Context) -> CGSize? {
+        let height = field.intrinsicContentSize.height
+        return CGSize(width: proposal.width ?? field.intrinsicContentSize.width, height: height)
     }
 
     func updateUIView(_ field: UITextField, context: Context) {
