@@ -61,6 +61,17 @@ struct RouteSlot: View {
         case .riskQuiz, .riskResult: riskQuiz(start: route == .riskResult ? .savedResult : .quiz())
         case .legalityCheck: LegalityCheckScreen(onOpen: onOpen)
         case .assetModule(let assetClass): AssetModuleScreen(assetClass: assetClass, onOpen: onOpen)
+        case .wallets:
+            WalletsScreen(
+                service: services.wallet, onOpenDebt: { onOpen(.debtDetail(id: $0)) }, onOpenHelp: { onOpen(.care) })
+        case .budget: BudgetScreen(service: services.budget)
+        case .debtDetail: EmptySlot()
+        case .creditReport: EmptySlot()
+        case .editBudget: EmptySlot()
+        case .bills: EmptySlot()
+        case .addBill: EmptySlot()
+        case .editBill: EmptySlot()
+        case .weeklySummary: EmptySlot()
         case .home, .record, .plan, .community, .healthCheck, .recordManual, .receiptScan, .voiceInput, .history,
             .transaction, .conversation, .importStatement, .unavailable:
             EmptySlot()
