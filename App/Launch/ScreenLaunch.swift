@@ -43,6 +43,7 @@
             case .scoreHistory: ScoreHistoryLaunch(screen: screen)
             case .payoff: PayoffLaunch(screen: screen)
             case .payoffPlan: PayoffPlanLaunch(screen: screen)
+            case .planModule: PlanModuleLaunch(screen: screen)
             }
         }
     }
@@ -117,6 +118,8 @@
          the last account).
          */
         case myPlan, myPlanEmpty, myPlanFailing, payoffCelebration, payoffCelebrationLast
+        /** REN-08: Modul Belajar of each asset class. */
+        case moduleMoneyMarketFund, moduleGovernmentBonds, moduleDeposits, moduleGold, moduleStocks, moduleCrypto
 
         /** REN: Tujuan Baru · DP Rumah, its result (the tests tap Jadikan Pos Budget), and a create that fails. */
         case houseGoal, houseGoalResult, houseGoalBudgetFailing
@@ -137,6 +140,7 @@
             case scoreHistory
             case payoff
             case payoffPlan
+            case planModule
         }
 
         var area: Area {
@@ -181,6 +185,9 @@
             case .scoreHistory, .scoreHistoryShort, .scoreHistoryEmpty, .scoreHistoryFailed, .scoreHistoryLocked:
                 .scoreHistory
             case .myPlan, .myPlanEmpty, .myPlanFailing, .payoffCelebration, .payoffCelebrationLast: .payoffPlan
+            case .moduleMoneyMarketFund, .moduleGovernmentBonds, .moduleDeposits, .moduleGold, .moduleStocks,
+                .moduleCrypto:
+                .planModule
             }
         }
     }
