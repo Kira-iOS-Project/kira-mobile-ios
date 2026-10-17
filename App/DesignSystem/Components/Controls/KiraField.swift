@@ -91,6 +91,10 @@ struct KiraField: View {
             Text(label)
         }
         .lineLimit(minimumLines...max(minimumLines, 6))
+        /** A wrapping field still holds one line of text: Return would type a line break, so it is dropped. */
+        .onChange(of: text) { _, value in
+            if wrapsText, value.contains(where: \.isNewline) { text = value.filter { !$0.isNewline } }
+        }
         .font(.body)
         .foregroundStyle(.ink)
         .focused($isFocused)
@@ -141,7 +145,8 @@ struct KiraField: View {
 
     /**
      The same field, one line when empty, wrapping onto more lines as a long value grows (a contact's
-     name), instead of scrolling it out of view at large text sizes.
+     name), instead of scrolling it out of view at large text sizes. It stays one line of text: a
+     typed line break is dropped.
      */
     func wraps() -> Self { copy { $0.wrapsText = true } }
 
