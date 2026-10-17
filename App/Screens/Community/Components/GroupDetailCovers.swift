@@ -1,8 +1,9 @@
 /**
  The covers over Detail Grup, one at a time: Aturan Komunitas, Tautan Keluar, Laporkan Grup (with
  "Laporan Terkirim" over it, as on its board) and the failure dialog. Each is a cover over the
- window, so the next one comes up only once the one before is down (as `SubmissionSheet` does), and
- Coba Lagi's retry starts only then too. Selesai closes the report sheet and runs `onReported`.
+ window, so the next one comes up only once the one before is down (as `SubmissionSheet` does).
+ Coba Lagi reopens the sheet once the dialog is down, and its submit starts only once the sheet has
+ fully risen (`onShown`). Selesai closes the report sheet and runs `onReported`.
  */
 import Domain
 import Features
@@ -26,7 +27,8 @@ struct GroupDetailCovers: ViewModifier {
         content
             .kiraSheet(
                 isPresented: shown(.rules, close: { model.showsRules = false }), title: "community.rules.title",
-                subtitle: "community.rules.subtitle", top: 90, onDismiss: coverGone
+                subtitle: "community.rules.subtitle", top: 90,
+                onShown: rulesShown, onDismiss: coverGone
             ) {
                 GroupRulesSheet(model: model)
             }
@@ -39,7 +41,8 @@ struct GroupDetailCovers: ViewModifier {
             .kiraSheet(
                 isPresented: shown(.report, close: { model.showsReport = false }), title: "community.report.title",
                 subtitle: model.phase.value.map { "community.report.subtitle \($0.summary.name)" },
-                leaf: KiraLeaf(.twig, tone: .soft, size: 120, isFlipped: true), onDismiss: coverGone
+                leaf: KiraLeaf(.twig, tone: .soft, size: 120, isFlipped: true),
+                onShown: reportShown, onDismiss: coverGone
             ) {
                 GroupReportSheet(model: model)
                     .kiraDialog(isPresented: $model.showsReportSent, onDismiss: reportDone) {
@@ -84,6 +87,16 @@ struct GroupDetailCovers: ViewModifier {
             return GroupFailureDialog.dialog(.connection, of: .join) {}
         }
         return GroupFailureDialog.dialog(failure, of: attempt) { retriesWhenGone = true }
+    }
+
+    /** Aturan Komunitas has fully risen: a consent Coba Lagi left waiting is sent now. */
+    private func rulesShown() {
+        Task { await model.sheetShown(.acceptRules) }
+    }
+
+    /** Laporkan Grup has fully risen: a report Coba Lagi left waiting is sent now. */
+    private func reportShown() {
+        Task { await model.sheetShown(.report) }
     }
 
     /** "Laporan Terkirim" is down: after Selesai the sheet closes too. */
