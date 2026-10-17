@@ -36,7 +36,9 @@ struct PriceGoalScreen: View {
             }
         )
         .navigationDestination(isPresented: Binding(get: { result != nil }, set: { if !$0 { result = nil } })) {
-            if let result { PriceGoalResultScreen(outcome: result, kind: model.kind, onOpen: onOpen) { onBudget(result) } }
+            if let result {
+                PriceGoalResultScreen(outcome: result, kind: model.kind, onOpen: onOpen) { onBudget(result) }
+            }
         }
     }
 }

@@ -74,7 +74,8 @@ package final class EducationGoalModel {
     /** Hitung: the plan and what goes with it; nil while something is missing or out of range. */
     package var outcome: EducationGoalOutcome? {
         let name = childName.trimmingCharacters(in: .whitespaces)
-        guard !name.isEmpty, let age = Int(childAge.filter(\.isNumber)), age >= 0, age < EducationStage.bachelor.entryAge,
+        guard !name.isEmpty, let age = Int(childAge.filter(\.isNumber)), age >= 0,
+            age < EducationStage.bachelor.entryAge,
             let income = EducationInput.rupiah(income), income > 0, let inflation = EducationInput.percent(inflation),
             let deposit = EducationInput.rupiah(deposit)
         else { return nil }
@@ -162,17 +163,21 @@ package struct EducationStageValues: Equatable, Sendable {
 
 /** "Daerah Sekolah". */
 package enum EducationRegion: CaseIterable, Equatable, Sendable {
+    /** Jakarta, Pulau Jawa, Luar Pulau Jawa, Luar Negeri. */
     case jakarta, java, outsideJava, abroad
 }
 
 /** "Jenis Sekolah". */
 package enum EducationSchool: CaseIterable, Equatable, Sendable {
+    /** Negeri, Swasta, Nasional Plus, Internasional. */
     case `public`, `private`, nationalPlus, international
 }
 
 /** Hasil Simulasi · Pendidikan Anak: the child, the plan, and each chosen stage's school. */
 package struct EducationGoalOutcome: Equatable, Sendable {
+    /** "Nama Anak". */
     package let childName: String
+    /** The engine's plan of the chosen stages. */
     package let plan: EducationPlan
     /** The chosen stages' values, in the plan's order. */
     package let details: [EducationStageValues]

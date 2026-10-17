@@ -19,26 +19,8 @@ struct NewGoalScreen: View {
                     KiraNavBar("plan.goal.form.title", leading: .close("plan.newGoal.close") { dismiss() }) {
                         EmptyView()
                     }
-                    HStack(alignment: .center, spacing: KiraSpacing.space3) {
-                        Text("plan.newGoal.title")
-                            .font(KiraFont.display(28, .heavy, relativeTo: .title))
-                            .kiraLineHeight(34, size: 28, natural: 1.26, relativeTo: .title)
-                            .tracking(-0.7)
-                            .foregroundStyle(.ink)
-                            .accessibilityAddTraits(.isHeader)
-                        Spacer(minLength: 0)
-                        KiraHandNote("plan.newGoal.note", size: .small, tilt: -2)
-                    }
-                    .padding(.horizontal, KiraSpacing.space1)
-                    LazyVGrid(
-                        columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10)], spacing: 8
-                    ) {
-                        ForEach(GoalFormRoute.built, id: \.self) { kind in
-                            GoalKindCard(kind: kind, isSelected: chosen == kind) { chosen = kind }
-                        }
-                    }
-                    .accessibilityElement(children: .contain)
-                    .accessibilityLabel(Text("plan.newGoal.kinds"))
+                    header
+                    kinds
                     Spacer(minLength: 0)
                     VStack(spacing: KiraSpacing.space3) {
                         KiraNotice(.info, message: "plan.newGoal.budgetNote")
@@ -56,6 +38,32 @@ struct NewGoalScreen: View {
         .background(.surface)
         .kiraScrollEdges()
         .toolbar(.hidden, for: .navigationBar)
+    }
+
+    /** "Apa Mimpimu?" with "mulai dari satu" beside it. */
+    private var header: some View {
+        HStack(alignment: .center, spacing: KiraSpacing.space3) {
+            Text("plan.newGoal.title")
+                .font(KiraFont.display(28, .heavy, relativeTo: .title))
+                .kiraLineHeight(34, size: 28, natural: 1.26, relativeTo: .title)
+                .tracking(-0.7)
+                .foregroundStyle(.ink)
+                .accessibilityAddTraits(.isHeader)
+            Spacer(minLength: 0)
+            KiraHandNote("plan.newGoal.note", size: .small, tilt: -2)
+        }
+        .padding(.horizontal, KiraSpacing.space1)
+    }
+
+    /** Jenis tujuan: two columns of kinds, one chosen. */
+    private var kinds: some View {
+        LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10)], spacing: 8) {
+            ForEach(GoalFormRoute.built, id: \.self) { kind in
+                GoalKindCard(kind: kind, isSelected: chosen == kind) { chosen = kind }
+            }
+        }
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel(Text("plan.newGoal.kinds"))
     }
 }
 
