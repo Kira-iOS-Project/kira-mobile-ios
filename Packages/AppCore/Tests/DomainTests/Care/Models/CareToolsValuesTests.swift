@@ -32,8 +32,10 @@ struct NegotiationScriptTests {
         script.contractNumber = " - "
         script.currentInstalment = nil
         script.affordable = nil
+        script.reason = ""
         let gaps = script.fill(for: .clipboard)
         #expect(gaps.name == nil && gaps.contract == nil && gaps.instalment == 0 && gaps.affordable == 0)
+        #expect(gaps.reason.isEmpty)
         #expect(script.fill(for: .screen).contract == nil)
     }
 
