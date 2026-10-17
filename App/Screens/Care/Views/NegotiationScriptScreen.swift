@@ -80,13 +80,17 @@ struct NegotiationScriptScreen: View {
         VStack(alignment: .leading, spacing: 22) {
             VStack(alignment: .leading, spacing: 14) {
                 LenderPicker(model: model, debts: debts).zIndex(1)
-                KiraField("care.script.instalment", text: $model.instalmentText)
-                    .prefix("care.script.currency").suffix("care.script.cents").amount()
-                    .keyboardType(.numberPad)
-                KiraField("care.script.affordable", text: $model.affordableText)
-                    .prefix("care.script.currency").suffix("care.script.cents").amount()
-                    .hint("care.script.affordableHint")
-                    .keyboardType(.numberPad)
+                Group {
+                    KiraField("care.script.instalment", text: $model.instalmentText)
+                        .prefix("care.script.currency").suffix("care.script.cents").amount()
+                        .keyboardType(.numberPad)
+                    KiraField("care.script.affordable", text: $model.affordableText)
+                        .prefix("care.script.currency").suffix("care.script.cents").amount()
+                        .hint("care.script.affordableHint")
+                        .keyboardType(.numberPad)
+                }
+                /** Covered by the open lender list, the fields leave VoiceOver until a lender is picked. */
+                .accessibilityHidden(model.isPickingLender)
             }
             ScriptCard(model: model)
             KiraNotice(.info, message: "care.script.notice")
