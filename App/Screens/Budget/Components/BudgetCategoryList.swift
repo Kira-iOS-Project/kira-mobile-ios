@@ -1,29 +1,33 @@
-/** Planned categories and their spending in the active pay period. */
+/**
+ Per Kategori (board Budget): each category's row with "Rp1.380.000,00 dari Rp1.800.000,00", its bar,
+ and a tag when it has one (Sisa at 90%, Lunas for a paid Tagihan), then each goal post (Dana
+ Darurat from Rencana) as a row tagged Pos Tujuan. "masih aman, kok" sits beside the title while no
+ category has gone past its plan.
+ */
 import Domain
 import SwiftUI
 
 struct BudgetCategoryList: View {
-    let allocations: [BudgetAllocation]
+    let budget: BudgetOverview
 
     var body: some View {
         VStack(alignment: .leading, spacing: KiraSpacing.space3) {
-            KiraSectionTitle("budget.categories")
-            if allocations.isEmpty {
-                Text("budget.categories.empty")
-                    .font(.subheadline).foregroundStyle(.inkMuted)
-                    .padding(KiraSpacing.space4).frame(maxWidth: .infinity, alignment: .leading)
-                    .kiraCard()
-            } else {
-                VStack(spacing: 0) {
-                    ForEach(Array(allocations.enumerated()), id: \.offset) { index, allocation in
-                        BudgetCategoryRow(allocation: allocation)
-                        if index < allocations.count - 1 { Rectangle().fill(.line).frame(height: 1) }
-                    }
+            KiraSectionTitle("budget.categories", trailing: note)
+            KiraListGroup {
+                ForEach(budget.allocations, id: \.category) { allocation in
+                    BudgetCategoryRow(allocation: allocation)
                 }
-                .padding(.horizontal, KiraSpacing.space4)
-                .kiraCard()
+                ForEach(budget.goalPosts, id: \.name) { goal in
+                    BudgetGoalRow(goal: goal, since: budget.period.start)
+                }
             }
+            .accessibilityElement(children: .contain)
+            .accessibilityLabel(Text("budget.categories.label"))
         }
+    }
+
+    private var note: KiraSectionTitle.Trailing {
+        budget.isWithinPlan ? .note("budget.categories.note") : .none
     }
 }
 
@@ -31,28 +35,44 @@ private struct BudgetCategoryRow: View {
     let allocation: BudgetAllocation
 
     var body: some View {
-        VStack(alignment: .leading, spacing: KiraSpacing.space2) {
-            HStack(alignment: .top, spacing: KiraSpacing.space3) {
-                KiraCategoryIcon(allocation.category.tile, size: 38)
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(allocation.category.title).font(.subheadline.weight(.semibold)).foregroundStyle(.ink)
-                    Text("budget.category.spent")
-                        .font(.caption).foregroundStyle(.inkMuted)
-                    KiraAmount(Decimal(allocation.spent), size: .small)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                VStack(alignment: .trailing, spacing: 4) {
-                    Text("budget.category.allocation").font(.caption).foregroundStyle(.inkMuted)
-                    KiraAmount(Decimal(allocation.amount), size: .small)
-                    if allocation.isNearLimit { KiraTag("budget.category.nearLimit", tone: .turmeric) }
+        KiraListRow(Text(allocation.category.title), leading: .category(allocation.category.tile), trailing: .none) {
+            VStack(alignment: .leading, spacing: KiraSpacing.space2) {
+                KiraProgressRibbon(value: Double(allocation.spent), target: Double(allocation.amount))
+                    .tone(allocation.isPaidBill ? .healthy : .pandan)
+                switch allocation.rowTag {
+                case .left(let amount):
+                    KiraTag("budget.category.left \(amount.rupiah, format: .rupiah)", tone: .turmeric, icon: .clock)
+                case .paid:
+                    KiraTag("budget.category.paid", tone: .healthy, icon: .check)
+                case nil:
+                    EmptyView()
                 }
             }
-            KiraProgressRibbon(
-                value: Double(allocation.spent), target: Double(max(allocation.amount, 1)),
-                label: allocation.category.title
-            ).tone(allocation.isNearLimit ? .turmeric : .pandan)
         }
-        .padding(.vertical, KiraSpacing.space3)
-        .accessibilityElement(children: .contain)
+        .subtitle(Text("budget.category.of \(spent) \(planned)"))
     }
+
+    private var spent: Text { Text(allocation.spent.rupiah, format: .rupiah) }
+
+    private var planned: Text { Text(allocation.amount.rupiah, format: .rupiah) }
+}
+
+private struct BudgetGoalRow: View {
+    let goal: BudgetGoalPost
+    let since: CalendarDay
+
+    var body: some View {
+        KiraListRow(Text(goal.name), leading: .category(tile), trailing: .none) {
+            VStack(alignment: .leading, spacing: KiraSpacing.space2) {
+                KiraProgressRibbon(value: Double(goal.currentAmount), target: Double(goal.targetAmount))
+                KiraTag("budget.goal.tag", tone: .pandan, icon: .target)
+            }
+        }
+        .subtitle(Text("budget.goal.setAside \(saved) \(since.date.formatted(.kiraDate))"))
+    }
+
+    private var saved: Text { Text(goal.currentAmount.rupiah, format: .rupiah) }
+
+    /** Dana Darurat's tile for the emergency fund, the savings tile for any other goal. */
+    private var tile: KiraCategory { goal.category == "emergency_fund" ? .emergency : .savings }
 }

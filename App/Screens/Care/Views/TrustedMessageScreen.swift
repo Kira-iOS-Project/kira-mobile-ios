@@ -31,15 +31,16 @@ struct TrustedMessageScreen: View {
         .task { await model.load() }
     }
 
-    /** "Untuk" over Layanan Kira Peduli, with Kuku as its avatar. */
+    /** "Untuk" over Layanan Kira Peduli, with the care illustration as its avatar. */
     private var recipient: some View {
         VStack(alignment: .leading, spacing: KiraSpacing.space2) {
             Text("care.trusted.to")
                 .font(.footnote.weight(.semibold)).kiraLineHeight(18, size: 13).foregroundStyle(.inkMuted)
                 .padding(.horizontal, KiraSpacing.space1)
             HStack(spacing: KiraSpacing.space3) {
-                KiraMascot(.happy, size: 66)
+                KiraIllustration(.care, size: 50)
                     .frame(width: 64, height: 64)
+                    .background(.surfaceRaised)
                     .clipShape(Circle())
                     .overlay(Circle().strokeBorder(.pandanLine, lineWidth: 1))
                 VStack(alignment: .leading, spacing: 2) {

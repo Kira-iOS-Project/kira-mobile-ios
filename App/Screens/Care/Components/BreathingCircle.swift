@@ -2,7 +2,7 @@
  Latihan Menenangkan Diri's circle (board LatihanTenang): three 260 pt rings of pandan that grow
  while the person breathes in, hold, and shrink while they breathe out, one second at a time, so a
  pause stops it where it is. With Reduce Motion the circle keeps one size and the words lead. No
- mascot in its centre: Kira Peduli shows Kuku only on Layanan Kira's card.
+ mascot in its centre: Kira Peduli shows no Kuku.
  */
 import Domain
 import SwiftUI

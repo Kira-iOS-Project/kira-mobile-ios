@@ -7,13 +7,16 @@ import Observation
 @MainActor
 @Observable
 package final class WalletsModel {
+    /** Loading, the accounts, none yet, or the problem of a first load that failed. */
     package private(set) var phase: ScreenPhase<WalletOverview> = .loading
+    /** Whether every amount is masked. */
     package private(set) var hidesBalances = false
 
     private let service: any WalletService
     private let now: @Sendable () -> Date
     private let calendar: Calendar
 
+    /** Dompet over `service`, judging due days by `now` in `calendar` (WIB unless given). */
     package init(
         service: any WalletService, now: @escaping @Sendable () -> Date = { Date() }, calendar: Calendar? = nil
     ) {
@@ -22,13 +25,16 @@ package final class WalletsModel {
         self.calendar = calendar ?? Self.jakartaCalendar
     }
 
-    /** Loads the user's wallets and liabilities together. */
+    /**
+     Loads the user's wallets and liabilities together. A first load that fails shows the problem
+     (a lost connection as such, Rule 12); a refresh that fails keeps the list already shown.
+     */
     package func load() async {
         do {
             let overview = try await service.overview()
             phase = overview.accounts.isEmpty ? .empty : .loaded(overview)
         } catch {
-            if phase.value == nil { phase = .failed(walletProblem(error)) }
+            if phase.value == nil { phase = .failed(AppProblem(error)) }
         }
     }
 
@@ -40,7 +46,6 @@ package final class WalletsModel {
     /** Whether this account's next due date is today through `days` days away in the chosen calendar. */
     package func isDueSoon(_ wallet: Wallet, within days: Int = 10) -> Bool {
         guard wallet.type.isDebt, days >= 0 else { return false }
-        if let dueSoon = wallet.dueSoon { return dueSoon }
         guard let due = wallet.nextDueAt else { return false }
         let today = calendar.startOfDay(for: now())
         let dueDay = calendar.startOfDay(for: due)
@@ -55,9 +60,4 @@ package final class WalletsModel {
         }
         return calendar
     }
-}
-
-/** The API's problem, or its generic code when the thrown error is not an AppProblem. */
-func walletProblem(_ error: any Error) -> AppProblem {
-    (error as? AppProblem) ?? AppProblem()
 }

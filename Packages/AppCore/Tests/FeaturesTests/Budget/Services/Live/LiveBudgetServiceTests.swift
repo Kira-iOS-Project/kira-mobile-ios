@@ -32,4 +32,10 @@ struct LiveBudgetServiceTests {
 }
 
 private let budgetJSON =
-    #"{"configured":true,"income":1000000,"remaining":100000,"allocations":[{"category":"food","amount":1200000,"spent":900000,"nearLimit":true}],"totalAllocated":1200000,"overAllocated":true,"goalPosts":[{"category":"emergency_fund","name":"Dana Darurat","currentAmount":500000,"targetAmount":1000000,"milestones":[{"amount":500000,"label":"Bulan pertama","reached":true}]}],"payday":{"requested":{"type":"day","day":25},"adjustedDate":"2026-10-26","periodStart":"2026-09-25","periodEnd":"2026-10-24","nextPayday":"2026-10-26","daysUntilPayday":8}}"#
+    #"{"configured":true,"income":1000000,"remaining":100000,"allocations":[{"category":"food",""#
+    + #"amount":1200000,"spent":900000,"nearLimit":true}],"totalAllocated":1200000,"overAllocated""#
+    + #":true,"goalPosts":[{"category":"emergency_fund","name":"Dana Darurat","currentAmount":5000"#
+    + #"00,"targetAmount":1000000,"milestones":[{"amount":500000,"label":"Bulan pertama","reached""#
+    + #":true}]}],"payday":{"requested":{"type":"day","day":25},"adjustedDate":"2026-10-26","perio"#
+    + #"dStart":"2026-09-25","periodEnd":"2026-10-24","nextPayday":"2026-10-26","daysUntilPayday":"#
+    + #"8}}"#

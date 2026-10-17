@@ -2091,12 +2091,12 @@
         }
       }
     },
-    "budget.allocated" : {
+    "budget.back" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Total Alokasi"
+            "value" : "Kembali ke Beranda"
           }
         }
       }
@@ -2106,47 +2106,67 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Alokasi per Kategori"
+            "value" : "Per Kategori"
           }
         }
       }
     },
-    "budget.categories.empty" : {
+    "budget.categories.label" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Belum ada alokasi kategori."
+            "value" : "Budget per kategori"
           }
         }
       }
     },
-    "budget.category.allocation" : {
+    "budget.categories.note" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Batas Alokasi"
+            "value" : "masih aman, kok"
           }
         }
       }
     },
-    "budget.category.nearLimit" : {
+    "budget.category.left %@" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mendekati Batas"
+            "value" : "Sisa %@"
           }
         }
       }
     },
-    "budget.category.spent" : {
+    "budget.category.of %@ %@" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Terpakai"
+            "value" : "%1$@ dari %2$@"
+          }
+        }
+      }
+    },
+    "budget.category.paid" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lunas"
+          }
+        }
+      }
+    },
+    "budget.edit" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atur Budget"
           }
         }
       }
@@ -2156,7 +2176,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Budget belum tersedia."
+            "value" : "Budget Belum Tersedia"
           }
         }
       }
@@ -2166,77 +2186,117 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Budget belum bisa dibuka"
+            "value" : "Budget Belum Bisa Dibuka"
           }
         }
       }
     },
-    "budget.goal.current" : {
+    "budget.footnote" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Terkumpul"
+            "value" : "Periode mengikuti tanggal gajian, bukan bulan kalender."
           }
         }
       }
     },
-    "budget.goal.progress" : {
+    "budget.goal.setAside %@ %@" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Progres tabungan"
+            "value" : "%1$@ disisihkan %2$@"
           }
         }
       }
     },
-    "budget.goal.separator" : {
+    "budget.goal.tag" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "dari"
+            "value" : "Pos Tujuan"
           }
         }
       }
     },
-    "budget.goals" : {
+    "budget.hero.hide" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Target Tabungan"
+            "value" : "Sembunyikan saldo"
           }
         }
       }
     },
-    "budget.income" : {
+    "budget.hero.paydayIn %lld" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Penghasilan Bulanan"
+            "value" : "Sisa uang · gajian %lld hari lagi"
           }
         }
       }
     },
-    "budget.overallocated.body" : {
+    "budget.hero.paydayToday" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jumlah alokasi lebih besar dari penghasilan bulanan. Kamu tetap bisa menyimpan budget."
+            "value" : "Sisa uang · gajian hari ini"
           }
         }
       }
     },
-    "budget.overallocated.title" : {
+    "budget.hero.paydayTomorrow" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Total alokasi melebihi penghasilan"
+            "value" : "Sisa uang · gajian besok"
+          }
+        }
+      }
+    },
+    "budget.hero.perDay %@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sekitar %@ per hari"
+          }
+        }
+      }
+    },
+    "budget.hero.show" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tampilkan saldo"
+          }
+        }
+      }
+    },
+    "budget.hero.spent" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sudah terpakai"
+          }
+        }
+      }
+    },
+    "budget.hero.spentShare %lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%% dari gaji"
           }
         }
       }
@@ -2251,22 +2311,12 @@
         }
       }
     },
-    "budget.remaining" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sisa Penghasilan"
-          }
-        }
-      }
-    },
     "budget.retry" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Muat Ulang"
+            "value" : "Coba Lagi"
           }
         }
       }
@@ -2551,22 +2601,12 @@
         }
       }
     },
-    "budget.spent" : {
-      "localizations" : {
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Terpakai"
-          }
-        }
-      }
-    },
     "budget.title" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Budget Bulanan"
+            "value" : "Budget"
           }
         }
       }

@@ -5,17 +5,16 @@ extension Operations.GetCurrentBudget.Output {
         switch self {
         case .ok(let response): try budgetOverview(response.body.json)
         case .unauthorized(let response): throw try response.body.applicationProblemJson
-        case .default: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
 
+/**
+ The current budget as Budget reads it. The spec's single goal post carries no name or
+ category, so no goal-post row is shown until it does.
+ */
 func budgetOverview(_ row: Components.Schemas.CurrentBudget) throws -> BudgetOverview {
-    let payday: Payday
-    switch row.payday.requested {
-    case .case1(let day): payday = Payday(day: day.day)
-    case .case2: payday = .endOfMonth
-    }
     guard let start = CalendarDay(iso: row.payday.periodStart),
         let end = CalendarDay(iso: row.payday.periodEnd)
     else { throw AppProblem() }
@@ -23,16 +22,8 @@ func budgetOverview(_ row: Components.Schemas.CurrentBudget) throws -> BudgetOve
         BudgetAllocation(
             category: try bridged($0.category), amount: $0.amount, spent: $0.spent, nearLimit: $0.nearLimit)
     }
-    let goals = row.goalPosts.map { goal in
-        BudgetGoalPost(
-            category: goal.category.rawValue, name: goal.name, currentAmount: goal.currentAmount,
-            targetAmount: goal.targetAmount,
-            milestones: goal.milestones.map {
-                BudgetGoalMilestone(amount: $0.amount, label: $0.label, reached: $0.reached)
-            })
-    }
     return BudgetOverview(
-        income: row.income, remaining: row.remaining, goalPosts: goals, payday: payday,
+        income: row.income, remaining: row.remaining,
         period: PayPeriod(start: start, end: end, daysUntilPayday: row.payday.daysUntilPayday),
         allocations: allocations, isConfigured: row.configured)
 }
