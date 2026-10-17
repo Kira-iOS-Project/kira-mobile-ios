@@ -1,7 +1,7 @@
 import Domain
 
 extension Operations.ListBills.Output {
-    /** The bills, or the API's problem; anything undocumented is the generic problem. */
+    /** The bills, or the API's problem (also for a status the route does not list). */
     func billOverview() throws -> BillOverview {
         switch self {
         case .ok(let response):
@@ -12,7 +12,7 @@ extension Operations.ListBills.Output {
                     BillSection(group: billGroup(section.group), bills: try section.bills.compactMap(bill))
                 })
         case .unauthorized(let response): throw try response.body.applicationProblemJson
-        case .default: throw AppProblem()
+        case .default(_, let response): throw try response.body.applicationProblemJson
         }
     }
 }
