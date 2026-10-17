@@ -10,6 +10,7 @@
  sections; Catat's and Riwayat's routes stay empty for their own integration, and an unavailable area
  never gets here.
  */
+import Domain
 import Features
 import SwiftUI
 
