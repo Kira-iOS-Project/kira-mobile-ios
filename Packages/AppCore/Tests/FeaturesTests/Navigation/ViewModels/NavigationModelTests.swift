@@ -73,9 +73,9 @@ struct NavigationModelTests {
         #expect(navigation.homePath == [.myPlan])
         navigation.open(.payoffSimulation)
         navigation.open(.myPlan)
-        #expect(navigation.homePath == [.myPlan])
-        navigation.open(.myPlan)
         #expect(navigation.homePath == [.myPlan, .myPlan])
+        navigation.open(.myPlan)
+        #expect(navigation.homePath == [.myPlan, .myPlan, .myPlan])
     }
 
     @Test("reset returns to an empty Beranda")
