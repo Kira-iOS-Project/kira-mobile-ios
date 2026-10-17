@@ -41,7 +41,7 @@
         case home, homeFirstSteps, homeDebtPlan, score
         case emergencyFund, savingsRatio, instalmentRatio, consumerDebt, debtToAsset, protectionCover
         /** AKN: Profil and the screens it opens. */
-        case profile, security, privacy, about, terms, privacyPolicy, complaints
+        case profile, wallets, security, privacy, about, terms, privacyPolicy, complaints
         /** AKN: plans, the subscription and Beasiswa Kira. */
         case plans, plansYearly, planDetail, checkout, subscription, invoices, treat
         case scholarship, scholarshipApply, scholarshipPending, scholarshipAccepted
@@ -63,7 +63,7 @@
             case .home, .homeFirstSteps, .homeDebtPlan, .score, .emergencyFund, .savingsRatio, .instalmentRatio,
                 .consumerDebt, .debtToAsset, .protectionCover:
                 .home
-            case .profile, .security, .privacy, .about, .terms, .privacyPolicy, .complaints: .account
+            case .profile, .wallets, .security, .privacy, .about, .terms, .privacyPolicy, .complaints: .account
             case .plans, .plansYearly, .planDetail, .checkout, .subscription, .invoices, .treat, .scholarship,
                 .scholarshipApply, .scholarshipPending, .scholarshipAccepted:
                 .plans

@@ -75,6 +75,7 @@
 
         var body: some View {
             switch screen {
+            case .wallets: AccountPreviewFlow(start: [.wallets])
             case .security: AccountPreviewFlow(start: [.security])
             case .privacy: AccountPreviewFlow(start: [.privacy])
             case .about: AccountPreviewFlow(start: [.about])
