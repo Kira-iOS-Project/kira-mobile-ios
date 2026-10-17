@@ -46,6 +46,7 @@
             case .planModule: PlanModuleLaunch(screen: screen)
             case .wallets: WalletsLaunch()
             case .budget: BudgetLaunch()
+            case .weeklySummary: WeeklySummaryLaunch(screen: screen)
             }
         }
     }
@@ -133,6 +134,8 @@
 
         /** UNG: Dompet (UNG-01) and Budget (UNG-04) on the preview services. */
         case wallets, budget
+        /** UNG-08: Ringkasan Mingguan, a week without spending, and a week that failed to load. */
+        case weeklySummary, weeklySummaryEmpty, weeklySummaryFailed
 
         /** The area whose launcher builds the screen. */
         enum Area {
@@ -147,6 +150,7 @@
             case payoffPlan
             case planModule
             case wallets, budget
+            case weeklySummary
         }
 
         var area: Area {
@@ -196,6 +200,7 @@
                 .planModule
             case .wallets: .wallets
             case .budget: .budget
+            case .weeklySummary, .weeklySummaryEmpty, .weeklySummaryFailed: .weeklySummary
             }
         }
     }

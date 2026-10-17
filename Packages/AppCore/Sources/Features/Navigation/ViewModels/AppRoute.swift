@@ -166,8 +166,6 @@ package enum UnavailableArea: String, CaseIterable, Hashable, Sendable {
     case editBudget
     /** UNG: Tagihan, the bills. */
     case bills
-    /** UNG: Ringkasan Mingguan, the weekly summary. */
-    case weeklySummary
     /** SKR: SLIK, the credit report. */
     case creditReport
     /** SKR: Detail Utang, one debt account's detail (Rencanaku's account rows). */
