@@ -48,9 +48,7 @@ struct RetirementGoalModelTests {
             .principalPercent == 18)
     }
 
-    @Test(
-        "recommends Rp2.950.000 a month or 12%, never more time",
-        .disabled("GoalEngineStub returns none until R2c (kira-project-d5) lands; enable then"))
+    @Test("recommends Rp2.950.000 a month or 12%, never more time")
     func recommendations() throws {
         let outcome = try #require(persona().outcome)
         #expect(outcome.recommendations == [.raiseDeposit(to: 2_950_000), .raiseReturn(to: 0.12)])
