@@ -56,6 +56,23 @@ nonisolated final class OnboardingAuditTests: XCTestCase {
         try auditScreen("debts")
     }
 
+    /** Tambah Rincian Utang, from Tambah Utang Lain: its panel starts low, the Utang step above it. */
+    @MainActor
+    func testDebtSheetPassesTheAudit() throws {
+        try auditScreen(
+            "debts",
+            prepare: { app in
+                let add = app.buttons["Tambah Utang Lain"]
+                XCTAssertTrue(add.waitForExistence(timeout: 10))
+                add.tap()
+                XCTAssertTrue(app.staticTexts["Tambah Rincian Utang"].waitForExistence(timeout: 5))
+            },
+            accepting: { issue in
+                /** Accepted, as for the drafts sheet (ChatAuditTests): text behind the sheet's scrim. */
+                issue.auditType == .elementDetection && issue.element == nil
+            })
+    }
+
     @MainActor
     func testSavingsPassesTheAudit() throws {
         try auditScreen("savings")
