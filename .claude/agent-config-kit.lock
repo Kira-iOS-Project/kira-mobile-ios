@@ -30,7 +30,7 @@
         ".github/workflows/dependency-review.yml": "sha256:080f40471b9c785b74df7ceee676dc88d78a69992466b26fc1456babd7f3e337",
         ".github/workflows/workflows-lint.yml": "sha256:f563339aa6b62f5378b3b49432aea9f15c026a954ec26ed5c59ff076d77e3105",
         "docs/unlock.md": "sha256:0f38a8283db097a92d3be9060b3ab966f7cf1021d7dfb525b1c11a68503fe535",
-        "scripts/check/ai-config.sh": "sha256:092f0d4019f9c9a04fb2d14f5b859f648a56af44d687bfd226c963c9096fda53",
+        "scripts/check/ai-config.sh": "sha256:460ff0091e6305cab14ef59335b5301fb03f3ec713106e940dcafc62c43c146b",
         "scripts/check/folder-shape.mjs": "sha256:b46030fc7e230048d764659966ce00a9cfdccd759c6bd7ab19f913fe1bdbf836",
         "scripts/check/gates.sh": "sha256:d861a983ea509bb185df11b37d9d57dbfc13950c59eccd3bd40638d62adc06eb",
         "scripts/check/hook-probes.sh": "sha256:fbccd5f17279d57378de12f6508f759d03a5fd42c4c6fdb101fbfb36960c853d",
@@ -41,7 +41,7 @@
         "scripts/env/show.sh": "sha256:6ff0a58bfe1bdc8a3996f737792c3855f223394dc451c8955c7e918d5ea2f07a",
         "scripts/ops/pr-ready.sh": "sha256:12aef688a47fb2af4fa5a8346b6819259f9a1a5a278d17101d0fd6d7150af50a",
         "scripts/ops/unlock.sh": "sha256:89df9a19cafc08fa536c6691a7fd26b8d29c1256fe5656a27898c738d7ece8c2",
-        "scripts/sync/workflows.sh": "sha256:8eda83e14aa824fc3f81ce1c6fe6ba5872e00508bf1f5ae45a62dcaab8ae03c1"
+        "scripts/sync/workflows.sh": "sha256:2a6aa3aabf14eeb12893775508ef01513498fd5293a86ccb871b147318f735aa"
       },
       "gitignore": [
         ".claude/state/",
@@ -133,7 +133,7 @@
         ]
       },
       "stack": "common",
-      "version": "1.2.1"
+      "version": "1.2.2"
     },
     "agent-deploy": {
       "answers": {
@@ -178,27 +178,28 @@
       "files": {
         ".claude/anti-patterns/closed-openapi-enum-throws-on-new-code.md": "sha256:8c24fe5b4df34a5f313f66754e81ce5ce09a004d4b56f464918d4a363bb580d8",
         ".claude/anti-patterns/file-length-counts-comments-by-default.md": "sha256:11ff1430a5bcb5e48a34ec26949d13427516fb42a00096ca02b13752a33deb6a",
+        ".claude/anti-patterns/full-accessibility-audit-outlasts-hosted-runner.md": "sha256:ca6651fb1d40aef63cf120aa459decbf621a729720cf2ca7b454c0d7c9edd8e3",
         ".claude/anti-patterns/macos-latest-is-a-different-xcode.md": "sha256:7a961a639a63282a33f1b334a736ef9681955d158ed5a7080888975a41529546",
         ".claude/anti-patterns/nested-swiftlint-config-replaces-root.md": "sha256:f94c6e63452ea34ca6d66d15c4bb65b357276987597f13b97229cb13fd9ee6f4",
         ".claude/anti-patterns/package-text-reads-main-bundle.md": "sha256:3ed4a8e49e0bcf89b9f9691dd3e613097314652f4ab222e673b0c53e42d85172",
+        ".claude/anti-patterns/periphery-reads-a-stale-index.md": "sha256:1899f5a8bd36ba6be0799dd6e863db6f573c0d4d3e9bf299564bbe5f5b4069c5",
         ".claude/anti-patterns/preconcurrency-warnings-escape-werror.md": "sha256:af73e7f2f2abe0a15543317669b1d606e796f0e29008324ecb427efd639fc8f9",
         ".claude/anti-patterns/state-macro-changes-init-semantics.md": "sha256:d995a51e114026875be1915a4c5b2582a74621c046bc2026b83bfb57c20d6308",
+        ".claude/anti-patterns/string-literal-in-ternary-is-not-extracted.md": "sha256:38c0fe0aa4088f18f26f3147bae7ae20d9ab4468ce14e0345db855bac521cc3c",
         ".claude/anti-patterns/swiftlint-analyze-sees-zero-files.md": "sha256:0a0cce7251c97e37e64a17b69ccdfb4d1e03f93d4031de8d18b6d48d8d381d80",
         ".claude/anti-patterns/xccov-omits-package-files.md": "sha256:db4b0441cefe93df956abbc89330f0a980e40c53b970029e9a4d569b3e04c6b7",
         ".claude/anti-patterns/xcodebuild-never-syncs-string-catalog.md": "sha256:6ee6b92940df964590a7306cd777117d770ec37fcdc1de53be2d18092ccc2187",
         ".claude/mcp/xcode.example.json": "sha256:7d6a6feb3c9ea2ceea5dc158a1f8f78ad938f4f1db2c0998f8196fbb5aa0da32",
-        ".claude/rules/common/error-codes.md": "sha256:41602937bc5be03d15ebcb8ebc79436f924402fb82e32e09d149c6f461c7342a",
         ".claude/rules/ios/packages.md": "sha256:51e0ce8f806af662ee9de8916df205963eb2f87088f467d1df4f933d1e7ed8d8",
         ".claude/rules/ios/strings.md": "sha256:6c4fbc58b45d4a3f29b3c0ab73eee92d0148f585bb3a80544e84221b940edade",
         ".claude/rules/ios/swiftui.md": "sha256:b69ea61446c90caf0bd1d5a700b5a86c5955a7596601d33c0d1a181786cf5e5e",
         ".claude/rules/swift/coverage.md": "sha256:cdaa9421b7cb948dd53825dc903e2a1be343f082b5e45e604dda20af7adfe326",
         ".github/workflows/deepseek-review.yml": "sha256:3161c30d3744eca05b3d8a4af67b53467c348e1bb379a2c2eab70554abf79fcf",
-        ".github/workflows/quality-gate.yml": "sha256:2ef752ef1e9a83456afc7a2962eb9d83e1f07ad2663db3ed6260f2dcdde150bd",
         "scripts/check/coverage-per-file.mjs": "sha256:3632cc88be8574d0a14c1cad6d5aaf49cbf44b78f45724685a003fe4982d7e1a",
         "scripts/check/coverage-policy.mjs": "sha256:9e527c3e89316870332a2275c2aed82dc6a7f2086fc195adf1f4f97cd0f343f4",
         "scripts/check/coverage.sh": "sha256:33d7de9a886c9ac161cae5c02c9ccae5125afd4cb8336a00c343de413c955eef",
         "scripts/check/error-codes.sh": "sha256:3ad058e3156dee303466569ebcef3e5c9058850d43f0e7bf43018f7c708763a3",
-        "scripts/check/i18n-catalog.mjs": "sha256:be1ddf95daf453a9ffcaaaec65f91084b53912e1f21d55742240c26db55e909c",
+        "scripts/check/i18n-catalog.mjs": "sha256:193196f3bdb1f200c8a0f727e4ffd89859056bf6aa6b1ac25afec9f294805a53",
         "scripts/check/lint-suppressions.sh": "sha256:254e646d033f9f3963e345f1f4c8e18a0fed1607bdddef867bea563bc6bc8891",
         "scripts/check/package-graph.sh": "sha256:ed3d6250acfe4d1c6823b99fa0c93da532fc5570ae863c94379cfc705830ab43",
         "scripts/check/payload-registry.mjs": "sha256:961abc5d32e63a5c41e12167473c86fac0e52fe85986ca1b49c2f12929a62ea4",
@@ -206,7 +207,7 @@
         "scripts/check/xcode-settings.sh": "sha256:7eba8245062760a74a197dd143f3f84c0ed982d0fd3fae08eb12a5a7498d89ee",
         "scripts/generate/payload-registry.mjs": "sha256:0d6cfa3d85e1558233dab4b648d53f53c74ae51e37860626d62fd33a1f4682ed",
         "scripts/ios/api-client.sh": "sha256:410bf210f9d629f2387de7f1ebecf8b53caeda6ca09d4ae3115a180a3bb255d9",
-        "scripts/ios/app.sh": "sha256:0adcf8f12c82e929c6e46554c60dc516993237dfce320e094291ddfbfc0885ea",
+        "scripts/ios/app.sh": "sha256:b2572bb963f35c3dff45f9945867fdcc4379765863b57c2445252d28fa215599",
         "scripts/lib/payload-registry.mjs": "sha256:8c947ed7541c8ba822bc17cf504c3b416dc4f85b9ffbc684ba549cf4632e3b06"
       },
       "gitignore": [
@@ -227,7 +228,9 @@
       "owned": [
         ".claude/anti-patterns/formatted-ignores-environment-locale.md",
         ".claude/anti-patterns/text-string-is-never-localized.md",
+        ".claude/rules/common/error-codes.md",
         ".claude/rules/ios/testing.md",
+        ".github/workflows/quality-gate.yml",
         "scripts/check/ci-env.sh"
       ],
       "packageScripts": {},
@@ -287,7 +290,7 @@
         ]
       },
       "stack": "ios-swiftui",
-      "version": "0.1.4"
+      "version": "1.0.1"
     }
   }
 }
