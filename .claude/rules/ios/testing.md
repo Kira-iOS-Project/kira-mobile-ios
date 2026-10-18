@@ -48,6 +48,13 @@ in time", XCTest's code -56). That is the tool timing out, not a finding, so the
 audit once more, for that error only. Any finding fails at once, and so does a second timeout
 (`UITests/DesignSystemGalleryAuditTests.swift`).
 
+The audits run in the `Kira` scheme, locally: `bash scripts/ios/app.sh ui-test` (or the test IDs of
+the screens a change touches) on the commit that ships. The pull-request gate builds the `KiraCI`
+scheme, the same app and test target with only the quick UI tests selected (`AmountFieldTests`,
+`AmountFieldSizeTests`, `DockSpacingTests`): on GitHub's macOS runner the full audit outlasted 90
+minutes and sampled screens mid-fade, so it failed every pull request. A new UI test that is quick
+and deterministic is added to `KiraCI`'s selected tests too.
+
 ## Coverage
 
 `bash scripts/check/coverage.sh` runs `swift test` with coverage and fails on any file below 100%
