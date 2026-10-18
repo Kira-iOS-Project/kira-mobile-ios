@@ -34,7 +34,7 @@
         "scripts/check/folder-shape.mjs": "sha256:b46030fc7e230048d764659966ce00a9cfdccd759c6bd7ab19f913fe1bdbf836",
         "scripts/check/gates.sh": "sha256:d861a983ea509bb185df11b37d9d57dbfc13950c59eccd3bd40638d62adc06eb",
         "scripts/check/hook-probes.sh": "sha256:fbccd5f17279d57378de12f6508f759d03a5fd42c4c6fdb101fbfb36960c853d",
-        "scripts/check/hook-probes.tsv": "sha256:7ccc1a348488d5d2f5d85b505dc29819f50c2add811e5c21f7f8a68321367d42",
+        "scripts/check/hook-probes.tsv": "sha256:1b3f9b618f97566de7474a3279b9e3f68b5cbc447cc42c78fa882bdc00d5afdf",
         "scripts/check/skills.sh": "sha256:4eef76ed5ecb9b5a2f1d4d655c781e89096dff64f302134938a17fe3bb5758d3",
         "scripts/env/envfile.py": "sha256:5341f982368b7bc5362b95d4d996203ab9f2cce10456323bad61a91431e059ad",
         "scripts/env/set.sh": "sha256:7f18ffd55c6360909fe6cd527e2ce28f8cbbf63b2eb23d224f7dbebac01dea1e",
@@ -133,7 +133,7 @@
         ]
       },
       "stack": "common",
-      "version": "1.2.2"
+      "version": "1.2.3"
     },
     "agent-deploy": {
       "answers": {
@@ -143,7 +143,7 @@
       },
       "claudeMd": "sha256:7fed40dab60a2787c89811f4780515e492a14dbe8f61e5bfaca756d871578544",
       "files": {
-        ".github/workflows/strip-ai.yml": "sha256:79f88053d9b77ff6b82b383741db17a4249d106b17f110f1acbe9f3429c3b751",
+        ".github/workflows/strip-ai.yml": "sha256:b1ab7cf4030f524650e8726d700aa573897581052cb77640a646c9715cd58c0b",
         "scripts/deploy/verify-deploy.sh": "sha256:989b1d9acbd481d653ac9678575044871ddbe2f7c01d3ade2eb83bbbbae0787a"
       },
       "gitignore": [],
@@ -161,7 +161,7 @@
         ]
       },
       "stack": "deploy",
-      "version": "1.1.4"
+      "version": "1.2.0"
     },
     "agent-ios-swiftui": {
       "answers": {
@@ -290,7 +290,7 @@
         ]
       },
       "stack": "ios-swiftui",
-      "version": "1.0.1"
+      "version": "1.0.2"
     }
   }
 }
