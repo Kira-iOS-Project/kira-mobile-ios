@@ -29,22 +29,19 @@ package struct LicensedLender: Hashable, Sendable {
     }
 }
 
-/** What a search answered: the matches, and the list it searched (its date, source and size). */
+/** What a search answered: the matches, and the list it searched (its date and size). */
 package struct LegalitySearch: Hashable, Sendable {
     /** The matches, at most ten. */
     package let results: [LicensedLender]
     /** The last day OJK's list covers. */
     package let asOf: CalendarDay
-    /** The OJK page the list comes from. */
-    package let source: URL?
     /** How many licensed lenders the list holds. */
     package let listed: Int
 
     /** A search answer with the given parts. */
-    package init(results: [LicensedLender], asOf: CalendarDay, source: URL?, listed: Int) {
+    package init(results: [LicensedLender], asOf: CalendarDay, listed: Int) {
         self.results = results
         self.asOf = asOf
-        self.source = source
         self.listed = listed
     }
 }

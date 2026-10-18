@@ -31,6 +31,11 @@ jobs:
     # No secrets: the gate reads the checkout and nothing else, and never signs a build.
     uses: adhibuchori/agent-config-kit/.github/workflows/ios-swiftui-quality-gate.yml@27d281201f852a74984a9c7763130df417655420 # v1.3.4
     with:
-      # The accessibility audit of every primary screen (UITests, AGENTS.md Rule 24) outlasts the
-      # kit's default 40 minutes on GitHub's macOS runner.
-      timeout-minutes: 90
+      # KiraCI builds the same app and test target as Kira but runs only the quick UI tests
+      # (AmountField, AmountFieldSize, DockSpacing). The accessibility audit of every primary screen
+      # (AGENTS.md Rule 24) stays in the Kira scheme and runs locally with
+      # `bash scripts/ios/app.sh ui-test`: on GitHub's macOS runner it never finished inside 90
+      # minutes, and its contrast samples there read screens mid-fade, so every pull request was
+      # cancelled and queued the next ones behind it for hours.
+      scheme: KiraCI
+      timeout-minutes: 30

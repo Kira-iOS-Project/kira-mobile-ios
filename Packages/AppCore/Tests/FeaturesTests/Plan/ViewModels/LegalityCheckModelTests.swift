@@ -8,7 +8,7 @@ import Testing
 /** OJK's list in a test: answers what the test sets and records each query. */
 private actor FakeLegalityService: LegalityService {
     var answer: Result<LegalitySearch, any Error> = .success(
-        LegalitySearch(results: [], asOf: CalendarDay(year: 2026, month: 7, day: 31), source: nil, listed: 94))
+        LegalitySearch(results: [], asOf: CalendarDay(year: 2026, month: 7, day: 31), listed: 94))
     private(set) var queries: [String] = []
 
     func set(_ answer: Result<LegalitySearch, any Error>) { self.answer = answer }

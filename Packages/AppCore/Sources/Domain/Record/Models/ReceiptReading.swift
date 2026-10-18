@@ -17,9 +17,6 @@ package struct ReceiptReading: Equatable, Sendable {
         self.total = total
     }
 
-    /** Whether the items add up to the total, as the API checks (RECEIPT_TOTAL_MISMATCH). */
-    package var isBalanced: Bool { items.map(\.amount).reduce(0, +) == total }
-
     /**
      The reading with items that add up to the printed total, which always wins: what the items
      leave out (tax, service, a line OCR missed) becomes one line named `otherName`; items worth more

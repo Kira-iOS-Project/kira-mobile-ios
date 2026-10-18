@@ -24,9 +24,7 @@ extension LegalitySearch {
     /** A day the app cannot read is the generic problem. */
     init(_ dto: Components.Schemas.LegalitySearch) throws {
         guard let asOf = CalendarDay(iso: dto.asOf) else { throw AppProblem() }
-        self.init(
-            results: try dto.results.map(LicensedLender.init), asOf: asOf, source: URL(string: dto.source),
-            listed: dto.listed)
+        self.init(results: try dto.results.map(LicensedLender.init), asOf: asOf, listed: dto.listed)
     }
 }
 
