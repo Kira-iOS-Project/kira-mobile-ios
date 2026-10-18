@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Builds and tests the app target for the simulator, and never signs (CODE_SIGNING_ALLOWED=NO).
-# Picks the first iPhone of the newest installed iOS runtime by its id, resolves packages only from
+# Picks an iPhone of the newest installed iOS runtime by its id, one that is not booted first
+# (IOS_SIMULATOR_ID overrides the choice), resolves packages only from
 # the committed Package.resolved, writes a result bundle under .build/xcode/results/, and fails when
 # the build reports any warning (AGENTS.md Rule 19): some Swift 6 concurrency warnings stay warnings
 # even with warnings-as-errors on, so the count in the result bundle is what decides. Tests never
