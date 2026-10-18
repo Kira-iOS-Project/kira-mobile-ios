@@ -31,6 +31,8 @@ nonisolated final class DockSpacingTests: XCTestCase {
         XCTAssertTrue(composer.waitForExistence(timeout: 5))
         XCTContext.runActivity(named: "composer \(composer.frame), dock \(dock.frame)") { _ in }
         XCTAssertLessThanOrEqual(composer.frame.maxY, dock.frame.minY, "the composer is under the dock")
+        /** The text sits inside the composer's card (about 15 pt), whose edge is 12 pt above the dock. */
+        XCTAssertLessThanOrEqual(dock.frame.minY - composer.frame.maxY, 32, "the composer floats far above the dock")
         app.terminate()
     }
 
