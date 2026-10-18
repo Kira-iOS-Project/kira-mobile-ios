@@ -3,8 +3,7 @@
  its torch for dim receipts. A photo is JPEG data in memory, never written to the library or disk.
  It focuses and exposes at the center, continuously and for near subjects (a receipt is close), and
  again whenever the scene changes; a tap focuses where it lands, then the center takes over after
- three seconds. `onFocus` tells the preview's focus box when the lens is focusing and when it is back
- at the center.
+ three seconds. `onFocus` tells the preview's focus box when the lens is focusing.
  */
 import AVFoundation
 import Features
@@ -19,8 +18,6 @@ nonisolated final class AVReceiptCamera: NSObject, ReceiptCapturing, @unchecked 
     struct Focus: Equatable, Sendable {
         /** The lens is still moving to a sharp picture. */
         var isAdjusting: Bool
-        /** Focus is at the center, continuously (not held at a tapped point). */
-        var isCentered: Bool
     }
 
     /** The middle of the picture, in the device's 0…1 coordinates. */
@@ -37,10 +34,14 @@ nonisolated final class AVReceiptCamera: NSObject, ReceiptCapturing, @unchecked 
     private let queue = DispatchQueue(label: "kira.receipt.camera")
     private var device: AVCaptureDevice?
     private var pending: CheckedContinuation<Data, any Error>?
-    private var focus = Focus(isAdjusting: false, isCentered: true)
+    private var focus = Focus(isAdjusting: false)
     private var adjusting: NSKeyValueObservation?
     private var sceneChanges: (any NSObjectProtocol)?
     private var recenter: DispatchWorkItem?
+
+    deinit {
+        if let sceneChanges { NotificationCenter.default.removeObserver(sceneChanges) }
+    }
 
     func start() async throws {
         guard await AVCaptureDevice.requestAccess(for: .video) else { throw Failure.denied }
@@ -150,7 +151,6 @@ extension AVReceiptCamera {
         if device.isExposureModeSupported(exposureMode) { device.exposureMode = exposureMode }
         device.isSubjectAreaChangeMonitoringEnabled = true
         device.unlockForConfiguration()
-        report { $0.isCentered = isCentered }
     }
 
     /** Changes the focus state on the camera's queue and tells the box on the main actor. */

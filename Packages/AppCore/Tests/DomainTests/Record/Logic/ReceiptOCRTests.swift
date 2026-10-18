@@ -32,7 +32,7 @@ struct ReceiptOCRTests {
         let reading = try #require(ReceiptTextParser.read(lines))
         #expect(reading.items.map(\.amount) == [5_000, 25_000, 2_000, 18_000, 3_000, 10_000])
         #expect(reading.items.map(\.name) == ["Es Teh", "Nasi Rames", "Kerupuk", "Ayam Bakar", "Sambal", "Tempe"])
-        #expect(reading.total == 63_000 && reading.isBalanced)
+        #expect(reading.total == 63_000 && reading.balanced(otherName: "Lainnya") == reading)
     }
 
     @Test("a total OCR saw without readable items still reads; nothing at all does not")

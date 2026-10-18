@@ -23,8 +23,6 @@ struct PreviewLegalityService: LegalityService {
         for lender in Self.lenders where "\(lender.app) \(lender.company)".localizedCaseInsensitiveContains(query) {
             results.append(lender)
         }
-        return LegalitySearch(
-            results: results, asOf: CalendarDay(year: 2026, month: 7, day: 31), source: LegalityLinks.ojk,
-            listed: 94)
+        return LegalitySearch(results: results, asOf: CalendarDay(year: 2026, month: 7, day: 31), listed: 94)
     }
 }
