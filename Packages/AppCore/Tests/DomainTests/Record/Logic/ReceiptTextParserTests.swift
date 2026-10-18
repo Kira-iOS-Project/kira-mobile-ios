@@ -19,7 +19,7 @@ struct ReceiptTextParserTests {
         #expect(reading.items.map(\.name) == ["Beras 5 Kg", "Minyak Goreng 2 L", "Sabun Cuci"])
         #expect(reading.items.map(\.amount) == [72_000, 38_000, 15_500])
         #expect(reading.total == 125_500)
-        #expect(reading.isBalanced)
+        #expect(reading.balanced(otherName: "Lainnya") == reading)
     }
 
     @Test("capitals, quantity lines, a discount, a subtotal, PPN (never an item) and a card payment")
@@ -35,7 +35,7 @@ struct ReceiptTextParserTests {
         #expect(reading.items.map(\.name) == ["Aqua 600ml", "Roti Tawar"])
         #expect(reading.items.map(\.amount) == [7_000, 13_000])
         #expect(reading.total == 22_000)
-        #expect(!reading.isBalanced)
+        #expect(reading.balanced(otherName: "Lainnya") != reading)
         #expect(reading.balanced(otherName: "Belanja").items.map(\.amount) == [7_000, 13_000, 2_000])
     }
 
@@ -46,7 +46,7 @@ struct ReceiptTextParserTests {
         #expect(noTotal.storeName == nil)
         #expect(noTotal.printedAt == nil)
         let wrong = try #require(ReceiptTextParser.read(["Kopi 18.000", "Total 20.000"]))
-        #expect(!wrong.isBalanced)
+        #expect(wrong.balanced(otherName: "Lainnya") != wrong)
         #expect(ReceiptTextParser.read(["Terima kasih", "", "12:00", "---"]) == nil)
         #expect(ReceiptTextParser.read(["DISKON 2.000", "1 x 5.000"]) == nil)
     }

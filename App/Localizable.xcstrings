@@ -1,6 +1,26 @@
 {
   "sourceLanguage" : "id",
   "strings" : {
+    "%@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
+    "%@%@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@%2$@"
+          }
+        }
+      }
+    },
     "account.about.ai" : {
       "localizations" : {
         "id" : {
@@ -2152,6 +2172,7 @@
       }
     },
     "bills.add.close" : {
+      "extractionState" : "manual",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -2397,6 +2418,7 @@
       }
     },
     "bills.add.subtitle" : {
+      "extractionState" : "manual",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -6571,6 +6593,7 @@
       }
     },
     "debtGuide.action.negotiationScript" : {
+      "extractionState" : "manual",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -6581,6 +6604,7 @@
       }
     },
     "debtGuide.action.openLapsSjk" : {
+      "extractionState" : "manual",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -6591,6 +6615,7 @@
       }
     },
     "debtGuide.action.reportToSatgas" : {
+      "extractionState" : "manual",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -6601,6 +6626,7 @@
       }
     },
     "debtGuide.action.whatsAppOJK" : {
+      "extractionState" : "manual",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -31976,6 +32002,7 @@
       }
     },
     "summary.weekly.more %@" : {
+      "extractionState" : "manual",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -32026,6 +32053,7 @@
       }
     },
     "summary.weekly.same" : {
+      "extractionState" : "manual",
       "localizations" : {
         "id" : {
           "stringUnit" : {
