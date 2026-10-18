@@ -29,7 +29,7 @@ jobs:
     permissions:
       contents: read
     # No secrets: the gate reads the checkout and nothing else, and never signs a build.
-    uses: adhibuchori/agent-config-kit/.github/workflows/ios-swiftui-quality-gate.yml@27d281201f852a74984a9c7763130df417655420 # v1.3.4
+    uses: adhibuchori/agent-config-kit/.github/workflows/ios-swiftui-quality-gate.yml@30cca28680e18fbdb0046b97d4a9885f92146ac5 # v1.4.0 (pre-release verification)
     with:
       # KiraCI builds the same app and test target as Kira but runs only the quick UI tests
       # (AmountField, AmountFieldSize, DockSpacing). The accessibility audit of every primary screen
